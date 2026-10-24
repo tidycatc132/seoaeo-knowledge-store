@@ -1,0 +1,218 @@
+{
+  "topic_id": "T44",
+  "title": "Entities, Knowledge Graph, Schema.org and JSON-LD",
+  "stage": 3,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-24",
+  "summary": "Structured data is a standard format for describing a page and the things on it. Schema.org supplies the shared vocabulary, and JSON-LD is the format Google generally recommends where a site's setup allows. Google uses structured data it finds to understand page content, but markup must truthfully match visible content or risk a manual action that removes rich result eligibility. Organization markup can include sameAs, the URL of a page on another website with more information about the organization; Google also says some properties help disambiguate an organization. Google states AI Overviews and AI Mode need no special schema. The Knowledge Graph Search API shows that entities are described with schema.org types and JSON-LD. GraphRAG is a research method in which an LLM builds an entity knowledge graph from documents and pregenerates community summaries; it is evidence of a method, not of web search behaviour.",
+  "actions": [
+    "Implement schema.org markup as JSON-LD unless your platform prevents it.",
+    "Audit that every marked-up fact is visible on the page; remove markup for content users cannot see.",
+    "Add Organization markup with sameAs links to profiles that really belong to the organization; no property is required, and the effect on results is not guaranteed.",
+    "Do not sell or buy 'AI schema' as a requirement for AI Overviews or AI Mode.",
+    "Follow Google's general and type-specific structured data guidelines; otherwise markup might be ineligible for rich results."
+  ],
+  "myths": [
+    {
+      "myth": "You need special schema.org markup to appear in AI Overviews or AI Mode.",
+      "correction": "Google says there is no special schema.org structured data you need to add and no additional requirements.",
+      "source_ids": [
+        "S007"
+      ]
+    },
+    {
+      "myth": "Marking up content that is not on the page is harmless.",
+      "correction": "Google's guidelines say not to mark up content not visible to readers, and an issue can result in a manual action.",
+      "source_ids": [
+        "S009"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T44-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "What is structured data, as Google defines it?",
+      "options": [],
+      "answer": "A standardized format for providing information about a page and classifying its content",
+      "explanation": "Google's introduction describes structured data as a standardized format for providing information about a page and classifying the page content.",
+      "related_topics": [],
+      "source_ids": [
+        "S008#P1"
+      ]
+    },
+    {
+      "item_id": "T44-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which format does Google generally recommend for structured data if your site's setup allows it?",
+      "options": [
+        "A. Microdata",
+        "B. RDFa",
+        "C. JSON-LD",
+        "D. Meta keywords"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google says it generally recommends JSON-LD where the setup allows. Wrong: 'Microdata' - a supported schema.org format, not the one Google recommends. 'RDFa' - also supported, not the recommendation. 'Meta keywords' - not a structured data format.",
+      "related_topics": [],
+      "source_ids": [
+        "S008#P3",
+        "S010#P2"
+      ]
+    },
+    {
+      "item_id": "T44-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google's documentation says you must add a special schema.org markup to be shown in AI Overviews or AI Mode.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google states there is no special schema.org structured data you need to add, and no additional requirements.",
+      "related_topics": [
+        "T12"
+      ],
+      "source_ids": [
+        "S007#P2",
+        "S007#P3"
+      ]
+    },
+    {
+      "item_id": "T44-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Which Organization property holds the URL of a page on another website with additional information about the organization?",
+      "options": [],
+      "answer": "sameAs",
+      "explanation": "Google describes sameAs this way. Separately, Google says some properties are used behind the scenes to disambiguate your organization from other organizations; the saved quote does not say which, so do not assume sameAs does it. No properties are required.",
+      "related_topics": [],
+      "source_ids": [
+        "S011#P3",
+        "S011#P2",
+        "S011#P4"
+      ]
+    },
+    {
+      "item_id": "T44-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'Valid JSON-LD guarantees a rich result.' Which correction is best?",
+      "options": [
+        "A. Correct, validity is the only requirement for rich results.",
+        "B. Follow the guidelines too, or it may be ineligible.",
+        "C. Google ignores JSON-LD.",
+        "D. Rich results require Microdata instead of JSON-LD."
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google says to follow the general structured data guidelines and any type-specific ones, otherwise the structured data might be ineligible for rich result display. Wrong: 'Correct, validity is the only requirement for rich results.' - guideline compliance is also named. 'Google ignores JSON-LD.' - Google uses structured data to understand content and recommends JSON-LD. 'Rich results require Microdata instead of JSON-LD.' - Google recommends JSON-LD generally.",
+      "related_topics": [],
+      "source_ids": [
+        "S008#P5",
+        "S008#P4",
+        "S008#P2",
+        "S008#P3"
+      ]
+    },
+    {
+      "item_id": "T44-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which of these is NOT something Google's structured data guidelines tell you to do?",
+      "options": [
+        "A. Mark up content users cannot see, if the markup validates",
+        "B. Make the structured data a true representation of the page",
+        "C. Avoid marking up content not visible to readers",
+        "D. Avoid using structured data to mislead users"
+      ],
+      "answer": "A",
+      "explanation": "Correct: this is the opposite of the visible-content rule. Wrong: 'Make the structured data a true representation of the page' - stated in the guidelines. 'Avoid marking up content not visible to readers' - stated in the guidelines. 'Avoid using structured data to mislead users' - stated in the guidelines.",
+      "related_topics": [],
+      "source_ids": [
+        "S009#P1",
+        "S009#P2",
+        "S009#P3"
+      ]
+    },
+    {
+      "item_id": "T44-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "A site has an Organization JSON-LD block with name, url and sameAs. List the minimum required properties according to Google's Organization documentation.",
+      "options": [],
+      "answer": "none",
+      "explanation": "Google says there are no required properties; add the ones that apply. So the block is valid with none required, though sameAs and other properties add disambiguating detail. Adding properties that do not apply to your content is not the aim.",
+      "related_topics": [],
+      "source_ids": [
+        "S011#P4",
+        "S011#P3"
+      ]
+    },
+    {
+      "item_id": "T44-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical audit finding reads: 'Product page marks up a 4.8 star rating, but no ratings appear on the page. Status: fine, JSON-LD validates.' What is the error?",
+      "options": [
+        "A. JSON-LD cannot hold ratings of any kind.",
+        "B. Ratings must be written in Microdata.",
+        "C. Markup for invisible content breaks the guidelines.",
+        "D. Nothing, markup does not need to match the page."
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google says not to mark up content not visible to readers and that the data must be a true representation of the page; an issue can lead to a manual action. Wrong: 'JSON-LD cannot hold ratings of any kind.' - unsupported; JSON-LD is the recommended format. 'Ratings must be written in Microdata.' - unsupported. 'Nothing, markup does not need to match the page.' - contradicts the guidelines.",
+      "related_topics": [],
+      "source_ids": [
+        "S009#P1",
+        "S009#P2",
+        "S009#P4"
+      ]
+    },
+    {
+      "item_id": "T44-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site): a clinic chain's templates still output FAQ markup for answers removed from the visible page. Evidence: (1) a Search Console notice (hypothetical) mentions a structured data manual action; (2) Google's guidelines say markup must be a true representation of the page and not mark up invisible content; (3) a vendor pitches more entity schema to 'win AI Overviews'. Which action is best?",
+      "options": [
+        "A. Add more entity schema, as the vendor proposes.",
+        "B. Switch all of the markup to Microdata format.",
+        "C. Ignore it, since a manual action has no consequence.",
+        "D. Remove the invisible markup or restore content."
+      ],
+      "answer": "D",
+      "explanation": "Correct: this fixes the cause named in the guidelines. Wrong: 'Add more entity schema, as the vendor proposes.' - Google says no special schema is needed for AI features. 'Switch all of the markup to Microdata format.' - changes format, not the mismatch. 'Ignore it, since a manual action has no consequence.' - Google says a page with a structured data manual action loses eligibility for appearance as a rich result.",
+      "related_topics": [
+        "T12"
+      ],
+      "source_ids": [
+        "S009#P1",
+        "S009#P2",
+        "S009#P4",
+        "S009#P5",
+        "S007#P3"
+      ]
+    },
+    {
+      "item_id": "T44-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site): a software brand shares its name with an unrelated company. Evidence: (1) the site has no Organization markup; (2) the brand has official profiles on other sites; (3) Google says Organization properties include sameAs (a page on another website with additional information about the organization) and that some properties help disambiguate it from other organizations. Which action is best?",
+      "options": [
+        "A. Add Organization markup with sameAs to real profiles.",
+        "B. Add sameAs links to the other company's pages instead.",
+        "C. Add hidden text that repeats the brand name often.",
+        "D. Wait for GraphRAG to index the site."
+      ],
+      "answer": "A",
+      "explanation": "Correct: it uses the documented property for the brand's own profiles and matches visible content; the effect on results is not guaranteed (practitioner judgement). Wrong: 'Add sameAs links to the other company's pages instead.' - misleading; guidelines say not to deceive. 'Add hidden text that repeats the brand name often.' - invisible text is not structured data. 'Wait for GraphRAG to index the site.' - GraphRAG is a research method for RAG systems, not web search behaviour.",
+      "related_topics": [],
+      "source_ids": [
+        "S011#P1",
+        "S011#P3",
+        "S011#P2",
+        "S009#P3",
+        "S012#P1"
+      ]
+    }
+  ]
+}

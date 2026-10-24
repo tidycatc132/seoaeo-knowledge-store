@@ -1,0 +1,6 @@
+2026-10-24 | R1 | T12 | sources added 6 (S001,S002,S005,S006,S007; S003 shared) | items 10 | cut 2 (semantic parsing formalisms, Rocchio math)
+2026-10-24 | R1 | T44 | sources added 6 (S008-S011,S012,S019) | items 10 | cut 3 (NER, knowledge panels, vendor entity-SEO)
+2026-10-24 | R1 | T48 | sources added 3 (S013,S014; S003) | items 10 | cut 2 (Know/Do labels, commercial class unsourced)
+2026-10-24 | R1 | T7 | sources added 3 (S004,S015,S016) | items 10 | cut 3 (formulas, R-precision, F-measure)
+2026-10-24 | R1 | T29 | sources added 2 (S017,S018) | items 10 | cut 2 (judge calibration numbers, vendor groundedness thresholds)
+2026-10-24 | R1 fixes | T12,T44,T48,T7,T29 | sources amended S008,S016,S017 | 17 flagged items fixed, answer keys shortened, MCQ letters/lengths rebalanced | cut 3 claims (groundedness synonym, unlabeled default, sameAs=disambiguation)

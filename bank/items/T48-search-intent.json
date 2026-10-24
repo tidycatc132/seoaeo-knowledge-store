@@ -1,0 +1,208 @@
+{
+  "topic_id": "T48",
+  "title": "Search intent classification and spelling correction",
+  "stage": 3,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-24",
+  "summary": "Broder's original taxonomy sorts web queries into navigational (reach a particular site), informational (acquire information) and transactional (perform a web-mediated activity). Practitioners often add a fourth label, commercial investigation; that extension is a working convention, not part of the saved Broder passages. Broder himself says inferring intent from a query is at best inexact. Google's rater guidelines note that many queries have more than one meaning and that a very helpful result serves the dominant, common or reasonable minor interpretations. Spelling correction is a separate step; the textbook describes edit distance and k-gram overlap. In practice, treat intent labels as hypotheses and check them against what is shown for the query.",
+  "actions": [
+    "Label target queries with intent as a hypothesis, then verify against the pages that currently rank before choosing a page type.",
+    "For ambiguous terms, decide the dominant meaning and serve it first; acknowledge reasonable minor meanings where honest.",
+    "Before building pages per misspelling, check live results; the textbook describes correction methods (edit distance, k-gram overlap) but a given engine's behaviour is unconfirmed.",
+    "Keep a column for confidence in your intent labels; Broder says intent cannot be inferred with certainty."
+  ],
+  "myths": [
+    {
+      "myth": "Every query has one clear intent that tools can label with certainty.",
+      "correction": "Broder wrote that inferring user intent from the query is at best an inexact science; Google's rater guidelines note many queries have more than one meaning.",
+      "source_ids": [
+        "S013",
+        "S014"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T48-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In Broder's taxonomy, what is the intent of a navigational query?",
+      "options": [],
+      "answer": "To reach a particular site",
+      "explanation": "Broder defines the immediate intent of a navigational query as reaching a particular site. Informational means acquiring information and transactional means performing a web-mediated activity.",
+      "related_topics": [],
+      "source_ids": [
+        "S013#P1"
+      ]
+    },
+    {
+      "item_id": "T48-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which intent class does Broder define as 'to perform some web-mediated activity'?",
+      "options": [
+        "A. Navigational",
+        "B. Transactional",
+        "C. Informational",
+        "D. Commercial investigation"
+      ],
+      "answer": "B",
+      "explanation": "Correct: that is Broder's wording for transactional. Wrong: 'Navigational' - reaching a particular site. 'Informational' - acquiring information on web pages. 'Commercial investigation' - a practitioner extension, not in the saved Broder definitions.",
+      "related_topics": [],
+      "source_ids": [
+        "S013#P3",
+        "S013#P1",
+        "S013#P2"
+      ]
+    },
+    {
+      "item_id": "T48-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Broder states that a query's intent can be inferred with certainty from the query itself.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Broder says inferring the user intent from the query is at best an inexact science, and that the taxonomy does not assume intent can be inferred with certitude.",
+      "related_topics": [],
+      "source_ids": [
+        "S013#P4",
+        "S013#P5"
+      ]
+    },
+    {
+      "item_id": "T48-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Google's rater guidelines say many queries have more than one what?",
+      "options": [],
+      "answer": "meaning",
+      "explanation": "The guidelines say many queries have more than one meaning (example: Mercury, the planet or the element) and that a very helpful result serves dominant, common or reasonable minor interpretations. They guide human raters and do not specify ranking.",
+      "related_topics": [],
+      "source_ids": [
+        "S014#P1",
+        "S014#P2",
+        "S014#P3"
+      ]
+    },
+    {
+      "item_id": "T48-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A tool labels 'mercury' informational with 100% confidence. Which response is best?",
+      "options": [
+        "A. Accept it, since tools are exact and certain.",
+        "B. Relabel it navigational instead.",
+        "C. Delete the query from the keyword plan.",
+        "D. Treat it as a hypothesis."
+      ],
+      "answer": "D",
+      "explanation": "Correct: Broder calls intent inference inexact and the guidelines note multiple meanings. Wrong: 'Accept it, since tools are exact and certain.' - certainty is not supported. 'Relabel it navigational instead.' - swaps one unsupported single label for another. 'Delete the query from the keyword plan.' - discards a query instead of examining its meanings.",
+      "related_topics": [],
+      "source_ids": [
+        "S013#P4",
+        "S014#P1",
+        "S014#P2"
+      ]
+    },
+    {
+      "item_id": "T48-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Three of these statements are supported by the saved sources. Which is the odd one out?",
+      "options": [
+        "A. Every query has one intent a tool can label with certainty.",
+        "B. Many queries have more than one meaning.",
+        "C. Intent is at best inexactly inferred from the query.",
+        "D. A helpful result can serve a reasonable minor interpretation."
+      ],
+      "answer": "A",
+      "explanation": "Correct: Broder says intent cannot be inferred with certainty and the guidelines note multiple meanings. Wrong: 'Many queries have more than one meaning.' - stated in the rater guidelines. 'Intent is at best inexactly inferred from the query.' - stated by Broder. 'A helpful result can serve a reasonable minor interpretation.' - stated in the rater guidelines.",
+      "related_topics": [],
+      "source_ids": [
+        "S013#P4",
+        "S013#P5",
+        "S014#P1",
+        "S014#P3"
+      ]
+    },
+    {
+      "item_id": "T48-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "A searcher types a company name to reach its official website. Which Broder class fits best: navigational, informational or transactional?",
+      "options": [],
+      "answer": "navigational",
+      "explanation": "Broder defines navigational intent as reaching a particular site. The other classes are acquiring information (informational) and performing a web-mediated activity (transactional). Intent from the query alone is inexact, so verify against what ranks.",
+      "related_topics": [],
+      "source_ids": [
+        "S013#P1",
+        "S013#P2",
+        "S013#P3",
+        "S013#P4"
+      ]
+    },
+    {
+      "item_id": "T48-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical plan says: 'Create one page per misspelling of our brand, because engines never correct spelling.' Which critique is best?",
+      "options": [
+        "A. Unsupported; check live results first.",
+        "B. Misspellings can never be matched by any engine.",
+        "C. K-gram overlap belongs in the page copy itself.",
+        "D. Brand names cannot be misspelled by searchers."
+      ],
+      "answer": "A",
+      "explanation": "Correct: the textbook describes spelling correction methods (edit distance, k-gram overlap) but does not say how any engine behaves, so engine behaviour is unconfirmed; page-per-misspelling is practitioner risk, not sourced advice. Wrong: 'Misspellings can never be matched by any engine.' - unsupported. 'K-gram overlap belongs in the page copy itself.' - it is a method, not an on-page tactic. 'Brand names cannot be misspelled by searchers.' - unsupported.",
+      "related_topics": [
+        "T12"
+      ],
+      "source_ids": [
+        "S003#P1"
+      ]
+    },
+    {
+      "item_id": "T48-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site): a gardening blog wants to rank for 'jaguar'. Evidence: (1) the tool says the query is informational; (2) the blog's content is about the plant 'jaguar fern' (hypothetical); (3) Google's rater guidelines say many queries have more than one meaning and a helpful result serves dominant, common or reasonable minor interpretations. Which action is best?",
+      "options": [
+        "A. Target 'jaguar' because the tool said informational.",
+        "B. Add structured data to claim the term.",
+        "C. Pick a more specific phrase that fits the blog.",
+        "D. Use the misspelling 'jagwar' instead."
+      ],
+      "answer": "C",
+      "explanation": "Correct: it accepts that the query has several meanings and aims the page at the meaning it serves. Wrong: 'Target 'jaguar' because the tool said informational.' - trusts a single label. 'Add structured data to claim the term.' - markup does not settle query meaning. 'Use the misspelling 'jagwar' instead.' - confuses spelling variants with meaning.",
+      "related_topics": [
+        "T44"
+      ],
+      "source_ids": [
+        "S014#P1",
+        "S014#P3",
+        "S013#P4"
+      ]
+    },
+    {
+      "item_id": "T48-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site): a store sorted 500 keywords into intent labels with a tool and built pages by label. Evidence: (1) its report shows 20% of queries have two plausible labels (hypothetical); (2) Broder wrote that intent cannot be inferred with certainty from the query; (3) no data on what actually ranks. Which action is best?",
+      "options": [
+        "A. Build all pages now, treating the labels as final.",
+        "B. Delete the ambiguous queries from the keyword list.",
+        "C. Merge all of the queries into one big page.",
+        "D. Treat labels as hypotheses; verify the 20% first."
+      ],
+      "answer": "D",
+      "explanation": "Correct: this matches the sourced caution at modest cost; the trade-off is time before launch. Wrong: 'Build all pages now, treating the labels as final.' - ignores the stated inexactness. 'Delete the ambiguous queries from the keyword list.' - loses possibly valuable queries. 'Merge all of the queries into one big page.' - destroys intent fit.",
+      "related_topics": [],
+      "source_ids": [
+        "S013#P4",
+        "S013#P5",
+        "S014#P1"
+      ]
+    }
+  ]
+}

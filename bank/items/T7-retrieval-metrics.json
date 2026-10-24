@@ -1,0 +1,216 @@
+{
+  "topic_id": "T7",
+  "title": "Retrieval evaluation metrics",
+  "stage": 8,
+  "merged_from": [],
+  "volatility": "stable",
+  "last_verified": "2026-10-24",
+  "summary": "Retrieval metrics answer different questions. Precision at k is the share of the top k results that are relevant; recall at k is the share of all relevant documents found in the top k. Mean reciprocal rank (MRR) takes the reciprocal of the rank of the first relevant result per query, so it rewards getting one good result high. Mean average precision (MAP) summarises quality across recall levels and is stable for binary relevance. NDCG takes both rank and graded ratings into account, which is why the BEIR benchmark chose nDCG@10. Precision at k is the least stable common measure. When you judge a site search or a RAG retriever, pick the metric that matches the question, fix k, and decide how unlabeled results are treated; Elastic's docs say they are treated as irrelevant when not ignored.",
+  "actions": [
+    "Choose the metric by question: first good hit (MRR), graded usefulness (NDCG), set quality (precision and recall at k).",
+    "Always state k (for example nDCG@10) when reporting a result.",
+    "Use NDCG, not MAP or MRR, when your relevance judgments are graded rather than yes/no.",
+    "Check how your tool treats unlabeled results; Elastic's docs say they count as irrelevant unless set to be ignored.",
+    "Do not compare a single query's precision at k across time as proof of change; precision at k is the least stable common measure."
+  ],
+  "myths": [
+    {
+      "myth": "Precision and recall alone are enough to compare rankers.",
+      "correction": "BEIR's authors call precision and recall rank unaware and unsuitable as the main measures for ranked results.",
+      "source_ids": [
+        "S015"
+      ]
+    },
+    {
+      "myth": "A higher precision at 10 on a handful of queries is a reliable improvement signal.",
+      "correction": "The textbook says precision at k is the least stable of the commonly used measures, while MAP has good discrimination and stability.",
+      "source_ids": [
+        "S004"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T7-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "What does precision at k measure?",
+      "options": [],
+      "answer": "The proportion of relevant results in the top k search results",
+      "explanation": "Elastic's documentation defines precision at k this way. Recall at k is different: the fraction of all relevant documents that appear in the first k.",
+      "related_topics": [
+        "T29"
+      ],
+      "source_ids": [
+        "S016#P2",
+        "S016#P3"
+      ]
+    },
+    {
+      "item_id": "T7-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Mean reciprocal rank (MRR) is built from which quantity per query?",
+      "options": [
+        "A. Reciprocal of the first relevant document's rank",
+        "B. The share of relevant documents found in top k",
+        "C. The sum of discounted, rated gains per result",
+        "D. The proportion of relevant results in top k"
+      ],
+      "answer": "A",
+      "explanation": "Correct: that is the definition in Elastic's docs. Wrong: 'The share of relevant documents found in top k' - that is recall at k. 'The sum of discounted, rated gains per result' - that is the idea behind DCG, which uses rank and rating. 'The proportion of relevant results in top k' - that is precision at k.",
+      "related_topics": [],
+      "source_ids": [
+        "S016#P1",
+        "S016#P2",
+        "S016#P3",
+        "S016#P4"
+      ]
+    },
+    {
+      "item_id": "T7-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: NDCG is designed for situations where relevance is non-binary (graded).",
+      "options": [],
+      "answer": "True",
+      "explanation": "The textbook says NDCG is designed for non-binary notions of relevance. BEIR also chose nDCG because it suits both binary and graded judgments.",
+      "related_topics": [],
+      "source_ids": [
+        "S004#P5",
+        "S015#P2"
+      ]
+    },
+    {
+      "item_id": "T7-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Discounted cumulative gain takes the rank and what other quantity of each result into account?",
+      "options": [],
+      "answer": "rating",
+      "explanation": "Elastic's documentation says DCG takes both the rank and the rating of the search results into account; normalizing gives NDCG.",
+      "related_topics": [],
+      "source_ids": [
+        "S016#P4",
+        "S016#P5"
+      ]
+    },
+    {
+      "item_id": "T7-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A teammate says 'Precision and recall alone are the best way to compare rankers.' Which correction is best?",
+      "options": [
+        "A. Correct; simplicity makes them the best choice.",
+        "B. They are valid only for graded relevance data.",
+        "C. BEIR calls them rank unaware.",
+        "D. They always give the same ranking as NDCG."
+      ],
+      "answer": "C",
+      "explanation": "Correct: BEIR states that precision and recall are both rank unaware and not suitable for its ranked-retrieval benchmark. Wrong: 'Correct; simplicity makes them the best choice.' - ignores that rank is not considered. 'They are valid only for graded relevance data.' - unsupported. 'They always give the same ranking as NDCG.' - NDCG uses rank and grades.",
+      "related_topics": [],
+      "source_ids": [
+        "S015#P3",
+        "S015#P2"
+      ]
+    },
+    {
+      "item_id": "T7-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Three of these take rank into account. Which is the odd one out?",
+      "options": [
+        "A. MRR (reciprocal rank)",
+        "B. DCG (discounted gain)",
+        "C. NDCG (normalized DCG)",
+        "D. Recall at k (R@k)"
+      ],
+      "answer": "D",
+      "explanation": "Correct: BEIR calls precision and recall rank unaware. Wrong: 'MRR (reciprocal rank)' - uses the rank of the first relevant document. 'DCG (discounted gain)' - takes rank and rating into account. 'NDCG (normalized DCG) (discounted gain)' - normalized DCG (discounted gain).",
+      "related_topics": [],
+      "source_ids": [
+        "S015#P3",
+        "S016#P1",
+        "S016#P4",
+        "S016#P5"
+      ]
+    },
+    {
+      "item_id": "T7-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Three queries have their first relevant result at rank 1, rank 2 and rank 4. What is the MRR to 3 decimals?",
+      "options": [],
+      "answer": "0.583",
+      "explanation": "Per-query reciprocal ranks are 1, 0.5 and 0.25 (Elastic: reciprocal of the rank of the first relevant document). Taking the mean over the three queries gives 1.75/3 = 0.583 (7/12).",
+      "related_topics": [],
+      "source_ids": [
+        "S016#P1"
+      ]
+    },
+    {
+      "item_id": "T7-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A report says: 'Top 10 contained 4 relevant pages, and there are 8 relevant pages in total, so recall at 10 is 0.4.' What is the error?",
+      "options": [
+        "A. Recall at 10 is 4/8 = 0.5, not 0.4; 0.4 is precision at 10.",
+        "B. Recall at 10 should be 8/10.",
+        "C. Recall cannot be computed at k.",
+        "D. The report is correct."
+      ],
+      "answer": "A",
+      "explanation": "Precision at k is the proportion of relevant results in the top k (4/10 = 0.4). Recall at k is relevant documents in the top k relative to all relevant (4/8 = 0.5). B reverses the terms. C is false since recall at k is defined. D confuses the two.",
+      "related_topics": [],
+      "source_ids": [
+        "S016#P2",
+        "S016#P3"
+      ]
+    },
+    {
+      "item_id": "T7-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site): an internal knowledge-base search team compares two retrievers. Evidence: (1) judges rated results 0-3, not yes/no; (2) the team's precision@10 on 15 queries swung between runs (hypothetical); (3) Elastic's docs say that when unlabeled documents are not ignored they are treated as irrelevant. Which action is best?",
+      "options": [
+        "A. Keep precision@10 as the headline metric.",
+        "B. Headline nDCG@10; decide how unlabeled count.",
+        "C. Report only MRR, since it handles every case.",
+        "D. Report only recall at rank 1."
+      ],
+      "answer": "B",
+      "explanation": "Correct: graded ratings suit NDCG, the textbook calls precision at k the least stable common measure, and unlabeled handling changes scores. Wrong: 'Keep precision@10 as the headline metric.' - ignores instability and grades. 'Report only MRR, since it handles every case.' - BEIR says MRR fails with graded judgments. 'Report only recall at rank 1.' - not a stable summary.",
+      "related_topics": [
+        "T29"
+      ],
+      "source_ids": [
+        "S015#P1",
+        "S015#P4",
+        "S004#P2",
+        "S016#P6",
+        "S016#P7"
+      ]
+    },
+    {
+      "item_id": "T7-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical RAG assistant): support answers are sometimes wrong. Evidence: (1) the first relevant passage is usually at rank 1 (high MRR, hypothetical); (2) a separate check shows answers contain claims not in the passages; (3) faithfulness means the answer is grounded in the given context. Which conclusion is best?",
+      "options": [
+        "A. Test faithfulness separately; generation is likelier.",
+        "B. High MRR proves that every answer is faithful.",
+        "C. Replace the retriever, even though MRR is high.",
+        "D. Add structured data to all of the pages."
+      ],
+      "answer": "A",
+      "explanation": "Correct: MRR describes where the first relevant document appears, not whether the answer stays grounded. Wrong: 'High MRR proves that every answer is faithful.' - retrieval success does not show grounding. 'Replace the retriever, even though MRR is high.' - ignores the evidence. 'Add structured data to all of the pages.' - does not address grounding.",
+      "related_topics": [
+        "T29"
+      ],
+      "source_ids": [
+        "S016#P1",
+        "S017#P3"
+      ]
+    }
+  ]
+}
