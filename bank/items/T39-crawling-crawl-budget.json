@@ -1,0 +1,226 @@
+{
+ "topic_id": "T39",
+ "title": "Web crawling and crawl budget management",
+ "stage": 1,
+ "merged_from": [
+  "T34"
+ ],
+ "volatility": "stable",
+ "last_verified": "2026-10-25",
+ "summary": "Crawling is the fetching stage. Google defines crawl budget as the set of URLs it can (server capacity) and wants (demand) to crawl; its guide is written for large sites (1 million+ unique pages) whose content changes moderately often. Google says that without guidance it tries to crawl all or most known URLs, so a bloated URL inventory dilutes crawling (practitioner inference). Google advises 404 or 410 for permanently removed pages, accurate lastmod in sitemaps, and not noindex for crawl control. Robots.txt controls crawling, not indexing; sitemaps help discovery but guarantee nothing. The textbook URL frontier balances priority and politeness (a textbook design, not proof of Google's scheduler).",
+ "actions": [
+  "Check whether Google's crawl budget guide applies: its stated scope is large sites (1 million+ unique pages) with content that changes moderately often.",
+  "Find where Googlebot spends requests; Google says that without guidance it tries to crawl all or most URLs it knows about (shrinking junk URL inventory is practitioner inference).",
+  "Return 404 or 410 for permanently removed pages; Google says soft 404 pages keep being crawled and waste budget.",
+  "Keep sitemap lastmod accurate for updated content; do not expect a sitemap to guarantee crawling.",
+  "Use noindex or password protection to keep pages out of the index; robots.txt Disallow is for crawl traffic.",
+  "Keep robots.txt reachable: RFC 9309 says that if it is unreachable because of a server or network failure, the crawler must assume complete disallow."
+ ],
+ "myths": [
+  {
+   "myth": "Adding noindex to junk URLs saves crawl budget.",
+   "correction": "Google says it will still request a noindex page before dropping it.",
+   "source_ids": [
+    "S100#P5"
+   ]
+  },
+  {
+   "myth": "Robots.txt keeps pages out of Google.",
+   "correction": "Google says it is not a mechanism for keeping a page out of Google; a disallowed page can still be indexed if linked.",
+   "source_ids": [
+    "S101#P3",
+    "S101#P4"
+   ]
+  },
+  {
+   "myth": "Paying or submitting more sitemaps buys more crawling.",
+   "correction": "Google says it does not accept payment to crawl more often, and a sitemap does not guarantee crawling.",
+   "source_ids": [
+    "S120#P4",
+    "S102#P2"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T39-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "How does Google define a site's crawl budget?",
+   "options": [],
+   "answer": "The set of URLs Google can and wants to crawl",
+   "explanation": "Google's crawl budget guide defines it as the set of URLs that Google can and wants to crawl. 'Can' is the capacity limit (server connection time); 'wants' is crawl demand (size, update frequency, quality, relevance).",
+   "related_topics": [
+    "T32"
+   ],
+   "source_ids": [
+    "S100#P4",
+    "S100#P2",
+    "S100#P3"
+   ]
+  },
+  {
+   "item_id": "T39-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "In the textbook URL frontier design (Manning et al.), which goal do the back queues implement? This is a textbook design, not proof of how Google schedules.",
+   "options": [
+    "A. Politeness",
+    "B. Priority scoring of pages",
+    "C. Duplicate URL elimination",
+    "D. Resolving host names to servers"
+   ],
+   "answer": "A",
+   "explanation": "Correct: the textbook says the front queues implement prioritization while the back queues implement politeness, and each back queue holds URLs from a single host. 'Priority scoring' is the front queues' job. 'Duplicate URL elimination' is a separate step the textbook describes before URLs enter the frontier. 'Resolving host names' is the DNS resolution module.",
+   "related_topics": [],
+   "source_ids": [
+    "S118#P4",
+    "S118#P5",
+    "S117#P3"
+   ]
+  },
+  {
+   "item_id": "T39-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: Google says a sitemap guarantees that every URL listed in it will be crawled and indexed.",
+   "options": [],
+   "answer": "False",
+   "explanation": "Google says a sitemap helps discovery but it doesn't guarantee that all the items in it will be crawled and indexed.",
+   "related_topics": [],
+   "source_ids": [
+    "S102#P2"
+   ]
+  },
+  {
+   "item_id": "T39-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "Google's crawl budget guide advises against noindex as a crawl-control tool. What does Google still do with the page?",
+   "options": [],
+   "answer": "Requests it",
+   "explanation": "Google says it will still request the page and then drop it, so the crawl is spent anyway. Separately, Google says to return a 404 or 410 for permanently removed pages.",
+   "related_topics": [],
+   "source_ids": [
+    "S100#P5",
+    "S100#P7"
+   ]
+  },
+  {
+   "item_id": "T39-L2-02",
+   "level": 2,
+   "type": "misconception",
+   "prompt": "True or false: a robots.txt Disallow reliably keeps a URL out of Google's index.",
+   "options": [],
+   "answer": "False",
+   "explanation": "Google says robots.txt is mainly for managing crawler traffic and is not a mechanism for keeping a page out of Google; a disallowed page can still be indexed if other sites link to it. Use noindex or password protection to keep a page out.",
+   "related_topics": [
+    "T5"
+   ],
+   "source_ids": [
+    "S101#P3",
+    "S101#P4",
+    "S101#P5"
+   ]
+  },
+  {
+   "item_id": "T39-L2-03",
+   "level": 2,
+   "type": "unsupported_statement",
+   "prompt": "Which statement is NOT supported by the saved sources?",
+   "options": [
+    "A. RFC 9309 says robots.txt rules are not a form of access authorization",
+    "B. The textbook frontier uses front queues for priority and back queues for politeness",
+    "C. Google sells a paid option that crawls a site more often",
+    "D. Google says sitemaps do not guarantee that listed items are crawled and indexed"
+   ],
+   "answer": "C",
+   "explanation": "Correct (unsupported): Google says it does not accept payment to crawl a site more frequently. The others are supported: RFC 9309 says its rules are not access authorization; the textbook describes front queues for prioritization and back queues for politeness; Google says sitemaps give no crawl-and-index guarantee.",
+   "related_topics": [],
+   "source_ids": [
+    "S120#P4",
+    "S114#P1",
+    "S118#P4",
+    "S102#P2"
+   ]
+  },
+  {
+   "item_id": "T39-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical store: 40,000 discontinued product URLs are gone for good. Which status codes does Google recommend returning for permanently removed pages (give both, with 'or')?",
+   "options": [],
+   "answer": "404 or 410",
+   "explanation": "Google's guide says to return a 404 or 410 status for permanently removed pages, and says soft 404 pages continue to be crawled and waste budget. Practitioner inference: a 200 'out of stock' template for a gone product behaves like a soft 404.",
+   "related_topics": [],
+   "source_ids": [
+    "S100#P7",
+    "S100#P8"
+   ]
+  },
+  {
+   "item_id": "T39-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "An audit lists four ways to protect crawl budget on a very large site. Which one conflicts with Google's guide?",
+   "options": [
+    "A. Return 404 or 410 for permanently removed pages",
+    "B. Add noindex to the filter URLs to save crawl budget",
+    "C. Remove soft 404 pages, which Google says waste budget",
+    "D. Add lastmod to the sitemap entries of updated content"
+   ],
+   "answer": "B",
+   "explanation": "Correct (the error): Google says not to use noindex for this because it will still request the page and then drop it. The other three match the guide: 404/410 for removed pages, soft 404 pages waste budget, and lastmod for updated content.",
+   "related_topics": [],
+   "source_ids": [
+    "S100#P5",
+    "S100#P7",
+    "S100#P8",
+    "S100#P9"
+   ]
+  },
+  {
+   "item_id": "T39-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "HYPOTHETICAL site: a retailer with a very large catalogue. Symptom: new products take a long time to appear in search. Evidence: (1) server logs show most Googlebot requests hit sorted and filtered variants of category pages; (2) the server is fast and returns no errors; (3) Google says that without guidance it tries to crawl all or most of the URLs it knows about. Best first action?",
+   "options": [
+    "A. Add noindex tags to every sorted and filtered variant page",
+    "B. Pay Google to raise the crawl rate for this whole site",
+    "C. Disallow sorted and filtered variants in robots.txt",
+    "D. List all the variant URLs in the XML sitemap as well"
+   ],
+   "answer": "C",
+   "explanation": "Correct: Google's faceted navigation guide says to use robots.txt to disallow crawling of faceted navigation URLs; applying that to sort variants is practitioner inference. Google says noindex pages are still requested then dropped, it does not accept payment to crawl more, and a sitemap does not guarantee crawling.",
+   "related_topics": [
+    "T32"
+   ],
+   "source_ids": [
+    "S104#P4",
+    "S100#P10",
+    "S100#P5",
+    "S120#P4",
+    "S102#P2"
+   ]
+  },
+  {
+   "item_id": "T39-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "HYPOTHETICAL site after a deployment. Symptom: Googlebot requests nearly vanish for a day. Evidence: (1) page URLs return 200 when tested by hand; (2) the robots.txt URL returns a 503; (3) the deployment did not touch sitemaps or noindex tags. Per RFC 9309 (whether Googlebot follows it exactly is unconfirmed), best action?",
+   "options": [
+    "A. Add noindex tags to the affected pages",
+    "B. Submit a new sitemap with lastmod dates",
+    "C. Wait for the crawl capacity limit to rise",
+    "D. Make robots.txt respond normally"
+   ],
+   "answer": "D",
+   "explanation": "Correct: RFC 9309 says that when robots.txt is unreachable because of a server or network failure, the crawler must assume complete disallow, so fixing the robots.txt response is the lever. noindex tags were not changed. No saved source says a new sitemap helps here. The capacity limit concerns server connection time, not robots.txt reachability.",
+   "related_topics": [],
+   "source_ids": [
+    "S114#P6",
+    "S100#P2"
+   ]
+  }
+ ]
+}

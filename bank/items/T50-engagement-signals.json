@@ -1,0 +1,208 @@
+{
+  "topic_id": "T50",
+  "title": "Implicit user feedback and engagement signals",
+  "stage": 5,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Confirmed in the saved records: in the US v. Google trial, Nayak said Navboost is a factor but not the only one and agreed that 'user feedback' in a document meant click data; Lehman said user data is widely used in Search and that Navboost is a big table, not machine learning. Google also says it reviews click metrics in live experiments. Not confirmed in the saved sources: dwell time, pogo-sticking, or any claim that one page's click-through rate lifts that page's ranking. Treat those as hypotheses.",
+  "actions": [
+    "Separate what testimony confirms (clicks and user data are used) from what it does not (dwell time, pogo-sticking, per-page CTR effects).",
+    "Practitioner advice (not from a saved source): diagnose traffic drops with query-level click data before blaming engagement.",
+    "Practitioner advice (not from a saved source): be wary of click manipulation or widgets sold on unconfirmed claims."
+  ],
+  "myths": [
+    {
+      "myth": "Dwell time and pogo-sticking are confirmed ranking signals.",
+      "correction": "Not confirmed in the saved sources: none of the saved passages mention them.",
+      "source_ids": []
+    },
+    {
+      "myth": "Navboost is the only thing that matters.",
+      "correction": "Nayak said it is certainly a factor, but not the only factor by any means.",
+      "source_ids": [
+        "S306#P2"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T50-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In Pandu Nayak's trial testimony, 'Glue' is another name for which system? One word.",
+      "options": [],
+      "answer": "Navboost",
+      "explanation": "Nayak said Glue is just another name for navboost that includes all of the other features on the page.",
+      "related_topics": [],
+      "source_ids": [
+        "S306#P1"
+      ]
+    },
+    {
+      "item_id": "T50-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "In his trial testimony, how did Nayak describe Navboost's role among ranking factors?",
+      "options": [
+        "A. The sole ranking factor",
+        "B. Used only for ads",
+        "C. A system Google denied having",
+        "D. One factor, not the only one"
+      ],
+      "answer": "D",
+      "explanation": "Correct: he said it is certainly a factor but not the only factor by any means. Wrong: 'The sole ranking factor' - he said the opposite. 'Used only for ads' - not in the testimony. 'A system Google denied having' - he described it.",
+      "related_topics": [],
+      "source_ids": [
+        "S306#P2"
+      ]
+    },
+    {
+      "item_id": "T50-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google engineer Eric Lehman testified that Navboost is not a machine learning system, just a big table.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The Day 7 transcript has Lehman saying Navboost is not a machine learning system and is just a big table.",
+      "related_topics": [],
+      "source_ids": [
+        "S307#P1"
+      ]
+    },
+    {
+      "item_id": "T50-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Google's 'Rigorous testing' page says it reviews metrics such as what people click on in live traffic experiments. What does that page support?",
+      "options": [
+        "A. Your page's CTR is a confirmed ranking factor",
+        "B. Google uses click metrics to judge changes",
+        "C. Dwell time is a confirmed ranking signal here",
+        "D. Google does not run live experiments at all"
+      ],
+      "answer": "B",
+      "explanation": "Correct: it says Google evaluates changes to Search using aggregate metrics from real-user experiments. Wrong: 'Your page's click-through rate is a confirmed ranking factor' - the page describes evaluating changes, not per-page ranking. 'Dwell time is confirmed' - the page mentions time to click, not dwell. 'Experiments are never run' - it says they are.",
+      "related_topics": [],
+      "source_ids": [
+        "S308#P1",
+        "S308#P2",
+        "S308#P3"
+      ]
+    },
+    {
+      "item_id": "T50-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: the saved trial passages confirm that dwell time and pogo-sticking are ranking signals.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Not found in the saved sources: the saved witness answers and exhibit passages mention clicks and user data, and none of the saved passages mention dwell time or pogo-sticking. That is an absence in what was saved, not proof Google does not use them.",
+      "related_topics": [],
+      "source_ids": []
+    },
+    {
+      "item_id": "T50-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Nayak said Navboost is not the only factor",
+        "B. Nayak agreed 'user feedback' in a document meant click data",
+        "C. Google confirmed pogo-sticking demotes pages",
+        "D. Lehman said user data is widely used within Search"
+      ],
+      "answer": "C",
+      "explanation": "Correct answer C: no saved source says pogo-sticking demotes a page. Supported: A (Nayak: Navboost is a factor, not the only one), B (Nayak confirmed user feedback means click data), D (Lehman: user data is widely used within Search).",
+      "related_topics": [],
+      "source_ids": [
+        "S306#P2",
+        "S306#P3",
+        "S306#P4",
+        "S307#P2"
+      ]
+    },
+    {
+      "item_id": "T50-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "A client asks what you can honestly tell them about clicks and rankings. Choose the strongest supported statement.",
+      "options": [
+        "A. Dwell time is confirmed to lift rankings",
+        "B. Click data is used; page-level effects unproven",
+        "C. Rewriting titles will raise your rankings reliably",
+        "D. Google does not use click data in any way"
+      ],
+      "answer": "B",
+      "explanation": "Correct: it uses only what the record shows (Nayak agreed user feedback means click data; Lehman said user data is widely used). Wrong: A claims dwell time is confirmed; C claims title changes will raise rankings, which no source supports; D denies any use of clicks, contradicted by the testimony.",
+      "related_topics": [],
+      "source_ids": [
+        "S306#P3",
+        "S306#P4",
+        "S307#P2"
+      ]
+    },
+    {
+      "item_id": "T50-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A summary says: (1) Nayak said Navboost is a factor but not the only one. (2) Lehman called it a big table, not a machine learning system. (3) Therefore Navboost is all that matters for rankings. Which step is the error?",
+      "options": [
+        "A. Step 1",
+        "B. Step 2",
+        "C. Step 3",
+        "D. No step is an error"
+      ],
+      "answer": "C",
+      "explanation": "Step 3 contradicts step 1, since Nayak said it is not the only factor. Steps 1 and 2 restate the testimony.",
+      "related_topics": [],
+      "source_ids": [
+        "S306#P2",
+        "S307#P1"
+      ]
+    },
+    {
+      "item_id": "T50-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site, Brightfield Garden Supply): traffic fell after a redesign. A consultant says pogo-sticking caused it and proposes a time-on-page widget to fix it. Evidence: (1) the saved witness answers discuss click data and user data (Nayak agreed 'user feedback' in a document meant click data; Lehman said user data is widely used within Search), and none of the saved passages mention dwell time or pogo-sticking; (2) Nayak said Navboost is a factor, not the only one; (3) no data in hand shows which queries lost clicks. Which action is best?",
+      "options": [
+        "A. Find which queries lost clicks first",
+        "B. Install the widget to raise time on page",
+        "C. Conclude the drop cannot be investigated",
+        "D. Blame Navboost for the drop"
+      ],
+      "answer": "A",
+      "explanation": "Correct: treat pogo-sticking as an untested hypothesis, find which queries lost clicks, and compare against what ranks. Wrong: 'Install the widget' - acts on an unconfirmed cause. 'Assume nothing can be done' - ignores Search Console data. 'Blame Navboost' - the record does not say that.",
+      "related_topics": [],
+      "source_ids": [
+        "S306#P2",
+        "S306#P3",
+        "S306#P4",
+        "S307#P2"
+      ]
+    },
+    {
+      "item_id": "T50-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site, Cedar Cabinets): the owner reads that Google reviews click metrics and concludes 'raising our CTR will raise our rankings'. Evidence: (1) Google's Rigorous testing page says it reviews metrics such as what people click on in live experiments; (2) the same page describes evaluating changes for everyone, not individual pages; (3) at trial Nayak agreed that 'user feedback' in a document means click data, and said Navboost is not the only factor. Which interpretation is best?",
+      "options": [
+        "A. Proven: higher CTR raises that page's rank",
+        "B. Clicks are never used by Google at all",
+        "C. Only dwell time matters for rankings",
+        "D. Clicks are used; page effect unconfirmed"
+      ],
+      "answer": "D",
+      "explanation": "Correct: Google uses click metrics to evaluate changes, and Nayak agreed a document's 'user feedback' meant click data, but no saved source says one page's CTR lifts its own ranking. Wrong: 'Proven: higher CTR raises that page's rank' - overreads. 'Clicks are never used by Google at all' - contradicted by the testimony and Google's testing page. 'Only dwell time matters for rankings' - unsupported.",
+      "related_topics": [],
+      "source_ids": [
+        "S308#P1",
+        "S308#P2",
+        "S306#P3",
+        "S306#P4",
+        "S306#P2"
+      ]
+    }
+  ]
+}

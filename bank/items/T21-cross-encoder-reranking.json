@@ -1,0 +1,205 @@
+{
+  "topic_id": "T21",
+  "title": "Cross-encoder re-ranking (retrieve then re-rank)",
+  "stage": 5,
+  "merged_from": [],
+  "volatility": "stable",
+  "last_verified": "2026-10-25",
+  "summary": "Many search systems work in two stages. A fast first stage retrieves candidate documents, and a heavier model then re-scores only those candidates. Nogueira and Cho describe this with BM25 for retrieval and BERT, which reads the query and passage together, for re-ranking. The paper is evidence of what the method is, not of what Google uses. A practical inference: a document that is never retrieved cannot be promoted by the re-ranker. Google's guide to its ranking systems lists named systems but says it covers only some notable ones.",
+  "actions": [
+    "When building site search or RAG, measure candidate recall separately from re-ranking quality.",
+    "Treat any claim that Google uses a specific re-ranker as unconfirmed unless Google says so.",
+    "Write for clear meaning and cover the vocabulary users actually use, so pages are retrievable in the first place (practitioner inference)."
+  ],
+  "myths": [
+    {
+      "myth": "A paper on BERT re-ranking shows how Google ranks web pages.",
+      "correction": "The paper describes a method and benchmark result; Google's ranking systems guide says it covers only some notable systems.",
+      "source_ids": [
+        "S303#P1",
+        "S300#P9"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T21-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "Nogueira and Cho describe documents first retrieved 'by a standard mechanism, such as' which method?",
+      "options": [],
+      "answer": "BM25",
+      "explanation": "The paper's first stage uses a standard retrieval mechanism such as BM25; a more computationally-intensive method then scores and re-ranks those documents.",
+      "related_topics": [],
+      "source_ids": [
+        "S303#P2",
+        "S303#P3"
+      ]
+    },
+    {
+      "item_id": "T21-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "In the retrieve-then-re-rank setup described by Nogueira and Cho, what does the second stage do?",
+      "options": [
+        "A. Crawls new pages and adds them to the index",
+        "B. Retrieves the entire corpus a second time with BM25",
+        "C. Re-scores retrieved documents more heavily",
+        "D. Drops pages that have few inbound links"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the paper says each retrieved document is scored and re-ranked by a more computationally-intensive method. Wrong: 'Crawls new pages...' - crawling is not part of the described setup. 'Retrieves the whole corpus again with BM25' - BM25 is the first-stage example, not the re-ranker. 'Removes pages with low links' - links are not mentioned in the passage.",
+      "related_topics": [],
+      "source_ids": [
+        "S303#P2",
+        "S303#P3"
+      ]
+    },
+    {
+      "item_id": "T21-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: in Nogueira and Cho's BERT re-ranker, the query is fed as sentence A and the passage text as sentence B.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The paper states that it feeds the query as sentence A and the passage text as sentence B, so the model reads the query and passage together.",
+      "related_topics": [],
+      "source_ids": [
+        "S303#P4"
+      ]
+    },
+    {
+      "item_id": "T21-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Which reason best fits the paper's description of why the heavier scoring method is applied only to documents already retrieved?",
+      "options": [
+        "A. BM25 is always more accurate than a re-ranker",
+        "B. The heavier method costs more per document",
+        "C. Re-rankers cannot read the query text",
+        "D. Re-rankers only work on one document ever"
+      ],
+      "answer": "B",
+      "explanation": "Correct: the paper calls the second stage a more computationally-intensive method applied to documents retrieved by a standard mechanism; that cost is the reason is a practitioner inference from that wording, since the paper excerpt gives no timing figure. Wrong: 'BM25 is always more accurate' - the paper reports the re-ranker beating the previous state of the art. 'Re-rankers cannot read the query text' - the query is fed in as sentence A. 'Re-rankers only work on one document ever' - the paper says each retrieved document is scored.",
+      "related_topics": [],
+      "source_ids": [
+        "S303#P2",
+        "S303#P3",
+        "S303#P4",
+        "S303#P5"
+      ]
+    },
+    {
+      "item_id": "T21-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: because a paper shows BERT re-ranking beating the previous state of the art, Google Search uses a BERT cross-encoder re-ranker on web results.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The paper describes a method and benchmark result (27% relative gain in MRR@10) and says nothing about what a web search engine uses. Google's own ranking systems guide lists named systems and says it covers only some notable ones; a paper never confirms engine behaviour.",
+      "related_topics": [],
+      "source_ids": [
+        "S303#P1",
+        "S303#P5",
+        "S300#P9"
+      ]
+    },
+    {
+      "item_id": "T21-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. The paper's first stage can be a standard mechanism such as BM25",
+        "B. The paper's second stage is more computationally intensive",
+        "C. The paper feeds the query and passage into BERT together",
+        "D. Google confirmed a BM25-then-BERT re-ranking pipeline in Search"
+      ],
+      "answer": "D",
+      "explanation": "Correct answer D: no saved source says Google confirmed a BM25-then-BERT re-ranking pipeline for Search. Supported: A (S303 first stage BM25 example), B (S303 heavier second stage), C (S303 query as sentence A, passage as B).",
+      "related_topics": [],
+      "source_ids": [
+        "S303#P2",
+        "S303#P3",
+        "S303#P4",
+        "S300#P9"
+      ]
+    },
+    {
+      "item_id": "T21-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical in-house site search: stage 1 returns 50 candidates per query and a cross-encoder re-ranks only those 50. The page that best answers a query is not among the 50. Can the re-ranker move it to the top? Answer Yes or No.",
+      "options": [],
+      "answer": "No",
+      "explanation": "The paper's setup re-ranks documents that a standard mechanism has already retrieved, so a document outside the candidate set is never scored by the second stage. This is a practitioner inference from that two-stage description, not a statement about Google.",
+      "related_topics": [
+        "T12"
+      ],
+      "source_ids": [
+        "S303#P2",
+        "S303#P3"
+      ]
+    },
+    {
+      "item_id": "T21-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A consultant writes: (1) Nogueira and Cho feed the query as sentence A and the passage as sentence B. (2) So their BERT model reads query and passage together. (3) Therefore Google ranks web pages the same way. Which numbered step is the error?",
+      "options": [
+        "A. Step 1",
+        "B. Step 2",
+        "C. Step 3",
+        "D. None, all three are supported"
+      ],
+      "answer": "C",
+      "explanation": "Step 3 is the error: the paper describes a method, and no saved source confirms Google uses it. Steps 1 and 2 restate what the paper describes.",
+      "related_topics": [],
+      "source_ids": [
+        "S303#P4",
+        "S300#P9"
+      ]
+    },
+    {
+      "item_id": "T21-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical team): an in-house help-center search retrieves 50 candidates with BM25 and re-ranks them with a cross-encoder. Evidence: (1) when the correct article is in the 50, it is almost always ranked first; (2) for queries that use different words than the article, the article is often missing from the 50; (3) the paper describes the second stage as scoring documents retrieved by a standard mechanism. Which action is best?",
+      "options": [
+        "A. Improve first-stage recall",
+        "B. Swap in a much larger re-ranker model",
+        "C. Re-rank only the top 5 candidates instead",
+        "D. Drop queries that use different wording"
+      ],
+      "answer": "A",
+      "explanation": "Correct: evidence 1 shows the re-ranker works, and evidence 2 plus the two-stage description point to the candidate set as the bottleneck, so widen or improve first-stage recall (for example with query expansion). Wrong: 'Swap in a larger re-ranker' - it cannot score what was never retrieved. 'Re-rank only the top 5' - shrinks the candidate set further. 'Delete queries with different wording' - removes real user queries.",
+      "related_topics": [
+        "T12"
+      ],
+      "source_ids": [
+        "S303#P2",
+        "S303#P3"
+      ]
+    },
+    {
+      "item_id": "T21-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical agency): a deck says 'Google re-ranks our pages with a BERT cross-encoder, so rewrite every page to match query and passage pairs'. Evidence: (1) the only cited support is the Nogueira and Cho paper; (2) Google's ranking systems guide says it describes some notable systems, not all; (3) the guide's BERT entry says BERT helps understand how combinations of words express meaning and intent. Which response is best?",
+      "options": [
+        "A. Accept the claim because the paper proves it",
+        "B. Reject BERT as irrelevant to Search entirely",
+        "C. Rewrite every page as query-passage pairs now",
+        "D. Mark it unconfirmed; write clearly"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the paper is evidence of a method, not of Google's use, so label the claim unconfirmed and write for clear meaning. Wrong: 'Accept it, the paper proves it' - papers never prove engine use. 'Reject BERT entirely' - Google does list BERT. 'Rewrite pages as query-passage pairs' - acts on the unconfirmed claim.",
+      "related_topics": [],
+      "source_ids": [
+        "S303#P1",
+        "S300#P9",
+        "S300#P4"
+      ]
+    }
+  ]
+}

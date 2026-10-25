@@ -1,0 +1,41 @@
+{
+ "topic_id": "T2",
+ "title": "Vector Space Model (documents as vectors; bridge to embeddings)",
+ "stage": 4,
+ "merged_from": [],
+ "volatility": "stable",
+ "last_verified": "2026-10-25",
+ "summary": "The vector space model represents documents, and queries, as vectors in a common space. Cosine similarity compares them with a dot product divided by vector lengths, which compensates for document length; embeddings in dense retrieval use the same vector idea but with learned dimensions (practitioner inference).",
+ "actions": [],
+ "myths": [],
+ "items": [
+  {
+   "item_id": "T2-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Representing documents as vectors in a common vector space is known as the vector space what (one word)?",
+   "options": [],
+   "answer": "model",
+   "explanation": "That is how the textbook names it; queries are represented as vectors in the same space.",
+   "related_topics": [],
+   "source_ids": [
+    "S204#P1",
+    "S204#P2"
+   ]
+  },
+  {
+   "item_id": "T2-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "Cosine similarity's length normalization compensates for the effect of the length of what (one word)?",
+   "options": [],
+   "answer": "document",
+   "explanation": "The textbook says cosine similarity is the standard way to compensate for the effect of document length, because the denominator length-normalizes the vectors.",
+   "related_topics": [],
+   "source_ids": [
+    "S205#P3",
+    "S205#P2"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "topic_id": "T19",
+ "title": "Learned sparse retrieval (SPLADE)",
+ "stage": 4,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "SPLADE is a Sparse Lexical and Expansion model for first-stage ranking built on explicit sparsity regularization, and its paper says it can operate on inverted indexes. 'BM42' is a Qdrant vendor term for an experimental approach, and Qdrant's own page notes it does not outperform other vendors' BM25 implementations.",
+ "actions": [],
+ "myths": [],
+ "items": [
+  {
+   "item_id": "T19-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "SPLADE stands for Sparse Lexical and what Model for First Stage Ranking (one word)?",
+   "options": [],
+   "answer": "Expansion",
+   "explanation": "The paper title is 'SPLADE: Sparse Lexical and Expansion Model for First Stage Ranking'.",
+   "related_topics": [],
+   "source_ids": [
+    "S220#P1"
+   ]
+  },
+  {
+   "item_id": "T19-L2-01",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "True or false: BM42 is an established standard that Qdrant reports outperforms BM25.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answer": "False",
+   "explanation": "Qdrant's page says 'BM42 does not outperform BM25 implementation of other vendors' and asks readers to consider it an experimental approach. It is a vendor term.",
+   "related_topics": [],
+   "source_ids": [
+    "S221#P3",
+    "S221#P2"
+   ]
+  }
+ ]
+}

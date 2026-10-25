@@ -1,0 +1,47 @@
+{
+ "topic_id": "T1",
+ "title": "Boolean retrieval (search operators and exact match)",
+ "stage": 4,
+ "merged_from": [],
+ "volatility": "stable",
+ "last_verified": "2026-10-25",
+ "summary": "Boolean retrieval combines terms with AND, OR and NOT, and the textbook says a document either matches or does not match a query. On large collections the number of matches can far exceed what a person could read, which is why ranked retrieval exists; Google Search Help describes quotes for an exact match and a minus sign to exclude a word.",
+ "actions": [],
+ "myths": [],
+ "items": [
+  {
+   "item_id": "T1-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Boolean retrieval combines terms with AND, OR and which third operator (one word, capitals)?",
+   "options": [],
+   "answer": "NOT",
+   "explanation": "The textbook says terms are combined with the operators and, or, and not.",
+   "related_topics": [],
+   "source_ids": [
+    "S203#P1"
+   ]
+  },
+  {
+   "item_id": "T1-L2-01",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "Why does plain Boolean matching become hard to use on a large collection?",
+   "options": [
+    "A. It cannot combine terms with AND",
+    "B. Matches can far exceed what a person can read",
+    "C. It ranks every document identically by design only",
+    "D. It only works with phrases in quotes"
+   ],
+   "answer": "B",
+   "explanation": "Correct: the textbook says a document either matches or does not, and the number of matches can far exceed what a user could sift through. Boolean does support AND. 'Ranks identically' is not the stated problem and overstates it. Quotes for an exact match are a Google Search feature (Google Search Help: enter a word or phrase inside quotes), not a Boolean limitation.",
+   "related_topics": [],
+   "source_ids": [
+    "S208#P1",
+    "S208#P2",
+    "S203#P1",
+    "S222#P1"
+   ]
+  }
+ ]
+}

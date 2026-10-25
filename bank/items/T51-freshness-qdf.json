@@ -1,0 +1,210 @@
+{
+  "topic_id": "T51",
+  "title": "Content freshness and Query Deserves Freshness",
+  "stage": 5,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Google's ranking systems guide lists 'query deserves freshness' systems that show fresher content for queries where it would be expected, such as news about a recent earthquake. Google's How Search works page says factor weights vary by query and that freshness matters more for current news than for definitions. A 2011 post (old, so systems may have changed) names recent events, recurring events and frequently updated information. Google estimates byline dates from several factors; dates must reflect real publication or update.",
+  "actions": [
+    "Decide per query whether freshness is expected before investing in updates.",
+    "Update pages when facts change, and show accurate visible dates plus dateModified.",
+    "Never stamp new dates onto unedited pages."
+  ],
+  "myths": [
+    {
+      "myth": "Every page needs regular updates to rank.",
+      "correction": "Google says freshness matters more for current news than for dictionary definitions, and weights vary by query.",
+      "source_ids": [
+        "S309#P1",
+        "S309#P2"
+      ]
+    },
+    {
+      "myth": "Changing the date makes a page fresh.",
+      "correction": "Google says dates must describe the actual publication or update date and that it uses several factors to estimate it.",
+      "source_ids": [
+        "S311#P4",
+        "S311#P2"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T51-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "What does QDF stand for in Google's ranking systems guide wording? Give the phrase.",
+      "options": [],
+      "answer": "query deserves freshness",
+      "explanation": "The guide says Google has various 'query deserves freshness' systems designed to show fresher content for queries where it would be expected.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P6"
+      ]
+    },
+    {
+      "item_id": "T51-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which example does Google's ranking systems guide give for freshness?",
+      "options": [
+        "A. A sourdough bread recipe",
+        "B. A recent earthquake",
+        "C. A dictionary legal definition",
+        "D. A classic nineteenth-century poem"
+      ],
+      "answer": "B",
+      "explanation": "Correct: if an earthquake happened recently, news articles and fresher content might appear. Wrong: the other options (a recipe, a legal definition, an old poem) are not examples the guide gives.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P7"
+      ]
+    },
+    {
+      "item_id": "T51-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google's 2011 freshness post says the change noticeably impacts 6 - 10% of searches.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The post says the change noticeably impacts 6 - 10% of searches. It also says 'roughly 35 percent of searches'; the surrounding context was not saved.",
+      "related_topics": [],
+      "source_ids": [
+        "S310#P3",
+        "S310#P2"
+      ]
+    },
+    {
+      "item_id": "T51-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Why does Google's How Search works page say freshness is not equally important for every query?",
+      "options": [
+        "A. Weights vary by query; news needs freshness more",
+        "B. Freshness only applies to image results, never text",
+        "C. Old pages are always penalised by Google",
+        "D. Definitions need daily updates to rank"
+      ],
+      "answer": "A",
+      "explanation": "Google says, for example, that for current news topics content freshness plays a bigger role than dictionary definitions, and that the weight of each factor varies with the query. Wrong: 'Freshness only applies to image results, never text' - not stated. 'Old pages are always penalised by Google' - not stated. 'Definitions need daily updates to rank' - the quote says freshness plays a smaller role for dictionary definitions than for current news.",
+      "related_topics": [],
+      "source_ids": [
+        "S309#P2",
+        "S309#P1"
+      ]
+    },
+    {
+      "item_id": "T51-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: changing a page's date without changing its content is a sourced way to signal freshness.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google says its systems look at several factors to estimate when a page was published or significantly updated, and that dates must describe the publication or update date of the page. A date edit alone does not describe an update (reasoned from the quote).",
+      "related_topics": [],
+      "source_ids": [
+        "S311#P3",
+        "S311#P4"
+      ]
+    },
+    {
+      "item_id": "T51-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved Google sources?",
+      "options": [
+        "A. Google has query-deserves-freshness systems",
+        "B. Freshness matters more for current news than definitions",
+        "C. Google does not rely on one date factor",
+        "D. Every page must be updated monthly to keep rankings"
+      ],
+      "answer": "D",
+      "explanation": "Correct answer D: no saved source says pages must be updated monthly. Supported: A (guide: QDF systems), B (How Search works: news vs definitions), C (byline dates: Google does not depend on a single date factor).",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P6",
+        "S309#P1",
+        "S311#P2"
+      ]
+    },
+    {
+      "item_id": "T51-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "The 2011 post names recent events, regularly recurring events, and frequently updated information as freshness cases. A query about the schedule of a yearly festival fits which case? Answer with one word: recent, recurring, or updated.",
+      "options": [],
+      "answer": "recurring",
+      "explanation": "Events that take place on a regularly recurring basis are the post's second case. Mapping the festival query to it is the worked example.",
+      "related_topics": [],
+      "source_ids": [
+        "S310#P4",
+        "S310#P5"
+      ]
+    },
+    {
+      "item_id": "T51-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A plan says: (A) show a visible date on articles; (B) use datePublished and dateModified accurately; (C) set every date to today on 400 unedited pages. Which step conflicts with Google's guidance?",
+      "options": [
+        "A. Step A",
+        "B. Step B",
+        "C. Step C",
+        "D. None of them"
+      ],
+      "answer": "C",
+      "explanation": "Google says dates must describe the publication or update date of the page; stamping unedited pages with today's date does not. A matches Google's advice to add a user-visible date. B matches its recommendation to specify the datePublished and/or dateModified fields, when accurate.",
+      "related_topics": [],
+      "source_ids": [
+        "S311#P4",
+        "S311#P6",
+        "S311#P7"
+      ]
+    },
+    {
+      "item_id": "T51-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site, Northvale Tax Guides) combining intent with freshness: the team re-dates its evergreen 'What is a W-2?' page weekly while its page on this week's filing-rule change has not been touched in months. Evidence: (1) Google says freshness plays a bigger role for current news topics than for dictionary definitions; (2) the guide says QDF systems show fresher content for queries where it would be expected; (3) Broder defines informational intent as acquiring information assumed present on web pages. Which action is best?",
+      "options": [
+        "A. Keep re-dating both pages every week",
+        "B. Remove dates from both of the pages",
+        "C. Update the rule-change page only",
+        "D. Merge both pages into one single page"
+      ],
+      "answer": "C",
+      "explanation": "Correct: apply the freshness effort to the time-sensitive query and stop date-bumping the definition page. The link between intent type and freshness need is practitioner inference; the two Google statements support it. Wrong: 'Keep re-dating both weekly' - effort on the wrong page. 'Remove dates everywhere' - Google advises a visible date. 'Merge both pages' - blends two different needs.",
+      "related_topics": [
+        "T48"
+      ],
+      "source_ids": [
+        "S309#P1",
+        "S300#P6",
+        "S013#P2"
+      ]
+    },
+    {
+      "item_id": "T51-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site, Lakeside Reviews): a product review updated last week shows an old byline date in results. Evidence: (1) Google says a byline date is its estimate of when a page was updated or published; (2) Google says it does not depend on a single date factor; (3) the page shows no visible date and no dateModified. Which action is best?",
+      "options": [
+        "A. Set a date in the future",
+        "B. Show a date; set dateModified",
+        "C. Do nothing and wait for a recrawl",
+        "D. Rely only on structured data dates"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google advises a prominent user-visible date and recommends specifying datePublished and/or dateModified. Wrong: 'Set a date in the future' - Google says not to specify future dates. 'Do nothing and wait for a recrawl' - ignores Google's advice and nothing saved says a recrawl fixes it. 'Rely only on structured data dates' - Google says it uses several factors, not one.",
+      "related_topics": [],
+      "source_ids": [
+        "S311#P1",
+        "S311#P2",
+        "S311#P6",
+        "S311#P5",
+        "S311#P7"
+      ]
+    }
+  ]
+}
