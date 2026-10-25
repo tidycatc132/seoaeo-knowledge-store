@@ -18,3 +18,17 @@ Summary: Google documentation on AI Overviews and AI Mode. Describes query fan-o
 > There's also no special schema.org structured data that you need to add.
 ### P4 match visible text
 > Making sure your structured data matches the visible text on the page
+### P5 query fan-out technique
+> Both AI Overviews and AI Mode may use a "query fan-out" technique
+### P6 supporting link indexed
+> To be eligible to be shown as a supporting link in AI Overviews or AI Mode, a page must be indexed
+### P7 indexed and snippet-eligible
+> a page must be indexed and eligible to be shown in Google Search with a snippet
+### P8 preview controls
+> To limit the information shown from your pages in Search, use nosnippet, data-nosnippet, max-snippet, or noindex controls.
+### P9 robots.txt Googlebot
+> robots.txt directives for Googlebot is the control for site owners to manage access
+### P10 Search Console
+> In particular, they're reported on in the Performance report,
+### P11 included in search traffic
+> are included in the overall search traffic in Search Console.

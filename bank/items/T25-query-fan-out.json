@@ -1,0 +1,214 @@
+{
+  "topic_id": "T25",
+  "title": "Query transformation and fan-out",
+  "stage": 7,
+  "merged_from": [],
+  "volatility": "fast-moving",
+  "last_verified": "2026-10-25",
+  "summary": "Google says AI Overviews and AI Mode may use a technique it calls query fan-out: issuing several related searches across subtopics and data sources. Google also says there are no extra requirements or special schema for these features, and a page must be indexed (and eligible to show with a snippet) to be a supporting link. Research and vendor docs describe the underlying ideas: HyDE has an instruction-following model generate a hypothetical document, and Azure AI Search describes breaking a complex query into parallel subqueries. These show methods, not how Google decomposes any given query. Treat any advice on 'ranking for sub-questions' as practitioner inference.",
+  "actions": [
+    "Check that pages you want cited are indexed and not blocked by snippet controls (nosnippet, max-snippet 0).",
+    "Plan content around the subtopics a broad question naturally contains; this is practitioner inference, since Google does not publish its sub-queries.",
+    "Do not add special schema or 'fan-out markup'; Google says none is needed.",
+    "Treat HyDE and Azure subquery docs as explanations of the idea, not as proof of Google's behaviour."
+  ],
+  "myths": [
+    {
+      "myth": "You need special structured data to be picked up by query fan-out.",
+      "correction": "Google says there is no special schema.org structured data to add and no additional requirements.",
+      "source_ids": [
+        "S007#P2",
+        "S007#P3"
+      ]
+    },
+    {
+      "myth": "The HyDE paper shows Google writes hypothetical documents for your queries.",
+      "correction": "The paper describes a method that generates a hypothetical document; no saved Google source says Google uses it.",
+      "source_ids": [
+        "S006#P1"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T25-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "What does Google call the technique in which AI Overviews and AI Mode may issue multiple related searches across subtopics and data sources?",
+      "options": [],
+      "answer": "query fan-out",
+      "explanation": "Google's AI features page says both features may use a 'query fan-out' technique, issuing multiple related searches across subtopics and data sources.",
+      "related_topics": [],
+      "source_ids": [
+        "S007#P5",
+        "S007#P1"
+      ]
+    },
+    {
+      "item_id": "T25-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "According to Microsoft's Azure AI Search documentation, what does LLM-based query planning do?",
+      "options": [
+        "A. Rewrites the titles of every page in the index first",
+        "B. Breaks a complex query into smaller, focused subqueries",
+        "C. Removes every filter and returns the whole index to the user",
+        "D. Blocks crawlers from reading the subqueries it creates"
+      ],
+      "answer": "B",
+      "explanation": "Correct: it breaks a complex query into smaller, focused subqueries (this describes Azure AI Search only). Wrong: 'Rewrites the titles of every page in the index first' - nothing like this is described. 'Removes every filter and returns the whole index to the user' - not described. 'Blocks crawlers from reading the subqueries it creates' - not described.",
+      "related_topics": [],
+      "source_ids": [
+        "S509#P2"
+      ]
+    },
+    {
+      "item_id": "T25-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: In HyDE, an instruction-following language model is instructed to generate a hypothetical document.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The paper describes instructing an instruction-following language model to generate a hypothetical document.",
+      "related_topics": [],
+      "source_ids": [
+        "S006#P1"
+      ]
+    },
+    {
+      "item_id": "T25-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "The HyDE paper warns that the hypothetical document is unreal and may contain what?",
+      "options": [],
+      "answer": "false details",
+      "explanation": "The paper says the hypothetical document captures relevance patterns but is unreal and may contain false details. This is why it is a retrieval aid, not an answer to publish.",
+      "related_topics": [],
+      "source_ids": [
+        "S006#P2"
+      ]
+    },
+    {
+      "item_id": "T25-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'To be picked up by query fan-out, add FAQ markup for every sub-question, even where the answer is not shown on the page.' Which correction is best?",
+      "options": [
+        "A. Google's AI features page says structured data should match the visible text, and no special schema is needed",
+        "B. Valid JSON-LD is enough, whether or not the answers are visible",
+        "C. Fan-out sub-questions each need their own schema type to qualify",
+        "D. FAQ markup is required before a page can be used by AI Mode"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google's AI features page lists making sure structured data matches the visible text on the page, and says there is no special schema.org structured data to add. Wrong: 'each sub-question needs its own schema type' - Google says no special schema is needed. 'Valid JSON-LD is enough' - the page asks for markup that matches visible text. 'FAQ markup is required' - Google states no additional requirements.",
+      "related_topics": [],
+      "source_ids": [
+        "S007#P4",
+        "S007#P3",
+        "S007#P2"
+      ]
+    },
+    {
+      "item_id": "T25-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Google says AI Overviews and AI Mode may use query fan-out",
+        "B. Azure AI Search docs say its subqueries run in parallel",
+        "C. Google's fan-out writes hypothetical answers as HyDE does",
+        "D. Google says a page must be indexed to be a supporting link"
+      ],
+      "answer": "C",
+      "explanation": "Supported: Google says both AI features may use query fan-out (A); Azure docs say subqueries run in parallel (B); Google says a page must be indexed to be a supporting link (D). Unsupported: C - no saved source says Google's fan-out uses HyDE-style hypothetical documents; HyDE is a research method.",
+      "related_topics": [],
+      "source_ids": [
+        "S007#P5",
+        "S509#P3",
+        "S007#P6",
+        "S006#P1"
+      ]
+    },
+    {
+      "item_id": "T25-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical page: a guide to home solar panels covering cost, installation and incentives. A developer left a noindex tag on it. Per Google's AI features page, can it be shown as a supporting link in AI Overviews or AI Mode? Answer Yes or No.",
+      "options": [],
+      "answer": "No",
+      "explanation": "Google says a page must be indexed to be eligible as a supporting link, and lists noindex among the controls that limit what Search shows. A noindex page does not meet the indexed requirement (practitioner inference on the noindex consequence; the indexed rule is Google's).",
+      "related_topics": [
+        "T41"
+      ],
+      "source_ids": [
+        "S007#P6",
+        "S007#P8"
+      ]
+    },
+    {
+      "item_id": "T25-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A memo says: 'Google's docs say AI Mode uses HyDE, so put a hypothetical answer paragraph at the top of every page.' What is the main error?",
+      "options": [
+        "A. HyDE requires structured data before it can work at all",
+        "B. A research method is presented as Google's behaviour",
+        "C. AI Mode cannot cite any web pages as supporting links",
+        "D. Hypothetical text must always be hidden from the user"
+      ],
+      "answer": "B",
+      "explanation": "Correct: HyDE is a research paper's method, and no saved Google source says Google uses it; Google's page only says fan-out issues related searches. Wrong: 'HyDE needs structured data' - not claimed anywhere. 'AI Mode cannot cite pages' - Google describes supporting links. 'Hypothetical text must be hidden' - not addressed by any source.",
+      "related_topics": [],
+      "source_ids": [
+        "S006#P1",
+        "S007#P5"
+      ]
+    },
+    {
+      "item_id": "T25-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a travel blog. Symptom: a thorough page covering visas, costs and seasons never shows as a supporting link. Evidence: (1) the page is indexed; (2) the CMS template adds a robots meta tag with nosnippet; (3) competitors without that tag appear. Question: what is the best next step?",
+      "options": [
+        "A. Add fan-out schema markup to the page template and wait for a recrawl",
+        "B. Add a hidden block of hypothetical answer text to the page",
+        "C. Disallow Googlebot in robots.txt for the whole travel blog",
+        "D. Remove nosnippet from the template if AI features are wanted"
+      ],
+      "answer": "D",
+      "explanation": "Correct: Google says nosnippet prevents content being used as direct input for AI Overviews and AI Mode, and eligibility needs the page to be indexed and snippet-eligible. Wrong: 'Add fan-out schema' - none exists or is needed. 'Add a hidden hypothetical-answer block' - HyDE is not documented as Google behaviour. 'Block Googlebot in robots.txt' - that restricts access, the opposite of the goal.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S501#P1",
+        "S501#P2",
+        "S007#P7"
+      ]
+    },
+    {
+      "item_id": "T25-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a home-improvement publisher. Symptom: pages on installation and incentives are not cited, though the cost page is. Evidence: (1) robots.txt contains Disallow: /guides/; (2) installation and incentives pages live under /guides/; (3) the cost page lives elsewhere. Question: what is the best action?",
+      "options": [
+        "A. Remove the Disallow so Googlebot can access /guides/",
+        "B. Add special schema to the guides",
+        "C. Set max-snippet to 0 on the guides",
+        "D. Rewrite the guides as HyDE-style hypothetical documents"
+      ],
+      "answer": "A",
+      "explanation": "Correct: robots.txt tells crawlers which URLs they can access and Google says its robots.txt directives for Googlebot manage access, so the Disallow is the likely cause (not fully pinned: a disallowed URL can still be indexed if linked from other sites). Removing it lets Googlebot access the pages. Wrong: 'Add special schema' - none is needed. 'Set max-snippet to 0' - that limits snippet use. 'Rewrite as HyDE documents' - a research method, not a Google requirement.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S007#P9",
+        "S101#P1",
+        "S101#P4",
+        "S501#P5",
+        "S006#P1"
+      ]
+    }
+  ]
+}

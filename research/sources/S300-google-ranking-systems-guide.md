@@ -32,3 +32,5 @@ Summary: Google's own list of notable ranking systems, including RankBrain, neur
 > Multiple systems work in various ways to show the most reliable information possible
 ### P11 neural matching
 > Neural matching is an AI system that Google uses to understand representations of concepts in queries
+### P12 passage ranking, continued
+> "passages" of a web page to better understand how relevant a page is to a search.

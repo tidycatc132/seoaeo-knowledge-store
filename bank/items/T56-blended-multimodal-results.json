@@ -1,0 +1,209 @@
+{
+  "topic_id": "T56",
+  "title": "Blended and multimodal results",
+  "stage": 7,
+  "merged_from": [
+    "T23"
+  ],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Search results blend surfaces such as web pages, images, video and local listings. Google's guidance for each surface is concrete: for images, alt text is the most important metadata attribute, images should sit near relevant text, and CSS images are not indexed; for video, a valid thumbnail and indexing requirements apply; for local, claiming a Business Profile lets business information show in Maps and the knowledge panel. CLIP is a research method that trains image and text encoders on 400 million image-text pairs by predicting which caption goes with which image; it is not evidence of how Google Images works.",
+  "actions": [
+    "Use standard HTML image elements (Google says they help crawlers find and process images) with descriptive alt text placed near relevant text.",
+    "Give videos a valid thumbnail and an indexable watch page.",
+    "Claim your Business Profile (Google says claiming lets local info show in Maps and the knowledge panel).",
+    "Do not cite CLIP as proof of how any engine matches images."
+  ],
+  "myths": [
+    {
+      "myth": "The CLIP paper shows Google Images matches photos to queries with CLIP.",
+      "correction": "CLIP is a research paper; the saved Google image guidance does not say Google uses it.",
+      "source_ids": [
+        "S504#P1",
+        "S507#P1",
+        "S507#P2"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T56-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "How many million (image, text) pairs was CLIP trained on, per its paper? Answer with the number only.",
+      "options": [],
+      "answer": "400",
+      "explanation": "The abstract describes a dataset of 400 million (image, text) pairs collected from the internet.",
+      "related_topics": [],
+      "source_ids": [
+        "S504#P2"
+      ]
+    },
+    {
+      "item_id": "T56-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which attribute does Google call the most important for providing metadata about an image?",
+      "options": [
+        "A. Image file size in kilobytes",
+        "B. Image width in pixels",
+        "C. Alt text",
+        "D. Image upload timestamp"
+      ],
+      "answer": "C",
+      "explanation": "Correct: alt text; Google calls it the most important attribute for providing more metadata for an image. Wrong: 'Image file size', 'Image width' and 'Image upload timestamp' are not named by Google as the most important metadata attribute.",
+      "related_topics": [],
+      "source_ids": [
+        "S507#P1"
+      ]
+    },
+    {
+      "item_id": "T56-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google says it indexes CSS images.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google says it doesn't index CSS images.",
+      "related_topics": [],
+      "source_ids": [
+        "S507#P4"
+      ]
+    },
+    {
+      "item_id": "T56-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "To appear in video features, Google says a video must have a valid what image?",
+      "options": [],
+      "answer": "thumbnail",
+      "explanation": "Google says a valid thumbnail image is required to be eligible.",
+      "related_topics": [],
+      "source_ids": [
+        "S508#P2"
+      ]
+    },
+    {
+      "item_id": "T56-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'The CLIP paper proves Google Images uses CLIP.' Which correction is best?",
+      "options": [
+        "A. No saved source says Google Images uses CLIP; it is a research paper",
+        "B. CLIP is a Google product used inside Google Images",
+        "C. CLIP uses no text data and learns from images alone",
+        "D. Google Images reads only alt text and ignores page content"
+      ],
+      "answer": "A",
+      "explanation": "Correct: CLIP is a research paper about image and text training; no saved source says Google uses it. Wrong: 'CLIP is a Google product' - nothing saved says so. 'CLIP uses no text data' - it uses (image, text) pairs. 'Google Images reads only alt text' - Google also names nearby text.",
+      "related_topics": [],
+      "source_ids": [
+        "S504#P1",
+        "S507#P1"
+      ]
+    },
+    {
+      "item_id": "T56-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which statement is NOT supported by the saved Google pages?",
+      "options": [
+        "A. Images should be placed near relevant text",
+        "B. A video needs a valid thumbnail for video features",
+        "C. Claiming a Business Profile lets local info show in Maps and the knowledge panel",
+        "D. Google ranks the local pack by distance and prominence"
+      ],
+      "answer": "D",
+      "explanation": "Supported: place images near relevant text (A); a valid thumbnail is needed for video features (B); claiming a Business Profile lets info show in Maps and the knowledge panel (C). Unsupported: D - the saved local page says nothing about local pack ranking factors.",
+      "related_topics": [],
+      "source_ids": [
+        "S507#P2",
+        "S508#P2",
+        "S512#P2"
+      ]
+    },
+    {
+      "item_id": "T56-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical product page shows its main photo as a CSS background image with no img element. Which fix matches Google's image guidance?",
+      "options": [
+        "A. Keep the CSS background and rename the CSS class",
+        "B. Use an img element with descriptive alt text",
+        "C. Convert the image to a PDF",
+        "D. Hide the image from users"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google says it doesn't index CSS images and that alt text is the most important image metadata, and standard HTML image elements help crawlers find and process images, so an img element with descriptive alt text is the fix. Wrong: 'Keep the CSS background and rename the class' - still a CSS image. 'Convert to a PDF' - not suggested. 'Hide the image' - removes it from users.",
+      "related_topics": [],
+      "source_ids": [
+        "S507#P4",
+        "S507#P1",
+        "S507#P6"
+      ]
+    },
+    {
+      "item_id": "T56-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A plan says: 'Skip the thumbnail for our videos, Google will not need one.' What is the error?",
+      "options": [
+        "A. Videos cannot have thumbnails of any kind",
+        "B. Thumbnails must always be supplied as PDF files",
+        "C. A valid thumbnail is required for video features",
+        "D. Video features need no indexing of the watch page"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google says a valid thumbnail is required for video features. Wrong: 'Videos can't have thumbnails' - false. 'Thumbnails must be PDFs' - not stated. 'Video features need no indexing' - Google lists indexing requirements.",
+      "related_topics": [],
+      "source_ids": [
+        "S508#P2",
+        "S508#P1"
+      ]
+    },
+    {
+      "item_id": "T56-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a bakery gallery. Symptom: no image search visibility. Evidence: (1) photos are CSS backgrounds; (2) no alt text; (3) filenames like IMG_001.jpg. Question: what is the best fix?",
+      "options": [
+        "A. Use img elements with descriptive alt text and descriptive filenames",
+        "B. Add an AI schema type to the gallery page only, nothing else",
+        "C. Block Googlebot from the gallery to reset how it is seen",
+        "D. Rename only the CSS class that holds the photos on the page"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google says CSS images are not indexed, standard HTML image elements help crawlers, alt text is the most important image metadata, and descriptive filenames are advised. Wrong: 'AI schema type' - not a fix for CSS images or missing alt text. 'Block Googlebot' - this prevents access, the opposite of the goal. 'Rename the CSS class' - the images stay CSS images, which Google does not index.",
+      "related_topics": [],
+      "source_ids": [
+        "S507#P4",
+        "S507#P1",
+        "S507#P5",
+        "S507#P6"
+      ]
+    },
+    {
+      "item_id": "T56-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a local plumber's JavaScript site. Symptoms: business details do not appear in Maps or the knowledge panel, and only the home page is indexed. Evidence: (1) no Business Profile has been claimed; (2) the service-area links are <div> elements with click handlers and no href (Google says it relies on <a> elements with an href attribute); (3) Google says claiming the Business Profile enables local business information to show up in Maps and the knowledge panel. Which step does the saved Google page tie to the Maps and knowledge-panel symptom?",
+      "options": [
+        "A. Add special AI schema to the plumber's homepage",
+        "B. Switch the service-area links to <a href> elements",
+        "C. Disallow Googlebot from the service-area pages",
+        "D. Claim the Business Profile for the business"
+      ],
+      "answer": "D",
+      "explanation": "Correct: Google ties claiming the Business Profile to local information showing in Maps and the knowledge panel. The link fix (<a> elements with href) is a separate, sensible step for deep pages not being discovered, but the saved Google page does not tie it to the Maps symptom. Wrong: 'special AI schema' - not what the saved page says. 'Switch the links' - addresses discovery, not the Maps symptom. 'Disallow Googlebot' - the saved sources do not suggest it, and it works against being found.",
+      "related_topics": [
+        "T44",
+        "T40"
+      ],
+      "source_ids": [
+        "S512#P1",
+        "S512#P2",
+        "S105#P5"
+      ]
+    }
+  ]
+}

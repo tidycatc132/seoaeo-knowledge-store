@@ -1,0 +1,209 @@
+{
+  "topic_id": "T46",
+  "title": "Anchor text analysis and contextual hyperlink indexing",
+  "stage": 6,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "The original PageRank paper reasons that anchor text often describes a page better than the page itself. Google's current link guidance asks for descriptive, concise, relevant anchors, warns against cramming keywords, and says links must be <a> elements with an href to be reliably crawled. Paid and user-generated links should carry rel=sponsored or rel=ugc. No saved source says exact-match anchors outrank descriptive ones.",
+  "actions": [
+    "Replace generic or stuffed anchors with descriptive, concise text.",
+    "Check navigation uses <a href>, not click handlers.",
+    "Mark paid links sponsored and UGC links ugc."
+  ],
+  "myths": [
+    {
+      "myth": "Exact-match anchor text should be used on every link.",
+      "correction": "Google asks for descriptive, concise anchors and says to resist cramming keywords.",
+      "source_ids": [
+        "S405#P2",
+        "S405#P3"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T46-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "Brin and Page say anchors often provide more accurate what of web pages than the pages themselves? One word.",
+      "options": [],
+      "answer": "descriptions",
+      "explanation": "The paper says anchors often provide more accurate descriptions of web pages than the pages themselves. This is the paper's reasoning, not a statement about Google's current systems.",
+      "related_topics": [],
+      "source_ids": [
+        "S400#P5"
+      ]
+    },
+    {
+      "item_id": "T46-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which description of good anchor text does Google give in its link best practices?",
+      "options": [
+        "A. Packed with every related keyword you can fit",
+        "B. Identical on every single link across the site",
+        "C. Descriptive, reasonably concise and relevant to the linked page",
+        "D. Only a short generic label such as 'click here'"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google says good anchor text is descriptive, reasonably concise, and relevant to the page that it's on. Wrong: 'Packed with every related keyword you can fit' - Google says to resist the urge to cram in every related keyword. 'Identical on every single link across the site' - the page asks for relevance to the linked page, not uniform text. 'Only a short generic label such as 'click here'' - a bare label is not descriptive.",
+      "related_topics": [],
+      "source_ids": [
+        "S405#P2",
+        "S405#P3"
+      ]
+    },
+    {
+      "item_id": "T46-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google says it can only crawl a link if it is an <a> HTML element.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The link best practices page says Google can only crawl your link if it's an <a> element, and elsewhere says it cannot reliably extract URLs from <a> elements without an href.",
+      "related_topics": [],
+      "source_ids": [
+        "S405#P1",
+        "S405#P5"
+      ]
+    },
+    {
+      "item_id": "T46-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "According to the 1998 paper, what is the first reason it gives for using anchor text?",
+      "options": [
+        "A. Anchors often describe pages better than pages do",
+        "B. Anchors are never keyword stuffed by site owners",
+        "C. Anchors always pass the target page's full PageRank along",
+        "D. Anchors remove the need for any page title at all"
+      ],
+      "answer": "A",
+      "explanation": "Correct: the paper says anchors often provide more accurate descriptions of web pages than the pages themselves. This is the paper's design reasoning only. Wrong: 'Anchors are never keyword stuffed by site owners' - no such claim appears in the quote. 'Anchors always pass the target page's full PageRank along' - the quote is about description, not PageRank transfer. 'Anchors remove the need for any page title at all' - the paper does not say titles become unnecessary.",
+      "related_topics": [],
+      "source_ids": [
+        "S400#P5"
+      ]
+    },
+    {
+      "item_id": "T46-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: Google's link guidance recommends fitting every keyword related to the page into the anchor text.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The page says to resist the urge to cram every related keyword into anchor text and to keep it descriptive and concise.",
+      "related_topics": [],
+      "source_ids": [
+        "S405#P3",
+        "S405#P2"
+      ]
+    },
+    {
+      "item_id": "T46-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Google recommends sponsored for paid placements",
+        "B. Google recommends ugc for comment and forum links",
+        "C. Links with these rel values will generally not be followed",
+        "D. Google confirmed exact-match anchors rank higher"
+      ],
+      "answer": "D",
+      "explanation": "Correct: no saved Google source says exact-match anchors outrank descriptive anchors; the guidance asks for descriptive, concise, relevant text. Wrong: 'Google recommends sponsored for paid placements' - supported by the qualify-links page. 'Google recommends ugc for comment and forum links' - supported by the same page. 'Links with these rel values will generally not be followed' - supported: the page says so, while pages may still be found by other means.",
+      "related_topics": [],
+      "source_ids": [
+        "S405#P2",
+        "S406#P1",
+        "S406#P2",
+        "S406#P3"
+      ]
+    },
+    {
+      "item_id": "T46-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical: you link to a page about an online store's returns process. Which anchor best follows Google's guidance?",
+      "options": [
+        "A. click here",
+        "B. returns policy for online orders",
+        "C. returns returns policy returns online store refund",
+        "D. here"
+      ],
+      "answer": "B",
+      "explanation": "Correct: it is descriptive, reasonably concise and relevant to the target page. Wrong: 'click here' - not descriptive. 'returns returns policy returns online store refund' - crams keywords, which Google says to resist. 'here' - not descriptive.",
+      "related_topics": [],
+      "source_ids": [
+        "S405#P2",
+        "S405#P3"
+      ]
+    },
+    {
+      "item_id": "T46-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "An audit note says: 'The mega-menu items are <a onclick=\"goto(...)\"> with no href; Google will follow them as normal links.' What is wrong?",
+      "options": [
+        "A. Menu links must always carry rel=nofollow to be valid",
+        "B. Anchors in menus cannot hold any visible text",
+        "C. Google can't reliably extract URLs without href",
+        "D. Google ignores every link that sits inside a menu"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google lists <a> elements without an href as links it cannot reliably extract URLs from; use <a href> links. Wrong: 'Menu links must always carry rel=nofollow to be valid' - no saved source says menus need nofollow. 'Anchors in menus cannot hold any visible text' - anchors can hold text; the problem is the missing href. 'Google ignores every link that sits inside a menu' - the page does not say menu links are ignored.",
+      "related_topics": [],
+      "source_ids": [
+        "S405#P5"
+      ]
+    },
+    {
+      "item_id": "T46-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical JS storefront 'GearBox'. Evidence: (1) category links are buttons with click handlers, not <a href>; (2) only the home page appears in the index; (3) Google's JavaScript docs describe crawl, render and index phases. Best fix?",
+      "options": [
+        "A. Add more keywords to the page title and headings",
+        "B. Mark the buttons as rel=sponsored to speed discovery",
+        "C. Raise the number of sitemap files submitted",
+        "D. Use real <a href> links to the category paths, with clear descriptive anchors"
+      ],
+      "answer": "D",
+      "explanation": "Correct: Google says it can only crawl <a> HTML elements, and it cannot reliably extract URLs from <a> elements without an href. Wrong: 'Add more keywords to the page title and headings' - titles do not create links. 'Mark the buttons as rel=sponsored to speed discovery' - sponsored is for paid links and would not make them crawlable. 'Raise the number of sitemap files submitted' - extra sitemaps do not give the buttons href values.",
+      "related_topics": [
+        "T40"
+      ],
+      "source_ids": [
+        "S405#P1",
+        "S405#P5",
+        "S105#P5",
+        "S105#P1"
+      ]
+    },
+    {
+      "item_id": "T46-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical blog 'TrailNotes'. Evidence: (1) an agency set every internal link to a product page to the same long phrase listing five related keywords; (2) Google's link guidance says to resist cramming every related keyword into anchors; (3) Google's spam policy defines keyword stuffing as filling a page with keywords or numbers to manipulate rankings, and lists repeating words so often it sounds unnatural as an example. Best action?",
+      "options": [
+        "A. Rewrite as descriptive, concise anchors",
+        "B. Keep them; repetition builds authority over time and across the site",
+        "C. Add rel=ugc to each internal link on the page",
+        "D. Delete all internal links to the page"
+      ],
+      "answer": "A",
+      "explanation": "Correct: descriptive, concise, relevant anchors match Google's guidance and avoid cramming keywords. Whether this alone changes rankings is unconfirmed. Wrong: 'Keep them; repetition builds authority over time and across the site' - Google's guidance points the other way. 'Add rel=ugc to each internal link on the page' - ugc is for user-generated content and does not fix the text. 'Delete all internal links to the page' - Google says every page you care about should be linked from another page.",
+      "related_topics": [
+        "T54"
+      ],
+      "source_ids": [
+        "S405#P2",
+        "S405#P3",
+        "S405#P4",
+        "S209#P1",
+        "S209#P2"
+      ]
+    }
+  ]
+}

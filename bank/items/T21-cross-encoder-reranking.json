@@ -166,7 +166,7 @@
       "type": "case_file",
       "prompt": "Case file (hypothetical team): an in-house help-center search retrieves 50 candidates with BM25 and re-ranks them with a cross-encoder. Evidence: (1) when the correct article is in the 50, it is almost always ranked first; (2) for queries that use different words than the article, the article is often missing from the 50; (3) the paper describes the second stage as scoring documents retrieved by a standard mechanism. Which action is best?",
       "options": [
-        "A. Improve first-stage recall",
+        "A. Improve first-stage recall so the right article reaches the re-ranker",
         "B. Swap in a much larger re-ranker model",
         "C. Re-rank only the top 5 candidates instead",
         "D. Drop queries that use different wording"

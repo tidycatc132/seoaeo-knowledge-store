@@ -18,14 +18,16 @@
       "myth": "Precision and recall alone are enough to compare rankers.",
       "correction": "BEIR's authors call precision and recall rank unaware and unsuitable as the main measures for ranked results.",
       "source_ids": [
-        "S015"
+        "S015#P3"
       ]
     },
     {
       "myth": "A higher precision at 10 on a handful of queries is a reliable improvement signal.",
       "correction": "The textbook says precision at k is the least stable of the commonly used measures, while MAP has good discrimination and stability.",
       "source_ids": [
-        "S004"
+        "S004#P1",
+        "S004#P2",
+        "S004#P4"
       ]
     }
   ],
@@ -34,10 +36,10 @@
       "item_id": "T7-L1-01",
       "level": 1,
       "type": "definition",
-      "prompt": "What does precision at k measure?",
+      "prompt": "Elastic's docs describe one metric as 'the proportion of relevant results in the top k search results'. Is it precision at k or recall at k? Answer with one word.",
       "options": [],
-      "answer": "The proportion of relevant results in the top k search results",
-      "explanation": "Elastic's documentation defines precision at k this way. Recall at k is different: the fraction of all relevant documents that appear in the first k.",
+      "answer": "precision",
+      "explanation": "Elastic's documentation defines precision at k as the proportion of relevant results in the top k search results. Recall at k is different: the fraction of all relevant documents that appear in the first k.",
       "related_topics": [
         "T29"
       ],
@@ -103,7 +105,7 @@
       "options": [
         "A. Correct; simplicity makes them the best choice.",
         "B. They are valid only for graded relevance data.",
-        "C. BEIR calls them rank unaware.",
+        "C. BEIR calls both rank unaware and unsuitable for its ranked benchmark.",
         "D. They always give the same ranking as NDCG."
       ],
       "answer": "C",
@@ -126,7 +128,7 @@
         "D. Recall at k (R@k)"
       ],
       "answer": "D",
-      "explanation": "Correct: BEIR calls precision and recall rank unaware. Wrong: 'MRR (reciprocal rank)' - uses the rank of the first relevant document. 'DCG (discounted gain)' - takes rank and rating into account. 'NDCG (normalized DCG) (discounted gain)' - normalized DCG (discounted gain).",
+      "explanation": "Correct: BEIR calls precision and recall rank unaware. Wrong: 'MRR (reciprocal rank)' - uses the rank of the first relevant document. 'DCG (discounted gain)' - takes rank and rating into account. 'NDCG (normalized DCG)' - the normalized form of DCG, so it also uses rank and rating.",
       "related_topics": [],
       "source_ids": [
         "S015#P3",
@@ -195,7 +197,7 @@
       "item_id": "T7-L4-02",
       "level": 4,
       "type": "case_file",
-      "prompt": "Case file (hypothetical RAG assistant): support answers are sometimes wrong. Evidence: (1) the first relevant passage is usually at rank 1 (high MRR, hypothetical); (2) a separate check shows answers contain claims not in the passages; (3) faithfulness means the answer is grounded in the given context. Which conclusion is best?",
+      "prompt": "Case file (hypothetical RAG assistant): support answers are sometimes wrong. Evidence: (1) the first relevant passage is usually at rank 1 (high MRR, hypothetical); (2) a separate check shows answers contain claims not in the passages; (3) faithfulness means the answer is grounded in the given context; (4) the pipeline retrieves once per question and never re-checks the passages (the CRAG paper describes a retrieval evaluator that assesses retrieved-document quality; using it here would be an analogy, not evidence about any engine). Which conclusion is best?",
       "options": [
         "A. Test faithfulness separately; generation is likelier.",
         "B. High MRR proves that every answer is faithful.",
@@ -203,13 +205,15 @@
         "D. Add structured data to all of the pages."
       ],
       "answer": "A",
-      "explanation": "Correct: MRR describes where the first relevant document appears, not whether the answer stays grounded. Wrong: 'High MRR proves that every answer is faithful.' - retrieval success does not show grounding. 'Replace the retriever, even though MRR is high.' - ignores the evidence. 'Add structured data to all of the pages.' - does not address grounding.",
+      "explanation": "Correct: MRR describes where the first relevant document appears, not whether the answer stays grounded, so test faithfulness separately; the trade-off is that a CRAG-style retrieval check addresses retrieval quality, which the high MRR says is not the main problem. Wrong: 'High MRR proves that every answer is faithful.' - retrieval success does not show grounding. 'Replace the retriever, even though MRR is high.' - ignores the evidence. 'Add structured data to all of the pages.' - does not address grounding.",
       "related_topics": [
-        "T29"
+        "T29",
+        "T28"
       ],
       "source_ids": [
         "S016#P1",
-        "S017#P3"
+        "S017#P3",
+        "S503#P1"
       ]
     }
   ]

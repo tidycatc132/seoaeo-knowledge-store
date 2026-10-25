@@ -1,216 +1,216 @@
 {
- "topic_id": "T5",
- "title": "Inverted indexing and posting lists",
- "stage": 2,
- "merged_from": [],
- "volatility": "stable",
- "last_verified": "2026-10-25",
- "summary": "An inverted index is the structure behind search: for each term, a list of the documents containing it (a postings list), alongside a dictionary of terms. The textbook builds it by collecting documents, tokenizing, normalizing tokens, then indexing, so queries need not scan every text. Being crawled is not being indexed: Google says indexing isn't guaranteed and Search Console reports statuses such as 'Crawled - currently not indexed'. The textbook is a method description, not proof of Google's internals.",
- "actions": [
-  "Treat 'crawled' and 'indexed' as separate states when auditing; check the Page indexing report status, not just server logs.",
-  "Diagnose crawled-but-not-indexed and discovered-but-not-crawled as different problems.",
-  "Do not assume a robots.txt Disallow removes a URL from the index; use noindex or password protection.",
-  "Do not promise clients that every published page will be indexed."
- ],
- "myths": [
-  {
-   "myth": "If Googlebot fetched a page, it is in the index.",
-   "correction": "Google says indexing isn't guaranteed and defines 'Crawled - currently not indexed' as crawled but not indexed.",
-   "source_ids": [
-    "S120#P3",
-    "S119#P1"
-   ]
-  },
-  {
-   "myth": "The textbook inverted index is exactly how Google stores pages.",
-   "correction": "Practitioner inference: the quoted textbook passages describe a method, and nothing saved says how any engine is built.",
-   "source_ids": [
-    "S108#P3"
-   ]
-  }
- ],
- "items": [
-  {
-   "item_id": "T5-L1-01",
-   "level": 1,
-   "type": "definition",
-   "prompt": "In the textbook's inverted index, the index consists of a dictionary and what?",
-   "options": [],
-   "answer": "Postings",
-   "explanation": "The textbook says the final step creates an inverted index consisting of a dictionary and postings. A term's list of documents is called a postings list.",
-   "related_topics": [
-    "T8"
-   ],
-   "source_ids": [
-    "S108#P3",
-    "S122#P4"
-   ]
-  },
-  {
-   "item_id": "T5-L1-02",
-   "level": 1,
-   "type": "multiple_choice",
-   "prompt": "Why does the textbook index documents in advance? This describes the textbook, not a specific engine.",
-   "options": [
-    "A. Removes the need to tokenize text",
-    "B. Guarantees every crawled page is returned",
-    "C. Avoids scanning every text for each query",
-    "D. Replaces the dictionary with a single list"
-   ],
-   "answer": "C",
-   "explanation": "Correct: the textbook says indexing in advance is the way to avoid linearly scanning the texts for each query. Tokenizing is still needed (it is step 2 of building the index). Nothing in the textbook says every crawled page is returned; Google says indexing isn't guaranteed. The dictionary is kept alongside postings, not replaced.",
-   "related_topics": [],
-   "source_ids": [
-    "S122#P1",
-    "S108#P1",
-    "S120#P3"
-   ]
-  },
-  {
-   "item_id": "T5-L1-03",
-   "level": 1,
-   "type": "true_false",
-   "prompt": "True or false: in the textbook's inverted index, postings are secondarily sorted by document ID.",
-   "options": [],
-   "answer": "True",
-   "explanation": "The textbook states: the postings are secondarily sorted by docID.",
-   "related_topics": [],
-   "source_ids": [
-    "S108#P4"
-   ]
-  },
-  {
-   "item_id": "T5-L2-01",
-   "level": 2,
-   "type": "why_it_works",
-   "prompt": "The textbook says the term-document matrix is 'extremely sparse', meaning it has few what kind of entries?",
-   "options": [],
-   "answer": "Non-zero",
-   "explanation": "The textbook says the matrix is extremely sparse, that is, it has few non-zero entries, and presents the inverted index as the central structure that avoids scanning the texts. Practitioner inference: this is why storing only the documents that contain each term is efficient.",
-   "related_topics": [],
-   "source_ids": [
-    "S122#P3",
-    "S122#P2"
-   ]
-  },
-  {
-   "item_id": "T5-L2-02",
-   "level": 2,
-   "type": "misconception",
-   "prompt": "True or false: Google says every page it processes will be indexed.",
-   "options": [],
-   "answer": "False",
-   "explanation": "Google says indexing isn't guaranteed; not every page that Google processes will be indexed.",
-   "related_topics": [
-    "T39"
-   ],
-   "source_ids": [
-    "S120#P3"
-   ]
-  },
-  {
-   "item_id": "T5-L2-03",
-   "level": 2,
-   "type": "unsupported_statement",
-   "prompt": "Which statement is NOT supported by the saved sources?",
-   "options": [
-    "A. The textbook calls a term's list of documents a postings list",
-    "B. The textbook says the term-document matrix is extremely sparse",
-    "C. Google says indexing isn't guaranteed for every processed page",
-    "D. Google's index is built exactly as the textbook describes"
-   ],
-   "answer": "D",
-   "explanation": "Correct (unsupported): the textbook describes a method; it is not proof of how Google's index is built. The other three are supported: a term's document list is a postings list, the matrix is extremely sparse, and Google says indexing isn't guaranteed.",
-   "related_topics": [],
-   "source_ids": [
-    "S122#P4",
-    "S122#P3",
-    "S120#P3"
-   ]
-  },
-  {
-   "item_id": "T5-L3-01",
-   "level": 3,
-   "type": "worked_example",
-   "prompt": "Textbook order of building an inverted index: collect documents, tokenize, ___, then index. Fill the blank (two words).",
-   "options": [],
-   "answer": "Linguistic preprocessing",
-   "explanation": "The textbook lists: collect documents, tokenize, do linguistic preprocessing (producing normalized tokens, the indexing terms), then create the index of dictionary and postings.",
-   "related_topics": [
-    "T8"
-   ],
-   "source_ids": [
-    "S108#P1",
-    "S108#P2",
-    "S108#P3"
-   ]
-  },
-  {
-   "item_id": "T5-L3-02",
-   "level": 3,
-   "type": "spot_the_error",
-   "prompt": "An audit note set mixes definitions of Search Console indexing statuses. Which note is wrong?",
-   "options": [
-    "A. Crawled - currently not indexed means fetched but not indexed",
-    "B. A URL fetched with a 200 by Googlebot is therefore indexed",
-    "C. Discovered - currently not indexed means found but not yet crawled",
-    "D. Indexing isn't guaranteed for pages Google processes"
-   ],
-   "answer": "B",
-   "explanation": "Correct (the error): Google says crawled and indexed are different: indexing isn't guaranteed, and the 'Crawled' status means crawled but not indexed. The other notes match Google's definitions of the two statuses and its indexing statement.",
-   "related_topics": [
-    "T39"
-   ],
-   "source_ids": [
-    "S119#P1",
-    "S119#P2",
-    "S120#P3"
-   ]
-  },
-  {
-   "item_id": "T5-L4-01",
-   "level": 4,
-   "type": "case_file",
-   "prompt": "HYPOTHETICAL blog with 300 new posts. Symptom: none appear in search. Evidence: (1) logs show Googlebot fetched all 300 URLs; (2) robots.txt allows them; (3) Search Console lists them as 'Crawled - currently not indexed'. What does the evidence establish?",
-   "options": [
-    "A. Googlebot has not discovered these URLs yet",
-    "B. The robots.txt file is blocking these posts",
-    "C. Fetched, not indexed; no guarantee of it",
-    "D. The posts need noindex tags before fetching"
-   ],
-   "answer": "C",
-   "explanation": "Correct: Google's definition of that status is crawled but not indexed, and Google says indexing is not guaranteed. So crawl access is not the blocker. Googlebot found the URLs (they were fetched). A robots block would show a different status ('blocked by robots.txt'). noindex tags would keep pages out, not make them fetchable.",
-   "related_topics": [
-    "T39",
-    "T41"
-   ],
-   "source_ids": [
-    "S119#P1",
-    "S120#P3",
-    "S119#P5"
-   ]
-  },
-  {
-   "item_id": "T5-L4-02",
-   "level": 4,
-   "type": "case_file",
-   "prompt": "HYPOTHETICAL site. Goal: keep /print/ pages out of Google. Evidence: (1) /print/ URLs are disallowed in robots.txt; (2) Search Console shows 'Indexed, though blocked by robots.txt' for some; (3) other sites link to them. Best fix?",
-   "options": [
-    "A. Add more Disallow lines covering the same URLs",
-    "B. Use noindex or password protection",
-    "C. Add all the print URLs to the XML sitemap",
-    "D. Return a 5xx status for the print URLs"
-   ],
-   "answer": "B",
-   "explanation": "Correct: Google says a disallowed page can still be indexed if linked from other sites and that noindex or password protection is how to keep a page out. More Disallow lines repeat the failed approach. A sitemap invites inclusion. A 5xx is not a stated method. Practitioner inference: a noindex tag has to be fetched to be seen, so the URLs likely must be crawlable.",
-   "related_topics": [
-    "T39"
-   ],
-   "source_ids": [
-    "S101#P4",
-    "S101#P5",
-    "S119#P6"
-   ]
-  }
- ]
+  "topic_id": "T5",
+  "title": "Inverted indexing and posting lists",
+  "stage": 2,
+  "merged_from": [],
+  "volatility": "stable",
+  "last_verified": "2026-10-25",
+  "summary": "An inverted index is the structure behind search: for each term, a list of the documents containing it (a postings list), alongside a dictionary of terms. The textbook builds it by collecting documents, tokenizing, normalizing tokens, then indexing, so queries need not scan every text. Being crawled is not being indexed: Google says indexing isn't guaranteed and Search Console reports statuses such as 'Crawled - currently not indexed'. The textbook is a method description, not proof of Google's internals.",
+  "actions": [
+    "Treat 'crawled' and 'indexed' as separate states when auditing; check the Page indexing report status, not just server logs.",
+    "Diagnose crawled-but-not-indexed and discovered-but-not-crawled as different problems.",
+    "Do not assume a robots.txt Disallow removes a URL from the index; use noindex or password protection.",
+    "Do not promise clients that every published page will be indexed."
+  ],
+  "myths": [
+    {
+      "myth": "If Googlebot fetched a page, it is in the index.",
+      "correction": "Google says indexing isn't guaranteed and defines 'Crawled - currently not indexed' as crawled but not indexed.",
+      "source_ids": [
+        "S120#P3",
+        "S119#P1"
+      ]
+    },
+    {
+      "myth": "The textbook inverted index is exactly how Google stores pages.",
+      "correction": "Practitioner inference: the quoted textbook passages describe a method, and nothing saved says how any engine is built.",
+      "source_ids": [
+        "S108#P3"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T5-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In the textbook's inverted index, the index consists of a dictionary and what?",
+      "options": [],
+      "answer": "Postings",
+      "explanation": "The textbook says the final step creates an inverted index consisting of a dictionary and postings. A term's list of documents is called a postings list.",
+      "related_topics": [
+        "T8"
+      ],
+      "source_ids": [
+        "S108#P3",
+        "S122#P4"
+      ]
+    },
+    {
+      "item_id": "T5-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Why does the textbook index documents in advance? This describes the textbook, not a specific engine.",
+      "options": [
+        "A. Removes the need to tokenize text",
+        "B. Guarantees every crawled page is returned",
+        "C. Avoids scanning every text for each query",
+        "D. Replaces the dictionary with a single list"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the textbook says indexing in advance is the way to avoid linearly scanning the texts for each query. Tokenizing is still needed (it is step 2 of building the index). Nothing in the textbook says every crawled page is returned; Google says indexing isn't guaranteed. The dictionary is kept alongside postings, not replaced.",
+      "related_topics": [],
+      "source_ids": [
+        "S122#P1",
+        "S108#P1",
+        "S120#P3"
+      ]
+    },
+    {
+      "item_id": "T5-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: in the textbook's inverted index, postings are secondarily sorted by document ID.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The textbook states: the postings are secondarily sorted by docID.",
+      "related_topics": [],
+      "source_ids": [
+        "S108#P4"
+      ]
+    },
+    {
+      "item_id": "T5-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "The textbook says the term-document matrix is 'extremely sparse', meaning it has few entries of what kind? Answer with one word, no hyphen (a form of 'zero').",
+      "options": [],
+      "answer": "nonzero",
+      "explanation": "The textbook says the matrix is extremely sparse, that is, it has few non-zero entries, and presents the inverted index as the central structure that avoids scanning the texts. Practitioner inference: this is why storing only the documents that contain each term is efficient.",
+      "related_topics": [],
+      "source_ids": [
+        "S122#P3",
+        "S122#P2"
+      ]
+    },
+    {
+      "item_id": "T5-L2-02",
+      "level": 2,
+      "type": "misconception",
+      "prompt": "True or false: Google says every page it processes will be indexed.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google says indexing isn't guaranteed; not every page that Google processes will be indexed.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S120#P3"
+      ]
+    },
+    {
+      "item_id": "T5-L2-03",
+      "level": 2,
+      "type": "unsupported_statement",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. The textbook calls a term's list of documents a postings list",
+        "B. The textbook says the term-document matrix is extremely sparse",
+        "C. Google says indexing isn't guaranteed for every processed page",
+        "D. Google's index is built exactly as the textbook describes"
+      ],
+      "answer": "D",
+      "explanation": "Correct (unsupported): the textbook describes a method; it is not proof of how Google's index is built. The other three are supported: a term's document list is a postings list, the matrix is extremely sparse, and Google says indexing isn't guaranteed.",
+      "related_topics": [],
+      "source_ids": [
+        "S122#P4",
+        "S122#P3",
+        "S120#P3"
+      ]
+    },
+    {
+      "item_id": "T5-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Textbook order of building an inverted index: collect documents, tokenize, ___, then index. Fill the blank (two words).",
+      "options": [],
+      "answer": "Linguistic preprocessing",
+      "explanation": "The textbook lists: collect documents, tokenize, do linguistic preprocessing (producing normalized tokens, the indexing terms), then create the index of dictionary and postings.",
+      "related_topics": [
+        "T8"
+      ],
+      "source_ids": [
+        "S108#P1",
+        "S108#P2",
+        "S108#P3"
+      ]
+    },
+    {
+      "item_id": "T5-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "An audit note set mixes definitions of Search Console indexing statuses. Which note is wrong?",
+      "options": [
+        "A. Crawled - currently not indexed means fetched but not indexed",
+        "B. A URL fetched with a 200 by Googlebot is therefore indexed",
+        "C. Discovered - currently not indexed means found but not yet crawled",
+        "D. Indexing isn't guaranteed for pages Google processes"
+      ],
+      "answer": "B",
+      "explanation": "Correct (the error): Google says crawled and indexed are different: indexing isn't guaranteed, and the 'Crawled' status means crawled but not indexed. The other notes match Google's definitions of the two statuses and its indexing statement.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S119#P1",
+        "S119#P2",
+        "S120#P3"
+      ]
+    },
+    {
+      "item_id": "T5-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "HYPOTHETICAL blog with 300 new posts. Symptom: none appear in search. Evidence: (1) logs show Googlebot fetched all 300 URLs; (2) robots.txt allows them; (3) Search Console lists them as 'Crawled - currently not indexed'. What does the evidence establish?",
+      "options": [
+        "A. Googlebot has not discovered these URLs yet",
+        "B. The robots.txt file is blocking these posts",
+        "C. Fetched, not indexed; no guarantee of it",
+        "D. The posts need noindex tags before fetching"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google's definition of that status is crawled but not indexed, and Google says indexing is not guaranteed. So crawl access is not the blocker. Googlebot found the URLs (they were fetched). A robots block would show a different status ('blocked by robots.txt'). noindex tags would keep pages out, not make them fetchable.",
+      "related_topics": [
+        "T39",
+        "T41"
+      ],
+      "source_ids": [
+        "S119#P1",
+        "S120#P3",
+        "S119#P5"
+      ]
+    },
+    {
+      "item_id": "T5-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "HYPOTHETICAL site. Goal: keep /print/ pages out of Google. Evidence: (1) /print/ URLs are disallowed in robots.txt; (2) Search Console shows 'Indexed, though blocked by robots.txt' for some; (3) other sites link to them. Best fix?",
+      "options": [
+        "A. Add more Disallow lines covering the same URLs",
+        "B. Use noindex or password protection, not robots.txt alone",
+        "C. Add all the print URLs to the XML sitemap",
+        "D. Return a 5xx status for the print URLs"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google says a disallowed page can still be indexed if linked from other sites and that noindex or password protection is how to keep a page out. More Disallow lines repeat the failed approach. A sitemap invites inclusion. A 5xx is not a stated method. Practitioner inference: a noindex tag has to be fetched to be seen, so the URLs likely must be crawlable.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S101#P4",
+        "S101#P5",
+        "S119#P6"
+      ]
+    }
+  ]
 }

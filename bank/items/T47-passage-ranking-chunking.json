@@ -1,0 +1,207 @@
+{
+  "topic_id": "T47",
+  "title": "Passage ranking and document chunking",
+  "stage": 7,
+  "merged_from": [
+    "T24"
+  ],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Google says passage ranking is an AI system it uses to identify individual sections or passages of a web page to better understand how relevant the page is to a search. RAG vendors separately document chunking: Microsoft says splitting large documents helps stay under model token limits and prevents truncation loss, suggests starting at 512 tokens with 25% overlap, and notes that HTML or Markdown headings can be used to chunk by section. Vendor chunk sizes describe that vendor's tooling only; none of them is a Google rule.",
+  "actions": [
+    "Give long pages clear headings and self-contained sections; this is practitioner inference from Google's passage statement.",
+    "Do not copy Azure's 512-token figure as a target for web pages.",
+    "If you build RAG, chunk to stay under embedding limits and use headings where possible.",
+    "Do not split one page into many thin URLs on the strength of passage ranking alone."
+  ],
+  "myths": [
+    {
+      "myth": "Passage ranking means Google ranks separate pieces of your page as separate results.",
+      "correction": "Google describes it as identifying passages to better understand how relevant the page is.",
+      "source_ids": [
+        "S300#P8",
+        "S300#P12"
+      ]
+    },
+    {
+      "myth": "Azure's recommended chunk size is the size Google uses.",
+      "correction": "It is Azure AI Search guidance for building RAG indexes.",
+      "source_ids": [
+        "S506#P5"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T47-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "Google says passage ranking identifies individual sections or \"___\" of a web page. Fill the blank with the one word in quotation marks.",
+      "options": [],
+      "answer": "passages",
+      "explanation": "Google says passage ranking is an AI system used to identify individual sections or \"passages\" of a web page.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P8",
+        "S300#P12"
+      ]
+    },
+    {
+      "item_id": "T47-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "What chunk size and overlap does Microsoft recommend starting with for Azure AI Search?",
+      "options": [
+        "A. 128 tokens with no overlap between chunks",
+        "B. 512 tokens with 25% overlap",
+        "C. 8,191 tokens with 50% overlap between chunks",
+        "D. 50 tokens with 10% overlap between chunks"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Azure recommends starting with 512 tokens (about 2,000 characters) and an initial 25% overlap. Wrong: '128 tokens with no overlap' - 128 tokens is the size of the overlap, not the chunk. '8,191 tokens with 50% overlap' - 8,191 is an example embedding input limit. '50 tokens with 10% overlap' - not a figure Azure gives in the saved quote.",
+      "related_topics": [],
+      "source_ids": [
+        "S506#P5"
+      ]
+    },
+    {
+      "item_id": "T47-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Microsoft's Azure documentation says chunking is required for every document regardless of its size.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The page says chunking is only required if source documents are too large for the model's maximum input size, though it can also help if content is poorly represented as a single vector.",
+      "related_topics": [],
+      "source_ids": [
+        "S506#P3"
+      ]
+    },
+    {
+      "item_id": "T47-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Microsoft says partitioning content into chunks helps meet input requirements and prevents data loss due to what?",
+      "options": [],
+      "answer": "truncation",
+      "explanation": "The documentation says chunking prevents data loss due to truncation when text exceeds model input limits.",
+      "related_topics": [],
+      "source_ids": [
+        "S506#P2",
+        "S506#P1"
+      ]
+    },
+    {
+      "item_id": "T47-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'Passage ranking means Google ranks parts of my page as separate results.' Which correction is best?",
+      "options": [
+        "A. Google ranks only the first paragraph of each page it indexes",
+        "B. Azure chunking replaced Google's passage ranking system",
+        "C. Passages remove the need for the page to be indexed first",
+        "D. Google uses passages to better judge how relevant a page is to a search"
+      ],
+      "answer": "D",
+      "explanation": "Correct: Google describes identifying passages to better understand how relevant the page is to a search. Wrong: 'Google ranks only the first paragraph' - not stated. 'Passage ranking was replaced by Azure chunking' - Azure is a different vendor's tool. 'Passages replace the need for indexing' - not stated.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P8",
+        "S300#P12"
+      ]
+    },
+    {
+      "item_id": "T47-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Google says passage ranking identifies sections of a page",
+        "B. Azure says HTML or Markdown headings can be used to chunk by section",
+        "C. Google ranks passages of exactly 512 tokens with a 25% overlap between them",
+        "D. Azure cites 8,191 tokens as the input limit of text-embedding-3-small"
+      ],
+      "answer": "C",
+      "explanation": "Supported: Google's passage ranking identifies sections (A); Azure says HTML/Markdown headings can chunk by section (B); Azure gives 8,191 tokens as one model's limit (D). Unsupported: C - Azure's 512-token figure is its own guidance, not Google's passage size.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P8",
+        "S506#P6",
+        "S506#P4",
+        "S506#P5"
+      ]
+    },
+    {
+      "item_id": "T47-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical internal RAG index: you keep Azure's suggested 25% overlap but use 1,024-token chunks. How many tokens does the overlap contain? Answer with the number.",
+      "options": [],
+      "answer": "256",
+      "explanation": "Azure's starting recommendation is 512-token chunks with a 25% overlap (128 tokens). Applying 25% to 1,024-token chunks gives 256 tokens. This is arithmetic on a hypothetical setup; whether 1,024 tokens suits your content is not claimed.",
+      "related_topics": [],
+      "source_ids": [
+        "S506#P5"
+      ]
+    },
+    {
+      "item_id": "T47-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A strategist writes: 'Azure recommends 512-token chunks, so Google ranks 512-token passages; make every section 512 tokens.' What is the error?",
+      "options": [
+        "A. Vendor RAG guidance is presented as if it were a rule for Google's ranking",
+        "B. Azure never mentions a chunk size anywhere in its documentation",
+        "C. Google's passage ranking system does not exist at all",
+        "D. Every section must be exactly 8,191 tokens long to be indexed"
+      ],
+      "answer": "A",
+      "explanation": "Correct: a vendor's RAG guidance is applied to a different system; Google gives no such size in the saved quote. Wrong: 'Azure never mentions chunk size' - it does. 'Passage ranking does not exist' - Google describes it. 'Sections must be 8,191 tokens' - that is a model input limit example.",
+      "related_topics": [],
+      "source_ids": [
+        "S506#P5",
+        "S300#P8"
+      ]
+    },
+    {
+      "item_id": "T47-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a long buying guide on one URL with clear H2 sections. Symptom: a manager wants it split into twelve thin URLs 'so each part ranks'. Evidence: (1) Google says passage ranking identifies sections of a page to understand relevance; (2) no saved source says splitting is needed; (3) Azure's heading-based chunking is for RAG indexes. Question: what is the best course?",
+      "options": [
+        "A. Split into twelve thin URLs because Azure chunks documents",
+        "B. Keep one page with clear H2 sections and test before splitting anything",
+        "C. Remove all headings so Google sees one single block of text",
+        "D. Double the length of the guide so every section is longer"
+      ],
+      "answer": "B",
+      "explanation": "Correct: keep one page with clear sections, since Google says it can look at sections of a page; splitting is not shown to be needed (practitioner inference). Wrong: 'Split because Azure chunks documents' - Azure guidance is not Google's. 'Remove headings to avoid chunks' - headings help structure. 'Double the page length' - not supported.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P8",
+        "S300#P12",
+        "S506#P6"
+      ]
+    },
+    {
+      "item_id": "T47-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical team: an internal search assistant. Symptom: answers about the end of long manuals are missing. Evidence: (1) whole manuals of about 20,000 tokens are embedded as one input; (2) the embedding model's limit is 8,191 tokens; (3) Azure says exceeding the limit risks truncation. Question: what is the best fix?",
+      "options": [
+        "A. Raise the Google crawl rate for the documentation site",
+        "B. Add special schema to all of the manuals before embedding",
+        "C. Chunk the manuals so each piece stays under the limit",
+        "D. Embed only the titles of the manuals instead of their text"
+      ],
+      "answer": "C",
+      "explanation": "Correct: chunk the manuals into smaller pieces (for example, headings or fixed sizes with overlap) so each stays under the limit. Wrong: 'Raise the Google crawl rate' - unrelated to embedding input. 'Add special schema' - unrelated. 'Embed only titles' - loses the content.",
+      "related_topics": [],
+      "source_ids": [
+        "S506#P1",
+        "S506#P2",
+        "S506#P4"
+      ]
+    }
+  ]
+}

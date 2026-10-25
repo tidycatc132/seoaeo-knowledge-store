@@ -27,3 +27,19 @@
 2026-10-25 | R4 fixes | T21,T22,T43,T50,T51 | sources amended S306,S307,S309,S311 (S311#P7 added) | 14 flagged items fixed, T50 myth/actions relabelled | cut 0
 2026-10-25 | R2 fixes | T39,T32,T5,T8,T40,T41,T58 | passages added S105#P7,S107#P7,S114#P6,S112#P6 | 18 flagged items fixed | cut unsupported soft-404/DNS/nofollow/1M-scope claims
 2026-10-25 | R3 fixes | T42,T16,T18,T26,T1,T2,T17,T19 | sources amended S200,S202,S214,S216,S218 | 15 flagged items fixed, answers made single-token, MCQ letters rebalanced A7/B7/C6/D6 | cut 0
+2026-10-25 | R6 | T25 | sources added 2 (S509 (+S007 P5-P10 amended)) | items 10 | cut 1
+2026-10-25 | R6 | T28 | sources added 2 (S502,S503) | items 10 | cut 1
+2026-10-25 | R6 | T47 | sources added 1 (S506 (+S300#P12)) | items 10 | cut 1
+2026-10-25 | R6 | T52 | sources added 4 (S505,S510,S511 (+S501)) | items 10 | cut 1
+2026-10-25 | R6 | T53 | sources added 2 (S500,S501) | items 10 | cut 1
+2026-10-25 | R6 | T56 | sources added 5 (S504,S507,S508,S512) | items 10 | cut 2
+2026-10-25 | R5 | T45 | sources added 6 (S400-S404,S405,S406) | items 10 | cut 2 (eigenvector maths, HITS update rule)
+2026-10-25 | R5 | T46 | sources added 0 new (S400,S405,S406 reused) | items 10 | cut 1 (contextual indexing patents)
+2026-10-25 | R5 | T49 | sources added 2 (S414,S415 grade C, not cited) | items 10 | cut 1 (leak-based claims)
+2026-10-25 | R5 | T54 | sources added 0 (S209 amended P3-P16) | items 10 | cut 3 (hacked, sneaky redirects, expired detail)
+2026-10-25 | R5 | T55 | sources added 1 (S413; S014 amended P4-P6, S407) | items 10 | cut 1 (Who/How/Why quote)
+2026-10-25 | R5 | T57 | sources added 4 (S408-S411,S412) | items 10 | cut 1 (per-metric pages)
+2026-10-25 | R6 fixes | T25,T28,T47,T52,T53,T56 | passages added S500#P8-P11,S507#P6-P7,S007#P11, S509#P1 made verbatim | 14 flagged items fixed, summaries/actions/myths updated, MCQ letters A9/B10/C10/D9 | cut 0
+2026-10-25 | R5 fixes | T45,T46,T49,T54,T55,T57 | passage added S407#P9-P11 | 19 flagged items fixed, T49/T55 myths/summaries adjusted | cut 0
+2026-10-25 | D calibration | all 37 topics | 68 item edits (12 single-token keys, 6 duplicate rewrites, 8 L3/L4 strengthened incl. 5 cross-stage L4, 41 option-length edits), 5 option reorders (letters A50/B50/C50/D50), myth source ids made passage-level | no level changes, no sources added | see research/review-difficulty.md
+2026-10-25 | D fixes | T16,T53,T32,T55,T56,T57,T12,T22,T5,T7,T29 | 15 checker fix rows applied (citations added, 4 keys made single tokens, 3 option-length rebalances, 2 myths) | letters unchanged A50/B50/C50/D50 | no sources added

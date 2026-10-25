@@ -1,0 +1,207 @@
+{
+  "topic_id": "T57",
+  "title": "Technical performance signals",
+  "stage": 6,
+  "merged_from": [],
+  "volatility": "fast-moving",
+  "last_verified": "2026-10-25",
+  "summary": "Core Web Vitals are LCP, INP and CLS; INP replaced FID, per web.dev. Good values are LCP within 2.5 s, INP under 200 ms and CLS under 0.1, measured at the 75th percentile. Google says there is no single page experience signal and relevant content can still be shown. Google uses the mobile version for indexing and ranking, so keep content parity.",
+  "actions": [
+    "Check INP not FID.",
+    "Use field data.",
+    "Keep mobile parity."
+  ],
+  "myths": [
+    {
+      "myth": "FID is still a Core Web Vital.",
+      "correction": "web.dev says INP replaced FID.",
+      "source_ids": [
+        "S411#P1"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T57-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "Which Core Web Vital replaced First Input Delay? Give the abbreviation.",
+      "options": [],
+      "answer": "INP",
+      "explanation": "web.dev says INP is now a stable Core Web Vital, replacing FID.",
+      "related_topics": [],
+      "source_ids": [
+        "S411#P1"
+      ]
+    },
+    {
+      "item_id": "T57-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "What does Google say is a good LCP?",
+      "options": [
+        "A. Under 200 milliseconds on every load",
+        "B. Below 0.1",
+        "C. Within 10 seconds",
+        "D. Within the first 2.5 seconds"
+      ],
+      "answer": "D",
+      "explanation": "Correct: Google's Core Web Vitals page says good LCP occurs within the first 2.5 seconds. Wrong: 'Under 200 milliseconds on every load' - under 200 milliseconds is the good INP threshold. 'Below 0.1' - below 0.1 is the good CLS threshold. 'Within 10 seconds' - the page gives 2.5 seconds, not 10, as good.",
+      "related_topics": [],
+      "source_ids": [
+        "S409#P1",
+        "S409#P2",
+        "S409#P3"
+      ]
+    },
+    {
+      "item_id": "T57-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google says it uses the mobile version of a site's content, crawled with the smartphone agent, for indexing and ranking.",
+      "options": [],
+      "answer": "True",
+      "explanation": "Stated on the mobile-first indexing page.",
+      "related_topics": [],
+      "source_ids": [
+        "S412#P1"
+      ]
+    },
+    {
+      "item_id": "T57-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Why does web.dev say lab testing is not enough?",
+      "options": [
+        "A. It can't replace field measurement",
+        "B. Lab tools are banned from Search Console",
+        "C. Field data ignores users",
+        "D. Lab data covers only CLS"
+      ],
+      "answer": "A",
+      "explanation": "Correct: web.dev says lab measurement is an essential part of delivering great experiences but is not a substitute for field measurement. Wrong: 'Lab tools are banned from Search Console' - web.dev calls lab measurement essential, so it is not banned. 'Field data ignores users' - web.dev says field measurement cannot be replaced, which contradicts dismissing it. 'Lab data covers only CLS' - web.dev describes three aspects of user experience in the current set, and does not limit lab data to one metric.",
+      "related_topics": [],
+      "source_ids": [
+        "S410#P3",
+        "S410#P1"
+      ]
+    },
+    {
+      "item_id": "T57-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: Google says it will always prefer a page with great page experience over the most relevant page.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google says it seeks to show the most relevant content even if page experience is sub-par.",
+      "related_topics": [],
+      "source_ids": [
+        "S408#P3"
+      ]
+    },
+    {
+      "item_id": "T57-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Page experience is one single ranking signal",
+        "B. Good INP is under 200 ms",
+        "C. Good CLS is under 0.1",
+        "D. A good threshold is the 75th percentile of page loads"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google says there is no single signal. Wrong: 'Good INP is under 200 ms' - supported. 'Good CLS is under 0.1' - supported. 'A good threshold is the 75th percentile of page loads' - supported by web.dev.",
+      "related_topics": [],
+      "source_ids": [
+        "S408#P1",
+        "S409#P2",
+        "S409#P3",
+        "S410#P2"
+      ]
+    },
+    {
+      "item_id": "T57-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical page: LCP 2.3 s, INP 250 ms, CLS 0.05. Which metric misses the good threshold? Give the abbreviation.",
+      "options": [],
+      "answer": "INP",
+      "explanation": "LCP is under 2.5 s, CLS is under 0.1, INP is above 200 ms.",
+      "related_topics": [],
+      "source_ids": [
+        "S409#P1",
+        "S409#P2",
+        "S409#P3"
+      ]
+    },
+    {
+      "item_id": "T57-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "An audit says: 'Core Web Vitals are judged on the median (50th percentile) page load, so a fast median means we pass.' What is the error?",
+      "options": [
+        "A. web.dev: good is judged at the 75th percentile of page loads",
+        "B. web.dev says lab measurement alone is a full substitute for field data",
+        "C. Google says Core Web Vitals are the single ranking signal",
+        "D. web.dev says INP has replaced CLS as a Core Web Vital"
+      ],
+      "answer": "A",
+      "explanation": "Correct: web.dev says a good threshold to measure is the 75th percentile of page loads, not the median. Wrong: 'lab measurement alone is a full substitute for field data' - web.dev says lab is not a substitute for field measurement. 'Single ranking signal' - Google says there is no single signal. 'INP replaced CLS' - web.dev says INP replaced FID.",
+      "related_topics": [],
+      "source_ids": [
+        "S410#P2",
+        "S410#P3",
+        "S408#P1",
+        "S411#P1"
+      ]
+    },
+    {
+      "item_id": "T57-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site 'ShopLite'. Evidence: (1) the mobile version omits reviews and structured data present on desktop; (2) robots.txt blocks the mobile site's CSS and JS; (3) Google indexes using the mobile version. Best fix?",
+      "options": [
+        "A. Add more content to the desktop version only",
+        "B. Add noindex to mobile",
+        "C. Match mobile content and allow resources",
+        "D. Wait for FID"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google uses the mobile version, asks for parity, structured data on both, and to let it crawl resources. Wrong: 'Add more content to the desktop version only' - Google uses the mobile version for indexing and ranking, so desktop-only additions are not what it uses. 'Add noindex to mobile' - noindex would keep the mobile pages out of the index, working against Google using the mobile version for indexing and ranking. 'Wait for FID' - INP has replaced FID, and Chrome is deprecating FID support.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S412#P1",
+        "S412#P2",
+        "S412#P3",
+        "S412#P4",
+        "S411#P1",
+        "S411#P2"
+      ]
+    },
+    {
+      "item_id": "T57-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site 'FastBlog'. Evidence: (1) Search Console's Core Web Vitals report flags INP; (2) rankings dipped; (3) Google says no single page experience signal and relevance can win. Best interpretation?",
+      "options": [
+        "A. Ignore INP because relevance always wins",
+        "B. Fix INP using field data, with no recovery promised",
+        "C. Treat Core Web Vitals as the sole cause of the ranking dip",
+        "D. Cut content"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google says Core Web Vitals are used by its ranking systems, but also that there is no single signal and relevant content can still show. Wrong: 'Ignore INP because relevance always wins' - Google says relevance can win even with sub-par experience, but also that Core Web Vitals are used by ranking systems, so 'always' overstates it. 'Treat Core Web Vitals as the sole cause of the ranking dip' - Google says there is no single page experience signal, so one metric cannot be assumed the sole cause. 'Cut content' - the evidence points at INP in the Core Web Vitals report, not at content volume.",
+      "related_topics": [],
+      "source_ids": [
+        "S409#P4",
+        "S408#P1",
+        "S408#P2",
+        "S408#P3",
+        "S410#P3"
+      ]
+    }
+  ]
+}

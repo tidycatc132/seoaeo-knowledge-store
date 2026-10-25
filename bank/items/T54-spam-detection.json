@@ -1,0 +1,205 @@
+{
+  "topic_id": "T54",
+  "title": "Web spam detection and algorithmic quality filters",
+  "stage": 6,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Google's spam policies define behaviours such as cloaking, link spam, thin affiliation, scaled content abuse, expired domain abuse and site reputation abuse. Violating sites may rank lower or not appear at all. The policies describe purpose, not tools: generating many pages without adding value is the listed AI example. This topic teaches the definitions; it does not claim how detection works internally.",
+  "actions": [
+    "Audit for each named policy using Google's wording.",
+    "Do not mass-generate pages without added value.",
+    "Disclose or separate third-party content on strong hosts."
+  ],
+  "myths": [
+    {
+      "myth": "Using AI to write content is spam.",
+      "correction": "The saved example is generating many pages without adding value.",
+      "source_ids": [
+        "S209#P8"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T54-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "Google defines cloaking as presenting what kind of content to users and search engines? One word.",
+      "options": [],
+      "answer": "different",
+      "explanation": "Google's spam policy: cloaking refers to presenting different content to users and search engines.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P3"
+      ]
+    },
+    {
+      "item_id": "T54-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which best matches Google's definition of scaled content abuse?",
+      "options": [
+        "A. A single long page that covers many different topics",
+        "B. Any page with an affiliate link",
+        "C. Many pages made mainly to manipulate rankings",
+        "D. Any page updated more than weekly"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google defines it as many pages generated for the primary purpose of manipulating search rankings. Wrong: 'A single long page that covers many different topics' - the definition is about many pages, not one long page. 'Any page with an affiliate link' - thin affiliation is the separate policy about copied merchant descriptions without added value, not affiliate links as such. 'Any page updated more than weekly' - update frequency is not in the definition.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P7",
+        "S209#P14"
+      ]
+    },
+    {
+      "item_id": "T54-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google says sites that violate its spam policies may rank lower or not appear in results at all.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The policy page states this.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P11"
+      ]
+    },
+    {
+      "item_id": "T54-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Which example does Google list under scaled content abuse?",
+      "options": [
+        "A. Using generative AI to make many pages with no added value",
+        "B. Using HTTPS on every page of a large site and its subdomains",
+        "C. Publishing a single guest post",
+        "D. Adding alt text to images"
+      ],
+      "answer": "A",
+      "explanation": "Correct: that is the listed example. Wrong: 'Using HTTPS on every page of a large site and its subdomains' - HTTPS is not about generating many pages to manipulate rankings, which is what the definition covers. 'Publishing a single guest post' - a single guest post is one page, not many generated pages. 'Adding alt text to images' - alt text on images does not generate many pages.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P8",
+        "S209#P7"
+      ]
+    },
+    {
+      "item_id": "T54-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: the saved spam policy text says any use of generative AI tools to make content is spam.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The saved example is about using such tools to generate many pages without adding value; the saved quote does not say all AI use is spam.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P8"
+      ]
+    },
+    {
+      "item_id": "T54-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved spam policy text?",
+      "options": [
+        "A. Link spam includes links to or from a site made to manipulate rankings",
+        "B. Automated link creation services are an example",
+        "C. Violating sites may rank lower",
+        "D. Link spam covers only links pointing to your own site"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the definition says links to or from a site. Wrong: 'Link spam includes links to or from a site made to manipulate rankings' - supported by the definition. 'Automated link creation services are an example' - supported: automated programs or services listed. 'Violating sites may rank lower' - supported by the policy page.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P5",
+        "S209#P6",
+        "S209#P11"
+      ]
+    },
+    {
+      "item_id": "T54-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical page shows search engines a page about travel destinations and shows users a page about discount drugs. Which policy applies?",
+      "options": [
+        "A. Thin affiliation",
+        "B. Cloaking",
+        "C. Expired domain abuse",
+        "D. Scaled content abuse"
+      ],
+      "answer": "B",
+      "explanation": "Correct: this mirrors Google's cloaking example of different content for search engines and users. Wrong: 'Thin affiliation' - thin affiliation concerns product descriptions and reviews copied from the merchant, which is not described. 'Expired domain abuse' - expired domain abuse concerns an expired domain repurposed to manipulate rankings, which is not described. 'Scaled content abuse' - scaled content abuse concerns many pages generated mainly to manipulate rankings, not different content per audience.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P3",
+        "S209#P4",
+        "S209#P14",
+        "S209#P16",
+        "S209#P7"
+      ]
+    },
+    {
+      "item_id": "T54-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A memo says: 'Thin affiliation means any page with affiliate links, so remove all of them.' What is wrong?",
+      "options": [
+        "A. Copied merchant text with no added value is the target",
+        "B. Affiliate links are always allowed on any page without limits",
+        "C. The policy covers only video",
+        "D. Merchants may not be named"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google ties thin affiliation to product descriptions and reviews copied from the merchant without original content or added value. Wrong: 'Affiliate links are always allowed on any page without limits' - the policy says affiliate content can be thin when it is copied with no added value, so it is not always allowed. 'The policy covers only video' - the definition names product descriptions and reviews, not video. 'Merchants may not be named' - the definition is about copying merchant text without added value, not about naming merchants.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P14"
+      ]
+    },
+    {
+      "item_id": "T54-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical publisher 'DailyLedger'. Evidence: (1) a coupons section is run by an outside company; (2) the content appears there mainly because of the host's established rankings; (3) the host earned those signals from its own first-party content. Which policy is most directly implicated?",
+      "options": [
+        "A. Cloaking",
+        "B. Link spam",
+        "C. Site reputation policy",
+        "D. Expired domain abuse policy"
+      ],
+      "answer": "C",
+      "explanation": "Correct: it matches the policy's wording on third-party content published on a host mainly due to its ranking signals. Wrong: 'Cloaking' - no differing content is shown to bots. 'Link spam' - no link manipulation is described. 'Expired domain abuse policy' - no expired domain purchase is described.",
+      "related_topics": [],
+      "source_ids": [
+        "S209#P15"
+      ]
+    },
+    {
+      "item_id": "T54-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site 'CityPages'. Evidence: (1) 400 near-identical location pages were generated by a tool; (2) most show crawled but not indexed; (3) Google says indexing isn't guaranteed. What is the best-supported diagnosis (practitioner inference on cause)?",
+      "options": [
+        "A. A robots.txt block on the whole folder",
+        "B. Cloaking applied across all of the location pages and templates",
+        "C. Missing rel=ugc",
+        "D. Pages resemble scaled content abuse; improve or prune"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the pattern fits the definition of many pages made without added value; the status shows Google crawled them but did not index. Wrong: 'A robots.txt block on the whole folder' - a robots block gives the separate 'blocked by robots.txt' status. 'Cloaking applied across all of the location pages and templates' - cloaking means different content for users and search engines, and none is described. 'Missing rel=ugc' - rel=ugc marks user-generated links and has no bearing on whether a crawled page is indexed.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S209#P7",
+        "S119#P1",
+        "S120#P3",
+        "S119#P5",
+        "S209#P3",
+        "S406#P2"
+      ]
+    }
+  ]
+}

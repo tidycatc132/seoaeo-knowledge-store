@@ -1,0 +1,195 @@
+{
+  "topic_id": "T28",
+  "title": "Agentic and self-reflective RAG",
+  "stage": 7,
+  "merged_from": [],
+  "volatility": "fast-moving",
+  "last_verified": "2026-10-25",
+  "summary": "Agentic or self-reflective RAG is the idea that a system can retrieve again and grade what it found before answering. The Self-RAG paper describes a model that retrieves passages on demand and reflects on passages and its own output using reflection tokens. The CRAG paper describes a lightweight evaluator that scores retrieved documents and, depending on confidence, can trigger actions such as extra web search. Azure AI Search documents a multi-query pipeline that runs subqueries in parallel. These are methods and one vendor's product; none of them proves that Google, ChatGPT or Perplexity grade or re-search sources this way.",
+  "actions": [
+    "Describe Self-RAG and CRAG as research methods when explaining AI search to clients.",
+    "Do not claim a named engine uses reflection tokens or evaluators unless that vendor documents it.",
+    "Because answers may draw on several retrieval rounds, keep key facts clear, attributable and current (practitioner inference).",
+    "Test your own RAG assistants for stale or weak retrieval rather than assuming one pass is enough."
+  ],
+  "myths": [
+    {
+      "myth": "The Self-RAG and CRAG papers show that AI search engines grade and re-search your pages.",
+      "correction": "The papers describe methods and experiments; they do not document any search product.",
+      "source_ids": [
+        "S502#P3",
+        "S503#P1"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T28-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In the Self-RAG paper, what are the special tokens called that the model uses to reflect on retrieved passages and its own generations?",
+      "options": [],
+      "answer": "reflection tokens",
+      "explanation": "The abstract describes special tokens, called reflection tokens, and a model that reflects on retrieved passages and its own generations.",
+      "related_topics": [],
+      "source_ids": [
+        "S502#P1",
+        "S502#P3"
+      ]
+    },
+    {
+      "item_id": "T28-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "What does CRAG's lightweight retrieval evaluator assess?",
+      "options": [
+        "A. The overall quality of the documents retrieved for a given query",
+        "B. The page loading speed of each source site and its server",
+        "C. Whether every source site uses structured data markup",
+        "D. How many backlinks each source site has from other sites"
+      ],
+      "answer": "A",
+      "explanation": "Correct: it assesses the overall quality of retrieved documents for a query. Wrong: 'Page loading speed for each source' - not what the paper describes. 'Whether a site has structured data' - not described. 'How many backlinks a source has' - not described.",
+      "related_topics": [],
+      "source_ids": [
+        "S503#P1"
+      ]
+    },
+    {
+      "item_id": "T28-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: The CRAG paper proves that ChatGPT search grades retrieved pages with a retrieval evaluator.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The paper describes a method with a lightweight evaluator; it does not document ChatGPT search or any product.",
+      "related_topics": [],
+      "source_ids": [
+        "S503#P1"
+      ]
+    },
+    {
+      "item_id": "T28-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "In CRAG, the evaluator returns a confidence degree. Per the abstract, this triggers different knowledge ____ actions. Fill in the blank with one word.",
+      "options": [],
+      "answer": "retrieval",
+      "explanation": "The abstract says the confidence degree allows different knowledge retrieval actions to be triggered.",
+      "related_topics": [],
+      "source_ids": [
+        "S503#P2"
+      ]
+    },
+    {
+      "item_id": "T28-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'Self-RAG always retrieves for every query.' Which correction is best?",
+      "options": [
+        "A. It never retrieves anything and relies on memory alone",
+        "B. It retrieves passages adaptively and on demand, not for every query",
+        "C. It retrieves only from Google results, never anywhere else",
+        "D. It retrieves only after a human editor approves the request"
+      ],
+      "answer": "B",
+      "explanation": "Correct: the abstract says it adaptively retrieves passages on demand. Wrong: 'It never retrieves at all' - it retrieves passages. 'It retrieves only from Google' - the paper does not say so. 'It retrieves only after a human approves' - not described.",
+      "related_topics": [],
+      "source_ids": [
+        "S502#P2"
+      ]
+    },
+    {
+      "item_id": "T28-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Google confirmed that AI Mode uses Self-RAG reflection tokens to critique its generations",
+        "B. Self-RAG reflects on retrieved passages and its own generations",
+        "C. CRAG uses large-scale web searches to augment retrieval results",
+        "D. CRAG includes a decompose-then-recompose algorithm for retrieved documents"
+      ],
+      "answer": "A",
+      "explanation": "Supported: CRAG uses web searches to augment retrieval (A); Self-RAG reflects on retrieved passages and its generations (B); CRAG has a decompose-then-recompose step (D). Unsupported: C - no saved source says Google AI Mode uses reflection tokens.",
+      "related_topics": [],
+      "source_ids": [
+        "S503#P3",
+        "S502#P3",
+        "S503#P4"
+      ]
+    },
+    {
+      "item_id": "T28-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical team builds its own support chatbot following CRAG. The evaluator reports low confidence in the retrieved documents. Which action does the paper describe as an extension for augmenting the retrieval results? Answer in two words.",
+      "options": [],
+      "answer": "web search",
+      "explanation": "The abstract says large-scale web searches are utilized as an extension for augmenting retrieval results, and that confidence can trigger different retrieval actions. This describes the paper's method for the team's own system.",
+      "related_topics": [],
+      "source_ids": [
+        "S503#P3",
+        "S503#P2"
+      ]
+    },
+    {
+      "item_id": "T28-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "An agency pitch says: 'CRAG grades sources, so we will optimise your page for the CRAG evaluator score.' What is the error?",
+      "options": [
+        "A. CRAG only grades images and never grades text documents",
+        "B. Evaluators ignore the text of a page and read only its URL",
+        "C. The paper requires schema markup on every source page",
+        "D. A research method is presented as a documented feature of an engine"
+      ],
+      "answer": "D",
+      "explanation": "Correct: CRAG is a research method; no saved source says any engine uses it, so there is no engine score to target. Wrong: 'CRAG only grades images' - the paper concerns retrieved documents. 'Evaluators ignore text' - not stated. 'The paper requires schema' - not stated.",
+      "related_topics": [],
+      "source_ids": [
+        "S503#P1"
+      ]
+    },
+    {
+      "item_id": "T28-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical agency client: a B2B software site. Symptom: the agency says Perplexity 're-searches and grades sources like Self-RAG' and sells 'reflection-token optimisation'. Evidence: (1) the Self-RAG paper defines reflection tokens as part of a trained model; (2) Perplexity's bots page says PerplexityBot is designed to surface and link websites in search results; (3) neither source says Perplexity uses Self-RAG. Question: what is the best response?",
+      "options": [
+        "A. Treat the claim as unconfirmed and decline the reflection-token service",
+        "B. Buy the service because the paper proves the engine does this",
+        "C. Block PerplexityBot in robots.txt to be safe from grading",
+        "D. Add reflection tokens into the HTML of every page"
+      ],
+      "answer": "A",
+      "explanation": "Correct: the evidence supports only that Self-RAG is a method and PerplexityBot surfaces sites in search; the Self-RAG link is unconfirmed. Wrong: 'Buy the service because the paper proves it' - papers do not prove product behaviour. 'Block PerplexityBot' - it is for surfacing sites and nothing shows it harms. 'Add reflection tokens to page HTML' - they are model tokens, not page markup.",
+      "related_topics": [
+        "T52"
+      ],
+      "source_ids": [
+        "S502#P1",
+        "S511#P1"
+      ]
+    },
+    {
+      "item_id": "T28-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical team: runs an internal documentation assistant. Symptom: it answers from weakly relevant passages. Evidence: (1) retrieval runs once per question; (2) retrieved documents are never checked for quality; (3) CRAG describes an evaluator that assesses retrieved-document quality and returns a confidence degree that can trigger different retrieval actions. Question: which change is closest to a method the saved sources describe (an analogy for the team's own system, not evidence about any engine)?",
+      "options": [
+        "A. Add special schema to every documentation page on the whole site",
+        "B. Disallow a few weak pages in robots.txt and change nothing else",
+        "C. Stop retrieving documents and answer from the model alone, unaided",
+        "D. Add an evaluator that scores retrieved passages and can trigger another retrieval step"
+      ],
+      "answer": "D",
+      "explanation": "Correct: add a step that assesses the quality of retrieved documents and can trigger another retrieval action, as CRAG describes; applying it to this team's assistant is practitioner inference. Wrong: 'Add special schema' - unrelated to retrieval quality. 'Disallow a few weak pages' - the symptom is weak relevance, and robots.txt adds no quality check. 'Stop retrieving' - removes grounding.",
+      "related_topics": [],
+      "source_ids": [
+        "S503#P1",
+        "S503#P2"
+      ]
+    }
+  ]
+}

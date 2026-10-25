@@ -18,14 +18,16 @@
       "myth": "You need special schema.org markup to appear in AI Overviews or AI Mode.",
       "correction": "Google says there is no special schema.org structured data you need to add and no additional requirements.",
       "source_ids": [
-        "S007"
+        "S007#P2",
+        "S007#P3"
       ]
     },
     {
       "myth": "Marking up content that is not on the page is harmless.",
       "correction": "Google's guidelines say not to mark up content not visible to readers, and an issue can result in a manual action.",
       "source_ids": [
-        "S009"
+        "S009#P2",
+        "S009#P4"
       ]
     }
   ],
@@ -34,9 +36,9 @@
       "item_id": "T44-L1-01",
       "level": 1,
       "type": "definition",
-      "prompt": "What is structured data, as Google defines it?",
+      "prompt": "Google describes structured data as a standardized ___ for providing information about a page and classifying its content (one word).",
       "options": [],
-      "answer": "A standardized format for providing information about a page and classifying its content",
+      "answer": "format",
       "explanation": "Google's introduction describes structured data as a standardized format for providing information about a page and classifying the page content.",
       "related_topics": [],
       "source_ids": [
@@ -66,16 +68,16 @@
       "item_id": "T44-L1-03",
       "level": 1,
       "type": "true_false",
-      "prompt": "True or false: Google's documentation says you must add a special schema.org markup to be shown in AI Overviews or AI Mode.",
-      "options": [],
-      "answer": "False",
-      "explanation": "Google states there is no special schema.org structured data you need to add, and no additional requirements.",
-      "related_topics": [
-        "T12"
+      "prompt": "True or false: Google says it uses the structured data it finds on the web to understand the content of the page.",
+      "options": [
+        "True",
+        "False"
       ],
+      "answer": "True",
+      "explanation": "Google's introduction to structured data says it uses structured data that it finds on the web to understand the content of the page.",
+      "related_topics": [],
       "source_ids": [
-        "S007#P2",
-        "S007#P3"
+        "S008#P2"
       ]
     },
     {

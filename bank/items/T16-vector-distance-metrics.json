@@ -1,207 +1,210 @@
 {
- "topic_id": "T16",
- "title": "Vector distance metrics (cosine, dot product, Euclidean, Manhattan)",
- "stage": 4,
- "merged_from": [],
- "volatility": "stable",
- "last_verified": "2026-10-25",
- "summary": "A vector metric turns two embeddings into a closeness number. Cosine similarity is a dot product (inner product) divided by the Euclidean lengths of the vectors, which length-normalizes them. Elasticsearch offers l2_norm (Euclidean distance), dot_product, cosine and max_inner_product, and requires unit-length vectors for dot_product with float vectors. pgvector exposes L2 distance, negative inner product, cosine distance and L1 distance. No saved source says which metric suits which model, so follow your embedding model's documentation (practitioner advice). These are database behaviours, not evidence of what a web search engine uses.",
- "actions": [
-  "Use the metric your embedding model's documentation specifies.",
-  "In Elasticsearch, use cosine if vectors are not normalized (Elastic normalizes at indexing), or normalize both document and query vectors for dot_product.",
-  "In pgvector, remember <#> returns the negative inner product, so sort ascending.",
-  "When comparing scores across tools, check each tool's score formula."
- ],
- "myths": [
-  {
-   "myth": "With Elasticsearch cosine similarity you have to normalize vectors yourself.",
-   "correction": "Elastic's docs say it automatically normalizes vectors with cosine similarity to unit length during indexing; the unit-length requirement is for dot_product with float vectors.",
-   "source_ids": [
-    "S216#P6",
-    "S216#P3"
-   ]
-  }
- ],
- "items": [
-  {
-   "item_id": "T16-L1-01",
-   "level": 1,
-   "type": "definition",
-   "prompt": "In pgvector, which operator symbol returns L1 distance?",
-   "options": [],
-   "answer": "<+>",
-   "explanation": "pgvector's README lists <-> as L2 distance, <#> as (negative) inner product, <=> as cosine distance and <+> as L1 distance.",
-   "related_topics": [],
-   "source_ids": [
-    "S217#P4",
-    "S217#P1",
-    "S217#P2",
-    "S217#P3"
-   ]
-  },
-  {
-   "item_id": "T16-L1-02",
-   "level": 1,
-   "type": "multiple_choice",
-   "prompt": "What does Elasticsearch require of float vectors when the dot_product similarity is used?",
-   "options": [
-    "A. They must be stored as sparse vectors",
-    "B. They must contain only whole numbers",
-    "C. They must all be unit length",
-    "D. They must be short"
-   ],
-   "answer": "C",
-   "explanation": "Correct: the docs say that when element_type is float all vectors must be unit length, including document and query vectors. The other options are not requirements in the saved text.",
-   "related_topics": [],
-   "source_ids": [
-    "S216#P2",
-    "S216#P3"
-   ]
-  },
-  {
-   "item_id": "T16-L1-03",
-   "level": 1,
-   "type": "true_false",
-   "prompt": "True or false: Elasticsearch's max_inner_product similarity is similar to dot_product but does not require vectors to be normalized.",
-   "options": [
-    "True",
-    "False"
-   ],
-   "answer": "True",
-   "explanation": "That is how the Elastic docs describe it. dot_product, by contrast, requires unit-length float vectors.",
-   "related_topics": [],
-   "source_ids": [
-    "S216#P5",
-    "S216#P3"
-   ]
-  },
-  {
-   "item_id": "T16-L2-01",
-   "level": 2,
-   "type": "why_it_works",
-   "prompt": "Why does cosine similarity compensate for document length?",
-   "options": [
-    "A. Its numerator removes the shortest vectors",
-    "B. It counts words instead of vectors",
-    "C. Its denominator length-normalizes the vectors",
-    "D. It sorts the vectors by Euclidean length first"
-   ],
-   "answer": "C",
-   "explanation": "Correct: the textbook says the effect of the denominator is to length-normalize the vectors, and that cosine is the standard way to compensate for document length. The numerator is the dot product, not a filter. Cosine works on vectors, not word counts. Sorting by length is not described.",
-   "related_topics": [],
-   "source_ids": [
-    "S205#P2",
-    "S205#P3",
-    "S205#P1"
-   ]
-  },
-  {
-   "item_id": "T16-L2-02",
-   "level": 2,
-   "type": "misconception_check",
-   "prompt": "True or false: with Elasticsearch's cosine similarity you must normalize vectors to unit length yourself before indexing.",
-   "options": [
-    "True",
-    "False"
-   ],
-   "answer": "False",
-   "explanation": "The docs say that during indexing Elasticsearch automatically normalizes vectors with cosine similarity to unit length. The unit-length requirement is for dot_product with float vectors.",
-   "related_topics": [],
-   "source_ids": [
-    "S216#P6",
-    "S216#P3"
-   ]
-  },
-  {
-   "item_id": "T16-L2-03",
-   "level": 2,
-   "type": "which_unsupported",
-   "prompt": "Which statement is NOT supported by the saved sources?",
-   "options": [
-    "A. Manhattan distance is the best metric for text embeddings",
-    "B. Elasticsearch's l2_norm similarity uses Euclidean distance",
-    "C. pgvector provides an L1 distance operator",
-    "D. Cosine similarity divides by vector lengths, normalizing them"
-   ],
-   "answer": "A",
-   "explanation": "Unsupported: no saved source ranks metrics or recommends L1 for text embeddings. Supported: Elastic describes l2_norm as L2 (Euclidean) distance; pgvector lists <+> as L1 distance; the textbook says the denominator of cosine similarity length-normalizes the vectors.",
-   "related_topics": [],
-   "source_ids": [
-    "S216#P1",
-    "S217#P4",
-    "S205#P2"
-   ]
-  },
-  {
-   "item_id": "T16-L3-01",
-   "level": 3,
-   "type": "worked_example",
-   "prompt": "Hypothetical: an index uses Elasticsearch dot_product on unit-length float vectors. A document has a dot product of 0.6 with the query. What _score does Elastic's documented formula (1 + dot_product) / 2 give?",
-   "options": [],
-   "answer": "0.8",
-   "explanation": "(1 + 0.6) / 2 = 0.8. This applies the documented dot_product score formula; it holds only because the vectors are unit length, which dot_product requires.",
-   "related_topics": [],
-   "source_ids": [
-    "S216#P7",
-    "S216#P3"
-   ]
-  },
-  {
-   "item_id": "T16-L3-02",
-   "level": 3,
-   "type": "spot_the_error",
-   "prompt": "A colleague writes Elastic's l2_norm document score as 1 / (1 + distance). Which is the documented formula?",
-   "options": [
-    "A. 1 / (1 + l2_norm(query, vector)^2)",
-    "B. (1 + l2_norm(query, vector)) / 2",
-    "C. 1 / (1 + l2_norm(query, vector))",
-    "D. 1 / (1 + dot_product(query, vector)^2) + 1"
-   ],
-   "answer": "A",
-   "explanation": "Correct: Elastic documents the score as 1 / (1 + l2_norm(query, vector)^2), with the distance squared. The colleague's version and the other options omit the square or use a different shape; (1 + x) / 2 is the dot_product and cosine formula shape, not l2_norm.",
-   "related_topics": [],
-   "source_ids": [
-    "S216#P8",
-    "S216#P7"
-   ]
-  },
-  {
-   "item_id": "T16-L4-01",
-   "level": 4,
-   "type": "case_file",
-   "prompt": "Case file (hypothetical site: a docs team's RAG search on Postgres with pgvector). Symptom: the most irrelevant passages appear first. Evidence: (1) the query orders by the <#> value descending; (2) the README says <#> returns the negative inner product; (3) Postgres only supports ascending order index scans on operators. What is the best fix?",
-   "options": [
-    "A. Switch to <+> and keep the order",
-    "B. Keep descending order and normalize",
-    "C. Scale every query vector by 2",
-    "D. Order ascending on the <#> value"
-   ],
-   "answer": "D",
-   "explanation": "Because <#> returns the negative inner product, a larger inner product (more similar, by arithmetic) gives a more negative value, so ascending order puts the best match first. Descending order reverses the ranking. Switching to L1 changes the metric, not the ordering mistake. Normalizing does not change the sign convention. Scaling the query does not change the ordering direction.",
-   "related_topics": [],
-   "source_ids": [
-    "S217#P5",
-    "S217#P2"
-   ]
-  },
-  {
-   "item_id": "T16-L4-02",
-   "level": 4,
-   "type": "case_file",
-   "prompt": "Case file (hypothetical site: a retailer on Elasticsearch). Constraint: the team must keep the dot_product similarity mapping with float vectors. Symptom: scores look wrong. Evidence: (1) document vectors come straight from the model, not normalized; (2) query vectors are also not normalized; (3) the docs say all vectors must be unit length, including both document and query vectors. What is the minimum change that meets the documented requirement?",
-   "options": [
-    "A. Normalize only the document vectors",
-    "B. Normalize only the query vectors",
-    "C. Change nothing; the requirement applies to integers",
-    "D. Normalize both document and query vectors"
-   ],
-   "answer": "D",
-   "explanation": "The docs require unit length for both document and query vectors when element_type is float. Normalizing only one side leaves the other out of spec. The requirement is stated for float vectors, not integers. (Switching to cosine or max_inner_product is a different mapping, ruled out by the constraint.)",
-   "related_topics": [],
-   "source_ids": [
-    "S216#P2",
-    "S216#P3"
-   ]
-  }
- ]
+  "topic_id": "T16",
+  "title": "Vector distance metrics (cosine, dot product, Euclidean, Manhattan)",
+  "stage": 4,
+  "merged_from": [],
+  "volatility": "stable",
+  "last_verified": "2026-10-25",
+  "summary": "A vector metric turns two embeddings into a closeness number. Cosine similarity is a dot product (inner product) divided by the Euclidean lengths of the vectors, which length-normalizes them. Elasticsearch offers l2_norm (Euclidean distance), dot_product, cosine and max_inner_product, and requires unit-length vectors for dot_product with float vectors. pgvector exposes L2 distance, negative inner product, cosine distance and L1 distance. No saved source says which metric suits which model, so follow your embedding model's documentation (practitioner advice). These are database behaviours, not evidence of what a web search engine uses.",
+  "actions": [
+    "Use the metric your embedding model's documentation specifies.",
+    "In Elasticsearch, use cosine if vectors are not normalized (Elastic normalizes at indexing), or normalize both document and query vectors for dot_product.",
+    "In pgvector, remember <#> returns the negative inner product, so sort ascending.",
+    "When comparing scores across tools, check each tool's score formula."
+  ],
+  "myths": [
+    {
+      "myth": "With Elasticsearch cosine similarity you have to normalize vectors yourself.",
+      "correction": "Elastic's docs say it automatically normalizes vectors with cosine similarity to unit length during indexing; the unit-length requirement is for dot_product with float vectors.",
+      "source_ids": [
+        "S216#P6",
+        "S216#P3"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T16-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In pgvector, which operator symbol returns L1 distance?",
+      "options": [],
+      "answer": "<+>",
+      "explanation": "pgvector's README lists <-> as L2 distance, <#> as (negative) inner product, <=> as cosine distance and <+> as L1 distance.",
+      "related_topics": [],
+      "source_ids": [
+        "S217#P4",
+        "S217#P1",
+        "S217#P2",
+        "S217#P3"
+      ]
+    },
+    {
+      "item_id": "T16-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "What does Elasticsearch require of float vectors when the dot_product similarity is used?",
+      "options": [
+        "A. They must be stored as sparse vectors",
+        "B. They must contain only whole numbers",
+        "C. They must all be unit length",
+        "D. They must be short"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the docs say that when element_type is float all vectors must be unit length, including document and query vectors. The other options are not requirements in the saved text.",
+      "related_topics": [],
+      "source_ids": [
+        "S216#P2",
+        "S216#P3"
+      ]
+    },
+    {
+      "item_id": "T16-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Elasticsearch's max_inner_product similarity is similar to dot_product but does not require vectors to be normalized.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "That is how the Elastic docs describe it. dot_product, by contrast, requires unit-length float vectors.",
+      "related_topics": [],
+      "source_ids": [
+        "S216#P5",
+        "S216#P3"
+      ]
+    },
+    {
+      "item_id": "T16-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "The textbook says cosine similarity's numerator is the dot product and its denominator length-normalizes the vectors. Practitioner inference: for vectors that are already unit length, what does the denominator add?",
+      "options": [
+        "A. Half of the dot product, as a scaling term",
+        "B. Nothing more, so the dot product gives the same ordering",
+        "C. A sort of the vectors by Euclidean length first",
+        "D. A conversion of the score into a distance"
+      ],
+      "answer": "B",
+      "explanation": "Correct (practitioner inference from the quotes): the textbook says the denominator length-normalizes the vectors, and Elastic's dot_product similarity requires unit-length float vectors, so for such vectors there is nothing left to normalize and the dot product orders results as cosine would. Wrong: 'Half of the dot product' - no source says this (the (1 + dot) / 2 in Elastic's formula is a score shift, not the denominator). 'A sort by Euclidean length' - not described. 'A conversion into a distance' - cosine is a similarity.",
+      "related_topics": [],
+      "source_ids": [
+        "S205#P1",
+        "S205#P2",
+        "S216#P2",
+        "S216#P3",
+        "S216#P7",
+        "S216#P4"
+      ]
+    },
+    {
+      "item_id": "T16-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: with Elasticsearch's cosine similarity you must normalize vectors to unit length yourself before indexing.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "The docs say that during indexing Elasticsearch automatically normalizes vectors with cosine similarity to unit length. The unit-length requirement is for dot_product with float vectors.",
+      "related_topics": [],
+      "source_ids": [
+        "S216#P6",
+        "S216#P3"
+      ]
+    },
+    {
+      "item_id": "T16-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Manhattan distance is the best metric for text embeddings",
+        "B. Elasticsearch's l2_norm similarity uses Euclidean distance",
+        "C. pgvector provides an L1 distance operator",
+        "D. Cosine similarity divides by vector lengths, normalizing them"
+      ],
+      "answer": "A",
+      "explanation": "Unsupported: no saved source ranks metrics or recommends L1 for text embeddings. Supported: Elastic describes l2_norm as L2 (Euclidean) distance; pgvector lists <+> as L1 distance; the textbook says the denominator of cosine similarity length-normalizes the vectors.",
+      "related_topics": [],
+      "source_ids": [
+        "S216#P1",
+        "S217#P4",
+        "S205#P2"
+      ]
+    },
+    {
+      "item_id": "T16-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical: an index uses Elasticsearch dot_product on unit-length float vectors. A document has a dot product of 0.6 with the query. What _score does Elastic's documented formula (1 + dot_product) / 2 give?",
+      "options": [],
+      "answer": "0.8",
+      "explanation": "(1 + 0.6) / 2 = 0.8. This applies the documented dot_product score formula; it holds only because the vectors are unit length, which dot_product requires.",
+      "related_topics": [],
+      "source_ids": [
+        "S216#P7",
+        "S216#P3"
+      ]
+    },
+    {
+      "item_id": "T16-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A colleague writes Elastic's l2_norm document score as 1 / (1 + distance). Which is the documented formula?",
+      "options": [
+        "A. 1 / (1 + l2_norm(query, vector)^2)",
+        "B. (1 + l2_norm(query, vector)) / 2",
+        "C. 1 / (1 + l2_norm(query, vector))",
+        "D. 1 / (1 + dot_product(query, vector)^2) + 1"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Elastic documents the score as 1 / (1 + l2_norm(query, vector)^2), with the distance squared. The colleague's version and the other options omit the square or use a different shape; (1 + x) / 2 is the dot_product and cosine formula shape, not l2_norm.",
+      "related_topics": [],
+      "source_ids": [
+        "S216#P8",
+        "S216#P7"
+      ]
+    },
+    {
+      "item_id": "T16-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site: a docs team's RAG search on Postgres with pgvector). Symptom: the most irrelevant passages appear first. Evidence: (1) the query orders by the <#> value descending; (2) the README says <#> returns the negative inner product; (3) Postgres only supports ascending order index scans on operators. What is the best fix?",
+      "options": [
+        "A. Switch to <+> and keep the order",
+        "B. Keep descending order and normalize",
+        "C. Scale every query vector by 2",
+        "D. Order ascending on the <#> value"
+      ],
+      "answer": "D",
+      "explanation": "Because <#> returns the negative inner product, a larger inner product (more similar, by arithmetic) gives a more negative value, so ascending order puts the best match first. Descending order reverses the ranking. Switching to L1 changes the metric, not the ordering mistake. Normalizing does not change the sign convention. Scaling the query does not change the ordering direction.",
+      "related_topics": [],
+      "source_ids": [
+        "S217#P5",
+        "S217#P2"
+      ]
+    },
+    {
+      "item_id": "T16-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site: a retailer on Elasticsearch). Constraint: the team must keep the dot_product similarity mapping with float vectors. Symptom: scores look wrong. Evidence: (1) document vectors come straight from the model, not normalized; (2) query vectors are also not normalized; (3) the docs say all vectors must be unit length, including both document and query vectors. What is the minimum change that meets the documented requirement?",
+      "options": [
+        "A. Normalize only the document vectors",
+        "B. Normalize only the query vectors",
+        "C. Change nothing; the requirement applies to integers",
+        "D. Normalize both document and query vectors"
+      ],
+      "answer": "D",
+      "explanation": "The docs require unit length for both document and query vectors when element_type is float. Normalizing only one side leaves the other out of spec. The requirement is stated for float vectors, not integers. (Switching to cosine or max_inner_product is a different mapping, ruled out by the constraint.)",
+      "related_topics": [],
+      "source_ids": [
+        "S216#P2",
+        "S216#P3"
+      ]
+    }
+  ]
 }

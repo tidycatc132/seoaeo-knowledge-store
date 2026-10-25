@@ -1,0 +1,211 @@
+{
+  "topic_id": "T53",
+  "title": "Featured snippets and direct answers",
+  "stage": 7,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Google describes featured snippets as special boxes where the format of a regular search result is reversed. Google's systems decide whether a page makes a good one; when asked whether you can mark a page as one, Google answers \"You can't.\" Google gives no exact minimum length. A click goes to the section of the page shown. To opt out, nosnippet blocks all snippets including featured ones, data-nosnippet keeps marked text out, and Google says a shorter max-snippet makes a featured snippet less likely, without a guarantee that they stop.",
+  "actions": [
+    "Audit templates for nosnippet, max-snippet and data-nosnippet that block snippets unintentionally.",
+    "Do not hunt for markup 'for featured snippets'; Google answers 'You can't' to marking a page as one.",
+    "Use data-nosnippet for specific text you want kept out of snippets.",
+    "Write clear, self-contained answers under descriptive headings (practitioner inference)."
+  ],
+  "myths": [
+    {
+      "myth": "You can mark up a page to become a featured snippet.",
+      "correction": "Google answers \"You can't.\"; its systems determine whether a page makes a good featured snippet.",
+      "source_ids": [
+        "S500#P8",
+        "S500#P2"
+      ]
+    },
+    {
+      "myth": "A low max-snippet value reliably removes featured snippets.",
+      "correction": "Google says it makes them less likely but doesn't guarantee they stop.",
+      "source_ids": [
+        "S500#P5"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T53-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "What does Google call the special boxes where the format of a regular search result is reversed?",
+      "options": [],
+      "answer": "featured snippets",
+      "explanation": "Google's featured snippets page defines them this way.",
+      "related_topics": [],
+      "source_ids": [
+        "S500#P1"
+      ]
+    },
+    {
+      "item_id": "T53-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "How does Google say a page becomes a featured snippet?",
+      "options": [
+        "A. By adding featured-snippet markup to the page code",
+        "B. Google systems decide",
+        "C. By submitting the page through a Search Console request form",
+        "D. By paying Google for the featured position"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google systems determine whether a page would make a good featured snippet. Wrong: 'adding featured-snippet markup' - asked whether you can mark a page as one, Google answers \"You can't.\" 'Search Console request form' - no such route is described. 'Paying' - not described; Google's systems decide.",
+      "related_topics": [],
+      "source_ids": [
+        "S500#P2",
+        "S500#P8"
+      ]
+    },
+    {
+      "item_id": "T53-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google publishes an exact minimum text length required to appear as a featured snippet.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google says it does not provide an exact minimum length.",
+      "related_topics": [],
+      "source_ids": [
+        "S500#P3"
+      ]
+    },
+    {
+      "item_id": "T53-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "When a user clicks a featured snippet, Google says it takes them directly to what part of the page?",
+      "options": [],
+      "answer": "section",
+      "explanation": "Google says clicking takes the user directly to the section of the page that appeared in the featured snippet.",
+      "related_topics": [],
+      "source_ids": [
+        "S500#P7"
+      ]
+    },
+    {
+      "item_id": "T53-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'Setting max-snippet low guarantees featured snippets stop.' Which correction is best?",
+      "options": [
+        "A. max-snippet has no effect whatsoever on featured snippets",
+        "B. Only nosnippet can ever change how snippets appear",
+        "C. Shorter settings make it less likely, with no guarantee",
+        "D. It forces featured snippets to appear for the page"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google says the shorter the max-snippet setting, the less likely the page will appear as a featured snippet, and that a low setting doesn't guarantee they stop. Wrong: 'no effect whatsoever' - Google says it makes it less likely. 'Only nosnippet can change snippets' - data-nosnippet and max-snippet also exist. 'It forces featured snippets to appear' - the opposite.",
+      "related_topics": [],
+      "source_ids": [
+        "S500#P10",
+        "S500#P5"
+      ]
+    },
+    {
+      "item_id": "T53-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Text marked data-nosnippet won't appear in featured snippets",
+        "B. Featured snippets appear only if enough text can be shown",
+        "C. max-snippet 0 is equivalent to nosnippet",
+        "D. FAQ schema is required for a page to be eligible for featured snippets"
+      ],
+      "answer": "D",
+      "explanation": "Supported: data-nosnippet text won't appear in featured snippets (A); featured snippets appear only if enough text can be shown (B); max-snippet 0 equals nosnippet (C). Unsupported: D - no saved quote says FAQ schema is required for eligibility; when asked whether you can mark a page as one, Google answers \"You can't.\".",
+      "related_topics": [],
+      "source_ids": [
+        "S500#P4",
+        "S500#P6",
+        "S501#P5",
+        "S500#P8"
+      ]
+    },
+    {
+      "item_id": "T53-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical page: a pricing FAQ. The owner wants one paragraph kept out of featured and regular snippets while the rest stays eligible. Which HTML attribute does Google document for this?",
+      "options": [],
+      "answer": "data-nosnippet",
+      "explanation": "Google says text marked by data-nosnippet won't appear in featured snippets or regular snippets.",
+      "related_topics": [],
+      "source_ids": [
+        "S500#P4",
+        "S501#P6"
+      ]
+    },
+    {
+      "item_id": "T53-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A team plans: 'Wrap the key answer in data-nosnippet so it becomes our featured snippet.' What is the error?",
+      "options": [
+        "A. data-nosnippet keeps text out of snippets, the opposite",
+        "B. data-nosnippet has been deprecated and Google ignores it now",
+        "C. Featured snippets never use any text from the page",
+        "D. data-nosnippet only applies to images and not to text"
+      ],
+      "answer": "A",
+      "explanation": "Correct: data-nosnippet does the opposite, keeping text out of snippets. Wrong: 'data-nosnippet is deprecated' - Google documents it. 'Featured snippets use no text' - they use text. 'It only works on images' - it marks text.",
+      "related_topics": [],
+      "source_ids": [
+        "S500#P4"
+      ]
+    },
+    {
+      "item_id": "T53-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a recipe blog. Symptom: pages lost featured snippets and AI feature links after a plugin update. Evidence: (1) a site-wide robots meta tag now says nosnippet; (2) Google says nosnippet is the way to block all snippets including featured snippets; (3) Google says nosnippet also prevents use as direct input for AI Overviews and AI Mode. Question: what is the best action?",
+      "options": [
+        "A. Add FAQ schema to each recipe page and wait",
+        "B. Remove the site-wide nosnippet",
+        "C. Set max-snippet to 0 on every recipe page",
+        "D. Noindex the recipe pages and resubmit the sitemap"
+      ],
+      "answer": "B",
+      "explanation": "Correct: remove the site-wide nosnippet if snippet appearance is wanted. Wrong: 'Add FAQ schema' - not a stated fix. 'Set max-snippet to 0' - equals nosnippet. 'Noindex the pages' - removes them from results.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S500#P9",
+        "S501#P2",
+        "S501#P5"
+      ]
+    },
+    {
+      "item_id": "T53-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a law firm. Symptom: it wants one disclaimer paragraph kept out of snippets, while the rest of the page stays eligible as a supporting link in AI Overviews and AI Mode. Evidence: (1) the page is indexed; (2) Google says nosnippet applies to all forms of search results and also prevents the content being used as direct input for AI Overviews and AI Mode; (3) Google says a supporting-link page must be indexed and eligible to be shown with a snippet; (4) data-nosnippet applies only to the marked text. Question: which action fits?",
+      "options": [
+        "A. Add nosnippet to the whole page so nothing is shown",
+        "B. Add noindex to the whole page so it leaves results",
+        "C. Wrap only the disclaimer paragraph in data-nosnippet",
+        "D. Set max-snippet to 0 for the page as a whole"
+      ],
+      "answer": "C",
+      "explanation": "Correct: wrap only the paragraph in data-nosnippet, so the rest of the page can still be shown with a snippet and stay eligible. Wrong: nosnippet on the page blocks all snippets and AI input, ending the eligibility the firm wants to keep. noindex removes the page. max-snippet 0 is equivalent to nosnippet, so it has the same cost. The trade-off is that the disclaimer text itself will not appear in snippets.",
+      "related_topics": [
+        "T52"
+      ],
+      "source_ids": [
+        "S500#P4",
+        "S501#P6",
+        "S501#P5",
+        "S501#P2",
+        "S007#P7",
+        "S501#P1"
+      ]
+    }
+  ]
+}

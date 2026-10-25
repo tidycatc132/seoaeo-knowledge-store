@@ -1,207 +1,207 @@
 {
- "topic_id": "T8",
- "title": "Tokenization and text normalization",
- "stage": 2,
- "merged_from": [],
- "volatility": "stable",
- "last_verified": "2026-10-25",
- "summary": "Before text goes in an index it is tokenized (chopped into tokens) and normalized (mapped to equivalence classes). The textbook defines tokens, types and terms, and describes stemming (crude, rule-based) and lemmatization (uses vocabulary and morphology), noting stemming raises recall but harms precision. Normalization is applied to queries and documents alike. Google calls unnatural repetition keyword stuffing; whether Google stems page words is unconfirmed, so skipping exact repetition of each form is practitioner inference.",
- "actions": [
-  "Write for the topic in natural language; do not repeat each inflection or variant.",
-  "If you run site search, normalize queries and indexed text identically and test hyphens, apostrophes and case.",
-  "Do not claim a specific stemmer or tokenizer for Google; the textbook shows methods, not Google's settings.",
-  "Treat keyword counts as a symptom to avoid, not a target."
- ],
- "myths": [
-  {
-   "myth": "You must repeat every word form (car, cars, car's) so the page matches.",
-   "correction": "Google lists unnatural repetition as keyword stuffing. The textbook's stemming aims to reduce inflectional forms, but Google's handling is unconfirmed (practitioner inference).",
-   "source_ids": [
-    "S111#P1",
-    "S113#P2"
-   ]
-  },
-  {
-   "myth": "Stemming is free: it only helps.",
-   "correction": "The textbook says it increases recall while harming precision.",
-   "source_ids": [
-    "S111#P5"
-   ]
-  }
- ],
- "items": [
-  {
-   "item_id": "T8-L1-01",
-   "level": 1,
-   "type": "definition",
-   "prompt": "In the textbook, a token is an instance of a sequence of ___ in a particular document (one word).",
-   "options": [],
-   "answer": "Characters",
-   "explanation": "The textbook defines a token as an instance of a sequence of characters in some particular document. A type is the class of all tokens containing the same character sequence.",
-   "related_topics": [
-    "T5"
-   ],
-   "source_ids": [
-    "S109#P1",
-    "S109#P2"
-   ]
-  },
-  {
-   "item_id": "T8-L1-02",
-   "level": 1,
-   "type": "multiple_choice",
-   "prompt": "In the textbook, what is a term?",
-   "options": [
-    "A. Any single character occurring in a document",
-    "B. A normalized type held in the dictionary",
-    "C. The class of all tokens with different spellings",
-    "D. A phrase of consecutive words in a document"
-   ],
-   "answer": "B",
-   "explanation": "Correct: a term is a (perhaps normalized) type included in the IR system's dictionary. 'Any single character' is not the definition. 'The class of all tokens with different spellings' misstates a type: a type groups tokens with the same character sequence. 'A phrase of consecutive words' is not how the textbook defines a term.",
-   "related_topics": [],
-   "source_ids": [
-    "S109#P3",
-    "S109#P2"
-   ]
-  },
-  {
-   "item_id": "T8-L1-03",
-   "level": 1,
-   "type": "true_false",
-   "prompt": "True or false: the textbook describes stemming as usually a crude heuristic process that chops off the ends of words.",
-   "options": [],
-   "answer": "True",
-   "explanation": "The textbook says stemming usually refers to a crude heuristic process that chops off the ends of words; lemmatization uses a vocabulary and morphological analysis.",
-   "related_topics": [],
-   "source_ids": [
-    "S111#P2",
-    "S111#P3"
-   ]
-  },
-  {
-   "item_id": "T8-L2-01",
-   "level": 2,
-   "type": "why_it_works",
-   "prompt": "The textbook states a trade-off for stemming. What does it increase (one word)?",
-   "options": [],
-   "answer": "Recall",
-   "explanation": "The textbook says stemming increases recall while harming precision, because variant forms are reduced to one base form and so match each other.",
-   "related_topics": [],
-   "source_ids": [
-    "S111#P5",
-    "S111#P1"
-   ]
-  },
-  {
-   "item_id": "T8-L2-02",
-   "level": 2,
-   "type": "misconception",
-   "prompt": "True or false: Google's spam policies treat repeating the same words or phrases so often that it sounds unnatural as acceptable keyword coverage.",
-   "options": [],
-   "answer": "False",
-   "explanation": "Google lists repeating the same words or phrases so often that it sounds unnatural as an example of keyword stuffing. The textbook describes stemming and lemmatization as reducing inflectional forms, but whether Google handles page words that way is unconfirmed; the idea that exact repetition of each form is unnecessary is practitioner inference.",
-   "related_topics": [],
-   "source_ids": [
-    "S113#P1",
-    "S113#P2",
-    "S111#P1"
-   ]
-  },
-  {
-   "item_id": "T8-L2-03",
-   "level": 2,
-   "type": "unsupported_statement",
-   "prompt": "Which statement is NOT supported by the saved sources?",
-   "options": [
-    "A. Stemming increases recall while harming precision",
-    "B. Handling hyphens automatically can be complex",
-    "C. Google confirms using the Porter stemmer on queries",
-    "D. Keyword stuffing includes unnaturally repeated words"
-   ],
-   "answer": "C",
-   "explanation": "Correct (unsupported): the textbook only calls Porter the most common stemming algorithm for English; it does not say what Google uses. The other three are supported: the precision cost of stemming, the complexity of hyphens, and Google's keyword stuffing definition.",
-   "related_topics": [],
-   "source_ids": [
-    "S111#P4",
-    "S111#P5",
-    "S109#P5",
-    "S113#P2"
-   ]
-  },
-  {
-   "item_id": "T8-L3-01",
-   "level": 3,
-   "type": "worked_example",
-   "prompt": "A system reduces word forms using a vocabulary and morphological analysis of words, rather than chopping endings. Which technique (per the textbook) is this?",
-   "options": [],
-   "answer": "Lemmatization",
-   "explanation": "The textbook says lemmatization usually refers to doing things properly with a vocabulary and morphological analysis; stemming is the cruder heuristic that chops off word endings.",
-   "related_topics": [],
-   "source_ids": [
-    "S111#P3",
-    "S111#P2"
-   ]
-  },
-  {
-   "item_id": "T8-L3-02",
-   "level": 3,
-   "type": "spot_the_error",
-   "prompt": "A hypothetical briefing note lists four claims about text processing. Which one contradicts the textbook?",
-   "options": [
-    "A. Stemming increases recall while harming precision",
-    "B. Normalization should be applied consistently to query and documents",
-    "C. Lemmatization uses a vocabulary and morphological analysis",
-    "D. Stemming has no cost, so apply it as aggressively as possible"
-   ],
-   "answer": "D",
-   "explanation": "Correct (the error): the textbook says stemming increases recall while harming precision, so it does have a cost. The other three match the textbook: that same trade-off, consistent processing of query and documents, and lemmatization using a vocabulary.",
-   "related_topics": [],
-   "source_ids": [
-    "S111#P5",
-    "S110#P3",
-    "S111#P3"
-   ]
-  },
-  {
-   "item_id": "T8-L4-01",
-   "level": 4,
-   "type": "case_file",
-   "prompt": "HYPOTHETICAL brief for a travel blog. Symptom: a writer is told to repeat the exact phrase 'cheap flights' plus 'cheap flight' and 'cheaper flights' in every paragraph so each form is covered. Evidence: (1) the textbook says stemming and lemmatization aim to reduce inflectional forms to a base; (2) Google defines keyword stuffing as filling a page with keywords, including repeating words so often it sounds unnatural; (3) Google's exact query handling is not confirmed in the sources. Best action?",
-   "options": [
-    "A. Repeat each phrase variant ten times per page",
-    "B. Use only the exact phrase in the headline",
-    "C. Add every variant to a hidden keyword block",
-    "D. Write naturally; do not repeat each form"
-   ],
-   "answer": "D",
-   "explanation": "Correct: the sources support not chasing each word form and warn that unnatural repetition is keyword stuffing (practitioner inference on the first point). Repeating variants ten times, or stuffing them in a hidden block, is the stuffing Google describes. Using only the exact phrase in the headline does not follow from any source.",
-   "related_topics": [],
-   "source_ids": [
-    "S111#P1",
-    "S113#P1",
-    "S113#P2"
-   ]
-  },
-  {
-   "item_id": "T8-L4-02",
-   "level": 4,
-   "type": "case_file",
-   "prompt": "HYPOTHETICAL shop with its own site search. Symptom: searching 't-shirt' returns nothing although many products are titled 'T-Shirt'. Evidence: (1) the index stores titles lowercased but with hyphens kept; (2) hyphens are removed from the query before lookup, so it becomes 'tshirt'; (3) the textbook says normalization is applied consistently to query and documents, and that handling hyphens can be complex. Best action?",
-   "options": [
-    "A. Normalize query and indexed text the same way",
-    "B. Repeat each spelling in every product description",
-    "C. Block the hyphenated product URLs in robots.txt",
-    "D. Add noindex to the no-hyphen product pages"
-   ],
-   "answer": "A",
-   "explanation": "Correct: the mismatch is that query and indexed text are normalized differently, which the textbook's consistency point addresses. Repeating spellings in copy works around the bug. Blocking or noindexing product URLs removes pages and does nothing for matching.",
-   "related_topics": [],
-   "source_ids": [
-    "S110#P3",
-    "S110#P1",
-    "S109#P5"
-   ]
-  }
- ]
+  "topic_id": "T8",
+  "title": "Tokenization and text normalization",
+  "stage": 2,
+  "merged_from": [],
+  "volatility": "stable",
+  "last_verified": "2026-10-25",
+  "summary": "Before text goes in an index it is tokenized (chopped into tokens) and normalized (mapped to equivalence classes). The textbook defines tokens, types and terms, and describes stemming (crude, rule-based) and lemmatization (uses vocabulary and morphology), noting stemming raises recall but harms precision. Normalization is applied to queries and documents alike. Google calls unnatural repetition keyword stuffing; whether Google stems page words is unconfirmed, so skipping exact repetition of each form is practitioner inference.",
+  "actions": [
+    "Write for the topic in natural language; do not repeat each inflection or variant.",
+    "If you run site search, normalize queries and indexed text identically and test hyphens, apostrophes and case.",
+    "Do not claim a specific stemmer or tokenizer for Google; the textbook shows methods, not Google's settings.",
+    "Treat keyword counts as a symptom to avoid, not a target."
+  ],
+  "myths": [
+    {
+      "myth": "You must repeat every word form (car, cars, car's) so the page matches.",
+      "correction": "Google lists unnatural repetition as keyword stuffing. The textbook's stemming aims to reduce inflectional forms, but Google's handling is unconfirmed (practitioner inference).",
+      "source_ids": [
+        "S111#P1",
+        "S113#P2"
+      ]
+    },
+    {
+      "myth": "Stemming is free: it only helps.",
+      "correction": "The textbook says it increases recall while harming precision.",
+      "source_ids": [
+        "S111#P5"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T8-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In the textbook, a token is an instance of a sequence of ___ in a particular document (one word).",
+      "options": [],
+      "answer": "Characters",
+      "explanation": "The textbook defines a token as an instance of a sequence of characters in some particular document. A type is the class of all tokens containing the same character sequence.",
+      "related_topics": [
+        "T5"
+      ],
+      "source_ids": [
+        "S109#P1",
+        "S109#P2"
+      ]
+    },
+    {
+      "item_id": "T8-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "In the textbook, what is a term?",
+      "options": [
+        "A. Any single character occurring in a document",
+        "B. A normalized type held in the dictionary",
+        "C. The class of all tokens with different spellings",
+        "D. A phrase of consecutive words in a document"
+      ],
+      "answer": "B",
+      "explanation": "Correct: a term is a (perhaps normalized) type included in the IR system's dictionary. 'Any single character' is not the definition. 'The class of all tokens with different spellings' misstates a type: a type groups tokens with the same character sequence. 'A phrase of consecutive words' is not how the textbook defines a term.",
+      "related_topics": [],
+      "source_ids": [
+        "S109#P3",
+        "S109#P2"
+      ]
+    },
+    {
+      "item_id": "T8-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: the textbook describes stemming as usually a crude heuristic process that chops off the ends of words.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The textbook says stemming usually refers to a crude heuristic process that chops off the ends of words; lemmatization uses a vocabulary and morphological analysis.",
+      "related_topics": [],
+      "source_ids": [
+        "S111#P2",
+        "S111#P3"
+      ]
+    },
+    {
+      "item_id": "T8-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "The textbook states a trade-off for stemming. What does it increase (one word)?",
+      "options": [],
+      "answer": "Recall",
+      "explanation": "The textbook says stemming increases recall while harming precision, because variant forms are reduced to one base form and so match each other.",
+      "related_topics": [],
+      "source_ids": [
+        "S111#P5",
+        "S111#P1"
+      ]
+    },
+    {
+      "item_id": "T8-L2-02",
+      "level": 2,
+      "type": "misconception",
+      "prompt": "True or false: Google's spam policies treat repeating the same words or phrases so often that it sounds unnatural as acceptable keyword coverage.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google lists repeating the same words or phrases so often that it sounds unnatural as an example of keyword stuffing. The textbook describes stemming and lemmatization as reducing inflectional forms, but whether Google handles page words that way is unconfirmed; the idea that exact repetition of each form is unnecessary is practitioner inference.",
+      "related_topics": [],
+      "source_ids": [
+        "S113#P1",
+        "S113#P2",
+        "S111#P1"
+      ]
+    },
+    {
+      "item_id": "T8-L2-03",
+      "level": 2,
+      "type": "unsupported_statement",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Stemming increases recall while harming precision",
+        "B. Handling hyphens automatically can be complex",
+        "C. Google confirms using the Porter stemmer on queries",
+        "D. Keyword stuffing includes unnaturally repeated words"
+      ],
+      "answer": "C",
+      "explanation": "Correct (unsupported): the textbook only calls Porter the most common stemming algorithm for English; it does not say what Google uses. The other three are supported: the precision cost of stemming, the complexity of hyphens, and Google's keyword stuffing definition.",
+      "related_topics": [],
+      "source_ids": [
+        "S111#P4",
+        "S111#P5",
+        "S109#P5",
+        "S113#P2"
+      ]
+    },
+    {
+      "item_id": "T8-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "A system reduces word forms using a vocabulary and morphological analysis of words, rather than chopping endings. Which technique (per the textbook) is this?",
+      "options": [],
+      "answer": "Lemmatization",
+      "explanation": "The textbook says lemmatization usually refers to doing things properly with a vocabulary and morphological analysis; stemming is the cruder heuristic that chops off word endings.",
+      "related_topics": [],
+      "source_ids": [
+        "S111#P3",
+        "S111#P2"
+      ]
+    },
+    {
+      "item_id": "T8-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical briefing note lists four claims about text processing. Which one contradicts the textbook?",
+      "options": [
+        "A. Stemming increases recall while harming precision",
+        "B. Normalization should be applied consistently to query and documents",
+        "C. Lemmatization uses a vocabulary and morphological analysis",
+        "D. Stemming has no cost, so apply it as aggressively as possible"
+      ],
+      "answer": "D",
+      "explanation": "Correct (the error): the textbook says stemming increases recall while harming precision, so it does have a cost. The other three match the textbook: that same trade-off, consistent processing of query and documents, and lemmatization using a vocabulary.",
+      "related_topics": [],
+      "source_ids": [
+        "S111#P5",
+        "S110#P3",
+        "S111#P3"
+      ]
+    },
+    {
+      "item_id": "T8-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "HYPOTHETICAL brief for a travel blog. Symptom: a writer is told to repeat the exact phrase 'cheap flights' plus 'cheap flight' and 'cheaper flights' in every paragraph so each form is covered. Evidence: (1) the textbook says stemming and lemmatization aim to reduce inflectional forms to a base; (2) Google defines keyword stuffing as filling a page with keywords, including repeating words so often it sounds unnatural; (3) Google's exact query handling is not confirmed in the sources. Best action?",
+      "options": [
+        "A. Repeat each phrase variant ten times per page",
+        "B. Use only the exact phrase in the headline",
+        "C. Add every variant to a hidden keyword block",
+        "D. Write naturally and do not repeat every word form of the phrase"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the sources support not chasing each word form and warn that unnatural repetition is keyword stuffing (practitioner inference on the first point). Repeating variants ten times, or stuffing them in a hidden block, is the stuffing Google describes. Using only the exact phrase in the headline does not follow from any source.",
+      "related_topics": [],
+      "source_ids": [
+        "S111#P1",
+        "S113#P1",
+        "S113#P2"
+      ]
+    },
+    {
+      "item_id": "T8-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "HYPOTHETICAL shop with its own site search. Symptom: searching 't-shirt' returns nothing although many products are titled 'T-Shirt'. Evidence: (1) the index stores titles lowercased but with hyphens kept; (2) hyphens are removed from the query before lookup, so it becomes 'tshirt'; (3) the textbook says normalization is applied consistently to query and documents, and that handling hyphens can be complex. Best action?",
+      "options": [
+        "A. Normalize query and indexed text the same way",
+        "B. Repeat each spelling in every product description",
+        "C. Block the hyphenated product URLs in robots.txt",
+        "D. Add noindex to the no-hyphen product pages"
+      ],
+      "answer": "A",
+      "explanation": "Correct: the mismatch is that query and indexed text are normalized differently, which the textbook's consistency point addresses. Repeating spellings in copy works around the bug. Blocking or noindexing product URLs removes pages and does nothing for matching.",
+      "related_topics": [],
+      "source_ids": [
+        "S110#P3",
+        "S110#P1",
+        "S109#P5"
+      ]
+    }
+  ]
 }

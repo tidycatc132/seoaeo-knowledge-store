@@ -1,0 +1,210 @@
+{
+  "topic_id": "T45",
+  "title": "Link graph analysis and authority modeling",
+  "stage": 6,
+  "merged_from": [
+    "T36"
+  ],
+  "volatility": "stable",
+  "last_verified": "2026-10-25",
+  "summary": "PageRank (Brin and Page) and HITS (Kleinberg) are published models that treat links as endorsement. PageRank is described as a random surfer model whose scores form a probability distribution; HITS gives pages hub and authority scores for a query. These papers explain why links matter but do not say what Google runs today. Google's practical guidance is simpler: use crawlable a-href links, link to every page you care about from another page, and label paid links.",
+  "actions": [
+    "Audit for orphan pages and pages reachable only through non-href links.",
+    "Label paid placements rel=sponsored and user-generated links rel=ugc.",
+    "Treat third-party authority scores as heuristics, not Google metrics (practitioner advice)."
+  ],
+  "myths": [
+    {
+      "myth": "The PageRank paper proves Google ranks with PageRank today.",
+      "correction": "The paper describes a method (d usually 0.85); none of the saved quotes states what Google's systems use now.",
+      "source_ids": [
+        "S400#P3"
+      ]
+    },
+    {
+      "myth": "Marking a link rel=ugc or sponsored passes full credit anyway.",
+      "correction": "Google says links marked with these attributes will generally not be followed, though pages may be found by other means.",
+      "source_ids": [
+        "S406#P3",
+        "S406#P4"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T45-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In Kleinberg's HITS paper, a page that is pointed to by many good hubs is called a good what? One word.",
+      "options": [],
+      "answer": "authority",
+      "explanation": "The paper says a good authority is a page that is pointed to by many good hubs, and hubs are pages that link to multiple relevant authoritative pages.",
+      "related_topics": [],
+      "source_ids": [
+        "S401#P1",
+        "S401#P2"
+      ]
+    },
+    {
+      "item_id": "T45-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "How do Brin and Page describe the 'random surfer' in their PageRank paper?",
+      "options": [
+        "A. Starts each time at the highest-ranked page",
+        "B. Keeps clicking links from a random start and never hits back",
+        "C. Reads only the anchor text of each link",
+        "D. Follows only links that carry rel=nofollow"
+      ],
+      "answer": "B",
+      "explanation": "Correct: the paper assumes a random surfer who is given a page at random and keeps clicking on links, never hitting back. Wrong: 'Starts each time at the highest-ranked page' - the paper gives the surfer a random starting page, not the top-ranked one. 'Reads only the anchor text of each link' - anchor text is discussed separately in the paper, not as the surfer's behaviour. 'Follows only links that carry rel=nofollow' - rel=nofollow is not part of the paper's surfer model.",
+      "related_topics": [],
+      "source_ids": [
+        "S400#P2"
+      ]
+    },
+    {
+      "item_id": "T45-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: the Brin and Page paper says PageRanks form a probability distribution over web pages, so all pages' PageRanks sum to one.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The paper states this directly (it also gives d as usually 0.85).",
+      "related_topics": [],
+      "source_ids": [
+        "S400#P4",
+        "S400#P3"
+      ]
+    },
+    {
+      "item_id": "T45-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "The IR textbook describes PageRank with a random surfer. What does it say the surfer does at a page with no out-links?",
+      "options": [
+        "A. Stops and ends the whole random walk",
+        "B. Returns to the page it just came from",
+        "C. Is counted as a nofollow link",
+        "D. Invokes the teleport operation"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the textbook says that at a node with no out-links the surfer invokes the teleport operation. Wrong: 'Stops and ends the whole random walk' - the quoted rule is that the surfer teleports; it does not say the walk stops. 'Returns to the page it just came from' - the quoted rule names teleport, not returning to the previous page. 'Is counted as a nofollow link' - nofollow does not appear in the textbook passage.",
+      "related_topics": [],
+      "source_ids": [
+        "S403#P2"
+      ]
+    },
+    {
+      "item_id": "T45-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: the IR textbook's HITS description produces a single ranked list per query.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The textbook says that for any query, HITS computes two ranked lists (hubs and authorities) rather than one.",
+      "related_topics": [],
+      "source_ids": [
+        "S404#P3"
+      ]
+    },
+    {
+      "item_id": "T45-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Google confirmed it still ranks pages with PageRank using d = 0.85",
+        "B. The IR textbook says link analysis treats hyperlinks as a conferral of authority",
+        "C. Brin and Page say they usually set d to 0.85",
+        "D. Kleinberg says hubs and authorities have a mutually reinforcing relationship"
+      ],
+      "answer": "A",
+      "explanation": "Correct: the Brin and Page paper and the textbook are descriptions of methods; none of the saved quotes says what Google uses today. A paper never backs 'Google uses X'. Wrong: 'The IR textbook says link analysis treats hyperlinks as a conferral of authority' - supported by the textbook quote. 'Brin and Page say they usually set d to 0.85' - supported: the paper says d is usually 0.85. 'Kleinberg says hubs and authorities have a mutually reinforcing relationship' - supported by the Kleinberg quote.",
+      "related_topics": [],
+      "source_ids": [
+        "S402#P1",
+        "S400#P3",
+        "S401#P3"
+      ]
+    },
+    {
+      "item_id": "T45-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Use the PageRank formula in the Brin and Page paper with d = 0.85. Page A is linked from T1 (PR 2, 4 outgoing links) and T2 (PR 1, 1 outgoing link). Numbers are hypothetical. What is PR(A)? Give a number.",
+      "options": [],
+      "answer": "1.425",
+      "explanation": "PR(A) = (1-d) + d(PR(T1)/C(T1) + PR(T2)/C(T2)) = 0.15 + 0.85(0.5 + 1) = 1.425. This is the paper's formula, not a claim about Google's current systems.",
+      "related_topics": [],
+      "source_ids": [
+        "S400#P1",
+        "S400#P3"
+      ]
+    },
+    {
+      "item_id": "T45-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "An analyst says: 'Page A's only inbound link is from T1 (PR 2, 4 outlinks, hypothetical), so PR(A) = 0.15 + 0.85 x 2 = 1.85 with d = 0.85.' What is the error?",
+      "options": [
+        "A. The damping factor should be 1",
+        "B. The (1-d) term should be removed",
+        "C. PR(T1) was not divided by C(T1)",
+        "D. PR(A) must always be exactly 1"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the formula divides each linking page's PR by its number of outgoing links C(T), giving 0.15 + 0.85 x 0.5 = 0.575. Wrong: 'The damping factor should be 1' - the paper says d is usually 0.85. 'The (1-d) term should be removed' - the paper's formula includes the (1-d) term. 'PR(A) must always be exactly 1' - the paper does not say each PR equals 1.",
+      "related_topics": [],
+      "source_ids": [
+        "S400#P1",
+        "S400#P3"
+      ]
+    },
+    {
+      "item_id": "T45-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site 'ShopNorth': a new buying guide has been live for three months. Evidence: (1) no other page on the site links to it; (2) the Page indexing report lists it as found by Google but not crawled yet; (3) it sits only in the sitemap. Which action is best supported by Google's guidance?",
+      "options": [
+        "A. Link to it from one relevant crawled page",
+        "B. Add rel=ugc to the guide's own links",
+        "C. Raise the damping factor used on the whole site",
+        "D. Block the guide in robots.txt until indexed"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google says every page you care about should have a link from at least one other page. Indexing is not guaranteed even after crawling, so this is a first fix, not a promise. Wrong: 'Add rel=ugc to the guide's own links' - ugc is for user-generated links and would not add an inbound link. 'Raise the damping factor used on the whole site' - a site owner cannot set a damping factor; it is a model parameter in a paper. 'Block the guide in robots.txt until indexed' - robots.txt controls crawler access and would work against discovery.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S405#P4",
+        "S119#P2",
+        "S120#P3"
+      ]
+    },
+    {
+      "item_id": "T45-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical agency pitch: 'Our link graph shows the client needs more authority, so we will buy 300 links from an automated service.' Evidence: (1) the IR textbook treats links as a conferral of authority; (2) Google's spam policy defines link spam as creating links to or from a site primarily to manipulate rankings; (3) the same policy lists using automated programs or services to create links as an example. Best advice?",
+      "options": [
+        "A. Buy them but strip the anchor text from each link",
+        "B. Skip them; earn links, label paid ones sponsored",
+        "C. Buy them and mark every link rel=ugc instead",
+        "D. Buy them in smaller batches spread over several months"
+      ],
+      "answer": "B",
+      "explanation": "Correct: the plan matches the policy's own link spam example, and Google asks that paid placements carry rel=sponsored. The textbook describes why links matter, not permission to manufacture them. Wrong: 'Buy them but strip the anchor text from each link' - removing anchor text does not change the purpose, which is manipulating rankings. 'Buy them and mark every link rel=ugc instead' - ugc is for user-generated content such as comments, not paid placements. 'Buy them in smaller batches spread over several months' - batch size is not part of the policy definition; the purpose is.",
+      "related_topics": [
+        "T54"
+      ],
+      "source_ids": [
+        "S402#P1",
+        "S209#P5",
+        "S209#P6",
+        "S406#P1"
+      ]
+    }
+  ]
+}
