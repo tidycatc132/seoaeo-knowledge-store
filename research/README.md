@@ -11,4 +11,4 @@ Source grades: A primary (platform docs, original papers, testimony, standards),
 
 ## Status (2026-10-25)
 
-37 topics, 338 items (33 full topics at 10 items, 4 short topics at 2), 110 source notes. Stages 1-8 all covered. Every item was fact-checked once against the saved passages and fixed; the difficulty editor's rewrites were checked and fixed once more. Review reports: `research/review-*.md`. Not covered: NER, Bing guidelines, Anthropic crawler docs (pages did not load); see topic notes for per-topic gaps.
+43 topics, 390 items (38 full topics at 10 items, 5 short topics at 2), stages 1-9 covered (stage 9 = local results). Every item was fact-checked once against the saved passages and fixed; the difficulty editor's rewrites were checked and fixed once more. Review reports: `research/review-*.md`. Not covered: NER, Bing guidelines, Anthropic crawler docs (pages did not load); see topic notes for per-topic gaps.

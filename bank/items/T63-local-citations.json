@@ -1,0 +1,45 @@
+{
+ "topic_id": "T63",
+ "title": "Citations and local link signals",
+ "stage": 9,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Google's only saved statement is that prominence is also based on info like how many websites link to your business and how many reviews you have. It does not name directory citations, so citation-building claims are industry theory.",
+ "actions": [],
+ "myths": [],
+ "items": [
+  {
+   "item_id": "T63-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Google says prominence is also based on how many what link to your business? Answer with one word.",
+   "options": [],
+   "answer": "websites",
+   "explanation": "Google's local ranking help says prominence is also based on how many websites link to your business and how many reviews you have.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P4"
+   ]
+  },
+  {
+   "item_id": "T63-L2-01",
+   "level": 2,
+   "type": "odd_one_out",
+   "prompt": "Which statement is NOT supported by Google's saved local ranking page?",
+   "options": [
+    "A. Reviews also feed into the prominence factor",
+    "B. Links to the business feed prominence",
+    "C. Directory citations are a named ranking factor",
+    "D. Google says local ranking cannot be paid for or requested"
+   ],
+   "answer": "C",
+   "explanation": "Unsupported: the saved page does not name directory citations. Supported: reviews feed prominence; links to the business feed prominence; ranking cannot be requested or paid for. Industry citation studies are context only.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P4",
+    "S600#P6"
+   ]
+  }
+ ]
+}
