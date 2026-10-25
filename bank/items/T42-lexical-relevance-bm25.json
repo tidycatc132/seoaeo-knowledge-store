@@ -1,0 +1,222 @@
+{
+ "topic_id": "T42",
+ "title": "Lexical relevance and keyword weighting (TF-IDF, BM25)",
+ "stage": 4,
+ "merged_from": [
+  "T3"
+ ],
+ "volatility": "stable",
+ "last_verified": "2026-10-25",
+ "summary": "Lexical scoring ranks documents by the query words they contain. Tf-idf gives a term more weight when it occurs many times in few documents and least when it appears in virtually all documents. BM25, described by Robertson and Zaragoza, is a term-weighting and document-scoring function with term frequency saturation and document length normalisation; the textbook describes two tuning parameters, k1 and b. Proximity can also be scored, for example by the smallest window containing all query terms. For practitioners: repeating a term has diminishing returns in BM25, and Google's spam policy defines keyword stuffing as filling a page with keywords to manipulate rankings. Papers and textbooks describe methods; none of these sources says what Google or Bing use.",
+ "actions": [
+  "Write for the topic and its distinctive terms in natural language; do not set a keyword density target.",
+  "When tuning your own site search (Elasticsearch, OpenSearch), expect k1 to control term frequency scaling and b to control length normalization.",
+  "Treat repeated exact-match phrases as risk under Google's keyword stuffing definition, not as a lever.",
+  "Do not cite a textbook or paper as proof of what Google ranks on."
+ ],
+ "myths": [
+  {
+   "myth": "Keyword density is a ranking factor, so hit a target percentage.",
+   "correction": "Google's spam policy defines keyword stuffing as filling a page with keywords to manipulate rankings, and John Mueller (as reported by Search Engine Journal, secondary) said the number of times you use a keyword does not really matter or make sense. No saved source gives a target density.",
+   "source_ids": [
+    "S209#P1",
+    "S210#P1",
+    "S210#P2"
+   ]
+  },
+  {
+   "myth": "Each extra repeat of a term keeps raising a BM25 score.",
+   "correction": "Robertson and Zaragoza describe a saturation point beyond which a single term's contribution cannot rise.",
+   "source_ids": [
+    "S211#P2"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T42-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "In BM25, which tuning parameter set to 0 turns off document length normalization?",
+   "options": [],
+   "answer": "b",
+   "explanation": "The textbook says b = 1 fully scales the term weight by document length and b = 0 corresponds to no length normalization. The other parameter, k1, calibrates term frequency scaling, not length.",
+   "related_topics": [],
+   "source_ids": [
+    "S202#P3",
+    "S202#P4",
+    "S202#P1"
+   ]
+  },
+  {
+   "item_id": "T42-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "In tf-idf weighting, which kind of term gets the lowest weight?",
+   "options": [
+    "A. A term used many times in a small number of documents",
+    "B. A term used once in a few documents",
+    "C. A term found in virtually all documents",
+    "D. A term whose idf is high"
+   ],
+   "answer": "C",
+   "explanation": "Correct: the textbook says the weight is lowest when the term occurs in virtually all documents. Wrong: many times in few documents is the textbook's highest-weight case. Once in only a few documents is a term that occurs fewer times in a document, which the textbook says lowers the weight but does not call the lowest case. A high idf belongs to a rare term, which gets more weight, not less.",
+   "related_topics": [],
+   "source_ids": [
+    "S200#P2",
+    "S200#P3",
+    "S200#P4",
+    "S201#P1"
+   ]
+  },
+  {
+   "item_id": "T42-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: in the bag of words model, the exact ordering of terms in a document is ignored but the number of occurrences of each term is material.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answer": "True",
+   "explanation": "That is how the textbook describes the bag of words model. Order is dropped; counts are kept.",
+   "related_topics": [],
+   "source_ids": [
+    "S206#P1"
+   ]
+  },
+  {
+   "item_id": "T42-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "Which tf-idf component makes a rare query term worth more than a common one?",
+   "options": [],
+   "answer": "idf",
+   "explanation": "The textbook says the idf of a rare term is high and the idf of a frequent term is likely to be low. Term frequency (tf) counts occurrences inside one document; it does not look at how many documents contain the term.",
+   "related_topics": [],
+   "source_ids": [
+    "S201#P1",
+    "S200#P1"
+   ]
+  },
+  {
+   "item_id": "T42-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "A writer says: 'Keyword density is a ranking factor, so we aim for 3 percent.' Which statement do the saved sources support?",
+   "options": [
+    "A. Google's policy treats keyword stuffing as spam",
+    "B. Google gives 2 to 3 percent as the ideal",
+    "C. Mueller said keyword counts directly set rank position",
+    "D. Google's spam policy says more repeats raise rankings"
+   ],
+   "answer": "A",
+   "explanation": "Correct: Google's spam policy defines keyword stuffing as filling a page with keywords to manipulate rankings. Wrong: no saved source gives an ideal density figure. Mueller, as reported by Search Engine Journal (a secondary report; no transcript was available), said: 'In general the number of times that you use a keyword on a page, I don't think that really matters or makes sense.' The spam policy says the opposite of the last option: repetition meant to manipulate rankings is the violation. Caution: the sources do not use the words 'density is not a ranking factor'.",
+   "related_topics": [],
+   "source_ids": [
+    "S209#P1",
+    "S209#P2",
+    "S210#P1",
+    "S210#P2"
+   ]
+  },
+  {
+   "item_id": "T42-L2-03",
+   "level": 2,
+   "type": "which_unsupported",
+   "prompt": "Which statement is NOT supported by the textbook and review sources on BM25?",
+   "options": [
+    "A. A k1 of 0 corresponds to a binary model with no term frequency",
+    "B. Setting b to 1 switches length normalization off entirely",
+    "C. BM25 caps a single term's contribution at a saturation point",
+    "D. BM25 is a term-weighting and document-scoring function"
+   ],
+   "answer": "B",
+   "explanation": "Unsupported: b = 1 corresponds to fully scaling the term weight by document length; b = 0 is no length normalization. The other three are supported: k1 = 0 is a binary model (textbook), term contribution cannot exceed a saturation point, and BM25 is described as a term-weighting and document-scoring function (Robertson and Zaragoza).",
+   "related_topics": [],
+   "source_ids": [
+    "S202#P3",
+    "S202#P4",
+    "S202#P2",
+    "S211#P1",
+    "S211#P2"
+   ]
+  },
+  {
+   "item_id": "T42-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical test index: you set BM25 k1 to 0. Page X uses 'widget' 40 times, page Y uses it once. Per the textbook, which model does k1 = 0 correspond to (one word)?",
+   "options": [],
+   "answer": "binary",
+   "explanation": "The textbook says a k1 value of 0 corresponds to a binary model (no term frequency), so, in the term-frequency part of the score, the 40 repeats count no differently from one occurrence.",
+   "related_topics": [],
+   "source_ids": [
+    "S202#P2",
+    "S202#P1"
+   ]
+  },
+  {
+   "item_id": "T42-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "Hypothetical audit note: 'BM25 caps a term's contribution, so extra repeats add little. Rare terms carry more weight than common ones. Google's spam policy sets 3 percent as the safe keyword density.' Which claim is unsupported?",
+   "options": [
+    "A. BM25 caps a term's contribution at a saturation point",
+    "B. A rare term has a higher idf than a frequent term",
+    "C. Google's spam policy treats unnatural repetition as stuffing",
+    "D. Google's spam policy sets 3 percent as the safe level"
+   ],
+   "answer": "D",
+   "explanation": "Unsupported: the spam policy page gives no safe percentage; it defines keyword stuffing and gives repeated phrases that sound unnatural as an example. The other claims are supported by Robertson and Zaragoza (saturation), the textbook (idf) and Google's spam policy.",
+   "related_topics": [],
+   "source_ids": [
+    "S209#P1",
+    "S209#P2",
+    "S211#P2",
+    "S201#P1"
+   ]
+  },
+  {
+   "item_id": "T42-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Case file (hypothetical site: Northbank Plumbing). Symptom: after a rewrite that repeated 'emergency plumber' in every paragraph to hit a 4 percent density target, the service page's rankings did not improve. Evidence: (1) the copy now reads unnaturally; (2) Google's spam policy lists 'Repeating the same words or phrases so often that it sounds unnatural' under keyword stuffing; (3) Mueller, per a Search Engine Journal report, said: 'In general the number of times that you use a keyword on a page, I don't think that really matters or makes sense.' What is the best next step?",
+   "options": [
+    "A. Raise the density to 6 percent",
+    "B. Keep 4 percent and add the phrase to more headings",
+    "C. Rewrite naturally and drop the density target",
+    "D. Keep the copy and wait for the target to take effect"
+   ],
+   "answer": "C",
+   "explanation": "Best: both sources point away from chasing a repetition count, and the page now matches the spam policy's unnatural-repetition example. Raising density or adding more repetition moves further into that example. Waiting assumes the density target is helping, which no saved source supports. Practitioner inference: the flat rankings are not proof of cause.",
+   "related_topics": [],
+   "source_ids": [
+    "S209#P1",
+    "S209#P2",
+    "S210#P1",
+    "S210#P2"
+   ]
+  },
+  {
+   "item_id": "T42-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Case file (hypothetical site: DocsCo intranet search running BM25). Symptom: long manuals fill the top 10 for generic queries while short FAQ pages sit lower. Evidence: (1) the config has b = 0; (2) k1 is unchanged; (3) the textbook says b = 1 fully scales the term weight by document length and b = 0 corresponds to no length normalization. Which change moves scoring toward length normalization?",
+   "options": [
+    "A. Set k1 to 0 so the model is binary",
+    "B. Raise b toward 1 to scale by length",
+    "C. Leave b at 0 and remove idf",
+    "D. Set b to 0 so length stops mattering"
+   ],
+   "answer": "B",
+   "explanation": "Correct: b controls length scaling, and it is currently 0 (none). Setting k1 to 0 removes term frequency scaling, not length effects. Removing idf changes how rare terms count, unrelated to length. Setting b to 0 is what the config already has. Whether the result is better for users needs to be judged with test queries; the sources do not say.",
+   "related_topics": [],
+   "source_ids": [
+    "S202#P3",
+    "S202#P4",
+    "S202#P2"
+   ]
+  }
+ ]
+}

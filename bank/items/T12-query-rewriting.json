@@ -1,0 +1,222 @@
+{
+  "topic_id": "T12",
+  "title": "Semantic parsing, query rewriting and expansion",
+  "stage": 3,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-24",
+  "summary": "Search systems do not always look up the exact words a person typed. Classic methods add synonyms and related words (query expansion), or assume the top results are relevant and expand from them (pseudo relevance feedback). Google has said BERT in Search uses the words around a word, so small words like 'to' can change meaning, and its documentation describes AI Overviews and AI Mode issuing multiple related searches across subtopics. For practitioners this means writing for a topic and its sub-questions in natural language rather than one exact string. Which rewriting steps any engine applies to a given query is mostly unconfirmed, and research papers such as HyDE show what a method does, not what an engine uses.",
+  "actions": [
+    "Write titles and headings in natural language (practitioner inference from Google's 2019 BERT announcement that small words like 'for' and 'to' can matter to meaning).",
+    "Consider covering the related sub-questions around a topic on the page or cluster (practitioner inference from the documented fan-out; inclusion is not promised).",
+    "Avoid synonym lists on the page (judgement; classic IR adds synonyms system-side).",
+    "Treat claims that an engine runs a specific rewriting method as unconfirmed unless the engine documents it."
+  ],
+  "myths": [
+    {
+      "myth": "AI answer features need special markup or special optimization to pull your page in.",
+      "correction": "Google's AI features documentation says there are no additional requirements and no special schema.org structured data to add.",
+      "source_ids": [
+        "S007"
+      ]
+    },
+    {
+      "myth": "A research paper on query rewriting proves Google does the same.",
+      "correction": "A paper is evidence of what a method is and does; nothing in the saved passage says any engine uses it, so engine use is unconfirmed.",
+      "source_ids": [
+        "S006"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T12-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In classic information retrieval, what does automatic query expansion do?",
+      "options": [],
+      "answer": "Adds synonyms and related words to the query",
+      "explanation": "The textbook describes that the query can be automatically expanded with synonyms and related words. It is a different step from spelling correction, which fixes mistyped words.",
+      "related_topics": [
+        "T48"
+      ],
+      "source_ids": [
+        "S001#P2"
+      ]
+    },
+    {
+      "item_id": "T12-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which statement describes pseudo relevance feedback?",
+      "options": [
+        "A. A user marks results relevant and the engine learns.",
+        "B. The engine corrects spelling using edit distance.",
+        "C. Assume the top k results are relevant and feed back from them.",
+        "D. An LLM writes a hypothetical answer used to search."
+      ],
+      "answer": "C",
+      "explanation": "Correct: the textbook says to assume the top k ranked documents are relevant and do relevance feedback under that assumption. Wrong: 'A user marks results relevant and the engine learns.' - that is ordinary relevance feedback, where users supply the input. 'The engine corrects spelling using edit distance.' - that is spelling correction, a separate topic. 'An LLM writes a hypothetical answer used to search.' - that is the HyDE paper's method, a different technique.",
+      "related_topics": [
+        "T48"
+      ],
+      "source_ids": [
+        "S002#P3",
+        "S001#P1",
+        "S003#P1",
+        "S006#P1"
+      ]
+    },
+    {
+      "item_id": "T12-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: in pseudo relevance feedback, if the top results for 'copper mines' are mostly about Chile, the expanded query may drift toward documents on Chile.",
+      "options": [],
+      "answer": "True",
+      "explanation": "This is the textbook's own warning, called query drift. The technique mostly works but the assumption that the top results are relevant can pull the query off the user's topic.",
+      "related_topics": [],
+      "source_ids": [
+        "S002#P2",
+        "S002#P4"
+      ]
+    },
+    {
+      "item_id": "T12-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "The textbook says query expansion generally increases which measure: precision or recall?",
+      "options": [],
+      "answer": "recall",
+      "explanation": "The textbook states that use of query expansion generally increases recall. It describes expansion as adding synonyms and related words to the query; the page quote saved does not spell out the mechanism, so none is claimed here.",
+      "related_topics": [
+        "T7"
+      ],
+      "source_ids": [
+        "S001#P4",
+        "S001#P2"
+      ]
+    },
+    {
+      "item_id": "T12-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A client says: 'Engines expand queries, so every page must list all synonyms of the keyword.' Which response is best?",
+      "options": [
+        "A. Synonyms are added system-side, so write naturally.",
+        "B. Agree, synonym lists are the main ranking lever.",
+        "C. Expansion only exists in paid search and ad auctions.",
+        "D. Expansion replaces your keywords, so remove them all."
+      ],
+      "answer": "A",
+      "explanation": "Correct: the textbook places synonym expansion on the system side (thesaurus, other users' reformulations), so a synonym list on the page is not the lever. This conclusion is practitioner inference, and any specific engine's behaviour is unconfirmed. Wrong: 'Agree, synonym lists are the main ranking lever.' - nothing saved supports that. 'Expansion only exists in paid search and ad auctions.' - unsupported. 'Expansion replaces your keywords, so remove them all.' - the textbook describes added terms, possibly weighted lower than the original terms, not replacement.",
+      "related_topics": [],
+      "source_ids": [
+        "S001#P2",
+        "S001#P3",
+        "S001#P6"
+      ]
+    },
+    {
+      "item_id": "T12-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Three of these are sources of extra query terms in classic query expansion. Which is the odd one out?",
+      "options": [
+        "A. A thesaurus of synonyms and related terms",
+        "B. Other users' reformulations in query logs",
+        "C. The top k results, assumed to be relevant",
+        "D. Edit-distance matching against words"
+      ],
+      "answer": "D",
+      "explanation": "Correct: it belongs to spelling correction, which repairs mistyped words rather than adding related terms. Wrong: 'A thesaurus of synonyms and related terms' - the textbook lists thesaurus expansion. 'Other users' reformulations in query logs' - the textbook describes exploiting other users' reformulations. 'The top k results, assumed to be relevant' - this is pseudo relevance feedback.",
+      "related_topics": [
+        "T48"
+      ],
+      "source_ids": [
+        "S001#P2",
+        "S001#P3",
+        "S002#P3",
+        "S003#P1"
+      ]
+    },
+    {
+      "item_id": "T12-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "A system retrieves for 'copper mines'. The top 10 are almost all about Chilean mines. It assumes those 10 are relevant and expands the query with terms from them. What risk should you expect, in two words?",
+      "options": [],
+      "answer": "Query drift",
+      "explanation": "Step 1: initial retrieval returns Chile-heavy results. Step 2: the system assumes the top k are relevant. Step 3: terms from them are added, pushing the query toward Chile. The textbook names this query drift. It does not make the technique useless: it also notes the technique mostly works.",
+      "related_topics": [],
+      "source_ids": [
+        "S002#P2",
+        "S002#P3",
+        "S002#P4"
+      ]
+    },
+    {
+      "item_id": "T12-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical audit note says: 'The HyDE paper proves Google writes hypothetical answers for queries, so fill pages with fake-answer text.' What is the main error?",
+      "options": [
+        "A. LLM-written text is banned in every major search engine.",
+        "B. A paper shows a method, not engine use.",
+        "C. HyDE only works for navigational queries and brand names.",
+        "D. Hypothetical documents are always accurate."
+      ],
+      "answer": "B",
+      "explanation": "Correct: the paper describes the method and says the hypothetical document is unreal and may contain false details; no passage says any engine uses it (unconfirmed). Wrong: 'LLM-written text is banned in every major search engine.' - not stated in the saved source. 'HyDE only works for navigational queries and brand names.' - not stated in the saved source. 'Hypothetical documents are always accurate.' - the paper says the opposite.",
+      "related_topics": [],
+      "source_ids": [
+        "S006#P1",
+        "S006#P2"
+      ]
+    },
+    {
+      "item_id": "T12-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site): a regional accounting-software blog has one long page targeting 'small business accounting software'. Evidence: (1) Google's AI features documentation describes issuing multiple related searches across subtopics and data sources; (2) the page lists features only, with no pricing, migration or tax-filing sections; (3) the team proposes a schema.org 'AI visibility' block. Which action is best?",
+      "options": [
+        "A. Add the proposed 'AI visibility' schema block to the page.",
+        "B. Cover likely sub-questions (pricing, migration, tax).",
+        "C. Hide a list of 30 synonyms in the page template.",
+        "D. Do nothing, since related searches ignore subtopics entirely."
+      ],
+      "answer": "B",
+      "explanation": "Correct: this is practitioner inference: the documentation describes related searches across subtopics but does not say that covering them earns inclusion, so treat it as a test, not a guarantee. It also avoids the markup Google says is unnecessary. Wrong: 'Add the proposed 'AI visibility' schema block to the page.' - Google says there is no special schema.org structured data to add. 'Hide a list of 30 synonyms in the page template.' - structured data and page text should be visible to readers, and a synonym list is not the lever. 'Do nothing, since related searches ignore subtopics entirely.' - that contradicts the documentation.",
+      "related_topics": [
+        "T44"
+      ],
+      "source_ids": [
+        "S007#P1",
+        "S007#P3",
+        "S009#P2"
+      ]
+    },
+    {
+      "item_id": "T12-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site, 2026): a travel site shortened titles to keywords only ('Flights Paris London'), dropping 'from' and 'to'. Evidence: (1) the team's own report (hypothetical) shows fewer impressions on natural-language queries after the change; (2) Google's 2019 BERT announcement says BERT considers words before and after a word, and that for some searches prepositions like 'for' and 'to' matter a lot to meaning; (3) no other change was made. Which action is best?",
+      "options": [
+        "A. Add more synonyms to the meta descriptions across the site.",
+        "B. Add Organization markup with sameAs links to the site.",
+        "C. Wait, since pseudo relevance feedback will repair it.",
+        "D. Restore natural phrasing in titles and test."
+      ],
+      "answer": "D",
+      "explanation": "Correct: this is practitioner inference: the 2019 announcement is about query understanding, not title wording, so restore and measure rather than assume. Wrong: 'Add more synonyms to the meta descriptions across the site.' - it does not restore the dropped words. 'Add Organization markup with sameAs links to the site.' - unrelated to query wording. 'Wait, since pseudo relevance feedback will repair it.' - PRF is a retrieval-side expansion method, not a repair for titles.",
+      "related_topics": [
+        "T48"
+      ],
+      "source_ids": [
+        "S005#P1",
+        "S005#P2",
+        "S002#P3"
+      ]
+    }
+  ]
+}

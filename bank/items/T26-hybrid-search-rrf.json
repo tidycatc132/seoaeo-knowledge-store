@@ -1,0 +1,199 @@
+{
+ "topic_id": "T26",
+ "title": "Hybrid search and Reciprocal Rank Fusion",
+ "stage": 4,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Hybrid search runs keyword and vector retrieval together and merges the results. Azure AI Search describes it as a single query with full-text and vector parts run in parallel and merged with Reciprocal Rank Fusion; Elasticsearch documents an RRF constant that defaults to 60. The RRF paper (Cormack et al., 2009) describes RRF as combining the document rankings from multiple systems, and Elastic says it needs no tuning. These are vendor and paper descriptions of those products and the method; no saved source says how Google or Bing combine signals. For practitioners, it means exact words and meaning-based matches can both help a page get found in a hybrid system (practitioner inference).",
+ "actions": [
+  "Test queries of both kinds on your own search: exact terms (codes, names) and natural-language questions.",
+  "When evaluating hybrid against a baseline, judge or ignore unlabeled results so new results are not counted as irrelevant by default.",
+  "Check which vendor's hybrid you are using; descriptions are product-specific."
+ ],
+ "myths": [
+  {
+   "myth": "RRF needs careful tuning and related score scales between retrievers.",
+   "correction": "Elastic's docs say RRF requires no tuning and the different relevance indicators do not have to be related to each other.",
+   "source_ids": [
+    "S214#P3"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T26-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Per the Azure AI Search docs, hybrid search is a single query request configured for full-text queries and which other kind of query (one word)?",
+   "options": [],
+   "answer": "vector",
+   "explanation": "The Microsoft Learn page defines hybrid search as a single query request configured for both full-text and vector queries. This describes Azure AI Search, not every engine.",
+   "related_topics": [],
+   "source_ids": [
+    "S215#P1"
+   ]
+  },
+  {
+   "item_id": "T26-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "In the RRF paper, the constant k was fixed at what value?",
+   "options": [
+    "A. 6",
+    "B. 60",
+    "C. 120",
+    "D. 1000"
+   ],
+   "answer": "B",
+   "explanation": "Correct: the paper says k = 60 was fixed during a pilot investigation and not altered during subsequent validation. Elastic's RRF page also lists a constant that 'Defaults to 60'. The other values are not what the paper fixed.",
+   "related_topics": [],
+   "source_ids": [
+    "S213#P3",
+    "S214#P2"
+   ]
+  },
+  {
+   "item_id": "T26-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: the RRF paper presents RRF as a method for combining the document rankings from multiple IR systems.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answer": "True",
+   "explanation": "The abstract describes RRF as a simple method for combining the document rankings from multiple IR systems.",
+   "related_topics": [],
+   "source_ids": [
+    "S213#P1"
+   ]
+  },
+  {
+   "item_id": "T26-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "What does the RRF paper's abstract say RRF yields compared with any individual system?",
+   "options": [
+    "A. Identical results but faster runs",
+    "B. Consistently better results overall",
+    "C. Better results only for long queries",
+    "D. Worse results that need manual tuning"
+   ],
+   "answer": "B",
+   "explanation": "Correct: the abstract says RRF consistently yields better results than any individual system, and better than Condorcet Fuse. Speed, query length and tuning are not claimed in the saved text. This is a result from the paper's experiments, not a claim about any search engine.",
+   "related_topics": [],
+   "source_ids": [
+    "S213#P2"
+   ]
+  },
+  {
+   "item_id": "T26-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "True or false: Elastic's docs say RRF needs tuning and its relevance indicators must be related to each other.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answer": "False",
+   "explanation": "Elastic's docs say the opposite: RRF requires no tuning, and the different relevance indicators do not have to be related to each other.",
+   "related_topics": [],
+   "source_ids": [
+    "S214#P3"
+   ]
+  },
+  {
+   "item_id": "T26-L2-03",
+   "level": 2,
+   "type": "which_unsupported",
+   "prompt": "Which statement is NOT supported by the saved sources?",
+   "options": [
+    "A. Google and Bing merge lexical and vector results with RRF",
+    "B. Azure AI Search runs full-text and vector search in parallel",
+    "C. Azure AI Search merges the two result sets using RRF",
+    "D. The RRF paper fixed k = 60 during a pilot study"
+   ],
+   "answer": "A",
+   "explanation": "Unsupported: no saved source says what Google or Bing do; the Azure and Elastic docs describe those products only. The other three are quoted from Microsoft Learn and the RRF paper.",
+   "related_topics": [],
+   "source_ids": [
+    "S215#P2",
+    "S215#P3",
+    "S213#P3"
+   ]
+  },
+  {
+   "item_id": "T26-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical: a document ranks 1st in the keyword list and 3rd in the vector list. Using the Elastic formula score += 1.0 / (k + rank) for each list with k = 60, what is its total, rounded to 4 decimals?",
+   "options": [],
+   "answer": "0.0323",
+   "explanation": "1/(60+1) = 0.016393 and 1/(60+3) = 0.015873; the sum is 0.032266, which rounds to 0.0323.",
+   "related_topics": [],
+   "source_ids": [
+    "S214#P5",
+    "S214#P2"
+   ]
+  },
+  {
+   "item_id": "T26-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "A teammate says: 'The constant k in RRF is a weight that favours the vector retriever.' What does the RRF paper say k does?",
+   "options": [
+    "A. Sets how many results each retriever may return",
+    "B. Sets the share of the final score given to keyword matches",
+    "C. Converts the raw scores of each system into probabilities",
+    "D. Mitigates the impact of high rankings by outlier systems"
+   ],
+   "answer": "D",
+   "explanation": "The paper says the constant k mitigates the impact of high rankings by outlier systems. It does not describe k as a per-retriever weight, a result count, or a probability conversion.",
+   "related_topics": [],
+   "source_ids": [
+    "S213#P4"
+   ]
+  },
+  {
+   "item_id": "T26-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Case file (hypothetical site: Lakeshore Outfitters site search). Symptom: in an offline evaluation, the new hybrid (BM25 + vector, RRF) setup scores below the old BM25 setup. Evidence: (1) many hybrid-only top results have no relevance judgment; (2) Elastic's ranking evaluation docs say unlabeled documents are ignored when ignore_unlabeled is true, and treated as irrelevant when set to false; (3) the evaluation is set to false. What is the best next step?",
+   "options": [
+    "A. Revert to BM25 because hybrid scored lower in the test",
+    "B. Raise the RRF constant to 600 and re-run",
+    "C. Judge the unlabeled hybrid results, then compare",
+    "D. Remove the BM25 list from the hybrid setup entirely"
+   ],
+   "answer": "C",
+   "explanation": "With ignore_unlabeled false, new results nobody judged count as irrelevant, so the comparison is biased against the setup that surfaces new documents. Judging them (or deliberately ignoring unlabeled results) gives a fair comparison. Reverting concludes too early. Changing rank_constant or removing a list changes the system before the measurement is fixed.",
+   "related_topics": [
+    "T7"
+   ],
+   "source_ids": [
+    "S016#P6",
+    "S016#P7"
+   ]
+  },
+  {
+   "item_id": "T26-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Case file (hypothetical site: a developer building on Azure AI Search). Symptom: results look reshuffled and inconsistent. Evidence: (1) the code sends one hybrid request, then runs its own RRF on the response; (2) Azure's docs say hybrid merges full-text and vector results with RRF; (3) the docs say the query response provides just one result set, using RRF to rank the unified results. What should the developer do?",
+   "options": [
+    "A. Use the single RRF ranking the response returns",
+    "B. Add a second RRF pass on the response it returns",
+    "C. Send two separate requests and merge them in code",
+    "D. Disable the vector query"
+   ],
+   "answer": "A",
+   "explanation": "Per the docs the response is already one RRF-ranked set, so an extra RRF pass re-ranks a finished ranking. Sending two requests recreates what hybrid already does. Disabling the vector query defeats the hybrid design and is not needed to fix the problem.",
+   "related_topics": [],
+   "source_ids": [
+    "S215#P3",
+    "S215#P4"
+   ]
+  }
+ ]
+}

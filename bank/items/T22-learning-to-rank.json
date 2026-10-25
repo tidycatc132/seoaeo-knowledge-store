@@ -1,0 +1,206 @@
+{
+  "topic_id": "T22",
+  "title": "Learning to Rank (RankNet, LambdaMART, LambdaLoss)",
+  "stage": 5,
+  "merged_from": [],
+  "volatility": "stable",
+  "last_verified": "2026-10-25",
+  "summary": "In general terms (not a quoted claim), learning to rank trains a model to order results from many signals using labelled examples. Burges's overview describes RankNet, LambdaRank, and LambdaMART, the boosted-tree version; his description of RankNet training mentions pairs of URLs with differing labels. Ranking measures are flat or discontinuous, which is why these methods exist; the LambdaLoss paper builds on that. These are method papers: they show what the techniques are, not what Google uses. Google says its systems use many factors and signals, and that factor weights vary by query.",
+  "actions": [
+    "Do not look for one universal ranking formula; judge each query on what ranks for it.",
+    "Treat vendor weight splits as unconfirmed.",
+    "Cite papers as method descriptions, never as proof of Google's systems."
+  ],
+  "myths": [
+    {
+      "myth": "There is one fixed weighting of ranking factors that applies to every query.",
+      "correction": "Google says the weight applied to each factor varies depending on the nature of the query.",
+      "source_ids": [
+        "S309#P2"
+      ]
+    },
+    {
+      "myth": "Papers on LambdaMART or LambdaLoss show what Google Search uses.",
+      "correction": "They describe methods; no saved source confirms Google's use.",
+      "source_ids": [
+        "S304#P1",
+        "S305#P2"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T22-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "Burges's overview describes choosing 'each pair of urls Ui and U j with differing labels'. What does each chosen training example consist of? One word.",
+      "options": [],
+      "answer": "pair",
+      "explanation": "The quoted sentence picks each pair of URLs with differing labels, so the unit chosen is a pair. The quote does not itself name the algorithm it belongs to.",
+      "related_topics": [],
+      "source_ids": [
+        "S304#P3"
+      ]
+    },
+    {
+      "item_id": "T22-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "According to Burges, how are the three algorithms related?",
+      "options": [
+        "A. RankNet is the boosted tree version of LambdaMART",
+        "B. LambdaMART builds on LambdaRank, from RankNet",
+        "C. LambdaRank is a Google Search ranking system",
+        "D. The three algorithms are unrelated to each other"
+      ],
+      "answer": "B",
+      "explanation": "Correct: LambdaMART is the boosted tree version of LambdaRank, which is based on RankNet. Wrong: 'RankNet is the boosted tree version of LambdaMART' - reverses the lineage. 'LambdaRank is a search engine' - it is an algorithm. 'They are unrelated' - the abstract links them.",
+      "related_topics": [],
+      "source_ids": [
+        "S304#P1"
+      ]
+    },
+    {
+      "item_id": "T22-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Burges's overview reports that an ensemble of LambdaMART rankers won Track 1 of the 2010 Yahoo! Learning To Rank Challenge.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The abstract says an ensemble of LambdaMART rankers won Track 1 of that challenge. It is a competition result and says nothing about Google Search.",
+      "related_topics": [],
+      "source_ids": [
+        "S304#P2"
+      ]
+    },
+    {
+      "item_id": "T22-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Why is it hard to train a ranker by directly optimising a ranking measure with gradient descent?",
+      "options": [
+        "A. Such measures need more crawlers",
+        "B. Relevance labels are never available",
+        "C. The measures are discontinuous or flat",
+        "D. Gradient descent only works on single pages"
+      ],
+      "answer": "C",
+      "explanation": "Burges says such measures are everywhere either discontinuous or flat, so gradient descent appears to be problematic. The LambdaLoss paper says ranking metrics are flat or discontinuous everywhere. Wrong: 'Such measures need more crawlers' - unrelated. 'Relevance labels are never available' - the paper works from labelled examples. 'Gradient descent only works on single pages' - not in any source.",
+      "related_topics": [],
+      "source_ids": [
+        "S304#P5",
+        "S305#P1"
+      ]
+    },
+    {
+      "item_id": "T22-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: Burges's paper shows that Google Search ranks results with LambdaMART.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Burges's report is a Microsoft Research overview of algorithms and a competition result. A method paper never shows what a given engine uses. Google's own guide describes its systems as many and only some of them notable.",
+      "related_topics": [],
+      "source_ids": [
+        "S304#P1",
+        "S304#P2",
+        "S300#P9"
+      ]
+    },
+    {
+      "item_id": "T22-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Google has confirmed LambdaMART runs Search ranking",
+        "B. Burges describes choosing pairs of URLs with differing labels",
+        "C. LambdaRank is a special configuration of LambdaLoss",
+        "D. Google says its systems look at many factors and signals"
+      ],
+      "answer": "A",
+      "explanation": "Correct answer A: no saved source says Google confirmed using LambdaMART or LambdaLoss. Supported: B (S304 pairs of URLs with differing labels), C (S305 LambdaRank is a special configuration in the LambdaLoss framework), D (S300 many factors and signals).",
+      "related_topics": [],
+      "source_ids": [
+        "S304#P3",
+        "S305#P3",
+        "S300#P1"
+      ]
+    },
+    {
+      "item_id": "T22-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Google says that, for example, when searching for current news topics, content freshness plays a bigger role than dictionary definitions, and that the weight of each factor varies with the query. For the query 'latest earthquake news', which factor would you expect to matter more than for a definition query? Answer with Google's word.",
+      "options": [],
+      "answer": "freshness",
+      "explanation": "Google's How Search works page says content freshness plays a bigger role for current news topics than dictionary definitions, and that factor weights vary by query. Applying that to this query is a worked example, not a measured weight.",
+      "related_topics": [
+        "T51"
+      ],
+      "source_ids": [
+        "S309#P2",
+        "S309#P1"
+      ]
+    },
+    {
+      "item_id": "T22-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A memo says: (A) Ranking systems combine many factors and signals. (B) A learned ranker is trained from labelled examples. (C) So every query uses the same fixed weights. Which statement is the error?",
+      "options": [
+        "A. Statement A",
+        "B. Statement B",
+        "C. Statement C",
+        "D. None of them"
+      ],
+      "answer": "C",
+      "explanation": "C contradicts Google's statement that the weight applied to each factor varies depending on the query. A matches Google's ranking guide; B matches the the labelled pairs of URLs Burges describes choosing.",
+      "related_topics": [],
+      "source_ids": [
+        "S309#P2",
+        "S300#P1",
+        "S304#P3"
+      ]
+    },
+    {
+      "item_id": "T22-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site): a blog tripled the keyword count on a product page and saw no ranking change. The agency says 'keywords are the main factor'. Evidence: (1) Google says its systems look at many factors and signals; (2) Google says the weight of each factor varies with the query; (3) Burges describes ranking models trained on labelled pairs of URLs. Which action is best?",
+      "options": [
+        "A. Triple the keyword count again on the page",
+        "B. Assume the algorithm ignores the page completely",
+        "C. Wait for the next core update to see changes",
+        "D. Compare with results for that query"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the sources point to many signals with query-dependent weights, so test changes against what the page is missing for that query. Wrong: 'Triple the keywords again' - repeats a single-factor bet. 'Assume the algorithm ignores the page' - unsupported. 'Wait for a core update' - passive and unsupported.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P1",
+        "S309#P2",
+        "S304#P3"
+      ]
+    },
+    {
+      "item_id": "T22-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical vendor): a tool report claims 'the ranking formula is 40% links, 30% content, 30% UX for all keywords'. Evidence: (1) the report shows correlations across keywords; (2) Google says factor weights vary depending on the query; (3) Google's guide says it covers only some notable systems. Which response is best? (Note: the explanation includes practitioner inference.)",
+      "options": [
+        "A. Adopt the percentages as the budget split",
+        "B. Treat as unconfirmed; work per query",
+        "C. Email Google to ask it to confirm the weights",
+        "D. Ignore links, content and UX entirely"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google says weights vary by query; practitioner inference: a correlation across many keywords is unlikely to recover one fixed formula, and the report does not show how weights were measured. Wrong: 'Adopt the percentages as the budget split' - treats an unconfirmed formula as fact. 'Email Google to ask it to confirm the weights' - not a practical decision. 'Ignore links, content and UX entirely' - overreaction.",
+      "related_topics": [],
+      "source_ids": [
+        "S309#P2",
+        "S300#P9"
+      ]
+    }
+  ]
+}

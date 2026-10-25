@@ -1,0 +1,48 @@
+{
+ "topic_id": "T17",
+ "title": "Vector databases and approximate nearest neighbour search",
+ "stage": 4,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Exact nearest neighbour search scores every matching document, which Elastic says is accurate but does not scale well for large datasets. Approximate search, such as the HNSW graph method from the original paper, gives up some recall for speed; internals are not taught here.",
+ "actions": [],
+ "myths": [],
+ "items": [
+  {
+   "item_id": "T17-L1-01",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: per Elastic's kNN docs, scoring every matching document guarantees accurate results but does not scale well for large datasets.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answer": "True",
+   "explanation": "Elastic's page says it scores every matching document, which guarantees accurate results but does not scale well for large datasets. It contrasts this with an approach that suits low latency at scale where perfect recall matters less.",
+   "related_topics": [],
+   "source_ids": [
+    "S218#P2",
+    "S218#P1"
+   ]
+  },
+  {
+   "item_id": "T17-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "pgvector says adding an approximate index trades what for speed?",
+   "options": [
+    "A. Some precision in the index file itself",
+    "B. Some recall in exchange for speed",
+    "C. The length of the query vector",
+    "D. Support for cosine distance queries"
+   ],
+   "answer": "B",
+   "explanation": "Correct: the README says an approximate index trades some recall for speed. Index file precision, query vector length and cosine support are not what the README says is traded.",
+   "related_topics": [],
+   "source_ids": [
+    "S217#P6"
+   ]
+  }
+ ]
+}

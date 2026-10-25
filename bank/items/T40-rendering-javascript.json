@@ -1,0 +1,207 @@
+{
+ "topic_id": "T40",
+ "title": "Document rendering and JavaScript indexing",
+ "stage": 2,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Google processes JavaScript pages in three phases: crawling, rendering and indexing. Pages are queued, and a headless Chromium renders them when resources allow, so check the rendered HTML. Practical consequences from Google's docs: use <a href> links, do not load different content under URL fragments, expect permission prompts to be declined, and note a noindex in the initial HTML may stop rendering, so JavaScript cannot be relied on to remove it.",
+ "actions": [
+  "Check rendered HTML (not just view-source) for the content and links you expect.",
+  "Make every navigable link an <a> element with an href.",
+  "Do not use URL fragments to load different content.",
+  "Do not ship noindex in the initial HTML if JavaScript is meant to remove it.",
+  "Give unknown routes a real 404 or noindex instead of a 200 'not found' view."
+ ],
+ "myths": [
+  {
+   "myth": "JavaScript can safely remove a noindex tag after the page loads.",
+   "correction": "Google says it may skip rendering when it encounters noindex.",
+   "source_ids": [
+    "S105#P4"
+   ]
+  },
+  {
+   "myth": "Any clickable element is a link to Google.",
+   "correction": "Google says it uses <a> elements with an href attribute.",
+   "source_ids": [
+    "S105#P5"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T40-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Name the three main phases in which Google processes JavaScript web apps (comma-separated, in order).",
+   "options": [],
+   "answer": "Crawling, rendering, indexing",
+   "explanation": "Google's JavaScript SEO basics page says it processes JavaScript web apps in three main phases, and lists them as Crawling, Rendering and Indexing.",
+   "related_topics": [
+    "T39",
+    "T5"
+   ],
+   "source_ids": [
+    "S105#P1",
+    "S105#P7"
+   ]
+  },
+  {
+   "item_id": "T40-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "According to Google, which HTML links can it discover and follow?",
+   "options": [
+    "A. Any element with an onclick handler",
+    "B. Text that looks like a URL in a script",
+    "C. Buttons that call the History API",
+    "D. <a> elements with an href attribute"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google says it relies on <a> HTML elements with an href attribute. Elements with only onclick handlers, URL-looking text in a script, and buttons calling the History API are not what the page lists; the page names <a> with href.",
+   "related_topics": [],
+   "source_ids": [
+    "S105#P5"
+   ]
+  },
+  {
+   "item_id": "T40-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: Google says a headless Chromium renders the page and executes its JavaScript once Google's resources allow.",
+   "options": [],
+   "answer": "True",
+   "explanation": "Google states: once Google's resources allow, a headless Chromium renders the page and executes the JavaScript.",
+   "related_topics": [],
+   "source_ids": [
+    "S105#P3"
+   ]
+  },
+  {
+   "item_id": "T40-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "Why might JavaScript that removes a noindex tag not work as intended? Complete: Google may ___ rendering.",
+   "options": [],
+   "answer": "Skip",
+   "explanation": "Google says that when it encounters the noindex tag, it may skip rendering, so JavaScript that would remove the tag may never run.",
+   "related_topics": [],
+   "source_ids": [
+    "S105#P4"
+   ]
+  },
+  {
+   "item_id": "T40-L2-02",
+   "level": 2,
+   "type": "misconception",
+   "prompt": "True or false: a page can rely on a notification or location permission prompt to reveal content, because Googlebot will accept it.",
+   "options": [],
+   "answer": "False",
+   "explanation": "Google says to expect Googlebot to decline user permission requests.",
+   "related_topics": [],
+   "source_ids": [
+    "S121#P4"
+   ]
+  },
+  {
+   "item_id": "T40-L2-03",
+   "level": 2,
+   "type": "unsupported_statement",
+   "prompt": "Which statement is NOT supported by the saved sources?",
+   "options": [
+    "A. Googlebot queues pages for both crawling and rendering",
+    "B. Google renders every page immediately after crawling it",
+    "C. Expect Googlebot to decline user permission requests",
+    "D. Use tools to check that rendered HTML has the expected content"
+   ],
+   "answer": "B",
+   "explanation": "Correct (unsupported): Google says pages are queued for crawling and rendering and rendered once its resources allow, which contradicts immediate rendering of everything. The other three are in Google's pages: the queue, declining permission requests, and checking rendered HTML with testing tools.",
+   "related_topics": [],
+   "source_ids": [
+    "S105#P2",
+    "S105#P3",
+    "S121#P4",
+    "S121#P3"
+   ]
+  },
+  {
+   "item_id": "T40-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "HYPOTHETICAL single-page app: a mistyped URL shows a 'not found' message built by JavaScript but the server returns 200. One of Google's two fixes is to add or change the robots meta tag to which value?",
+   "options": [],
+   "answer": "noindex",
+   "explanation": "Google's troubleshooting page gives two strategies for this: redirect to a URL where the server responds with a 404, or add or change the robots meta tag to noindex.",
+   "related_topics": [
+    "T39"
+   ],
+   "source_ids": [
+    "S121#P1",
+    "S121#P2"
+   ]
+  },
+  {
+   "item_id": "T40-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "A hypothetical developer checklist for a JavaScript site has four items. Which one conflicts with Google's guidance?",
+   "options": [
+    "A. Use <a> elements with href for internal links",
+    "B. Redirect unknown routes to a URL that returns 404",
+    "C. Load different page content under URL fragments",
+    "D. Check that the rendered HTML has the expected content"
+   ],
+   "answer": "C",
+   "explanation": "Correct (the error): Google says not to use fragments to load different page content. The other three follow Google: <a href> links, redirecting to a URL that returns 404, and checking the rendered HTML.",
+   "related_topics": [],
+   "source_ids": [
+    "S105#P6",
+    "S105#P5",
+    "S121#P1",
+    "S121#P3"
+   ]
+  },
+  {
+   "item_id": "T40-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "HYPOTHETICAL single-page store. Symptom: the homepage is indexed but deep product pages are not. Evidence: (1) the raw HTML is an empty container; (2) the rendered HTML shows the content; (3) navigation items are <div> elements with click handlers and no href. Best fix?",
+   "options": [
+    "A. Add the rendered JavaScript files to the XML sitemap",
+    "B. Output real <a href> links to product paths",
+    "C. Add noindex to the homepage",
+    "D. Block the script folder in robots.txt"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says it follows <a> elements with an href attribute and the rendered content is already visible, so link discovery is the gap. JavaScript files in a sitemap do not create links. noindex on the homepage would hurt the indexed page. Blocking scripts in robots.txt would stop rendering.",
+   "related_topics": [],
+   "source_ids": [
+    "S105#P5",
+    "S121#P3",
+    "S105#P3"
+   ]
+  },
+  {
+   "item_id": "T40-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "HYPOTHETICAL site. Symptom: new landing pages stay out of search. Evidence: (1) the initial HTML ships <meta name=\"robots\" content=\"noindex\">; (2) a script removes the tag after load, intended for production; (3) the production build ships the same HTML template. Best fix?",
+   "options": [
+    "A. Keep the tag and let JavaScript remove it later",
+    "B. Add a second script that deletes the tag sooner",
+    "C. Ship pages with no noindex in the initial HTML",
+    "D. Use a URL fragment so the tag is skipped"
+   ],
+   "answer": "C",
+   "explanation": "Correct: serve production pages without the noindex in the initial HTML. Leaving the tag for JavaScript to remove depends on rendering Google says it may skip. A faster script has the same dependency. A URL fragment is unrelated to robots meta handling.",
+   "related_topics": [
+    "T5"
+   ],
+   "source_ids": [
+    "S105#P4",
+    "S105#P3"
+   ]
+  }
+ ]
+}

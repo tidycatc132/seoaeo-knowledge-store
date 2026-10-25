@@ -1,0 +1,217 @@
+{
+  "topic_id": "T29",
+  "title": "RAG evaluation",
+  "stage": 8,
+  "merged_from": [],
+  "volatility": "fast-moving",
+  "last_verified": "2026-10-24",
+  "summary": "Retrieval-augmented generation (RAG) systems fetch passages and then write an answer from them, so quality has more than one part. The Ragas paper evaluates three dimensions without needing human reference answers: faithfulness (the answer is grounded in the given context), answer relevance (the answer directly addresses the question) and context relevance (the context contains focused information relevant to the question). ARES names the same three dimensions, using the terms context relevance, answer faithfulness and answer relevance, and finetunes lightweight language-model judges to score them. These papers show how to evaluate a RAG pipeline you build or audit; they are not evidence of how any public answer engine scores itself. Score the three parts separately to find which stage failed.",
+  "actions": [
+    "Evaluate retrieval (context relevance) and generation (faithfulness, answer relevance) separately, so you know which stage to fix.",
+    "When auditing an AI answer for your brand, check whether each claim is supported by the cited passage (faithfulness), not only whether it reads well.",
+    "Treat automated LLM-judge scores as estimates and spot-check with humans (practitioner judgement, not a quoted finding).",
+    "Do not claim an answer engine uses these metrics internally; the papers do not say that."
+  ],
+  "myths": [
+    {
+      "myth": "If the answer looks fluent and on-topic, the RAG system is working.",
+      "correction": "Faithfulness (grounding in the given context) is a separate dimension from answer relevance (addressing the question); an answer can pass one and fail the other.",
+      "source_ids": [
+        "S017"
+      ]
+    },
+    {
+      "myth": "RAG evaluation papers describe how public AI answer engines score their own output.",
+      "correction": "The Ragas and ARES passages present evaluation frameworks for RAG pipelines; whether any public engine uses them is unconfirmed.",
+      "source_ids": [
+        "S017",
+        "S018"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T29-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In the Ragas paper, what does faithfulness mean?",
+      "options": [],
+      "answer": "The answer should be grounded in the given context",
+      "explanation": "The paper says faithfulness refers to the idea that the answer should be grounded in the given context. It is about support from the retrieved passages, not about whether the answer addresses the question.",
+      "related_topics": [],
+      "source_ids": [
+        "S017#P3"
+      ]
+    },
+    {
+      "item_id": "T29-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which three dimensions does ARES evaluate RAG systems along?",
+      "options": [
+        "A. Precision, recall and mean reciprocal rank",
+        "B. Crawlability, indexability and rankability scores",
+        "C. Fluency, length and tone of the answer",
+        "D. Context relevance, answer faithfulness, answer relevance"
+      ],
+      "answer": "D",
+      "explanation": "Correct: that is the list in the ARES abstract. Wrong: 'Precision, recall and mean reciprocal rank' - retrieval metrics, a different layer. 'Crawlability, indexability and rankability scores' - a crawl and index checklist. 'Fluency, length and tone of the answer' - style properties not named by ARES.",
+      "related_topics": [
+        "T7"
+      ],
+      "source_ids": [
+        "S018#P1"
+      ]
+    },
+    {
+      "item_id": "T29-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Ragas is presented as a framework for reference-free evaluation, working without ground truth human annotations.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The abstract describes a framework for reference-free evaluation of RAG pipelines, and says its metrics do not rely on ground truth human annotations.",
+      "related_topics": [],
+      "source_ids": [
+        "S017#P1",
+        "S017#P2"
+      ]
+    },
+    {
+      "item_id": "T29-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Which dimension asks whether the retrieved context contains information needed to answer the question: context relevance, faithfulness or answer relevance?",
+      "options": [],
+      "answer": "context relevance",
+      "explanation": "Ragas defines context relevance as the extent to which the context exclusively contains information that is needed to answer the question. Faithfulness (grounding in the context) and answer relevance (addressing the question) are separate dimensions, which is why they are scored separately.",
+      "related_topics": [
+        "T7"
+      ],
+      "source_ids": [
+        "S017#P5",
+        "S017#P6",
+        "S017#P3",
+        "S017#P4"
+      ]
+    },
+    {
+      "item_id": "T29-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'The answer addresses the question, so it is faithful.' Which correction is best?",
+      "options": [
+        "A. Correct; the two are the same thing, so one score is enough.",
+        "B. That is answer relevance; faithfulness is separate.",
+        "C. Faithfulness measures how long the answer is in words.",
+        "D. Faithfulness needs human reference answers."
+      ],
+      "answer": "B",
+      "explanation": "Correct: Ragas defines faithfulness as being grounded in the given context and answer relevance as directly addressing the question. Wrong: 'Correct; the two are the same thing, so one score is enough.' - they are separate definitions. 'Faithfulness measures how long the answer is in words.' - unsupported. 'Faithfulness needs human reference answers.' - Ragas is reference-free.",
+      "related_topics": [],
+      "source_ids": [
+        "S017#P3",
+        "S017#P4",
+        "S017#P2"
+      ]
+    },
+    {
+      "item_id": "T29-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which of these is NOT one of the three RAG quality dimensions in the ARES abstract?",
+      "options": [
+        "A. Context relevance",
+        "B. Answer faithfulness",
+        "C. Domain authority",
+        "D. Answer relevance"
+      ],
+      "answer": "C",
+      "explanation": "Correct: it is a link-based SEO metric. Wrong: 'Context relevance' - named in the abstract. 'Answer faithfulness' - named in the abstract. 'Answer relevance' - named in the abstract.",
+      "related_topics": [],
+      "source_ids": [
+        "S018#P1"
+      ]
+    },
+    {
+      "item_id": "T29-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "A RAG assistant is asked 'What is the refund window?'. Retrieval returns a shipping-policy passage with no refund information. The model answers '30 days' with confidence. Which dimension is most clearly failed by the retrieval stage, and which by the answer? Reply as 'retrieval / answer'.",
+      "options": [],
+      "answer": "Context relevance / faithfulness",
+      "explanation": "The retrieved passage lacks the needed information, so context relevance fails. The answer states a figure not grounded in the given context, so faithfulness fails. The answer may still look relevant to the question, so answer relevance alone would miss both problems.",
+      "related_topics": [],
+      "source_ids": [
+        "S017#P5",
+        "S017#P3",
+        "S017#P4"
+      ]
+    },
+    {
+      "item_id": "T29-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical report says: 'The Ragas paper shows Google AI Mode scores its answers on faithfulness, so optimise for it.' What is the error?",
+      "options": [
+        "A. A framework; engine use is unconfirmed.",
+        "B. Faithfulness is not a metric in the paper.",
+        "C. Ragas needs ground truth human annotations.",
+        "D. Faithfulness applies only to image-generation models."
+      ],
+      "answer": "A",
+      "explanation": "Correct: the passages describe an evaluation framework and define faithfulness; none says an engine uses it. Wrong: 'Faithfulness is not a metric in the paper.' - the paper defines it. 'Ragas needs ground truth human annotations.' - the abstract says it does not. 'Faithfulness applies only to image-generation models.' - unsupported.",
+      "related_topics": [],
+      "source_ids": [
+        "S017#P1",
+        "S017#P2",
+        "S017#P3"
+      ]
+    },
+    {
+      "item_id": "T29-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical): a support chatbot uses RAG. Evidence: (1) answers read well and address the question; (2) in a tiny sample (3 of 10, hypothetical) answers include a claim not in any retrieved passage; (3) the retrieved passages look relevant. Which diagnosis is best?",
+      "options": [
+        "A. Context relevance: replace the retriever with a new one.",
+        "B. Answer relevance: shorten and simplify the answers.",
+        "C. Faithfulness: keep claims grounded; measure it.",
+        "D. No problem, since the answers address the question asked."
+      ],
+      "answer": "C",
+      "explanation": "Correct: relevant context plus unsupported claims points to grounding; the trade-off is more 'I do not know' replies. Wrong: 'Context relevance: replace the retriever with a new one.' - evidence 3 says the passages look relevant. 'Answer relevance: shorten and simplify the answers.' - evidence 1 says they address the question. 'No problem, since the answers address the question asked.' - ignores evidence 2.",
+      "related_topics": [
+        "T7"
+      ],
+      "source_ids": [
+        "S017#P3",
+        "S017#P4",
+        "S017#P5"
+      ]
+    },
+    {
+      "item_id": "T29-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical): a team wants to evaluate a RAG help-centre search before launch but has no human-written reference answers. Evidence: (1) Ragas is described as reference-free; (2) ARES finetunes lightweight LM judges to assess RAG components; (3) both name context relevance and faithfulness-type dimensions. Which plan is best?",
+      "options": [
+        "A. Wait until humans write 5,000 reference answers.",
+        "B. Judge only whether the answers sound confident.",
+        "C. Use crawl-budget and index coverage reports.",
+        "D. Run automated evaluation, then spot-check by hand."
+      ],
+      "answer": "D",
+      "explanation": "Correct: uses the methods the papers describe; the human spot-check is practitioner inference because judge scores are automated estimates (not a quoted finding). Wrong: 'Wait until humans write 5,000 reference answers.' - reference-free methods exist (Ragas). 'Judge only whether the answers sound confident.' - measures no named dimension. 'Use crawl-budget and index coverage reports.' - unrelated.",
+      "related_topics": [
+        "T7"
+      ],
+      "source_ids": [
+        "S017#P1",
+        "S017#P2",
+        "S018#P1",
+        "S018#P2"
+      ]
+    }
+  ]
+}

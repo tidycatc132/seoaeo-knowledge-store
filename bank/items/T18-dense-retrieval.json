@@ -1,0 +1,207 @@
+{
+ "topic_id": "T18",
+ "title": "Dense retrieval and bi-encoders (DPR)",
+ "stage": 4,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Dense retrieval encodes questions and passages into vectors and finds passages by vector similarity. The DPR paper uses a dual-encoder (a separate encoder for questions and passages) and scores with a dot product. Its abstract reports the dense retriever beating a strong Lucene-BM25 system by 9%-19% absolute on top-20 passage accuracy, on its own question answering datasets. The paper also calls dense and sparse retrieval complementary and says combining DPR with BM25 can help. This is a research method, not evidence of what Google or Bing use. Practitioner inference: dense matching may help when a query and a page share meaning but not words, so test it alongside exact-match search.",
+ "actions": [
+  "Treat dense retrieval as an addition to keyword retrieval, not a replacement, when testing your own site search.",
+  "Test exact-match queries (codes, names) separately from natural-language queries.",
+  "Do not cite the DPR paper as proof of how Google ranks."
+ ],
+ "myths": [
+  {
+   "myth": "Dense retrieval makes BM25 obsolete.",
+   "correction": "The DPR paper calls dense encoding complementary to sparse representations and reports that combining DPR with BM25 can improve results in some cases.",
+   "source_ids": [
+    "S212#P6",
+    "S212#P7"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T18-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "DPR in the Karpukhin et al. paper title stands for Dense ___ Retrieval. Which word fills the blank?",
+   "options": [],
+   "answer": "Passage",
+   "explanation": "The paper is titled 'Dense Passage Retrieval for Open-Domain Question Answering'. The P is Passage.",
+   "related_topics": [],
+   "source_ids": [
+    "S212#P9"
+   ]
+  },
+  {
+   "item_id": "T18-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "The DPR paper learns its embeddings with which framework?",
+   "options": [
+    "A. A simple dual-encoder setup",
+    "B. An inverted-index scorer",
+    "C. A knowledge-graph lookup",
+    "D. A cross-attention reranker only"
+   ],
+   "answer": "A",
+   "explanation": "Correct: the abstract says embeddings are learned from a small number of questions and passages by a simple dual-encoder framework. The other options are not what the abstract describes.",
+   "related_topics": [],
+   "source_ids": [
+    "S212#P2"
+   ]
+  },
+  {
+   "item_id": "T18-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: the DPR paper reports that its dense retriever outperforms a strong Lucene-BM25 system.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answer": "True",
+   "explanation": "The abstract says exactly that, on top-20 passage retrieval accuracy by a margin of 9%-19% absolute. This is the paper's result on its own datasets, not a statement about web search.",
+   "related_topics": [],
+   "source_ids": [
+    "S212#P3",
+    "S212#P4"
+   ]
+  },
+  {
+   "item_id": "T18-L2-01",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "Which statement about how DPR scores a question against a passage is correct?",
+   "options": [
+    "A. Similarity is the count of words the two share",
+    "B. Similarity is the dot product of vectors",
+    "C. Similarity is the passage's BM25 score",
+    "D. Similarity is read from a knowledge graph"
+   ],
+   "answer": "B",
+   "explanation": "Correct: the paper defines similarity using the dot product of the question and passage vectors. Word overlap counting and BM25 are sparse, lexical approaches the paper compares against; a knowledge graph is not part of DPR.",
+   "related_topics": [],
+   "source_ids": [
+    "S212#P5",
+    "S212#P3"
+   ]
+  },
+  {
+   "item_id": "T18-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "True or false: the DPR paper describes dense retrieval as a replacement that makes sparse retrieval redundant.",
+   "options": [
+    "True",
+    "False"
+   ],
+   "answer": "False",
+   "explanation": "The paper says the dense encoding is complementary to sparse representations by design and that combining DPR with BM25 can improve results in some cases.",
+   "related_topics": [],
+   "source_ids": [
+    "S212#P6",
+    "S212#P7"
+   ]
+  },
+  {
+   "item_id": "T18-L2-03",
+   "level": 2,
+   "type": "which_unsupported",
+   "prompt": "Which statement is NOT supported by the DPR paper?",
+   "options": [
+    "A. Google uses DPR to rank all of its web search results",
+    "B. Open-domain QA retrieval is usually done with TF-IDF or BM25",
+    "C. DPR improved top-20 accuracy over BM25 by 9%-19% absolute",
+    "D. Dense encoding complements sparse representations"
+   ],
+   "answer": "A",
+   "explanation": "Unsupported: a research paper describes a method for open-domain question answering; it cannot show what Google uses. The other statements are in the paper's text.",
+   "related_topics": [],
+   "source_ids": [
+    "S212#P8",
+    "S212#P4",
+    "S212#P6"
+   ]
+  },
+  {
+   "item_id": "T18-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical: on a test set, a BM25 baseline gets 60 percent top-20 accuracy. If a DPR-style retriever gained the paper's reported 9 to 19 points absolute, what range would it reach? Answer as low-high.",
+   "options": [],
+   "answer": "69-79",
+   "explanation": "60 + 9 = 69 and 60 + 19 = 79. The paper reports the gain on its own datasets, so this is arithmetic on a hypothetical baseline, not a prediction for any site.",
+   "related_topics": [],
+   "source_ids": [
+    "S212#P4"
+   ]
+  },
+  {
+   "item_id": "T18-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "Hypothetical audit note: 'The DPR paper shows dense retrievers beat BM25, so Google now ranks with dense retrieval and keyword work is dead.' What is the flaw?",
+   "options": [
+    "A. DPR learns its embeddings with a dual-encoder",
+    "B. DPR scores passages with a dot product of vectors",
+    "C. A research paper cannot show what Google uses",
+    "D. BM25 was not used as a baseline in the paper"
+   ],
+   "answer": "C",
+   "explanation": "The flaw is the leap from a paper's method to Google's systems. The other options are wrong: DPR does use a dual-encoder, it does score with a dot product, and BM25 was the baseline. The paper also calls dense and sparse complementary.",
+   "related_topics": [],
+   "source_ids": [
+    "S212#P2",
+    "S212#P5",
+    "S212#P3",
+    "S212#P6"
+   ]
+  },
+  {
+   "item_id": "T18-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Case file (hypothetical site: Harbor Docs help center). Symptom: after switching to dense-only semantic search, queries for exact product codes stopped finding the right page, though the old keyword search found them. Evidence: (1) the DPR paper says dense encoding is complementary to sparse representations by design; (2) it reports that combining DPR with BM25 improves results in some cases; (3) it notes retrieval is usually implemented with TF-IDF or BM25. Practitioner inference: code lookups reward exact term matching. What is the best next step?",
+   "options": [
+    "A. Keep dense-only and retrain nothing",
+    "B. Delete the pages that fail",
+    "C. Drop the product codes from the pages",
+    "D. Combine dense retrieval with BM25"
+   ],
+   "answer": "D",
+   "explanation": "Best: the paper's evidence favours combining dense and BM25, and the failing queries are the type exact matching serves (inference). Keeping dense-only ignores the complementarity evidence. Deleting pages or removing codes damages the content to fit the tool.",
+   "related_topics": [
+    "T26"
+   ],
+   "source_ids": [
+    "S212#P6",
+    "S212#P7",
+    "S212#P8"
+   ]
+  },
+  {
+   "item_id": "T18-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Case file (hypothetical site: a publisher indexing 50 million passages with a dense retriever on Elasticsearch). Symptom: query latency is too high. Evidence: (1) the index uses exact kNN; (2) Elastic says exact kNN scores every matching document, guarantees accurate results, and does not scale well for large datasets; (3) Elastic says approximate kNN suits most production workloads where low latency and scale matter more than perfect recall. What is the best change?",
+   "options": [
+    "A. Stay with exact kNN and add queries",
+    "B. Switch to Boolean retrieval",
+    "C. Lower the number of passages by deleting pages",
+    "D. Move the index to approximate kNN"
+   ],
+   "answer": "D",
+   "explanation": "Best: Elastic describes approximate kNN for low latency at scale, accepting less than perfect recall. Exact kNN is the cause of the problem per the docs. Boolean retrieval is a different model that does not run a dense query. Deleting content is not a retrieval fix.",
+   "related_topics": [
+    "T17"
+   ],
+   "source_ids": [
+    "S218#P1",
+    "S218#P2"
+   ]
+  }
+ ]
+}

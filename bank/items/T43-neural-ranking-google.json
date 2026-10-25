@@ -1,0 +1,212 @@
+{
+  "topic_id": "T43",
+  "title": "Neural ranking and semantic matching in Google (RankBrain, BERT, MUM)",
+  "stage": 5,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Taught only from what Google has published. Google says RankBrain helps understand how words relate to concepts, so relevant content can return without every exact word. Its 2022 post calls RankBrain the first deep learning system in Search and says BERT plays a critical role in almost every English query but is never working alone. Google's ranking guide says MUM is not currently used for general ranking. Papers and third-party explanations are not used. Practically: write clearly for meaning, and treat claims that you can optimise for a named system as unconfirmed.",
+  "actions": [
+    "Write for meaning and context; do not strip small words that change meaning.",
+    "Do not restructure content around MUM for ranking; Google says it is not used for general ranking.",
+    "Check Google's ranking systems guide for current status before repeating system claims."
+  ],
+  "myths": [
+    {
+      "myth": "MUM is now the main ranking system.",
+      "correction": "Google's guide says it is not currently used for general ranking.",
+      "source_ids": [
+        "S300#P5",
+        "S301#P5"
+      ]
+    },
+    {
+      "myth": "BERT affects only about one in ten searches.",
+      "correction": "That was the 2019 launch figure; Google's 2022 post says BERT plays a critical role in almost every English query.",
+      "source_ids": [
+        "S005#P3",
+        "S301#P3"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T43-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "Google's ranking systems guide says RankBrain helps understand how words are related to what? One word.",
+      "options": [],
+      "answer": "concepts",
+      "explanation": "The guide's sentence is: RankBrain is an AI system that helps us understand how words are related to concepts.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P2"
+      ]
+    },
+    {
+      "item_id": "T43-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Which system does Google's ranking systems guide say is not currently used for general ranking in Search?",
+      "options": [
+        "A. RankBrain",
+        "B. BERT",
+        "C. MUM",
+        "D. Passage ranking"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the guide says MUM is not currently used for general ranking but for some specific applications. Wrong: RankBrain, BERT and passage ranking are all listed in the guide as systems Google uses (RankBrain and BERT are described as AI systems that help understand words and meaning).",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P5",
+        "S300#P2",
+        "S300#P4"
+      ]
+    },
+    {
+      "item_id": "T43-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google's BERT announcement says BERT models can consider the full context of a word by looking at the words that come before and after it.",
+      "options": [],
+      "answer": "True",
+      "explanation": "That sentence appears in Google's BERT announcement.",
+      "related_topics": [],
+      "source_ids": [
+        "S005#P1"
+      ]
+    },
+    {
+      "item_id": "T43-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Why can a page be returned for a query even if it does not contain all of the exact words in the query, according to Google's guide?",
+      "options": [
+        "A. The system links words to concepts",
+        "B. Exact words are never used in ranking",
+        "C. MUM ranks every page directly",
+        "D. Page speed replaces word matching"
+      ],
+      "answer": "A",
+      "explanation": "The guide says that because RankBrain helps understand how words relate to concepts, Google can better return relevant content even if it does not contain all the exact words. Wrong: 'Exact words are never used' - the guide does not say that. 'MUM ranks every page' - the guide says MUM is not used for general ranking. 'Page speed replaces matching' - not in the passage.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P2",
+        "S300#P3",
+        "S300#P5"
+      ]
+    },
+    {
+      "item_id": "T43-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: Google currently uses MUM for general ranking in Search.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google's ranking systems guide (updated 2025-12-10) says MUM is not currently used for general ranking. Google's 2022 post also said MUM was not then used to help rank results.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P5",
+        "S301#P5"
+      ]
+    },
+    {
+      "item_id": "T43-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved Google sources?",
+      "options": [
+        "A. RankBrain was Search's first deep learning system, launched in 2015",
+        "B. BERT replaced every earlier ranking system",
+        "C. Google says BERT is never working alone",
+        "D. Google lists neural matching as an AI system"
+      ],
+      "answer": "B",
+      "explanation": "Correct answer B: Nayak says BERT is never working alone and the guide lists RankBrain separately, so 'BERT replaced all earlier systems' is not supported. Supported: A (S301 first deep learning system), C (S301 BERT never working alone), D (S300 neural matching entry exists).",
+      "related_topics": [],
+      "source_ids": [
+        "S301#P1",
+        "S301#P4",
+        "S300#P11",
+        "S300#P2"
+      ]
+    },
+    {
+      "item_id": "T43-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "A drafter shortens page headings by deleting small words like 'for' and 'to'. Which kind of word does Google's BERT announcement say can matter a lot to the meaning of a search? One word.",
+      "options": [],
+      "answer": "prepositions",
+      "explanation": "The announcement says searches where prepositions like 'for' and 'to' matter a lot to the meaning; deleting them risks changing what the heading says.",
+      "related_topics": [
+        "T48"
+      ],
+      "source_ids": [
+        "S005#P2"
+      ]
+    },
+    {
+      "item_id": "T43-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "An audit note says: (1) Google said BERT helps with one in 10 US English searches. (2) So BERT affects only about 10% of searches today. (3) So 90% of queries can ignore it. Which numbered part is the error?",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. None of the parts"
+      ],
+      "answer": "B",
+      "explanation": "Part 2 is the error: one in 10 was the 2019 launch scale, and Nayak's 2022 post says BERT plays a critical role in almost every English query. Part 1 correctly restates the launch announcement. Part 3 builds on the error in part 2, but part 2 is where it starts. 'None' is wrong because of part 2.",
+      "related_topics": [],
+      "source_ids": [
+        "S005#P3",
+        "S301#P3"
+      ]
+    },
+    {
+      "item_id": "T43-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site, Hearthside Tutoring): the page 'Math tutoring for kids' ranks, but the owner wants to also match people who type 'tutoring to help my kid with math'. A freelancer suggests one near-duplicate page per phrasing, with prepositions stripped. Evidence: (1) Google says BERT considers the words before and after a word, and that prepositions like 'for' and 'to' can matter to meaning; (2) Google says RankBrain helps return relevant content even without all the exact words; (3) the page already explains the service clearly. Which action is best? (Part of the reasoning is practitioner inference.)",
+      "options": [
+        "A. Keep one clear page on the service",
+        "B. Publish a near-duplicate page for each phrasing",
+        "C. Strip small words from all of the headings",
+        "D. Add the word BERT to the page copy"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google says BERT considers context and RankBrain can return relevant content without every exact word; practitioner inference: one clear page is then a safer choice than duplicates, which no saved source addresses. Wrong: 'Publish a near-duplicate page for each phrasing' - unsupported by any saved quote. 'Strip small words from all headings' - Google says prepositions like 'for' and 'to' can matter to meaning. 'Add the word BERT to the page copy' - nothing saved says this helps.",
+      "related_topics": [
+        "T48",
+        "T12"
+      ],
+      "source_ids": [
+        "S005#P1",
+        "S005#P2",
+        "S300#P3"
+      ]
+    },
+    {
+      "item_id": "T43-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical vendor deck): 'MUM now decides rankings, so restructure all pages for multimodal MUM answers'. Evidence: (1) the 2021 MUM announcement describes a model trained across 75 languages and many tasks; (2) the ranking systems guide says MUM is not currently used for general ranking; (3) Google's 2022 post says MUM is not currently used to help rank. Which response is best?",
+      "options": [
+        "A. Restructure all pages for MUM answers now",
+        "B. Block MUM in robots.txt to protect rankings",
+        "C. Reject it; MUM is not used for general ranking",
+        "D. Wait for a new MUM announcement before deciding"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the two Google statements contradict the claim, so do not restructure on it. Wrong: 'Restructure now' - acts on a contradicted claim. 'Block MUM in robots.txt' - nothing saved supports this. 'Wait for Google to announce' - passive; the deck's claim is already contradicted.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P5",
+        "S301#P5",
+        "S302#P2"
+      ]
+    }
+  ]
+}
