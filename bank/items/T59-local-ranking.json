@@ -1,0 +1,224 @@
+{
+ "topic_id": "T59",
+ "title": "How local results are ranked",
+ "stage": 9,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Google's Business Profile help says local results are mainly based on relevance, distance and prominence. Relevance is how well a profile matches the search, distance is how far the business is from the searcher, and prominence is how well-known a business is, partly from links to the business and review counts. Google says more reviews and positive ratings can help, businesses with complete and accurate info are more likely to show up in local results, and nobody can pay for a better local ranking. The page does not mention SEO or website rankings. Anything beyond this page, such as weighting of individual factors, is industry theory.",
+ "actions": [
+  "Treat relevance, distance and prominence as Google's stated factors and label everything else as industry theory.",
+  "Complete every field of the profile accurately.",
+  "Never sell or buy 'guaranteed' local ranking; Google says it cannot be paid for.",
+  "Do not promise to beat a nearer competitor on distance."
+ ],
+ "myths": [
+  {
+   "myth": "You can pay Google for a better local ranking.",
+   "correction": "Google says there is no way to request or pay for a better local ranking.",
+   "source_ids": [
+    "S600#P6"
+   ]
+  },
+  {
+   "myth": "Local ranking is just your website's organic ranking.",
+   "correction": "Google's local page lists relevance, distance and prominence; the saved page does not mention SEO or website rankings (absence, not a quote).",
+   "source_ids": [
+    "S600#P1",
+    "S600#P2",
+    "S600#P3"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T59-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Which of Google's three local factors is defined as how far each business is from the customer who's searching? Answer with one word.",
+   "options": [],
+   "answer": "Distance",
+   "explanation": "Google's local ranking help page defines Distance this way. Relevance is about how well a profile matches the search, and Prominence is about how well-known a business is.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P2"
+   ]
+  },
+  {
+   "item_id": "T59-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "Google says prominence is also based on info like what?",
+   "options": [
+    "A. How many pages the business website has published",
+    "B. The typeface chosen for the business logo and signs",
+    "C. Links from websites and the number of reviews",
+    "D. Total years since the owner registered the domain"
+   ],
+   "answer": "C",
+   "explanation": "Correct: the page says prominence is also based on info like how many websites link to your business and how many reviews you have. Wrong: page count, logo typeface and domain registration age are not named on that page.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P4"
+   ]
+  },
+  {
+   "item_id": "T59-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: Google says you can pay for a better local ranking.",
+   "options": [],
+   "answer": "False",
+   "explanation": "Google says there is no way to request or pay for a better local ranking.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P6"
+   ]
+  },
+  {
+   "item_id": "T59-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "Which pairing of a local factor and its Google definition is correct?",
+   "options": [
+    "A. Prominence: how far each business is from the searcher",
+    "B. Distance: how well-known the business is",
+    "C. Relevance: how well a profile matches the search",
+    "D. Relevance: how many websites link to the business"
+   ],
+   "answer": "C",
+   "explanation": "Correct: Google defines Relevance as how well a Business Profile matches what someone is searching for. Wrong: distance (not prominence) is how far a business is from the searcher; prominence (not distance) is how well-known a business is; links to the business are an input to prominence, not relevance.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P1",
+    "S600#P2",
+    "S600#P3",
+    "S600#P4"
+   ]
+  },
+  {
+   "item_id": "T59-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "A vendor says 'Pay us and we will buy you a top local spot through Google.' Which correction is best?",
+   "options": [
+    "A. Google sells local rankings only to verified profiles",
+    "B. Google allows payment only for review-heavy profiles",
+    "C. Google sells local ranking only to chains",
+    "D. Google says no one can pay for better local ranking"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google says there is no way to request or pay for a better local ranking. Wrong: the other options invent paid ranking tiers that the page does not mention.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P6"
+   ]
+  },
+  {
+   "item_id": "T59-L2-03",
+   "level": 2,
+   "type": "odd_one_out",
+   "prompt": "Which statement is NOT supported by Google's local ranking help page?",
+   "options": [
+    "A. Local rank is set by your website's organic position",
+    "B. Distance is how far a business is from the searcher",
+    "C. More reviews and positive ratings can help local ranking",
+    "D. Complete and accurate info makes showing up more likely"
+   ],
+   "answer": "A",
+   "explanation": "Unsupported: the saved page does not mention SEO or website rankings as a local factor. Supported: distance is how far a business is from the searcher; more reviews and positive ratings can help; businesses with complete and accurate info are more likely to show up in local results.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P2",
+    "S600#P5",
+    "S600#P8"
+   ]
+  },
+  {
+   "item_id": "T59-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical bakery profile lists only a name. Which action best matches Google's local ranking help?",
+   "options": [
+    "A. Add complete, accurate business info",
+    "B. Pay Google for a ranking boost",
+    "C. Wait for prominence to rise on its own",
+    "D. Ask customers to move closer"
+   ],
+   "answer": "A",
+   "explanation": "Correct: Google says businesses with complete and accurate info are more likely to show up in local search results. Wrong: Google says ranking cannot be paid for; nothing saved says waiting supplies the missing info (practitioner inference); distance is about where the searcher is, which the owner cannot change.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P8",
+    "S600#P6",
+    "S600#P2"
+   ]
+  },
+  {
+   "item_id": "T59-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "A memo says: 'Prominence means how far the searcher is from us, so we will move our pin.' What is the error?",
+   "options": [
+    "A. Prominence has no definition anywhere on Google's page",
+    "B. Distance and relevance are one single combined factor",
+    "C. Owners can never move a pin once a profile exists",
+    "D. Prominence is how well-known a business is"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google defines prominence as how well-known a business is and distance as a separate factor. Wrong: Google does define prominence; relevance and distance have separate definitions; the pin claim is not on the page.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P3",
+    "S600#P2",
+    "S600#P1"
+   ]
+  },
+  {
+   "item_id": "T59-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical plumber, Site A. Symptom: a rival 2 miles closer to searchers outranks it for 'plumber near me'. Evidence: (1) A's profile is complete and verified; (2) Google defines distance as how far each business is from the searcher; (3) the rival has fewer reviews than A; (4) a consultant suggests listing a mailbox nearer the searchers. What is the best-supported plan?",
+   "options": [
+    "A. List a mailbox nearer the searchers as the address",
+    "B. Pay Google to offset the rival's distance edge",
+    "C. Delete the verified profile and start a fresh one",
+    "D. Keep info complete and keep earning reviews"
+   ],
+   "answer": "D",
+   "explanation": "Correct: distance is a stated factor A cannot change, while Google says complete and accurate info and more reviews and positive ratings can help. Wrong: Google says remote mailboxes aren't acceptable addresses; ranking cannot be paid for; nothing saved says a new profile resets distance (practitioner inference).",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P2",
+    "S600#P5",
+    "S600#P8",
+    "S601#P2",
+    "S600#P6"
+   ]
+  },
+  {
+   "item_id": "T59-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical cafe, Site B. Symptom: its business info never appears in Maps or the knowledge panel. Evidence: (1) the Business Profile was created but never claimed; (2) Google says claiming lets local business information show in Maps and the knowledge panel; (3) the cafe's site already has LocalBusiness markup for hours; (4) Google says markup tells it about hours and departments but does not guarantee features show. What is the best action?",
+   "options": [
+    "A. Expand the LocalBusiness markup on the cafe's site first",
+    "B. Wait for prominence to build before claiming",
+    "C. Claim the Business Profile",
+    "D. Pay Google for a Maps listing"
+   ],
+   "answer": "C",
+   "explanation": "Correct: Google's page ties Maps and knowledge panel display to claiming. Wrong: markup is described as telling Google about hours and departments, with no guarantee and no link to Maps display; nothing saved says waiting changes the unclaimed state; Google says ranking cannot be paid for.",
+   "related_topics": [
+    "T56"
+   ],
+   "source_ids": [
+    "S512#P1",
+    "S512#P2",
+    "S606#P1",
+    "S606#P3",
+    "S600#P6"
+   ]
+  }
+ ]
+}

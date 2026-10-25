@@ -1,0 +1,224 @@
+{
+ "topic_id": "T62",
+ "title": "Local landing pages and NAP consistency",
+ "stage": 9,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Google's Search Central LocalBusiness page explains markup for hours, departments and a physical location, with a Required properties table that describes the name of the business and its physical location, and country and area codes in phone numbers. It guarantees no appearance, and nothing on the saved page says NAP consistency is a ranking factor. Google's canonical guidance says rel=canonical is a strong signal and Google decides duplicates from content similarity, so any claim about how to structure location pages beyond that is practitioner inference.",
+ "actions": [
+  "If you use LocalBusiness markup, include the name and address from the Required properties table and a phone number with country and area codes.",
+  "Do not claim NAP consistency is a Google ranking factor without a Google quote.",
+  "Do not point every location page's rel=canonical at the homepage; Google calls it a strong canonical signal.",
+  "Claim the Business Profile; Google ties Maps display to claiming."
+ ],
+ "myths": [
+  {
+   "myth": "NAP consistency is a confirmed Google ranking factor.",
+   "correction": "No saved Google page states this (absence, not a quote); the saved LocalBusiness page describes hours, departments and properties and is silent on NAP. Treat the claim as industry theory.",
+   "source_ids": [
+    "S606#P1"
+   ]
+  },
+  {
+   "myth": "LocalBusiness markup guarantees a rich result or local visibility.",
+   "correction": "Google does not guarantee that features that consume structured data will show up.",
+   "source_ids": [
+    "S606#P3"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T62-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "In Google's LocalBusiness Required properties table, `name` is 'The name of the business.' Which other property is described as 'The physical location of the business'? Answer with one word.",
+   "options": [],
+   "answer": "address",
+   "explanation": "The Required properties table describes `address` as the physical location of the business and `name` as the name of the business.",
+   "related_topics": [],
+   "source_ids": [
+    "S606#P7",
+    "S606#P8",
+    "S606#P9"
+   ]
+  },
+  {
+   "item_id": "T62-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "What does Google say about features that consume structured data?",
+   "options": [
+    "A. It guarantees them for local businesses",
+    "B. It guarantees them with all required properties",
+    "C. It does not guarantee they will show",
+    "D. It guarantees them when hours are included"
+   ],
+   "answer": "C",
+   "explanation": "Correct: Google does not guarantee that features that consume structured data will show up in search results. Wrong: the page gives no guarantee for local businesses, required properties or hours.",
+   "related_topics": [],
+   "source_ids": [
+    "S606#P3"
+   ]
+  },
+  {
+   "item_id": "T62-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: the saved Google LocalBusiness markup page states that NAP consistency is a ranking factor.",
+   "options": [],
+   "answer": "False",
+   "explanation": "The saved page covers properties such as hours, departments and phone format; it contains no statement on NAP consistency or ranking (absence in the saved page).",
+   "related_topics": [],
+   "source_ids": [
+    "S606#P1",
+    "S606#P4"
+   ]
+  },
+  {
+   "item_id": "T62-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "Why does Google say you must include the required properties in LocalBusiness markup?",
+   "options": [
+    "A. To be guaranteed a rich result",
+    "B. To be eligible to display as a rich result",
+    "C. To raise your local rank above nearby rivals",
+    "D. To be eligible for a Business Profile"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says you must include the required properties for your content to be eligible for display as a rich result. Wrong: Google does not guarantee that structured-data features show up; the saved page does not tie required properties to local rank or to Business Profile eligibility.",
+   "related_topics": [],
+   "source_ids": [
+    "S606#P2",
+    "S606#P3"
+   ]
+  },
+  {
+   "item_id": "T62-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "A colleague says 'LocalBusiness markup guarantees a rich result.' Which correction is best?",
+   "options": [
+    "A. Google guarantees it if hours are listed",
+    "B. Google guarantees it if the phone is included",
+    "C. Google does not guarantee features appear",
+    "D. Google guarantees it for every page"
+   ],
+   "answer": "C",
+   "explanation": "Correct: Google says it does not guarantee that features that consume structured data will show up. Wrong: listing hours, a phone or markup on any page creates no guarantee on the saved page.",
+   "related_topics": [],
+   "source_ids": [
+    "S606#P3"
+   ]
+  },
+  {
+   "item_id": "T62-L2-03",
+   "level": 2,
+   "type": "odd_one_out",
+   "prompt": "Which statement is NOT supported by Google's saved LocalBusiness page?",
+   "options": [
+    "A. Consistent NAP across the web boosts local rank",
+    "B. Markup can describe business hours",
+    "C. The Required properties table lists the business name and its physical location",
+    "D. Phone numbers should include country and area codes"
+   ],
+   "answer": "A",
+   "explanation": "Unsupported: the saved page says nothing about NAP consistency or ranking. Supported: markup can tell Google about business hours; the Required properties table describes the name of the business and its physical location; the page says to include country and area codes in phone numbers.",
+   "related_topics": [],
+   "source_ids": [
+    "S606#P1",
+    "S606#P8",
+    "S606#P9",
+    "S606#P4"
+   ]
+  },
+  {
+   "item_id": "T62-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical location page has LocalBusiness markup with opening hours and a phone number, but no name or address. Which fix matches Google's Required properties table?",
+   "options": [
+    "A. Add more opening-hours entries",
+    "B. Add the name and the physical location",
+    "C. Add only the business name and skip the address",
+    "D. Add a list of departments"
+   ],
+   "answer": "B",
+   "explanation": "Correct: the Required properties table describes the name of the business and the physical location of the business. Wrong: more hours entries or departments are not what the table lists as required; adding only the name leaves out the address entry.",
+   "related_topics": [],
+   "source_ids": [
+    "S606#P8",
+    "S606#P9",
+    "S606#P7"
+   ]
+  },
+  {
+   "item_id": "T62-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "Hypothetical markup lists a phone of '555-0100' and hours but no address. Which fix pair matches Google's page?",
+   "options": [
+    "A. Remove the phone and hours entirely",
+    "B. Add the country code only and skip the address",
+    "C. Add both codes to the phone and add the address",
+    "D. Move the phone into the page title and add the name"
+   ],
+   "answer": "C",
+   "explanation": "Correct: Google says to include the country code and area code in the phone number, and the Required properties table describes the physical location of the business. Wrong: removing hours and phone drops allowed data; Google names both codes, and the address entry is in the table; the page does not ask for the phone in the title.",
+   "related_topics": [],
+   "source_ids": [
+    "S606#P4",
+    "S606#P9"
+   ]
+  },
+  {
+   "item_id": "T62-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical franchise, Site G. Symptom: 40 city pages differ only by the city name, and the owner proposes rel=canonical from every city page to the homepage. Evidence: (1) Google says rel=canonical is a strong signal that the specified URL should become canonical; (2) Google says canonicalization consolidates signals for similar or duplicate pages; (3) Google says sitemap inclusion is only a weak canonical signal. Based on Google's canonical guidance, what is the best response?",
+   "options": [
+    "A. Adopt it: rel=canonical keeps every city page indexed",
+    "B. Replace it with a sitemap, a strong canonical signal",
+    "C. Add LocalBusiness markup, which guarantees location pages show",
+    "D. Reject it: it signals the homepage should be canonical"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google calls rel=canonical a strong signal that the specified URL should become canonical, so pointing 40 pages at the homepage tells Google to treat the homepage as canonical. Wrong: that is not 'keeping every page indexed'; Google calls sitemaps a weak signal; Google does not guarantee markup features show. Whether to also add location-specific content is practitioner inference and not tested by this item.",
+   "related_topics": [
+    "T41"
+   ],
+   "source_ids": [
+    "S106#P4",
+    "S106#P1",
+    "S106#P5",
+    "S606#P3"
+   ]
+  },
+  {
+   "item_id": "T62-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical bakery, Site H. Symptom: owner says 'We added LocalBusiness markup, so there is no need to claim a Business Profile.' Evidence: (1) Google's business details page says claiming your Business Profile lets business info show in Maps and the knowledge panel; (2) Google describes markup as a way to tell Google about business hours and departments; (3) Google does not guarantee that features consuming structured data show up. What is the best-supported advice?",
+   "options": [
+    "A. Skip claiming because markup is guaranteed to show",
+    "B. Claim only after rich results start appearing",
+    "C. Claim the Business Profile",
+    "D. Remove the markup because it replaces the profile"
+   ],
+   "answer": "C",
+   "explanation": "Correct: Google's saved page ties Maps and knowledge panel display to claiming; it does not say markup does that. Wrong: Google gives no guarantee for markup features; nothing saved makes claiming wait on rich results; no saved quote says markup replaces the profile.",
+   "related_topics": [
+    "T56",
+    "T60"
+   ],
+   "source_ids": [
+    "S512#P1",
+    "S512#P2",
+    "S606#P1",
+    "S606#P3"
+   ]
+  }
+ ]
+}

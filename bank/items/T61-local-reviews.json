@@ -1,0 +1,227 @@
+{
+ "topic_id": "T61",
+ "title": "Reviews and local trust signals",
+ "stage": 9,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Google says more reviews and positive ratings can help local ranking, and that reviews feed prominence. Businesses may ask customers for reviews with a Google link or QR code, but Google's tips page calls incentives for reviews strictly prohibited, and contributions must reflect a genuine experience. Verified owners can reply, which shows customers their feedback matters, and can flag reviews that break content policy. Google's Maps policy lists paid reviews or ratings under Fake Engagement and says fake engagement will be removed.",
+ "actions": [
+  "Ask real customers for reviews with a link or QR code.",
+  "Never offer discounts or goods for reviews and never buy reviews.",
+  "Verify the profile so you can reply to reviews.",
+  "Flag policy-violating reviews instead of retaliating."
+ ],
+ "myths": [
+  {
+   "myth": "Offering a discount for a review is fine if the review is honest.",
+   "correction": "Google's tips page says offering incentives like free or discounted goods or services in exchange for reviews is strictly prohibited.",
+   "source_ids": [
+    "S603#P3",
+    "S603#P5"
+   ]
+  },
+  {
+   "myth": "Replying to reviews boosts local rank.",
+   "correction": "Google says replies show you value feedback; the saved pages tie ranking to review counts and ratings, not replies.",
+   "source_ids": [
+    "S604#P1",
+    "S600#P5"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T61-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Google says reviews and other contributions to Maps must reflect what kind of experience? Answer with one word.",
+   "options": [],
+   "answer": "genuine",
+   "explanation": "Google's review tips page says contributions must reflect a genuine experience.",
+   "related_topics": [],
+   "source_ids": [
+    "S603#P4"
+   ]
+  },
+  {
+   "item_id": "T61-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "How does Google say you can ask customers to leave a review?",
+   "options": [
+    "A. Share a Google link or QR code",
+    "B. Pay them a small fee for each review",
+    "C. Ask them to post anonymously without signing in",
+    "D. Buy a review package from a vendor"
+   ],
+   "answer": "A",
+   "explanation": "Correct: Google says you can ask customers to visit a Google link or scan a QR code. Wrong: payment is against Google's policy; Google says customers must be signed into a Google Account; vendor packages are not described and paid reviews are listed under Fake Engagement.",
+   "related_topics": [],
+   "source_ids": [
+    "S603#P1",
+    "S603#P2",
+    "S605#P2"
+   ]
+  },
+  {
+   "item_id": "T61-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: Google allows businesses to give free or discounted goods in exchange for customers posting reviews.",
+   "options": [],
+   "answer": "False",
+   "explanation": "Google's tips page says offering incentives like free or discounted goods or services in exchange for reviews is strictly prohibited.",
+   "related_topics": [],
+   "source_ids": [
+    "S603#P3",
+    "S603#P5"
+   ]
+  },
+  {
+   "item_id": "T61-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "Which step does Google say must come before you can reply to reviews?",
+   "options": [
+    "A. Verify your business",
+    "B. Flag the review as a policy violation",
+    "C. Offer the reviewer a thank-you incentive",
+    "D. Reach a set number of reviews"
+   ],
+   "answer": "A",
+   "explanation": "Correct: Google says that before you can reply to reviews, you must verify your business. Wrong: flagging is a separate action Google describes; incentives in exchange for reviews are strictly prohibited; the page names no review-count threshold.",
+   "related_topics": [],
+   "source_ids": [
+    "S604#P2",
+    "S604#P3",
+    "S603#P3",
+    "S603#P5"
+   ]
+  },
+  {
+   "item_id": "T61-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "A colleague says 'Review counts have no bearing on local ranking.' Which correction is best?",
+   "options": [
+    "A. Google says review counts are hidden from ranking",
+    "B. More reviews and positive ratings can help",
+    "C. Google says only your replies to reviews count",
+    "D. Google says reviews are the only local ranking factor"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says more reviews and positive ratings can help local ranking. Wrong: Google does not say counts are hidden; replies are described as showing you value feedback; reviews are not the only factor (relevance and distance are also named).",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P5",
+    "S604#P1"
+   ]
+  },
+  {
+   "item_id": "T61-L2-03",
+   "level": 2,
+   "type": "odd_one_out",
+   "prompt": "Which statement is NOT supported by Google's review pages?",
+   "options": [
+    "A. Replying shows customers you value their feedback",
+    "B. You can flag reviews you think break content policy",
+    "C. Replying to reviews moves your local rank up",
+    "D. Reviews must reflect a genuine experience"
+   ],
+   "answer": "C",
+   "explanation": "Unsupported: the saved pages say replies show you value feedback but do not say replies raise rank. Supported: replying shows you value feedback; you can flag reviews that violate content policies; contributions must reflect a genuine experience.",
+   "related_topics": [],
+   "source_ids": [
+    "S604#P1",
+    "S604#P3",
+    "S603#P4"
+   ]
+  },
+  {
+   "item_id": "T61-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical gym wants more reviews. Which plan matches Google's guidance?",
+   "options": [
+    "A. Offer a free month to each reviewer",
+    "B. Have staff post five-star reviews of the gym",
+    "C. Buy reviews from an agency",
+    "D. Send a Google review link or QR code"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google says you can ask customers to visit a Google link or scan a QR code. Wrong: Google says incentives like free or discounted goods in exchange for reviews are strictly prohibited; reviews must reflect a genuine experience; paid reviews are listed under Fake Engagement.",
+   "related_topics": [],
+   "source_ids": [
+    "S603#P1",
+    "S603#P3",
+    "S603#P5",
+    "S603#P4",
+    "S605#P2"
+   ]
+  },
+  {
+   "item_id": "T61-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "A plan says: 'Give 10% off to anyone who posts a five-star review.' What is the error?",
+   "options": [
+    "A. Discounts must be larger than 10 percent to count",
+    "B. Only verified owners are allowed to post reviews",
+    "C. Customers need no Google Account to leave a review",
+    "D. Incentives for reviews are prohibited"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google says incentives like discounts in exchange for reviews are strictly prohibited. Wrong: discount size is irrelevant; customers, not owners, post reviews; Google says customers must be signed into a Google Account.",
+   "related_topics": [],
+   "source_ids": [
+    "S603#P3",
+    "S603#P5",
+    "S603#P2"
+   ]
+  },
+  {
+   "item_id": "T61-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical restaurant, Site E (verified). Symptom: the owner wants a review that appears to break Google's content policies gone. Evidence: (1) Google says you can flag a review you believe violates its content policies; (2) Google says replying shows customers you value their feedback; (3) Google says contributions must reflect a genuine experience; (4) Google says incentives like free goods in exchange for reviews are strictly prohibited. What is the best action?",
+   "options": [
+    "A. Reply publicly and ask the reviewer to remove it",
+    "B. Flag the review as a policy violation",
+    "C. Offer the reviewer free goods for a new review",
+    "D. Pay a vendor for review cleanup"
+   ],
+   "answer": "B",
+   "explanation": "Correct: flagging is the route Google names for reviews you believe violate its content policies. Wrong: replying is described as showing you value feedback, not as a removal route; free goods in exchange for reviews are strictly prohibited; no saved page describes a paid cleanup route.",
+   "related_topics": [],
+   "source_ids": [
+    "S604#P3",
+    "S604#P1",
+    "S603#P4",
+    "S603#P3",
+    "S603#P5"
+   ]
+  },
+  {
+   "item_id": "T61-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical clinic, Site F. Symptom: owner wants a stronger local position and buys 200 five-star reviews. Evidence: (1) Google says prominence also depends on review counts; (2) Google's Maps policy says fake engagement is not allowed and will be removed, and that this includes reviews or ratings that have been paid for; (3) the reviews are genuine in tone. What is the best-supported conclusion?",
+   "options": [
+    "A. Stop; paid reviews count as fake engagement",
+    "B. Keep going; prominence rewards any review volume",
+    "C. Keep going; only unfriendly paid reviews are removed",
+    "D. Hide the profile address to protect the reviews"
+   ],
+   "answer": "A",
+   "explanation": "Correct: the policy says fake engagement will be removed and includes reviews or ratings that have been paid for, whatever their tone. Wrong: review counts help only as reviews that stay; the policy names paid reviews or ratings without a tone exception; hiding an address has no bearing on the policy.",
+   "related_topics": [
+    "T59"
+   ],
+   "source_ids": [
+    "S600#P4",
+    "S605#P6"
+   ]
+  }
+ ]
+}

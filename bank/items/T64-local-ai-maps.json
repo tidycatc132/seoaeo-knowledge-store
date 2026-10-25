@@ -1,0 +1,229 @@
+{
+ "topic_id": "T64",
+ "title": "Local results in AI answers and maps surfaces",
+ "stage": 9,
+ "merged_from": [],
+ "volatility": "fast-moving",
+ "last_verified": "2026-10-25",
+ "summary": "Google's AI features page says there are no additional requirements to appear in AI Overviews or AI Mode and no special schema is needed; a page must be indexed and snippet-eligible to be a supporting link. Google's Ask Maps announcement describes a conversational Maps experience built on information from over 300 million places and reviews from more than 500 million contributors. No saved Google page explains how local businesses are chosen for AI answers, so claims about local AI ranking are industry theory.",
+ "actions": [
+  "Make sure location pages are indexed and snippet-eligible.",
+  "Keep the Business Profile complete and accurate.",
+  "Do not add 'AI local schema'; Google says none is needed.",
+  "Label any claim about AI local ranking as unconfirmed."
+ ],
+ "myths": [
+  {
+   "myth": "You need special local schema to be shown in AI Mode.",
+   "correction": "Google says there's no special schema.org structured data you need to add.",
+   "source_ids": [
+    "S007#P3"
+   ]
+  },
+  {
+   "myth": "Ask Maps ranks businesses with the local pack formula.",
+   "correction": "No saved Google page says this (absence, not a quote); the Ask Maps announcement only describes a conversational experience built on place data and community reviews.",
+   "source_ids": [
+    "S607#P1",
+    "S607#P3"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T64-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Google describes Ask Maps as a new what kind of experience? Answer with one word.",
+   "options": [],
+   "answer": "conversational",
+   "explanation": "Google's announcement calls Ask Maps a new conversational experience.",
+   "related_topics": [],
+   "source_ids": [
+    "S607#P1"
+   ]
+  },
+  {
+   "item_id": "T64-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "Google says Ask Maps uses reviews from a community of how many contributors?",
+   "options": [
+    "A. More than 500 million contributors",
+    "B. More than 5 million contributors",
+    "C. Fewer than 50 thousand contributors in total",
+    "D. More than 300 million contributors"
+   ],
+   "answer": "A",
+   "explanation": "Correct: more than 500 million contributors. Wrong: 300 million is the number of places Maps analyzes, and the other figures are not in the quote.",
+   "related_topics": [],
+   "source_ids": [
+    "S607#P3",
+    "S607#P2"
+   ]
+  },
+  {
+   "item_id": "T64-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: Google says special schema.org structured data is needed to appear in AI Overviews or AI Mode.",
+   "options": [],
+   "answer": "False",
+   "explanation": "Google says there is no special schema.org structured data you need to add.",
+   "related_topics": [],
+   "source_ids": [
+    "S007#P3"
+   ]
+  },
+  {
+   "item_id": "T64-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "Which condition does Google state for a page to be a supporting link in AI Overviews or AI Mode?",
+   "options": [
+    "A. The page must add special schema.org markup",
+    "B. The page must meet extra AI-only requirements",
+    "C. The page must be shown without any snippet",
+    "D. The page must be indexed"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google says a page must be indexed (and eligible to be shown with a snippet). Wrong: Google says no special schema.org markup is needed; it says there are no additional requirements; it requires snippet eligibility, not its absence.",
+   "related_topics": [],
+   "source_ids": [
+    "S007#P6",
+    "S007#P7",
+    "S007#P3",
+    "S007#P2"
+   ]
+  },
+  {
+   "item_id": "T64-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "A colleague says 'A Business Profile guarantees we appear in AI Mode.' Which correction is best?",
+   "options": [
+    "A. Google lists no extra requirements for AI Mode",
+    "B. Google guarantees inclusion once a profile is verified",
+    "C. Google guarantees inclusion for any place listed in Maps",
+    "D. Google guarantees inclusion with the right schema markup"
+   ],
+   "answer": "A",
+   "explanation": "Correct: Google says there are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations. Wrong: no saved Google quote guarantees inclusion for verified profiles or Maps places; Google says no special schema is needed.",
+   "related_topics": [],
+   "source_ids": [
+    "S007#P2",
+    "S007#P3"
+   ]
+  },
+  {
+   "item_id": "T64-L2-03",
+   "level": 2,
+   "type": "odd_one_out",
+   "prompt": "Which statement is NOT supported by the saved Google pages?",
+   "options": [
+    "A. Special schema is required to appear in AI Mode",
+    "B. Ask Maps is a new conversational experience",
+    "C. Ask Maps reviews come from community contributors",
+    "D. A supporting-link page must be indexed"
+   ],
+   "answer": "A",
+   "explanation": "Unsupported: Google says there is no special schema.org structured data you need to add. Supported: Ask Maps is a conversational experience; Ask Maps uses reviews from community contributors; a page must be indexed to be a supporting link.",
+   "related_topics": [],
+   "source_ids": [
+    "S007#P3",
+    "S607#P1",
+    "S607#P3",
+    "S007#P6"
+   ]
+  },
+  {
+   "item_id": "T64-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical location page should be eligible as a supporting link in AI Mode. Which step matches Google's docs?",
+   "options": [
+    "A. Make sure it is indexed and snippet-eligible",
+    "B. Add AI-specific local schema to the page",
+    "C. Pay for a guaranteed AI Mode placement",
+    "D. Add nosnippet and noindex to keep the page tidy"
+   ],
+   "answer": "A",
+   "explanation": "Correct: Google says a page must be indexed and eligible to be shown with a snippet. Wrong: Google says no special schema is needed; payment is not described; Google lists nosnippet and noindex among controls that limit what Search shows.",
+   "related_topics": [],
+   "source_ids": [
+    "S007#P7",
+    "S007#P3",
+    "S007#P8"
+   ]
+  },
+  {
+   "item_id": "T64-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "Hypothetical plan for 12 location pages: (1) add special local AI schema; (2) keep each page indexed and snippet-eligible; (3) reply to reviews on the Business Profile. Which step does Google's AI features page contradict?",
+   "options": [
+    "A. Step 2, because pages must stay unindexed",
+    "B. Step 1, because no special schema is needed",
+    "C. Step 3, because replies block AI Mode links",
+    "D. None, because all three are required for AI Mode"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says there's no special schema.org structured data you need to add. Wrong: Google says a supporting-link page must be indexed, so step 2 is consistent; nothing saved says replying blocks AI Mode links; Google says there are no additional requirements, so step 1 is not required.",
+   "related_topics": [],
+   "source_ids": [
+    "S007#P3",
+    "S007#P6",
+    "S007#P7",
+    "S007#P2"
+   ]
+  },
+  {
+   "item_id": "T64-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical dentist, Site I. Symptom: the location page never appears as a supporting link in AI Mode. Evidence: (1) the page carries a noindex tag; (2) Google says a supporting-link page must be indexed; (3) the page has detailed LocalBusiness markup; (4) Google says no special schema is needed for AI Mode. What is the best action?",
+   "options": [
+    "A. Keep noindex and expand the page's LocalBusiness markup",
+    "B. Edit the Business Profile hours and keep noindex",
+    "C. Add special local AI schema to the location page",
+    "D. Remove noindex and let the page be indexed"
+   ],
+   "answer": "D",
+   "explanation": "Correct: a noindexed page is kept out of the index and indexing is a stated eligibility condition. Wrong: Google says no special schema is needed, so more markup does not substitute for indexing; editing profile hours does not change the page's index state (practitioner inference).",
+   "related_topics": [
+    "T39",
+    "T41"
+   ],
+   "source_ids": [
+    "S007#P6",
+    "S007#P8",
+    "S007#P3",
+    "S101#P5"
+   ]
+  },
+  {
+   "item_id": "T64-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical hotel group, Site J. Symptom: an indexed location page never appears as a supporting link in AI Mode. Evidence: (1) the page carries the page-level robots meta tag nosnippet; (2) Google says a supporting-link page must be indexed and eligible to be shown with a snippet; (3) Google's robots meta tag page says nosnippet will also prevent the content from being used as a direct input for AI Overviews and AI Mode; (4) Google says max-snippet 0 is equivalent to nosnippet. What is the best action?",
+   "options": [
+    "A. Remove nosnippet from the page's robots meta tag",
+    "B. Change nosnippet to max-snippet 0",
+    "C. Add special local AI schema to the page",
+    "D. Block Googlebot in robots.txt to reset eligibility"
+   ],
+   "answer": "A",
+   "explanation": "Correct: Google says nosnippet also prevents use as direct input for AI Overviews and AI Mode, and a snippet-eligible page is a stated condition. Wrong: max-snippet 0 is equivalent to nosnippet; Google says no special schema is needed; robots.txt is the access control and blocking Googlebot adds no eligibility (practitioner inference).",
+   "related_topics": [
+    "T52"
+   ],
+   "source_ids": [
+    "S007#P7",
+    "S501#P2",
+    "S501#P5",
+    "S007#P3",
+    "S007#P9"
+   ]
+  }
+ ]
+}

@@ -43,3 +43,11 @@
 2026-10-25 | R5 fixes | T45,T46,T49,T54,T55,T57 | passage added S407#P9-P11 | 19 flagged items fixed, T49/T55 myths/summaries adjusted | cut 0
 2026-10-25 | D calibration | all 37 topics | 68 item edits (12 single-token keys, 6 duplicate rewrites, 8 L3/L4 strengthened incl. 5 cross-stage L4, 41 option-length edits), 5 option reorders (letters A50/B50/C50/D50), myth source ids made passage-level | no level changes, no sources added | see research/review-difficulty.md
 2026-10-25 | D fixes | T16,T53,T32,T55,T56,T57,T12,T22,T5,T7,T29 | 15 checker fix rows applied (citations added, 4 keys made single tokens, 3 option-length rebalances, 2 myths) | letters unchanged A50/B50/C50/D50 | no sources added
+2026-10-25 | R7 | T59 | sources added 1 (S600) | items 10 | cut 2 (factor weighting, radius studies)
+2026-10-25 | R7 | T60 | sources added 2 (S601,S602) (+S512 reused) | items 10 | cut 3
+2026-10-25 | R7 | T61 | sources added 3 (S603,S604,S605) | items 10 | cut 2
+2026-10-25 | R7 | T62 | sources added 1 (S606) (+S106,S512 reused) | items 10 | cut 2 (multi-location templates, NAP studies)
+2026-10-25 | R7 | T63 | sources added 0 (S600 reused) | items 2 | cut 8 (condensed)
+2026-10-25 | R7 | T64 | sources added 2 (S607,S608) (+S007,S101 reused) | items 10 | cut 2
+2026-10-25 | R7 fixes | T59,T60,T61,T62,T63,T64,T56-L2-03 | quotes added S601#P5 (full), S603#P5, S605#P4-P5, S606#P5-P6 | 32 flagged items + T56-L2-03 fixed, filler removed from 24 options, 2 inference keys rewritten (T62-L4-01, T64-L2-02), letters shuffled A9/B9/C9/D9 | no sources added
+2026-10-25 | R7 final | T59,T60,T61,T62,T64 | passages added S605#P6, S606#P7-P9 (S606 P5-P6 relabelled) | 8 fix rows fixed (required-property quotes, T59-L2-01 link dropped, T64-L4-02 grounded in S501#P2/P5, T61 joins), 5 L2 recalls made why/distinction MCQs, 3 L3 and 5 L4 items hardened | letters non-cyclic A11/B10/C10/D10 | no sources added

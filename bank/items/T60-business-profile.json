@@ -1,0 +1,216 @@
+{
+ "topic_id": "T60",
+ "title": "Google Business Profile setup, categories and verification",
+ "stage": 9,
+ "merged_from": [],
+ "volatility": "evolving",
+ "last_verified": "2026-10-25",
+ "summary": "Google's guidelines tie a Business Profile to the real-world business: the name should reflect the real-world name, the address must be accurate (remote mailboxes are not acceptable), categories should say what the business is, and service-area businesses should hide their address and keep their area within about 2 hours of driving time. Verification gives you ownership of the profile, and postcard verification is not available to all businesses. Claiming the profile lets business details show in Maps and the knowledge panel.",
+ "actions": [
+  "Use the real-world business name and an accurate address.",
+  "Pick categories that complete 'This business IS a'.",
+  "Service-area businesses: hide the address and keep the area within about 2 hours of driving time.",
+  "Verify with the method Google offers, and claim the profile."
+ ],
+ "myths": [
+  {
+   "myth": "Any mailbox address will do for a profile.",
+   "correction": "Google says P.O. boxes or mailboxes at remote locations aren't acceptable.",
+   "source_ids": [
+    "S601#P2"
+   ]
+  },
+  {
+   "myth": "Every business can verify by postcard.",
+   "correction": "Google says postcard verification isn't available for all businesses.",
+   "source_ids": [
+    "S602#P2"
+   ]
+  }
+ ],
+ "items": [
+  {
+   "item_id": "T60-L1-01",
+   "level": 1,
+   "type": "definition",
+   "prompt": "Google's guidelines say to select categories that complete the statement 'This business ___ a'. Which word fills the blank?",
+   "options": [],
+   "answer": "IS",
+   "explanation": "The guideline wording is 'This business IS a'. The word is IS.",
+   "related_topics": [],
+   "source_ids": [
+    "S601#P3"
+   ]
+  },
+  {
+   "item_id": "T60-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "Which address does Google say is not acceptable?",
+   "options": [
+    "A. A street address of the storefront",
+    "B. A suite number on Address Line 2",
+    "C. A pin placed on the map",
+    "D. A mailbox at a remote location"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google says P.O. boxes or mailboxes located at remote locations aren't acceptable. Wrong: the other options are not called unacceptable in the saved quote.",
+   "related_topics": [],
+   "source_ids": [
+    "S601#P2"
+   ]
+  },
+  {
+   "item_id": "T60-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: Google says service-area businesses should show their business address to customers.",
+   "options": [],
+   "answer": "False",
+   "explanation": "Google says service-area businesses should hide their business address from customers.",
+   "related_topics": [],
+   "source_ids": [
+    "S601#P4"
+   ]
+  },
+  {
+   "item_id": "T60-L2-01",
+   "level": 2,
+   "type": "why_it_works",
+   "prompt": "According to Google's verification page, what do you gain when you verify your business?",
+   "options": [
+    "A. Google's approval of your chosen business name",
+    "B. Ownership of your Business Profile",
+    "C. A guaranteed place in the local results",
+    "D. A review score set by Google itself"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says you gain ownership of your Business Profile when you verify. Wrong: the saved page does not say verification approves a name, guarantees local placement or sets a review score.",
+   "related_topics": [],
+   "source_ids": [
+    "S602#P1"
+   ]
+  },
+  {
+   "item_id": "T60-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "A colleague says 'Every business can verify by postcard.' Which correction is best?",
+   "options": [
+    "A. Google says postcard is the only verification method offered",
+    "B. Google says postcards are not available to all businesses",
+    "C. Google bans postcard verification for all businesses",
+    "D. Google says video verification is never an option"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says verification through postcard isn't available for all businesses. Wrong: postcard is not called the only method; it is not banned; Google recommends video verification where a business is eligible.",
+   "related_topics": [],
+   "source_ids": [
+    "S602#P2",
+    "S602#P3"
+   ]
+  },
+  {
+   "item_id": "T60-L2-03",
+   "level": 2,
+   "type": "odd_one_out",
+   "prompt": "Which statement is NOT supported by Google's Business Profile guidelines?",
+   "options": [
+    "A. Names should reflect the real-world name",
+    "B. Categories should say what the business is",
+    "C. Service-area businesses should hide their address",
+    "D. A remote mailbox is an acceptable address"
+   ],
+   "answer": "D",
+   "explanation": "Unsupported: Google says mailboxes at remote locations aren't acceptable. Supported: the name should reflect the real-world name; categories complete 'This business IS a'; service-area businesses should hide their address.",
+   "related_topics": [],
+   "source_ids": [
+    "S601#P2",
+    "S601#P6",
+    "S601#P3",
+    "S601#P4"
+   ]
+  },
+  {
+   "item_id": "T60-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical home-cleaning firm visits customers and has no storefront. What does Google's guideline say about its address?",
+   "options": [
+    "A. Publish the owner's home address as the listing",
+    "B. Hide the business address from customers",
+    "C. Use a remote mailbox as the address",
+    "D. List a storefront address it does not have"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says service-area businesses should hide their business address from customers. Wrong: publishing the address contradicts that; remote mailboxes aren't acceptable; the saved eligibility text refers to a physical location customers can visit, which this firm lacks.",
+   "related_topics": [],
+   "source_ids": [
+    "S601#P4",
+    "S601#P2",
+    "S601#P1"
+   ]
+  },
+  {
+   "item_id": "T60-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "A draft profile name reads 'Best Pizza Downtown - Open 24h' for a shop signed 'Luigi's Pizza'. What is the error?",
+   "options": [
+    "A. Names must be written entirely in capital letters",
+    "B. The name should reflect the real-world name",
+    "C. Names must always include the city name",
+    "D. Names must stay under a fixed word limit"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says the name should reflect the business's real-world name. Wrong: the saved quote does not require capitals, a city or a word limit.",
+   "related_topics": [],
+   "source_ids": [
+    "S601#P6"
+   ]
+  },
+  {
+   "item_id": "T60-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical plumber, Site C. Symptom: profile flagged during review. Evidence: (1) it shows the home address publicly; (2) it claims a service area reaching about four hours of driving time from base; (3) the owner serves customers at their homes. What is the best fix?",
+   "options": [
+    "A. Swap the address for a remote mailbox and keep the area",
+    "B. Hide the address and cut the area to about 2 hours",
+    "C. Extend the area further so the profile can rank wider",
+    "D. Keep both settings and simply add more categories"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says service-area businesses should hide their address and the service area shouldn't extend farther than about 2 hours of driving time. Wrong: remote mailboxes aren't acceptable; a wider area worsens the 2-hour problem; more categories fix neither issue.",
+   "related_topics": [],
+   "source_ids": [
+    "S601#P4",
+    "S601#P5",
+    "S601#P2"
+   ]
+  },
+  {
+   "item_id": "T60-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical dental clinic, Site D. Symptom: the owner cannot reply to reviews on the clinic's profile. Evidence: (1) the profile was never verified; (2) Google says you must verify before you can reply to reviews; (3) Google says postcard verification isn't available for all businesses; (4) Google recommends video verification if the business is eligible. What is the best first step?",
+   "options": [
+    "A. Wait for a postcard, the default method",
+    "B. Create a second profile for the same clinic location",
+    "C. Use video verification if the clinic is eligible",
+    "D. Ask customers to flag their own reviews"
+   ],
+   "answer": "C",
+   "explanation": "Correct: replying requires verification, and Google recommends video verification when a business is eligible. Wrong: postcards aren't available to all businesses and Google does not call them the default; a second profile is not supported by the saved pages; flagging is separate and does not let an owner reply.",
+   "related_topics": [
+    "T61"
+   ],
+   "source_ids": [
+    "S602#P2",
+    "S602#P3",
+    "S604#P2",
+    "S604#P3"
+   ]
+  }
+ ]
+}
