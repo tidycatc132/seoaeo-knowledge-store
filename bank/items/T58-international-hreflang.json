@@ -1,205 +1,206 @@
 {
- "topic_id": "T58",
- "title": "Cross-lingual and international retrieval",
- "stage": 2,
- "merged_from": [],
- "volatility": "stable",
- "last_verified": "2026-10-25",
- "summary": "hreflang annotations tell Google about language and regional versions of a page so it can point users to the most appropriate one. Each version must list itself and all others; x-default is the fallback; HTML, HTTP header and sitemap methods are equivalent; codes must be ISO 639-1 languages and ISO 3166-1 Alpha 2 regions. Google says it does not use lang attributes or the URL to detect language, and it advises against automatically redirecting users between language versions.",
- "actions": [
-  "Add hreflang annotations to every localized version, each listing itself and all the others.",
-  "Use an x-default entry for users who match no version.",
-  "Use ISO 639-1 language codes and ISO 3166-1 Alpha 2 region codes only.",
-  "Do not rely on the HTML lang attribute to tell Google the language.",
-  "Avoid redirecting users automatically from one language version to another."
- ],
- "myths": [
-  {
-   "myth": "The HTML lang attribute tells Google which language a page is in.",
-   "correction": "Google says it does not use lang attributes or the URL for language information.",
-   "source_ids": [
-    "S123#P1"
-   ]
-  },
-  {
-   "myth": "One-way hreflang from the main language version is enough.",
-   "correction": "Google says each language version must list itself as well as all other versions.",
-   "source_ids": [
-    "S107#P2"
-   ]
-  }
- ],
- "items": [
-  {
-   "item_id": "T58-L1-01",
-   "level": 1,
-   "type": "definition",
-   "prompt": "According to Google, what does hreflang help Google Search do? (finish: point users to the most ___ version)",
-   "options": [],
-   "answer": "Appropriate",
-   "explanation": "Google says telling it about language and regional variants will help Google Search point users to the most appropriate version of a page by language or region.",
-   "related_topics": [],
-   "source_ids": [
-    "S107#P1"
-   ]
-  },
-  {
-   "item_id": "T58-L1-02",
-   "level": 1,
-   "type": "multiple_choice",
-   "prompt": "When does Google say the reserved x-default value is used?",
-   "options": [
-    "A. When the page has no hreflang links on it at all",
-    "B. When the page is served from a country-code domain",
-    "C. When the HTML lang attribute is missing entirely",
-    "D. When nothing else matches the browser language"
-   ],
-   "answer": "D",
-   "explanation": "Correct: Google says x-default is used when no other language/region matches the user's browser setting. Wrong: 'no hreflang links at all', 'country-code domain' and 'missing lang attribute' are not the stated condition; the saved sentence ties x-default only to a mismatch with the browser setting, and Google separately says it does not use lang attributes.",
-   "related_topics": [],
-   "source_ids": [
-    "S107#P3",
-    "S123#P1"
-   ]
-  },
-  {
-   "item_id": "T58-L1-03",
-   "level": 1,
-   "type": "true_false",
-   "prompt": "True or false: Google says it uses the HTML lang attribute or the URL to detect a page's language.",
-   "options": [],
-   "answer": "False",
-   "explanation": "Google says it does not use any code-level language information such as lang attributes, or the URL.",
-   "related_topics": [],
-   "source_ids": [
-    "S123#P1"
-   ]
-  },
-  {
-   "item_id": "T58-L2-01",
-   "level": 2,
-   "type": "why_it_works",
-   "prompt": "Why can a site pick HTML tags, HTTP headers or a sitemap for hreflang? Complete: Google treats the three methods as ___.",
-   "options": [],
-   "answer": "Equivalent",
-   "explanation": "Google says there are three ways to indicate language/locale versions (HTML tags, HTTP headers, sitemap) and that the three methods are equivalent from Google's perspective.",
-   "related_topics": [],
-   "source_ids": [
-    "S107#P4",
-    "S107#P7",
-    "S107#P5"
-   ]
-  },
-  {
-   "item_id": "T58-L2-02",
-   "level": 2,
-   "type": "misconception",
-   "prompt": "True or false: hreflang accepts any language and region codes you invent, such as made-up ones, because Google reads them loosely.",
-   "options": [],
-   "answer": "False",
-   "explanation": "Google says only language codes listed in ISO 639-1 and region codes listed in ISO 3166-1 Alpha 2 are supported.",
-   "related_topics": [],
-   "source_ids": [
-    "S107#P6"
-   ]
-  },
-  {
-   "item_id": "T58-L2-03",
-   "level": 2,
-   "type": "unsupported_statement",
-   "prompt": "Which statement is NOT supported by the saved sources?",
-   "options": [
-    "A. Each language version must list itself and all others",
-    "B. Google says hreflang gives localized pages a ranking boost",
-    "C. Only ISO 639-1 language and ISO 3166-1 Alpha 2 region codes are supported",
-    "D. The HTML, HTTP header and sitemap methods are equivalent to Google"
-   ],
-   "answer": "B",
-   "explanation": "Correct (unsupported): the saved Google pages describe hreflang as helping Google point users to the right version, not as a ranking boost. The other three are supported: reciprocal listing, ISO language and region codes, and the three equivalent methods.",
-   "related_topics": [],
-   "source_ids": [
-    "S107#P1",
-    "S107#P2",
-    "S107#P6",
-    "S107#P5",
-    "S107#P7"
-   ]
-  },
-  {
-   "item_id": "T58-L3-01",
-   "level": 3,
-   "type": "worked_example",
-   "prompt": "HYPOTHETICAL: a page exists in en-GB, fr-FR and de-DE. If each version lists itself and all other versions, how many hreflang entries are in each page's set (ignoring x-default)?",
-   "options": [],
-   "answer": "3",
-   "explanation": "Google says each language version must list itself as well as all other language versions, so three versions means three entries on each page.",
-   "related_topics": [],
-   "source_ids": [
-    "S107#P2"
-   ]
-  },
-  {
-   "item_id": "T58-L3-02",
-   "level": 3,
-   "type": "spot_the_error",
-   "prompt": "A hypothetical hreflang audit has four findings. Which one is an error under Google's guidance?",
-   "options": [
-    "A. English page lists French; French omits English",
-    "B. Each page's set includes the page itself",
-    "C. An x-default entry is set as a fallback",
-    "D. The hreflang entries are in the sitemap, not the HTML"
-   ],
-   "answer": "A",
-   "explanation": "Correct (the error): Google says each language version must list itself and all others, so one-way listing is wrong. The other three are fine: self-listing, an x-default fallback, and sitemap-based hreflang (the three methods are equivalent).",
-   "related_topics": [],
-   "source_ids": [
-    "S107#P2",
-    "S107#P3",
-    "S107#P5",
-    "S107#P7"
-   ]
-  },
-  {
-   "item_id": "T58-L4-01",
-   "level": 4,
-   "type": "case_file",
-   "prompt": "HYPOTHETICAL site with /en/, /fr/ and /de/ versions. Symptom: only the English version appears for users in France and Germany. Evidence: (1) the site automatically redirects visitors from one language version to another based on browser language; (2) Google says to avoid automatically redirecting users from one language version to a different one; (3) the pages are otherwise crawlable. Best action?",
-   "options": [
-    "A. Add more redirects keyed to the browser language",
-    "B. Add noindex to the English pages",
-    "C. Remove the automatic language redirect",
-    "D. Disallow the /fr/ and /de/ folders"
-   ],
-   "answer": "C",
-   "explanation": "Correct: Google advises avoiding automatic language redirects. More redirects deepen the issue. noindex on English pages removes the version that does appear. Disallowing /fr/ and /de/ blocks the versions you want found. Practitioner inference: the redirect hides the other versions from crawlers and users.",
-   "related_topics": [],
-   "source_ids": [
-    "S123#P2",
-    "S107#P1"
-   ]
-  },
-  {
-   "item_id": "T58-L4-02",
-   "level": 4,
-   "type": "case_file",
-   "prompt": "HYPOTHETICAL site with translated pages. Symptom: Google shows the wrong language version in some countries. Evidence: (1) each page has a correct HTML lang attribute; (2) no hreflang annotations exist; (3) Google says it does not use lang attributes for language information. Best action?",
-   "options": [
-    "A. Rely on lang attributes alone and wait",
-    "B. Add hreflang with return links",
-    "C. Add the language to every URL slug only",
-    "D. Redirect users by browser language"
-   ],
-   "answer": "B",
-   "explanation": "Correct: Google uses hreflang annotations, listing each version and all others, to point users to the right version. Waiting on lang attributes relies on what Google says it does not use. Slugs alone are not the annotation mechanism. Redirecting by browser language is what Google advises against.",
-   "related_topics": [
-    "T41"
-   ],
-   "source_ids": [
-    "S123#P1",
-    "S107#P1",
-    "S107#P2",
-    "S123#P2"
-   ]
-  }
- ]
+  "topic_id": "T58",
+  "title": "Cross-lingual and international retrieval",
+  "stage": 2,
+  "merged_from": [],
+  "volatility": "stable",
+  "last_verified": "2026-10-25",
+  "summary": "hreflang annotations tell Google about language and regional versions of a page so it can point users to the most appropriate one. Each version must list itself and all others; x-default is the fallback; HTML, HTTP header and sitemap methods are equivalent; codes must be ISO 639-1 languages and ISO 3166-1 Alpha 2 regions. Google says it does not use lang attributes or the URL to detect language, and it advises against automatically redirecting users between language versions.",
+  "actions": [
+    "Add hreflang annotations to every localized version, each listing itself and all the others.",
+    "Use an x-default entry for users who match no version.",
+    "Use ISO 639-1 language codes and ISO 3166-1 Alpha 2 region codes only.",
+    "Do not rely on the HTML lang attribute to tell Google the language.",
+    "Avoid redirecting users automatically from one language version to another."
+  ],
+  "myths": [
+    {
+      "myth": "The HTML lang attribute tells Google which language a page is in.",
+      "correction": "Google says it does not use lang attributes or the URL for language information.",
+      "source_ids": [
+        "S123#P1"
+      ]
+    },
+    {
+      "myth": "One-way hreflang from the main language version is enough.",
+      "correction": "Google says each language version must list itself as well as all other versions.",
+      "source_ids": [
+        "S107#P2"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T58-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "According to Google, what does hreflang help Google Search do? (finish: point users to the most ___ version)",
+      "options": [],
+      "answer": "Appropriate",
+      "explanation": "Google says telling it about language and regional variants will help Google Search point users to the most appropriate version of a page by language or region.",
+      "related_topics": [],
+      "source_ids": [
+        "S107#P1"
+      ]
+    },
+    {
+      "item_id": "T58-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "When does Google say the reserved x-default value is used?",
+      "options": [
+        "A. When the page has no hreflang links on it at all",
+        "B. When the page is served from a country-code domain",
+        "C. When the HTML lang attribute is missing entirely",
+        "D. When nothing else matches the browser language"
+      ],
+      "answer": "D",
+      "explanation": "Correct: Google says x-default is used when no other language/region matches the user's browser setting. Wrong: 'no hreflang links at all', 'country-code domain' and 'missing lang attribute' are not the stated condition; the saved sentence ties x-default only to a mismatch with the browser setting, and Google separately says it does not use lang attributes.",
+      "related_topics": [],
+      "source_ids": [
+        "S107#P3",
+        "S123#P1"
+      ]
+    },
+    {
+      "item_id": "T58-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google says it uses the HTML lang attribute or the URL to detect a page's language.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google says it does not use any code-level language information such as lang attributes, or the URL.",
+      "related_topics": [],
+      "source_ids": [
+        "S123#P1"
+      ]
+    },
+    {
+      "item_id": "T58-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Why can a site pick HTML tags, HTTP headers or a sitemap for hreflang? Complete: Google treats the three methods as ___.",
+      "options": [],
+      "answer": "Equivalent",
+      "explanation": "Google says there are three ways to indicate language/locale versions (HTML tags, HTTP headers, sitemap) and that the three methods are equivalent from Google's perspective.",
+      "related_topics": [],
+      "source_ids": [
+        "S107#P4",
+        "S107#P7",
+        "S107#P5"
+      ]
+    },
+    {
+      "item_id": "T58-L2-02",
+      "level": 2,
+      "type": "misconception",
+      "prompt": "True or false: hreflang accepts any language and region codes you invent, such as made-up ones, because Google reads them loosely.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google says only language codes listed in ISO 639-1 and region codes listed in ISO 3166-1 Alpha 2 are supported.",
+      "related_topics": [],
+      "source_ids": [
+        "S107#P6"
+      ]
+    },
+    {
+      "item_id": "T58-L2-03",
+      "level": 2,
+      "type": "unsupported_statement",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Each language version must list itself and all others",
+        "B. Google says hreflang gives localized pages a ranking boost",
+        "C. Only ISO 639-1 language and ISO 3166-1 Alpha 2 region codes are supported",
+        "D. The HTML, HTTP header and sitemap methods are equivalent to Google"
+      ],
+      "answer": "B",
+      "explanation": "Correct (unsupported): the saved Google pages describe hreflang as helping Google point users to the right version, not as a ranking boost. The other three are supported: reciprocal listing, ISO language and region codes, and the three equivalent methods.",
+      "related_topics": [],
+      "source_ids": [
+        "S107#P1",
+        "S107#P2",
+        "S107#P6",
+        "S107#P5",
+        "S107#P7"
+      ]
+    },
+    {
+      "item_id": "T58-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "HYPOTHETICAL: a page exists in en-GB, fr-FR, de-DE and es-ES, and you also add one x-default entry. If each page's set lists itself, all other language versions and the x-default entry, how many hreflang entries does each page carry? Answer with the number.",
+      "options": [],
+      "answer": "5",
+      "explanation": "Google says each language version must list itself as well as all other language versions: four versions give four entries. The reserved x-default value (used when no other language or region matches the browser setting) adds a fifth entry, so five.",
+      "related_topics": [],
+      "source_ids": [
+        "S107#P2",
+        "S107#P3"
+      ]
+    },
+    {
+      "item_id": "T58-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical hreflang audit has four findings. Which one is an error under Google's guidance?",
+      "options": [
+        "A. English page lists French; French omits English",
+        "B. Each page's set includes the page itself",
+        "C. An x-default entry is set as a fallback",
+        "D. The hreflang entries are in the sitemap, not the HTML"
+      ],
+      "answer": "A",
+      "explanation": "Correct (the error): Google says each language version must list itself and all others, so one-way listing is wrong. The other three are fine: self-listing, an x-default fallback, and sitemap-based hreflang (the three methods are equivalent).",
+      "related_topics": [],
+      "source_ids": [
+        "S107#P2",
+        "S107#P3",
+        "S107#P5",
+        "S107#P7"
+      ]
+    },
+    {
+      "item_id": "T58-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "HYPOTHETICAL site with /en/, /fr/ and /de/ versions. Symptom: only the English version appears for users in France and Germany. Evidence: (1) the site automatically redirects visitors from one language version to another based on browser language; (2) Google says to avoid automatically redirecting users from one language version to a different one; (3) the pages are otherwise crawlable. Best action?",
+      "options": [
+        "A. Add more redirects keyed to the browser language",
+        "B. Add noindex to the English pages",
+        "C. Remove the automatic language redirect",
+        "D. Disallow the /fr/ and /de/ folders"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google advises avoiding automatic language redirects. More redirects deepen the issue. noindex on English pages removes the version that does appear. Disallowing /fr/ and /de/ blocks the versions you want found. Practitioner inference: the redirect hides the other versions from crawlers and users.",
+      "related_topics": [],
+      "source_ids": [
+        "S123#P2",
+        "S107#P1"
+      ]
+    },
+    {
+      "item_id": "T58-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "HYPOTHETICAL site with translated pages. Symptom: Google shows the wrong language version in some countries. Evidence: (1) each page has a correct HTML lang attribute; (2) no hreflang annotations exist; (3) Google says it does not use lang attributes for language information. Best action?",
+      "options": [
+        "A. Rely on lang attributes alone and wait",
+        "B. Add hreflang with return links",
+        "C. Add the language to every URL slug only",
+        "D. Redirect users by browser language"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google uses hreflang annotations, listing each version and all others, to point users to the right version. Waiting on lang attributes relies on what Google says it does not use. Slugs alone are not the annotation mechanism. Redirecting by browser language is what Google advises against.",
+      "related_topics": [
+        "T41"
+      ],
+      "source_ids": [
+        "S123#P1",
+        "S107#P1",
+        "S107#P2",
+        "S123#P2"
+      ]
+    }
+  ]
 }

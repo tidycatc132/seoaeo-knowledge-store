@@ -1,0 +1,218 @@
+{
+  "topic_id": "T52",
+  "title": "GEO and AI Overviews retrieval",
+  "stage": 7,
+  "merged_from": [],
+  "volatility": "fast-moving",
+  "last_verified": "2026-10-25",
+  "summary": "Google says there are no additional requirements or special optimizations for AI Overviews and AI Mode, no special schema, and that a page must be indexed and snippet-eligible to be a supporting link. nosnippet and max-snippet also limit use as direct input to those features. OpenAI and Perplexity document separate crawlers for search and training with independent robots.txt settings. The GEO paper (Aggarwal et al.) proposes a benchmark and reports visibility gains of up to 40% in its experiments, varying by domain; it is evidence of what that study found, not of any engine's rules. Pages checked 2026-10-25; this area changes quickly.",
+  "actions": [
+    "Confirm key pages are indexed, crawlable and not under nosnippet or restrictive max-snippet.",
+    "Decide per crawler: allow OAI-SearchBot and PerplexityBot if you want to be surfaced in their search; training bots are separate.",
+    "Watch overall Search Console traffic; Google says sites appearing in AI features are included in it.",
+    "Treat GEO paper tactics as experiments to test, not rules; results vary by domain."
+  ],
+  "myths": [
+    {
+      "myth": "You need special optimization or schema to show in AI Overviews.",
+      "correction": "Google says no additional requirements and no special optimizations or schema.",
+      "source_ids": [
+        "S007#P2",
+        "S007#P3"
+      ]
+    },
+    {
+      "myth": "Blocking GPTBot removes you from ChatGPT search.",
+      "correction": "OpenAI says each crawler setting is independent; OAI-SearchBot governs search surfacing.",
+      "source_ids": [
+        "S510#P3",
+        "S510#P1"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T52-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In the GEO paper, what is the name of the benchmark of diverse user queries across multiple domains?",
+      "options": [],
+      "answer": "GEO-bench",
+      "explanation": "The abstract introduces GEO-bench, a large-scale benchmark of diverse user queries across multiple domains.",
+      "related_topics": [],
+      "source_ids": [
+        "S505#P2"
+      ]
+    },
+    {
+      "item_id": "T52-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "What does Google say about requirements to appear in AI Overviews or AI Mode?",
+      "options": [
+        "A. A special AI sitemap must be submitted for every page",
+        "B. Structured data of type FAQ must be present on the page",
+        "C. No additional requirements or special optimizations",
+        "D. A verified Business Profile must exist for the site"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Google says there are no additional requirements, nor other special optimizations necessary. Wrong: 'A special AI sitemap' - not mentioned as required. 'Structured data of type FAQ' - Google says there is no special schema to add. 'A verified Business Profile' - not stated as a requirement.",
+      "related_topics": [],
+      "source_ids": [
+        "S007#P2"
+      ]
+    },
+    {
+      "item_id": "T52-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: The GEO paper guarantees a visibility boost of 40% on any generative engine.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The paper says GEO can boost visibility by up to 40% in its generative engine responses and that efficacy varies across domains; it is a study result, not a guarantee.",
+      "related_topics": [],
+      "source_ids": [
+        "S505#P3",
+        "S505#P4"
+      ]
+    },
+    {
+      "item_id": "T52-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "To be eligible as a supporting link in AI Overviews or AI Mode, Google says a page must be what?",
+      "options": [],
+      "answer": "indexed",
+      "explanation": "Google says a page must be indexed (and eligible to be shown in Search with a snippet).",
+      "related_topics": [],
+      "source_ids": [
+        "S007#P6",
+        "S007#P7"
+      ]
+    },
+    {
+      "item_id": "T52-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'Disallowing GPTBot hides us from ChatGPT search.' Which correction is best?",
+      "options": [
+        "A. Each OpenAI crawler setting is independent, so disallowing GPTBot leaves OAI-SearchBot unaffected",
+        "B. GPTBot and OAI-SearchBot are the same crawler under two names",
+        "C. Robots.txt has no effect on any OpenAI bot, so nothing is hidden",
+        "D. Robots.txt changes take effect for OpenAI systems immediately"
+      ],
+      "answer": "A",
+      "explanation": "Correct: OpenAI says each setting is independent; OAI-SearchBot is the one used to surface sites in ChatGPT search. Wrong: 'GPTBot and OAI-SearchBot are the same' - separate settings. 'Robots.txt does nothing' - OpenAI says robots.txt controls these. 'Changes apply instantly' - OpenAI says about 24 hours.",
+      "related_topics": [],
+      "source_ids": [
+        "S510#P1",
+        "S510#P2",
+        "S510#P3",
+        "S510#P6"
+      ]
+    },
+    {
+      "item_id": "T52-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. OpenAI recommends allowing OAI-SearchBot to help a site appear in search results",
+        "B. Google ranks AI Overview supporting sources by applying the GEO paper's optimization methods",
+        "C. Perplexity says PerplexityBot is not used to crawl content for AI foundation models",
+        "D. Google says sites appearing in AI features are in overall Search Console traffic"
+      ],
+      "answer": "B",
+      "explanation": "Supported: OpenAI recommends allowing OAI-SearchBot to appear in search (A); Perplexity says PerplexityBot is not used to crawl for foundation models (C); Google says sites appearing in AI features are included in overall search traffic in Search Console (D). Unsupported: B - no source says Google uses the GEO paper's methods to rank in AI Overviews.",
+      "related_topics": [],
+      "source_ids": [
+        "S510#P4",
+        "S511#P2",
+        "S007#P11"
+      ]
+    },
+    {
+      "item_id": "T52-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical publisher wants to appear in ChatGPT search but asks that content not be used to train foundation models. Which robots.txt setup matches OpenAI's documentation?",
+      "options": [
+        "A. Disallow OAI-SearchBot, allow GPTBot",
+        "B. Allow both OAI-SearchBot and GPTBot",
+        "C. Disallow both OAI-SearchBot and GPTBot",
+        "D. Allow OAI-SearchBot, disallow GPTBot"
+      ],
+      "answer": "D",
+      "explanation": "Correct: allow OAI-SearchBot (used to surface sites in ChatGPT search) and disallow GPTBot (indicates content should not be used for training foundation models). Wrong: 'Disallow OAI-SearchBot, allow GPTBot' - the reverse, hiding from search and allowing training. 'Allow both' - permits training use. 'Disallow both' - removes the site from ChatGPT search answers.",
+      "related_topics": [],
+      "source_ids": [
+        "S510#P1",
+        "S510#P2",
+        "S510#P4"
+      ]
+    },
+    {
+      "item_id": "T52-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A vendor says: 'The GEO paper proves our method lifts Google AI Overview citations by 40%.' What is the main error?",
+      "options": [
+        "A. The paper has no benchmark of any kind",
+        "B. Google bans all GEO methods in its spam policies",
+        "C. An up-to result is presented as a guarantee for Google",
+        "D. AI Overviews require schema markup before they cite a page"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the paper reports up to 40% in its own experiments and varies across domains; it is not a guarantee about Google. Wrong: 'The paper has no benchmark' - it describes GEO-bench. 'Google bans GEO' - not stated. 'AI Overviews need schema' - Google says not.",
+      "related_topics": [],
+      "source_ids": [
+        "S505#P3",
+        "S505#P4",
+        "S007#P3"
+      ]
+    },
+    {
+      "item_id": "T52-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a SaaS blog. Symptom: never surfaced in ChatGPT search. Evidence: (1) a security plugin added Disallow: / for OAI-SearchBot; (2) GPTBot is allowed; (3) OpenAI says sites opted out of OAI-SearchBot will not be shown in ChatGPT search answers and changes take about 24 hours. Question: what is the best action?",
+      "options": [
+        "A. Disallow GPTBot as well so that all OpenAI bots are blocked",
+        "B. Remove the OAI-SearchBot disallow, allow about 24 hours",
+        "C. Add AI schema markup to every page of the blog",
+        "D. Leave robots.txt as it is and simply wait longer"
+      ],
+      "answer": "B",
+      "explanation": "Correct: remove the OAI-SearchBot disallow, then allow roughly 24 hours. Wrong: 'Disallow GPTBot' - independent and irrelevant to the symptom. 'Add AI schema' - no such need documented. 'Wait without change' - the block persists.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S510#P4",
+        "S510#P5",
+        "S510#P6",
+        "S101#P1"
+      ]
+    },
+    {
+      "item_id": "T52-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site: a consultancy. Symptom: an agency proposes a paid 'AI Overview optimization' package. Evidence: (1) pages are indexed and show normal snippets; (2) Google says no additional requirements or special optimizations; (3) Google says sites appearing in AI features are included in overall search traffic in Search Console. Question: what is the best response?",
+      "options": [
+        "A. Buy the package because AI features need special schema on pages",
+        "B. Add special schema to every page, then wait for a full recrawl",
+        "C. Noindex the whole site to reset how Google sees every page",
+        "D. Check indexing, snippet eligibility and Search Console traffic"
+      ],
+      "answer": "D",
+      "explanation": "Correct: verify indexing and snippet eligibility, watch Search Console traffic, and treat GEO tactics as tests. Wrong: 'Buy the package' - Google says no special optimization is needed. 'Add special schema' - none needed. 'Noindex the site' - removes eligibility.",
+      "related_topics": [],
+      "source_ids": [
+        "S007#P2",
+        "S007#P7",
+        "S007#P11"
+      ]
+    }
+  ]
+}

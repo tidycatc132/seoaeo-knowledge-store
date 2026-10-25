@@ -17,14 +17,15 @@
       "myth": "AI answer features need special markup or special optimization to pull your page in.",
       "correction": "Google's AI features documentation says there are no additional requirements and no special schema.org structured data to add.",
       "source_ids": [
-        "S007"
+        "S007#P2",
+        "S007#P3"
       ]
     },
     {
       "myth": "A research paper on query rewriting proves Google does the same.",
       "correction": "A paper is evidence of what a method is and does; nothing in the saved passage says any engine uses it, so engine use is unconfirmed.",
       "source_ids": [
-        "S006"
+        "S006#P1"
       ]
     }
   ],
@@ -33,10 +34,10 @@
       "item_id": "T12-L1-01",
       "level": 1,
       "type": "definition",
-      "prompt": "In classic information retrieval, what does automatic query expansion do?",
+      "prompt": "In classic information retrieval, automatically adding synonyms and related words to a query is called query ___ (one word).",
       "options": [],
-      "answer": "Adds synonyms and related words to the query",
-      "explanation": "The textbook describes that the query can be automatically expanded with synonyms and related words. It is a different step from spelling correction, which fixes mistyped words.",
+      "answer": "expansion",
+      "explanation": "The textbook describes that the query can be automatically expanded with synonyms and related words.",
       "related_topics": [
         "T48"
       ],
@@ -159,19 +160,20 @@
       "item_id": "T12-L3-02",
       "level": 3,
       "type": "spot_the_error",
-      "prompt": "A hypothetical audit note says: 'The HyDE paper proves Google writes hypothetical answers for queries, so fill pages with fake-answer text.' What is the main error?",
+      "prompt": "A hypothetical audit note says: 'Thesaurus-based query expansion needs each searcher to supply extra input first, so it cannot run on its own.' What is the error?",
       "options": [
-        "A. LLM-written text is banned in every major search engine.",
-        "B. A paper shows a method, not engine use.",
-        "C. HyDE only works for navigational queries and brand names.",
-        "D. Hypothetical documents are always accurate."
+        "A. Expansion works only when a spell checker has already run",
+        "B. Thesaurus-based expansion does not require any user input",
+        "C. Expansion needs the searcher to mark results as relevant",
+        "D. Thesaurus-based expansion is banned in every major search engine"
       ],
       "answer": "B",
-      "explanation": "Correct: the paper describes the method and says the hypothetical document is unreal and may contain false details; no passage says any engine uses it (unconfirmed). Wrong: 'LLM-written text is banned in every major search engine.' - not stated in the saved source. 'HyDE only works for navigational queries and brand names.' - not stated in the saved source. 'Hypothetical documents are always accurate.' - the paper says the opposite.",
+      "explanation": "Correct: the textbook says thesaurus-based query expansion has the advantage of not requiring any user input, and that the query can be automatically expanded with synonyms and related words. Wrong: 'only after a spell checker' - not stated. 'Needs the searcher to mark results as relevant' - that is ordinary relevance feedback, where users give additional input. 'Banned in every major search engine' - not stated in any saved source.",
       "related_topics": [],
       "source_ids": [
-        "S006#P1",
-        "S006#P2"
+        "S001#P5",
+        "S001#P2",
+        "S001#P1"
       ]
     },
     {
@@ -186,9 +188,10 @@
         "D. Do nothing, since related searches ignore subtopics entirely."
       ],
       "answer": "B",
-      "explanation": "Correct: this is practitioner inference: the documentation describes related searches across subtopics but does not say that covering them earns inclusion, so treat it as a test, not a guarantee. It also avoids the markup Google says is unnecessary. Wrong: 'Add the proposed 'AI visibility' schema block to the page.' - Google says there is no special schema.org structured data to add. 'Hide a list of 30 synonyms in the page template.' - structured data and page text should be visible to readers, and a synonym list is not the lever. 'Do nothing, since related searches ignore subtopics entirely.' - that contradicts the documentation.",
+      "explanation": "Correct: this is practitioner inference: the documentation describes related searches across subtopics but does not say that covering them earns inclusion, so treat it as a test, not a guarantee. It also avoids the markup Google says is unnecessary. Wrong: 'Add the proposed 'AI visibility' schema block to the page.' - Google says there is no special schema.org structured data to add. 'Hide a list of 30 synonyms in the page template.' - a hidden synonym list is practitioner inference at best: no saved source says synonym lists are the lever, and Google's structured data guidelines say not to mark up content not visible to readers. 'Do nothing, since related searches ignore subtopics entirely.' - that contradicts the documentation.",
       "related_topics": [
-        "T44"
+        "T44",
+        "T25"
       ],
       "source_ids": [
         "S007#P1",
@@ -205,7 +208,7 @@
         "A. Add more synonyms to the meta descriptions across the site.",
         "B. Add Organization markup with sameAs links to the site.",
         "C. Wait, since pseudo relevance feedback will repair it.",
-        "D. Restore natural phrasing in titles and test."
+        "D. Restore natural phrasing in titles, then test the effect on impressions."
       ],
       "answer": "D",
       "explanation": "Correct: this is practitioner inference: the 2019 announcement is about query understanding, not title wording, so restore and measure rather than assume. Wrong: 'Add more synonyms to the meta descriptions across the site.' - it does not restore the dropped words. 'Add Organization markup with sameAs links to the site.' - unrelated to query wording. 'Wait, since pseudo relevance feedback will repair it.' - PRF is a retrieval-side expansion method, not a repair for titles.",

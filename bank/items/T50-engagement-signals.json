@@ -77,7 +77,7 @@
       "prompt": "Google's 'Rigorous testing' page says it reviews metrics such as what people click on in live traffic experiments. What does that page support?",
       "options": [
         "A. Your page's CTR is a confirmed ranking factor",
-        "B. Google uses click metrics to judge changes",
+        "B. Google uses click metrics from live experiments to judge changes",
         "C. Dwell time is a confirmed ranking signal here",
         "D. Google does not run live experiments at all"
       ],

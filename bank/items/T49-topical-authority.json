@@ -1,0 +1,214 @@
+{
+  "topic_id": "T49",
+  "title": "Topical authority and semantic content clustering",
+  "stage": 6,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Topical authority is a popular industry term, not a Google-defined signal in the saved sources. Google does state that E-E-A-T itself isn't a specific ranking factor, that trust is most important of its aspects, that ranking uses many factors, and that every page you care about should be linked from another page. SEJ reports John Mueller replying 'Don’t worry about it' about the term. Industry articles (grade C) are kept as theory and not used for answer keys.",
+  "actions": [
+    "Separate Google statements from industry theory in client reports.",
+    "Link every cluster page from another page with descriptive anchors.",
+    "Avoid mass-producing pages for coverage; Google lists that under scaled content abuse."
+  ],
+  "myths": [
+    {
+      "myth": "Topical authority is a confirmed Google ranking score.",
+      "correction": "No saved Google source confirms a topical authority score; SEJ reports Mueller replying 'Don’t worry about it' on the topic.",
+      "source_ids": [
+        "S414#P1",
+        "S414#P2"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T49-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "Google's helpful content page says of the E-E-A-T aspects: 'Of these aspects, ___ is most important.' Fill the blank with one word.",
+      "options": [],
+      "answer": "trust",
+      "explanation": "The page lists experience, expertise, authoritativeness and trustworthiness as E-E-A-T and says trust is most important.",
+      "related_topics": [],
+      "source_ids": [
+        "S407#P1",
+        "S407#P2"
+      ]
+    },
+    {
+      "item_id": "T49-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "How does Google's ranking systems guide describe the systems that rank pages?",
+      "options": [
+        "A. One sitewide topical authority score per domain",
+        "B. Automated systems using many factors and signals",
+        "C. Human raters assigning each page its rank by hand",
+        "D. A single link-count formula applied to all queries"
+      ],
+      "answer": "B",
+      "explanation": "Correct: the guide says Google uses automated ranking systems that look at many factors and signals about hundreds of billions of pages. Wrong: 'One sitewide topical authority score per domain' - the guide does not mention such a score. 'Human raters assigning each page its rank by hand' - raters evaluate quality but no single rating directly sets rank. 'A single link-count formula applied to all queries' - no saved source says one formula decides all queries.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P1",
+        "S014#P4"
+      ]
+    },
+    {
+      "item_id": "T49-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google's helpful content page says E-E-A-T itself isn't a specific ranking factor.",
+      "options": [],
+      "answer": "True",
+      "explanation": "The page says E-E-A-T itself isn't a specific ranking factor and that Google's automated systems use many different factors to rank great content.",
+      "related_topics": [],
+      "source_ids": [
+        "S407#P3",
+        "S407#P4"
+      ]
+    },
+    {
+      "item_id": "T49-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Why is 'topical authority' labelled industry theory (grade C) in this bank rather than a Google-stated ranking factor?",
+      "options": [
+        "A. Google defined it in the helpful content page and in the rater guidelines too",
+        "B. Google patented it and later confirmed using it in ranking",
+        "C. No saved Google page defines it; Mueller reportedly said not to worry",
+        "D. Raters score it directly for every site they review"
+      ],
+      "answer": "C",
+      "explanation": "Correct: none of the saved Google pages define a topical authority signal (an absence in what was saved, not proof), and an SEJ article titled 'Google On Topical Authority: Don’t Worry About It' reports Mueller replying 'Don’t worry about it.' Wrong: 'Google defined it in the helpful content page and in the rater guidelines too' - that page defines E-E-A-T and says it is not a specific ranking factor. 'Google patented it and later confirmed using it in ranking' - no saved patent or Google statement says this. 'Raters score it directly for every site they review' - the rater guidelines say no single rating directly impacts rank.",
+      "related_topics": [],
+      "source_ids": [
+        "S407#P3",
+        "S414#P1",
+        "S414#P2",
+        "S014#P4"
+      ]
+    },
+    {
+      "item_id": "T49-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: Google's link guidance says every page you care about should have a link from at least one other page on your site.",
+      "options": [],
+      "answer": "True",
+      "explanation": "Google's link best practices page says this, which is why cluster pages should not be left as orphans. Whether clusters themselves raise rankings is industry theory.",
+      "related_topics": [],
+      "source_ids": [
+        "S405#P4"
+      ]
+    },
+    {
+      "item_id": "T49-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved Google sources?",
+      "options": [
+        "A. Trust is the most important of the E-E-A-T aspects listed",
+        "B. Every page you care about should be linked from another page on the site",
+        "C. No single rater rating directly impacts a page's rank",
+        "D. Google confirmed that it computes a per-site topical authority score for ranking"
+      ],
+      "answer": "D",
+      "explanation": "Correct: no saved Google source says Google computes such a score. Wrong: 'Trust is the most important of the E-E-A-T aspects listed' - stated on the helpful content page. 'Every page you care about should be linked from another page on the site' - stated in Google's link guidance. 'No single rater rating directly impacts a page's rank' - stated in the rater guidelines.",
+      "related_topics": [],
+      "source_ids": [
+        "S407#P2",
+        "S405#P4",
+        "S014#P4"
+      ]
+    },
+    {
+      "item_id": "T49-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical: a cooking site plans a cluster of 12 related guides. Which step is supported by Google guidance rather than industry theory?",
+      "options": [
+        "A. Link each guide from another page with descriptive anchors",
+        "B. Generate 200 near-empty pages to reach full topical coverage fast",
+        "C. Publish a hub page and report it as a Google topical authority score",
+        "D. Add a sitewide authority badge"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google says each page you care about should be linked from another page and anchors should be descriptive. Clustering as a ranking strategy is industry theory. Wrong: 'Generate 200 near-empty pages to reach full topical coverage fast' - Google's policy names generating many pages without adding value as scaled content abuse. 'Publish a hub page and report it as a Google topical authority score' - Google does not define such a score. 'Add a sitewide authority badge' - no saved source says badges matter.",
+      "related_topics": [],
+      "source_ids": [
+        "S405#P4",
+        "S405#P2",
+        "S209#P7",
+        "S209#P8"
+      ]
+    },
+    {
+      "item_id": "T49-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A memo says: 'Google says topical authority is a ranking factor, so we will have AI write 200 pages on every sub-topic.' Which correction is best supported?",
+      "options": [
+        "A. Raters will score each page and then set its rank in Search",
+        "B. Many pages without added value fit scaled content abuse",
+        "C. Authority only counts if pages carry sponsored links",
+        "D. Google requires exactly 200 pages per cluster"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google's policy lists using generative AI to generate many pages without adding value under scaled content abuse; the memo also attributes an unsaved claim to Google. Wrong: 'Raters will score each page and then set its rank in Search' - no single rating directly impacts rank. 'Authority only counts if pages carry sponsored links' - sponsored labels are for paid links. 'Google requires exactly 200 pages per cluster' - no source gives a page count.",
+      "related_topics": [
+        "T54"
+      ],
+      "source_ids": [
+        "S209#P7",
+        "S209#P8",
+        "S014#P4"
+      ]
+    },
+    {
+      "item_id": "T49-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical site 'BikeBarn'. Evidence: (1) 80 AI-written support pages were added to 'build topical authority'; (2) the Page indexing report shows most as crawled but not indexed; (3) Google says indexing isn't guaranteed and asks if you use extensive automation to produce content on many topics. Best reading?",
+      "options": [
+        "A. Publish more cluster pages to prove full topical coverage",
+        "B. Declare a confirmed topical authority deficit in the report",
+        "C. Review the pages against the helpful-content questions",
+        "D. Add rel=sponsored to every page"
+      ],
+      "answer": "C",
+      "explanation": "Correct: crawled-not-indexed means Google saw the pages and did not index them; Google's guidance points to people-first value and warns about extensive automation. Wrong: 'Publish more cluster pages to prove full topical coverage' - more pages repeats the pattern the guidance questions. 'Declare a confirmed topical authority deficit in the report' - Google has not confirmed such a signal in the saved sources. 'Add rel=sponsored to every page' - sponsored is for paid links.",
+      "related_topics": [
+        "T39"
+      ],
+      "source_ids": [
+        "S119#P1",
+        "S120#P3",
+        "S407#P6",
+        "S407#P7"
+      ]
+    },
+    {
+      "item_id": "T49-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical client 'PeakGear' asks whether to buy a tool reporting 'topical authority 82/100'. Evidence: (1) Google's ranking guide says its systems look at many factors and signals; (2) as reported by SEJ, Mueller replied 'Don’t worry about it' on a topical authority thread; (3) the tool is third party. Best advice (practitioner inference)?",
+      "options": [
+        "A. Treat it as Google's official score",
+        "B. Pay to raise it before making any content fixes",
+        "C. Ignore internal links entirely",
+        "D. Treat it as a third-party heuristic only"
+      ],
+      "answer": "D",
+      "explanation": "Correct: practitioner inference: no saved Google source defines such a metric, SEJ reports Mueller saying not to worry, and the score comes from a third party, so it is at best a heuristic. Wrong: 'Treat it as Google's official score' - no saved Google source defines the score. 'Pay to raise it before making any content fixes' - spending to move an unconfirmed metric has no source support. 'Ignore internal links entirely' - Google's link guidance says to link to pages you care about.",
+      "related_topics": [],
+      "source_ids": [
+        "S300#P1",
+        "S414#P1",
+        "S414#P2",
+        "S405#P4"
+      ]
+    }
+  ]
+}

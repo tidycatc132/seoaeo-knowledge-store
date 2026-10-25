@@ -16,3 +16,9 @@ Summary: Google's guidelines for human raters (dated November 2023 on the copy o
 > their intent may be to learn more about the planet mercury or the chemical element.
 ### P3 interpretations
 > A very helpful result for any dominant, common or reasonable minor query interpretation/user intent.
+### P4 raters not direct
+> no single rating – or single rater – directly impacts how a given page or site ranks in Search.
+### P5 trust def
+> And trust: the extent to which the page is accurate, honest, safe, and reliable.
+### P6 ymyl
+> We call such topics “Your Money or Your Life”, or YMYL.

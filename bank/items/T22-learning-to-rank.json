@@ -33,10 +33,10 @@
       "item_id": "T22-L1-01",
       "level": 1,
       "type": "definition",
-      "prompt": "Burges's overview describes choosing 'each pair of urls Ui and U j with differing labels'. What does each chosen training example consist of? One word.",
+      "prompt": "Burges's overview describes choosing 'each pair of urls Ui and U j' with differing what? One word.",
       "options": [],
-      "answer": "pair",
-      "explanation": "The quoted sentence picks each pair of URLs with differing labels, so the unit chosen is a pair. The quote does not itself name the algorithm it belongs to.",
+      "answer": "labels",
+      "explanation": "The quoted sentence picks each pair of URLs with differing labels. The quote does not itself name the algorithm it belongs to.",
       "related_topics": [],
       "source_ids": [
         "S304#P3"
@@ -49,11 +49,11 @@
       "prompt": "According to Burges, how are the three algorithms related?",
       "options": [
         "A. RankNet is the boosted tree version of LambdaMART",
-        "B. LambdaMART builds on LambdaRank, from RankNet",
+        "B. The three algorithms are unrelated to each other",
         "C. LambdaRank is a Google Search ranking system",
-        "D. The three algorithms are unrelated to each other"
+        "D. LambdaMART builds on LambdaRank, from RankNet"
       ],
-      "answer": "B",
+      "answer": "D",
       "explanation": "Correct: LambdaMART is the boosted tree version of LambdaRank, which is based on RankNet. Wrong: 'RankNet is the boosted tree version of LambdaMART' - reverses the lineage. 'LambdaRank is a search engine' - it is an algorithm. 'They are unrelated' - the abstract links them.",
       "related_topics": [],
       "source_ids": [
@@ -113,7 +113,7 @@
       "type": "which_unsupported",
       "prompt": "Which statement is NOT supported by the saved sources?",
       "options": [
-        "A. Google has confirmed LambdaMART runs Search ranking",
+        "A. Google has publicly confirmed that LambdaMART drives its Search ranking",
         "B. Burges describes choosing pairs of URLs with differing labels",
         "C. LambdaRank is a special configuration of LambdaLoss",
         "D. Google says its systems look at many factors and signals"
@@ -131,10 +131,10 @@
       "item_id": "T22-L3-01",
       "level": 3,
       "type": "worked_example",
-      "prompt": "Google says that, for example, when searching for current news topics, content freshness plays a bigger role than dictionary definitions, and that the weight of each factor varies with the query. For the query 'latest earthquake news', which factor would you expect to matter more than for a definition query? Answer with Google's word.",
+      "prompt": "Google says the weight applied to each ranking factor varies depending on the nature of the query. Compare 'latest earthquake news' with a dictionary-definition query. Which factor would you expect to matter more for the news query? Answer with one word.",
       "options": [],
       "answer": "freshness",
-      "explanation": "Google's How Search works page says content freshness plays a bigger role for current news topics than dictionary definitions, and that factor weights vary by query. Applying that to this query is a worked example, not a measured weight.",
+      "explanation": "Google's How Search works page says content freshness plays a bigger role for current news topics than for dictionary definitions, and that factor weights vary by query. Applying that to this query is a worked example, not a measured weight.",
       "related_topics": [
         "T51"
       ],
@@ -190,7 +190,7 @@
       "prompt": "Case file (hypothetical vendor): a tool report claims 'the ranking formula is 40% links, 30% content, 30% UX for all keywords'. Evidence: (1) the report shows correlations across keywords; (2) Google says factor weights vary depending on the query; (3) Google's guide says it covers only some notable systems. Which response is best? (Note: the explanation includes practitioner inference.)",
       "options": [
         "A. Adopt the percentages as the budget split",
-        "B. Treat as unconfirmed; work per query",
+        "B. Treat the percentages as unconfirmed and work query by query",
         "C. Email Google to ask it to confirm the weights",
         "D. Ignore links, content and UX entirely"
       ],

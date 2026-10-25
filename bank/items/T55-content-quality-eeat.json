@@ -1,0 +1,215 @@
+{
+  "topic_id": "T55",
+  "title": "Content quality heuristics, Information Gain and E-E-A-T",
+  "stage": 6,
+  "merged_from": [],
+  "volatility": "evolving",
+  "last_verified": "2026-10-25",
+  "summary": "Google says E-E-A-T itself isn't a specific ranking factor, that trust is most important, and that its systems use many factors. Raters' ratings do not directly set a page's rank. Information gain appears in a Google patent as a score for documents; that is a patent description, not confirmed Search behaviour. Use Google's Who, How, Why framework; Google also asks whether you use extensive automation to produce content on many topics.",
+  "actions": [
+    "Audit pages with Google's Who, How, Why framework; note Google asks whether you use extensive automation across many topics.",
+    "Show first-hand experience.",
+    "Teach information gain as a patent, not a factor."
+  ],
+  "myths": [
+    {
+      "myth": "Information gain is a confirmed ranking factor.",
+      "correction": "The saved source is a patent describing a technique; it does not confirm Search uses it.",
+      "source_ids": [
+        "S413#P2",
+        "S413#P3"
+      ]
+    },
+    {
+      "myth": "Raters set rankings.",
+      "correction": "No single rating or rater directly impacts how a page ranks.",
+      "source_ids": [
+        "S014#P4"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item_id": "T55-L1-01",
+      "level": 1,
+      "type": "definition",
+      "prompt": "In E-E-A-T on Google's helpful content page, what does the first E stand for? One word.",
+      "options": [],
+      "answer": "experience",
+      "explanation": "The page lists experience, expertise, authoritativeness and trustworthiness as E-E-A-T.",
+      "related_topics": [],
+      "source_ids": [
+        "S407#P1"
+      ]
+    },
+    {
+      "item_id": "T55-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "What does Google patent US20200349181A1 describe?",
+      "options": [
+        "A. Measuring Core Web Vitals across a whole domain",
+        "B. An information gain score for documents",
+        "C. Detecting cloaking",
+        "D. Scoring anchor text"
+      ],
+      "answer": "B",
+      "explanation": "Correct: its abstract says techniques for determining an information gain score for documents. A patent is not proof that Search uses it. Wrong: 'Measuring Core Web Vitals across a whole domain' - the abstract describes an information gain score, not page-speed metrics. 'Detecting cloaking' - the abstract describes an information gain score, not cloaking detection. 'Scoring anchor text' - the abstract describes an information gain score for documents, not scoring anchor text.",
+      "related_topics": [],
+      "source_ids": [
+        "S413#P2",
+        "S413#P3"
+      ]
+    },
+    {
+      "item_id": "T55-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: the rater guidelines say a single rater's rating directly impacts how a page ranks.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The guidelines say no single rating or single rater directly impacts how a page or site ranks.",
+      "related_topics": [],
+      "source_ids": [
+        "S014#P4"
+      ]
+    },
+    {
+      "item_id": "T55-L2-01",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "About Google patent US20200349181A1 on information gain: why should you not tell a client 'information gain is a confirmed Google ranking factor'?",
+      "options": [
+        "A. Patents are never granted to large companies",
+        "B. Google forbids any public discussion of it",
+        "C. The patent describes a technique, not confirmed use",
+        "D. Information gain only applies to image search results"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the saved patent text describes techniques for determining an information gain score; nothing saved confirms that Search uses it. Wrong: 'Patents are never granted to large companies' - whether a patent is granted does not show use in Search, and this is not the stated reason. 'Google forbids any public discussion of it' - no saved source says discussion is forbidden. 'Information gain only applies to image search results' - the abstract refers to documents of interest, not image results.",
+      "related_topics": [],
+      "source_ids": [
+        "S413#P2",
+        "S413#P3"
+      ]
+    },
+    {
+      "item_id": "T55-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "True or false: Google's helpful content page says E-E-A-T is a specific ranking factor.",
+      "options": [],
+      "answer": "False",
+      "explanation": "It says E-E-A-T itself isn't a specific ranking factor.",
+      "related_topics": [],
+      "source_ids": [
+        "S407#P3"
+      ]
+    },
+    {
+      "item_id": "T55-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. Trust is the most important of the E-E-A-T aspects",
+        "B. The rater guidelines define trust as accurate, honest, safe and reliable",
+        "C. Some content is helpful based on experience it demonstrates",
+        "D. Google confirmed information gain is used in ranking"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the patent is not a confirmation of use. Wrong: 'Trust is the most important of the E-E-A-T aspects' - stated on the helpful content page. 'The rater guidelines define trust as accurate, honest, safe and reliable' - stated in the guidelines. 'Some content is helpful based on experience it demonstrates' - stated on the helpful content page.",
+      "related_topics": [],
+      "source_ids": [
+        "S413#P3",
+        "S407#P2",
+        "S014#P5",
+        "S407#P8"
+      ]
+    },
+    {
+      "item_id": "T55-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical review site wants to apply Google's guidance on experience. Which edit fits?",
+      "options": [
+        "A. Show first-hand testing the author did",
+        "B. Add the word 'expert' to the page title and bio",
+        "C. Copy manufacturer specs verbatim into the review",
+        "D. Hide the author"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google says some content is helpful based on the experience it demonstrates. Wrong: 'Add the word 'expert' to the page title and bio' - labels are not demonstrated experience. 'Copy manufacturer specs verbatim into the review' - adds no value, as thin-affiliation wording shows. 'Hide the author' - no saved source supports hiding authorship.",
+      "related_topics": [],
+      "source_ids": [
+        "S407#P8",
+        "S209#P14"
+      ]
+    },
+    {
+      "item_id": "T55-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A memo says: 'The information gain patent proves Google ranks unique paragraphs higher.' What is the error?",
+      "options": [
+        "A. It mentions Google by name in the claim",
+        "B. It uses the word unique",
+        "C. It cites a publication date",
+        "D. It treats a patent as proof of use"
+      ],
+      "answer": "D",
+      "explanation": "Correct: a patent describes a technique; it does not prove Search uses it. Wrong: 'It mentions Google by name in the claim' - mentioning Google is fine. 'It uses the word unique' - the word is not the issue. 'It cites a publication date' - dates are not the issue.",
+      "related_topics": [],
+      "source_ids": [
+        "S413#P2",
+        "S413#P3"
+      ]
+    },
+    {
+      "item_id": "T55-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical affiliate blog 'RecipeRoute'. Evidence: (1) 300 pages on many topics produced with extensive automation; (2) no author information; (3) traffic dropped. Best first step?",
+      "options": [
+        "A. Add E-E-A-T schema markup to every single page",
+        "B. Review pages with Google's Who, How, Why",
+        "C. Wait for information gain to rank them",
+        "D. Blame a rater who scored the site low"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google suggests evaluating content in terms of Who, How and Why, calls Why perhaps the most important question, and asks whether you use extensive automation to produce content on many topics. Wrong: 'Add E-E-A-T schema markup to every single page' - no saved source says schema is needed. 'Wait for information gain to rank them' - information gain is only described in a patent and is not a confirmed factor. 'Blame a rater who scored the site low' - no single rating directly sets rank.",
+      "related_topics": [
+        "T54"
+      ],
+      "source_ids": [
+        "S407#P9",
+        "S407#P10",
+        "S407#P6",
+        "S413#P2",
+        "S014#P4"
+      ]
+    },
+    {
+      "item_id": "T55-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical agency 'RankPulse' says: 'Our rater-guideline score for your site is High, so the traffic drop is a Google bug.' Evidence: (1) the guidelines say no single rating directly impacts how a page or site ranks; (2) Search Console lists 120 of the site's newly published pages as crawled by Google but not indexed (hypothetical); (3) Google says indexing isn't guaranteed. Best response?",
+      "options": [
+        "A. Accept it as a Google bug and wait for it to be fixed",
+        "B. Rewrite every page on the site right now, before diagnosing",
+        "C. Investigate the unindexed pages and other causes first",
+        "D. Remove the authors from every page on the site to reset it"
+      ],
+      "answer": "C",
+      "explanation": "Correct: a rater rating does not directly set rank, and the status shows Google fetched the 120 pages and did not index them, so start with those pages and other causes (the trade-off is time spent diagnosing before changing anything). Wrong: 'Google bug' - nothing supports it. 'Rewrite every page' - unnecessary without diagnosis. 'Remove the authors' - not supported by any saved source.",
+      "related_topics": [
+        "T5"
+      ],
+      "source_ids": [
+        "S014#P4",
+        "S119#P1",
+        "S120#P3"
+      ]
+    }
+  ]
+}

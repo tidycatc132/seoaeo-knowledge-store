@@ -34,9 +34,9 @@
       "item_id": "T51-L1-01",
       "level": 1,
       "type": "definition",
-      "prompt": "What does QDF stand for in Google's ranking systems guide wording? Give the phrase.",
+      "prompt": "In Google's ranking systems guide wording, QDF stands for 'query deserves ___' (one word).",
       "options": [],
-      "answer": "query deserves freshness",
+      "answer": "freshness",
       "explanation": "The guide says Google has various 'query deserves freshness' systems designed to show fresher content for queries where it would be expected.",
       "related_topics": [],
       "source_ids": [

@@ -15,17 +15,18 @@
   "myths": [
     {
       "myth": "If the answer looks fluent and on-topic, the RAG system is working.",
-      "correction": "Faithfulness (grounding in the given context) is a separate dimension from answer relevance (addressing the question); an answer can pass one and fail the other.",
+      "correction": "Faithfulness (grounding in the given context) is a separate dimension from answer relevance (addressing the question); an answer can pass one and fail the other. (The 'pass one and fail the other' step is practitioner inference from the two definitions.)",
       "source_ids": [
-        "S017"
+        "S017#P3",
+        "S017#P4"
       ]
     },
     {
       "myth": "RAG evaluation papers describe how public AI answer engines score their own output.",
       "correction": "The Ragas and ARES passages present evaluation frameworks for RAG pipelines; whether any public engine uses them is unconfirmed.",
       "source_ids": [
-        "S017",
-        "S018"
+        "S017#P1",
+        "S018#P1"
       ]
     }
   ],
@@ -34,9 +35,9 @@
       "item_id": "T29-L1-01",
       "level": 1,
       "type": "definition",
-      "prompt": "In the Ragas paper, what does faithfulness mean?",
+      "prompt": "In the Ragas paper, faithfulness refers to the idea that the answer should be grounded in the given ___ (one word).",
       "options": [],
-      "answer": "The answer should be grounded in the given context",
+      "answer": "context",
       "explanation": "The paper says faithfulness refers to the idea that the answer should be grounded in the given context. It is about support from the retrieved passages, not about whether the answer addresses the question.",
       "related_topics": [],
       "source_ids": [
@@ -102,11 +103,11 @@
       "prompt": "A colleague says 'The answer addresses the question, so it is faithful.' Which correction is best?",
       "options": [
         "A. Correct; the two are the same thing, so one score is enough.",
-        "B. That is answer relevance; faithfulness is separate.",
+        "B. Faithfulness needs human reference answers.",
         "C. Faithfulness measures how long the answer is in words.",
-        "D. Faithfulness needs human reference answers."
+        "D. That is answer relevance; faithfulness is separate."
       ],
-      "answer": "B",
+      "answer": "D",
       "explanation": "Correct: Ragas defines faithfulness as being grounded in the given context and answer relevance as directly addressing the question. Wrong: 'Correct; the two are the same thing, so one score is enough.' - they are separate definitions. 'Faithfulness measures how long the answer is in words.' - unsupported. 'Faithfulness needs human reference answers.' - Ragas is reference-free.",
       "related_topics": [],
       "source_ids": [
@@ -121,12 +122,12 @@
       "type": "odd_one_out",
       "prompt": "Which of these is NOT one of the three RAG quality dimensions in the ARES abstract?",
       "options": [
-        "A. Context relevance",
+        "A. Domain authority",
         "B. Answer faithfulness",
-        "C. Domain authority",
+        "C. Context relevance",
         "D. Answer relevance"
       ],
-      "answer": "C",
+      "answer": "A",
       "explanation": "Correct: it is a link-based SEO metric. Wrong: 'Context relevance' - named in the abstract. 'Answer faithfulness' - named in the abstract. 'Answer relevance' - named in the abstract.",
       "related_topics": [],
       "source_ids": [
@@ -137,10 +138,10 @@
       "item_id": "T29-L3-01",
       "level": 3,
       "type": "worked_example",
-      "prompt": "A RAG assistant is asked 'What is the refund window?'. Retrieval returns a shipping-policy passage with no refund information. The model answers '30 days' with confidence. Which dimension is most clearly failed by the retrieval stage, and which by the answer? Reply as 'retrieval / answer'.",
+      "prompt": "A RAG assistant is asked 'What is the refund window?'. Retrieval returns a shipping-policy passage with no refund information. The model answers '30 days' with confidence. Which Ragas dimension does the invented '30 days' fail most clearly? Answer with one word.",
       "options": [],
-      "answer": "Context relevance / faithfulness",
-      "explanation": "The retrieved passage lacks the needed information, so context relevance fails. The answer states a figure not grounded in the given context, so faithfulness fails. The answer may still look relevant to the question, so answer relevance alone would miss both problems.",
+      "answer": "faithfulness",
+      "explanation": "The answer states a figure that is not grounded in the given context, so faithfulness fails. The retrieval stage also failed context relevance, because the passage lacks the needed information, but the invented figure is the faithfulness failure. The answer may still look relevant to the question, so answer relevance alone would miss both problems.",
       "related_topics": [],
       "source_ids": [
         "S017#P5",
@@ -154,7 +155,7 @@
       "type": "spot_the_error",
       "prompt": "A hypothetical report says: 'The Ragas paper shows Google AI Mode scores its answers on faithfulness, so optimise for it.' What is the error?",
       "options": [
-        "A. A framework; engine use is unconfirmed.",
+        "A. A framework for evaluation; use by any engine is unconfirmed.",
         "B. Faithfulness is not a metric in the paper.",
         "C. Ragas needs ground truth human annotations.",
         "D. Faithfulness applies only to image-generation models."
@@ -176,7 +177,7 @@
       "options": [
         "A. Context relevance: replace the retriever with a new one.",
         "B. Answer relevance: shorten and simplify the answers.",
-        "C. Faithfulness: keep claims grounded; measure it.",
+        "C. Faithfulness: require claims to be grounded in the passages, and measure it.",
         "D. No problem, since the answers address the question asked."
       ],
       "answer": "C",

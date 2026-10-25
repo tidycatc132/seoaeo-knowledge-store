@@ -17,8 +17,9 @@
       "myth": "Every query has one clear intent that tools can label with certainty.",
       "correction": "Broder wrote that inferring user intent from the query is at best an inexact science; Google's rater guidelines note many queries have more than one meaning.",
       "source_ids": [
-        "S013",
-        "S014"
+        "S013#P4",
+        "S013#P5",
+        "S014#P1"
       ]
     }
   ],
@@ -27,9 +28,9 @@
       "item_id": "T48-L1-01",
       "level": 1,
       "type": "definition",
-      "prompt": "In Broder's taxonomy, what is the intent of a navigational query?",
+      "prompt": "In Broder's taxonomy, the immediate intent of a navigational query is to reach a particular ___ (one word).",
       "options": [],
-      "answer": "To reach a particular site",
+      "answer": "site",
       "explanation": "Broder defines the immediate intent of a navigational query as reaching a particular site. Informational means acquiring information and transactional means performing a web-mediated activity.",
       "related_topics": [],
       "source_ids": [
@@ -109,20 +110,19 @@
       "item_id": "T48-L2-03",
       "level": 2,
       "type": "odd_one_out",
-      "prompt": "Three of these statements are supported by the saved sources. Which is the odd one out?",
+      "prompt": "Which statement is NOT supported by the saved sources?",
       "options": [
-        "A. Every query has one intent a tool can label with certainty.",
-        "B. Many queries have more than one meaning.",
-        "C. Intent is at best inexactly inferred from the query.",
-        "D. A helpful result can serve a reasonable minor interpretation."
+        "A. The rater guidelines use Mercury, a planet or an element, as an example of a query with more than one meaning",
+        "B. Broder defines transactional intent as performing some web-mediated activity",
+        "C. The rater guidelines say a very helpful result serves dominant, common or reasonable minor interpretations",
+        "D. Broder says most web queries are transactional"
       ],
-      "answer": "A",
-      "explanation": "Correct: Broder says intent cannot be inferred with certainty and the guidelines note multiple meanings. Wrong: 'Many queries have more than one meaning.' - stated in the rater guidelines. 'Intent is at best inexactly inferred from the query.' - stated by Broder. 'A helpful result can serve a reasonable minor interpretation.' - stated in the rater guidelines.",
+      "answer": "D",
+      "explanation": "Correct (unsupported): no saved source gives a share of queries by intent class. Supported: the Mercury example (rater guidelines), Broder's wording for transactional intent, and the guidelines' statement about dominant, common or reasonable minor interpretations.",
       "related_topics": [],
       "source_ids": [
-        "S013#P4",
-        "S013#P5",
-        "S014#P1",
+        "S013#P3",
+        "S014#P2",
         "S014#P3"
       ]
     },
@@ -148,7 +148,7 @@
       "type": "spot_the_error",
       "prompt": "A hypothetical plan says: 'Create one page per misspelling of our brand, because engines never correct spelling.' Which critique is best?",
       "options": [
-        "A. Unsupported; check live results first.",
+        "A. Unsupported by the saved sources; check live results before acting.",
         "B. Misspellings can never be matched by any engine.",
         "C. K-gram overlap belongs in the page copy itself.",
         "D. Brand names cannot be misspelled by searchers."
