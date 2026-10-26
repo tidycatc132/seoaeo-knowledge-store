@@ -51,3 +51,4 @@
 2026-10-25 | R7 | T64 | sources added 2 (S607,S608) (+S007,S101 reused) | items 10 | cut 2
 2026-10-25 | R7 fixes | T59,T60,T61,T62,T63,T64,T56-L2-03 | quotes added S601#P5 (full), S603#P5, S605#P4-P5, S606#P5-P6 | 32 flagged items + T56-L2-03 fixed, filler removed from 24 options, 2 inference keys rewritten (T62-L4-01, T64-L2-02), letters shuffled A9/B9/C9/D9 | no sources added
 2026-10-25 | R7 final | T59,T60,T61,T62,T64 | passages added S605#P6, S606#P7-P9 (S606 P5-P6 relabelled) | 8 fix rows fixed (required-property quotes, T59-L2-01 link dropped, T64-L4-02 grounded in S501#P2/P5, T61 joins), 5 L2 recalls made why/distinction MCQs, 3 L3 and 5 L4 items hardened | letters non-cyclic A11/B10/C10/D10 | no sources added
+2026-10-26 | lesson pilot | T48 | passages added S003#P2, S013#P6-P8; sources added 3 (S609,S610,S611) | lesson layer bank/lessons/T48-search-intent.json: 4 lessons, 4 quiz MC overrides (L1-01, L1-03, L2-01, L3-01) | quotes via WebFetch

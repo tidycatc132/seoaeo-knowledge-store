@@ -1,0 +1,344 @@
+{
+  "topic_id": "T48",
+  "items_file": "bank/items/T48-search-intent.json",
+  "course_title": "Search intent",
+  "subtitle": "Learn the three kinds of search intent, why one query can mean several things, and how to treat intent labels as hypotheses you check.",
+  "last_verified": "2026-10-26",
+  "outcomes": [
+    "Name Broder's three intent classes and match example queries to them",
+    "Explain why many queries have more than one meaning, and which interpretations a very helpful result serves",
+    "Treat an intent label as a hypothesis and check it against the pages that rank",
+    "Describe the two spelling correction steps in the IR textbook, and what they do not tell you about search engines"
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T48-1",
+      "title": "Three kinds of intent",
+      "est_minutes": 6,
+      "objectives": [
+        "Define navigational, informational and transactional intent in Broder's words",
+        "Place example queries from Broder's paper in the right class",
+        "Tell Broder's classes apart from the practitioner label 'commercial investigation'"
+      ],
+      "scene": {
+        "id": "sort",
+        "title": "Sorting queries by intent",
+        "beats": [
+          {"caption": "Andrei Broder's paper, A taxonomy of web search, sorts web queries by what the searcher intends to do.", "source_ids": ["S013#P1", "S013#P2", "S013#P3"]},
+          {"caption": "Navigational: the immediate intent is to reach a particular site. Broder's example is Greyhound Bus, with greyhound.com as the probable target.", "source_ids": ["S013#P1", "S013#P6"]},
+          {"caption": "Informational: the intent is to acquire some information assumed to be present on one or more web pages. Broder notes many are extremely wide, like cars or San Francisco.", "source_ids": ["S013#P2", "S013#P7"]},
+          {"caption": "Transactional: the intent is to perform some web-mediated activity. The main categories include shopping and finding web-mediated services.", "source_ids": ["S013#P3", "S013#P8"]},
+          {"caption": "Commercial investigation is a fourth label practitioners often add. It is a working convention, not one of Broder's classes.", "source_ids": []}
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Broder's three classes",
+          "blocks": [
+            {"type": "p", "text": "Broder's taxonomy groups web queries by the searcher's intent. Each class has a one-line definition in the paper."},
+            {"type": "classes", "items": [
+              {"name": "Navigational", "text": "The immediate intent is to reach a particular site.", "source_ids": ["S013#P1"]},
+              {"name": "Informational", "text": "The intent is to acquire some information assumed to be present on one or more web pages.", "source_ids": ["S013#P2"]},
+              {"name": "Transactional", "text": "The intent is to perform some web-mediated activity.", "source_ids": ["S013#P3"]}
+            ]}
+          ]
+        },
+        {
+          "heading": "Examples from the paper",
+          "blocks": [
+            {"type": "list", "items": [
+              {"lead": "Navigational", "text": "Greyhound Bus, where the probable target is greyhound.com.", "source_ids": ["S013#P6"]},
+              {"lead": "Informational", "text": "Broder says many informational queries are extremely wide, for instance cars or San Francisco.", "source_ids": ["S013#P7"]},
+              {"lead": "Transactional", "text": "Broder lists categories rather than single queries: shopping, finding various web-mediated services, and downloading files.", "source_ids": ["S013#P8"]}
+            ]},
+            {"type": "callout", "tone": "info", "label": "Good to know", "text": "You will often see a fourth label, commercial investigation. It is a working convention among practitioners, not part of Broder's saved definitions.", "source_ids": []}
+          ]
+        }
+      ],
+      "takeaways": [
+        {"text": "Navigational means reaching a particular site.", "source_ids": ["S013#P1"]},
+        {"text": "Informational means acquiring information assumed to be on one or more web pages, and these queries can be extremely wide.", "source_ids": ["S013#P2", "S013#P7"]},
+        {"text": "Transactional means performing a web-mediated activity, such as shopping.", "source_ids": ["S013#P3", "S013#P8"]},
+        {"text": "Commercial investigation is a practitioner extension, not one of Broder's classes.", "source_ids": []}
+      ],
+      "exercise": {
+        "title": "Sort your own keyword list",
+        "minutes": "5-10",
+        "steps": [
+          "Pick ten queries from a keyword list you work with.",
+          "Label each one navigational, informational or transactional.",
+          "Mark any query you could not place with a single label.",
+          "Ask Claude to sort the same list, then compare its labels with yours."
+        ],
+        "prompt_template": "Here are ten search queries: [paste your queries]. For each one, say which of Broder's three classes (navigational, informational or transactional) fits best, and flag any query that could reasonably fit more than one."
+      },
+      "reflection": [
+        "Think of three searches you made this week. Which class would each fall into?",
+        "Were any of them hard to place in one class? What made them hard?"
+      ],
+      "whats_next": "Next, you'll see why the same words can mean different things to different searchers."
+    },
+    {
+      "lesson_id": "T48-2",
+      "title": "One query, several meanings",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain why Google's rater guidelines say many queries have more than one meaning",
+        "Name the three kinds of interpretation a very helpful result serves",
+        "Explain what the rater guidelines are for, and what they are not"
+      ],
+      "scene": {
+        "id": "mercury",
+        "title": "One query, two meanings",
+        "beats": [
+          {"caption": "A searcher types mercury.", "source_ids": ["S014#P2"]},
+          {"caption": "Google's rater guidelines point out that many queries have more than one meaning.", "source_ids": ["S014#P1"]},
+          {"caption": "For mercury, the intent may be to learn about the planet or about the chemical element.", "source_ids": ["S014#P2"]},
+          {"caption": "A very helpful result serves any dominant, common or reasonable minor interpretation.", "source_ids": ["S014#P3"]},
+          {"caption": "The guidelines are for human raters. No single rating directly changes how a page ranks.", "source_ids": ["S014#P4"]}
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Same words, different needs",
+          "blocks": [
+            {"type": "p", "text": "Google's Search Quality Rater Guidelines note that many queries have more than one meaning.", "source_ids": ["S014#P1"]},
+            {"type": "query", "query": "mercury", "meanings": ["the planet", "the chemical element"], "source_ids": ["S014#P2"]}
+          ]
+        },
+        {
+          "heading": "What a very helpful result serves",
+          "blocks": [
+            {"type": "quote", "text": "A very helpful result for any dominant, common or reasonable minor query interpretation/user intent.", "cite": "Google, Search Quality Rater General Guidelines", "source_ids": ["S014#P3"]},
+            {"type": "chips", "items": ["Dominant", "Common", "Reasonable minor"], "source_ids": ["S014#P3"]},
+            {"type": "callout", "tone": "warn", "label": "Keep in mind", "text": "The guidelines tell human raters how to judge results. Google says no single rating, or single rater, directly impacts how a page or site ranks.", "source_ids": ["S014#P4"]}
+          ]
+        },
+        {
+          "heading": "Putting it into practice",
+          "blocks": [
+            {"type": "p", "text": "When a term you target can mean more than one thing:", "source_ids": []},
+            {"type": "list", "items": [
+              {"lead": "Decide the dominant meaning", "text": "and serve it first.", "source_ids": ["S014#P3"]},
+              {"lead": "Acknowledge reasonable minor meanings", "text": "where that is honest for your page.", "source_ids": ["S014#P3"]},
+              {"lead": "Pick a more specific phrase", "text": "when your page only serves a minor meaning. This is practitioner judgement.", "source_ids": []}
+            ]}
+          ]
+        }
+      ],
+      "takeaways": [
+        {"text": "Many queries have more than one meaning.", "source_ids": ["S014#P1"]},
+        {"text": "The rater guidelines' example is mercury: the planet or the chemical element.", "source_ids": ["S014#P2"]},
+        {"text": "A very helpful result serves dominant, common or reasonable minor interpretations.", "source_ids": ["S014#P3"]},
+        {"text": "Rater guidelines guide human raters; no single rating directly changes rankings.", "source_ids": ["S014#P4"]}
+      ],
+      "exercise": {
+        "title": "Map the meanings of a term",
+        "minutes": "5-10",
+        "steps": [
+          "Pick one short keyword your site targets.",
+          "Write down every meaning a searcher could have in mind.",
+          "Search for it and note which meanings the results serve.",
+          "Decide which meaning your page serves, and whether it is dominant, common or minor."
+        ],
+        "prompt_template": "List the different things people might mean when they search for [keyword]. For each meaning, describe the kind of page that would help them."
+      },
+      "reflection": [
+        "Which of your target keywords could mean something other than what your page covers?",
+        "If your page serves a minor meaning, what more specific phrase would describe it better?"
+      ],
+      "whats_next": "Next, you'll see why any intent label, from a tool or from you, is a best guess."
+    },
+    {
+      "lesson_id": "T48-3",
+      "title": "Intent is a best guess",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain what Broder says about inferring intent from a query",
+        "Treat a tool's intent label as a hypothesis",
+        "Check a label against the pages that currently rank"
+      ],
+      "scene": {
+        "id": "stamp",
+        "title": "A label is a guess",
+        "beats": [
+          {"caption": "A keyword tool stamps the query mercury: 100% informational. This tool is hypothetical.", "source_ids": []},
+          {"caption": "Broder wrote that inferring the user intent from the query is at best an inexact science, but usually a wild guess.", "source_ids": ["S013#P4"]},
+          {"caption": "His taxonomy makes no assumption that intent can be inferred with any certitude from the query.", "source_ids": ["S013#P5"]},
+          {"caption": "So the label becomes a hypothesis. Practitioners check it against the pages that rank before choosing a page type.", "source_ids": []}
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What Broder says",
+          "blocks": [
+            {"type": "quote", "text": "inferring the user intent from the query is at best an inexact science, but usually a wild guess", "cite": "Andrei Broder, A taxonomy of web search", "source_ids": ["S013#P4"]},
+            {"type": "p", "text": "Broder adds that the taxonomy makes no assumption that intent can be inferred with any certitude from the query.", "source_ids": ["S013#P5"]}
+          ]
+        },
+        {
+          "heading": "What it means for intent labels",
+          "blocks": [
+            {"type": "p", "text": "Keyword tools often give each query one intent label. Broder's caution applies to those labels too: they are guesses about what the searcher wants.", "source_ids": ["S013#P4"]},
+            {"type": "callout", "tone": "info", "label": "Practitioner routine", "text": "Label target queries with intent as a hypothesis. Then look at the pages that currently rank before you choose a page type. This routine is practitioner judgement, supported by Broder's caution.", "source_ids": ["S013#P4"]},
+            {"type": "list", "items": [
+              {"lead": "Keep a confidence column", "text": "next to each intent label in your keyword list.", "source_ids": ["S013#P5"]},
+              {"lead": "Check the uncertain ones first", "text": "especially queries with more than one plausible label.", "source_ids": ["S014#P1"]}
+            ]}
+          ]
+        }
+      ],
+      "takeaways": [
+        {"text": "Broder calls inferring intent from a query at best an inexact science.", "source_ids": ["S013#P4"]},
+        {"text": "His taxonomy does not assume intent can be inferred with certitude.", "source_ids": ["S013#P5"]},
+        {"text": "Treat any intent label as a hypothesis and check it against what ranks.", "source_ids": ["S013#P4"]}
+      ],
+      "exercise": {
+        "title": "Audit your intent labels",
+        "minutes": "10-15",
+        "steps": [
+          "Open a keyword list that already has intent labels.",
+          "Add a column called Confidence and mark each label high, medium or low.",
+          "For three low-confidence queries, search and note what kinds of pages rank.",
+          "Update the label where the results disagree with it."
+        ],
+        "prompt_template": "Here are some search queries with intent labels from a keyword tool: [paste queries and labels]. For each, tell me how confident I should be in the label, and what I should look for in the search results to check it."
+      },
+      "reflection": [
+        "Which intent labels in your work have you treated as facts?",
+        "What would change in your content plan if one of them turned out wrong?"
+      ],
+      "whats_next": "Next, you'll look at a different step entirely: correcting how a query was typed."
+    },
+    {
+      "lesson_id": "T48-4",
+      "title": "Spelling correction",
+      "est_minutes": 7,
+      "objectives": [
+        "Explain why spelling correction is a separate step from reading intent",
+        "Define edit distance and its three operations",
+        "Describe how k-gram overlap finds candidate corrections",
+        "Explain why these textbook methods do not tell you how a given engine behaves"
+      ],
+      "scene": {
+        "id": "spell",
+        "title": "From carot to carrot",
+        "beats": [
+          {"caption": "A user types carot but wants documents about carrot.", "source_ids": ["S003#P2"]},
+          {"caption": "The IR textbook describes two steps: one based on edit distance, one based on k-gram overlap.", "source_ids": ["S003#P1"]},
+          {"caption": "Edit distance is the minimum number of edits needed to turn one string into another. Insert one r, and carot becomes carrot.", "source_ids": ["S609#P1", "S609#P2"]},
+          {"caption": "The edits are insert, delete and replace a character. From cat to dog takes 3.", "source_ids": ["S609#P2", "S609#P3"]},
+          {"caption": "K-gram overlap finds words that share many short letter runs with the query. For bord, that includes aboard, boardroom and border.", "source_ids": ["S610#P1", "S610#P2"]},
+          {"caption": "Some candidates, like boardroom, are implausible. One method ranks the candidates by edit distance.", "source_ids": ["S610#P3", "S610#P4", "S610#P5"]}
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two steps in the textbook",
+          "blocks": [
+            {"type": "p", "text": "Working out what a searcher wants is a different job from fixing how they typed it. Introduction to Information Retrieval describes two steps for spelling correction: the first based on edit distance, the second based on k-gram overlap.", "source_ids": ["S003#P1"]},
+            {"type": "query", "query": "carot", "meanings": ["carrot"], "label": "wanted", "source_ids": ["S003#P2"]}
+          ]
+        },
+        {
+          "heading": "Edit distance",
+          "blocks": [
+            {"type": "p", "text": "The edit distance between two strings is the minimum number of edit operations needed to turn one into the other.", "source_ids": ["S609#P1"]},
+            {"type": "list", "items": [
+              {"lead": "Insert", "text": "a character into a string.", "source_ids": ["S609#P2"]},
+              {"lead": "Delete", "text": "a character from a string.", "source_ids": ["S609#P2"]},
+              {"lead": "Replace", "text": "a character with another character.", "source_ids": ["S609#P2"]}
+            ]},
+            {"type": "example", "text": "The edit distance between cat and dog is 3: every letter is replaced.", "source_ids": ["S609#P3"]}
+          ]
+        },
+        {
+          "heading": "K-gram overlap",
+          "blocks": [
+            {"type": "p", "text": "A k-gram is a short run of k letters. The textbook uses a k-gram index to find vocabulary terms that have many k-grams in common with the query.", "source_ids": ["S610#P1"]},
+            {"type": "example", "text": "For the misspelling bord, this finds aboard, boardroom and border. Boardroom is an implausible correction, so one method takes these candidates and keeps the ones with a small edit distance to the query.", "source_ids": ["S610#P2", "S610#P3", "S610#P4", "S610#P5"]}
+          ]
+        },
+        {
+          "heading": "When every word is spelled right",
+          "blocks": [
+            {"type": "p", "text": "Correcting each word on its own has limits. The textbook's example is flew form Heathrow: every word is a real word, so isolated-term correction would not catch the error.", "source_ids": ["S611#P1"]},
+            {"type": "callout", "tone": "warn", "label": "Unconfirmed", "text": "These sources describe correction methods. They do not say how any particular search engine handles misspellings, so check live results before building pages around misspelled queries.", "source_ids": ["S003#P1"]}
+          ]
+        }
+      ],
+      "takeaways": [
+        {"text": "Spelling correction is a separate step from reading intent.", "source_ids": ["S003#P1"]},
+        {"text": "Edit distance counts the fewest inserts, deletes and replacements between two strings.", "source_ids": ["S609#P1", "S609#P2"]},
+        {"text": "K-gram overlap finds candidate words that share many letter runs with the query.", "source_ids": ["S610#P1"]},
+        {"text": "Correcting words one at a time misses errors like flew form Heathrow.", "source_ids": ["S611#P1"]},
+        {"text": "Textbook methods do not confirm what a given engine does.", "source_ids": ["S003#P1"]}
+      ],
+      "exercise": {
+        "title": "Count the edits",
+        "minutes": "5",
+        "steps": [
+          "Work out the edit distance from jagwar to jaguar.",
+          "Work out the edit distance from bord to border.",
+          "Search for a common misspelling in your field and note whether the results match the corrected spelling."
+        ],
+        "answers": ["1: replace w with u.", "2: insert e, then insert r."],
+        "prompt_template": "Explain step by step how to calculate the edit distance between [word one] and [word two], using only insert, delete and replace."
+      },
+      "reflection": [
+        "Have you ever planned a page for a misspelled keyword? What did the search results show for it?",
+        "Why might a query with every word spelled correctly still be a typing mistake?"
+      ],
+      "whats_next": "Next, a short recap, then the course quiz."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Search intent gives you a useful working model, but not certainty. Broder's three classes describe what searchers try to do. Google's rater guidelines remind you that one query can mean several things. Spelling correction is a separate step, and the textbook methods do not confirm how any engine behaves.",
+    "related_topics": [
+      {"topic_id": "T12", "title": "Semantic parsing, query rewriting and expansion"},
+      {"topic_id": "T44", "title": "Entities, Knowledge Graph, Schema.org and JSON-LD"}
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "pass_mark": 0.8,
+    "item_ids": ["T48-L1-01", "T48-L1-02", "T48-L1-03", "T48-L2-01", "T48-L2-02", "T48-L2-03", "T48-L3-01", "T48-L3-02", "T48-L4-01", "T48-L4-02"],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T48-L1-01",
+        "prompt": "In Broder's taxonomy, what is the immediate intent of a navigational query?",
+        "options": ["A. Reach a particular site", "B. Acquire information on web pages", "C. Perform a web-mediated activity", "D. Compare products before a purchase"],
+        "answer": "A",
+        "explanation": "Correct: Broder defines the immediate intent of a navigational query as reaching a particular site. Wrong: 'Acquire information on web pages' - that is informational. 'Perform a web-mediated activity' - that is transactional. 'Compare products before a purchase' - commercial investigation is a practitioner label, not one of Broder's classes.",
+        "source_ids": ["S013#P1", "S013#P2", "S013#P3"]
+      },
+      {
+        "item_id": "T48-L1-03",
+        "prompt": "Which statement matches what Broder says about inferring intent from a query?",
+        "options": ["A. It can be read with certainty from the query", "B. It becomes exact once a query is long enough", "C. It is at best an inexact science", "D. It only matters for transactional queries"],
+        "answer": "C",
+        "explanation": "Correct: Broder says inferring the user intent from the query is at best an inexact science, and the taxonomy does not assume intent can be inferred with certitude. Wrong: 'It can be read with certainty from the query' - Broder says the opposite. 'It becomes exact once a query is long enough' - no saved source says this. 'It only matters for transactional queries' - his caution covers every class.",
+        "source_ids": ["S013#P4", "S013#P5"]
+      },
+      {
+        "item_id": "T48-L2-01",
+        "prompt": "Why do Google's rater guidelines use 'mercury' as an example?",
+        "options": ["A. It has more than one meaning", "B. It is a navigational query for one site", "C. It is too short for raters to judge", "D. It contains a common spelling error"],
+        "answer": "A",
+        "explanation": "Correct: the guidelines say many queries have more than one meaning, and mercury may mean the planet or the chemical element. Wrong: 'It is a navigational query for one site' - the guidelines describe it as having several meanings. 'It is too short for raters to judge' - no saved source says this. 'It contains a common spelling error' - mercury is spelled correctly.",
+        "source_ids": ["S014#P1", "S014#P2"]
+      },
+      {
+        "item_id": "T48-L3-01",
+        "prompt": "A searcher types a company name to reach its official website. Which Broder class fits best?",
+        "options": ["A. Informational", "B. Navigational", "C. Transactional", "D. Commercial investigation"],
+        "answer": "B",
+        "explanation": "Correct: Broder defines navigational intent as reaching a particular site. Wrong: 'Informational' - that is acquiring information. 'Transactional' - that is performing a web-mediated activity. 'Commercial investigation' - a practitioner label, not one of Broder's classes. Intent from a query alone is inexact, so verify against what ranks.",
+        "source_ids": ["S013#P1", "S013#P2", "S013#P3", "S013#P4"]
+      }
+    ]
+  }
+}
