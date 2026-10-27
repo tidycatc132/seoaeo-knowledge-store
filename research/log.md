@@ -53,3 +53,4 @@
 2026-10-25 | R7 final | T59,T60,T61,T62,T64 | passages added S605#P6, S606#P7-P9 (S606 P5-P6 relabelled) | 8 fix rows fixed (required-property quotes, T59-L2-01 link dropped, T64-L4-02 grounded in S501#P2/P5, T61 joins), 5 L2 recalls made why/distinction MCQs, 3 L3 and 5 L4 items hardened | letters non-cyclic A11/B10/C10/D10 | no sources added
 2026-10-26 | lesson pilot | T48 | passages added S003#P2, S013#P6-P8; sources added 3 (S609,S610,S611) | lesson layer bank/lessons/T48-search-intent.json: 4 lessons, 4 quiz MC overrides (L1-01, L1-03, L2-01, L3-01) | quotes via WebFetch
 2026-10-27 | course-build | T59 | sources added 0 (S600 +P10-P16) | course lesson layer + 4 scenes | cut 0
+2026-10-27 | course-build | T60 | sources added 0 (S601 +P7-P19, S602 +P4-P9) | course lesson layer + 4 scenes | cut 0

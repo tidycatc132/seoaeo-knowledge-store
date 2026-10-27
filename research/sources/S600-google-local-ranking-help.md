@@ -5,7 +5,7 @@ title: Tips to improve your local ranking on Google
 publisher: Google Business Profile Help
 grade: A
 page_date: unknown
-opened: 2026-10-25
+opened: 2026-10-25 (extra passages 2026-10-27)
 status: used
 ---
 Summary: Google's local ranking help page. Names relevance, distance and prominence; says reviews, links and complete info matter; says ranking cannot be requested or paid for. Does not mention SEO or website rankings.
