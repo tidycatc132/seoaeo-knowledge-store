@@ -1,0 +1,824 @@
+{
+  "topic_id": "T59",
+  "items_file": "bank/items/T59-local-ranking.json",
+  "course_title": "Local ranking",
+  "subtitle": "Learn the three factors Google says decide local results, which ones a business can influence, and which promises nobody can keep.",
+  "last_verified": "2026-10-27",
+  "outcomes": [
+    "Name Google's three local factors and define each in Google's words",
+    "Explain why distance can't be gamed, and which address rules stop people trying",
+    "Use complete, accurate profile info and well-chosen categories to support relevance",
+    "Describe what feeds prominence, and spot the paid-ranking and organic-rank myths"
+  ],
+  "intro": [
+    "When someone searches for a business near them, Google shows local results on Maps and Search. Google's own help page says those results are mainly based on three factors: relevance, distance and prominence.",
+    "This course takes each factor in turn, using Google's definitions. You'll see which ones a business can influence, which one it can't, and the address rules that stop people trying to fake distance.",
+    "Along the way you'll learn to separate what Google states from industry theory. That matters most when a client, or a vendor, starts talking about guaranteed rankings."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T59-1",
+      "title": "Three local factors",
+      "est_minutes": 5,
+      "objectives": [
+        "Say where local results appear and what Google is trying to show",
+        "Define relevance, distance and prominence in Google's words",
+        "Tell Google's stated factors apart from industry theory"
+      ],
+      "scene": {
+        "id": "factors",
+        "title": "What decides a local result",
+        "beats": [
+          {
+            "caption": "When a customer searches for a business or place near their location, they find local results on Google Maps and Search.",
+            "source_ids": [
+              "S600#P15"
+            ]
+          },
+          {
+            "caption": "Google's local ranking help page names three factors: relevance, distance and prominence.",
+            "source_ids": [
+              "S600#P1",
+              "S600#P2",
+              "S600#P3"
+            ]
+          },
+          {
+            "caption": "Relevance is how well a Business Profile matches what someone is searching for.",
+            "source_ids": [
+              "S600#P1"
+            ]
+          },
+          {
+            "caption": "Distance refers to how far each business is from the customer who's searching.",
+            "source_ids": [
+              "S600#P2"
+            ]
+          },
+          {
+            "caption": "Prominence means how well-known a business is.",
+            "source_ids": [
+              "S600#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Where local results appear",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "When a customer searches for a business or place near their location, Google shows local results on Google Maps and Search.",
+              "source_ids": [
+                "S600#P15"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google says it tries to show customers the kind of nearby business they'd like to visit.",
+              "source_ids": [
+                "S600#P10"
+              ]
+            },
+            {
+              "type": "query",
+              "query": "bakery near me",
+              "label": "Google weighs",
+              "meanings": [
+                "relevance",
+                "distance",
+                "prominence"
+              ],
+              "source_ids": [
+                "S600#P1",
+                "S600#P2",
+                "S600#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Google's three factors",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's help page gives each factor a one-line definition."
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Relevance",
+                  "text": "How well a Business Profile matches what someone is searching for.",
+                  "source_ids": [
+                    "S600#P1"
+                  ]
+                },
+                {
+                  "name": "Distance",
+                  "text": "How far each business is from the customer who's searching.",
+                  "source_ids": [
+                    "S600#P2"
+                  ]
+                },
+                {
+                  "name": "Prominence",
+                  "text": "How well-known a business is.",
+                  "source_ids": [
+                    "S600#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "A note on wording",
+              "text": "The page's introduction says local results are mainly based on relevance, distance and popularity. Its section heading says prominence. This course uses prominence, the heading's term.",
+              "source_ids": [
+                "S600#P9",
+                "S600#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Stated factors and theory",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "These three factors are the ones Google states. The page doesn't say how much each one weighs."
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "When you report to a client, label anything beyond Google's three factors, such as factor weightings or ranking radius studies, as industry theory."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Local results appear on Google Maps and Search.",
+          "source_ids": [
+            "S600#P15"
+          ]
+        },
+        {
+          "text": "Relevance is how well a profile matches the search.",
+          "source_ids": [
+            "S600#P1"
+          ]
+        },
+        {
+          "text": "Distance is how far the business is from the searcher.",
+          "source_ids": [
+            "S600#P2"
+          ]
+        },
+        {
+          "text": "Prominence is how well-known the business is.",
+          "source_ids": [
+            "S600#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Explain the factors to a client",
+        "minutes": "5-10",
+        "steps": [
+          "Pick a local business you work with or know well.",
+          "Write one sentence on how it stands on relevance, distance and prominence.",
+          "Mark which of your sentences come from Google's definitions and which are your own judgement.",
+          "Ask Claude for a plain-language version and compare it with yours."
+        ],
+        "prompt_template": "I work with a [type of business] in [town]. Using only Google's definitions (relevance is how well a Business Profile matches what someone is searching for; distance is how far each business is from the customer who's searching; prominence is how well-known a business is), explain these three local ranking factors to the owner in plain language. Say which factor they can't change by editing their profile."
+      },
+      "reflection": [
+        "Which of the three factors have you heard discussed most often? Was it described in Google's terms?",
+        "Have you seen a claim about local ranking that went beyond these three factors? Where did it come from?"
+      ],
+      "whats_next": "Next, distance: the one factor a business can't change by editing its profile."
+    },
+    {
+      "lesson_id": "T59-2",
+      "title": "Distance and location",
+      "est_minutes": 6,
+      "objectives": [
+        "Define distance and say what Google uses when a searcher doesn't share their location",
+        "Explain why a business can't move closer to every searcher",
+        "Apply Google's address rules for mailboxes and service-area businesses"
+      ],
+      "scene": {
+        "id": "radius",
+        "title": "Distance starts at the searcher",
+        "beats": [
+          {
+            "caption": "Distance refers to how far each business is from the customer who's searching.",
+            "source_ids": [
+              "S600#P2"
+            ]
+          },
+          {
+            "caption": "If a customer doesn't share where they are, Google uses what it knows about their location.",
+            "source_ids": [
+              "S600#P12"
+            ]
+          },
+          {
+            "caption": "Distance is measured from each searcher, so the same business is near to some customers and far from others. That reading is practitioner inference from Google's definition.",
+            "source_ids": [
+              "S600#P2"
+            ]
+          },
+          {
+            "caption": "Google's guidelines say P.O. boxes or mailboxes located at remote locations aren't acceptable addresses.",
+            "source_ids": [
+              "S601#P2"
+            ]
+          },
+          {
+            "caption": "Service-area businesses should hide their business address, and their service area shouldn't extend farther than about 2 hours of driving time.",
+            "source_ids": [
+              "S601#P4",
+              "S601#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What distance means",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google defines distance as how far each business is from the customer who's searching.",
+              "source_ids": [
+                "S600#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "A searcher doesn't have to share their location for distance to count. If a customer doesn't share where they are, Google uses what it knows about their location.",
+              "source_ids": [
+                "S600#P12"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical plumber is 2 miles further from most searchers than a rival. Editing the profile won't change where those searchers are.",
+              "source_ids": [
+                "S600#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Address rules that stop faking distance",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Some businesses try to look closer to searchers by listing an address where they don't work. Google's representation guidelines rule out the common versions."
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "No remote mailboxes.",
+                  "text": "Google says P.O. boxes or mailboxes located at remote locations aren't acceptable.",
+                  "source_ids": [
+                    "S601#P2"
+                  ]
+                },
+                {
+                  "lead": "Service-area businesses hide their address.",
+                  "text": "Google says service-area businesses should hide their business address from customers.",
+                  "source_ids": [
+                    "S601#P4"
+                  ]
+                },
+                {
+                  "lead": "Service areas have a limit.",
+                  "text": "The overall service area shouldn't extend farther than about 2 hours of driving time.",
+                  "source_ids": [
+                    "S601#P5"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Putting it into practice",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "When a closer competitor outranks a client on a near-me search:"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Don't promise to beat them on distance.",
+                  "text": "It's measured from the searcher, not set by the profile."
+                },
+                {
+                  "lead": "Don't move the address.",
+                  "text": "A remote mailbox breaks Google's guidelines.",
+                  "source_ids": [
+                    "S601#P2"
+                  ]
+                },
+                {
+                  "lead": "Work on what can change.",
+                  "text": "Complete, accurate info and reviews are covered in the next two lessons. This is practitioner judgement."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Distance is how far each business is from the searcher.",
+          "source_ids": [
+            "S600#P2"
+          ]
+        },
+        {
+          "text": "If a searcher doesn't share their location, Google uses what it knows about it.",
+          "source_ids": [
+            "S600#P12"
+          ]
+        },
+        {
+          "text": "Remote P.O. boxes and mailboxes aren't acceptable addresses.",
+          "source_ids": [
+            "S601#P2"
+          ]
+        },
+        {
+          "text": "Service-area businesses hide their address and keep their area within about 2 hours of driving.",
+          "source_ids": [
+            "S601#P4",
+            "S601#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check a profile's address setup",
+        "minutes": "5-10",
+        "steps": [
+          "Open the Business Profile of a business you know.",
+          "Decide whether customers visit it, or whether it travels to customers.",
+          "If it travels to customers, check that the address is hidden and the service area is within about 2 hours of driving.",
+          "Check that the address isn't a P.O. box or remote mailbox."
+        ],
+        "prompt_template": "Here is a business's profile setup: [type of business, whether customers visit, the address shown, the service area]. Check it against these Google rules: P.O. boxes or mailboxes at remote locations aren't acceptable; service-area businesses should hide their address; a service area shouldn't extend farther than about 2 hours of driving time. List anything that breaks a rule.",
+        "answers": [
+          "A business customers visit shows its real address.",
+          "A business that travels to customers hides its address.",
+          "A service area beyond about 2 hours of driving is too large.",
+          "Any P.O. box or remote mailbox address needs to go."
+        ]
+      },
+      "reflection": [
+        "Have you seen a business listed at an address where it doesn't really operate? How did it look in Maps?",
+        "How would you explain to a client that distance is out of their hands?"
+      ],
+      "whats_next": "Next, relevance: how complete and accurate info helps a profile match the right searches."
+    },
+    {
+      "lesson_id": "T59-3",
+      "title": "Relevance and complete info",
+      "est_minutes": 6,
+      "objectives": [
+        "Define relevance",
+        "Explain why complete and accurate info matters for showing up",
+        "Choose categories with Google's 'This business IS a' test and know why claiming matters"
+      ],
+      "scene": {
+        "id": "profile",
+        "title": "Filling in the profile",
+        "beats": [
+          {
+            "caption": "Relevance is how well a Business Profile matches what someone is searching for.",
+            "source_ids": [
+              "S600#P1"
+            ]
+          },
+          {
+            "caption": "Businesses with complete and accurate info are more likely to show up in local search results.",
+            "source_ids": [
+              "S600#P8"
+            ]
+          },
+          {
+            "caption": "If your business info isn't accurate, your Business Profile might not show up for relevant searches in your area.",
+            "source_ids": [
+              "S600#P11"
+            ]
+          },
+          {
+            "caption": "Google's guidelines say to select categories that complete the statement: This business IS a…",
+            "source_ids": [
+              "S601#P3"
+            ]
+          },
+          {
+            "caption": "Claiming your Business Profile enables your local business information to show up in Google Maps and the knowledge panel.",
+            "source_ids": [
+              "S512#P1",
+              "S512#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What relevance means",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google defines relevance as how well a Business Profile matches what someone is searching for.",
+              "source_ids": [
+                "S600#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "A profile can only match a search if it says what the business is and does. That's where complete info comes in."
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "Businesses with complete and accurate info are more likely to show up in local search results.",
+              "source_ids": [
+                "S600#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Complete and accurate",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Completeness isn't enough on its own. Google warns that if your business info isn't accurate, your Business Profile might not show up for relevant searches in your area.",
+              "source_ids": [
+                "S600#P11"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Name.",
+                  "text": "It should reflect your business's real-world name.",
+                  "source_ids": [
+                    "S601#P6"
+                  ]
+                },
+                {
+                  "lead": "Categories.",
+                  "text": "Select categories that complete the statement: \"This business IS a\".",
+                  "source_ids": [
+                    "S601#P3"
+                  ]
+                },
+                {
+                  "lead": "Hours.",
+                  "text": "Google lists your business hours, including special store hours, as info to keep up to date.",
+                  "source_ids": [
+                    "S600#P16"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "chips",
+              "items": [
+                "This business IS a bakery",
+                "This business IS a plumber",
+                "This business IS a dentist"
+              ],
+              "source_ids": [
+                "S601#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Claim the profile first",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's Search Central page says you can manage how your business appears on Google Maps and Google Search by claiming your Business Profile. Claiming enables your local business information to show up in Google Maps and the Google knowledge panel.",
+              "source_ids": [
+                "S512#P1",
+                "S512#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Markup is not a substitute",
+              "text": "LocalBusiness markup on a website lets you tell Google about business hours and departments, but Google does not guarantee that features that consume structured data will show up in search results.",
+              "source_ids": [
+                "S606#P1",
+                "S606#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Relevance is how well a profile matches the search.",
+          "source_ids": [
+            "S600#P1"
+          ]
+        },
+        {
+          "text": "Complete and accurate info makes showing up in local results more likely.",
+          "source_ids": [
+            "S600#P8"
+          ]
+        },
+        {
+          "text": "Inaccurate info can stop a profile showing for relevant local searches.",
+          "source_ids": [
+            "S600#P11"
+          ]
+        },
+        {
+          "text": "Claiming a profile lets business info show in Maps and the knowledge panel.",
+          "source_ids": [
+            "S512#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit a profile for completeness",
+        "minutes": "10",
+        "steps": [
+          "Open a Business Profile you can check.",
+          "Check the name against the business's real-world name.",
+          "Test each category with the sentence \"This business IS a ___\".",
+          "Check the hours, including any special hours coming up.",
+          "Note anything missing or inaccurate."
+        ],
+        "prompt_template": "Here are the details from a Google Business Profile: [name, categories, hours, address, description]. Check them against these Google guidelines: the name should reflect the business's real-world name; categories should complete the statement \"This business IS a\"; hours should include special store hours. List each gap and suggest a fix."
+      },
+      "reflection": [
+        "Which field do you think is most often left out or out of date on profiles you've seen?",
+        "Would every category on a profile you know pass the \"This business IS a\" test?"
+      ],
+      "whats_next": "Next, prominence: what makes a business well-known, and the one thing nobody can buy."
+    },
+    {
+      "lesson_id": "T59-4",
+      "title": "Prominence and paid ranking",
+      "est_minutes": 6,
+      "objectives": [
+        "Define prominence and name the inputs Google mentions",
+        "Explain what Google says about reviews and replies",
+        "Correct the paid-ranking and organic-rank myths"
+      ],
+      "scene": {
+        "id": "prom",
+        "title": "Building prominence",
+        "beats": [
+          {
+            "caption": "Prominence means how well-known a business is.",
+            "source_ids": [
+              "S600#P3"
+            ]
+          },
+          {
+            "caption": "Google says prominence is also based on info like how many websites link to your business and how many reviews you have.",
+            "source_ids": [
+              "S600#P4"
+            ]
+          },
+          {
+            "caption": "More reviews and positive ratings can help your business's local ranking.",
+            "source_ids": [
+              "S600#P5"
+            ]
+          },
+          {
+            "caption": "Positive reviews and helpful replies can help your business stand out.",
+            "source_ids": [
+              "S600#P13"
+            ]
+          },
+          {
+            "caption": "And there's no way to request or pay for a better local ranking on Google.",
+            "source_ids": [
+              "S600#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What makes a business prominent",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google defines prominence as how well-known a business is. It says this factor is also based on info like how many websites link to your business and how many reviews you have.",
+              "source_ids": [
+                "S600#P3",
+                "S600#P4"
+              ]
+            },
+            {
+              "type": "chips",
+              "items": [
+                "Links to the business",
+                "Number of reviews"
+              ],
+              "source_ids": [
+                "S600#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Reviews and replies",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "More reviews and positive ratings can help your business's local ranking.",
+              "cite": "Google Business Profile Help",
+              "source_ids": [
+                "S600#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google also encourages replies. When you reply to customer reviews, it shows that you value their feedback, and positive reviews and helpful replies can help your business stand out.",
+              "source_ids": [
+                "S600#P14",
+                "S600#P13"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Two myths to retire",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Two claims come up often in local SEO sales pitches. Google's page answers one directly and is silent on the other."
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "\"We can buy you a top local spot.\"",
+                  "text": "Google says there's no way to request or pay for a better local ranking.",
+                  "source_ids": [
+                    "S600#P6"
+                  ]
+                },
+                {
+                  "lead": "\"Local rank is just your organic rank.\"",
+                  "text": "Google's page lists relevance, distance and prominence, and it doesn't mention SEO or website rankings. That's an absence, not a statement, so treat any claimed link as industry theory.",
+                  "source_ids": [
+                    "S600#P1",
+                    "S600#P2",
+                    "S600#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Never sell or buy a \"guaranteed\" local ranking. Google says it can't be paid for, so a guarantee is a red flag.",
+              "source_ids": [
+                "S600#P6"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Prominence is how well-known a business is.",
+          "source_ids": [
+            "S600#P3"
+          ]
+        },
+        {
+          "text": "Links to the business and the number of reviews feed prominence.",
+          "source_ids": [
+            "S600#P4"
+          ]
+        },
+        {
+          "text": "More reviews and positive ratings can help local ranking.",
+          "source_ids": [
+            "S600#P5"
+          ]
+        },
+        {
+          "text": "Nobody can request or pay for a better local ranking.",
+          "source_ids": [
+            "S600#P6"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Fact-check a local SEO pitch",
+        "minutes": "5-10",
+        "steps": [
+          "Find a local SEO sales page or an email pitch you've received.",
+          "Underline every claim about how local ranking works.",
+          "Mark each claim as stated by Google, industry theory, or contradicted by Google.",
+          "Ask Claude to check your marks against Google's statements."
+        ],
+        "prompt_template": "Here is a local SEO sales pitch: [paste pitch]. Check each claim against these Google statements: local results are mainly based on relevance, distance and prominence; prominence is also based on info like how many websites link to the business and how many reviews it has; more reviews and positive ratings can help local ranking; there's no way to request or pay for a better local ranking. Mark each claim as stated by Google, industry theory, or contradicted by Google."
+      },
+      "reflection": [
+        "Have you seen a guaranteed local ranking offer? How would you respond to it now?",
+        "Which of a client's habits around reviews would you change after this lesson?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google says local results are mainly based on relevance, distance and prominence. Distance is measured from the searcher, and the address rules stop businesses faking it. Relevance rests on complete, accurate info and well-chosen categories. Prominence grows from links and reviews. Nobody can pay for a better local ranking, and anything beyond Google's three factors is industry theory.",
+    "related_topics": [
+      {
+        "topic_id": "T60",
+        "title": "Google Business Profile setup, categories and verification"
+      },
+      {
+        "topic_id": "T61",
+        "title": "Reviews and local trust signals"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Local ranking. The questions revisit Google's three factors, distance and address rules, complete info, prominence and reviews, and paid ranking.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T59-L1-01",
+      "T59-L1-02",
+      "T59-L1-03",
+      "T59-L2-01",
+      "T59-L2-02",
+      "T59-L2-03",
+      "T59-L3-01",
+      "T59-L3-02",
+      "T59-L4-01",
+      "T59-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T59-L1-01",
+        "prompt": "Which of Google's local factors is defined as how far each business is from the customer who's searching?",
+        "options": [
+          "A. Relevance",
+          "B. Distance",
+          "C. Prominence",
+          "D. Freshness"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google's local ranking help page defines distance this way. Wrong: 'Relevance' - that is how well a profile matches the search. 'Prominence' - that is how well-known a business is. 'Freshness' - that is not one of the factors the page names.",
+        "source_ids": [
+          "S600#P1",
+          "S600#P2",
+          "S600#P3"
+        ]
+      },
+      {
+        "item_id": "T59-L1-03",
+        "prompt": "What does Google say about paying for a better local ranking?",
+        "options": [
+          "A. Verified profiles can pay for a higher local position",
+          "B. There's no way to request or pay for it",
+          "C. Payment is accepted through a local ranking add-on",
+          "D. Businesses with many reviews can pay to move up"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says there's no way to request or pay for a better local ranking. Wrong: 'Verified profiles can pay for a higher local position' - no paid option exists. 'Payment is accepted through a local ranking add-on' - the page names no such add-on. 'Businesses with many reviews can pay to move up' - reviews can help, but ranking can't be bought.",
+        "source_ids": [
+          "S600#P6",
+          "S600#P5"
+        ]
+      }
+    ]
+  }
+}

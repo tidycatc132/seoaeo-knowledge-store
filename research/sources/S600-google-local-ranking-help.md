@@ -28,3 +28,17 @@ Summary: Google's local ranking help page. Names relevance, distance and promine
 > Businesses with complete and accurate info are more likely to show up in local search results
 ### P9 intro wording
 > Local results are mainly based on relevance, distance, and popularity.
+### P10 nearby business
+> Google tries to show customers the kind of nearby business they’d like to visit.
+### P11 inaccurate info
+> If your business info isn’t accurate, your Business Profile might not show up for relevant searches in your area.
+### P12 location fallback
+> If a customer doesn’t share where they are, Google uses what it knows about their location.
+### P13 reviews stand out
+> Positive reviews and helpful replies can help your business stand out.
+### P14 replies
+> When you reply to customer reviews, it shows that you value their feedback.
+### P15 where local results appear
+> When a customer searches for a business or place near their location, they’ll find local results on Google Maps and Search.
+### P16 hours
+> Your business hours, including special store hours.
