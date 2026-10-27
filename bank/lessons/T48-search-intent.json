@@ -10,6 +10,11 @@
     "Treat an intent label as a hypothesis and check it against the pages that rank",
     "Describe the two spelling correction steps in the IR textbook, and what they do not tell you about search engines"
   ],
+  "intro": [
+    "Search intent is a useful working model for planning content, but it is not a certainty. This course starts with Andrei Broder's three classes of web queries, then shows why Google's rater guidelines treat many queries as having more than one meaning.",
+    "From there you'll learn to treat any intent label, whether it comes from a tool or from you, as a hypothesis to check. The last lesson covers spelling correction, a separate step with its own methods.",
+    "Each lesson opens with a short animated scene, followed by the detail, key takeaways and a hands-on exercise. The course ends with a quiz and a completion badge."
+  ],
   "lessons": [
     {
       "lesson_id": "T48-1",
@@ -304,6 +309,7 @@
   "quiz": {
     "title": "Course quiz",
     "est_minutes": 8,
+    "intro": "You've reached the final quiz for Search intent. The questions revisit Broder's three classes, queries with more than one meaning, intent as a hypothesis, and spelling correction.",
     "pass_mark": 0.8,
     "item_ids": ["T48-L1-01", "T48-L1-02", "T48-L1-03", "T48-L2-01", "T48-L2-02", "T48-L2-03", "T48-L3-01", "T48-L3-02", "T48-L4-01", "T48-L4-02"],
     "multiple_choice_overrides": [
