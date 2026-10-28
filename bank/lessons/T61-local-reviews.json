@@ -1,0 +1,831 @@
+{
+  "topic_id": "T61",
+  "items_file": "bank/items/T61-local-reviews.json",
+  "course_title": "Local reviews",
+  "subtitle": "Learn what Google says reviews do for a local business, how to ask for them, how to reply, and which review tactics Google removes.",
+  "last_verified": "2026-10-28",
+  "outcomes": [
+    "Explain how Google says reviews relate to prominence and local ranking",
+    "Ask customers for reviews in ways Google's guidelines allow",
+    "Write and manage replies, knowing how Google checks and posts them",
+    "Recognise fake engagement and conflicts of interest, and flag policy-breaking reviews"
+  ],
+  "intro": [
+    "Reviews are one of the few local signals Google talks about openly. Its help pages say more reviews and positive ratings can help local ranking, and that reviews feed prominence.",
+    "That makes reviews a target for shortcuts. This course covers what Google allows: asking real customers, replying well, and flagging reviews that break the rules. It also covers what Google removes, from paid reviews to reviews written by people with a conflict of interest.",
+    "Every rule comes from Google's own help and policy pages. Where the pages are silent, the course says so."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T61-1",
+      "title": "Why reviews matter",
+      "est_minutes": 5,
+      "objectives": [
+        "Name the two review-related inputs Google ties to prominence",
+        "Say what Google says more reviews and positive ratings can do",
+        "Separate what Google says about replies from what it says about ranking"
+      ],
+      "scene": {
+        "id": "stars",
+        "title": "Reviews and prominence",
+        "beats": [
+          {
+            "caption": "Google says prominence means how well-known a business is.",
+            "source_ids": [
+              "S600#P3"
+            ]
+          },
+          {
+            "caption": "Prominence is also based on info like how many websites link to your business and how many reviews you have.",
+            "source_ids": [
+              "S600#P4"
+            ]
+          },
+          {
+            "caption": "More reviews and positive ratings can help your business's local ranking.",
+            "source_ids": [
+              "S600#P5"
+            ]
+          },
+          {
+            "caption": "Positive reviews and helpful replies can help your business stand out.",
+            "source_ids": [
+              "S600#P13"
+            ]
+          },
+          {
+            "caption": "Google's pages say replies show you value feedback. They don't say replies raise your ranking.",
+            "source_ids": [
+              "S604#P1",
+              "S600#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Reviews and prominence",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "In Google's local ranking help, prominence means how well-known a business is. Google says this factor is also based on info like how many websites link to your business and how many reviews you have.",
+              "source_ids": [
+                "S600#P3",
+                "S600#P4"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "More reviews and positive ratings can help your business's local ranking.",
+              "cite": "Google Business Profile Help",
+              "source_ids": [
+                "S600#P5"
+              ]
+            },
+            {
+              "type": "chips",
+              "items": [
+                "Number of reviews",
+                "Positive ratings"
+              ],
+              "source_ids": [
+                "S600#P4",
+                "S600#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Standing out",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google also says positive reviews and helpful replies can help your business stand out.",
+              "source_ids": [
+                "S600#P13"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Read carefully",
+              "text": "Google says replies show customers you value their feedback. Its pages tie local ranking to review counts and ratings, and they don't say replies raise ranking.",
+              "source_ids": [
+                "S604#P1",
+                "S600#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Putting it into practice",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "When a client asks why reviews matter, give Google's answer first:"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Count and ratings.",
+                  "text": "More reviews and positive ratings can help local ranking.",
+                  "source_ids": [
+                    "S600#P5"
+                  ]
+                },
+                {
+                  "lead": "Replies.",
+                  "text": "They show customers you value feedback, and helpful replies can help a business stand out.",
+                  "source_ids": [
+                    "S604#P1",
+                    "S600#P13"
+                  ]
+                },
+                {
+                  "lead": "Everything else.",
+                  "text": "Claims about review velocity, keywords in reviews or reply-driven ranking are industry theory unless Google says them. This is practitioner judgement."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Review count is one of the inputs Google names for prominence.",
+          "source_ids": [
+            "S600#P4"
+          ]
+        },
+        {
+          "text": "More reviews and positive ratings can help local ranking.",
+          "source_ids": [
+            "S600#P5"
+          ]
+        },
+        {
+          "text": "Positive reviews and helpful replies can help a business stand out.",
+          "source_ids": [
+            "S600#P13"
+          ]
+        },
+        {
+          "text": "Google says replies show you value feedback, not that they raise ranking.",
+          "source_ids": [
+            "S604#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Separate fact from theory",
+        "minutes": "5",
+        "steps": [
+          "Find a blog post or pitch about Google reviews and local SEO.",
+          "List every claim it makes about how reviews affect ranking.",
+          "Mark each claim as stated by Google or industry theory."
+        ],
+        "prompt_template": "Here are some claims about Google reviews and local ranking: [paste claims]. Google says prominence is also based on info like how many reviews a business has, that more reviews and positive ratings can help local ranking, and that replies show customers you value their feedback. Mark each claim as stated by Google or industry theory, and explain why."
+      },
+      "reflection": [
+        "What review-related advice have you followed that turned out to be theory?",
+        "How would you explain the role of replies to a client who thinks they boost rank?"
+      ],
+      "whats_next": "Next, how to ask customers for reviews without breaking Google's rules."
+    },
+    {
+      "lesson_id": "T61-2",
+      "title": "Asking for reviews",
+      "est_minutes": 6,
+      "objectives": [
+        "Ask for reviews with a Google link or QR code",
+        "Explain why incentives for reviews are prohibited",
+        "Avoid selectively asking only happy customers"
+      ],
+      "scene": {
+        "id": "ask",
+        "title": "Asking the right way",
+        "beats": [
+          {
+            "caption": "To leave reviews, you can ask customers to visit a Google link or scan a QR code. Customers must be signed into a Google Account.",
+            "source_ids": [
+              "S603#P1",
+              "S603#P2"
+            ]
+          },
+          {
+            "caption": "Reviews and other user contributions to Google Maps must reflect a genuine experience.",
+            "source_ids": [
+              "S603#P4"
+            ]
+          },
+          {
+            "caption": "Offering incentives, like free or discounted goods or services, in exchange for reviews is considered fake and misleading content, and is strictly prohibited.",
+            "source_ids": [
+              "S603#P3",
+              "S603#P6"
+            ]
+          },
+          {
+            "caption": "Google's policy also bars merchants from discouraging negative reviews, or selectively soliciting positive reviews from customers.",
+            "source_ids": [
+              "S605#P13"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The allowed way to ask",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's tips page says that to leave reviews, you can ask customers to visit a Google link or scan a QR code. Customers must be signed into a Google Account to leave a review.",
+              "source_ids": [
+                "S603#P1",
+                "S603#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "The rule behind it",
+              "text": "Reviews and other user contributions to Google Maps must reflect a genuine experience.",
+              "source_ids": [
+                "S603#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What you can't offer",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's tips page says offering incentives, like free or discounted goods or services, in exchange for customers to post reviews is considered fake and misleading content and is strictly prohibited.",
+              "source_ids": [
+                "S603#P3",
+                "S603#P6"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The Maps content policy goes further. Merchants and users may not offer incentives, such as payment, discounts, free goods and/or services, in exchange for posting any review, or for the revision or removal of a negative review.",
+              "source_ids": [
+                "S605#P10",
+                "S605#P11"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical gym plans to give a free month to every member who posts a review. That's an incentive, so it's prohibited. Sending members a Google review link instead is allowed.",
+              "source_ids": [
+                "S603#P3",
+                "S603#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Ask everyone, not just fans",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's policy lists things it does not allow merchants to do, including this:"
+            },
+            {
+              "type": "quote",
+              "text": "Discourage or prohibit negative reviews, or selectively solicit positive reviews from customers.",
+              "cite": "Google Maps user-generated content policy",
+              "source_ids": [
+                "S605#P13"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "A flow that sends happy customers to Google and unhappy ones to a private form selectively solicits positive reviews. Send every customer the same link.",
+              "source_ids": [
+                "S605#P13"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Ask customers to leave reviews with a Google link or QR code.",
+          "source_ids": [
+            "S603#P1"
+          ]
+        },
+        {
+          "text": "Reviews must reflect a genuine experience.",
+          "source_ids": [
+            "S603#P4"
+          ]
+        },
+        {
+          "text": "Incentives for reviews are strictly prohibited.",
+          "source_ids": [
+            "S603#P3",
+            "S603#P6"
+          ]
+        },
+        {
+          "text": "Merchants may not discourage negative reviews or selectively solicit positive ones.",
+          "source_ids": [
+            "S605#P13"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Review a review request",
+        "minutes": "5-10",
+        "steps": [
+          "Find a review request email, sign or card a business uses.",
+          "Check whether it offers anything in return.",
+          "Check whether it goes to every customer or only some.",
+          "Rewrite it so it follows Google's rules."
+        ],
+        "prompt_template": "Here is a business's review request: [paste text]. Check it against Google's rules: you can ask customers to visit a Google link or scan a QR code; offering incentives like free or discounted goods or services in exchange for reviews is strictly prohibited; merchants may not discourage negative reviews or selectively solicit positive reviews. List any problems and rewrite the request so it follows the rules."
+      },
+      "reflection": [
+        "Have you seen a \"review us for a discount\" offer? How would you advise that business now?",
+        "Does any review tool you've used filter customers before asking them?"
+      ],
+      "whats_next": "Next, replying to reviews: what Google says replies do and how they get posted."
+    },
+    {
+      "lesson_id": "T61-3",
+      "title": "Replying to reviews",
+      "est_minutes": 6,
+      "objectives": [
+        "Say what has to happen before you can reply",
+        "Write replies that follow Google's advice",
+        "Describe how Google checks, posts and notifies replies"
+      ],
+      "scene": {
+        "id": "reply",
+        "title": "From reply to posted",
+        "beats": [
+          {
+            "caption": "Before you can reply to reviews, you must verify your business.",
+            "source_ids": [
+              "S604#P2"
+            ]
+          },
+          {
+            "caption": "Your replies are public. Google says to avoid using them to offer deals or promotions, because your reviewers are already customers.",
+            "source_ids": [
+              "S603#P7",
+              "S603#P8"
+            ]
+          },
+          {
+            "caption": "Replies are checked against Google's content policies. They usually take up to 10 minutes to review, but sometimes up to 30 days.",
+            "source_ids": [
+              "S604#P6"
+            ]
+          },
+          {
+            "caption": "If your reply is approved, it's publicly posted under the customer's review. It appears as your business, and your personal name isn't shown.",
+            "source_ids": [
+              "S604#P7",
+              "S604#P8"
+            ]
+          },
+          {
+            "caption": "The person who wrote the review is notified when you reply, and customers can still change their review after reading it.",
+            "source_ids": [
+              "S604#P9",
+              "S604#P10"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Why reply",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that when you reply to reviews, you show customers that you value their feedback. Helpful and positive replies can show that you're responsive to your customers.",
+              "source_ids": [
+                "S604#P1",
+                "S604#P4"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "A prompt response shows that you value your customers' feedback and are committed to high-quality service.",
+              "cite": "Google Business Profile Help",
+              "source_ids": [
+                "S603#P9"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Before you start",
+              "text": "Before you can reply to reviews, you must verify your business.",
+              "source_ids": [
+                "S604#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What to put in a reply",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Remember it's public.",
+                  "text": "Your replies are public and help you build good relationships with customers.",
+                  "source_ids": [
+                    "S603#P7"
+                  ]
+                },
+                {
+                  "lead": "Skip the sales pitch.",
+                  "text": "Your reviewers are already customers, so avoid using your response to offer deals or promotions.",
+                  "source_ids": [
+                    "S603#P8"
+                  ]
+                },
+                {
+                  "lead": "Reply promptly.",
+                  "text": "A prompt response shows you value feedback.",
+                  "source_ids": [
+                    "S603#P9"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What happens after you send it",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google checks each reply against its content policies. Replies usually take up to 10 minutes to review, but sometimes a review can take up to 30 days. If your reply isn't approved to be posted, you'll be asked to edit it.",
+              "source_ids": [
+                "S604#P6",
+                "S604#P5"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Posted",
+                  "text": "An approved reply is publicly posted under the customer's review, as your business, without your personal name.",
+                  "source_ids": [
+                    "S604#P7",
+                    "S604#P8"
+                  ]
+                },
+                {
+                  "name": "Notified",
+                  "text": "The person who wrote the review is notified when you reply.",
+                  "source_ids": [
+                    "S604#P9"
+                  ]
+                },
+                {
+                  "name": "Still open",
+                  "text": "Customers can still change their review after reading your reply.",
+                  "source_ids": [
+                    "S604#P10"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "You must verify your business before you can reply.",
+          "source_ids": [
+            "S604#P2"
+          ]
+        },
+        {
+          "text": "Replies are public; don't use them to offer deals or promotions.",
+          "source_ids": [
+            "S603#P7",
+            "S603#P8"
+          ]
+        },
+        {
+          "text": "Approved replies post under the review as the business, and the reviewer is notified.",
+          "source_ids": [
+            "S604#P7",
+            "S604#P8",
+            "S604#P9"
+          ]
+        },
+        {
+          "text": "Customers can still change their review after reading your reply.",
+          "source_ids": [
+            "S604#P10"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Draft two replies",
+        "minutes": "10",
+        "steps": [
+          "Pick one positive and one critical review of a business you know.",
+          "Draft a short reply to each.",
+          "Check that neither reply offers a deal or promotion.",
+          "Ask Claude to check your drafts against Google's advice."
+        ],
+        "prompt_template": "Here are two Google reviews and my draft replies: [paste]. Check my replies against Google's advice: replies are public and help build good relationships with customers; avoid using a response to offer deals or promotions; a prompt response shows you value feedback. Suggest improvements, keeping each reply short."
+      },
+      "reflection": [
+        "How quickly does a business you know usually reply to reviews?",
+        "Have you seen a reply used as an advert? How did it read to you?"
+      ],
+      "whats_next": "Next, the reviews Google removes, and what to do when you think a review breaks the rules."
+    },
+    {
+      "lesson_id": "T61-4",
+      "title": "Fake reviews and flagging",
+      "est_minutes": 6,
+      "objectives": [
+        "Name the kinds of fake engagement Google's policy lists",
+        "Recognise a conflict of interest",
+        "Flag a review instead of retaliating"
+      ],
+      "scene": {
+        "id": "policy",
+        "title": "What Google removes",
+        "beats": [
+          {
+            "caption": "Google's Maps policy says fake engagement is not allowed and will be removed.",
+            "source_ids": [
+              "S605#P1"
+            ]
+          },
+          {
+            "caption": "That includes reviews or ratings that have been paid for, directly or in kind, and content posted from multiple accounts by or at the request of one person.",
+            "source_ids": [
+              "S605#P2",
+              "S605#P8"
+            ]
+          },
+          {
+            "caption": "Content based on a conflict of interest is also covered, such as current or former employment, or familial relationships.",
+            "source_ids": [
+              "S605#P3",
+              "S605#P14",
+              "S605#P15"
+            ]
+          },
+          {
+            "caption": "Posting content on a competitor's business to undermine its reputation isn't allowed either.",
+            "source_ids": [
+              "S605#P12"
+            ]
+          },
+          {
+            "caption": "If you believe a review on your profile violates Google's content policies, you can flag it.",
+            "source_ids": [
+              "S604#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Fake engagement",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says contributions to Google Maps should reflect a genuine experience at a place or business, and that fake engagement is not allowed and will be removed.",
+              "source_ids": [
+                "S605#P7",
+                "S605#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Paid reviews.",
+                  "text": "Reviews or ratings that have been paid for, directly or in kind.",
+                  "source_ids": [
+                    "S605#P2"
+                  ]
+                },
+                {
+                  "lead": "Sock puppets.",
+                  "text": "Content that has been posted from multiple accounts by or at the request of one person.",
+                  "source_ids": [
+                    "S605#P8"
+                  ]
+                },
+                {
+                  "lead": "Soliciting fake content.",
+                  "text": "Merchants or users may not solicit or encourage the posting of content that does not represent a genuine experience.",
+                  "source_ids": [
+                    "S605#P9"
+                  ]
+                },
+                {
+                  "lead": "Attacking competitors.",
+                  "text": "Posting content on a competitor's place or business to undermine its reputation isn't allowed.",
+                  "source_ids": [
+                    "S605#P12"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical clinic buys 200 five-star reviews to look more prominent. Even if they read as genuine, they're paid reviews, which Google lists as fake engagement and removes.",
+              "source_ids": [
+                "S605#P6",
+                "S600#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Conflicts of interest",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's policy also covers content that is based on a conflict of interest.",
+              "source_ids": [
+                "S605#P3"
+              ]
+            },
+            {
+              "type": "chips",
+              "items": [
+                "Current or former employment",
+                "Contractual relationships",
+                "Industry competitors",
+                "Familial relationships"
+              ],
+              "source_ids": [
+                "S605#P14",
+                "S605#P15"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Don't ask staff, family or contractors to review the business, even if their experience was real. The policy names those relationships as possible conflicts of interest.",
+              "source_ids": [
+                "S605#P14",
+                "S605#P15"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "When a review breaks the rules",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that if you believe a review violates Google's content policies, you can flag it.",
+              "source_ids": [
+                "S604#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Retaliating breaks the rules too. Offering incentives for the revision or removal of a negative review is prohibited.",
+              "source_ids": [
+                "S605#P10",
+                "S605#P11"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Fake engagement is not allowed and will be removed.",
+          "source_ids": [
+            "S605#P1"
+          ]
+        },
+        {
+          "text": "Paid reviews and reviews from multiple accounts run by one person are fake engagement.",
+          "source_ids": [
+            "S605#P2",
+            "S605#P8"
+          ]
+        },
+        {
+          "text": "Reviews based on a conflict of interest, such as employment or family ties, break the policy.",
+          "source_ids": [
+            "S605#P3",
+            "S605#P14",
+            "S605#P15"
+          ]
+        },
+        {
+          "text": "Flag a review you believe violates the content policies.",
+          "source_ids": [
+            "S604#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Spot the fake engagement",
+        "minutes": "5-10",
+        "steps": [
+          "Read the last 20 reviews on a profile in a competitive local category.",
+          "Note any that look paid, repeated, or written by someone with a conflict of interest.",
+          "For each, say which line of Google's policy it may break.",
+          "Decide whether you'd flag it, remembering you need a policy reason."
+        ],
+        "prompt_template": "Here are some reviews from a Google Business Profile: [paste reviews]. Using Google's Maps policy (fake engagement is not allowed, including reviews or ratings paid for directly or in kind, content posted from multiple accounts by or at the request of one person, and content based on a conflict of interest such as employment or familial relationships), say which reviews might break the policy and why. Be clear when evidence is only a suspicion."
+      },
+      "reflection": [
+        "Have you seen a competitor with a burst of suspicious reviews? What would you check before flagging?",
+        "Which review tactics would you now refuse to offer a client?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google says more reviews and positive ratings can help local ranking, and review count feeds prominence. Ask every customer with a Google link or QR code, never offer incentives, and never filter for happy customers. Verify the profile so you can reply, keep replies free of promotions, and expect Google to check them before posting. Paid reviews, sock-puppet accounts and conflicts of interest are fake engagement that Google removes. When a review breaks the rules, flag it.",
+    "related_topics": [
+      {
+        "topic_id": "T60",
+        "title": "Google Business Profile setup, categories and verification"
+      },
+      {
+        "topic_id": "T62",
+        "title": "Local landing pages and NAP consistency"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Local reviews. The questions revisit reviews and ranking, asking for reviews, replying, and fake engagement.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T61-L1-01",
+      "T61-L1-02",
+      "T61-L1-03",
+      "T61-L2-01",
+      "T61-L2-02",
+      "T61-L2-03",
+      "T61-L3-01",
+      "T61-L3-02",
+      "T61-L4-01",
+      "T61-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T61-L1-01",
+        "prompt": "Google says reviews and other user contributions to Google Maps must reflect what?",
+        "options": [
+          "A. A five-star experience",
+          "B. The owner's own view",
+          "C. A genuine experience",
+          "D. A verified purchase"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says reviews and other user contributions to Google Maps must reflect a genuine experience. Wrong: 'A five-star experience' - reviews can be critical; filtering for positive reviews is not allowed. 'The owner's own view' - owners have a conflict of interest. 'A verified purchase' - Google's pages don't set that requirement.",
+        "source_ids": [
+          "S603#P4",
+          "S605#P13",
+          "S605#P3"
+        ]
+      },
+      {
+        "item_id": "T61-L1-03",
+        "prompt": "What does Google's tips page say about offering free or discounted goods in exchange for reviews?",
+        "options": [
+          "A. It's allowed if the review is honest",
+          "B. It's strictly prohibited",
+          "C. It's allowed for verified profiles",
+          "D. It's allowed below a set value"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says offering incentives, like free or discounted goods or services, in exchange for reviews is strictly prohibited. Wrong: 'It's allowed if the review is honest' - the ban applies whatever the review says. 'It's allowed for verified profiles' - verification doesn't change the rule. 'It's allowed below a set value' - the page sets no value limit.",
+        "source_ids": [
+          "S603#P3",
+          "S603#P6"
+        ]
+      }
+    ]
+  }
+}
