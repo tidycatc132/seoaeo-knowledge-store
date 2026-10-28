@@ -4,8 +4,8 @@
  "stage": 9,
  "merged_from": [],
  "volatility": "evolving",
- "last_verified": "2026-10-25",
- "summary": "Google's only saved statement is that prominence is also based on info like how many websites link to your business and how many reviews you have. It does not name directory citations, so citation-building claims are industry theory.",
+ "last_verified": "2026-10-28",
+ "summary": "Google's saved local ranking page says prominence is also based on info like how many websites link to your business and how many reviews you have. It does not name directory citations, so citation-building claims are industry theory. Google's spam policy lists low-quality directory links, bought links and link exchanges as link spam; paid links are fine when qualified with rel=sponsored or nofollow.",
  "actions": [],
  "myths": [],
  "items": [
@@ -17,6 +17,37 @@
    "options": [],
    "answer": "websites",
    "explanation": "Google's local ranking help says prominence is also based on how many websites link to your business and how many reviews you have.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P4"
+   ]
+  },
+  {
+   "item_id": "T63-L1-02",
+   "level": 1,
+   "type": "multiple_choice",
+   "prompt": "What does Google say about requesting or paying for a better local ranking?",
+   "options": [
+    "A. Paying is allowed for verified businesses",
+    "B. There's no way to do either",
+    "C. Requests are accepted from verified owners only",
+    "D. Payment is accepted through Google Ads only"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says there's no way to request or pay for a better local ranking on Google. Wrong: the page offers no paid route for verified businesses, no request route for owners, and does not tie local ranking to Google Ads.",
+   "related_topics": [],
+   "source_ids": [
+    "S600#P6"
+   ]
+  },
+  {
+   "item_id": "T63-L1-03",
+   "level": 1,
+   "type": "true_false",
+   "prompt": "True or false: Google's saved local ranking page names directory citations as a ranking factor.",
+   "options": [],
+   "answer": "False",
+   "explanation": "The saved page says prominence is also based on info like how many websites link to your business and how many reviews you have. It does not name directory citations (absence in the saved page, not a statement).",
    "related_topics": [],
    "source_ids": [
     "S600#P4"
@@ -39,6 +70,140 @@
    "source_ids": [
     "S600#P4",
     "S600#P6"
+   ]
+  },
+  {
+   "item_id": "T63-L2-02",
+   "level": 2,
+   "type": "misconception_check",
+   "prompt": "A client says 'Every directory link helps local rank.' Which correction fits Google's spam policy?",
+   "options": [
+    "A. Directory links are always ignored by Google",
+    "B. Only paid directory links count as spam",
+    "C. Directory links are a named local ranking factor on Google's page",
+    "D. Google lists low-quality directory links as spam"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google's spam policy lists low-quality directory or bookmark site links as an example of link spam. Wrong: the policy doesn't say all directory links are ignored or that only paid ones count; the saved local ranking page doesn't name directory links.",
+   "related_topics": [
+    "T54"
+   ],
+   "source_ids": [
+    "S209#P27",
+    "S209#P5",
+    "S600#P4"
+   ]
+  },
+  {
+   "item_id": "T63-L2-03",
+   "level": 2,
+   "type": "odd_one_out",
+   "prompt": "Which of these is NOT listed as link spam in Google's spam policy?",
+   "options": [
+    "A. Qualified sponsor links marked rel=sponsored",
+    "B. Exchanging goods or services for links",
+    "C. Excessive link exchanges between partner pages",
+    "D. Widely distributed links in site footers or templates"
+   ],
+   "answer": "A",
+   "explanation": "Not spam: Google says it's not a violation to have paid links as long as they are qualified with rel=nofollow or rel=sponsored. Listed as link spam: exchanging goods or services for links; excessive link exchanges or partner pages exclusively for cross-linking; widely distributed links in the footers or templates of various sites.",
+   "related_topics": [],
+   "source_ids": [
+    "S209#P30",
+    "S209#P24",
+    "S209#P26",
+    "S209#P28"
+   ]
+  },
+  {
+   "item_id": "T63-L3-01",
+   "level": 3,
+   "type": "worked_example",
+   "prompt": "Hypothetical plumber sponsors a local football club, and the club's website links to the plumber as a sponsor. Following Google's guidance, how should the club mark that link?",
+   "options": [
+    "A. Leave it plain so it passes ranking credit",
+    "B. Qualify it with rel=sponsored",
+    "C. Repeat it in the footer of every page",
+    "D. Swap it for a link back from the plumber"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google says to mark links that are advertisements or paid placements with the sponsored value, and that such links are not a violation when qualified. Wrong: an unqualified paid link fits 'buying or selling links for ranking purposes'; widely distributed footer links and excessive link exchanges are listed link spam.",
+   "related_topics": [],
+   "source_ids": [
+    "S406#P1",
+    "S209#P30",
+    "S209#P23",
+    "S209#P28",
+    "S209#P26"
+   ]
+  },
+  {
+   "item_id": "T63-L3-02",
+   "level": 3,
+   "type": "spot_the_error",
+   "prompt": "Hypothetical agency plan for a dentist: (1) link each location page from the site's own homepage, (2) mark paid ad links rel=sponsored, (3) get mentioned in a local news story, (4) send free whitening kits to bloggers in exchange for posts with links. Which step matches a link spam example in Google's policy?",
+   "options": [
+    "A. Step 1, the homepage links to location pages",
+    "B. Step 2, the rel=sponsored ad links",
+    "C. Step 3, the local news mention",
+    "D. Step 4, the product-for-links swap"
+   ],
+   "answer": "D",
+   "explanation": "Correct: Google lists 'sending someone a product in exchange for them writing about it and including a link' as link spam. Wrong: Google says every page you care about should have a link from at least one other page on your site; qualified sponsored links are not a violation; an earned news mention is not on the list.",
+   "related_topics": [],
+   "source_ids": [
+    "S209#P25",
+    "S405#P4",
+    "S209#P30"
+   ]
+  },
+  {
+   "item_id": "T63-L4-01",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical roofer, Site J. Symptom: an agency offers '500 directory citations for $99' as the fix for weak local rankings. Evidence: (1) Google's local ranking page says prominence is also based on info like how many websites link to your business and how many reviews you have; (2) the page does not name directory citations; (3) Google's spam policy lists low-quality directory or bookmark site links and using automated programs or services to create links. What is the best response?",
+   "options": [
+    "A. Decline: it matches listed link spam examples",
+    "B. Buy it: Google names citations as its main local ranking factor",
+    "C. Buy it, but ask for the links in site footers",
+    "D. Buy it, then also pay Google for a better rank"
+   ],
+   "answer": "A",
+   "explanation": "Correct: bulk directory links match Google's listed examples of low-quality directory links and automated link building. Wrong: the saved page doesn't name citations at all; widely distributed footer links are also listed spam; Google says there's no way to pay for a better local ranking.",
+   "related_topics": [
+    "T54"
+   ],
+   "source_ids": [
+    "S600#P4",
+    "S209#P27",
+    "S209#P6",
+    "S209#P28",
+    "S600#P6"
+   ]
+  },
+  {
+   "item_id": "T63-L4-02",
+   "level": 4,
+   "type": "case_file",
+   "prompt": "Hypothetical café, Site K. Symptom: a new café has few links and few reviews, and the owner asks what Google ties to prominence. Evidence: (1) Google says prominence means how well-known a business is; (2) it says this is also based on how many websites link to the business and how many reviews it has; (3) it says more reviews and positive ratings can help local ranking; (4) it says there's no way to pay for a better local ranking. Which plan fits the evidence?",
+   "options": [
+    "A. Pay Google for a prominence boost",
+    "B. Earn genuine local links and reviews",
+    "C. Swap links with every café partner page",
+    "D. Buy directory links for ranking purposes"
+   ],
+   "answer": "B",
+   "explanation": "Correct: Google ties prominence to links and reviews, and says more reviews and positive ratings can help. Wrong: there's no way to pay for a better local ranking; excessive link exchanges and buying links for ranking purposes are listed link spam.",
+   "related_topics": [
+    "T61"
+   ],
+   "source_ids": [
+    "S600#P3",
+    "S600#P4",
+    "S600#P5",
+    "S600#P6",
+    "S209#P26",
+    "S209#P23"
    ]
   }
  ]

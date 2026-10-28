@@ -54,3 +54,19 @@ Summary: Google's spam policy defines keyword stuffing as filling a page with ke
 > Generating pages to funnel visitors into the actual usable or relevant portion of a site
 ### P22 scaled continued
 > and not helping users.
+### P23 buying links
+> Buying or selling links for ranking purposes
+### P24 goods for links
+> Exchanging goods or services for links
+### P25 product for link
+> Sending someone a product in exchange for them writing about it and including a link
+### P26 link exchanges
+> Excessive link exchanges ("Link to me and I'll link to you") or partner pages exclusively for the sake of cross-linking
+### P27 directory links
+> Low-quality directory or bookmark site links
+### P28 footer links
+> Widely distributed links in the footers or templates of various sites
+### P29 normal economy
+> Google does understand that buying and selling links is a normal part of the economy of the web for advertising and sponsorship purposes.
+### P30 qualified links ok
+> It's not a violation of our policies to have such links as long as they are qualified with a rel="nofollow" or rel="sponsored" attribute value to the <a> tag.
