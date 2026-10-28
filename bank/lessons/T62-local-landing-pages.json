@@ -1,0 +1,823 @@
+{
+  "topic_id": "T62",
+  "items_file": "bank/items/T62-local-landing-pages.json",
+  "course_title": "Local landing pages",
+  "subtitle": "Build location pages that help people instead of tripping Google's doorway policy, mark them up correctly, and keep canonicals from erasing them.",
+  "last_verified": "2026-10-28",
+  "outcomes": [
+    "Tell a useful location page from a doorway page, using Google's spam policy",
+    "Add LocalBusiness markup with the required properties and the right details",
+    "Explain what markup can't do, and why NAP consistency claims are industry theory",
+    "Set canonicals on location pages without folding them into the homepage"
+  ],
+  "intro": [
+    "Businesses with several locations, or several towns they serve, often build a page for each one. Done well, those pages help people find the right branch. Done badly, they're what Google's spam policy calls doorways.",
+    "This course covers both sides. You'll learn the doorway warning signs, how LocalBusiness markup describes a location, what markup can and can't promise, and how canonical tags can quietly undo a set of location pages.",
+    "Google has no dedicated guide to multi-location pages, so the course keeps to what its spam, structured data and canonical pages say. Anything beyond that is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T62-1",
+      "title": "Location pages, not doorways",
+      "est_minutes": 6,
+      "objectives": [
+        "Define doorway abuse in Google's words",
+        "Spot the city-page patterns Google lists as doorway examples",
+        "Plan location pages around real locations"
+      ],
+      "scene": {
+        "id": "doorway",
+        "title": "Forty city pages, one funnel",
+        "beats": [
+          {
+            "caption": "Google's spam policy says doorway abuse is when sites or pages are created to rank for specific, similar search queries.",
+            "source_ids": [
+              "S209#P17"
+            ]
+          },
+          {
+            "caption": "One example it lists: having multiple domain names or pages targeted at specific regions or cities that funnel users to one page.",
+            "source_ids": [
+              "S209#P19"
+            ]
+          },
+          {
+            "caption": "Another: creating substantially similar pages that are closer to search results than a clearly defined, browseable hierarchy.",
+            "source_ids": [
+              "S209#P20"
+            ]
+          },
+          {
+            "caption": "Google's LocalBusiness markup guide says to define each local business location as a LocalBusiness type, with the URL of the specific business location.",
+            "source_ids": [
+              "S606#P15",
+              "S606#P12"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: build one useful page per real location, and link them in a clear hierarchy.",
+            "source_ids": [
+              "S209#P20"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What Google calls a doorway",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "Doorway abuse is when sites or pages are created to rank for specific, similar search queries.",
+              "cite": "Google Search Central, Spam policies",
+              "source_ids": [
+                "S209#P17"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google adds that doorways lead users to intermediate pages that aren't as useful as the final destination.",
+              "source_ids": [
+                "S209#P18"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "City funnels.",
+                  "text": "Having multiple domain names or pages targeted at specific regions or cities that funnel users to one page.",
+                  "source_ids": [
+                    "S209#P19"
+                  ]
+                },
+                {
+                  "lead": "Near-copies.",
+                  "text": "Creating substantially similar pages that are closer to search results than a clearly defined, browseable hierarchy.",
+                  "source_ids": [
+                    "S209#P20"
+                  ]
+                },
+                {
+                  "lead": "Funnel pages.",
+                  "text": "Generating pages to funnel visitors into the actual usable or relevant portion of a site.",
+                  "source_ids": [
+                    "S209#P21"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Related: scaled content",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's spam policy also describes scaled content abuse: many pages generated for the primary purpose of manipulating search rankings and not helping users.",
+              "source_ids": [
+                "S209#P7",
+                "S209#P22"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical franchise publishes 40 city pages that differ only by the city name, each pointing visitors to the same booking page. That matches Google's description of pages targeted at cities that funnel users to one page.",
+              "source_ids": [
+                "S209#P19"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What a location page should be",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's LocalBusiness guide treats each location as its own thing: define each local business location as a LocalBusiness type, and give the fully-qualified URL of the specific business location.",
+              "source_ids": [
+                "S606#P15",
+                "S606#P12"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Build a page only for a real location or service area, and give it details a visitor needs there: address, hours, phone, directions. If two pages would say the same thing, they should be one page."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Doorway abuse is pages created to rank for specific, similar queries.",
+          "source_ids": [
+            "S209#P17"
+          ]
+        },
+        {
+          "text": "City or region pages that funnel users to one page are a listed doorway example.",
+          "source_ids": [
+            "S209#P19"
+          ]
+        },
+        {
+          "text": "Substantially similar pages without a clear hierarchy are another.",
+          "source_ids": [
+            "S209#P20"
+          ]
+        },
+        {
+          "text": "Google's markup guide treats each location as its own LocalBusiness with its own URL.",
+          "source_ids": [
+            "S606#P15",
+            "S606#P12"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit a set of location pages",
+        "minutes": "10",
+        "steps": [
+          "Pick a multi-location business site and open three of its location pages.",
+          "Note what differs between them beyond the place name.",
+          "Check where each page's main links send visitors.",
+          "Decide whether each page would help someone at that location."
+        ],
+        "prompt_template": "Here are three location pages from one business site: [paste text or summaries]. Google's spam policy describes doorway abuse as pages created to rank for specific, similar search queries, including pages targeted at specific regions or cities that funnel users to one page, and substantially similar pages that are closer to search results than a clearly defined, browseable hierarchy. Assess whether these pages risk looking like doorways, and suggest what each page needs to be useful on its own."
+      },
+      "reflection": [
+        "Have you seen a site with dozens of near-identical city pages? Did they help you?",
+        "What would make a location page useful to someone standing in that town?"
+      ],
+      "whats_next": "Next, LocalBusiness markup: how to describe each location to Google."
+    },
+    {
+      "lesson_id": "T62-2",
+      "title": "LocalBusiness markup",
+      "est_minutes": 6,
+      "objectives": [
+        "Say what LocalBusiness markup lets you tell Google",
+        "Include the required name and address properties",
+        "Choose the most specific subtype and format the phone number correctly"
+      ],
+      "scene": {
+        "id": "markup",
+        "title": "Writing the markup",
+        "beats": [
+          {
+            "caption": "With Local Business structured data, you can tell Google about business hours and different departments within a business.",
+            "source_ids": [
+              "S606#P1"
+            ]
+          },
+          {
+            "caption": "You must include the required properties for your content to be eligible for display as a rich result. The Required properties table lists name and address.",
+            "source_ids": [
+              "S606#P2",
+              "S606#P8",
+              "S606#P9"
+            ]
+          },
+          {
+            "caption": "Use the most specific LocalBusiness sub-type possible; for example, Restaurant, DaySpa or HealthClub.",
+            "source_ids": [
+              "S606#P14"
+            ]
+          },
+          {
+            "caption": "Be sure to include the country code and area code in the phone number.",
+            "source_ids": [
+              "S606#P4"
+            ]
+          },
+          {
+            "caption": "The url property is the fully-qualified URL of the specific business location, and it must be a working link.",
+            "source_ids": [
+              "S606#P12"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What the markup describes",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that with Local Business structured data, you can tell Google about business hours, different departments within a business, and more.",
+              "source_ids": [
+                "S606#P1"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "name",
+                  "text": "Required. The name of the business.",
+                  "source_ids": [
+                    "S606#P8"
+                  ]
+                },
+                {
+                  "name": "address",
+                  "text": "Required. The physical location of the business.",
+                  "source_ids": [
+                    "S606#P9"
+                  ]
+                },
+                {
+                  "name": "telephone",
+                  "text": "Recommended. A business phone number meant to be the primary contact method for customers.",
+                  "source_ids": [
+                    "S606#P11"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "You must include the required properties for your content to be eligible for display as a rich result.",
+              "source_ids": [
+                "S606#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Details that matter",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Most specific type.",
+                  "text": "Use the most specific LocalBusiness sub-type possible; for example, Restaurant, DaySpa, HealthClub.",
+                  "source_ids": [
+                    "S606#P14"
+                  ]
+                },
+                {
+                  "lead": "Full phone number.",
+                  "text": "Include the country code and area code.",
+                  "source_ids": [
+                    "S606#P4"
+                  ]
+                },
+                {
+                  "lead": "Hours.",
+                  "text": "openingHoursSpecification gives the hours during which the business location is open.",
+                  "source_ids": [
+                    "S606#P10"
+                  ]
+                },
+                {
+                  "lead": "Location URL.",
+                  "text": "The fully-qualified URL of the specific business location. The URL must be a working link.",
+                  "source_ids": [
+                    "S606#P12"
+                  ]
+                },
+                {
+                  "lead": "Coordinates.",
+                  "text": "geo gives the geographic coordinates of the business.",
+                  "source_ids": [
+                    "S606#P13"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical location page's markup lists a phone of \"555-0100\" and hours, but no address. The fix is to add the address and put the country and area codes in the phone number.",
+              "source_ids": [
+                "S606#P9",
+                "S606#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Several locations",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "For a business with several branches, Google's guide says to define each local business location as a LocalBusiness type.",
+              "source_ids": [
+                "S606#P15"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Put each location's markup on that location's own page, and make sure the name, address and phone match what the page shows."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "LocalBusiness markup tells Google about hours, departments and more.",
+          "source_ids": [
+            "S606#P1"
+          ]
+        },
+        {
+          "text": "name and address are required for rich result eligibility.",
+          "source_ids": [
+            "S606#P2",
+            "S606#P8",
+            "S606#P9"
+          ]
+        },
+        {
+          "text": "Use the most specific subtype, and include country and area codes in phone numbers.",
+          "source_ids": [
+            "S606#P14",
+            "S606#P4"
+          ]
+        },
+        {
+          "text": "Define each location as its own LocalBusiness, with its own working URL.",
+          "source_ids": [
+            "S606#P15",
+            "S606#P12"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Draft markup for one location",
+        "minutes": "10",
+        "steps": [
+          "Pick one location of a business you know.",
+          "Collect its name, address, phone (with country and area codes), hours and page URL.",
+          "Choose the most specific LocalBusiness subtype.",
+          "Ask Claude to draft the JSON-LD, then test it with Google's Rich Results Test."
+        ],
+        "prompt_template": "Write LocalBusiness JSON-LD for this location: [name, full address, phone with country and area code, hours, page URL, business type]. Use the most specific LocalBusiness subtype, include the required name and address properties, and add telephone, openingHoursSpecification and url. Don't invent any details I haven't given."
+      },
+      "reflection": [
+        "Which property do you most often see missing from local markup?",
+        "Does the markup on a site you know match what its pages actually show?"
+      ],
+      "whats_next": "Next, what markup can't do, and a claim about NAP you'll hear often."
+    },
+    {
+      "lesson_id": "T62-3",
+      "title": "What markup can't do",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain Google's no-guarantee statement on structured data",
+        "Explain why markup doesn't replace claiming a Business Profile",
+        "Treat NAP-consistency ranking claims as industry theory"
+      ],
+      "scene": {
+        "id": "limits",
+        "title": "Markup, profile and NAP",
+        "beats": [
+          {
+            "caption": "Google does not guarantee that features that consume structured data will show up in search results.",
+            "source_ids": [
+              "S606#P3"
+            ]
+          },
+          {
+            "caption": "Claiming your Business Profile is what Google ties to your business information showing in Google Maps and the knowledge panel.",
+            "source_ids": [
+              "S512#P1",
+              "S512#P2"
+            ]
+          },
+          {
+            "caption": "You'll often hear that consistent name, address and phone (NAP) across the web is a ranking factor.",
+            "source_ids": [
+              "S606#P1"
+            ]
+          },
+          {
+            "caption": "Google's LocalBusiness page describes hours, departments and properties, and says nothing about NAP consistency as a ranking factor. Treat the claim as industry theory.",
+            "source_ids": [
+              "S606#P1",
+              "S606#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "No guarantee",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "Google does not guarantee that features that consume structured data will show up in search results.",
+              "cite": "Google Search Central, LocalBusiness structured data",
+              "source_ids": [
+                "S606#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Required properties make a page eligible for a rich result. Eligible isn't the same as guaranteed.",
+              "source_ids": [
+                "S606#P2",
+                "S606#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Markup doesn't replace the profile",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's business details page says you can manage how your business appears on Google Maps and Google Search by claiming your Business Profile, and that claiming enables your local business information to show up in Google Maps and the Google knowledge panel.",
+              "source_ids": [
+                "S512#P1",
+                "S512#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical bakery owner says, \"We added LocalBusiness markup, so we don't need to claim a Business Profile.\" The advice is to claim the profile: that's what Google ties to Maps and knowledge panel display.",
+              "source_ids": [
+                "S512#P2",
+                "S606#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The NAP consistency claim",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Many local SEO guides say a consistent name, address and phone number across the web is a ranking factor. Google's LocalBusiness page describes business hours, departments and the properties to include, and it says nothing about NAP consistency as a ranking factor.",
+              "source_ids": [
+                "S606#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Absence, not a statement",
+              "text": "No Google page in this course says NAP consistency is a ranking factor. Keeping details consistent is still sensible housekeeping, but present ranking claims about it as industry theory."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google doesn't guarantee structured data features will show.",
+          "source_ids": [
+            "S606#P3"
+          ]
+        },
+        {
+          "text": "Claiming the Business Profile is what Google ties to Maps and knowledge panel display.",
+          "source_ids": [
+            "S512#P2"
+          ]
+        },
+        {
+          "text": "Google's LocalBusiness page doesn't call NAP consistency a ranking factor.",
+          "source_ids": [
+            "S606#P1"
+          ]
+        },
+        {
+          "text": "Required properties make a page eligible, not guaranteed.",
+          "source_ids": [
+            "S606#P2",
+            "S606#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Rewrite a markup promise",
+        "minutes": "5",
+        "steps": [
+          "Find a local SEO service page that mentions schema or NAP.",
+          "Underline every promise it makes about results.",
+          "Rewrite each promise so it matches what Google says."
+        ],
+        "prompt_template": "Here is a local SEO service description: [paste]. Rewrite any claims about schema markup or NAP consistency so they match Google's statements: Google does not guarantee that features that consume structured data will show up in search results; required properties make content eligible for display as a rich result; claiming a Business Profile enables business information to show in Google Maps and the knowledge panel. Flag NAP-as-ranking-factor claims as industry theory."
+      },
+      "reflection": [
+        "Have you promised a client a rich result from markup? How would you phrase it now?",
+        "Where did you first hear that NAP consistency is a ranking factor?"
+      ],
+      "whats_next": "Next, canonical tags: the setting that can quietly fold location pages into the homepage."
+    },
+    {
+      "lesson_id": "T62-4",
+      "title": "Canonicals on location pages",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain what canonicalization does to similar pages",
+        "Rank canonical signals by strength",
+        "Avoid pointing location pages' canonicals at the homepage"
+      ],
+      "scene": {
+        "id": "canon",
+        "title": "Where canonicals point",
+        "beats": [
+          {
+            "caption": "Google says canonicalization is used to consolidate signals for similar or duplicate pages.",
+            "source_ids": [
+              "S106#P1"
+            ]
+          },
+          {
+            "caption": "Google decides which pages, if any, are duplicates, based on similarity of content.",
+            "source_ids": [
+              "S106#P7"
+            ]
+          },
+          {
+            "caption": "A rel=canonical tag is a strong signal that the specified URL should become canonical.",
+            "source_ids": [
+              "S106#P4"
+            ]
+          },
+          {
+            "caption": "So if every city page points its canonical at the homepage, it's telling Google the homepage should be canonical. That's practitioner inference from Google's wording.",
+            "source_ids": [
+              "S106#P4"
+            ]
+          },
+          {
+            "caption": "A sitemap is only a weak signal, and none of these methods is required.",
+            "source_ids": [
+              "S106#P5",
+              "S106#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What canonicalization is for",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says canonicalization is used to consolidate signals for similar or duplicate pages, and to avoid spending crawling time on duplicate pages.",
+              "source_ids": [
+                "S106#P1",
+                "S106#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google decides which pages, if any, are duplicates, based on similarity of content.",
+              "source_ids": [
+                "S106#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Signals by strength",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Redirect",
+                  "text": "A strong signal that the target of the redirect should become canonical.",
+                  "source_ids": [
+                    "S106#P3"
+                  ]
+                },
+                {
+                  "name": "rel=canonical",
+                  "text": "A strong signal that the specified URL should become canonical.",
+                  "source_ids": [
+                    "S106#P4"
+                  ]
+                },
+                {
+                  "name": "Sitemap",
+                  "text": "A weak signal that helps the URLs included in a sitemap become canonical.",
+                  "source_ids": [
+                    "S106#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Optional",
+              "text": "Google says none of them are required; your site will likely do just fine without specifying a canonical preference.",
+              "source_ids": [
+                "S106#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Putting it into practice",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "When someone proposes a canonical setup for location pages:"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Don't point them at the homepage.",
+                  "text": "rel=canonical to the homepage is a strong signal that the homepage should be canonical.",
+                  "source_ids": [
+                    "S106#P4"
+                  ]
+                },
+                {
+                  "lead": "Don't rely on the sitemap to rescue them.",
+                  "text": "Google calls sitemap inclusion a weak signal.",
+                  "source_ids": [
+                    "S106#P5"
+                  ]
+                },
+                {
+                  "lead": "Fix similarity at the source.",
+                  "text": "If pages are near-identical, make them genuinely different or merge them. This is practitioner judgement.",
+                  "source_ids": [
+                    "S106#P7"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical franchise has 40 city pages that differ only by city name, and the owner proposes a canonical from every city page to the homepage. Reject it: the tag is a strong signal that the homepage should be canonical.",
+              "source_ids": [
+                "S106#P4",
+                "S106#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Canonicalization consolidates signals for similar or duplicate pages.",
+          "source_ids": [
+            "S106#P1"
+          ]
+        },
+        {
+          "text": "Google decides duplicates based on similarity of content.",
+          "source_ids": [
+            "S106#P7"
+          ]
+        },
+        {
+          "text": "rel=canonical and redirects are strong signals; sitemaps are weak.",
+          "source_ids": [
+            "S106#P3",
+            "S106#P4",
+            "S106#P5"
+          ]
+        },
+        {
+          "text": "A canonical from every location page to the homepage signals the homepage should be canonical.",
+          "source_ids": [
+            "S106#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check location page canonicals",
+        "minutes": "5-10",
+        "steps": [
+          "Open three location pages on a multi-location site.",
+          "View the source and find each page's rel=canonical tag.",
+          "Note where each one points.",
+          "Flag any that point somewhere other than the page itself, and say why that may be a problem."
+        ],
+        "prompt_template": "Here are the rel=canonical targets for several location pages: [page URL → canonical URL]. Google says rel=canonical is a strong signal that the specified URL should become canonical, that canonicalization consolidates signals for similar or duplicate pages, and that sitemap inclusion is only a weak signal. Flag any setup that risks folding location pages into another URL, and suggest a fix."
+      },
+      "reflection": [
+        "Have you inherited a site with canonicals pointing at the homepage? What happened to its location pages?",
+        "When would you merge two location pages instead of keeping both?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Location pages earn their place when each one serves a real location. City pages that funnel users to one page, or near-copies without a clear hierarchy, match Google's doorway examples. Mark each location up as its own LocalBusiness with the required name and address, the most specific subtype and a full phone number, but don't promise results: Google guarantees no rich result, and claiming the Business Profile is what it ties to Maps. NAP-as-ranking-factor claims are industry theory. And keep location page canonicals off the homepage, because rel=canonical is a strong signal.",
+    "related_topics": [
+      {
+        "topic_id": "T41",
+        "title": "Canonicalization and near-duplicate content detection"
+      },
+      {
+        "topic_id": "T63",
+        "title": "Citations and local link signals"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Local landing pages. The questions revisit LocalBusiness markup, what it can't guarantee, NAP claims, and canonicals on location pages.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T62-L1-01",
+      "T62-L1-02",
+      "T62-L1-03",
+      "T62-L2-01",
+      "T62-L2-02",
+      "T62-L2-03",
+      "T62-L3-01",
+      "T62-L3-02",
+      "T62-L4-01",
+      "T62-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T62-L1-01",
+        "prompt": "In Google's LocalBusiness Required properties table, which property is described as 'The physical location of the business'?",
+        "options": [
+          "A. address",
+          "B. geo",
+          "C. url",
+          "D. areaServed"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the Required properties table describes address as the physical location of the business. Wrong: 'geo' - that is the geographic coordinates of the business, and it isn't in the Required table. 'url' - that is the URL of the specific business location. 'areaServed' - the page's Required table doesn't list it.",
+        "source_ids": [
+          "S606#P9",
+          "S606#P13",
+          "S606#P12",
+          "S606#P7"
+        ]
+      },
+      {
+        "item_id": "T62-L1-03",
+        "prompt": "What does Google's LocalBusiness markup page say about NAP consistency as a ranking factor?",
+        "options": [
+          "A. It confirms NAP as a local ranking factor",
+          "B. It ranks NAP above reviews",
+          "C. It requires NAP for rich results",
+          "D. It doesn't mention it"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the page describes hours, departments and properties, and doesn't say NAP consistency is a ranking factor. Wrong: 'It confirms NAP as a local ranking factor' - no such statement is on the page. 'It ranks NAP above reviews' - the page doesn't compare factors. 'It requires NAP for rich results' - the Required table lists name and address, not consistency across the web.",
+        "source_ids": [
+          "S606#P1",
+          "S606#P8",
+          "S606#P9"
+        ]
+      }
+    ]
+  }
+}

@@ -55,3 +55,4 @@
 2026-10-27 | course-build | T59 | sources added 0 (S600 +P10-P16) | course lesson layer + 4 scenes | cut 0
 2026-10-27 | course-build | T60 | sources added 0 (S601 +P7-P19, S602 +P4-P9) | course lesson layer + 4 scenes | cut 0
 2026-10-28 | course-build | T61 | sources added 0 (S603 +P6-P9, S604 +P4-P10, S605 +P7-P15) | course lesson layer + 4 scenes | cut 0
+2026-10-28 | course-build | T62 | sources added 0 (S209 +P17-P22, S606 +P10-P15) | course lesson layer + 4 scenes | cut 0
