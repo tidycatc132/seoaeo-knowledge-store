@@ -1,0 +1,749 @@
+{
+  "topic_id": "T46",
+  "items_file": "bank/items/T46-anchor-text.json",
+  "course_title": "Anchor text: what links say",
+  "subtitle": "Why the words on a link describe the page it points to, how to write anchors Google asks for, how to make links crawlable, and where anchor text tips into spam.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why anchor text describes the target page",
+    "Write descriptive, concise anchors",
+    "Make links Google can crawl, including image links",
+    "Spot anchor text manipulation and label paid links"
+  ],
+  "intro": [
+    "When one page links to another, the clickable words say something about the destination. Search engines noticed early that those words are often a better description than the page gives of itself.",
+    "This course uses Brin and Page's paper describing PageRank, the anchor text section of Introduction to Information Retrieval, and Google's guides to link best practices, outbound link attributes and spam policies.",
+    "The paper and textbook describe methods, not what Google runs today. Advice beyond the sources' words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T46-1",
+      "title": "What anchor text tells a search engine",
+      "est_minutes": 5,
+      "objectives": [
+        "Define anchor text",
+        "Explain why anchors can describe a page well",
+        "Describe indexing a page under its anchor terms"
+      ],
+      "scene": {
+        "id": "anchors",
+        "title": "Words on the link",
+        "beats": [
+          {
+            "caption": "Anchor text, also known as link text, is the visible text of a link.",
+            "source_ids": [
+              "S405#P6"
+            ]
+          },
+          {
+            "caption": "It tells people and Google something about the page you're linking to.",
+            "source_ids": [
+              "S405#P7"
+            ]
+          },
+          {
+            "caption": "Brin and Page: anchors often provide more accurate descriptions of web pages than the pages themselves.",
+            "source_ids": [
+              "S400#P5"
+            ]
+          },
+          {
+            "caption": "Textbook example: searching for big blue on most web search engines returns IBM's home page as the top hit.",
+            "source_ids": [
+              "S236#P2"
+            ]
+          },
+          {
+            "caption": "The anchor text terms can be included as terms under which to index the target page.",
+            "source_ids": [
+              "S236#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Anchor text, defined",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says anchor text (also known as link text) is the visible text of a link. This text tells people and Google something about the page you're linking to.",
+              "source_ids": [
+                "S405#P6",
+                "S405#P7"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: in <a href=\"/returns\">returns policy for online orders</a>, the anchor text is 'returns policy for online orders'.",
+              "source_ids": [
+                "S405#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why anchors describe pages well",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Brin and Page's first reason for using anchor text was that anchors often provide more accurate descriptions of web pages than the pages themselves.",
+              "source_ids": [
+                "S400#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The textbook gives an example: searching for big blue on most web search engines returns the home page of the IBM corporation as the top hit, because of a nickname other people use for it. It says the anchor text terms can be included as terms under which to index the target web page.",
+              "source_ids": [
+                "S236#P2",
+                "S236#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Method, not Google today",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "The paper and textbook explain the idea. Neither says how Google weighs anchor text now. Google's own words are only that anchor text tells it something about the linked page.",
+              "source_ids": [
+                "S400#P5",
+                "S236#P3",
+                "S405#P7"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Anchor text is the visible text of a link.",
+          "source_ids": [
+            "S405#P6"
+          ]
+        },
+        {
+          "text": "It tells people and Google about the linked page.",
+          "source_ids": [
+            "S405#P7"
+          ]
+        },
+        {
+          "text": "Anchors can describe a page better than it does.",
+          "source_ids": [
+            "S400#P5"
+          ]
+        },
+        {
+          "text": "A page can be indexed under its anchor terms.",
+          "source_ids": [
+            "S236#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Read how others describe you",
+        "minutes": "10",
+        "steps": [
+          "Export the links pointing to your site from a backlink tool.",
+          "Sort the anchor text by how often it appears.",
+          "Note the phrases other people use for your brand or service.",
+          "Compare them with the words on your own home page."
+        ],
+        "prompt_template": "Here are the most common anchor texts pointing to my site: [list], and my home page title and opening text: [text]. The textbook says anchor text often describes a page more accurately than the page itself. Which terms do others use for us that our own copy doesn't? Label suggestions as practitioner judgement."
+      },
+      "reflection": [
+        "What nickname or shorthand do customers use for you?",
+        "Does your own copy use the words others link with?"
+      ],
+      "whats_next": "Next, how to write anchors the way Google asks."
+    },
+    {
+      "lesson_id": "T46-2",
+      "title": "Writing good anchors",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe good anchor text in Google's words",
+        "Avoid generic and stuffed anchors",
+        "Use the words around a link"
+      ],
+      "scene": {
+        "id": "writing",
+        "title": "Click here vs. a real description",
+        "beats": [
+          {
+            "caption": "Google: good anchor text is descriptive, reasonably concise, and relevant to the page that it's on.",
+            "source_ids": [
+              "S405#P2"
+            ]
+          },
+          {
+            "caption": "Too generic: 'Click here'. Better: 'list of cheese types'.",
+            "source_ids": [
+              "S405#P8",
+              "S405#P9"
+            ]
+          },
+          {
+            "caption": "Resist the urge to cram every keyword that's related to the page into the anchor.",
+            "source_ids": [
+              "S405#P3"
+            ]
+          },
+          {
+            "caption": "The words before and after links matter too.",
+            "source_ids": [
+              "S405#P10",
+              "S236#P4"
+            ]
+          },
+          {
+            "caption": "Don't chain up links next to each other.",
+            "source_ids": [
+              "S405#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What Google asks for",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says good anchor text is descriptive, reasonably concise, and relevant to the page that it's on. It gives 'Click here' as too generic, and 'list of cheese types' as better.",
+              "source_ids": [
+                "S405#P2",
+                "S405#P7",
+                "S405#P8",
+                "S405#P9"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google also says to resist the urge to cram every keyword that's related to the page into the anchor text.",
+              "source_ids": [
+                "S405#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical, linking to a returns page: 'click here' is too generic; 'returns returns policy returns online store refund' is crammed; 'returns policy for online orders' is descriptive and concise.",
+              "source_ids": [
+                "S405#P2",
+                "S405#P3",
+                "S405#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Context around the link",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says the words before and after links matter. The textbook makes a similar point: the text surrounding an anchor, sometimes referred to as extended anchor text, is often usable in the same manner as anchor text itself.",
+              "source_ids": [
+                "S405#P10",
+                "S236#P5",
+                "S236#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google also advises: don't chain up links next to each other.",
+              "source_ids": [
+                "S405#P11"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Put each link inside a sentence that explains why the reader should follow it, rather than in a row of bare links.",
+              "source_ids": [
+                "S405#P10",
+                "S405#P11"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Good anchors are descriptive, concise and relevant.",
+          "source_ids": [
+            "S405#P2"
+          ]
+        },
+        {
+          "text": "'Click here' is too generic.",
+          "source_ids": [
+            "S405#P8"
+          ]
+        },
+        {
+          "text": "Don't cram related keywords into anchors.",
+          "source_ids": [
+            "S405#P3"
+          ]
+        },
+        {
+          "text": "Surrounding words matter; don't chain links together.",
+          "source_ids": [
+            "S405#P10",
+            "S405#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Rewrite weak anchors",
+        "minutes": "15",
+        "steps": [
+          "Crawl your site and export internal links with their anchor text.",
+          "Filter for 'click here', 'read more', 'here' and other generic anchors.",
+          "Filter for anchors that repeat several keywords.",
+          "Rewrite ten of them as short descriptions of the target page."
+        ],
+        "prompt_template": "Here are internal links from my site with their anchor text and target page titles: [list]. Google says good anchor text is descriptive, reasonably concise and relevant, that 'Click here' is too generic, and to resist cramming related keywords. Rewrite each weak anchor, and suggest a sentence around it where the link sits alone."
+      },
+      "reflection": [
+        "How many 'read more' links does your blog template add?",
+        "Where do your links sit in a row with no sentence around them?"
+      ],
+      "whats_next": "Next, making sure Google can crawl your links at all."
+    },
+    {
+      "lesson_id": "T46-3",
+      "title": "Links Google can crawl",
+      "est_minutes": 5,
+      "objectives": [
+        "Build links Google can crawl",
+        "Give image links useful anchor text",
+        "Plan internal links to every page you care about"
+      ],
+      "scene": {
+        "id": "crawl",
+        "title": "A link Google can follow",
+        "beats": [
+          {
+            "caption": "Google can only crawl your link if it's an <a> HTML element.",
+            "source_ids": [
+              "S405#P1"
+            ]
+          },
+          {
+            "caption": "It can't reliably extract URLs from <a> elements that don't have an href attribute.",
+            "source_ids": [
+              "S405#P5"
+            ]
+          },
+          {
+            "caption": "For image links, Google uses the img element's alt attribute as anchor text.",
+            "source_ids": [
+              "S405#P12"
+            ]
+          },
+          {
+            "caption": "So be sure to add descriptive alt text to your images.",
+            "source_ids": [
+              "S405#P13"
+            ]
+          },
+          {
+            "caption": "Every page you care about should have a link from at least one other page on your site.",
+            "source_ids": [
+              "S405#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The <a href> rule",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google can only crawl your link if it's an <a> HTML element, and it can't reliably extract URLs from <a> elements that don't have an href attribute. Google's JavaScript guide says the same: links should be <a> HTML elements with an href attribute.",
+              "source_ids": [
+                "S405#P1",
+                "S405#P5",
+                "S105#P5"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a mega-menu built from <a onclick=\"goto('boots')\"> with no href, or from buttons with click handlers, gives Google no URL to follow. <a href=\"/boots\">Walking boots</a> does.",
+              "source_ids": [
+                "S405#P1",
+                "S405#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Image links",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "For images as links, Google uses the alt attribute of the img element as anchor text, so be sure to add descriptive alt text to your images.",
+              "source_ids": [
+                "S405#P12",
+                "S405#P13"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Internal links",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says every page you care about should have a link from at least one other page on your site. It suggests you think about what other resources on your site could help your readers understand a given page.",
+              "source_ids": [
+                "S405#P4",
+                "S405#P14"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google crawls <a> elements with an href.",
+          "source_ids": [
+            "S405#P1",
+            "S405#P5"
+          ]
+        },
+        {
+          "text": "Image links use alt text as anchor text.",
+          "source_ids": [
+            "S405#P12"
+          ]
+        },
+        {
+          "text": "Write descriptive alt text for linked images.",
+          "source_ids": [
+            "S405#P13"
+          ]
+        },
+        {
+          "text": "Link every page you care about from another page.",
+          "source_ids": [
+            "S405#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your navigation",
+        "minutes": "10",
+        "steps": [
+          "Open your main menu and footer in the browser's inspector.",
+          "Check that each item is an <a> element with an href.",
+          "Find any linked images and read their alt text.",
+          "List pages reached only by buttons or scripts."
+        ],
+        "prompt_template": "Here is the HTML of my site's navigation: [html]. Google says it can only crawl <a> elements, can't reliably extract URLs without an href, and uses alt text as anchor text for image links. List every link Google may not crawl and every linked image with missing or vague alt text, with a fix for each."
+      },
+      "reflection": [
+        "Which parts of your site are built from buttons, not links?",
+        "Do your linked logos and banners have descriptive alt text?"
+      ],
+      "whats_next": "Next, anchor text manipulation, and labelling paid links."
+    },
+    {
+      "lesson_id": "T46-4",
+      "title": "Manipulation and labelling",
+      "est_minutes": 5,
+      "objectives": [
+        "Recognise orchestrated anchor text as spam",
+        "Label paid and user-generated links",
+        "Link out with confidence"
+      ],
+      "scene": {
+        "id": "abuse",
+        "title": "When anchors are gamed",
+        "beats": [
+          {
+            "caption": "Textbook: orchestrated anchor text may be a form of spamming.",
+            "source_ids": [
+              "S236#P6"
+            ]
+          },
+          {
+            "caption": "It has been exploited in orchestrated campaigns against specific sites.",
+            "source_ids": [
+              "S236#P7"
+            ]
+          },
+          {
+            "caption": "Google defines keyword stuffing as filling a page with keywords to manipulate rankings, such as unnatural repetition.",
+            "source_ids": [
+              "S209#P1",
+              "S209#P2"
+            ]
+          },
+          {
+            "caption": "Mark paid links rel=sponsored and user-generated links rel=ugc. They'll generally not be followed.",
+            "source_ids": [
+              "S406#P1",
+              "S406#P2",
+              "S406#P3"
+            ]
+          },
+          {
+            "caption": "Linking to other sites isn't something to be scared of; it can help establish trustworthiness.",
+            "source_ids": [
+              "S405#P15"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Gaming the description",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Because anchors describe their targets, people try to game them. The textbook says such orchestrated anchor text may be a form of spamming, and that this has been exploited in orchestrated campaigns against specific sites.",
+              "source_ids": [
+                "S236#P6",
+                "S236#P7"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's spam policies define keyword stuffing as filling a web page with keywords or numbers in an attempt to manipulate rankings, including repeating the same words or phrases so often that it sounds unnatural.",
+              "source_ids": [
+                "S209#P1",
+                "S209#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Setting every internal link to the same long keyword phrase reads as unnatural repetition. No saved source says exact-match anchors outrank descriptive ones.",
+              "source_ids": [
+                "S209#P2",
+                "S405#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Labelling links",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google asks you to qualify two kinds of outbound link.",
+              "source_ids": [
+                "S406#P1",
+                "S406#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Paid.",
+                  "text": "Mark advertisements or paid placements with the sponsored value.",
+                  "source_ids": [
+                    "S406#P1"
+                  ]
+                },
+                {
+                  "lead": "User-generated.",
+                  "text": "Mark links in comments and forum posts with the ugc value.",
+                  "source_ids": [
+                    "S406#P2"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Links marked with these rel attributes will generally not be followed.",
+              "source_ids": [
+                "S406#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Linking out",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says linking to other sites isn't something to be scared of; in fact, using external links can help establish trustworthiness, for example by citing your sources.",
+              "source_ids": [
+                "S405#P15"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Orchestrated anchor text may be a form of spam.",
+          "source_ids": [
+            "S236#P6"
+          ]
+        },
+        {
+          "text": "Keyword stuffing includes unnatural repetition.",
+          "source_ids": [
+            "S209#P2"
+          ]
+        },
+        {
+          "text": "Label paid links sponsored and user links ugc.",
+          "source_ids": [
+            "S406#P1",
+            "S406#P2"
+          ]
+        },
+        {
+          "text": "External links can help establish trustworthiness.",
+          "source_ids": [
+            "S405#P15"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your anchor patterns",
+        "minutes": "15",
+        "steps": [
+          "Export internal links to your top five pages.",
+          "Count how often the exact same anchor phrase repeats.",
+          "Check sponsored posts and comments for rel=sponsored and rel=ugc.",
+          "Add one helpful external source link to a key article."
+        ],
+        "prompt_template": "Here are the internal anchors pointing to my key pages: [list], and my outbound links with their rel values: [list]. Google defines keyword stuffing as filling pages with keywords to manipulate rankings, and asks for rel=sponsored on paid links and rel=ugc on user links. Flag repetitive anchors and unlabelled links, and suggest fixes."
+      },
+      "reflection": [
+        "Has an agency ever set all your anchors to one phrase?",
+        "Which claims on your pages would a source link back up?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Anchor text is the visible text of a link, and it tells people and Google something about the page you link to. Early search engines used anchors because they often describe pages better than the pages do. Google asks for descriptive, concise, relevant anchors, not 'click here' and not crammed keywords, and says the words around a link matter. Links need to be <a> elements with an href, and image links use alt text. Orchestrated anchor text can be spam; label paid links sponsored and user links ugc, and link out to sources without fear.",
+    "related_topics": [
+      {
+        "topic_id": "T45",
+        "title": "Link graph analysis and authority modeling"
+      },
+      {
+        "topic_id": "T40",
+        "title": "Document rendering and JavaScript indexing"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Anchor text: what links say. The questions revisit why anchors matter, how to write them and how to keep links crawlable.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T46-L1-01",
+      "T46-L1-02",
+      "T46-L1-03",
+      "T46-L2-01",
+      "T46-L2-02",
+      "T46-L2-03",
+      "T46-L3-01",
+      "T46-L3-02",
+      "T46-L4-01",
+      "T46-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T46-L1-01",
+        "options": [
+          "A. ranking signals",
+          "B. descriptions",
+          "C. citations",
+          "D. translations"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the paper says anchors often provide more accurate descriptions of web pages than the pages themselves. This is the paper's reasoning, not a statement about Google's current systems.",
+        "source_ids": [
+          "S400#P5"
+        ]
+      },
+      {
+        "item_id": "T46-L1-02",
+        "options": [
+          "A. Packed with every related keyword you can fit",
+          "B. Identical on every single link across the site",
+          "C. Descriptive, concise and relevant",
+          "D. A short generic label such as 'click here'"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says good anchor text is descriptive, reasonably concise, and relevant to the page that it's on. Wrong: Google says to resist cramming every related keyword; it doesn't ask for identical anchors; and it calls 'Click here' too generic.",
+        "source_ids": [
+          "S405#P2",
+          "S405#P3",
+          "S405#P8"
+        ]
+      },
+      {
+        "item_id": "T46-L1-03",
+        "options": [
+          "A. False, any clickable element works",
+          "B. False, only buttons are crawled",
+          "C. True",
+          "D. False, it reads onclick handlers"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says it can only crawl your link if it's an <a> HTML element, and it can't reliably extract URLs from <a> elements without an href.",
+        "source_ids": [
+          "S405#P1",
+          "S405#P5"
+        ]
+      },
+      {
+        "item_id": "T46-L2-02",
+        "options": [
+          "A. True, the more keywords the better",
+          "B. False",
+          "C. True, but only for internal links",
+          "D. True, for exact-match phrases only"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says to resist the urge to cram every keyword related to the page into anchor text, and to keep it descriptive and reasonably concise.",
+        "source_ids": [
+          "S405#P3",
+          "S405#P2"
+        ]
+      },
+      {
+        "item_id": "T46-L4-01",
+        "prompt": "Hypothetical JS storefront 'GearBox'. Evidence: (1) category links are buttons with click handlers, not <a href>; (2) only the home page appears in the index; (3) Google's JavaScript docs describe crawl, render and index phases. Best fix?",
+        "options": [
+          "A. Add more keywords to the page title and headings",
+          "B. Mark the buttons rel=sponsored to speed discovery",
+          "C. Submit more sitemap files",
+          "D. Use real <a href> links to each category"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says it can only crawl <a> HTML elements, and it can't reliably extract URLs from <a> elements without an href. Wrong: titles don't create links; sponsored is for paid links and wouldn't make buttons crawlable; extra sitemaps don't give the buttons href values.",
+        "source_ids": [
+          "S405#P1",
+          "S405#P5",
+          "S105#P5",
+          "S105#P1"
+        ]
+      }
+    ]
+  }
+}
