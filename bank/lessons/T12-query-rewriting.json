@@ -1,0 +1,779 @@
+{
+  "topic_id": "T12",
+  "items_file": "bank/items/T12-query-rewriting.json",
+  "course_title": "Query rewriting and expansion",
+  "subtitle": "Why search systems don't just look up the exact words you typed, and what that means for how you write.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain query expansion and where the extra terms come from",
+    "Describe pseudo relevance feedback and query drift",
+    "Explain what Google has said about reading words in context",
+    "Write for a topic and its sub-questions without stuffing synonyms"
+  ],
+  "intro": [
+    "When someone searches, the system may not look up only the words they typed. It can add related words, learn from its own first results, or read each word in the light of the words around it.",
+    "This course covers the classic methods from the Stanford textbook Introduction to Information Retrieval, then what Google has said about BERT and about the related searches behind AI Overviews and AI Mode.",
+    "Which rewriting steps any engine applies to a given query is mostly unconfirmed. Where the course draws lessons for your site, they're labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T12-1",
+      "title": "Query expansion",
+      "est_minutes": 5,
+      "objectives": [
+        "Define query expansion",
+        "Name two sources of extra query terms",
+        "State what expansion generally does to recall"
+      ],
+      "scene": {
+        "id": "expand",
+        "title": "Adding words to a query",
+        "beats": [
+          {
+            "caption": "In classic search, the query can be automatically expanded with synonyms and related words.",
+            "source_ids": [
+              "S001#P2"
+            ]
+          },
+          {
+            "caption": "One source is a thesaurus. Thesaurus-based expansion has the advantage of not requiring any user input.",
+            "source_ids": [
+              "S001#P5"
+            ]
+          },
+          {
+            "caption": "Another source is query logs: the manual reformulations of other users become suggestions for a new user.",
+            "source_ids": [
+              "S001#P3"
+            ]
+          },
+          {
+            "caption": "Added terms can count for less. One might weight them less than the original query terms.",
+            "source_ids": [
+              "S001#P6"
+            ]
+          },
+          {
+            "caption": "The payoff: use of query expansion generally increases recall.",
+            "source_ids": [
+              "S001#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What expansion is",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Query expansion adds terms to what the person typed. The textbook says the query can be automatically expanded with synonyms and related words.",
+              "source_ids": [
+                "S001#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Thesaurus.",
+                  "text": "Thesaurus-based query expansion has the advantage of not requiring any user input.",
+                  "source_ids": [
+                    "S001#P5"
+                  ]
+                },
+                {
+                  "lead": "Query logs.",
+                  "text": "The system exploits the manual query reformulations of other users to make suggestions to a new user.",
+                  "source_ids": [
+                    "S001#P3"
+                  ]
+                },
+                {
+                  "lead": "The user.",
+                  "text": "In interactive expansion, users give additional input on query words or phrases, possibly suggesting additional query terms.",
+                  "source_ids": [
+                    "S001#P1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Someone types \"car insurance\". A thesaurus might add \"auto\", and logs might show that other people rephrased it as \"vehicle insurance\". Those added terms can be weighted less than the original two words.",
+              "source_ids": [
+                "S001#P2",
+                "S001#P3",
+                "S001#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why it's done",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The textbook says use of query expansion generally increases recall. More relevant pages get a chance to match, even if they use different words.",
+              "source_ids": [
+                "S001#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Expansion happens on the system side. That's a reason to write the way your readers talk, not to paste lists of synonyms onto the page."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Query expansion adds synonyms and related words to a query.",
+          "source_ids": [
+            "S001#P2"
+          ]
+        },
+        {
+          "text": "Extra terms can come from a thesaurus or from other users' reformulations.",
+          "source_ids": [
+            "S001#P5",
+            "S001#P3"
+          ]
+        },
+        {
+          "text": "Added terms can be weighted less than the original ones.",
+          "source_ids": [
+            "S001#P6"
+          ]
+        },
+        {
+          "text": "Expansion generally increases recall.",
+          "source_ids": [
+            "S001#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find your synonyms",
+        "minutes": "10",
+        "steps": [
+          "Pick one page and the main phrase it targets.",
+          "Write down three other ways a customer might say the same thing.",
+          "Check whether the page reads naturally to someone using each phrase.",
+          "Note any place where you'd add a sentence, not a keyword list."
+        ],
+        "prompt_template": "My page targets [phrase]. Customers might also say [three alternatives]. The textbook says query expansion adds synonyms and related words on the system side and generally increases recall. Review this page copy: [paste]. Suggest where a natural sentence would help a reader who uses one of the alternatives, without adding keyword lists. Label your suggestions as practitioner judgement."
+      },
+      "reflection": [
+        "Which words do your customers use that your pages don't?",
+        "Why would a system weight added terms less than the ones a person typed?"
+      ],
+      "whats_next": "Next, a method that expands a query using the system's own first results."
+    },
+    {
+      "lesson_id": "T12-2",
+      "title": "Pseudo relevance feedback",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe pseudo relevance feedback step by step",
+        "Explain query drift with the textbook's example",
+        "Tell expansion apart from spelling correction"
+      ],
+      "scene": {
+        "id": "drift",
+        "title": "Learning from the top results",
+        "beats": [
+          {
+            "caption": "Pseudo relevance feedback, also known as blind relevance feedback, provides a method for automatic local analysis.",
+            "source_ids": [
+              "S002#P1"
+            ]
+          },
+          {
+            "caption": "Run the query, assume the top k ranked documents are relevant, then do relevance feedback under that assumption.",
+            "source_ids": [
+              "S002#P3"
+            ]
+          },
+          {
+            "caption": "The textbook says this automatic technique mostly works.",
+            "source_ids": [
+              "S002#P4"
+            ]
+          },
+          {
+            "caption": "But if the top results for copper mines are mostly about Chile, the query may drift in the direction of documents on Chile.",
+            "source_ids": [
+              "S002#P2"
+            ]
+          },
+          {
+            "caption": "Spelling correction is a different repair. The aim: find carrot when someone types carot.",
+            "source_ids": [
+              "S003#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "How it works",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Pseudo relevance feedback, also known as blind relevance feedback, provides a method for automatic local analysis. Nobody marks any results.",
+              "source_ids": [
+                "S002#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Search.",
+                  "text": "Run the original query as normal.",
+                  "source_ids": [
+                    "S002#P3"
+                  ]
+                },
+                {
+                  "lead": "Assume.",
+                  "text": "Assume that the top k ranked documents are relevant.",
+                  "source_ids": [
+                    "S002#P3"
+                  ]
+                },
+                {
+                  "lead": "Feed back.",
+                  "text": "Do relevance feedback as before under this assumption, adding terms from those documents.",
+                  "source_ids": [
+                    "S002#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "This automatic technique mostly works.",
+              "cite": "Introduction to Information Retrieval, 9.1.6",
+              "source_ids": [
+                "S002#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "When it goes wrong",
+          "blocks": [
+            {
+              "type": "example",
+              "text": "Someone searches copper mines. If the top results happen to be mostly about mines in Chile, the textbook warns that there may be query drift in the direction of documents on Chile.",
+              "source_ids": [
+                "S002#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Spelling correction is a separate fix. The textbook describes two steps, one based on edit distance and one based on k-gram overlap, so that a search for carot can still find carrot.",
+              "source_ids": [
+                "S003#P1",
+                "S003#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Pseudo relevance feedback assumes the top k results are relevant.",
+          "source_ids": [
+            "S002#P3"
+          ]
+        },
+        {
+          "text": "It mostly works.",
+          "source_ids": [
+            "S002#P4"
+          ]
+        },
+        {
+          "text": "Its risk is query drift toward the topic of those top results.",
+          "source_ids": [
+            "S002#P2"
+          ]
+        },
+        {
+          "text": "Spelling correction repairs typos; it doesn't add related terms.",
+          "source_ids": [
+            "S003#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Spot possible drift",
+        "minutes": "10",
+        "steps": [
+          "Search for one of your main topics.",
+          "Write down the theme of the top five results.",
+          "Ask whether that theme is narrower than your topic.",
+          "Note what a page would need to cover the wider topic."
+        ],
+        "prompt_template": "I searched for [topic] and the top results were mostly about [theme]. The textbook says pseudo relevance feedback assumes the top k results are relevant and can drift toward their topic. Explain, as a hypothetical and not as a claim about any specific engine, how a system using this method might drift, and what that suggests about the scope of my page."
+      },
+      "reflection": [
+        "What would a system learn if the top results for your topic were all from one country or one brand?",
+        "Why does an automatic method need a fallback when its assumption is wrong?"
+      ],
+      "whats_next": "Next, what Google has said about reading words in context, and a research method that writes a fake answer."
+    },
+    {
+      "lesson_id": "T12-3",
+      "title": "Reading the whole query",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain what Google said BERT does with word context",
+        "Explain why small words can change a search",
+        "Tell a research method apart from what an engine uses"
+      ],
+      "scene": {
+        "id": "context",
+        "title": "Small words, big difference",
+        "beats": [
+          {
+            "caption": "In 2019 Google said BERT models consider the full context of a word by looking at the words that come before and after it.",
+            "source_ids": [
+              "S005#P1"
+            ]
+          },
+          {
+            "caption": "It said this helps with searches where prepositions like for and to matter a lot to the meaning.",
+            "source_ids": [
+              "S005#P2"
+            ]
+          },
+          {
+            "caption": "At launch, Google said BERT would help Search better understand one in 10 searches in the U.S. in English.",
+            "source_ids": [
+              "S005#P3"
+            ]
+          },
+          {
+            "caption": "Research describes other rewriting methods. HyDE instructs a language model to generate a hypothetical document and searches with it.",
+            "source_ids": [
+              "S006#P1"
+            ]
+          },
+          {
+            "caption": "The paper says that document is unreal and may contain false details. A paper shows what a method does, not what an engine uses.",
+            "source_ids": [
+              "S006#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What Google said in 2019",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's 2019 announcement said BERT models can consider the full context of a word by looking at the words that come before and after it.",
+              "source_ids": [
+                "S005#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "It singled out searches where prepositions like for and to matter a lot to the meaning, and said BERT would help Search better understand one in 10 searches in the U.S. in English.",
+              "source_ids": [
+                "S005#P2",
+                "S005#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "\"Flights from Paris to London\" and \"flights from London to Paris\" use the same words. Only the small words say which way you're going.",
+              "source_ids": [
+                "S005#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Research is not a confession",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Papers describe many ways to rewrite a query. HyDE instructs an instruction-following language model to generate a hypothetical document, then uses it to find real ones. The authors note the document captures relevance patterns but is unreal and may contain false details.",
+              "source_ids": [
+                "S006#P1",
+                "S006#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "A paper is evidence of what a method is and does. Unless an engine documents that it uses a method, treat claims that it does as unconfirmed."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google said BERT looks at the words before and after a word.",
+          "source_ids": [
+            "S005#P1"
+          ]
+        },
+        {
+          "text": "Prepositions like for and to can matter a lot to meaning.",
+          "source_ids": [
+            "S005#P2"
+          ]
+        },
+        {
+          "text": "HyDE searches with a hypothetical document that may contain false details.",
+          "source_ids": [
+            "S006#P1",
+            "S006#P2"
+          ]
+        },
+        {
+          "text": "A research paper doesn't show which engine uses a method.",
+          "source_ids": [
+            "S006#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your small words",
+        "minutes": "10",
+        "steps": [
+          "List five page titles from your site.",
+          "Mark any title written as keywords with the small words removed.",
+          "Rewrite each marked title as a person would say it.",
+          "Keep both versions to compare later in Search Console."
+        ],
+        "prompt_template": "Here are five page titles: [titles]. Google's 2019 BERT announcement said BERT considers the words before and after a word, and that prepositions like for and to can matter a lot to meaning. Flag any title where dropped small words could change or blur the meaning, and suggest a natural rewrite. Label the advice as practitioner inference, since the announcement is about understanding queries, not titles."
+      },
+      "reflection": [
+        "Which of your target phrases change meaning if you swap or drop a small word?",
+        "How would you check whether a claim about an engine's method is documented?"
+      ],
+      "whats_next": "Next, the related searches behind Google's AI features, and what to do about them."
+    },
+    {
+      "lesson_id": "T12-4",
+      "title": "Fan-out and writing for it",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe query fan-out in Google's words",
+        "Explain why special markup isn't needed for AI features",
+        "Plan a page around a topic and its sub-questions"
+      ],
+      "scene": {
+        "id": "fanout",
+        "title": "One question, many searches",
+        "beats": [
+          {
+            "caption": "Google says AI Overviews and AI Mode may use a query fan-out technique.",
+            "source_ids": [
+              "S007#P5"
+            ]
+          },
+          {
+            "caption": "That means issuing multiple related searches across subtopics and data sources.",
+            "source_ids": [
+              "S007#P1"
+            ]
+          },
+          {
+            "caption": "There are no additional requirements to appear, and no special schema.org structured data to add.",
+            "source_ids": [
+              "S007#P2",
+              "S007#P3"
+            ]
+          },
+          {
+            "caption": "AI Mode and AI Overviews may use different models and techniques, so the responses and links will vary.",
+            "source_ids": [
+              "S007#P17"
+            ]
+          },
+          {
+            "caption": "Practitioner inference: cover the sub-questions a reader would ask, in plain language. Inclusion isn't promised.",
+            "source_ids": [
+              "S007#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What Google documents",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's AI features documentation says both AI Overviews and AI Mode may use a query fan-out technique, issuing multiple related searches across subtopics and data sources.",
+              "source_ids": [
+                "S007#P5",
+                "S007#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "It also says AI Mode and AI Overviews may use different models and techniques, so the set of responses and links they show will vary.",
+              "source_ids": [
+                "S007#P17"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "There are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary. There's also no special schema.org structured data that you need to add.",
+              "source_ids": [
+                "S007#P2",
+                "S007#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Writing for a topic",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist when planning a page for a broad question.",
+              "source_ids": [
+                "S007#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "List the sub-questions.",
+                  "text": "Write down the subtopics a reader would need, such as pricing, setup and alternatives. This is practitioner inference from the documented fan-out.",
+                  "source_ids": [
+                    "S007#P1"
+                  ]
+                },
+                {
+                  "lead": "Answer in plain words.",
+                  "text": "Use natural phrasing, including the small words. Google said prepositions can matter a lot to meaning.",
+                  "source_ids": [
+                    "S005#P2"
+                  ]
+                },
+                {
+                  "lead": "Skip the synonym lists.",
+                  "text": "Expansion with synonyms happens system-side in classic search. This is practitioner judgement.",
+                  "source_ids": [
+                    "S001#P2"
+                  ]
+                },
+                {
+                  "lead": "Skip special markup.",
+                  "text": "Google says there's no special schema.org structured data to add for AI features.",
+                  "source_ids": [
+                    "S007#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Covering sub-questions is a sensible test, not a guarantee. Google doesn't say that covering a subtopic earns inclusion."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "AI Overviews and AI Mode may fan one query out into related searches across subtopics.",
+          "source_ids": [
+            "S007#P5",
+            "S007#P1"
+          ]
+        },
+        {
+          "text": "Google says no special optimizations or schema.org markup are needed.",
+          "source_ids": [
+            "S007#P2",
+            "S007#P3"
+          ]
+        },
+        {
+          "text": "Responses and links vary between AI features.",
+          "source_ids": [
+            "S007#P17"
+          ]
+        },
+        {
+          "text": "Covering sub-questions is practitioner inference, not a promise.",
+          "source_ids": [
+            "S007#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map the sub-questions",
+        "minutes": "15",
+        "steps": [
+          "Pick one broad topic your site covers.",
+          "List six questions a buyer would ask about it.",
+          "Mark which ones your page already answers.",
+          "Draft a short section for one unanswered question."
+        ],
+        "prompt_template": "My page covers [topic]. Google's documentation says AI Overviews and AI Mode may issue multiple related searches across subtopics, and that no special schema.org markup is needed. List the sub-questions a buyer would likely ask about this topic, mark which ones this page answers: [paste or summarise], and draft a plain-language section for the most important gap. Label this as practitioner inference: covering a subtopic doesn't guarantee inclusion."
+      },
+      "reflection": [
+        "Which sub-questions about your main topic does no page on your site answer?",
+        "Why might two AI features show different links for the same question?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Search systems often rewrite queries. Classic expansion adds synonyms and related words from a thesaurus or from other users' reformulations, and generally increases recall. Pseudo relevance feedback assumes the top results are relevant and mostly works, but can drift. Google said BERT reads words in context, so small words can change meaning, and its AI features may fan a query out into related searches across subtopics with no special markup needed. Which steps any engine applies is mostly unconfirmed, so write naturally for a topic and its sub-questions.",
+    "related_topics": [
+      {
+        "topic_id": "T25",
+        "title": "Query transformation and fan-out"
+      },
+      {
+        "topic_id": "T48",
+        "title": "Search intent and spelling correction"
+      },
+      {
+        "topic_id": "T8",
+        "title": "Tokenization and normalization"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Query rewriting and expansion. The questions revisit expansion, query drift, small words and fan-out.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T12-L1-01",
+      "T12-L1-02",
+      "T12-L1-03",
+      "T12-L2-01",
+      "T12-L2-02",
+      "T12-L2-03",
+      "T12-L3-01",
+      "T12-L3-02",
+      "T12-L4-01",
+      "T12-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T12-L1-01",
+        "prompt": "In classic information retrieval, automatically adding synonyms and related words to a query is called query what?",
+        "options": [
+          "A. ranking",
+          "B. indexing",
+          "C. expansion",
+          "D. tokenization"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the textbook says the query can be automatically expanded with synonyms and related words. Wrong: ranking orders results, indexing builds the index, and tokenization chops text into tokens.",
+        "source_ids": [
+          "S001#P2"
+        ]
+      },
+      {
+        "item_id": "T12-L1-02",
+        "options": [
+          "A. A user marks results relevant and the engine learns.",
+          "B. The engine corrects spelling using edit distance.",
+          "C. An LLM writes a hypothetical answer used to search.",
+          "D. Treat the top k results as relevant and expand."
+        ],
+        "answer": "D",
+        "explanation": "Correct: the textbook says to assume the top k ranked documents are relevant and do relevance feedback under that assumption. Wrong: a user marking results is ordinary relevance feedback; edit distance is spelling correction; writing a hypothetical answer is the HyDE paper's method.",
+        "source_ids": [
+          "S002#P3",
+          "S001#P1",
+          "S003#P1",
+          "S006#P1"
+        ]
+      },
+      {
+        "item_id": "T12-L1-03",
+        "prompt": "In pseudo relevance feedback for 'copper mines', the top results are mostly about Chile. What does the textbook warn can happen?",
+        "options": [
+          "A. The query may drift toward documents on Chile",
+          "B. The system asks the user to mark each result relevant",
+          "C. Spelling correction rewrites the query to a new word",
+          "D. The added terms are thrown away before ranking runs"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the textbook warns there may be query drift in the direction of documents on Chile. Wrong: pseudo relevance feedback needs no user input, spelling correction is a separate step, and nothing says added terms are thrown away.",
+        "source_ids": [
+          "S002#P2",
+          "S002#P1",
+          "S003#P1"
+        ]
+      },
+      {
+        "item_id": "T12-L2-01",
+        "prompt": "The textbook says query expansion generally increases which measure?",
+        "options": [
+          "A. precision",
+          "B. page speed",
+          "C. recall",
+          "D. click-through rate"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the textbook says use of query expansion generally increases recall. Wrong: it doesn't say expansion increases precision, page speed or click-through rate.",
+        "source_ids": [
+          "S001#P4"
+        ]
+      },
+      {
+        "item_id": "T12-L3-01",
+        "prompt": "A system retrieves for 'copper mines'. The top 10 are almost all about Chilean mines. It assumes those 10 are relevant and expands the query with terms from them. What does the textbook call the risk?",
+        "options": [
+          "A. query drift",
+          "B. keyword stuffing",
+          "C. spelling correction",
+          "D. duplicate content"
+        ],
+        "answer": "A",
+        "explanation": "Correct: adding terms from Chile-heavy results pushes the query toward Chile, which the textbook calls query drift. It also says the technique mostly works. Wrong: keyword stuffing and duplicate content are page problems, and spelling correction repairs typos.",
+        "source_ids": [
+          "S002#P2",
+          "S002#P3",
+          "S002#P4"
+        ]
+      },
+      {
+        "item_id": "T12-L4-02",
+        "options": [
+          "A. Add more synonyms to the meta descriptions across the site.",
+          "B. Add Organization markup with sameAs links to the site.",
+          "C. Restore natural titles, then test impressions.",
+          "D. Wait, since pseudo relevance feedback will repair it."
+        ],
+        "answer": "C",
+        "explanation": "Correct: this is practitioner inference. The 2019 announcement is about query understanding, not title wording, so restore the small words and measure rather than assume. Wrong: synonyms in meta descriptions don't restore the dropped words; Organization markup is unrelated to query wording; pseudo relevance feedback is a retrieval-side method, not a repair for titles.",
+        "source_ids": [
+          "S005#P1",
+          "S005#P2",
+          "S002#P3"
+        ]
+      }
+    ]
+  }
+}

@@ -62,4 +62,5 @@
 2026-10-29 | course-build | T2 | sources added 2 (S225, S226; S205 +P4-P8) | bank T2 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T5 | sources added 0 (S120 +P9-P14) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T7 | sources added 0 | course lesson layer + 4 scenes | cut 0
-- 2026-10-29: Built T8 Tokenization and normalization course (sources S227, S228 added). https://claude.ai/artifact/M4LbL3Dfwdhe3HwRGqyW1L
+2026-10-29 | course-build | T8 | sources added 2 (S227, S228) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T12 | sources added 0 | course lesson layer + 4 scenes | cut 0
