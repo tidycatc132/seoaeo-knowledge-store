@@ -1,0 +1,318 @@
+<title>WISE Academy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* WISE Academy hub. Built by courses/build_hub.py: the course catalog, tracks and paths are injected.
+   Same tokens and WISE styling as courses/shell.html (light only), so the hub and the courses read as one site. */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --raised: #f7f7f7;
+  --ink: #111111;
+  --text: #505858;
+  --muted: #505858;
+  --line: #cccccc;
+  --accent: #019f44;
+  --accent-dark: #017a34;
+  --accent-soft: #e5f5ec;
+  --tint: #f2faf6;
+  --good: #017a34;
+  --nav: #2f5fc4; --nav-soft: #e5ecfb;
+  --trans: #a8570e; --trans-soft: #fbeadb;
+  --wise-gradient-dark: linear-gradient(180deg, #020506 0%, #061012 100%);
+  --display: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 26px; margin: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(35px, 5vw, 56px); line-height: 1.23; }
+h2 { font-size: clamp(26px, 3.2vw, 34px); line-height: 1.3; }
+h3 { font-size: 19px; line-height: 27px; }
+p { margin: 0; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid #99d9b4; outline-offset: 2px; }
+.light { font-weight: 300; }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.small { font-size: 0.86rem; color: var(--muted); }
+.wrap { max-width: 1180px; margin: 0 auto; }
+
+/* Top bar */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: #ffffff; border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: #ffffff; }
+.topbar-in { display: flex; align-items: center; gap: 18px; height: 72px; max-width: 1180px; margin: 0 auto; }
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand img { height: 60px; width: auto; display: block; }
+.brand-sub { font-family: var(--display); font-weight: 300; font-size: 1.1rem; color: var(--ink); border-left: 1px solid var(--line); padding-left: 12px; }
+.topnav { margin-left: auto; display: flex; gap: 22px; font-size: 0.9rem; }
+.topnav a { text-decoration: none; color: var(--muted); }
+.topnav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { background: var(--wise-gradient-dark); color: #ffffff; }
+.hero-in { padding-block: 64px 72px; display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 32px; align-items: center; }
+.eyebrow-dark { display: block; font-size: 14px; line-height: 17px; font-weight: 700; letter-spacing: 3.38px; text-transform: uppercase; color: rgba(255, 255, 255, 0.3); }
+.hero h1 { color: #ffffff; margin: 24px 0 14px; }
+.lede { font-weight: 300; font-size: 20px; line-height: 33px; color: rgba(255, 255, 255, 0.78); max-width: 60ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; font-weight: 600; font-size: 12px; padding: 7px 14px; border: 1px solid rgba(255, 255, 255, 0.28); }
+.chip svg { width: 13px; height: 13px; color: #4dbc7c; }
+.prog { margin-top: 24px; max-width: 320px; display: grid; gap: 6px; }
+.prog .track { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.2); overflow: hidden; }
+.prog .fill { height: 100%; background: var(--accent); transition: width 0.4s ease; }
+.prog span { font-size: 0.84rem; color: rgba(255, 255, 255, 0.8); }
+.owl-well { justify-self: center; width: 200px; aspect-ratio: 1; max-width: 100%; border-radius: 50%; background: var(--accent-soft); display: grid; place-items: center; }
+.owl-well img { width: 46%; height: auto; }
+
+/* Sections */
+.sec { padding-block: 56px 8px; display: grid; gap: 24px; scroll-margin-top: 80px; }
+.sec-head { display: grid; gap: 8px; max-width: 70ch; }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-dark); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 1px 2px rgba(5, 16, 17, 0.06); }
+.btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 12px 22px; font-weight: 600; font-size: 15px; line-height: 1; border: 1.5px solid var(--accent); background: var(--accent); color: #ffffff; text-decoration: none; cursor: pointer; transition: background 240ms cubic-bezier(0.22, 1, 0.36, 1); }
+.btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn svg { width: 14px; height: 14px; }
+
+/* Learning paths */
+.paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.path { padding: 24px; display: grid; gap: 14px; align-content: start; }
+.path .who { font-size: 0.82rem; color: var(--muted); }
+.path .meta { font-size: 0.86rem; color: var(--muted); }
+.path ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; counter-reset: step; }
+.path li a { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: center; padding: 5px 6px; border-radius: 6px; text-decoration: none; font-size: 0.93rem; color: var(--ink); }
+.path li a:hover { background: var(--tint); }
+.num { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-size: 0.7rem; line-height: 1; font-weight: 700; color: var(--muted); }
+.num.done::after { content: ""; width: 7px; height: 4px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translate(1px, -1px); }
+.num.done { background: var(--good); border-color: var(--good); color: #ffffff; }
+.path .btn { justify-self: start; margin-top: 4px; }
+
+/* Toolbar */
+.toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; gap: 12px; align-items: end; padding: 16px; background: var(--tint); border-radius: 8px; }
+.field { display: grid; gap: 4px; }
+.field label { font-size: 0.78rem; font-weight: 600; color: var(--ink); }
+.field input, .field select { height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #b9c3c0; background: #ffffff; min-width: 0; }
+.field input:focus, .field select:focus { outline: 3px solid #99d9b4; border-color: var(--accent); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--ink); padding-bottom: 10px; white-space: nowrap; cursor: pointer; }
+.toggle input { width: 16px; height: 16px; accent-color: var(--accent); }
+.count { font-size: 0.9rem; }
+.empty { padding: 28px; text-align: center; display: grid; gap: 10px; justify-items: center; }
+.linkish { background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; color: var(--accent-dark); font-weight: 600; }
+
+/* Tracks and course cards */
+.trackblock { display: grid; gap: 16px; padding-top: 28px; scroll-margin-top: 90px; }
+.trackhead { display: grid; gap: 4px; }
+.trackhead h2 { font-size: clamp(22px, 2.6vw, 28px); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.course { padding: 18px 18px 14px; display: grid; gap: 10px; grid-template-rows: auto auto 1fr auto; }
+.course.is-done { background: var(--tint); }
+.ctop { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 0.78rem; }
+.tid { font-family: var(--mono); color: var(--muted); }
+.vol { padding: 2px 9px; border-radius: 999px; font-weight: 600; }
+.vol.stable { background: var(--accent-soft); color: var(--accent-dark); }
+.vol.evolving { background: var(--nav-soft); color: var(--nav); }
+.vol.fast-moving { background: var(--trans-soft); color: var(--trans); }
+.course h3 a { text-decoration: none; }
+.course h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.course .sub { font-size: 0.92rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.cfoot { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 0.84rem; }
+.cfoot .mins { display: inline-flex; align-items: center; gap: 6px; }
+.cfoot svg { width: 13px; height: 13px; }
+.state { font-size: 0.78rem; font-weight: 600; color: var(--nav); }
+.mark { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; cursor: pointer; font-size: 0.8rem; }
+.mark[aria-pressed="true"] { border-color: var(--good); color: var(--good); font-weight: 600; }
+.tick { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--muted); display: grid; place-items: center; }
+.mark[aria-pressed="true"] .tick { background: var(--good); border-color: var(--good); }
+.mark[aria-pressed="true"] .tick::after { content: ""; width: 6px; height: 3px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: rotate(-45deg) translate(1px, -1px); }
+
+footer { margin-top: 64px; border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 24px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+@media (max-width: 900px) {
+  .hero-in { grid-template-columns: minmax(0, 1fr); padding-block: 40px 48px; }
+  .owl-well { display: none; }
+  .brand img { height: 48px; }
+  .paths { grid-template-columns: minmax(0, 1fr); }
+  .toolbar { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .toolbar .search { grid-column: 1 / -1; }
+  .toggle { padding-bottom: 0; }
+}
+@media (max-width: 560px) {
+  .topnav { display: none; }
+  .toolbar { grid-template-columns: minmax(0, 1fr); }
+  .path { padding: 18px; }
+  .lede { font-size: 18px; line-height: 29px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="topbar"><div class="topbar-in gutter">
+  <a class="brand" href="#top" aria-label="WISE Academy home"><img src="wise-logo.png" alt="WISE Digital Partners" width="116" height="48"><span class="brand-sub">Academy</span></a>
+  <nav class="topnav" aria-label="Sections"><a href="#paths">Learning paths</a><a href="#courses">All courses</a></nav>
+</div></header>
+
+<div id="app"></div>
+
+<script>
+const HUB = __HUB__;
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ICON = {
+  book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>',
+  badge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg>',
+  right: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+};
+const BY_ID = Object.fromEntries(HUB.courses.map(c => [c.id, c]));
+const NEW_TAB = HUB.mode === "artifact" ? ' target="_blank" rel="noopener"' : "";
+
+/* ---------- Progress ----------
+   Ticks the viewer sets here are kept in this browser. When the hub and the courses share one site
+   (relative links), a course with a badge also counts as done, and one with any finished step as started. */
+const STORE = "wise-academy-hub-v1";
+let P = { done: {} };
+try { const s = JSON.parse(localStorage.getItem(STORE)); if (s && s.done) P = s; } catch (e) {}
+const save = () => { try { localStorage.setItem(STORE, JSON.stringify(P)); } catch (e) {} };
+function courseStore(id) {
+  if (HUB.mode !== "relative") return null;
+  try { return JSON.parse(localStorage.getItem(id.toLowerCase() + "-course-v1")); } catch (e) { return null; }
+}
+function status(id) {
+  if (P.done[id]) return "done";
+  const s = courseStore(id);
+  if (s && s.badge) return "done";
+  if (s && s.done && Object.values(s.done).some(Boolean)) return "started";
+  return "";
+}
+const isDone = id => status(id) === "done";
+
+/* ---------- Filters ---------- */
+const F = { q: "", track: "", vol: "", hideDone: false };
+const haystack = c => [c.id, c.title, c.subtitle, c.topic, ...c.outcomes].join(" ").toLowerCase();
+function matches(c) {
+  if (F.track && String(c.stage) !== F.track) return false;
+  if (F.vol && c.volatility !== F.vol) return false;
+  if (F.hideDone && isDone(c.id)) return false;
+  const words = F.q.toLowerCase().split(/\s+/).filter(Boolean);
+  const h = haystack(c);
+  return words.every(w => h.includes(w));
+}
+
+const hours = m => { const h = m / 60; return h < 1 ? `${m} min` : `about ${Math.round(h * 2) / 2} hours`; };
+function lightLast(t) { const i = t.lastIndexOf(" "); return i < 0 ? esc(t) : `${esc(t.slice(0, i))} <span class="light">${esc(t.slice(i + 1))}</span>`; }
+
+function heroHtml() {
+  const n = HUB.courses.length, d = HUB.courses.filter(c => isDone(c.id)).length;
+  const total = HUB.courses.reduce((a, c) => a + c.minutes, 0);
+  return `<section class="hero" id="top"><div class="hero-in wrap gutter"><div>
+      <span class="eyebrow-dark">Course library</span>
+      <h1>${lightLast("Learn how search works")}</h1>
+      <p class="lede">${esc(HUB.lede)}</p>
+      <div class="chips">
+        <span class="chip">${ICON.book}${n} courses</span>
+        <span class="chip">${ICON.layers}${HUB.tracks.length} tracks</span>
+        <span class="chip">${ICON.clock}${hours(total)} in all</span>
+        <span class="chip">${ICON.badge}Quiz and badge in every course</span>
+      </div>
+      <div class="prog" ${d ? "" : "hidden"}><div class="track"><div class="fill" style="width:${(d / n) * 100}%"></div></div><span><b>${d}</b> of ${n} courses done</span></div>
+    </div><div class="owl-well"><img src="owl.png" alt="Digi the Owl" width="892" height="1438"></div></div></section>`;
+}
+
+function pathHtml(p) {
+  const cs = p.topics.map(id => BY_ID[id]);
+  const mins = cs.reduce((a, c) => a + c.minutes, 0);
+  const done = cs.filter(c => isDone(c.id)).length;
+  const next = cs.find(c => !isDone(c.id));
+  const label = done === 0 ? "Start path" : next ? "Continue path" : "Review path";
+  const target = next || cs[0];
+  return `<article class="card path">
+    <span class="who">${esc(p.audience)}</span>
+    <h3>${esc(p.name)}</h3>
+    <p>${esc(p.blurb)}</p>
+    <span class="meta">${cs.length} courses · ${hours(mins)}${done ? ` · ${done} done` : ""}</span>
+    <ol>${cs.map((c, i) => `<li><a href="${esc(c.href)}"${NEW_TAB}><span class="num ${isDone(c.id) ? "done" : ""}">${isDone(c.id) ? "" : i + 1}</span><span>${esc(c.title)}</span></a></li>`).join("")}</ol>
+    <a class="btn" href="${esc(target.href)}"${NEW_TAB}>${label} ${ICON.right}</a>
+  </article>`;
+}
+
+function courseHtml(c) {
+  const st = status(c.id);
+  const manual = !!P.done[c.id];
+  return `<article class="card course ${st === "done" ? "is-done" : ""}">
+    <div class="ctop"><span class="tid">${esc(c.id)}</span><span class="vol ${esc(c.volatility)}" title="How often the facts in this topic change">${esc(HUB.volatility[c.volatility])}</span></div>
+    <h3><a href="${esc(c.href)}"${NEW_TAB}>${esc(c.title)}</a></h3>
+    <p class="sub">${esc(c.subtitle)}</p>
+    <div class="cfoot">
+      <span class="mins">${ICON.clock}${c.minutes} min${st === "started" ? ' · <span class="state">In progress</span>' : ""}</span>
+      <button class="mark" type="button" data-mark="${esc(c.id)}" aria-pressed="${st === "done"}" ${st === "done" && !manual ? "disabled" : ""}><span class="tick"></span>${st === "done" ? "Done" : "Mark done"}</button>
+    </div>
+  </article>`;
+}
+
+function coursesHtml() {
+  const shown = HUB.courses.filter(matches);
+  const blocks = HUB.tracks.map(t => {
+    const cs = shown.filter(c => c.stage === t.stage);
+    if (!cs.length) return "";
+    return `<section class="trackblock" id="track-${t.stage}" aria-labelledby="th-${t.stage}">
+      <div class="trackhead"><span class="eyebrow">Track ${t.stage}</span><h2 id="th-${t.stage}">${esc(t.name)}</h2><p>${esc(t.blurb)}</p></div>
+      <div class="grid">${cs.map(courseHtml).join("")}</div>
+    </section>`;
+  }).join("");
+  const filtered = F.q || F.track || F.vol || F.hideDone;
+  return `<p class="count" aria-live="polite">${filtered ? `Showing <b>${shown.length}</b> of ${HUB.courses.length} courses` : `All <b>${HUB.courses.length}</b> courses, in the order a search engine works`}</p>
+    ${shown.length ? blocks : `<div class="card empty"><p>No courses match those filters.</p><button class="linkish" type="button" id="clearF">Clear filters</button></div>`}`;
+}
+
+function render() {
+  const verified = HUB.courses.map(c => c.verified).filter(Boolean).sort();
+  $("#app").innerHTML = `${heroHtml()}
+  <main class="wrap gutter">
+    <section class="sec" id="paths" aria-labelledby="paths-h">
+      <div class="sec-head"><span class="eyebrow">Start here</span><h2 id="paths-h">Learning paths</h2><p>Not sure where to begin? Pick the path that matches your work and take its courses in order.</p></div>
+      <div class="paths">${HUB.paths.map(pathHtml).join("")}</div>
+    </section>
+    <section class="sec" id="courses" aria-labelledby="courses-h">
+      <div class="sec-head"><span class="eyebrow">Library</span><h2 id="courses-h">All courses</h2><p>Grouped into tracks that follow a search engine's pipeline, from crawling a page to answering a question.</p></div>
+      <div class="toolbar" role="search">
+        <div class="field search"><label for="q">Search courses</label><input id="q" type="search" placeholder="Try canonical, reviews or embeddings" value="${esc(F.q)}" autocomplete="off"></div>
+        <div class="field"><label for="ft">Track</label><select id="ft"><option value="">All tracks</option>${HUB.tracks.map(t => `<option value="${t.stage}" ${F.track === String(t.stage) ? "selected" : ""}>${esc(t.name)}</option>`).join("")}</select></div>
+        <div class="field"><label for="fv">How fast it changes</label><select id="fv"><option value="">Any</option>${Object.entries(HUB.volatility).map(([k, v]) => `<option value="${esc(k)}" ${F.vol === k ? "selected" : ""}>${esc(v)}</option>`).join("")}</select></div>
+        <label class="toggle"><input id="fd" type="checkbox" ${F.hideDone ? "checked" : ""}>Hide done</label>
+      </div>
+      <div id="results">${coursesHtml()}</div>
+    </section>
+  </main>
+  <footer><div class="wrap gutter small"><span>Ticks and progress are saved in this browser only.</span><span>Sources last checked ${esc(verified[0] || "")} to ${esc(verified[verified.length - 1] || "")}.</span></div></footer>`;
+  bind();
+}
+
+function refreshResults() { $("#results").innerHTML = coursesHtml(); }
+function bind() {
+  $("#q").addEventListener("input", e => { F.q = e.target.value; refreshResults(); });
+  $("#ft").addEventListener("change", e => { F.track = e.target.value; refreshResults(); });
+  $("#fv").addEventListener("change", e => { F.vol = e.target.value; refreshResults(); });
+  $("#fd").addEventListener("change", e => { F.hideDone = e.target.checked; refreshResults(); });
+}
+document.addEventListener("click", e => {
+  const m = e.target.closest("[data-mark]");
+  if (m) {
+    const id = m.dataset.mark;
+    if (P.done[id]) delete P.done[id]; else P.done[id] = true;
+    save();
+    const y = scrollY; render(); scrollTo(0, y);
+    const again = document.querySelector(`[data-mark="${id}"]`); if (again) again.focus();
+    return;
+  }
+  if (e.target.id === "clearF") { Object.assign(F, { q: "", track: "", vol: "", hideDone: false }); const y = scrollY; render(); scrollTo(0, y); }
+});
+addEventListener("storage", () => { try { const s = JSON.parse(localStorage.getItem(STORE)); if (s && s.done) P = s; } catch (e) {} render(); });
+render();
+</script>
