@@ -1,0 +1,76 @@
+/* Scenes for T42 Keyword weighting: tf-idf and BM25. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); transition: opacity 0.4s; }
+.tagx.ok { background: #12301f; color: var(--accent); border-color: var(--accent); }
+.tagx.warn { background: #2a2416; color: #f5c451; border-color: #f5c451; }
+
+/* match */
+.s-match .qy { position: absolute; left: 4%; top: 4%; font-size: 2cqw; color: #9aa6a3; } .s-match .qy b { color: #e7efe9; font-family: var(--mono); }
+.s-match .dk { position: absolute; left: 4%; width: 42%; padding: 1cqw 1.4cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; display: grid; grid-template-columns: auto 1fr auto; gap: 1.2cqw; align-items: center; transition: opacity 0.4s; }
+.s-match .k0 { top: 17%; } .s-match .k1 { top: 33%; } .s-match .k2 { top: 49%; }
+.s-match .dk small { font-size: 1.3cqw; color: #9aa6a3; } .s-match .dk span { font-size: 1.7cqw; color: #e7efe9; }
+.s-match .dk i { font-style: normal; font-size: 1.4cqw; font-weight: 700; padding: 0.3cqw 0.8cqw; border-radius: 99cqw; }
+.s-match .dk i.y { color: var(--accent); border: 0.2cqw solid var(--accent); } .s-match .dk i.n { color: var(--bad); border: 0.2cqw solid var(--bad); }
+.s-match .many { position: absolute; left: 4%; top: 67%; font-size: 2cqw; font-weight: 700; color: #f5c451; opacity: 0; transition: opacity 0.4s; }
+.s-match.b1 .many { opacity: 1; }
+.s-match .bag { position: absolute; left: 54%; top: 17%; width: 40%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #12301f; border: 0.25cqw solid var(--accent); display: grid; gap: 0.8cqw; opacity: 0; transition: opacity 0.4s; }
+.s-match .bag small { font-size: 1.4cqw; color: var(--accent); }
+.s-match .ct { display: flex; gap: 0.8cqw; flex-wrap: wrap; } .s-match .ct i { font-style: normal; font-family: var(--mono); font-size: 1.6cqw; color: #e7efe9; padding: 0.4cqw 0.8cqw; border-radius: 0.5cqw; background: #0c1516; border: 0.2cqw solid #33494a; }
+.s-match.b2 .bag { opacity: 1; } .s-match.b2 .k0 { border-color: var(--accent); }
+.s-match .vec { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.4s; }
+.s-match .vec path { fill: none; stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+.s-match .vec .ax { stroke: #33494a; } .s-match .vec .v1 { stroke: var(--nav); } .s-match .vec .v2 { stroke: var(--accent); }
+.s-match .vl { position: absolute; font-size: 1.5cqw; font-weight: 700; opacity: 0; transition: opacity 0.4s; }
+.s-match .l1 { left: 90%; top: 64%; color: var(--nav); } .s-match .l2 { left: 80%; top: 50%; color: var(--accent); }
+.s-match.b3 .vec, .s-match.b3 .vl { opacity: 1; } .s-match.b3 .dk, .s-match.b3 .many { opacity: 0.4; }
+.s-match .t4 { left: 4%; top: 84%; } .s-match.b4 .t4 { opacity: 1; }
+
+/* tfidf */
+.s-tfidf .wt { position: absolute; left: 4%; width: 60%; display: grid; grid-template-columns: 30% 1fr; grid-template-rows: auto auto; column-gap: 2cqw; row-gap: 0.6cqw; align-items: center; }
+.s-tfidf .w0 { top: 8%; } .s-tfidf .w1 { top: 29%; } .s-tfidf .w2 { top: 50%; }
+.s-tfidf .wt code { grid-row: span 2; font-family: var(--mono); font-size: 2cqw; color: #e7efe9; }
+.s-tfidf .wt small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-tfidf .br { height: 2.4cqw; border-radius: 99cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; overflow: hidden; }
+.s-tfidf .br i { display: block; height: 100%; width: 0; transition: width 0.6s; }
+.s-tfidf .w0 .br i { background: var(--accent); } .s-tfidf .w1 .br i { background: var(--nav); } .s-tfidf .w2 .br i { background: var(--bad); }
+.s-tfidf.b1 .w0 .br i { width: 92%; } .s-tfidf.b2 .w1 .br i { width: 48%; } .s-tfidf.b3 .w2 .br i { width: 6%; }
+.s-tfidf .fm { position: absolute; left: 70%; top: 10%; padding: 1.2cqw 1.8cqw; border-radius: 1.2cqw; background: #12301f; border: 0.25cqw solid var(--accent); font-size: 2.2cqw; color: #e7efe9; }
+.s-tfidf .fm b { color: var(--accent); font-family: var(--mono); }
+.s-tfidf .idf { position: absolute; left: 4%; top: 74%; width: 92%; display: flex; gap: 3cqw; opacity: 0; transition: opacity 0.4s; }
+.s-tfidf .idf span { padding: 0.8cqw 1.6cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; font-size: 1.8cqw; color: #e7efe9; }
+.s-tfidf .idf b { color: var(--accent); } .s-tfidf .idf b.lo { color: var(--bad); }
+.s-tfidf.b4 .idf { opacity: 1; } .s-tfidf.b4 .fm { border-color: #33494a; }
+
+/* bm25 */
+.s-bm25 .gx { position: absolute; left: 4%; top: 6%; width: 54%; height: 62%; }
+.s-bm25 .gx small { position: absolute; left: 0; top: -1%; font-size: 1.4cqw; color: #9aa6a3; }
+.s-bm25 .gx svg { position: absolute; inset: 8% 0 0 0; width: 100%; height: 92%; }
+.s-bm25 .gx path { fill: none; stroke-width: 2.5; vector-effect: non-scaling-stroke; transition: opacity 0.4s; }
+.s-bm25 .ax { stroke: #33494a; } .s-bm25 .cv { stroke: var(--accent); } .s-bm25 .cap { stroke: #f5c451; stroke-dasharray: 6 4; opacity: 0; } .s-bm25 .bin { stroke: var(--nav); opacity: 0; }
+.s-bm25 .xl { position: absolute; right: 0; bottom: -8%; font-size: 1.4cqw; color: #9aa6a3; }
+.s-bm25 .cl, .s-bm25 .bl { position: absolute; font-size: 1.5cqw; font-weight: 700; opacity: 0; transition: opacity 0.4s; }
+.s-bm25 .cl { right: 0; top: 6%; color: #f5c451; } .s-bm25 .bl { right: 0; top: 60%; color: var(--nav); }
+.s-bm25.b1 .cap, .s-bm25.b1 .cl { opacity: 1; } .s-bm25.b2 .bin, .s-bm25.b2 .bl { opacity: 1; }
+.s-bm25 .ln { position: absolute; left: 64%; top: 12%; width: 32%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid var(--accent); display: grid; gap: 1cqw; opacity: 0; transition: opacity 0.4s; }
+.s-bm25 .ln small { font-size: 1.4cqw; color: var(--accent); }
+.s-bm25 .sl { display: grid; grid-template-columns: auto 1fr auto; gap: 1cqw; align-items: center; font-size: 1.4cqw; color: #e7efe9; font-family: var(--mono); }
+.s-bm25 .sl i { height: 0.6cqw; border-radius: 99cqw; background: linear-gradient(90deg, #33494a, var(--accent)); }
+.s-bm25.b3 .ln { opacity: 1; }
+.s-bm25 .px { position: absolute; left: 4%; top: 78%; width: 92%; display: flex; align-items: center; gap: 2cqw; opacity: 0; transition: opacity 0.4s; }
+.s-bm25 .px small { font-size: 1.4cqw; color: #9aa6a3; } .s-bm25 .px em { font-style: normal; font-size: 1.5cqw; color: var(--accent); font-weight: 700; }
+.s-bm25 .ww { font-size: 1.8cqw; color: #9aa6a3; } .s-bm25 .ww b { color: #e7efe9; border: 0.25cqw solid var(--accent); border-radius: 0.6cqw; padding: 0.3cqw 0.8cqw; margin: 0 0.6cqw; }
+.s-bm25 .ww i { font-style: normal; }
+.s-bm25.b4 .px { opacity: 1; } .s-bm25.b4 .gx, .s-bm25.b4 .ln { opacity: 0.45; }
+
+/* stuffing */
+.s-stuffing .cp { position: absolute; top: 6%; width: 44%; min-height: 34%; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; transition: opacity 0.4s; }
+.s-stuffing .cp small { font-size: 1.4cqw; color: #9aa6a3; } .s-stuffing .cp p { margin: 0.8cqw 0 0; font-size: 1.7cqw; line-height: 1.5; color: #e7efe9; padding-right: 3cqw; }
+.s-stuffing .cp i { position: absolute; right: 1.4cqw; top: 1cqw; font-style: normal; font-size: 2.6cqw; }
+.s-stuffing .bad { left: 4%; border-color: var(--bad); } .s-stuffing .bad i { color: var(--bad); }
+.s-stuffing .good { left: 52%; border-color: var(--accent); opacity: 0; } .s-stuffing .good i { color: var(--accent); }
+.s-stuffing mark { background: transparent; color: inherit; transition: all 0.4s; }
+.s-stuffing.b1 mark { background: #4a1f1f; color: #ffb4b4; }
+.s-stuffing .qt { position: absolute; left: 4%; top: 58%; width: 92%; font-size: 1.7cqw; font-style: italic; color: #f5c451; opacity: 0; transition: opacity 0.4s; }
+.s-stuffing.b2 .qt { opacity: 1; } .s-stuffing.b3 .good { opacity: 1; }
+.s-stuffing .tn { position: absolute; left: 4%; top: 74%; width: 92%; display: flex; align-items: center; gap: 2cqw; padding: 1cqw 1.6cqw; border-radius: 1.2cqw; background: #12301f; border: 0.25cqw solid var(--accent); opacity: 0; transition: opacity 0.4s; }
+.s-stuffing .tn small { font-size: 1.4cqw; color: var(--accent); } .s-stuffing .tn code { font-family: var(--mono); font-size: 1.6cqw; color: #e7efe9; }
+.s-stuffing.b4 .tn { opacity: 1; } .s-stuffing.b4 .cp, .s-stuffing.b4 .qt { opacity: 0.45; }

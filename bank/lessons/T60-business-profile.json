@@ -1,0 +1,835 @@
+{
+  "topic_id": "T60",
+  "items_file": "bank/items/T60-business-profile.json",
+  "course_title": "Business Profile setup",
+  "subtitle": "Set up a Google Business Profile the way Google's guidelines describe: claim and verify it, name it and place it accurately, and pick categories that say what the business is.",
+  "last_verified": "2026-10-27",
+  "outcomes": [
+    "Explain what claiming and verifying a profile give you, and how verification methods are chosen",
+    "Write a business name and address that follow Google's guidelines",
+    "Choose a small set of specific categories that complete \"This business IS a\"",
+    "Set up hours and a service area correctly for a business that travels to customers"
+  ],
+  "intro": [
+    "A Business Profile is how a local business shows up on Google Maps and Search. Google's guidelines tie that profile to the real business: its real-world name, its real address or service area, and categories that say what it is.",
+    "This course walks through setup in the order you'd do it. You'll claim and verify the profile, then fill in the name and address, choose categories, and set hours and a service area.",
+    "Every rule here comes from Google's own help pages. Where a habit you've seen breaks one of them, the lesson says so."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T60-1",
+      "title": "Claim and verify",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain what claiming a profile lets your business info do",
+        "Say what verification gives you and what it unlocks",
+        "Describe how Google decides which verification methods you're offered"
+      ],
+      "scene": {
+        "id": "verify",
+        "title": "From unclaimed to verified",
+        "beats": [
+          {
+            "caption": "Claiming your Business Profile lets you manage how your business appears on Google Maps and Google Search.",
+            "source_ids": [
+              "S512#P1"
+            ]
+          },
+          {
+            "caption": "When you verify your business on Google, you gain ownership of your Business Profile.",
+            "source_ids": [
+              "S602#P1"
+            ]
+          },
+          {
+            "caption": "Verification methods are automatically determined by Google and can't be changed. Postcards and live video aren't available for all businesses.",
+            "source_ids": [
+              "S602#P4",
+              "S602#P2",
+              "S602#P7"
+            ]
+          },
+          {
+            "caption": "If your business is eligible for video verification, Google recommends that you use it. Verification reviews take up to 5 business days.",
+            "source_ids": [
+              "S602#P3",
+              "S602#P8"
+            ]
+          },
+          {
+            "caption": "When your business is verified, you get a confirmation email. Only then can you reply to reviews.",
+            "source_ids": [
+              "S602#P9",
+              "S604#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Why claim the profile",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's Search Central page says you can manage how your business appears on Google Maps and Google Search by claiming your Business Profile. Claiming enables your local business information to show up in Google Maps and the Google knowledge panel.",
+              "source_ids": [
+                "S512#P1",
+                "S512#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "When you verify your business on Google, you gain ownership of your Business Profile.",
+              "source_ids": [
+                "S602#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "How verification works",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "You don't pick the verification method. Google says verification methods are automatically determined by Google and can't be changed.",
+              "source_ids": [
+                "S602#P4"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Phone or text.",
+                  "text": "Make sure you can answer your business phone number or receive text messages.",
+                  "source_ids": [
+                    "S602#P5"
+                  ]
+                },
+                {
+                  "lead": "Email.",
+                  "text": "Make sure you can use the email address shown in the verification screen.",
+                  "source_ids": [
+                    "S602#P6"
+                  ]
+                },
+                {
+                  "lead": "Video.",
+                  "text": "If your business is eligible for video verification, Google recommends that you use this option.",
+                  "source_ids": [
+                    "S602#P3"
+                  ]
+                },
+                {
+                  "lead": "Live video and postcard.",
+                  "text": "Google says neither is available for all businesses.",
+                  "source_ids": [
+                    "S602#P7",
+                    "S602#P2"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google says verification reviews take up to 5 business days, and you get a confirmation email when your business is verified.",
+              "source_ids": [
+                "S602#P8",
+                "S602#P9"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What verification unlocks",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Some profile tasks wait on verification. Google says that before you can reply to reviews, you must verify your business.",
+              "source_ids": [
+                "S604#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical dental clinic never verified its profile. The owner can't reply to reviews, and waiting for a postcard may not work, because postcards aren't offered to every business. Video verification, if the clinic is eligible, is the method Google recommends.",
+              "source_ids": [
+                "S604#P2",
+                "S602#P2",
+                "S602#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Claiming lets business info show in Google Maps and the knowledge panel.",
+          "source_ids": [
+            "S512#P2"
+          ]
+        },
+        {
+          "text": "Verifying gives you ownership of the profile.",
+          "source_ids": [
+            "S602#P1"
+          ]
+        },
+        {
+          "text": "Google chooses the verification methods, and postcards aren't offered to everyone.",
+          "source_ids": [
+            "S602#P4",
+            "S602#P2"
+          ]
+        },
+        {
+          "text": "You must verify before you can reply to reviews.",
+          "source_ids": [
+            "S604#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Plan a verification",
+        "minutes": "5",
+        "steps": [
+          "Pick a business whose profile isn't verified yet, or imagine one.",
+          "List who can answer the business phone, read the business email, or film the premises.",
+          "Note which of those methods Google might offer, remembering you can't choose.",
+          "Write a short plan for each method so the owner is ready."
+        ],
+        "prompt_template": "I'm helping a [type of business] verify its Google Business Profile. Google says verification methods are automatically determined by Google and can't be changed, and that methods can include phone or text, email and video. Write a short checklist so the owner is ready for whichever method Google offers."
+      },
+      "reflection": [
+        "Have you seen a business wait weeks for a postcard? What would you suggest now?",
+        "Which profile tasks would you hold back until a profile is verified?"
+      ],
+      "whats_next": "Next, the two fields people most often get wrong: the business name and the address."
+    },
+    {
+      "lesson_id": "T60-2",
+      "title": "Name and address",
+      "est_minutes": 6,
+      "objectives": [
+        "Write a business name that reflects the real-world name",
+        "Spot name additions Google doesn't permit",
+        "Enter a precise address, including suite numbers, and know which addresses aren't acceptable"
+      ],
+      "scene": {
+        "id": "nameaddr",
+        "title": "Cleaning up a profile name",
+        "beats": [
+          {
+            "caption": "Google's guidelines say your name should reflect your business's real-world name.",
+            "source_ids": [
+              "S601#P6"
+            ]
+          },
+          {
+            "caption": "Including unnecessary information in your business name isn't permitted. Marketing taglines and store codes are on the list of things a name must not include.",
+            "source_ids": [
+              "S601#P7",
+              "S601#P8",
+              "S601#P9"
+            ]
+          },
+          {
+            "caption": "For the address, use a precise, accurate address and/or service area to describe your business location.",
+            "source_ids": [
+              "S601#P11"
+            ]
+          },
+          {
+            "caption": "Suite numbers, floors, building numbers, and so on may also be included.",
+            "source_ids": [
+              "S601#P12"
+            ]
+          },
+          {
+            "caption": "P.O. boxes or mailboxes located at remote locations aren't acceptable.",
+            "source_ids": [
+              "S601#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Who can have a profile",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's guidelines cover businesses that either have a physical location customers can visit, or travel to customers where they are.",
+              "source_ids": [
+                "S601#P1",
+                "S601#P10"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Customers visit",
+                  "text": "A storefront, office or clinic with an address customers come to.",
+                  "source_ids": [
+                    "S601#P1"
+                  ]
+                },
+                {
+                  "name": "Travels to customers",
+                  "text": "A plumber, cleaner or mobile service that goes to where customers are.",
+                  "source_ids": [
+                    "S601#P10"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The business name",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "Your name should reflect your business's real-world name",
+              "cite": "Google, Guidelines for representing your business",
+              "source_ids": [
+                "S601#P6"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google says including unnecessary information in your business name isn't permitted. Its list of things a name must not include starts with these:",
+              "source_ids": [
+                "S601#P7"
+              ]
+            },
+            {
+              "type": "chips",
+              "items": [
+                "Marketing taglines",
+                "Store codes"
+              ],
+              "source_ids": [
+                "S601#P8",
+                "S601#P9"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A shop signed Luigi's Pizza drafts its profile name as \"Best Pizza Downtown - Open 24h\". The fix is the real-world name: Luigi's Pizza.",
+              "source_ids": [
+                "S601#P6",
+                "S601#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The address",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google asks you to use a precise, accurate address and/or service area to describe your business location. Suite numbers, floors, building numbers, and so on may also be included.",
+              "source_ids": [
+                "S601#P11",
+                "S601#P12"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Not acceptable",
+              "text": "P.O. boxes or mailboxes located at remote locations aren't acceptable.",
+              "source_ids": [
+                "S601#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "The name should reflect the business's real-world name.",
+          "source_ids": [
+            "S601#P6"
+          ]
+        },
+        {
+          "text": "Unnecessary information, such as marketing taglines and store codes, isn't permitted in the name.",
+          "source_ids": [
+            "S601#P7",
+            "S601#P8",
+            "S601#P9"
+          ]
+        },
+        {
+          "text": "Use a precise, accurate address; suite and floor numbers may be included.",
+          "source_ids": [
+            "S601#P11",
+            "S601#P12"
+          ]
+        },
+        {
+          "text": "Remote P.O. boxes and mailboxes aren't acceptable addresses.",
+          "source_ids": [
+            "S601#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Fix three profile names",
+        "minutes": "5",
+        "steps": [
+          "Find three local Business Profiles in a category you know.",
+          "Compare each profile name with the business's signage or website.",
+          "Note any taglines, store codes or other extra information.",
+          "Write the corrected name for each."
+        ],
+        "prompt_template": "Here are three Google Business Profile names and the real-world names on each business's signage: [list]. Google's guidelines say the name should reflect the business's real-world name, and that unnecessary information such as marketing taglines and store codes isn't permitted. For each, say whether it breaks the guidelines and give a corrected name.",
+        "answers": [
+          "A name that matches the signage passes.",
+          "A name with a tagline (\"Best in town\") or a store code (\"#0423\") needs trimming to the real-world name."
+        ]
+      },
+      "reflection": [
+        "Have you seen keyword-stuffed business names in Maps? How common are they in your area?",
+        "How would you explain the name rule to an owner who wants \"plumber\" in their name?"
+      ],
+      "whats_next": "Next, categories: the field that says what the business is."
+    },
+    {
+      "lesson_id": "T60-3",
+      "title": "Choosing categories",
+      "est_minutes": 5,
+      "objectives": [
+        "Use the \"This business IS a\" test",
+        "Choose as few, and as specific, categories as possible",
+        "Avoid using categories as keywords or attributes"
+      ],
+      "scene": {
+        "id": "cats",
+        "title": "Picking the right categories",
+        "beats": [
+          {
+            "caption": "Google's guidelines say to select categories that complete the statement: This business IS a…",
+            "source_ids": [
+              "S601#P3"
+            ]
+          },
+          {
+            "caption": "Use as few categories as possible to describe your overall core business from the provided list.",
+            "source_ids": [
+              "S601#P15"
+            ]
+          },
+          {
+            "caption": "Choose categories that are as specific as possible, but representative of your main business.",
+            "source_ids": [
+              "S601#P16"
+            ]
+          },
+          {
+            "caption": "Do not use categories solely as keywords or to describe attributes of your business.",
+            "source_ids": [
+              "S601#P17"
+            ]
+          },
+          {
+            "caption": "Focus on adding the most specific categories for your business. Google says it will do the rest behind the scenes.",
+            "source_ids": [
+              "S601#P18"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The one-sentence test",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google gives a simple test: select categories that complete the statement \"This business IS a\".",
+              "source_ids": [
+                "S601#P3"
+              ]
+            },
+            {
+              "type": "query",
+              "query": "This business IS a…",
+              "label": "passes",
+              "meanings": [
+                "bakery",
+                "plumber",
+                "dentist"
+              ],
+              "source_ids": [
+                "S601#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Fails the test",
+              "text": "\"This business IS a cheap cakes\" or \"This business IS a open late\" don't make sense. Those are keywords and attributes, and Google says not to use categories for them.",
+              "source_ids": [
+                "S601#P3",
+                "S601#P17"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Fewer and more specific",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "As few as possible.",
+                  "text": "Use as few categories as possible to describe your overall core business from the provided list.",
+                  "source_ids": [
+                    "S601#P15"
+                  ]
+                },
+                {
+                  "lead": "As specific as possible.",
+                  "text": "Choose categories that are as specific as possible, but representative of your main business.",
+                  "source_ids": [
+                    "S601#P16"
+                  ]
+                },
+                {
+                  "lead": "Let Google do the rest.",
+                  "text": "Focus primarily on the most specific categories; Google says it will do the rest behind the scenes.",
+                  "source_ids": [
+                    "S601#P18"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Putting it into practice",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "When an owner wants to add more categories to reach more searches:"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Run each one through the test.",
+                  "text": "If it doesn't complete \"This business IS a\", drop it.",
+                  "source_ids": [
+                    "S601#P3"
+                  ]
+                },
+                {
+                  "lead": "Check it's the main business.",
+                  "text": "A specific category should still represent what the business mainly does.",
+                  "source_ids": [
+                    "S601#P16"
+                  ]
+                },
+                {
+                  "lead": "Keep the list short.",
+                  "text": "More categories isn't the goal; fewer, specific ones are.",
+                  "source_ids": [
+                    "S601#P15"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Categories should complete \"This business IS a\".",
+          "source_ids": [
+            "S601#P3"
+          ]
+        },
+        {
+          "text": "Use as few categories as possible.",
+          "source_ids": [
+            "S601#P15"
+          ]
+        },
+        {
+          "text": "Choose specific categories that represent the main business.",
+          "source_ids": [
+            "S601#P16"
+          ]
+        },
+        {
+          "text": "Don't use categories as keywords or attributes.",
+          "source_ids": [
+            "S601#P17"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit a category list",
+        "minutes": "5",
+        "steps": [
+          "Open a Business Profile you manage or can see in full.",
+          "Write \"This business IS a ___\" for each category.",
+          "Strike any that read as a keyword or an attribute.",
+          "Check whether a more specific category would describe the main business better."
+        ],
+        "prompt_template": "Here is a business and its Google Business Profile categories: [business description; categories]. Using Google's guidelines (categories should complete \"This business IS a\"; use as few as possible; be as specific as possible but representative of the main business; don't use categories as keywords or attributes), say which categories to keep, drop or replace."
+      },
+      "reflection": [
+        "Have you added a category to chase a keyword? Would it pass the test?",
+        "What's the most specific category that fits a business you know?"
+      ],
+      "whats_next": "Next, hours and service areas: getting it right for businesses that travel to customers."
+    },
+    {
+      "lesson_id": "T60-4",
+      "title": "Hours and service areas",
+      "est_minutes": 6,
+      "objectives": [
+        "Set regular customer-facing hours",
+        "Set up a service-area business with a hidden address and one central profile",
+        "Keep a service area within Google's limit and avoid virtual offices"
+      ],
+      "scene": {
+        "id": "sab",
+        "title": "Setting up a service-area business",
+        "beats": [
+          {
+            "caption": "Provide your regular customer-facing hours of operation.",
+            "source_ids": [
+              "S601#P14"
+            ]
+          },
+          {
+            "caption": "Service-area businesses should hide their business address from customers.",
+            "source_ids": [
+              "S601#P4"
+            ]
+          },
+          {
+            "caption": "A service-area business should have one profile for the central office or location, with a designated service area.",
+            "source_ids": [
+              "S601#P19"
+            ]
+          },
+          {
+            "caption": "The boundaries of the overall service area shouldn't extend farther than about 2 hours of driving time.",
+            "source_ids": [
+              "S601#P5"
+            ]
+          },
+          {
+            "caption": "And service-area businesses can't list a virtual office unless that office is staffed during business hours.",
+            "source_ids": [
+              "S601#P13"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Hours",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's guidelines ask you to provide your regular customer-facing hours of operation.",
+              "source_ids": [
+                "S601#P14"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Use the hours customers can actually reach or visit the business. That reading of \"customer-facing\" is practitioner judgement.",
+              "source_ids": [
+                "S601#P14"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Service-area businesses",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "A business that travels to customers sets up differently from a storefront."
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Hide the address.",
+                  "text": "Service-area businesses should hide their business address from customers.",
+                  "source_ids": [
+                    "S601#P4"
+                  ]
+                },
+                {
+                  "lead": "One profile.",
+                  "text": "Have one profile for the central office or location, with a designated service area.",
+                  "source_ids": [
+                    "S601#P19"
+                  ]
+                },
+                {
+                  "lead": "About 2 hours.",
+                  "text": "The overall service area shouldn't extend farther than about 2 hours of driving time.",
+                  "source_ids": [
+                    "S601#P5"
+                  ]
+                },
+                {
+                  "lead": "No virtual offices.",
+                  "text": "Service-area businesses can't list a \"virtual\" office unless that office is staffed during business hours.",
+                  "source_ids": [
+                    "S601#P13"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Putting it into practice",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "When you take over a service-area profile that was set up in a hurry, check these first:"
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical plumber shows a home address publicly and claims a service area of about four hours' driving. The fix is to hide the address and cut the area to about 2 hours.",
+              "source_ids": [
+                "S601#P4",
+                "S601#P5"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Show regular customer-facing hours.",
+          "source_ids": [
+            "S601#P14"
+          ]
+        },
+        {
+          "text": "Service-area businesses hide their address.",
+          "source_ids": [
+            "S601#P4"
+          ]
+        },
+        {
+          "text": "Use one profile for the central office, with a designated service area.",
+          "source_ids": [
+            "S601#P19"
+          ]
+        },
+        {
+          "text": "Keep the area within about 2 hours of driving, and don't list unstaffed virtual offices.",
+          "source_ids": [
+            "S601#P5",
+            "S601#P13"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Review a service-area setup",
+        "minutes": "10",
+        "steps": [
+          "Pick a business that travels to customers.",
+          "Check whether its address is hidden.",
+          "Check that it has one profile with a designated service area.",
+          "Estimate the drive time to the edge of its service area.",
+          "Check for any listed office that isn't staffed during business hours."
+        ],
+        "prompt_template": "Here is how a service-area business has set up its Google Business Profile: [address shown or hidden; number of profiles; service area; any offices listed and whether staffed]. Check it against Google's guidelines: hide the business address; one profile for the central office with a designated service area; a service area no farther than about 2 hours of driving time; no virtual office unless staffed during business hours. List each issue and the fix."
+      },
+      "reflection": [
+        "Do you know a service business that lists several offices? Are they staffed?",
+        "How would you explain the 2-hour limit to an owner who wants to cover a whole region?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "A Business Profile follows the real business. Claim and verify it to gain ownership, knowing Google chooses the verification method. Use the real-world name with no taglines or store codes, and a precise address that isn't a remote mailbox. Pick as few, and as specific, categories as complete \"This business IS a\". For a business that travels to customers, hide the address, keep one profile and keep the service area within about 2 hours of driving.",
+    "related_topics": [
+      {
+        "topic_id": "T59",
+        "title": "How local results are ranked"
+      },
+      {
+        "topic_id": "T61",
+        "title": "Reviews and local trust signals"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Business Profile setup. The questions revisit verification, names and addresses, categories, and service-area businesses.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T60-L1-01",
+      "T60-L1-02",
+      "T60-L1-03",
+      "T60-L2-01",
+      "T60-L2-02",
+      "T60-L2-03",
+      "T60-L3-01",
+      "T60-L3-02",
+      "T60-L4-01",
+      "T60-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T60-L1-01",
+        "prompt": "Google's guidelines say to select categories that complete which statement?",
+        "options": [
+          "A. This business IS a ___",
+          "B. Customers come here for ___",
+          "C. This business is the best ___",
+          "D. People find us by searching ___"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says to select categories that complete the statement \"This business IS a\". Wrong: 'Customers come here for ___' - that describes a need, not what the business is. 'This business is the best ___' - that is a marketing claim. 'People find us by searching ___' - that invites keywords, which Google says categories shouldn't be.",
+        "source_ids": [
+          "S601#P3",
+          "S601#P17"
+        ]
+      },
+      {
+        "item_id": "T60-L1-03",
+        "prompt": "What does Google say a service-area business should do with its business address?",
+        "options": [
+          "A. Hide it from customers",
+          "B. Show it on the profile",
+          "C. Replace it with a mailbox",
+          "D. List only the city name"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says service-area businesses should hide their business address from customers. Wrong: 'Show it on the profile' - that is the opposite of the guideline. 'Replace it with a mailbox' - remote mailboxes aren't acceptable addresses. 'List only the city name' - the guidelines ask for a precise, accurate address and/or service area.",
+        "source_ids": [
+          "S601#P4",
+          "S601#P2",
+          "S601#P11"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+/* Scenes for T7 Measuring search quality. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; }
+.chipx { padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.9cqw; font-weight: 600; white-space: nowrap; background: #1c2b2c; border: 0.2cqw solid #33494a; }
+
+/* topk */
+.s-topk .res { position: absolute; left: 5%; top: 4%; width: 34%; height: 92%; }
+.s-topk .res small { font-size: 1.7cqw; color: #9aa6a3; }
+.s-topk .rr { position: absolute; left: 0; right: 0; height: 7.6%; display: grid; grid-template-columns: 2.6cqw 1fr 2cqw; align-items: center; gap: 1cqw; padding: 0 1cqw; border-radius: 0.6cqw; background: #1c2b2c; font-size: 1.7cqw; }
+.s-topk .rr i { height: 0.9cqw; border-radius: 0.5cqw; background: #33494a; }
+.s-topk .rr em { font-style: normal; color: var(--accent); font-weight: 700; }
+.s-topk .rr.rel { background: #12301f; border: 0.2cqw solid var(--accent); }
+.s-topk .k0 { top: 8%; } .s-topk .k1 { top: 17%; } .s-topk .k2 { top: 26%; } .s-topk .k3 { top: 35%; } .s-topk .k4 { top: 44%; } .s-topk .k5 { top: 53%; } .s-topk .k6 { top: 62%; } .s-topk .k7 { top: 71%; } .s-topk .k8 { top: 80%; } .s-topk .k9 { top: 89%; }
+.s-topk.b4 .k0 { top: 89%; } .s-topk.b4 .k9 { top: 8%; } .s-topk.b4 .k2 { top: 62%; } .s-topk.b4 .k6 { top: 26%; }
+.s-topk.b4 .rr b { opacity: 0; }
+.s-topk .coll { position: absolute; left: 46%; top: 6%; width: 48%; padding: 1.6cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.2cqw dashed #6b7774; display: grid; gap: 1cqw; }
+.s-topk .coll small { font-size: 1.7cqw; color: #c9d1ce; }
+.s-topk .coll span { display: flex; gap: 1.2cqw; }
+.s-topk .coll i { width: 3cqw; height: 3cqw; border-radius: 50%; background: #33494a; }
+.s-topk .coll i.f { background: var(--accent); }
+.s-topk .calc { position: absolute; left: 46%; width: 48%; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #f4f6f3; color: #1b2220; display: flex; justify-content: space-between; align-items: center; font-size: 2.2cqw; opacity: 0; transform: translateY(2cqw); }
+.s-topk .calc span { font-family: var(--mono); font-weight: 700; color: #017a34; }
+.s-topk .c1 { top: 34%; } .s-topk .c2 { top: 50%; }
+.s-topk.b1 .c1, .s-topk.b2 .c2 { opacity: 1; transform: none; }
+.s-topk .t3 { left: 46%; top: 68%; background: #2a2416; color: #f5c451; border: 0.2cqw solid #f5c451; }
+.s-topk.b3 .t3 { opacity: 1; }
+.s-topk.b4 .t3 { opacity: 0; }
+.s-topk .t4 { left: 46%; top: 68%; background: #3a1a17; color: var(--bad); border: 0.2cqw solid var(--bad); }
+.s-topk.b4 .t4 { opacity: 1; }
+
+/* mrr */
+.s-mrr .qrow { position: absolute; left: 5%; width: 90%; display: grid; grid-template-columns: 11cqw repeat(5, 5cqw) 1fr; gap: 1cqw; align-items: center; font-size: 2cqw; }
+.s-mrr .q0 { top: 6%; } .s-mrr .q1 { top: 20%; } .s-mrr .q2 { top: 34%; }
+.s-mrr .sl { height: 5cqw; border-radius: 0.8cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; display: grid; place-items: center; font-family: var(--mono); color: #6b7774; }
+.s-mrr .sl.hit { background: var(--accent); color: #04210f; border-color: var(--accent); font-weight: 700; }
+.s-mrr .rv2 { font-style: normal; font-family: var(--mono); color: var(--accent); font-weight: 700; padding-left: 2cqw; opacity: 0; }
+.s-mrr.b1 .rv2 { opacity: 1; }
+.s-mrr .mean { position: absolute; left: 5%; top: 52%; padding: 1.4cqw 2cqw; border-radius: 1.2cqw; background: #f4f6f3; color: #1b2220; font-family: var(--mono); font-size: 2.4cqw; opacity: 0; }
+.s-mrr .mean b { color: #017a34; }
+.s-mrr.b2 .mean { opacity: 1; }
+.s-mrr .map { position: absolute; left: 5%; top: 70%; width: 60%; padding: 1.4cqw 2cqw; border-radius: 1.2cqw; background: var(--nav-soft); border: 0.2cqw solid var(--nav); color: var(--nav); display: grid; gap: 0.5cqw; font-size: 1.8cqw; opacity: 0; }
+.s-mrr .map b { font-size: 2.2cqw; }
+.s-mrr.b3 .map { opacity: 1; }
+.s-mrr.b4 .map { opacity: 0; }
+.s-mrr .t4 { left: 5%; top: 72%; background: #3a1a17; color: var(--bad); border: 0.2cqw solid var(--bad); }
+.s-mrr.b4 .t4 { opacity: 1; }
+
+/* ndcg */
+.s-ndcg .rk { position: absolute; left: 5%; top: 6%; width: 50%; display: grid; gap: 1.2cqw; }
+.s-ndcg .gr { display: grid; grid-template-columns: 3cqw 4cqw 1fr; gap: 1.2cqw; align-items: center; padding: 0.8cqw 1.2cqw; border-radius: 0.8cqw; background: #1c2b2c; font-size: 2cqw; }
+.s-ndcg .rt { display: grid; place-items: center; width: 3.6cqw; height: 3.6cqw; border-radius: 0.6cqw; font-family: var(--mono); font-style: normal; font-weight: 700; font-size: 2cqw; color: #04210f; }
+.s-ndcg .r3 { background: #4dbc7c; } .s-ndcg .r2 { background: #a8d8b9; } .s-ndcg .r1 { background: #f5c451; } .s-ndcg .r0 { background: #6b7774; color: #f4f6f3; }
+.s-ndcg .gb { position: relative; height: 2cqw; border-radius: 99cqw; background: #12201f; }
+.s-ndcg .gb i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99cqw; opacity: 0; }
+.s-ndcg .gb .raw { background: #33494a; }
+.s-ndcg .gb .disc { background: var(--accent); }
+.s-ndcg.b1 .gb .raw { opacity: 1; }
+.s-ndcg.b2 .gb .disc { opacity: 1; }
+.s-ndcg .ideal { position: absolute; left: 62%; top: 6%; width: 33%; padding: 1.6cqw; border-radius: 1.2cqw; background: #f4f6f3; color: #1b2220; display: grid; gap: 1cqw; opacity: 0; }
+.s-ndcg .ideal small { font-size: 1.7cqw; color: #6b7774; }
+.s-ndcg .ideal span { display: flex; gap: 0.8cqw; }
+.s-ndcg .ideal b { font-family: var(--mono); font-size: 1.7cqw; color: #017a34; }
+.s-ndcg.b3 .ideal { opacity: 1; }
+.s-ndcg .t0, .s-ndcg .t1, .s-ndcg .t2 { left: 5%; top: 84%; }
+.s-ndcg .t0 { background: #2a2416; color: #f5c451; border: 0.2cqw solid #f5c451; }
+.s-ndcg.b0 .t0 { opacity: 1; }
+.s-ndcg .t1 { background: #12301f; color: var(--accent); border: 0.2cqw solid var(--accent); }
+.s-ndcg.b1 .t0 { opacity: 0; } .s-ndcg.b1 .t1 { opacity: 1; }
+.s-ndcg .t2 { background: #12301f; color: var(--accent); border: 0.2cqw solid var(--accent); }
+.s-ndcg.b2 .t1 { opacity: 0; } .s-ndcg.b2 .t2 { opacity: 1; }
+.s-ndcg.b3 .t2 { opacity: 0; }
+.s-ndcg .t4 { left: 62%; top: 52%; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); }
+.s-ndcg.b4 .t4 { opacity: 1; }
+
+/* evalrun */
+.s-evalrun .chk { position: absolute; left: 5%; top: 8%; width: 44%; display: grid; gap: 1.2cqw; }
+.s-evalrun .ci { display: flex; align-items: center; gap: 1.2cqw; padding: 1cqw 1.4cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; font-size: 1.9cqw; font-weight: 600; opacity: 0.35; }
+.s-evalrun .ci i { font-style: normal; width: 3cqw; height: 3cqw; border-radius: 50%; display: grid; place-items: center; background: #33494a; font-size: 1.7cqw; }
+.s-evalrun.b0 .c0, .s-evalrun.b1 .c1, .s-evalrun.b2 .c2, .s-evalrun.b3 .c3, .s-evalrun.b4 .c4 { opacity: 1; border-color: var(--accent); }
+.s-evalrun.b0 .c0 i, .s-evalrun.b1 .c1 i, .s-evalrun.b2 .c2 i, .s-evalrun.b3 .c3 i, .s-evalrun.b4 .c4 i { background: var(--accent); color: #04210f; }
+.s-evalrun .side { position: absolute; left: 54%; top: 10%; width: 41%; display: grid; gap: 1.2cqw; justify-items: start; opacity: 0; transform: translateY(2cqw); }
+.s-evalrun.b0 .s0, .s-evalrun.b1 .s1, .s-evalrun.b2 .s2, .s-evalrun.b3 .s3, .s-evalrun.b4 .s4 { opacity: 1; transform: none; }
+.s-evalrun.b1 .s0, .s-evalrun.b2 .s1, .s-evalrun.b3 .s2, .s-evalrun.b4 .s3 { opacity: 0; }
+.s-evalrun .big { font-family: var(--mono); font-size: 6cqw; font-weight: 700; color: var(--accent); }
+.s-evalrun .unl { width: 6cqw; height: 6cqw; border-radius: 1cqw; border: 0.3cqw dashed #9aa6a3; display: grid; place-items: center; font-size: 3.4cqw; font-weight: 700; color: #c9d1ce; }
+.s-evalrun .opt { padding: 1cqw 1.4cqw; border-radius: 1cqw; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); font-size: 1.8cqw; }
+.s-evalrun .opt.bad { background: #3a1a17; color: var(--bad); border-color: var(--bad); }
+.s-evalrun .pas, .s-evalrun .ans { padding: 1.2cqw 1.6cqw; border-radius: 1cqw; font-size: 1.9cqw; font-weight: 600; }
+.s-evalrun .pas { background: #12301f; color: var(--accent); border: 0.2cqw solid var(--accent); }
+.s-evalrun .ans { background: #3a1a17; color: var(--bad); border: 0.2cqw solid var(--bad); }

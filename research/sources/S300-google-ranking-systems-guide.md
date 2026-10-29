@@ -5,7 +5,7 @@ title: A guide to Google Search ranking systems
 publisher: Google Search Central
 grade: A
 page_date: 2025-12-10
-opened: 2026-10-25
+opened: 2026-10-25 (extra passages 2026-10-29 P13-P15)
 status: used
 ---
 Summary: Google's own list of notable ranking systems, including RankBrain, neural matching, BERT, MUM, passage ranking and freshness systems. Says it is a guide to some notable systems, not a full list.
@@ -34,3 +34,9 @@ Summary: Google's own list of notable ranking systems, including RankBrain, neur
 > Neural matching is an AI system that Google uses to understand representations of concepts in queries
 ### P12 passage ranking, continued
 > "passages" of a web page to better understand how relevant a page is to a search.
+### P13 spam filters analogy
+> No one wants their email inbox filled with spam, which is why spam filters are so helpful.
+### P14 SpamBrain
+> We employ a range of spam detection systems, including SpamBrain, to deal with content and behaviors that violate our spam policies.
+### P15 constantly updated
+> These systems are constantly updated to keep up with the latest ways that the spam threat evolves.

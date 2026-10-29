@@ -1,0 +1,748 @@
+{
+  "topic_id": "T18",
+  "items_file": "bank/items/T18-dense-retrieval.json",
+  "course_title": "Dense retrieval and bi-encoders",
+  "subtitle": "How a search system can find passages by meaning rather than shared words, using the Dense Passage Retrieval (DPR) paper as the worked example.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why dense retrieval can match meaning when words differ",
+    "Describe DPR's dual encoder and dot-product scoring",
+    "Explain why passage vectors can be computed ahead of time",
+    "Judge when to combine dense retrieval with BM25"
+  ],
+  "intro": [
+    "Keyword search finds pages that share words with the query. Dense retrieval turns the query and each passage into vectors and finds passages whose vectors are close, even when the words differ.",
+    "This course follows one well-known research paper, Dense Passage Retrieval for Open-Domain Question Answering (Karpukhin et al.), with support from Google's machine learning course and the BEIR benchmark.",
+    "A research paper shows what a method does. It isn't evidence of what Google or Bing use, and lessons for your own site are labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T18-1",
+      "title": "From words to vectors",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain the job of passage retrieval",
+        "Contrast word matching with dense vectors",
+        "Give an example of a match words would miss"
+      ],
+      "scene": {
+        "id": "encode",
+        "title": "Matching meaning, not words",
+        "beats": [
+          {
+            "caption": "Open-domain question answering relies on efficient passage retrieval to select candidate contexts.",
+            "source_ids": [
+              "S212#P10"
+            ]
+          },
+          {
+            "caption": "That retrieval is usually implemented using TF-IDF or BM25, which score shared words.",
+            "source_ids": [
+              "S212#P8"
+            ]
+          },
+          {
+            "caption": "Embeddings provide dense vector representations that capture semantic relationships.",
+            "source_ids": [
+              "S226#P2"
+            ]
+          },
+          {
+            "caption": "So a dense retrieval system would be able to better match \"bad guy\" with \"villain\" and fetch the correct context.",
+            "source_ids": [
+              "S212#P20"
+            ]
+          },
+          {
+            "caption": "The DPR paper showed retrieval can be practically implemented using dense representations alone.",
+            "source_ids": [
+              "S212#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Finding the right passage",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Before a system can answer a question, it has to find passages that might contain the answer. The DPR paper says open-domain question answering relies on efficient passage retrieval to select candidate contexts.",
+              "source_ids": [
+                "S212#P10"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The paper notes that this retrieval is usually implemented using TF-IDF or BM25. Both are term-matching methods: they reward passages that share words with the question.",
+              "source_ids": [
+                "S212#P8",
+                "S212#P18"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Dense vectors",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's machine learning course describes embeddings as dense vector representations that capture semantic relationships. Words with related meanings can end up close together.",
+              "source_ids": [
+                "S226#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A question asks about the \"bad guy\" in a story, but the right passage calls him the \"villain\". The paper says a dense retrieval system would be able to better match \"bad guy\" with \"villain\" and fetch the correct context.",
+              "source_ids": [
+                "S212#P20"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Research finding",
+              "text": "The DPR authors showed that retrieval can be practically implemented using dense representations alone.",
+              "source_ids": [
+                "S212#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Question answering depends on finding candidate passages first.",
+          "source_ids": [
+            "S212#P10"
+          ]
+        },
+        {
+          "text": "BM25 and TF-IDF match shared words.",
+          "source_ids": [
+            "S212#P8",
+            "S212#P18"
+          ]
+        },
+        {
+          "text": "Dense vectors capture meaning, so synonyms can match.",
+          "source_ids": [
+            "S226#P2",
+            "S212#P20"
+          ]
+        },
+        {
+          "text": "DPR showed retrieval can work with dense vectors alone.",
+          "source_ids": [
+            "S212#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find the word gaps",
+        "minutes": "10",
+        "steps": [
+          "Pick five questions customers ask about one of your services.",
+          "Search your site with each one, worded exactly as asked.",
+          "Note any question where the right page uses different words.",
+          "Write down the pairs of words that didn't match."
+        ],
+        "prompt_template": "Here are customer questions and the pages that should answer them: [pairs]. The DPR paper says BM25 and TF-IDF match shared words, while a dense retriever could better match \"bad guy\" with \"villain\". For each pair, list the words that differ between question and page, and say whether keyword search alone would likely miss it. Label your judgement as practitioner judgement."
+      },
+      "reflection": [
+        "Which customer words never appear on your pages?",
+        "When is matching the exact word more useful than matching the meaning?"
+      ],
+      "whats_next": "Next, how DPR's two encoders work."
+    },
+    {
+      "lesson_id": "T18-2",
+      "title": "The dual encoder",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe DPR's passage and question encoders",
+        "Explain dot-product scoring",
+        "Explain how the top k passages are chosen"
+      ],
+      "scene": {
+        "id": "dual",
+        "title": "Two encoders, one space",
+        "beats": [
+          {
+            "caption": "DPR learns its embeddings from a small number of questions and passages with a simple dual-encoder framework.",
+            "source_ids": [
+              "S212#P2"
+            ]
+          },
+          {
+            "caption": "A passage encoder maps any text passage to a d-dimensional vector, and DPR builds an index of all the passages.",
+            "source_ids": [
+              "S212#P11",
+              "S212#P12"
+            ]
+          },
+          {
+            "caption": "At run time, a different encoder maps the input question to a d-dimensional vector.",
+            "source_ids": [
+              "S212#P13"
+            ]
+          },
+          {
+            "caption": "The similarity between question and passage is the dot product of their vectors.",
+            "source_ids": [
+              "S212#P5"
+            ]
+          },
+          {
+            "caption": "DPR retrieves the k passages whose vectors are closest to the question vector.",
+            "source_ids": [
+              "S212#P14"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two encoders",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "DPR uses a simple dual-encoder framework, sometimes called a bi-encoder. The paper uses two independent BERT networks: one for passages and one for questions.",
+              "source_ids": [
+                "S212#P2",
+                "S212#P15"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Passage encoder",
+                  "text": "Maps any text passage to a d-dimensional real-valued vector. DPR builds an index for all the passages it will use for retrieval.",
+                  "source_ids": [
+                    "S212#P11",
+                    "S212#P12"
+                  ]
+                },
+                {
+                  "name": "Question encoder",
+                  "text": "At run time, a different encoder maps the input question to a d-dimensional vector.",
+                  "source_ids": [
+                    "S212#P13"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Scoring and retrieving",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper defines the similarity between the question and the passage using the dot product of their vectors. It then retrieves the k passages whose vectors are the closest to the question vector.",
+              "source_ids": [
+                "S212#P5",
+                "S212#P14"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "See also",
+              "text": "The dot product is one of several vector metrics. The vector distance metrics course compares it with cosine and Euclidean distance."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A dual encoder uses one encoder for passages and another for questions.",
+          "source_ids": [
+            "S212#P2",
+            "S212#P13"
+          ]
+        },
+        {
+          "text": "Every passage becomes a vector in an index.",
+          "source_ids": [
+            "S212#P11",
+            "S212#P12"
+          ]
+        },
+        {
+          "text": "DPR scores with the dot product of the two vectors.",
+          "source_ids": [
+            "S212#P5"
+          ]
+        },
+        {
+          "text": "It returns the k passages closest to the question vector.",
+          "source_ids": [
+            "S212#P14"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map your pipeline",
+        "minutes": "10",
+        "steps": [
+          "If you run vector search or RAG, find which model embeds your documents.",
+          "Find which model embeds the user's question.",
+          "Note whether they're the same model or a matched pair.",
+          "Note the similarity setting in your vector store."
+        ],
+        "prompt_template": "My system embeds documents with [model] and questions with [model], and my vector store uses [metric]. The DPR paper uses a dual encoder: one encoder for passages, a different one for questions, and a dot product of their vectors as similarity. Explain how my setup compares, and list what I should check in each model's documentation. Label anything beyond the documentation as practitioner judgement."
+      },
+      "reflection": [
+        "Why might questions and passages need different encoders?",
+        "What happens to search if passages are re-encoded with a new model but questions aren't?"
+      ],
+      "whats_next": "Next, why this design is fast, and what results the paper reported."
+    },
+    {
+      "lesson_id": "T18-3",
+      "title": "Precomputing and results",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why passage vectors can be computed ahead of time",
+        "State the paper's reported gain over BM25",
+        "Read a research result with the right caution"
+      ],
+      "scene": {
+        "id": "precompute",
+        "title": "Do the heavy work first",
+        "beats": [
+          {
+            "caption": "The similarity function needs to be decomposable, so the representations of the passages can be precomputed.",
+            "source_ids": [
+              "S212#P16"
+            ]
+          },
+          {
+            "caption": "That's why the paper chose the simpler inner product function.",
+            "source_ids": [
+              "S212#P17"
+            ]
+          },
+          {
+            "caption": "The passage vectors are indexed offline using FAISS. At query time only the question is encoded.",
+            "source_ids": [
+              "S212#P21",
+              "S212#P13"
+            ]
+          },
+          {
+            "caption": "The paper reports its dense retriever outperforms a strong Lucene-BM25 system.",
+            "source_ids": [
+              "S212#P3"
+            ]
+          },
+          {
+            "caption": "By 9%-19% absolute in top-20 passage retrieval accuracy, on the paper's own question answering datasets.",
+            "source_ids": [
+              "S212#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Why precompute",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper says the similarity function needs to be decomposable so that the representations of the collection of passages can be precomputed. So it chose the simpler inner product function.",
+              "source_ids": [
+                "S212#P16",
+                "S212#P17"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The passage vectors are indexed offline using FAISS. When a question arrives, only the question needs encoding before the closest passages are looked up.",
+              "source_ids": [
+                "S212#P21",
+                "S212#P13",
+                "S212#P14"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What the paper reported",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "our dense retriever outperforms a strong Lucene-BM25 system largely by 9%-19% absolute in terms of top-20 passage retrieval accuracy",
+              "cite": "Karpukhin et al., abstract",
+              "source_ids": [
+                "S212#P3",
+                "S212#P4"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "If BM25 found an answer passage in the top 20 for 60% of questions, a 9 to 19 point absolute gain would mean 69% to 79%.",
+              "source_ids": [
+                "S212#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "These results come from the paper's own question answering datasets. They don't predict results on your site, and they don't show what any web search engine uses."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A decomposable similarity lets passage vectors be precomputed.",
+          "source_ids": [
+            "S212#P16"
+          ]
+        },
+        {
+          "text": "DPR uses the inner product and indexes passages offline with FAISS.",
+          "source_ids": [
+            "S212#P17",
+            "S212#P21"
+          ]
+        },
+        {
+          "text": "The paper reports 9 to 19 points absolute over BM25 in top-20 accuracy.",
+          "source_ids": [
+            "S212#P3",
+            "S212#P4"
+          ]
+        },
+        {
+          "text": "Those are results on its own datasets, not a guarantee elsewhere.",
+          "source_ids": [
+            "S212#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Read a claim carefully",
+        "minutes": "10",
+        "steps": [
+          "Find a vendor or blog claim that one search method beats another.",
+          "Note what was measured, on which data, and against what baseline.",
+          "Note whether the gain is absolute or relative.",
+          "Decide what you'd need to test on your own site."
+        ],
+        "prompt_template": "Here's a claim about a search method: [paste]. The DPR paper reports a gain of 9%-19% absolute in top-20 passage retrieval accuracy over a strong Lucene-BM25 system, on its own datasets. Help me break the claim into what was measured, on what data, against what baseline, and whether the gain is absolute or relative, then list what I'd need to test before trusting it on my site."
+      },
+      "reflection": [
+        "Why does it matter whether a gain is absolute or relative?",
+        "What would make you trust a research result for your own search?"
+      ],
+      "whats_next": "Next, where keyword search still wins, and why the paper recommends combining them."
+    },
+    {
+      "lesson_id": "T18-4",
+      "title": "Dense and sparse together",
+      "est_minutes": 5,
+      "objectives": [
+        "Name cases where BM25 does better",
+        "Explain why the paper calls dense and sparse complementary",
+        "Plan a fair test before replacing keyword search"
+      ],
+      "scene": {
+        "id": "hybrid",
+        "title": "Better together",
+        "beats": [
+          {
+            "caption": "Term-matching methods like BM25 are sensitive to highly selective keywords and phrases.",
+            "source_ids": [
+              "S212#P18"
+            ]
+          },
+          {
+            "caption": "Where questions and passages share many words, BM25 has a clear advantage.",
+            "source_ids": [
+              "S212#P19"
+            ]
+          },
+          {
+            "caption": "The paper says dense encoding is complementary to sparse representations by design.",
+            "source_ids": [
+              "S212#P6"
+            ]
+          },
+          {
+            "caption": "Results can be improved further in some cases by combining DPR with BM25.",
+            "source_ids": [
+              "S212#P7"
+            ]
+          },
+          {
+            "caption": "BEIR found BM25 a robust baseline. Keep it in every test. A paper isn't proof of what Google uses.",
+            "source_ids": [
+              "S015#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Where keywords win",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper says term-matching methods like BM25 are sensitive to highly selective keywords and phrases. On one of its datasets, it found a high lexical overlap between passages and questions, which gives BM25 a clear advantage.",
+              "source_ids": [
+                "S212#P18",
+                "S212#P19"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Product codes, model numbers and exact names are highly selective strings. A help centre that switches to dense-only search may stop finding the page for \"RX-4400\" (practitioner inference).",
+              "source_ids": [
+                "S212#P18"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Combining them",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The DPR authors describe the dense, latent semantic encoding as complementary to sparse representations by design, and report that results can be improved further in some cases by combining DPR with BM25.",
+              "source_ids": [
+                "S212#P6",
+                "S212#P7"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Use this checklist before changing your own site search.",
+              "source_ids": [
+                "S015#P5"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Keep BM25 as the baseline.",
+                  "text": "The BEIR benchmark found BM25 a robust baseline.",
+                  "source_ids": [
+                    "S015#P5"
+                  ]
+                },
+                {
+                  "lead": "Test on new queries.",
+                  "text": "Judge results on queries you didn't use for tuning. This is practitioner judgement."
+                },
+                {
+                  "lead": "Test exact strings separately.",
+                  "text": "Codes and names are where term matching is strongest.",
+                  "source_ids": [
+                    "S212#P18"
+                  ]
+                },
+                {
+                  "lead": "Try a hybrid.",
+                  "text": "Combining DPR with BM25 improved results in some cases in the paper.",
+                  "source_ids": [
+                    "S212#P7"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Don't cite the DPR paper as proof of how Google ranks. It shows what a method can do on research datasets."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "BM25 is strong on highly selective keywords and high word overlap.",
+          "source_ids": [
+            "S212#P18",
+            "S212#P19"
+          ]
+        },
+        {
+          "text": "Dense and sparse retrieval are complementary by design.",
+          "source_ids": [
+            "S212#P6"
+          ]
+        },
+        {
+          "text": "Combining DPR with BM25 improved results in some cases.",
+          "source_ids": [
+            "S212#P7"
+          ]
+        },
+        {
+          "text": "Keep BM25 as a baseline when testing.",
+          "source_ids": [
+            "S015#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Plan a fair test",
+        "minutes": "15",
+        "steps": [
+          "List 20 real queries: 10 in natural language and 10 exact codes or names.",
+          "Decide which pages are correct for each.",
+          "Run them on keyword search and on dense or hybrid search.",
+          "Compare how often the right page appears in the top 5."
+        ],
+        "prompt_template": "I'm comparing keyword search and dense search for my site using these queries and correct pages: [list]. The DPR paper says BM25 is sensitive to highly selective keywords and phrases, that dense encoding is complementary to sparse representations, and that combining DPR with BM25 can improve results in some cases; BEIR says BM25 is a robust baseline. Design a simple scoring sheet and tell me how to read the results fairly."
+      },
+      "reflection": [
+        "Which of your queries depend on an exact string?",
+        "What would convince you to switch, and what would convince you to combine?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Dense retrieval turns questions and passages into vectors and finds passages by closeness, so it can match meaning when words differ. DPR uses a dual encoder, scores with the dot product, and precomputes passage vectors so only the question is encoded at search time. It reported 9 to 19 points absolute over BM25 in top-20 accuracy on its own datasets. BM25 still wins on highly selective keywords, the paper calls the two complementary, and combining them can help. Test on your own queries, and don't read the paper as proof of what Google uses.",
+    "related_topics": [
+      {
+        "topic_id": "T16",
+        "title": "Vector distance metrics"
+      },
+      {
+        "topic_id": "T17",
+        "title": "Vector databases and nearest-neighbour search"
+      },
+      {
+        "topic_id": "T21",
+        "title": "Cross-encoder re-ranking"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Dense retrieval and bi-encoders. The questions revisit the dual encoder, the paper's results and hybrid search.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T18-L1-01",
+      "T18-L1-02",
+      "T18-L1-03",
+      "T18-L2-01",
+      "T18-L2-02",
+      "T18-L2-03",
+      "T18-L3-01",
+      "T18-L3-02",
+      "T18-L4-01",
+      "T18-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T18-L1-01",
+        "prompt": "DPR, in the title of the Karpukhin et al. paper, stands for Dense ___ Retrieval. Which word fills the blank?",
+        "options": [
+          "A. Phrase",
+          "B. Pretrained",
+          "C. Passage",
+          "D. Predictive"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the paper is titled Dense Passage Retrieval for Open-Domain Question Answering. The other words aren't in the title.",
+        "source_ids": [
+          "S212#P9"
+        ]
+      },
+      {
+        "item_id": "T18-L1-03",
+        "prompt": "How does the DPR paper say its dense retriever compares with a strong Lucene-BM25 system?",
+        "options": [
+          "A. It matches BM25 but never beats it",
+          "B. It underperforms BM25 on every dataset",
+          "C. The paper doesn't test against BM25",
+          "D. It outperforms it"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the abstract says the dense retriever outperforms a strong Lucene-BM25 system, by 9%-19% absolute in top-20 passage retrieval accuracy. Wrong: the other three contradict that result.",
+        "source_ids": [
+          "S212#P3",
+          "S212#P4"
+        ]
+      },
+      {
+        "item_id": "T18-L2-02",
+        "prompt": "How does the DPR paper describe dense encoding's relationship to sparse representations?",
+        "options": [
+          "A. A full replacement that makes sparse retrieval redundant",
+          "B. A slower copy of BM25 with the same results",
+          "C. Complementary by design",
+          "D. Unrelated, since they never see the same text"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the paper says the dense, latent semantic encoding is complementary to sparse representations by design, and that combining DPR with BM25 can improve results in some cases. Wrong: it doesn't call sparse retrieval redundant, and the other two aren't described.",
+        "source_ids": [
+          "S212#P6",
+          "S212#P7"
+        ]
+      },
+      {
+        "item_id": "T18-L3-01",
+        "prompt": "Hypothetical: a BM25 baseline gets 60% top-20 accuracy. If a DPR-style retriever gained the paper's reported 9 to 19 points absolute, what range would it reach?",
+        "options": [
+          "A. 65.4-71.4",
+          "B. 69-79",
+          "C. 9-19 only",
+          "D. 79-89"
+        ],
+        "answer": "B",
+        "explanation": "Correct: absolute points add directly, so 60 + 9 = 69 and 60 + 19 = 79. Wrong: 65.4-71.4 treats the gain as relative (60 x 1.09 and 60 x 1.19); 9-19 is the gain alone; 79-89 adds it twice.",
+        "source_ids": [
+          "S212#P4"
+        ]
+      },
+      {
+        "item_id": "T18-L3-02",
+        "options": [
+          "A. DPR learns its embeddings with a dual-encoder",
+          "B. DPR scores passages with a dot product of vectors",
+          "C. A paper can't show what Google uses",
+          "D. BM25 was not used as a baseline in the paper"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the flaw is the leap from a paper's method to Google's systems. The paper also calls dense and sparse complementary, so keyword work isn't dead. Wrong: DPR does use a dual encoder, it does score with a dot product, and BM25 was the baseline.",
+        "source_ids": [
+          "S212#P2",
+          "S212#P5",
+          "S212#P3",
+          "S212#P6"
+        ]
+      },
+      {
+        "item_id": "T18-L4-02",
+        "options": [
+          "A. Replace BM25 now, because the paper reports a 9%-19% gain",
+          "B. Test both on held-out queries, BM25 as baseline",
+          "C. Remove the BM25 baseline so only dense results are reported",
+          "D. Tell stakeholders that Google already ranks with dense retrieval"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the paper's gain is a result on its own datasets, BEIR calls BM25 a robust baseline, and tuning queries can't show how the retriever behaves on new ones, so compare on held-out judged queries. Wrong: replacing BM25 now treats a paper's result as a prediction for this site; dropping the baseline removes the comparison; no saved source says Google ranks with dense retrieval.",
+        "source_ids": [
+          "S212#P3",
+          "S212#P4",
+          "S015#P5"
+        ]
+      }
+    ]
+  }
+}

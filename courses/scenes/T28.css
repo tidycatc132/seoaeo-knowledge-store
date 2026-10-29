@@ -1,0 +1,105 @@
+/* Scenes for T28 Agentic and self-reflective RAG. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); }
+.tagx.ok { background: #12301f; color: var(--accent); border-color: var(--accent); }
+.tagx.warn { background: #2a2416; color: #f5c451; border-color: #f5c451; }
+
+/* once */
+.s-once .cps { position: absolute; left: 4%; top: 8%; width: 27%; padding: 1.4cqw; border-radius: 1.2cqw; background: #142021; border: 0.2cqw solid #33494a; display: grid; gap: 0.8cqw; opacity: 0; transition: opacity 0.4s; }
+.s-once .cps small { font-size: 1.6cqw; font-weight: 700; color: #c9d1ce; }
+.s-once .dc { padding: 0.7cqw 1cqw; border-radius: 0.6cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; font-size: 1.6cqw; color: #e7efe9; transition: all 0.4s; }
+.s-once .cps em { font-style: normal; font-size: 1.5cqw; color: #f5c451; opacity: 0; transition: opacity 0.4s; }
+.s-once .llm { position: absolute; left: 38%; top: 14%; width: 24%; padding: 2.4cqw 1cqw; border-radius: 1.4cqw; background: var(--nav-soft); border: 0.25cqw solid var(--nav); color: var(--nav); text-align: center; font-size: 2.2cqw; }
+.s-once .out { position: absolute; left: 68%; top: 10%; width: 28%; padding: 1.4cqw; border-radius: 1.2cqw; background: #f4f6f3; color: #1b2220; display: grid; gap: 0.6cqw; }
+.s-once .out small { font-size: 1.4cqw; color: #6b7774; } .s-once .out span { font-size: 1.8cqw; }
+.s-once .out u { text-decoration: underline wavy var(--bad); text-underline-offset: 0.4cqw; }
+.s-once .hal { font-style: normal; font-size: 1.5cqw; font-weight: 700; color: #c2410c; }
+.s-once .ar { position: absolute; inset: 0; width: 100%; height: 100%; }
+.s-once .ar line { stroke: #9aa6a3; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.s-once .ar line:first-child { opacity: 0; transition: opacity 0.4s; }
+.s-once.b1 .cps, .s-once.b1 .ar line:first-child { opacity: 1; }
+.s-once .t1 { left: 4%; top: 52%; } .s-once.b1 .t1 { opacity: 1; }
+.s-once.b2 .t1 { opacity: 0; }
+.s-once.b2 .cps em { opacity: 1; } .s-once.b2 .dc { opacity: 0.55; border-style: dashed; }
+.s-once .fix { position: absolute; left: 4%; top: 56%; width: 40%; display: grid; gap: 0.8cqw; opacity: 0; }
+.s-once .fix small { font-size: 1.6cqw; color: #c9d1ce; font-weight: 600; }
+.s-once .fix .sl { display: flex; gap: 1cqw; }
+.s-once .fix i { flex: 1; height: 4cqw; border-radius: 0.6cqw; border: 0.2cqw solid var(--accent); background: #12301f; }
+.s-once .fix i.bd { border-color: var(--bad); background: #2a1616; }
+.s-once.b3 .fix { opacity: 1; }
+.s-once .flow { position: absolute; left: 4%; top: 74%; width: 92%; display: flex; justify-content: center; align-items: center; gap: 1.4cqw; opacity: 0; }
+.s-once .flow span { padding: 1cqw 1.6cqw; border-radius: 1cqw; background: var(--nav-soft); border: 0.2cqw solid var(--nav); color: var(--nav); font-size: 1.9cqw; font-weight: 600; }
+.s-once .flow span.go { background: #12301f; border-color: var(--accent); color: var(--accent); }
+.s-once .flow i { font-style: normal; font-size: 2.4cqw; color: #9aa6a3; }
+.s-once.b4 .fix { opacity: 0; } .s-once.b4 .flow { opacity: 1; }
+
+/* selfrag */
+.s-selfrag .qq { position: absolute; left: 4%; top: 6%; width: 42%; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #f4f6f3; color: #1b2220; display: grid; gap: 0.4cqw; }
+.s-selfrag .qq small { font-size: 1.4cqw; color: #6b7774; } .s-selfrag .qq b { font-size: 2cqw; }
+.s-selfrag .tok { position: absolute; padding: 0.5cqw 1.2cqw; border-radius: 0.5cqw; background: #0c1516; border: 0.2cqw solid var(--nav); color: var(--nav); font-family: var(--mono); font-size: 1.6cqw; font-style: normal; white-space: nowrap; transition: box-shadow 0.4s; }
+.s-selfrag .k0 { left: 4%; top: 27%; }
+.s-selfrag .ps { position: absolute; left: 4%; width: 42%; padding: 1.2cqw 1.6cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; font-size: 1.6cqw; color: #e7efe9; display: grid; gap: 1cqw; transition: all 0.4s; }
+.s-selfrag .p0 { top: 38%; } .s-selfrag .p1 { top: 60%; }
+.s-selfrag .tok.cr { position: static; justify-self: start; opacity: 0; transition: opacity 0.4s; }
+.s-selfrag .tok.ok { border-color: var(--accent); color: var(--accent); } .s-selfrag .tok.bad { border-color: var(--bad); color: var(--bad); }
+.s-selfrag .gen { position: absolute; left: 54%; top: 6%; width: 42%; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #142021; border: 0.2cqw solid #33494a; display: grid; gap: 0.8cqw; color: #e7efe9; opacity: 0; transition: opacity 0.4s; }
+.s-selfrag .gen small { font-size: 1.4cqw; color: #9aa6a3; } .s-selfrag .gen span { font-size: 1.8cqw; }
+.s-selfrag .gen, .s-selfrag .ps { opacity: 1; }
+.s-selfrag.b0 .gen { opacity: 0; }
+.s-selfrag.b1 .gen { opacity: 1; }
+.s-selfrag.b1 .tok { box-shadow: 0 0 0 0.4cqw rgba(140, 170, 255, 0.25); }
+.s-selfrag .t1 { left: 54%; top: 34%; } .s-selfrag.b1 .t1 { opacity: 1; }
+.s-selfrag.b2 .tok.cr { opacity: 1; } .s-selfrag.b2 .p1 { opacity: 0.5; }
+.s-selfrag.b3 .t1 { opacity: 0; }
+.s-selfrag .t3 { left: 54%; top: 34%; } .s-selfrag.b3 .t3 { opacity: 1; }
+.s-selfrag .win { position: absolute; left: 54%; top: 56%; width: 42%; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #12301f; border: 0.25cqw solid var(--accent); display: grid; gap: 0.6cqw; opacity: 0; }
+.s-selfrag .win small { font-size: 1.4cqw; color: #9fc5ae; } .s-selfrag .win b { font-size: 2cqw; color: var(--accent); }
+.s-selfrag.b4 .win { opacity: 1; }
+
+/* crag */
+.s-crag .dz, .s-crag .ev, .s-crag .ac { position: absolute; top: 6%; padding: 1.4cqw; border-radius: 1.2cqw; background: #142021; border: 0.2cqw solid #33494a; display: grid; gap: 1cqw; align-content: start; }
+.s-crag .dz { left: 4%; width: 26%; } .s-crag .ev { left: 36%; width: 26%; } .s-crag .ac { left: 68%; width: 28%; opacity: 0; transition: opacity 0.4s; }
+.s-crag small { font-size: 1.5cqw; font-weight: 700; color: #c9d1ce; }
+.s-crag .dd { display: grid; grid-template-columns: 30% 1fr; align-items: center; gap: 1cqw; font-size: 1.6cqw; color: #e7efe9; }
+.s-crag .mt { height: 1.6cqw; border-radius: 99cqw; background: #0c1516; overflow: hidden; }
+.s-crag .mt i { display: block; height: 100%; width: 0; background: #f5c451; transition: width 0.6s; }
+.s-crag.b0 .mt i { width: var(--v); }
+.s-crag .gg { display: grid; justify-items: center; gap: 0.6cqw; }
+.s-crag .gg svg { width: 70%; }
+.s-crag .arc { fill: none; stroke: #33494a; stroke-width: 6; }
+.s-crag .nd { stroke: #f5c451; stroke-width: 3; stroke-linecap: round; opacity: 0; transition: opacity 0.4s; }
+.s-crag .gg b { font-size: 1.8cqw; color: #f5c451; opacity: 0; transition: opacity 0.4s; }
+.s-crag.b1 .nd, .s-crag.b1 .gg b, .s-crag.b1 .ac { opacity: 1; }
+.s-crag .an { padding: 0.8cqw 1cqw; border-radius: 0.8cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; font-size: 1.5cqw; color: #9aa6a3; transition: all 0.4s; }
+.s-crag.b2 .a1 { border-color: var(--nav); color: var(--nav); background: var(--nav-soft); }
+.s-crag .web { display: flex; gap: 0.8cqw; opacity: 0; transition: opacity 0.4s; }
+.s-crag .web span { padding: 0.5cqw 0.8cqw; border-radius: 0.6cqw; background: #0c1516; border: 0.2cqw solid var(--nav); color: var(--nav); font-size: 1.3cqw; white-space: nowrap; }
+.s-crag.b2 .web { opacity: 1; }
+.s-crag .dcmp { position: absolute; left: 4%; top: 62%; width: 58%; display: flex; flex-wrap: wrap; align-items: center; gap: 1cqw; opacity: 0; transition: opacity 0.4s; }
+.s-crag .dcmp span { padding: 0.8cqw 1.2cqw; border-radius: 0.6cqw; background: #1c2b2c; border: 0.2cqw solid var(--accent); color: #e7efe9; font-size: 1.6cqw; transition: all 0.4s; }
+.s-crag .dcmp span.drop { border-color: var(--bad); }
+.s-crag.b3 .dcmp span.drop { opacity: 0.35; text-decoration: line-through; }
+.s-crag .rcmp { position: absolute; left: 68%; top: 58%; width: 28%; padding: 1.2cqw 1.4cqw; border-radius: 1cqw; background: #12301f; border: 0.25cqw solid var(--accent); display: grid; gap: 0.4cqw; opacity: 0; transition: opacity 0.4s; }
+.s-crag .rcmp small { color: #9fc5ae; } .s-crag .rcmp b { font-size: 1.8cqw; color: var(--accent); }
+.s-crag.b3 .dcmp, .s-crag.b3 .rcmp { opacity: 1; }
+.s-crag .t4 { left: 50%; top: 88%; transform: translateX(-50%); } .s-crag.b4 .t4 { opacity: 1; }
+
+/* claims */
+.s-claims .hd { position: absolute; top: 4%; width: 42%; font-size: 1.7cqw; font-weight: 700; color: #c9d1ce; opacity: 0; }
+.s-claims .h0 { left: 4%; } .s-claims .h1 { left: 54%; }
+.s-claims .cl { position: absolute; width: 42%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #142021; border: 0.2cqw solid #33494a; display: grid; gap: 0.5cqw; opacity: 0; transition: opacity 0.4s; }
+.s-claims .cl small { font-size: 1.4cqw; color: #9aa6a3; } .s-claims .cl b { font-size: 1.8cqw; color: #e7efe9; }
+.s-claims .v0, .s-claims .r0 { top: 10%; } .s-claims .v1, .s-claims .r1 { top: 31%; }
+.s-claims .v0, .s-claims .v1 { left: 4%; border-color: var(--nav); }
+.s-claims .r0, .s-claims .r1 { left: 54%; border-style: dashed; }
+.s-claims.b0 .h0, .s-claims.b0 .v0 { opacity: 1; }
+.s-claims.b2 .v1 { opacity: 1; }
+.s-claims.b3 .h1, .s-claims.b3 .r0, .s-claims.b3 .r1 { opacity: 1; }
+.s-claims .t3 { left: 50%; top: 57%; transform: translateX(-50%); } .s-claims.b3 .t3 { opacity: 1; }
+.s-claims .pitch { position: absolute; left: 4%; top: 70%; width: 42%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.2cqw solid var(--bad); display: grid; gap: 0.4cqw; opacity: 0; }
+.s-claims .pitch small { font-size: 1.4cqw; color: #9aa6a3; } .s-claims .pitch b { font-size: 2cqw; color: #e7efe9; text-decoration: line-through; text-decoration-color: var(--bad); }
+.s-claims .pitch i { position: absolute; right: 1.6cqw; top: 50%; transform: translateY(-50%); font-style: normal; font-size: 3.6cqw; color: var(--bad); }
+.s-claims .t4 { left: 54%; top: 75%; }
+.s-claims.b4 .pitch, .s-claims.b4 .t4 { opacity: 1; }
+.s-claims .cl em { font-style: normal; font-size: 1.5cqw; color: var(--accent); display: none; }
+.s-claims.b1 .cl em { display: block; }
+.s-claims .v1, .s-claims .r1 { top: 36%; }

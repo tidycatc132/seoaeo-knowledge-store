@@ -20,3 +20,9 @@ Summary: Original paper proposing navigational, informational and transactional 
 > inferring the user intent from the query is at best an inexact science, but usually a wild guess
 ### P5 no certitude
 > there is no assumption here that this intent can be inferred with any certitude from the query.
+### P6 navigational example
+> Greyhound Bus. Probable target http://www.greyhound.com
+### P7 wide informational
+> What is different on the web is that many informational queries are extremely wide, for instance cars or San Francisco
+### P8 transactional categories
+> The main categories for such queries are shopping, finding various web-mediated services, downloading various type of file

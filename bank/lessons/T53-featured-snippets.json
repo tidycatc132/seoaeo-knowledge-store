@@ -1,0 +1,827 @@
+{
+  "topic_id": "T53",
+  "items_file": "bank/items/T53-featured-snippets.json",
+  "course_title": "Featured snippets and direct answers",
+  "subtitle": "What featured snippets are, how Google picks them, the controls that keep text out, and the trade-offs of opting out.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Recognise a featured snippet and where it appears",
+    "Explain how Google picks one",
+    "Use nosnippet, data-nosnippet and max-snippet correctly",
+    "Weigh the cost of opting out"
+  ],
+  "intro": [
+    "Sometimes Google answers a question with a box at the top of the results, quoting a piece of one page. That box is a featured snippet.",
+    "This course uses Google's featured snippets guide for site owners, its help page for searchers, its meta description guide, its robots meta tag specification and its page on AI features.",
+    "Advice beyond Google's words, such as how to write answers, is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T53-1",
+      "title": "What a featured snippet is",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe how a featured snippet differs from a normal result",
+        "Name where featured snippets appear",
+        "Say where a click on one lands"
+      ],
+      "scene": {
+        "id": "box",
+        "title": "The result, reversed",
+        "beats": [
+          {
+            "caption": "Featured snippets are special boxes where the format of a regular search result is reversed, showing the descriptive snippet first.",
+            "source_ids": [
+              "S500#P1",
+              "S500#P12"
+            ]
+          },
+          {
+            "caption": "The box shows a little piece of a website that helps answer your question.",
+            "source_ids": [
+              "S242#P1"
+            ]
+          },
+          {
+            "caption": "You can find them at the top of the search results, and in the 'People also ask' section.",
+            "source_ids": [
+              "S242#P4",
+              "S242#P5",
+              "S242#P6"
+            ]
+          },
+          {
+            "caption": "Usually there's only one box, but sometimes there can be more.",
+            "source_ids": [
+              "S242#P7"
+            ]
+          },
+          {
+            "caption": "Clicking one takes the user directly to the section of the page that appeared in it.",
+            "source_ids": [
+              "S500#P7"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "A reversed result",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google describes featured snippets as special boxes where the format of a regular search result is reversed, showing the descriptive snippet first. A normal result leads with the page title and link; a featured snippet leads with the answer text.",
+              "source_ids": [
+                "S500#P1",
+                "S500#P12"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's help page for searchers puts it simply: this box shows a little piece of a website that helps answer your question. The featured snippets come from websites that Google finds.",
+              "source_ids": [
+                "S242#P1",
+                "S242#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where they appear",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google lists the places you can find featured snippets.",
+              "source_ids": [
+                "S242#P4"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Top of the results.",
+                  "text": "At the top of the search results.",
+                  "source_ids": [
+                    "S242#P5"
+                  ]
+                },
+                {
+                  "lead": "People also ask.",
+                  "text": "In the 'People also ask' section.",
+                  "source_ids": [
+                    "S242#P6"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Usually there's only one box, but sometimes there can be more.",
+              "source_ids": [
+                "S242#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where the click goes",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says clicking a featured snippet takes the user directly to the section of the page that appeared in the featured snippet.",
+              "source_ids": [
+                "S500#P7"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a snippet quotes the 'How often to water' paragraph of a plant care guide. A click lands the reader on that paragraph, not at the top of the guide.",
+              "source_ids": [
+                "S500#P7"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A featured snippet shows the answer text first.",
+          "source_ids": [
+            "S500#P1",
+            "S500#P12"
+          ]
+        },
+        {
+          "text": "It quotes a piece of a website.",
+          "source_ids": [
+            "S242#P1"
+          ]
+        },
+        {
+          "text": "It can appear at the top or in People also ask.",
+          "source_ids": [
+            "S242#P5",
+            "S242#P6"
+          ]
+        },
+        {
+          "text": "A click lands on the quoted section.",
+          "source_ids": [
+            "S500#P7"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Spot your snippets",
+        "minutes": "10",
+        "steps": [
+          "Search ten question-style queries your pages target.",
+          "Note which show a featured snippet, and whose page it quotes.",
+          "Open People also ask and note any of your pages there.",
+          "Click one of your snippets and check where it lands."
+        ],
+        "prompt_template": "Here are ten queries and what I saw for each: [notes]. Google says featured snippets show the descriptive snippet first, appear at the top of results or in People also ask, and a click goes to the quoted section. Summarise where I appear, where competitors appear, and which pages to look at first."
+      },
+      "reflection": [
+        "Which of your pages answers a question in one clear paragraph?",
+        "Does the section a snippet would link to make sense on its own?"
+      ],
+      "whats_next": "Next, how Google decides which page to feature."
+    },
+    {
+      "lesson_id": "T53-2",
+      "title": "How Google picks one",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain who decides a featured snippet",
+        "Debunk featured snippet markup",
+        "Explain the length rules Google gives"
+      ],
+      "scene": {
+        "id": "pick",
+        "title": "Google decides",
+        "beats": [
+          {
+            "caption": "Google systems determine whether a page would make a good featured snippet for a user's search request.",
+            "source_ids": [
+              "S500#P13"
+            ]
+          },
+          {
+            "caption": "Google picks them based on how well they answer your question and how helpful they are.",
+            "source_ids": [
+              "S242#P3"
+            ]
+          },
+          {
+            "caption": "Can you mark your page as a featured snippet? Google's answer: You can't.",
+            "source_ids": [
+              "S500#P8"
+            ]
+          },
+          {
+            "caption": "Google does not provide an exact minimum length required to appear as a featured snippet.",
+            "source_ids": [
+              "S500#P3"
+            ]
+          },
+          {
+            "caption": "Featured snippets only appear if enough text can be shown to generate a useful one.",
+            "source_ids": [
+              "S500#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Google decides",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says its systems determine whether a page would make a good featured snippet for a user's search request. Its help page adds that Google picks them based on how well they answer your question and how helpful they are.",
+              "source_ids": [
+                "S500#P13",
+                "S242#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Asked how you can mark your page as a featured snippet, Google's answer is short: You can't.",
+              "source_ids": [
+                "S500#P8"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "There's no featured snippet markup to add. A tool or plugin that promises one is selling something Google says doesn't exist.",
+              "source_ids": [
+                "S500#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Length",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google does not provide an exact minimum length required to appear as a featured snippet. It does say featured snippets will only appear if enough text can be shown to generate a useful featured snippet.",
+              "source_ids": [
+                "S500#P3",
+                "S500#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Snippets are made from your page",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's meta description guide says snippets are automatically created from page content, and are designed to preview the content that best relates to a user's specific search. So Google Search might show different snippets for different searches.",
+              "source_ids": [
+                "S243#P1",
+                "S243#P2",
+                "S243#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: since Google picks text that answers the question, put a clear, self-contained answer right under a heading that names the question.",
+              "source_ids": [
+                "S242#P3",
+                "S243#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google's systems choose featured snippets.",
+          "source_ids": [
+            "S500#P13"
+          ]
+        },
+        {
+          "text": "You can't mark a page as one.",
+          "source_ids": [
+            "S500#P8"
+          ]
+        },
+        {
+          "text": "There's no exact minimum length.",
+          "source_ids": [
+            "S500#P3"
+          ]
+        },
+        {
+          "text": "Snippets come from page content and vary by search.",
+          "source_ids": [
+            "S243#P1",
+            "S243#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Tighten one answer",
+        "minutes": "15",
+        "steps": [
+          "Pick a page that targets a clear question.",
+          "Find the paragraph that answers it.",
+          "Make sure a heading names the question and the answer comes first.",
+          "Check the paragraph makes sense if quoted on its own."
+        ],
+        "prompt_template": "Here is a section of my page: [paste]. Google says it picks featured snippets based on how well they answer the question and how helpful they are, and snippets are made from page content. Suggest a heading that names the question and a self-contained opening answer. Label this as practitioner judgement."
+      },
+      "reflection": [
+        "Have you been told to add markup for featured snippets?",
+        "Which answer on your site is buried under a long intro?"
+      ],
+      "whats_next": "Next, the controls that keep your text out of snippets."
+    },
+    {
+      "lesson_id": "T53-3",
+      "title": "Snippet controls",
+      "est_minutes": 5,
+      "objectives": [
+        "Tell nosnippet, data-nosnippet and max-snippet apart",
+        "Explain what a low max-snippet does and doesn't do",
+        "Know which controls also reach AI features"
+      ],
+      "scene": {
+        "id": "ctrl",
+        "title": "Three controls",
+        "beats": [
+          {
+            "caption": "nosnippet: blocks all snippets, including featured snippets and regular snippets, for a page.",
+            "source_ids": [
+              "S500#P9"
+            ]
+          },
+          {
+            "caption": "It applies to all forms of search results, including AI Overviews and AI Mode, and prevents use as direct input.",
+            "source_ids": [
+              "S501#P1",
+              "S501#P2"
+            ]
+          },
+          {
+            "caption": "data-nosnippet: marked text won't appear in featured snippets or regular snippets.",
+            "source_ids": [
+              "S500#P4"
+            ]
+          },
+          {
+            "caption": "max-snippet: the shorter the setting, the less likely a featured snippet. It doesn't guarantee they stop.",
+            "source_ids": [
+              "S500#P10",
+              "S500#P5"
+            ]
+          },
+          {
+            "caption": "max-snippet:0 means no snippet is shown. Equivalent to nosnippet.",
+            "source_ids": [
+              "S501#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Ways to opt out",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says there are two ways that you can opt out of featured snippets, and its robots meta tag spec describes the controls behind them. Here's what each one does.",
+              "source_ids": [
+                "S500#P11",
+                "S501#P6"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "nosnippet.",
+                  "text": "Blocks all snippets, including featured snippets and regular snippets, from appearing for a page.",
+                  "source_ids": [
+                    "S500#P9"
+                  ]
+                },
+                {
+                  "lead": "data-nosnippet.",
+                  "text": "An HTML attribute for parts of a page. Text marked with it won't appear in featured snippets or regular snippets.",
+                  "source_ids": [
+                    "S500#P4",
+                    "S501#P6"
+                  ]
+                },
+                {
+                  "lead": "max-snippet.",
+                  "text": "Sets a maximum number of characters for a textual snippet. In general, the shorter the setting, the less likely the page will appear as a featured snippet.",
+                  "source_ids": [
+                    "S501#P3",
+                    "S500#P10"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Less likely isn't never",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says using a low max-snippet setting doesn't guarantee that Google will stop showing featured snippets for your page. Only a setting of 0 means no snippet is to be shown, which is equivalent to nosnippet.",
+              "source_ids": [
+                "S500#P5",
+                "S501#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "They reach AI features too",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's spec says nosnippet applies to all forms of search results, including AI Overviews and AI Mode, and will also prevent the content from being used as a direct input for them. max-snippet will also limit how much of the content may be used as a direct input for AI Overviews and AI Mode.",
+              "source_ids": [
+                "S501#P1",
+                "S501#P2",
+                "S501#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Remember",
+              "text": "A snippet control is never only about featured snippets. Check what else it switches off before adding it.",
+              "source_ids": [
+                "S501#P1",
+                "S501#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "nosnippet blocks all snippets for a page.",
+          "source_ids": [
+            "S500#P9"
+          ]
+        },
+        {
+          "text": "data-nosnippet keeps marked text out.",
+          "source_ids": [
+            "S500#P4"
+          ]
+        },
+        {
+          "text": "A low max-snippet doesn't guarantee they stop.",
+          "source_ids": [
+            "S500#P5"
+          ]
+        },
+        {
+          "text": "max-snippet:0 equals nosnippet.",
+          "source_ids": [
+            "S501#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map your snippet rules",
+        "minutes": "15",
+        "steps": [
+          "Crawl your site and export robots meta tags and X-Robots-Tag headers.",
+          "Search your templates for data-nosnippet.",
+          "List every page or block with nosnippet, max-snippet or data-nosnippet.",
+          "Write down why each one is there, and remove any no one can explain."
+        ],
+        "prompt_template": "Here is a list of snippet rules on my site: [paste]. Google says nosnippet blocks all snippets and AI input, data-nosnippet keeps marked text out, a low max-snippet makes featured snippets less likely without a guarantee, and max-snippet:0 equals nosnippet. Explain what each rule does and flag any that look accidental."
+      },
+      "reflection": [
+        "Was any snippet rule on your site added by a plugin, not a person?",
+        "Is there text you'd rather never see quoted out of context?"
+      ],
+      "whats_next": "Next, Google's policies for featured snippets and the cost of opting out."
+    },
+    {
+      "lesson_id": "T53-4",
+      "title": "Policies and trade-offs",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain when Google removes a featured snippet",
+        "Pick the narrowest control for a goal",
+        "Weigh opting out against AI feature eligibility"
+      ],
+      "scene": {
+        "id": "trade",
+        "title": "Choose the narrowest tool",
+        "beats": [
+          {
+            "caption": "If a featured snippet breaks the rules, Google takes it down.",
+            "source_ids": [
+              "S242#P8"
+            ]
+          },
+          {
+            "caption": "One policy: contradicting consensus on public interest topics.",
+            "source_ids": [
+              "S242#P9"
+            ]
+          },
+          {
+            "caption": "To be a supporting link in AI Overviews or AI Mode, a page must be eligible to show with a snippet.",
+            "source_ids": [
+              "S007#P7"
+            ]
+          },
+          {
+            "caption": "nosnippet on a whole page blocks all snippets and AI input.",
+            "source_ids": [
+              "S500#P9",
+              "S501#P2"
+            ]
+          },
+          {
+            "caption": "data-nosnippet on one paragraph keeps only that text out.",
+            "source_ids": [
+              "S500#P4",
+              "S501#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Google's policies",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's help page says that if a featured snippet breaks the rules, Google takes it down. One of the policies it lists is contradicting consensus on public interest topics.",
+              "source_ids": [
+                "S242#P8",
+                "S242#P9"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Searchers can also give feedback. Google says that if you give feedback, it can learn to find even better answers.",
+              "source_ids": [
+                "S242#P10"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The cost of opting out",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says a page must be indexed and eligible to be shown in Google Search with a snippet to be a supporting link in AI Overviews or AI Mode. nosnippet blocks all snippets and prevents use as direct input for those features, and max-snippet:0 is equivalent to it.",
+              "source_ids": [
+                "S007#P7",
+                "S500#P9",
+                "S501#P2",
+                "S501#P5"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a law firm wants one disclaimer kept out of snippets. nosnippet on the page would cost it snippets and AI input everywhere. data-nosnippet on the disclaimer keeps only that paragraph out.",
+              "source_ids": [
+                "S500#P4",
+                "S500#P9",
+                "S501#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Pick the narrowest tool",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Practitioner judgement: match the control to the goal, and use the narrowest one that works.",
+              "source_ids": [
+                "S500#P4",
+                "S500#P9",
+                "S500#P10"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "One passage out.",
+                  "text": "Use data-nosnippet on that text.",
+                  "source_ids": [
+                    "S500#P4"
+                  ]
+                },
+                {
+                  "lead": "Shorter snippets.",
+                  "text": "Use max-snippet, knowing a low value doesn't guarantee featured snippets stop.",
+                  "source_ids": [
+                    "S500#P10",
+                    "S500#P5"
+                  ]
+                },
+                {
+                  "lead": "No snippets at all.",
+                  "text": "Use nosnippet, accepting that it also blocks AI input.",
+                  "source_ids": [
+                    "S500#P9",
+                    "S501#P2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google takes down snippets that break its rules.",
+          "source_ids": [
+            "S242#P8"
+          ]
+        },
+        {
+          "text": "AI supporting links need snippet eligibility.",
+          "source_ids": [
+            "S007#P7"
+          ]
+        },
+        {
+          "text": "nosnippet also blocks AI input.",
+          "source_ids": [
+            "S501#P2"
+          ]
+        },
+        {
+          "text": "data-nosnippet is the narrowest tool.",
+          "source_ids": [
+            "S500#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Fix one opt-out",
+        "minutes": "15",
+        "steps": [
+          "Pick a page that has nosnippet or max-snippet:0.",
+          "Write down the exact text you want kept out of snippets.",
+          "Replace the page-wide rule with data-nosnippet on that text, if that meets the goal.",
+          "Re-check the page in Search Console after it's recrawled."
+        ],
+        "prompt_template": "Here's a page with a page-wide snippet rule and the reason it was added: [paste]. Google says nosnippet blocks all snippets and AI input, max-snippet:0 equals nosnippet, and data-nosnippet keeps only marked text out. Suggest the narrowest control that still meets the goal, and what it would cost."
+      },
+      "reflection": [
+        "Which page-wide rule on your site could be a single data-nosnippet?",
+        "Do any of your answers go against expert consensus on a public topic?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "A featured snippet reverses a normal result, showing a piece of a page first, at the top or in People also ask, and a click lands on that section. Google's systems pick it based on how well it answers and how helpful it is; you can't mark a page as one, and there's no exact minimum length. nosnippet blocks all snippets and AI input, data-nosnippet keeps marked text out, and a low max-snippet only makes featured snippets less likely. Use the narrowest control that meets your goal.",
+    "related_topics": [
+      {
+        "topic_id": "T52",
+        "title": "GEO and AI Overviews retrieval"
+      },
+      {
+        "topic_id": "T47",
+        "title": "Passage ranking and document chunking"
+      },
+      {
+        "topic_id": "T48",
+        "title": "Search intent classification and spelling correction"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Featured snippets and direct answers. The questions revisit what featured snippets are, how Google picks them and the snippet controls.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T53-L1-01",
+      "T53-L1-02",
+      "T53-L1-03",
+      "T53-L2-01",
+      "T53-L2-02",
+      "T53-L2-03",
+      "T53-L3-01",
+      "T53-L3-02",
+      "T53-L4-01",
+      "T53-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T53-L1-01",
+        "options": [
+          "A. knowledge panel boxes",
+          "B. rich result cards",
+          "C. answer carousel boxes",
+          "D. featured snippets"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google's featured snippets page says featured snippets are special boxes where the format of a regular search result is reversed.",
+        "source_ids": [
+          "S500#P1"
+        ]
+      },
+      {
+        "item_id": "T53-L1-03",
+        "options": [
+          "A. True, it is 40 words",
+          "B. True, it is one paragraph",
+          "C. False",
+          "D. True, it is 300 characters"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says it does not provide an exact minimum length required to appear as a featured snippet.",
+        "source_ids": [
+          "S500#P3"
+        ]
+      },
+      {
+        "item_id": "T53-L2-01",
+        "options": [
+          "A. section",
+          "B. top of the page",
+          "C. contact form",
+          "D. site homepage"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says clicking a featured snippet takes the user directly to the section of the page that appeared in the featured snippet.",
+        "source_ids": [
+          "S500#P7"
+        ]
+      },
+      {
+        "item_id": "T53-L2-03",
+        "options": [
+          "A. Text marked data-nosnippet won't appear in featured snippets",
+          "B. FAQ schema is required for featured snippet eligibility",
+          "C. max-snippet 0 is equivalent to nosnippet on a page",
+          "D. Featured snippets appear only if enough text can be shown to be useful"
+        ],
+        "answer": "B",
+        "explanation": "Correct: no source says FAQ schema is required, and asked whether you can mark a page as a featured snippet, Google answers 'You can't.' Supported: data-nosnippet text stays out (A), max-snippet 0 equals nosnippet (C), and featured snippets need enough text to be useful (D).",
+        "source_ids": [
+          "S500#P8",
+          "S500#P4",
+          "S501#P5",
+          "S500#P6"
+        ]
+      },
+      {
+        "item_id": "T53-L3-01",
+        "options": [
+          "A. max-snippet rule",
+          "B. nosnippet robots tag",
+          "C. noindex robots tag",
+          "D. data-nosnippet"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says text marked by the data-nosnippet attribute won't appear in featured snippets or regular snippets. Wrong: nosnippet and max-snippet work on the whole page's snippet, and noindex removes the page from results.",
+        "source_ids": [
+          "S500#P4",
+          "S501#P6",
+          "S500#P9"
+        ]
+      },
+      {
+        "item_id": "T53-L4-02",
+        "options": [
+          "A. Add nosnippet to the whole page so that nothing at all is shown",
+          "B. Add noindex to the whole page so that it leaves the results",
+          "C. Wrap only the disclaimer paragraph in data-nosnippet",
+          "D. Set max-snippet to 0 for the page as a whole instead"
+        ],
+        "answer": "C",
+        "explanation": "Correct: data-nosnippet keeps only the marked text out, so the rest of the page can still show a snippet and stay eligible as a supporting link. Wrong: nosnippet blocks all snippets and AI input, noindex removes the page, and max-snippet 0 is equivalent to nosnippet.",
+        "source_ids": [
+          "S500#P4",
+          "S007#P7",
+          "S501#P2",
+          "S501#P5"
+        ]
+      }
+    ]
+  }
+}

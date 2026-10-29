@@ -1,0 +1,787 @@
+{
+  "topic_id": "T57",
+  "items_file": "bank/items/T57-performance-signals.json",
+  "course_title": "Technical performance signals",
+  "subtitle": "Core Web Vitals and their thresholds, how to measure them properly, what page experience does and doesn't mean for ranking, and mobile-first indexing.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Name the Core Web Vitals and their good thresholds",
+    "Measure them with field data at the 75th percentile",
+    "Explain how page experience relates to ranking",
+    "Keep mobile and desktop versions in step"
+  ],
+  "intro": [
+    "Speed and stability get a lot of attention in SEO. Google publishes clear numbers for them, and equally clear warnings about how much they matter.",
+    "This course uses Google's pages on Core Web Vitals, page experience and mobile-first indexing, plus Google's web.dev articles on Web Vitals and the switch to INP.",
+    "Advice beyond the sources is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T57-1",
+      "title": "The Core Web Vitals",
+      "est_minutes": 5,
+      "objectives": [
+        "Name the three Core Web Vitals",
+        "Say what each one measures",
+        "Give each one's good threshold"
+      ],
+      "scene": {
+        "id": "cwv",
+        "title": "Three numbers",
+        "beats": [
+          {
+            "caption": "The current set of Core Web Vitals focuses on three aspects of the user experience.",
+            "source_ids": [
+              "S410#P1"
+            ]
+          },
+          {
+            "caption": "LCP measures loading performance. Good: within the first 2.5 seconds.",
+            "source_ids": [
+              "S410#P4",
+              "S409#P1"
+            ]
+          },
+          {
+            "caption": "INP measures interactivity. Good: less than 200 milliseconds.",
+            "source_ids": [
+              "S410#P5",
+              "S409#P2"
+            ]
+          },
+          {
+            "caption": "CLS measures visual stability. Good: a score of less than 0.1.",
+            "source_ids": [
+              "S410#P6",
+              "S409#P3"
+            ]
+          },
+          {
+            "caption": "INP replaced First Input Delay, and the metrics will evolve over time.",
+            "source_ids": [
+              "S411#P1",
+              "S410#P7"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Three aspects",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "web.dev says the current set of Core Web Vitals focuses on three aspects of the user experience. Google's Core Web Vitals page gives a good threshold for each.",
+              "source_ids": [
+                "S410#P1",
+                "S409#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Largest Contentful Paint (LCP).",
+                  "text": "Measures loading performance. Good LCP occurs within the first 2.5 seconds.",
+                  "source_ids": [
+                    "S410#P4",
+                    "S409#P1"
+                  ]
+                },
+                {
+                  "lead": "Interaction to Next Paint (INP).",
+                  "text": "Measures interactivity. Good is an INP of less than 200 milliseconds.",
+                  "source_ids": [
+                    "S410#P5",
+                    "S409#P2"
+                  ]
+                },
+                {
+                  "lead": "Cumulative Layout Shift (CLS).",
+                  "text": "Measures visual stability. Good is a CLS score of less than 0.1.",
+                  "source_ids": [
+                    "S410#P6",
+                    "S409#P3"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "INP replaced FID",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "web.dev announced that Interaction to Next Paint is now a stable Core Web Vital metric, replacing First Input Delay. Now that INP has replaced FID, Chrome is officially deprecating support for FID.",
+              "source_ids": [
+                "S411#P1",
+                "S411#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "web.dev also says the metrics that make up Core Web Vitals will evolve over time.",
+              "source_ids": [
+                "S410#P7"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "An audit that still reports FID as a Core Web Vital is out of date. Check INP instead.",
+              "source_ids": [
+                "S411#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "LCP measures loading; good is within 2.5 seconds.",
+          "source_ids": [
+            "S410#P4",
+            "S409#P1"
+          ]
+        },
+        {
+          "text": "INP measures interactivity; good is under 200 ms.",
+          "source_ids": [
+            "S410#P5",
+            "S409#P2"
+          ]
+        },
+        {
+          "text": "CLS measures visual stability; good is under 0.1.",
+          "source_ids": [
+            "S410#P6",
+            "S409#P3"
+          ]
+        },
+        {
+          "text": "INP replaced FID.",
+          "source_ids": [
+            "S411#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Read your three numbers",
+        "minutes": "10",
+        "steps": [
+          "Open the Core Web Vitals report in Search Console.",
+          "Note which metric is flagged for mobile and for desktop.",
+          "Compare each with Google's good thresholds.",
+          "Pick the metric with the most affected URLs to work on first."
+        ],
+        "prompt_template": "Here is my Search Console Core Web Vitals summary: [paste]. Google says good is LCP within 2.5 seconds, INP under 200 milliseconds and CLS under 0.1, and INP replaced FID. Tell me which metric to fix first and what each one measures."
+      },
+      "reflection": [
+        "Does any report you use still mention FID?",
+        "Which of the three would a visitor on your site notice first?"
+      ],
+      "whats_next": "Next, how to measure these numbers properly."
+    },
+    {
+      "lesson_id": "T57-2",
+      "title": "Measuring it right",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain the 75th percentile threshold",
+        "Tell field data from lab data",
+        "Find real user data for your pages"
+      ],
+      "scene": {
+        "id": "p75",
+        "title": "Real users, 75th percentile",
+        "beats": [
+          {
+            "caption": "A good threshold to measure is the 75th percentile of page loads.",
+            "source_ids": [
+              "S410#P2"
+            ]
+          },
+          {
+            "caption": "Lab measurement is essential, but it is not a substitute for field measurement.",
+            "source_ids": [
+              "S410#P3"
+            ]
+          },
+          {
+            "caption": "The Chrome User Experience Report collects anonymized, real user measurement data for each Core Web Vital.",
+            "source_ids": [
+              "S410#P8"
+            ]
+          },
+          {
+            "caption": "Check the Core Web Vitals report in Search Console.",
+            "source_ids": [
+              "S409#P4"
+            ]
+          },
+          {
+            "caption": "Good results in these reports don't guarantee your pages will rank at the top.",
+            "source_ids": [
+              "S408#P9"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The 75th percentile",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "web.dev says a good threshold to measure is the 75th percentile of page loads. In other words, most visits, not just the typical one, should hit the good threshold.",
+              "source_ids": [
+                "S410#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: 100 page loads. The middle load has LCP of 2.0 seconds, but the 75th has 3.1 seconds. The page misses the 2.5 second good threshold, even though the typical visit looks fine.",
+              "source_ids": [
+                "S410#P2",
+                "S409#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Field beats lab",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "web.dev says that while lab measurement is an essential part of delivering great experiences, it is not a substitute for field measurement. The Chrome User Experience Report collects anonymized, real user measurement data for each Core Web Vital.",
+              "source_ids": [
+                "S410#P3",
+                "S410#P8"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google suggests checking the Core Web Vitals report in Search Console.",
+              "source_ids": [
+                "S409#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: use lab tools to find and test a fix, then confirm it in field data.",
+              "source_ids": [
+                "S410#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Good numbers aren't a ranking promise",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says getting good results in reports like Search Console's Core Web Vitals report or third-party tools doesn't guarantee that your pages will rank at the top of Google Search results.",
+              "source_ids": [
+                "S408#P9"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Judge at the 75th percentile of page loads.",
+          "source_ids": [
+            "S410#P2"
+          ]
+        },
+        {
+          "text": "Lab data doesn't replace field data.",
+          "source_ids": [
+            "S410#P3"
+          ]
+        },
+        {
+          "text": "CrUX holds real user data.",
+          "source_ids": [
+            "S410#P8"
+          ]
+        },
+        {
+          "text": "Good scores don't guarantee top rankings.",
+          "source_ids": [
+            "S408#P9"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Compare lab and field",
+        "minutes": "15",
+        "steps": [
+          "Pick one page flagged in the Core Web Vitals report.",
+          "Run a lab test on it and note LCP and CLS.",
+          "Look up its field data from real users.",
+          "Write down where lab and field disagree, and which to trust for pass or fail."
+        ],
+        "prompt_template": "Here are lab results and field data for one page: [paste]. web.dev says the good threshold is measured at the 75th percentile of page loads, and lab measurement is not a substitute for field measurement. Explain the difference and whether the page passes."
+      },
+      "reflection": [
+        "Have you ever called a page 'fixed' from a lab score alone?",
+        "Who on your team checks the field data after a release?"
+      ],
+      "whats_next": "Next, how page experience fits into ranking."
+    },
+    {
+      "lesson_id": "T57-3",
+      "title": "Page experience isn't one signal",
+      "est_minutes": 5,
+      "objectives": [
+        "List Google's page experience questions",
+        "Explain 'no single signal'",
+        "Explain why relevance can still win"
+      ],
+      "scene": {
+        "id": "pe",
+        "title": "Part of the picture",
+        "beats": [
+          {
+            "caption": "Google's questions: good Core Web Vitals? Served securely? Displays well on mobile?",
+            "source_ids": [
+              "S408#P4",
+              "S408#P5",
+              "S408#P6"
+            ]
+          },
+          {
+            "caption": "Avoids excessive ads that interfere with the main content? Avoids intrusive interstitials?",
+            "source_ids": [
+              "S408#P7",
+              "S408#P8"
+            ]
+          },
+          {
+            "caption": "There is no single signal. Core Web Vitals are used by Google's ranking systems.",
+            "source_ids": [
+              "S408#P1",
+              "S408#P2"
+            ]
+          },
+          {
+            "caption": "Google always seeks to show the most relevant content, even if the page experience is sub-par.",
+            "source_ids": [
+              "S408#P3"
+            ]
+          },
+          {
+            "caption": "A better experience makes a site more satisfying to use, generally aligned with what ranking systems reward.",
+            "source_ids": [
+              "S408#P10"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Google's questions",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's page experience guide gives questions to ask about your pages.",
+              "source_ids": [
+                "S408#P4"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Core Web Vitals.",
+                  "text": "Do your pages have good Core Web Vitals?",
+                  "source_ids": [
+                    "S408#P4"
+                  ]
+                },
+                {
+                  "lead": "Security.",
+                  "text": "Are your pages served in a secure fashion?",
+                  "source_ids": [
+                    "S408#P5"
+                  ]
+                },
+                {
+                  "lead": "Mobile.",
+                  "text": "Does your content display well on mobile devices?",
+                  "source_ids": [
+                    "S408#P6"
+                  ]
+                },
+                {
+                  "lead": "Ads.",
+                  "text": "Does your content avoid using an excessive amount of ads that distract from or interfere with the main content?",
+                  "source_ids": [
+                    "S408#P7"
+                  ]
+                },
+                {
+                  "lead": "Interstitials.",
+                  "text": "Do your pages avoid using intrusive interstitials?",
+                  "source_ids": [
+                    "S408#P8"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "No single signal",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says there is no single signal for page experience, though Core Web Vitals are used by its ranking systems. Google Search always seeks to show the most relevant content, even if the page experience is sub-par.",
+              "source_ids": [
+                "S408#P1",
+                "S408#P2",
+                "S408#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "A good experience still helps. Google says it can make your website more satisfying to use, which is generally aligned with what its ranking systems seek to reward.",
+              "source_ids": [
+                "S408#P10"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Remember",
+              "text": "A slow page with the best answer can outrank a fast page with a weak one. Fix speed, but don't expect it to beat relevance.",
+              "source_ids": [
+                "S408#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Page experience covers more than speed.",
+          "source_ids": [
+            "S408#P5",
+            "S408#P7"
+          ]
+        },
+        {
+          "text": "There's no single page experience signal.",
+          "source_ids": [
+            "S408#P1"
+          ]
+        },
+        {
+          "text": "Core Web Vitals are used by ranking systems.",
+          "source_ids": [
+            "S408#P2"
+          ]
+        },
+        {
+          "text": "The most relevant content can still win.",
+          "source_ids": [
+            "S408#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Run the five questions",
+        "minutes": "15",
+        "steps": [
+          "Pick three key templates: home, article and product or service.",
+          "Answer Google's five page experience questions for each.",
+          "Load each on a phone and note ads and pop-ups that get in the way.",
+          "List fixes in order of how much they get in the reader's way."
+        ],
+        "prompt_template": "Here are notes on three page templates: [paste]. Google asks whether pages have good Core Web Vitals, are served securely, display well on mobile, avoid excessive ads, and avoid intrusive interstitials. It also says there's no single signal and relevance can win. Rank my fixes by impact on readers."
+      },
+      "reflection": [
+        "Has anyone promised you a ranking jump from speed work alone?",
+        "Which pop-up on your site would you close straight away as a visitor?"
+      ],
+      "whats_next": "Next, mobile-first indexing."
+    },
+    {
+      "lesson_id": "T57-4",
+      "title": "Mobile-first indexing",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain mobile-first indexing",
+        "Keep content and structured data in parity",
+        "Let Google crawl page resources"
+      ],
+      "scene": {
+        "id": "mob",
+        "title": "The phone version counts",
+        "beats": [
+          {
+            "caption": "Google uses the mobile version of a site's content, crawled with the smartphone agent, for indexing and ranking.",
+            "source_ids": [
+              "S412#P1"
+            ]
+          },
+          {
+            "caption": "Make sure that your mobile site contains the same content as your desktop site.",
+            "source_ids": [
+              "S412#P2"
+            ]
+          },
+          {
+            "caption": "If you have structured data, make sure it's present on both versions.",
+            "source_ids": [
+              "S412#P4"
+            ]
+          },
+          {
+            "caption": "Let Google crawl your resources.",
+            "source_ids": [
+              "S412#P3"
+            ]
+          },
+          {
+            "caption": "Missing on mobile means missing for indexing and ranking.",
+            "source_ids": [
+              "S412#P1",
+              "S412#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The mobile version is the one",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says it uses the mobile version of a site's content, crawled with the smartphone agent, for indexing and ranking.",
+              "source_ids": [
+                "S412#P1"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a shop hides customer reviews on phones to save space. Desktop visitors see them, but the version Google indexes doesn't include them.",
+              "source_ids": [
+                "S412#P1",
+                "S412#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Keep parity",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's mobile-first indexing guide lists best practices. These three matter most for parity.",
+              "source_ids": [
+                "S412#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Same content.",
+                  "text": "Make sure that your mobile site contains the same content as your desktop site.",
+                  "source_ids": [
+                    "S412#P2"
+                  ]
+                },
+                {
+                  "lead": "Same structured data.",
+                  "text": "If you have structured data on your site, make sure that it's present on both versions of your site.",
+                  "source_ids": [
+                    "S412#P4"
+                  ]
+                },
+                {
+                  "lead": "Crawlable resources.",
+                  "text": "Let Google crawl your resources.",
+                  "source_ids": [
+                    "S412#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "Blocking CSS or JavaScript for the mobile site in robots.txt goes against Google's advice to let it crawl your resources.",
+              "source_ids": [
+                "S412#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google indexes and ranks the mobile version.",
+          "source_ids": [
+            "S412#P1"
+          ]
+        },
+        {
+          "text": "Keep the same content on mobile and desktop.",
+          "source_ids": [
+            "S412#P2"
+          ]
+        },
+        {
+          "text": "Put structured data on both versions.",
+          "source_ids": [
+            "S412#P4"
+          ]
+        },
+        {
+          "text": "Let Google crawl your resources.",
+          "source_ids": [
+            "S412#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Compare mobile and desktop",
+        "minutes": "15",
+        "steps": [
+          "Pick five key pages.",
+          "Compare the main text, images and reviews on phone and desktop.",
+          "Compare structured data on both versions.",
+          "Check robots.txt doesn't block CSS or JavaScript."
+        ],
+        "prompt_template": "Here are notes comparing my mobile and desktop pages: [paste]. Google says it uses the mobile version for indexing and ranking, the mobile site should have the same content, structured data should be on both, and it should be able to crawl resources. List every gap and how to fix it."
+      },
+      "reflection": [
+        "What does your theme hide on small screens?",
+        "When did you last check robots.txt for blocked CSS or JavaScript?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Core Web Vitals measure loading (LCP, good within 2.5 seconds), interactivity (INP, under 200 milliseconds) and visual stability (CLS, under 0.1); INP replaced FID. Judge them with field data at the 75th percentile of page loads. They're used by ranking systems, but there's no single page experience signal and the most relevant content can still win. Google indexes and ranks the mobile version, so keep content, structured data and crawlable resources the same on both.",
+    "related_topics": [
+      {
+        "topic_id": "T40",
+        "title": "Document rendering and JavaScript indexing"
+      },
+      {
+        "topic_id": "T39",
+        "title": "Web crawling and crawl budget management"
+      },
+      {
+        "topic_id": "T56",
+        "title": "Blended and multimodal results"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Technical performance signals. The questions revisit Core Web Vitals, measurement, page experience and mobile-first indexing.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T57-L1-01",
+      "T57-L1-02",
+      "T57-L1-03",
+      "T57-L2-01",
+      "T57-L2-02",
+      "T57-L2-03",
+      "T57-L3-01",
+      "T57-L3-02",
+      "T57-L4-01",
+      "T57-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T57-L1-01",
+        "options": [
+          "A. TTFB",
+          "B. INP",
+          "C. FCP",
+          "D. TBT"
+        ],
+        "answer": "B",
+        "explanation": "Correct: web.dev says Interaction to Next Paint is now a stable Core Web Vital, replacing First Input Delay.",
+        "source_ids": [
+          "S411#P1"
+        ]
+      },
+      {
+        "item_id": "T57-L1-03",
+        "options": [
+          "A. False, it uses desktop",
+          "B. False, it uses both equally",
+          "C. True",
+          "D. False, only for news"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says it uses the mobile version of a site's content, crawled with the smartphone agent, for indexing and ranking.",
+        "source_ids": [
+          "S412#P1"
+        ]
+      },
+      {
+        "item_id": "T57-L2-02",
+        "options": [
+          "A. True",
+          "B. True, for mobile searches",
+          "C. True, since 2021",
+          "D. False"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says it always seeks to show the most relevant content, even if the page experience is sub-par.",
+        "source_ids": [
+          "S408#P3"
+        ]
+      },
+      {
+        "item_id": "T57-L3-01",
+        "options": [
+          "A. LCP",
+          "B. CLS",
+          "C. INP",
+          "D. TTFB"
+        ],
+        "answer": "C",
+        "explanation": "Correct: LCP of 2.3 seconds is within 2.5 seconds and CLS of 0.05 is under 0.1, but INP of 250 milliseconds is above the 200 millisecond good threshold.",
+        "source_ids": [
+          "S409#P1",
+          "S409#P2",
+          "S409#P3"
+        ]
+      },
+      {
+        "item_id": "T57-L4-01",
+        "options": [
+          "A. Add more content to the desktop version only",
+          "B. Add noindex to every mobile page",
+          "C. Wait for FID to become a Core Web Vital again",
+          "D. Match mobile content and allow resources"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google uses the mobile version, and asks for the same content, structured data on both versions and crawlable resources. Wrong: desktop-only content isn't what Google indexes, noindex would remove the mobile pages, and INP has replaced FID.",
+        "source_ids": [
+          "S412#P1",
+          "S412#P2",
+          "S412#P3",
+          "S412#P4",
+          "S411#P1"
+        ]
+      }
+    ]
+  }
+}

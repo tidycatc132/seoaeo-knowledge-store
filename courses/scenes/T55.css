@@ -1,0 +1,82 @@
+/* Scenes for T55 Content quality, E-E-A-T and information gain. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); transition: opacity 0.4s; }
+.tagx.ok { background: #12301f; color: var(--accent); border-color: var(--accent); }
+.tagx.warn { background: #2a2416; color: #f5c451; border-color: #f5c451; }
+
+/* first */
+.s-first small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-first .pc { position: absolute; left: 4%; width: 38%; box-sizing: border-box; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #1c2b2c; display: grid; gap: 0.6cqw; transition: opacity 0.4s; }
+.s-first .pc b { font-size: 2.2cqw; }
+.s-first .pc i { display: block; height: 0.9cqw; border-radius: 99cqw; background: #9aa6a3; opacity: 0.5; }
+.s-first .pc i:last-child { width: 70%; }
+.s-first .ok1 { top: 8%; border: 0.25cqw solid var(--accent); }
+.s-first .ok1 b { color: var(--accent); }
+.s-first .bd1 { top: 50%; border: 0.25cqw solid var(--bad); opacity: 0; }
+.s-first .bd1 b { color: var(--bad); }
+.s-first .qs { position: absolute; left: 48%; top: 8%; width: 48%; display: grid; gap: 0.8cqw; }
+.s-first .qs p { margin: 0; font-size: 1.6cqw; color: #e7efe9; padding: 0.9cqw 1.4cqw; border-radius: 0.8cqw; background: #12301f; border-left: 0.5cqw solid var(--accent); opacity: 0; transition: opacity 0.4s; }
+.s-first .qs p b { color: var(--accent); margin-right: 0.8cqw; }
+.s-first.b1 .q1, .s-first.b2 .q2 { opacity: 1; }
+.s-first.b3 .bd1 { opacity: 1; }
+.s-first.b3 .ok1, .s-first.b3 .qs { opacity: 0.4; }
+.s-first .t4 { left: 4%; top: 84%; background: #2a1616; color: var(--bad); border-color: var(--bad); }
+.s-first.b4 .t4 { opacity: 1; }
+
+/* eeat */
+.s-eeat .lt { position: absolute; left: 4%; top: 8%; width: 92%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2cqw; }
+.s-eeat .tl { display: grid; justify-items: center; gap: 0.4cqw; padding: 1.4cqw 0.8cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; transition: border-color 0.4s, background 0.4s, opacity 0.4s; }
+.s-eeat .tl b { font-size: 4.4cqw; color: var(--nav); line-height: 1; }
+.s-eeat .tl span { font-size: 1.5cqw; color: #e7efe9; }
+.s-eeat.b1 .l3 { border-color: var(--accent); background: #12301f; }
+.s-eeat.b1 .l3 b { color: var(--accent); }
+.s-eeat.b1 .l0, .s-eeat.b1 .l1, .s-eeat.b1 .l2 { opacity: 0.5; }
+.s-eeat .t1 { left: 70%; top: 36%; }
+.s-eeat.b1 .t1 { opacity: 1; }
+.s-eeat .td { position: absolute; left: 4%; top: 36%; width: 62%; display: flex; flex-wrap: wrap; gap: 0.8cqw; opacity: 0; transition: opacity 0.4s; }
+.s-eeat .td span { font-size: 1.7cqw; color: var(--accent); padding: 0.5cqw 1.4cqw; border-radius: 99cqw; background: #12301f; border: 0.2cqw solid var(--accent); }
+.s-eeat.b2 .td { opacity: 1; }
+.s-eeat .t3 { left: 4%; top: 52%; }
+.s-eeat.b3 .t3 { opacity: 1; }
+.s-eeat .ym { position: absolute; left: 4%; top: 66%; width: 92%; display: grid; gap: 0.6cqw; opacity: 0; transition: opacity 0.4s; }
+.s-eeat .ym small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-eeat .ym p { margin: 0; display: flex; gap: 0.8cqw; flex-wrap: wrap; }
+.s-eeat .ym p span { font-size: 1.6cqw; color: var(--bad); padding: 0.5cqw 1.2cqw; border-radius: 0.6cqw; background: #2a1616; border: 0.2cqw solid var(--bad); }
+.s-eeat .ym b { font-size: 1.8cqw; color: var(--accent); }
+.s-eeat.b4 .ym { opacity: 1; }
+
+/* whw */
+.s-whw .cw { position: absolute; top: 8%; width: 28%; min-height: 70%; box-sizing: border-box; padding: 1.6cqw 1.8cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; display: grid; align-content: start; gap: 1.2cqw; transition: border-color 0.4s, opacity 0.4s; }
+.s-whw .cw b { font-size: 3.4cqw; color: var(--nav); }
+.s-whw .cw p { margin: 0; font-size: 1.6cqw; color: #e7efe9; padding: 0.9cqw 1.2cqw; border-radius: 0.8cqw; background: #0c1516; opacity: 0; transition: opacity 0.4s; }
+.s-whw .cw .c { color: #f5c451; border: 0.2cqw solid #f5c451; background: #2a2416; }
+.s-whw .w0 { left: 4%; }
+.s-whw .w1 { left: 36%; }
+.s-whw .w2 { left: 68%; }
+.s-whw.b1 .w0 .a, .s-whw.b2 .w1 .a, .s-whw.b3 .w1 .c, .s-whw.b4 .w2 .a { opacity: 1; }
+.s-whw.b1 .w0 { border-color: var(--accent); }
+.s-whw.b2 .w0 { border-color: #33494a; }
+.s-whw.b2 .w1 { border-color: var(--accent); }
+.s-whw.b4 .w1 { border-color: #33494a; }
+.s-whw.b4 .w2 { border-color: var(--accent); background: #12301f; }
+.s-whw.b4 .w2 b { color: var(--accent); }
+.s-whw.b4 .w2 .a { color: var(--accent); font-weight: 600; }
+
+/* myth */
+.s-myth small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-myth .rt { position: absolute; left: 4%; top: 8%; width: 24%; box-sizing: border-box; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid var(--nav); display: grid; gap: 0.4cqw; transition: opacity 0.4s; }
+.s-myth .rt b { font-size: 2cqw; color: var(--nav); }
+.s-myth .ra { position: absolute; left: 32%; top: 8%; width: 64%; display: grid; gap: 0.8cqw; transition: opacity 0.4s; }
+.s-myth .ra span { font-size: 1.7cqw; font-weight: 600; padding: 0.7cqw 1.4cqw; border-radius: 0.8cqw; justify-self: start; }
+.s-myth .ra .no { color: var(--bad); background: #2a1616; border: 0.2cqw solid var(--bad); text-decoration: line-through; }
+.s-myth .ra .fb { color: var(--accent); background: #12301f; border: 0.2cqw solid var(--accent); opacity: 0; transition: opacity 0.4s; }
+.s-myth.b1 .ra .fb { opacity: 1; }
+.s-myth .t2 { left: 4%; top: 32%; }
+.s-myth.b2 .t2 { opacity: 1; }
+.s-myth .pt { position: absolute; left: 4%; top: 50%; width: 60%; box-sizing: border-box; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #e7efe9; display: grid; gap: 0.5cqw; opacity: 0; transition: opacity 0.4s; }
+.s-myth .pt small { color: #33494a; }
+.s-myth .pt b { font-size: 2cqw; color: #0c1516; }
+.s-myth .pt span { font-size: 1.5cqw; color: #33494a; }
+.s-myth.b3 .pt { opacity: 1; }
+.s-myth.b3 .rt, .s-myth.b3 .ra, .s-myth.b3 .t2 { opacity: 0.35; }
+.s-myth .t4 { left: 4%; top: 86%; }
+.s-myth.b4 .t4 { opacity: 1; }

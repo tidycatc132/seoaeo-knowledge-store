@@ -1,0 +1,78 @@
+/* Scenes for T39 Crawling and crawl budget. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); }
+.tagx.ok { background: #12301f; color: var(--accent); border-color: var(--accent); }
+.tagx.warn { background: #2a2416; color: #f5c451; border-color: #f5c451; }
+
+/* frontier */
+.s-frontier .bot { position: absolute; left: 4%; top: 6%; display: grid; justify-items: center; font-size: 5cqw; }
+.s-frontier .bot small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-frontier .pg0 { position: absolute; width: 22%; padding: 1cqw 1.4cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; display: grid; gap: 0.2cqw; }
+.s-frontier .pg0 small { font-size: 1.3cqw; color: #9aa6a3; } .s-frontier .pg0 b { font-family: var(--mono); font-size: 1.6cqw; color: #e7efe9; }
+.s-frontier .known { left: 16%; top: 8%; border-color: var(--nav); }
+.s-frontier .nw { left: 48%; opacity: 0; transition: opacity 0.4s; border-color: var(--accent); }
+.s-frontier .n0 { top: 2%; } .s-frontier .n1 { top: 22%; }
+.s-frontier .lk { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+.s-frontier .lk line { stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.s-frontier.b1 .nw, .s-frontier.b1 .lk { opacity: 1; }
+.s-frontier .fq { position: absolute; left: 4%; top: 48%; width: 92%; display: grid; gap: 1cqw; opacity: 0; transition: opacity 0.4s; }
+.s-frontier .fq small, .s-frontier .qs small { font-size: 1.6cqw; font-weight: 700; color: #c9d1ce; }
+.s-frontier .fq div { display: flex; gap: 1cqw; flex-wrap: wrap; }
+.s-frontier .fq code { padding: 0.6cqw 1cqw; border-radius: 0.6cqw; background: #0c1516; border: 0.2cqw solid #33494a; font-family: var(--mono); font-size: 1.5cqw; color: #e7efe9; }
+.s-frontier.b2 .fq { opacity: 1; } .s-frontier.b3 .fq { opacity: 0; }
+.s-frontier .qs { position: absolute; top: 46%; width: 44%; padding: 1.2cqw 1.4cqw; border-radius: 1.2cqw; background: #142021; border: 0.2cqw solid #33494a; display: grid; gap: 0.8cqw; opacity: 0; transition: opacity 0.4s; }
+.s-frontier .front { left: 4%; } .s-frontier .back { left: 52%; }
+.s-frontier .q { padding: 0.6cqw 1cqw; border-radius: 0.6cqw; background: #1c2b2c; font-family: var(--mono); font-size: 1.4cqw; color: #e7efe9; display: flex; justify-content: space-between; }
+.s-frontier .q.hi { border-left: 0.6cqw solid var(--accent); } .s-frontier .q.md { border-left: 0.6cqw solid #f5c451; } .s-frontier .q.lo { border-left: 0.6cqw solid #6b7774; }
+.s-frontier .q i { font-style: normal; color: #f5c451; opacity: 0; transition: opacity 0.4s; }
+.s-frontier.b3 .qs { opacity: 1; }
+.s-frontier.b4 .q i { opacity: 1; } .s-frontier.b4 .front { opacity: 0.45; }
+.s-frontier .t4 { left: 50%; top: 88%; transform: translateX(-50%); } .s-frontier.b4 .t4 { opacity: 1; }
+
+/* budget */
+.s-budget .cir { position: absolute; top: 6%; width: 26cqw; height: 26cqw; border-radius: 50%; display: grid; place-content: center; justify-items: center; gap: 0.4cqw; transition: transform 0.6s, opacity 0.4s; }
+.s-budget .can { left: 22%; background: rgba(140, 170, 255, 0.14); border: 0.3cqw solid var(--nav); color: var(--nav); }
+.s-budget .want { left: 46%; background: rgba(74, 222, 128, 0.12); border: 0.3cqw solid var(--accent); color: var(--accent); }
+.s-budget .can b, .s-budget .want b { font-size: 2.2cqw; } .s-budget .cir small { font-size: 1.5cqw; color: #9aa6a3; }
+.s-budget .can { padding-right: 8cqw; } .s-budget .want { padding-left: 8cqw; }
+.s-budget .mid { position: absolute; left: 47%; top: 57%; transform: translate(-50%, -50%); padding: 0.4cqw 1cqw; border-radius: 99cqw; background: #f4f6f3; color: #1b2220; font-size: 1.6cqw; font-weight: 700; }
+.s-budget .bd { position: absolute; left: 6%; top: 68%; width: 36%; padding: 1.2cqw 1.6cqw; border-radius: 1cqw; display: grid; gap: 0.3cqw; opacity: 0; transition: opacity 0.4s; }
+.s-budget .bd b { font-size: 1.8cqw; } .s-budget .bd span { font-size: 1.6cqw; }
+.s-budget .up { background: #12301f; border: 0.2cqw solid var(--accent); color: var(--accent); }
+.s-budget .dn { background: #2a1616; border: 0.2cqw solid var(--bad); color: var(--bad); }
+.s-budget.b1 .up { opacity: 1; } .s-budget.b1 .can { transform: scale(1.12); }
+.s-budget.b2 .up { opacity: 0; } .s-budget.b2 .dn { opacity: 1; } .s-budget.b2 .can { transform: scale(0.85); }
+.s-budget .dm { position: absolute; left: 52%; top: 70%; width: 44%; display: flex; flex-wrap: wrap; gap: 1cqw; opacity: 0; transition: opacity 0.4s; }
+.s-budget .dm span { padding: 0.6cqw 1.2cqw; border-radius: 99cqw; background: #12301f; border: 0.2cqw solid var(--accent); color: var(--accent); font-size: 1.6cqw; }
+.s-budget.b3 .dm { opacity: 1; } .s-budget.b3 .want { transform: scale(1.1); } .s-budget.b3 .can { transform: none; } .s-budget.b3 .dn { opacity: 0; }
+.s-budget .scope { position: absolute; left: 15%; top: 66%; width: 70%; padding: 1.4cqw 2cqw; border-radius: 1.2cqw; background: #2a2416; border: 0.25cqw solid #f5c451; color: #f5c451; display: grid; gap: 0.4cqw; justify-items: center; text-align: center; opacity: 0; }
+.s-budget .scope small { font-size: 1.4cqw; } .s-budget .scope b { font-size: 2.1cqw; } .s-budget .scope span { font-size: 1.6cqw; color: #e7efe9; }
+.s-budget.b4 .dm { opacity: 0; } .s-budget.b4 .scope { opacity: 1; } .s-budget.b4 .want { transform: none; }
+
+/* protect */
+.s-protect .inv { position: absolute; left: 4%; top: 6%; width: 54%; display: grid; gap: 1cqw; }
+.s-protect .inv small { font-size: 1.6cqw; font-weight: 700; color: #c9d1ce; }
+.s-protect .tl { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.8cqw; }
+.s-protect .tl i { padding: 1.2cqw 0; border-radius: 0.6cqw; text-align: center; font-style: normal; font-size: 1.4cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; color: #c9d1ce; transition: all 0.4s; }
+.s-protect .tl .g { border-color: var(--accent); color: var(--accent); }
+.s-protect .t0 { left: 4%; top: 72%; } .s-protect.b0 .t0 { opacity: 1; }
+.s-protect.b1 .t0 { opacity: 0; }
+.s-protect.b1 .tl .r { opacity: 0.25; border-style: dashed; }
+.s-protect.b1 .tl .r::after { content: " · 410"; }
+.s-protect.b2 .tl .s { border-color: var(--bad); color: var(--bad); background: #2a1616; }
+.s-protect.b2 .tl .s::after { content: " · 200"; }
+.s-protect .sm, .s-protect .spd { position: absolute; left: 62%; width: 34%; padding: 1.4cqw 1.6cqw; border-radius: 1.2cqw; background: #142021; border: 0.2cqw solid var(--nav); display: grid; gap: 0.8cqw; opacity: 0; transition: opacity 0.4s; }
+.s-protect .sm { top: 6%; } .s-protect .spd { top: 50%; border-color: var(--accent); }
+.s-protect .sm small, .s-protect .spd small { font-size: 1.4cqw; color: #9aa6a3; font-weight: 700; }
+.s-protect .sm code { font-family: var(--mono); font-size: 1.4cqw; color: #e7efe9; line-height: 1.5; }
+.s-protect.b3 .sm { opacity: 1; }
+.s-protect .bar { height: 1.6cqw; border-radius: 99cqw; background: #0c1516; overflow: hidden; } .s-protect .bar i { display: block; height: 100%; width: 80%; background: var(--bad); transition: width 0.8s, background 0.8s; }
+.s-protect .spd b { font-size: 1.7cqw; color: var(--accent); }
+.s-protect.b4 .spd { opacity: 1; } .s-protect.b4 .bar i { width: 25%; background: var(--accent); }
+
+/* controls */
+.s-controls .cr { position: absolute; left: 4%; width: 92%; display: grid; grid-template-columns: 20% 1fr 1fr; align-items: center; gap: 1.4cqw; padding: 1cqw 1.4cqw; border-radius: 1cqw; background: #142021; border: 0.2cqw solid #33494a; opacity: 0; transition: opacity 0.4s; }
+.s-controls .c0 { top: 5%; } .s-controls .c1 { top: 23%; } .s-controls .c2 { top: 41%; } .s-controls .c3 { top: 59%; } .s-controls .c4 { top: 77%; }
+.s-controls .cr b { font-family: var(--mono); font-size: 1.8cqw; color: #e7efe9; }
+.s-controls .y { font-size: 1.6cqw; color: var(--accent); } .s-controls .x { font-size: 1.6cqw; color: var(--bad); }
+.s-controls.b0 .c0, .s-controls.b1 .c1, .s-controls.b2 .c2, .s-controls.b3 .c3, .s-controls.b4 .c4 { opacity: 1; }
+.s-controls.b4 .c4 { border-color: #f5c451; }

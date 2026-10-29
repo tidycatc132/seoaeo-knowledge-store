@@ -1,0 +1,100 @@
+/* Scenes for T5 The inverted index. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; }
+
+/* scan */
+.s-scan .stack { position: absolute; left: 6%; top: 8%; width: 34%; height: 66%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8cqw; align-content: start; }
+.s-scan .doc { height: 5cqw; border-radius: 0.6cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; }
+.s-scan .more { opacity: 0; }
+.s-scan.b1 .more { opacity: 1; }
+.s-scan .scanl { position: absolute; left: -3%; right: -3%; top: 0; height: 0.5cqw; background: var(--accent); box-shadow: 0 0 2cqw var(--accent); }
+.s-scan.b0 .scanl { animation: t5scana 1.6s ease-in-out infinite alternate; }
+.s-scan.b1 .scanl { animation: t5scan 2.4s ease-in-out infinite alternate; }
+@keyframes t5scana { to { top: 20%; } }
+@keyframes t5scan { to { top: 96%; } }
+.s-scan.b2 .scanl { opacity: 0; animation: none; }
+.s-scan.b2 .stack { opacity: 0.35; }
+.s-scan .qq { position: absolute; left: 46%; top: 10%; padding: 1cqw 2cqw; border-radius: 99cqw; background: #f4f6f3; color: #1b2220; font-size: 2.2cqw; font-weight: 600; }
+.s-scan .t0 { left: 6%; top: 82%; background: #3a1a17; color: var(--bad); border: 0.2cqw solid var(--bad); }
+.s-scan.b0 .t0 { opacity: 1; }
+.s-scan .t1 { left: 46%; top: 24%; background: #3a1a17; color: var(--bad); border: 0.2cqw solid var(--bad); }
+.s-scan.b1 .t1 { opacity: 1; }
+.s-scan.b2 .t0, .s-scan.b2 .t1 { opacity: 0; }
+.s-scan .idx { position: absolute; left: 60%; top: 34%; width: 32%; padding: 2cqw; border-radius: 1.4cqw; background: #f4f6f3; color: #1b2220; display: grid; gap: 0.8cqw; font-size: 1.9cqw; opacity: 0; transform: translateY(2cqw); }
+.s-scan .idx small { font-size: 1.6cqw; color: #6b7774; }
+.s-scan .idx b { font-size: 2.6cqw; }
+.s-scan .idx span { font-family: var(--mono); font-size: 1.8cqw; color: #017a34; }
+.s-scan.b2 .idx { opacity: 1; transform: none; }
+.s-scan .arr { position: absolute; left: 52%; top: 40%; font-size: 4cqw; color: var(--accent); opacity: 0; }
+.s-scan.b2 .arr { opacity: 1; }
+.s-scan .t3 { left: 60%; top: 76%; background: #12301f; color: var(--accent); border: 0.2cqw solid var(--accent); }
+.s-scan.b3 .t3 { opacity: 1; }
+
+/* postings */
+.s-postings .mx { position: absolute; left: 6%; top: 8%; width: 46%; display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.6cqw; }
+.s-postings .mx span { aspect-ratio: 1; border-radius: 0.5cqw; background: #1c2b2c; color: #4a5c5d; font-family: var(--mono); font-size: 1.7cqw; display: grid; place-items: center; }
+.s-postings .mx .one { color: #04210f; background: var(--accent); font-weight: 700; }
+.s-postings .t0 { left: 6%; top: 74%; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); }
+.s-postings.b0 .t0 { opacity: 1; }
+.s-postings.b1 .t0 { opacity: 0; }
+.s-postings.b1 .mx { opacity: 0.15; }
+.s-postings .dict { position: absolute; left: 30%; top: 14%; width: 62%; display: grid; gap: 1.2cqw; opacity: 0; transform: translateX(3cqw); }
+.s-postings.b1 .dict { opacity: 1; transform: none; }
+.s-postings .drow { display: grid; grid-template-columns: 9fr 2fr 22fr; align-items: center; gap: 1cqw; }
+.s-postings .drow b { padding: 0.8cqw 1.4cqw; border-radius: 0.8cqw; background: #f4f6f3; color: #1b2220; font-size: 2cqw; }
+.s-postings .drow .ar { color: var(--accent); font-size: 2.6cqw; text-align: center; }
+.s-postings .pl { display: flex; gap: 0.8cqw; }
+.s-postings .pl i { font-style: normal; font-family: var(--mono); font-size: 2cqw; padding: 0.6cqw 1.2cqw; border-radius: 0.6cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; }
+.s-postings .lab1 { left: 30%; top: 6%; background: #12301f; color: var(--accent); border: 0.2cqw solid var(--accent); }
+.s-postings.b1 .lab1 { opacity: 1; }
+.s-postings .lab2 { left: 52%; top: 6%; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); }
+.s-postings.b2 .lab2 { opacity: 1; }
+.s-postings.b2 .r1 .pl i { border-color: var(--nav); color: var(--nav); }
+.s-postings.b3 .pl i { border-color: var(--accent); color: var(--accent); }
+.s-postings .t3 { left: 52%; top: 70%; background: #12301f; color: var(--accent); border: 0.2cqw solid var(--accent); }
+.s-postings.b3 .t3 { opacity: 1; }
+
+/* pipeline */
+.s-pipeline .steps { position: absolute; left: 5%; right: 5%; top: 8%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6cqw; }
+.s-pipeline .st { padding: 1.2cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.3cqw solid #33494a; text-align: center; font-size: 2.2cqw; font-weight: 700; opacity: 0.45; }
+.s-pipeline.b0 .s0, .s-pipeline.b1 .s1, .s-pipeline.b2 .s2, .s-pipeline.b3 .s3 { opacity: 1; border-color: var(--accent); color: var(--accent); }
+.s-pipeline.b1 .s0, .s-pipeline.b2 .s1, .s-pipeline.b3 .s2 { opacity: 0.45; border-color: #33494a; color: inherit; }
+.s-pipeline .out { position: absolute; left: 5%; right: 5%; top: 34%; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2cqw; opacity: 0; transform: translateY(2cqw); }
+.s-pipeline.b0 .o0, .s-pipeline.b1 .o1, .s-pipeline.b2 .o2, .s-pipeline.b3 .o3 { opacity: 1; transform: none; }
+.s-pipeline.b1 .o0, .s-pipeline.b2 .o1, .s-pipeline.b3 .o2 { opacity: 0; }
+.s-pipeline .docc { padding: 2cqw 3cqw; border-radius: 1.4cqw; background: #f4f6f3; color: #1b2220; font-size: 2.6cqw; font-weight: 600; }
+.s-pipeline .tok { padding: 1cqw 2cqw; border-radius: 0.8cqw; background: #f4f6f3; color: #1b2220; font-family: var(--mono); font-size: 2.4cqw; }
+.s-pipeline .tok.n { background: #12301f; color: var(--accent); border: 0.2cqw solid var(--accent); }
+.s-pipeline .pp { padding: 1cqw 1.8cqw; border-radius: 0.8cqw; background: #1c2b2c; border: 0.2cqw solid var(--accent); font-family: var(--mono); font-size: 2.2cqw; }
+.s-pipeline .pp b { color: var(--accent); }
+.s-pipeline .note { left: 50%; top: 80%; transform: translateX(-50%); background: var(--trans-soft); color: var(--trans); border: 0.2cqw solid var(--trans); }
+.s-pipeline.b2 .note { opacity: 1; }
+
+/* statuses */
+.s-statuses .lane { position: absolute; left: 5%; right: 5%; top: 8%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3cqw; }
+.s-statuses .bx { padding: 1.4cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.3cqw solid #33494a; text-align: center; font-size: 2.2cqw; font-weight: 700; }
+.s-statuses.b0 .b-i { border-color: var(--accent); color: var(--accent); }
+.s-statuses .url { position: absolute; left: 12%; top: 26%; padding: 0.8cqw 1.6cqw; border-radius: 99cqw; background: #f4f6f3; color: #1b2220; font-family: var(--mono); font-size: 2cqw; opacity: 0; }
+.s-statuses.b2 .url { opacity: 1; }
+.s-statuses.b3 .url { left: 43%; }
+.s-statuses.b4 .url { opacity: 0; }
+.s-statuses .t0 { left: 5%; top: 30%; background: #12301f; color: var(--accent); border: 0.2cqw solid var(--accent); }
+.s-statuses.b0 .t0 { opacity: 1; }
+.s-statuses.b1 .t0 { opacity: 0; }
+.s-statuses .t1 { left: 64%; top: 30%; background: #2a2416; color: #f5c451; border: 0.2cqw solid #f5c451; }
+.s-statuses.b1 .t1 { opacity: 1; }
+.s-statuses.b2 .t1 { opacity: 0; }
+.s-statuses .t2 { left: 5%; top: 42%; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); }
+.s-statuses.b2 .t2 { opacity: 1; }
+.s-statuses.b3 .t2 { opacity: 0; }
+.s-statuses .t3 { left: 36%; top: 42%; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); }
+.s-statuses.b3 .t3 { opacity: 1; }
+.s-statuses.b4 .t3 { opacity: 0; }
+.s-statuses.b2 .b-d, .s-statuses.b3 .b-c { border-color: var(--nav); color: var(--nav); }
+.s-statuses.b3 .b-d { border-color: #33494a; color: inherit; }
+.s-statuses.b4 .bx { opacity: 0.35; }
+.s-statuses .keep { position: absolute; left: 5%; right: 5%; top: 32%; display: grid; grid-template-columns: 1fr 1fr; gap: 3cqw; opacity: 0; transform: translateY(2cqw); }
+.s-statuses.b4 .keep { opacity: 1; transform: none; }
+.s-statuses .kc { padding: 2cqw; border-radius: 1.2cqw; display: grid; gap: 0.8cqw; font-size: 1.9cqw; }
+.s-statuses .kc b { font-size: 2.3cqw; }
+.s-statuses .kc.bad { background: #3a1a17; color: var(--bad); border: 0.3cqw solid var(--bad); }
+.s-statuses .kc.ok { background: #12301f; color: var(--accent); border: 0.3cqw solid var(--accent); }

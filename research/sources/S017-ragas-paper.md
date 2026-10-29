@@ -5,7 +5,7 @@ title: Ragas: Automated Evaluation of Retrieval Augmented Generation
 publisher: arXiv (Es, James, Espinosa-Anke, Schockaert)
 grade: A
 page_date: 2023-09-26
-opened: 2026-10-24
+opened: 2026-10-24 (extra passages 2026-10-29 P7-P12)
 status: used
 ---
 Summary: Paper presenting reference-free RAG evaluation along faithfulness, answer relevance and context relevance. Evidence of a method, not of any engine's behaviour.
@@ -22,3 +22,15 @@ Summary: Paper presenting reference-free RAG evaluation along faithfulness, answ
 > The context c(q) is considered relevant to the extent that it exclusively contains information
 ### P6 context relevance continued (page returned in two pieces)
 > that is needed to answer the question.
+### P7 two modules
+> RAG systems are composed of a retrieval and an LLM based generation module
+### P8 several dimensions
+> Evaluating RAG architectures is, however, challenging because there are several dimensions to consider
+### P9 retrieval ability
+> the ability of the retrieval system to identify relevant and focused context passages
+### P10 faithful use
+> the ability of the LLM to exploit such passages in a faithful way
+### P11 generation quality
+> the quality of the generation itself
+### P12 faster cycles
+> faster evaluation cycles of RAG architectures

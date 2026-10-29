@@ -1,0 +1,819 @@
+{
+  "topic_id": "T32",
+  "items_file": "bank/items/T32-faceted-navigation.json",
+  "course_title": "Faceted navigation and crawl traps",
+  "subtitle": "Why filters and sort options can flood Googlebot with URLs, and Google's guidance on blocking, fragments, canonicals, 404s and clean parameters.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain how faceted navigation multiplies URLs",
+    "Choose between Google's preferred fixes",
+    "Keep crawlable faceted URLs clean and consistent",
+    "Avoid fixes that don't stop the crawling"
+  ],
+  "intro": [
+    "Category pages with filters for colour, size, price and sort order are handy for shoppers. Each combination can also become its own URL, and crawlers can spend their time on thousands of them.",
+    "This course uses Google's guide to managing crawling of faceted navigation URLs, its crawl budget guide for large sites, its sitemaps overview and its JavaScript troubleshooting page.",
+    "Where the course gives advice beyond what Google says, it's labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T32-1",
+      "title": "How filters multiply URLs",
+      "est_minutes": 5,
+      "objectives": [
+        "Define faceted navigation",
+        "Explain why filter combinations explode",
+        "Describe the crawling cost"
+      ],
+      "scene": {
+        "id": "explode",
+        "title": "One category, thousands of URLs",
+        "beats": [
+          {
+            "caption": "Faceted navigation lets visitors change how items are displayed, for example by filtering.",
+            "source_ids": [
+              "S104#P12"
+            ]
+          },
+          {
+            "caption": "That often means a very large number of possible combinations of filters, each with its own URL.",
+            "source_ids": [
+              "S104#P13"
+            ]
+          },
+          {
+            "caption": "The common parameter-based version can generate infinite URL spaces.",
+            "source_ids": [
+              "S104#P14"
+            ]
+          },
+          {
+            "caption": "Crawlers typically access a very large number of these URLs, which costs sites large amounts of computing resources.",
+            "source_ids": [
+              "S104#P1",
+              "S104#P2"
+            ]
+          },
+          {
+            "caption": "And crawlers have less time to spend on new, useful URLs.",
+            "source_ids": [
+              "S104#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What faceted navigation is",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google describes faceted navigation as a common feature of websites that allows its visitors to change how items are displayed, such as products, articles or events. Filters for colour, size and price are typical.",
+              "source_ids": [
+                "S104#P12"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Google's own example URL: https://example.com/items.shtm?products=fish&color=radioactive_green&size=tiny. Every filter value adds a parameter.",
+              "source_ids": [
+                "S104#P12"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why it becomes a crawl trap",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says this often means a very large number of possible combinations of filters, and the common parameter-based version can generate infinite URL spaces.",
+              "source_ids": [
+                "S104#P13",
+                "S104#P14"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: 10 colours, 8 sizes, 5 price bands and 4 sort orders give 10 × 8 × 5 × 4 = 1,600 URLs for one category, before counting pages that use only some filters.",
+              "source_ids": [
+                "S104#P13"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "The cost",
+              "text": "Crawlers will typically access a very large number of faceted navigation URLs. This tends to cost sites large amounts of computing resources, and the crawlers have less time to spend on new, useful URLs.",
+              "source_ids": [
+                "S104#P1",
+                "S104#P2",
+                "S104#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Faceted navigation lets visitors change how items are displayed.",
+          "source_ids": [
+            "S104#P12"
+          ]
+        },
+        {
+          "text": "Filter combinations can create a very large number of URLs.",
+          "source_ids": [
+            "S104#P13"
+          ]
+        },
+        {
+          "text": "Parameter-based facets can create infinite URL spaces.",
+          "source_ids": [
+            "S104#P14"
+          ]
+        },
+        {
+          "text": "Overcrawling facets leaves less time for new, useful URLs.",
+          "source_ids": [
+            "S104#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Count your combinations",
+        "minutes": "10",
+        "steps": [
+          "Pick your biggest category page.",
+          "List every filter and sort option, with how many values each has.",
+          "Multiply the counts to estimate the full combinations.",
+          "Compare that number with how many products the category actually has."
+        ],
+        "prompt_template": "My category page [URL] has these filters and sort options: [list with number of values each]. Google says faceted navigation often means a very large number of filter combinations and can create infinite URL spaces. Estimate how many URLs these filters could generate, show the maths, and compare it with my [number] products."
+      },
+      "reflection": [
+        "How many of your filter combinations would a searcher ever look for?",
+        "Have you seen new pages take a long time to get crawled?"
+      ],
+      "whats_next": "Next, the fixes Google prefers."
+    },
+    {
+      "lesson_id": "T32-2",
+      "title": "Google's preferred fixes",
+      "est_minutes": 6,
+      "objectives": [
+        "Decide whether faceted URLs need to be indexed",
+        "Apply robots.txt or URL fragments",
+        "Explain why canonical and nofollow are weaker"
+      ],
+      "scene": {
+        "id": "fixes",
+        "title": "Block, fragment, or hint",
+        "beats": [
+          {
+            "caption": "First decide: if you don't need faceted URLs potentially indexed, prevent crawling of these URLs.",
+            "source_ids": [
+              "S104#P15"
+            ]
+          },
+          {
+            "caption": "Option 1: use robots.txt to disallow crawling of faceted navigation URLs.",
+            "source_ids": [
+              "S104#P4"
+            ]
+          },
+          {
+            "caption": "Option 2: use URL fragments to specify filters. Fragment-based filters have no impact on crawling.",
+            "source_ids": [
+              "S104#P5",
+              "S104#P6"
+            ]
+          },
+          {
+            "caption": "Weaker options: rel=\"canonical\" may, over time, decrease crawl volume of non-canonical URLs. rel=\"nofollow\" must be on every anchor.",
+            "source_ids": [
+              "S104#P17",
+              "S104#P7",
+              "S104#P16"
+            ]
+          },
+          {
+            "caption": "Google says these are generally less effective in the long term than the first two methods.",
+            "source_ids": [
+              "S104#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "If you don't need them indexed",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "If you don't need the faceted navigation URLs potentially indexed, prevent crawling of these URLs.",
+              "cite": "Google, Managing crawling of faceted navigation URLs",
+              "source_ids": [
+                "S104#P15"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "robots.txt",
+                  "text": "Use robots.txt to disallow crawling of faceted navigation URLs.",
+                  "source_ids": [
+                    "S104#P4"
+                  ]
+                },
+                {
+                  "name": "URL fragments",
+                  "text": "Use URL fragments to specify filters. If your filtering mechanism is based on URL fragments, it will have no impact on crawling (positive or negative).",
+                  "source_ids": [
+                    "S104#P5",
+                    "S104#P6"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Illustrative: /sofas?color=grey is a separate URL to crawl. /sofas#color=grey keeps the filter after the #, in the fragment.",
+              "source_ids": [
+                "S104#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Weaker hints",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google also lists using rel=\"canonical\" to specify the canonical version of a faceted URL, which may, over time, decrease the crawl volume of non-canonical versions, and rel=\"nofollow\", where every anchor pointing to a specific URL must have the attribute.",
+              "source_ids": [
+                "S104#P17",
+                "S104#P7",
+                "S104#P16"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Google's verdict",
+              "text": "These methods are generally less effective in the long term than the previously mentioned methods.",
+              "source_ids": [
+                "S104#P8"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "If you don't need faceted URLs indexed, prevent crawling of them.",
+          "source_ids": [
+            "S104#P15"
+          ]
+        },
+        {
+          "text": "robots.txt disallow and URL fragments are Google's preferred options.",
+          "source_ids": [
+            "S104#P4",
+            "S104#P5"
+          ]
+        },
+        {
+          "text": "Fragment-based filters have no impact on crawling.",
+          "source_ids": [
+            "S104#P6"
+          ]
+        },
+        {
+          "text": "Canonical and nofollow are generally less effective long term.",
+          "source_ids": [
+            "S104#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Pick a fix per filter",
+        "minutes": "15",
+        "steps": [
+          "List each filter on one category page.",
+          "Mark the ones that match real searches, such as a brand or a common colour.",
+          "Plan to block or fragment the rest.",
+          "Note where you currently rely on canonical or nofollow alone."
+        ],
+        "prompt_template": "Here are the filters on my category page [URL]: [list], with any search demand I know of: [notes]. Google's guide says to disallow faceted URLs in robots.txt or use URL fragments if they don't need to be indexed, and calls canonical and nofollow generally less effective long term. Suggest which filters to block, which to move to fragments, and which might deserve their own indexable pages, labelled as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your filter pages would you actually want in search results?",
+        "Would moving filters to fragments change anything for your users?"
+      ],
+      "whats_next": "Next, keeping any crawlable faceted URLs clean."
+    },
+    {
+      "lesson_id": "T32-3",
+      "title": "Clean faceted URLs",
+      "est_minutes": 5,
+      "objectives": [
+        "Use the standard separator and a consistent order",
+        "Return 404 for empty combinations",
+        "Avoid soft 404s in JavaScript apps"
+      ],
+      "scene": {
+        "id": "hygiene",
+        "title": "One combination, one URL",
+        "beats": [
+          {
+            "caption": "If facet URLs stay crawlable, use the industry standard URL parameter separator '&'.",
+            "source_ids": [
+              "S104#P10"
+            ]
+          },
+          {
+            "caption": "Ensure the logical order of the filters always stays the same, and that no duplicate filters can exist.",
+            "source_ids": [
+              "S104#P11"
+            ]
+          },
+          {
+            "caption": "Return an HTTP 404 status code when a filter combination doesn't return results.",
+            "source_ids": [
+              "S104#P9"
+            ]
+          },
+          {
+            "caption": "A 200 \"no products\" page is a soft 404. Soft 404 pages will continue to be crawled, and waste your budget.",
+            "source_ids": [
+              "S100#P8"
+            ]
+          },
+          {
+            "caption": "In a JavaScript app, one fix is to redirect to a URL where the server responds with a 404 status code.",
+            "source_ids": [
+              "S121#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Consistent parameters",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "For faceted URLs you keep crawlable, Google says to use the industry standard URL parameter separator '&', and to ensure that the logical order of the filters always stays the same and that no duplicate filters can exist.",
+              "source_ids": [
+                "S104#P10",
+                "S104#P11"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: /shoes?color=red&size=9 and /shoes?size=9&color=red show the same products. Always writing colour before size gives one URL instead of two.",
+              "source_ids": [
+                "S104#P11"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Empty results",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says to return an HTTP 404 status code when a filter combination doesn't return results. Its crawl budget guide warns that soft 404 pages will continue to be crawled, and waste your budget.",
+              "source_ids": [
+                "S104#P9",
+                "S100#P8"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "For JavaScript apps that can't set the status directly, Google's troubleshooting page lists redirecting to a URL where the server responds with a 404 status code, or adding a noindex robots meta tag.",
+              "source_ids": [
+                "S121#P1",
+                "S121#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "For crawl waste, prefer the 404 route. Google's crawl budget guide says it will still request noindex pages, then drop them.",
+              "source_ids": [
+                "S100#P5"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Use '&' as the parameter separator.",
+          "source_ids": [
+            "S104#P10"
+          ]
+        },
+        {
+          "text": "Keep filter order the same and allow no duplicate filters.",
+          "source_ids": [
+            "S104#P11"
+          ]
+        },
+        {
+          "text": "Return 404 when a filter combination has no results.",
+          "source_ids": [
+            "S104#P9"
+          ]
+        },
+        {
+          "text": "Soft 404 pages keep getting crawled and waste budget.",
+          "source_ids": [
+            "S100#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Test your parameters",
+        "minutes": "10",
+        "steps": [
+          "Apply two filters in one order and copy the URL.",
+          "Apply the same filters in the other order and compare.",
+          "Pick a combination with no products and check its status code.",
+          "Note any duplicate parameters in the URLs."
+        ],
+        "prompt_template": "Here are URLs from my faceted navigation: [list], with the status code each returns: [list]. Google says to use '&' as the separator, keep filter order consistent with no duplicates, and return 404 when a filter combination has no results. Flag each URL that breaks one of these rules and suggest the fix."
+      },
+      "reflection": [
+        "Does your platform write filter parameters in a fixed order?",
+        "What status code do your empty filter pages return today?"
+      ],
+      "whats_next": "Next, fixes that look sensible but don't stop the crawling."
+    },
+    {
+      "lesson_id": "T32-4",
+      "title": "Fixes that don't help",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why noindex doesn't save crawling",
+        "Explain why a sitemap doesn't fix facets",
+        "Choose a lasting fix"
+      ],
+      "scene": {
+        "id": "choose",
+        "title": "Looks like a fix, isn't",
+        "beats": [
+          {
+            "caption": "Without guidance from you, Google tries to crawl all or most of the URLs that it knows about on your site.",
+            "source_ids": [
+              "S100#P10"
+            ]
+          },
+          {
+            "caption": "noindex doesn't stop the requests: Google will still request, but then drop the page.",
+            "source_ids": [
+              "S100#P5"
+            ]
+          },
+          {
+            "caption": "Listing filter URLs in a sitemap doesn't guarantee they'll be crawled and indexed.",
+            "source_ids": [
+              "S102#P2"
+            ]
+          },
+          {
+            "caption": "And don't use robots.txt to temporarily reallocate crawl budget for other pages.",
+            "source_ids": [
+              "S100#P6"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: decide which filter pages deserve indexing, then block or fragment the rest for good.",
+            "source_ids": [
+              "S104#P15"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Common non-fixes",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's crawl budget guide says that without guidance, Google tries to crawl all or most of the URLs that it knows about on your site. Some popular fixes don't give that guidance.",
+              "source_ids": [
+                "S100#P10"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "noindex.",
+                  "text": "Don't use noindex, as Google will still request, but then drop the page.",
+                  "source_ids": [
+                    "S100#P5"
+                  ]
+                },
+                {
+                  "lead": "Sitemaps.",
+                  "text": "A sitemap doesn't guarantee that all the items in it will be crawled and indexed.",
+                  "source_ids": [
+                    "S102#P2"
+                  ]
+                },
+                {
+                  "lead": "Temporary blocks.",
+                  "text": "Don't use robots.txt to temporarily reallocate crawl budget for other pages.",
+                  "source_ids": [
+                    "S100#P6"
+                  ]
+                },
+                {
+                  "lead": "Canonical alone.",
+                  "text": "Google calls canonical and nofollow generally less effective in the long term.",
+                  "source_ids": [
+                    "S104#P8"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "A lasting plan",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist to fix an overcrawled faceted site.",
+              "source_ids": [
+                "S104#P15"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Choose indexable facets.",
+                  "text": "Keep only filter pages that match real searches (practitioner judgement)."
+                },
+                {
+                  "lead": "Block or fragment the rest.",
+                  "text": "Use robots.txt to disallow them, or URL fragments for the filters.",
+                  "source_ids": [
+                    "S104#P4",
+                    "S104#P5"
+                  ]
+                },
+                {
+                  "lead": "Tidy what stays.",
+                  "text": "Use '&', a fixed filter order, and no duplicate filters.",
+                  "source_ids": [
+                    "S104#P10",
+                    "S104#P11"
+                  ]
+                },
+                {
+                  "lead": "404 the empty ones.",
+                  "text": "Return 404 when a filter combination doesn't return results.",
+                  "source_ids": [
+                    "S104#P9"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Without guidance, Google tries to crawl most URLs it knows about.",
+          "source_ids": [
+            "S100#P10"
+          ]
+        },
+        {
+          "text": "noindex pages are still requested.",
+          "source_ids": [
+            "S100#P5"
+          ]
+        },
+        {
+          "text": "A sitemap doesn't guarantee crawling or indexing.",
+          "source_ids": [
+            "S102#P2"
+          ]
+        },
+        {
+          "text": "Don't use robots.txt to temporarily shift crawl budget.",
+          "source_ids": [
+            "S100#P6"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit your current setup",
+        "minutes": "15",
+        "steps": [
+          "List every measure your site uses on filter URLs today.",
+          "Mark each one as preferred, weaker, or a non-fix.",
+          "Check your server logs for Googlebot requests to filter URLs.",
+          "Write the change you'd make first."
+        ],
+        "prompt_template": "My site currently handles filter URLs with: [list, e.g. noindex, canonical, sitemap entries, robots.txt rules]. My logs show [share] of Googlebot requests go to filter URLs. Using Google's guidance (robots.txt disallow or URL fragments preferred; canonical and nofollow less effective long term; noindex pages still requested; sitemaps don't guarantee crawling), rate each measure and suggest the first change to make."
+      },
+      "reflection": [
+        "Which non-fix has your site relied on?",
+        "How will you check, a month from now, that the change worked?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Faceted navigation can create a very large, even infinite, number of URLs, and crawlers that spend time on them have less for new, useful pages. If you don't need faceted URLs indexed, Google says to prevent crawling with robots.txt or move filters into URL fragments; canonical and nofollow are generally less effective long term. For URLs you keep, use '&', a fixed filter order and no duplicates, and return 404 for empty combinations. noindex and sitemaps don't stop the crawling.",
+    "related_topics": [
+      {
+        "topic_id": "T39",
+        "title": "Web crawling and crawl budget management"
+      },
+      {
+        "topic_id": "T41",
+        "title": "Canonicalization and near-duplicate content detection"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Faceted navigation and crawl traps. The questions revisit why facets overcrawl, Google's preferred fixes, clean URLs and non-fixes.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T32-L1-01",
+      "T32-L1-02",
+      "T32-L1-03",
+      "T32-L2-01",
+      "T32-L2-02",
+      "T32-L2-03",
+      "T32-L3-01",
+      "T32-L3-02",
+      "T32-L4-01",
+      "T32-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T32-L1-01",
+        "options": [
+          "A. robots.txt",
+          "B. sitemap.xml",
+          "C. .htaccess",
+          "D. llms.txt manifest"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google's guide says to use robots.txt to disallow crawling of faceted navigation URLs. Wrong: a sitemap lists URLs rather than blocking them; the other files aren't named in the guide.",
+        "source_ids": [
+          "S104#P4"
+        ]
+      },
+      {
+        "item_id": "T32-L1-03",
+        "prompt": "What status code does Google say to return when a filter combination returns no results?",
+        "options": [
+          "A. 200 with a 'no products' message",
+          "B. 301 to the home page",
+          "C. 302 to the category page",
+          "D. 404"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says to return an HTTP 404 status code when a filter combination doesn't return results. Wrong: a 200 'no products' page is a soft 404, and redirects aren't what the guide says.",
+        "source_ids": [
+          "S104#P9"
+        ]
+      },
+      {
+        "item_id": "T32-L2-01",
+        "prompt": "Per Google, crawlers that spend their effort on faceted URLs have less time for new, ___ URLs. Which word fills the blank?",
+        "options": [
+          "A. popular",
+          "B. useful",
+          "C. long-form",
+          "D. high-authority"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says the crawlers have less time to spend on new, useful URLs. Wrong: the other words aren't in that sentence.",
+        "source_ids": [
+          "S104#P2",
+          "S104#P3"
+        ]
+      },
+      {
+        "item_id": "T32-L2-02",
+        "prompt": "How does Google rate rel=canonical on faceted URLs as a long-term fix for the crawling problem?",
+        "options": [
+          "A. The best long-term fix for crawl volume",
+          "B. Required before robots.txt can work",
+          "C. Generally less effective long term",
+          "D. It has no effect on crawling at all"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says canonical may, over time, decrease crawl volume of non-canonical URLs, but that such methods are generally less effective in the long term than robots.txt or fragments. Wrong: it isn't the best fix, isn't needed for robots.txt, and does have some effect over time.",
+        "source_ids": [
+          "S104#P7",
+          "S104#P8"
+        ]
+      },
+      {
+        "item_id": "T32-L2-03",
+        "options": [
+          "A. Faceted crawling can cost large amounts of computing resources",
+          "B. Canonical may, over time, decrease non-canonical crawl volume",
+          "C. The standard URL parameter separator is the ampersand",
+          "D. Google demotes sites whose facet URLs duplicate each other"
+        ],
+        "answer": "D",
+        "explanation": "Unsupported: no saved source says Google demotes sites for duplicate faceted URLs; the guide is about crawling. Supported: faceted crawling costs computing resources (A); canonical may decrease crawl volume over time (B); '&' is the industry standard separator (C).",
+        "source_ids": [
+          "S104#P2",
+          "S104#P7",
+          "S104#P10"
+        ]
+      },
+      {
+        "item_id": "T32-L3-01",
+        "prompt": "A hypothetical shop generates both /shoes?color=red&size=9 and /shoes?size=9&color=red for the same filters. Which property does Google's guide say must stay the same to avoid this?",
+        "options": [
+          "A. Filter order",
+          "B. Filter colour scheme",
+          "C. Page title length",
+          "D. Sitemap priority"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says to ensure that the logical order of the filters always stays the same and that no duplicate filters can exist. Wrong: the other properties aren't in that guidance.",
+        "source_ids": [
+          "S104#P11"
+        ]
+      },
+      {
+        "item_id": "T32-L3-02",
+        "options": [
+          "A. Disallow faceted URLs in robots.txt",
+          "B. Rely on canonical alone long term",
+          "C. Specify filters with URL fragments instead",
+          "D. Return 404 for empty filter combinations"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google calls canonical generally less effective in the long term than robots.txt or fragments, so relying on it alone contradicts the guidance. Wrong: robots.txt, fragments and 404s for empty combinations are all in Google's guide.",
+        "source_ids": [
+          "S104#P8",
+          "S104#P4",
+          "S104#P9",
+          "S104#P5"
+        ]
+      },
+      {
+        "item_id": "T32-L4-01",
+        "options": [
+          "A. Add noindex to every filter URL on the site",
+          "B. Keep rel=canonical as the only measure",
+          "C. Add the filter URLs to the XML sitemap",
+          "D. Disallow filter URLs in robots.txt"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google's guide says to disallow faceted URLs in robots.txt. Canonical is already in place and Google calls it less effective long term. noindex doesn't stop requests (Google still requests, then drops the page). Listing filter URLs in a sitemap doesn't guarantee crawling.",
+        "source_ids": [
+          "S104#P4",
+          "S104#P8",
+          "S100#P5",
+          "S102#P2"
+        ]
+      },
+      {
+        "item_id": "T32-L4-02",
+        "options": [
+          "A. Return a real 404 for empty combinations",
+          "B. Add noindex to all of the empty result pages",
+          "C. List the empty pages in the sitemap as low priority",
+          "D. Canonicalise every empty page to the category"
+        ],
+        "answer": "A",
+        "explanation": "Correct: a real 404 ends the soft-404 pattern; both the faceted guide and the JavaScript page give a 404 route. Wrong: noindex pages are still requested, so it doesn't stop the waste; a sitemap doesn't fix the status; canonical is among the methods Google calls generally less effective long term.",
+        "source_ids": [
+          "S104#P9",
+          "S100#P8",
+          "S100#P5",
+          "S104#P8",
+          "S121#P1",
+          "S121#P2",
+          "S104#P7",
+          "S102#P2"
+        ]
+      }
+    ]
+  }
+}

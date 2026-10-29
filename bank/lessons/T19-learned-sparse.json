@@ -1,0 +1,705 @@
+{
+  "topic_id": "T19",
+  "items_file": "bank/items/T19-learned-sparse.json",
+  "course_title": "Learned sparse retrieval",
+  "subtitle": "SPLADE, ELSER and the idea of keeping keyword-style indexes while learning which terms matter and which to add.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain the vocabulary mismatch problem",
+    "Describe how SPLADE expands and weights terms",
+    "Use ELSER's documented behaviour and limits",
+    "Judge new sparse methods and vendor claims fairly"
+  ],
+  "intro": [
+    "Keyword search is fast and precise, but it misses pages that use different words. Dense vectors catch meaning but can lose exact term matching. Learned sparse retrieval tries to keep the best of both.",
+    "This course uses the SPLADE research paper, Elastic's documentation for its ELSER model, a Qdrant vendor article, and the BEIR benchmark.",
+    "These sources describe research methods and database products, not what Google or Bing use. Lessons for your own site are labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T19-1",
+      "title": "The vocabulary mismatch problem",
+      "est_minutes": 5,
+      "objectives": [
+        "Name the strengths of bag-of-words models",
+        "Explain vocabulary mismatch",
+        "Explain the gap learned sparse models aim to fill"
+      ],
+      "scene": {
+        "id": "mismatch",
+        "title": "Same need, different words",
+        "beats": [
+          {
+            "caption": "Bag-of-words models bring the exact matching of terms and the efficiency of inverted indexes.",
+            "source_ids": [
+              "S220#P7"
+            ]
+          },
+          {
+            "caption": "But they suffer from the long standing vocabulary mismatch problem.",
+            "source_ids": [
+              "S220#P6"
+            ]
+          },
+          {
+            "caption": "Dense retrieval is still combined with them because of its inability to explicitly model term matching.",
+            "source_ids": [
+              "S220#P12"
+            ]
+          },
+          {
+            "caption": "Sparse representations offer the efficiency of inverted indexes and interpretability.",
+            "source_ids": [
+              "S220#P13"
+            ]
+          },
+          {
+            "caption": "SPLADE: a Sparse Lexical and Expansion model for first-stage ranking.",
+            "source_ids": [
+              "S220#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Keyword search's strength and weakness",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The SPLADE paper credits bag-of-words models, such as BM25, with the exact matching of terms and the efficiency of inverted indexes. But it says they suffer from the long standing vocabulary mismatch problem.",
+              "source_ids": [
+                "S220#P7",
+                "S220#P6"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A shopper searches \"cordless drill\". The best page says \"battery-powered driver\". A word-matching system sees no shared words, so the page may not be found.",
+              "source_ids": [
+                "S220#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why not just use dense vectors?",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper notes that dense retrieval is still combined with bag-of-words models because of its inability to explicitly model term matching. Sparse representations keep the efficiency of inverted indexes and interpretability.",
+              "source_ids": [
+                "S220#P12",
+                "S220#P13"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "The idea",
+              "text": "Learned sparse retrieval keeps a list of weighted terms per document, like keyword search, but uses a trained model to choose the weights and add related terms. SPLADE stands for Sparse Lexical and Expansion model.",
+              "source_ids": [
+                "S220#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Bag-of-words search offers exact term matching and fast inverted indexes.",
+          "source_ids": [
+            "S220#P7"
+          ]
+        },
+        {
+          "text": "Its weakness is vocabulary mismatch.",
+          "source_ids": [
+            "S220#P6"
+          ]
+        },
+        {
+          "text": "Dense retrieval struggles to model exact term matching.",
+          "source_ids": [
+            "S220#P12"
+          ]
+        },
+        {
+          "text": "Learned sparse models keep inverted indexes and interpretability.",
+          "source_ids": [
+            "S220#P13"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Collect mismatches",
+        "minutes": "10",
+        "steps": [
+          "Open your site search logs or Search Console queries.",
+          "Find five queries where the right page uses different words.",
+          "Write each query next to the words the page uses.",
+          "Mark which ones contain codes or names that need exact matching."
+        ],
+        "prompt_template": "Here are queries and the words used on the pages that should match them: [pairs]. The SPLADE paper says bag-of-words models offer exact term matching but suffer from the vocabulary mismatch problem, and that dense retrieval struggles to model term matching. For each pair, say whether it's a vocabulary mismatch, an exact-match need, or both. Label your judgement as practitioner judgement."
+      },
+      "reflection": [
+        "Which words do your customers use that your pages never do?",
+        "Which searches on your site must match an exact string?"
+      ],
+      "whats_next": "Next, how SPLADE adds and weights terms."
+    },
+    {
+      "lesson_id": "T19-2",
+      "title": "How SPLADE works",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain document expansion",
+        "Explain how SPLADE re-weights terms",
+        "Explain why sparsity keeps it efficient"
+      ],
+      "scene": {
+        "id": "expand",
+        "title": "Adding and weighting terms",
+        "beats": [
+          {
+            "caption": "SPLADE is a first-stage ranker based on explicit sparsity regularization.",
+            "source_ids": [
+              "S220#P2"
+            ]
+          },
+          {
+            "caption": "Document expansion adds new terms to documents, hence fighting the vocabulary mismatch.",
+            "source_ids": [
+              "S220#P10"
+            ]
+          },
+          {
+            "caption": "It also repeats existing terms, implicitly re-weighting by boosting important terms.",
+            "source_ids": [
+              "S220#P11"
+            ]
+          },
+          {
+            "caption": "A log-saturation effect prevents some terms from dominating.",
+            "source_ids": [
+              "S220#P8"
+            ]
+          },
+          {
+            "caption": "Its sparsity can be controlled explicitly through regularization, and it can operate on inverted indexes.",
+            "source_ids": [
+              "S220#P9",
+              "S220#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Expansion and weighting",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper describes SPLADE as a new first-stage ranker based on explicit sparsity regularization. It performs an efficient document expansion.",
+              "source_ids": [
+                "S220#P2",
+                "S220#P5"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "New terms.",
+                  "text": "The document expansion adds new terms to documents, hence fighting the vocabulary mismatch.",
+                  "source_ids": [
+                    "S220#P10"
+                  ]
+                },
+                {
+                  "lead": "Re-weighting.",
+                  "text": "It also repeats existing terms, implicitly performing re-weighting by boosting important terms.",
+                  "source_ids": [
+                    "S220#P11"
+                  ]
+                },
+                {
+                  "lead": "Balance.",
+                  "text": "A log-saturation effect prevents some terms from dominating.",
+                  "source_ids": [
+                    "S220#P8"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Staying sparse",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper says SPLADE's sparsity can be controlled explicitly through the regularization, and that it can operate on inverted indexes. That's the same kind of index keyword search uses.",
+              "source_ids": [
+                "S220#P9",
+                "S220#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Research finding",
+              "text": "The authors report competitive results with respect to state-of-the-art dense and sparse methods.",
+              "source_ids": [
+                "S220#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "SPLADE adds new terms to documents to fight vocabulary mismatch.",
+          "source_ids": [
+            "S220#P10"
+          ]
+        },
+        {
+          "text": "It boosts important existing terms.",
+          "source_ids": [
+            "S220#P11"
+          ]
+        },
+        {
+          "text": "Log-saturation stops a few terms dominating.",
+          "source_ids": [
+            "S220#P8"
+          ]
+        },
+        {
+          "text": "Controlled sparsity lets it run on inverted indexes.",
+          "source_ids": [
+            "S220#P9",
+            "S220#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Predict an expansion",
+        "minutes": "10",
+        "steps": [
+          "Pick a short product or service description from your site.",
+          "List the terms it contains.",
+          "List terms a searcher might use that aren't there.",
+          "Mark the three terms you think matter most."
+        ],
+        "prompt_template": "Here's a short description from my site: [paste]. The SPLADE paper says document expansion adds new terms to documents to fight vocabulary mismatch and boosts important existing terms. As an illustration only, not real model output, list terms a learned sparse model might add and which existing terms it might weight highly, and explain why. Label the list as hypothetical."
+      },
+      "reflection": [
+        "Why might adding terms to a document help more than adding them to the query?",
+        "What could go wrong if one term dominated a document's representation?"
+      ],
+      "whats_next": "Next, a production example: Elastic's ELSER."
+    },
+    {
+      "lesson_id": "T19-3",
+      "title": "ELSER in practice",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe what ELSER does to text",
+        "Explain why its terms aren't synonyms",
+        "Plan around its documented limits"
+      ],
+      "scene": {
+        "id": "elser",
+        "title": "Text in, weighted terms out",
+        "beats": [
+          {
+            "caption": "ELSER, the Elastic Learned Sparse EncodeR, is a retrieval model trained by Elastic.",
+            "source_ids": [
+              "S232#P1"
+            ]
+          },
+          {
+            "caption": "It expands the indexed and searched passages into collections of terms.",
+            "source_ids": [
+              "S232#P2"
+            ]
+          },
+          {
+            "caption": "The terms are weighted, as some are more significant than others. A sparse vector field stores the terms and weights.",
+            "source_ids": [
+              "S232#P3",
+              "S232#P8"
+            ]
+          },
+          {
+            "caption": "They are not synonyms for the search terms. They are learned associations capturing relevance.",
+            "source_ids": [
+              "S232#P4",
+              "S232#P9"
+            ]
+          },
+          {
+            "caption": "Limits: ELSER encodes the first 512 tokens of a field, and is recommended for English.",
+            "source_ids": [
+              "S232#P6",
+              "S232#P7"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What ELSER does",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Elastic describes ELSER as a retrieval model trained by Elastic. It expands the indexed and searched passages into collections of terms, and these expanded terms are weighted as some of them are more significant than others.",
+              "source_ids": [
+                "S232#P1",
+                "S232#P2",
+                "S232#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "A sparse vector field type is used to store the terms and weights at index time.",
+              "source_ids": [
+                "S232#P8"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Elastic says",
+              "text": "The terms that the text is expanded into by the model are not synonyms for the search terms. They are learned associations capturing relevance.",
+              "source_ids": [
+                "S232#P4",
+                "S232#P9"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Limits to plan for",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Length.",
+                  "text": "As ELSER encodes the first 512 tokens of a field, it may not provide as relevant of results for large fields.",
+                  "source_ids": [
+                    "S232#P6"
+                  ]
+                },
+                {
+                  "lead": "Language.",
+                  "text": "This model is recommended for English language documents and queries.",
+                  "source_ids": [
+                    "S232#P7"
+                  ]
+                },
+                {
+                  "lead": "Training.",
+                  "text": "ELSER is an out-of-domain model, which means it does not require fine-tuning on your own data.",
+                  "source_ids": [
+                    "S232#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "If key facts sit deep in long pages, split the content into smaller passages or put the facts early, then test."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "ELSER expands text into weighted terms.",
+          "source_ids": [
+            "S232#P2",
+            "S232#P3"
+          ]
+        },
+        {
+          "text": "The terms are learned associations, not synonyms.",
+          "source_ids": [
+            "S232#P4",
+            "S232#P9"
+          ]
+        },
+        {
+          "text": "It encodes only the first 512 tokens of a field.",
+          "source_ids": [
+            "S232#P6"
+          ]
+        },
+        {
+          "text": "It's recommended for English and needs no fine-tuning.",
+          "source_ids": [
+            "S232#P7",
+            "S232#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your field lengths",
+        "minutes": "10",
+        "steps": [
+          "Pick five long pages you'd index for search.",
+          "Estimate where the key facts appear.",
+          "Note any page where they appear late.",
+          "Plan how you'd split or reorder that content."
+        ],
+        "prompt_template": "I plan to index these pages with ELSER: [list with rough lengths and where key facts appear]. Elastic says ELSER encodes the first 512 tokens of a field and may not provide as relevant results for large fields, and recommends it for English. Flag pages at risk and suggest how to split or reorder them, labelling suggestions as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your pages put the most useful facts near the end?",
+        "Why might learned associations beat a hand-made synonym list?"
+      ],
+      "whats_next": "Next, how to judge new sparse methods and vendor claims."
+    },
+    {
+      "lesson_id": "T19-4",
+      "title": "Choosing and testing",
+      "est_minutes": 5,
+      "objectives": [
+        "Weigh research results against your own data",
+        "Read vendor method names with care",
+        "Keep BM25 in every comparison"
+      ],
+      "scene": {
+        "id": "choose",
+        "title": "Test before you trust",
+        "beats": [
+          {
+            "caption": "SPLADE reported competitive results with respect to state-of-the-art dense and sparse methods.",
+            "source_ids": [
+              "S220#P3"
+            ]
+          },
+          {
+            "caption": "ELSER is out-of-domain: it does not require fine-tuning on your own data.",
+            "source_ids": [
+              "S232#P5"
+            ]
+          },
+          {
+            "caption": "\"BM42\" is a Qdrant term. Qdrant's page says BM42 does not outperform BM25 implementation of other vendors.",
+            "source_ids": [
+              "S221#P2"
+            ]
+          },
+          {
+            "caption": "It asks readers to consider BM42 an experimental approach.",
+            "source_ids": [
+              "S221#P3"
+            ]
+          },
+          {
+            "caption": "BEIR found BM25 a robust baseline. Keep it in every test.",
+            "source_ids": [
+              "S015#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Reading the evidence",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The SPLADE authors report competitive results with respect to state-of-the-art dense and sparse methods. Elastic says ELSER does not require fine-tuning on your own data. Neither tells you how either will do on your site.",
+              "source_ids": [
+                "S220#P3",
+                "S232#P5"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Vendor term",
+              "text": "BM42 is a Qdrant name, not a standard. Qdrant's own page says BM42 does not outperform BM25 implementation of other vendors, and asks readers to consider it an experimental approach.",
+              "source_ids": [
+                "S221#P2",
+                "S221#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "A fair test",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist before adopting any new retrieval method.",
+              "source_ids": [
+                "S015#P5"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Keep BM25.",
+                  "text": "The BEIR benchmark found BM25 a robust baseline.",
+                  "source_ids": [
+                    "S015#P5"
+                  ]
+                },
+                {
+                  "lead": "Include mismatch queries.",
+                  "text": "Learned sparse models target vocabulary mismatch, so test queries where words differ.",
+                  "source_ids": [
+                    "S220#P6",
+                    "S220#P10"
+                  ]
+                },
+                {
+                  "lead": "Include exact strings.",
+                  "text": "Codes and names test exact term matching.",
+                  "source_ids": [
+                    "S220#P7"
+                  ]
+                },
+                {
+                  "lead": "Check the limits.",
+                  "text": "Note language and input length limits, such as ELSER's first 512 tokens.",
+                  "source_ids": [
+                    "S232#P6"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "None of these sources say what Google or Bing use. Don't present learned sparse retrieval as a web ranking factor."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "SPLADE reported competitive results with dense and sparse methods.",
+          "source_ids": [
+            "S220#P3"
+          ]
+        },
+        {
+          "text": "ELSER needs no fine-tuning on your data.",
+          "source_ids": [
+            "S232#P5"
+          ]
+        },
+        {
+          "text": "Qdrant calls BM42 experimental and says it doesn't beat other vendors' BM25.",
+          "source_ids": [
+            "S221#P2",
+            "S221#P3"
+          ]
+        },
+        {
+          "text": "Keep BM25 as the baseline when testing.",
+          "source_ids": [
+            "S015#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Write a test plan",
+        "minutes": "15",
+        "steps": [
+          "List 10 vocabulary-mismatch queries and 10 exact-string queries.",
+          "Decide the correct page for each.",
+          "Run them on BM25 and on the learned sparse option.",
+          "Compare how often the right page appears in the top 5."
+        ],
+        "prompt_template": "I want to compare BM25 with a learned sparse model on my site using these queries and correct pages: [list]. The SPLADE paper targets vocabulary mismatch while keeping inverted indexes; BEIR says BM25 is a robust baseline; Qdrant calls BM42 experimental. Draft a simple test plan and scoring sheet, and tell me what result would justify switching."
+      },
+      "reflection": [
+        "How would you respond to a vendor claiming their method is the new standard?",
+        "What share of your queries are vocabulary mismatches?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Keyword search offers exact term matching and fast inverted indexes but suffers from vocabulary mismatch; dense retrieval catches meaning but struggles to model exact term matching. Learned sparse retrieval keeps weighted terms in an inverted index while a model adds and weights them. SPLADE adds new terms to documents, boosts important ones and controls sparsity. ELSER expands text into weighted learned associations, not synonyms, and encodes only the first 512 tokens. Treat vendor names like BM42 as experimental, and keep BM25 as your baseline.",
+    "related_topics": [
+      {
+        "topic_id": "T18",
+        "title": "Dense retrieval and bi-encoders"
+      },
+      {
+        "topic_id": "T5",
+        "title": "Inverted index"
+      },
+      {
+        "topic_id": "T21",
+        "title": "Cross-encoder re-ranking"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Learned sparse retrieval. The questions revisit vocabulary mismatch, SPLADE, ELSER and vendor claims.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T19-L1-01",
+      "T19-L1-02",
+      "T19-L1-03",
+      "T19-L2-01",
+      "T19-L2-02",
+      "T19-L2-03",
+      "T19-L3-01",
+      "T19-L3-02",
+      "T19-L4-01",
+      "T19-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T19-L1-01",
+        "prompt": "SPLADE stands for Sparse Lexical and ___ Model for First Stage Ranking. Which word fills the blank?",
+        "options": [
+          "A. Encoding",
+          "B. Expansion",
+          "C. Embedding",
+          "D. Extraction"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the paper is titled SPLADE: Sparse Lexical and Expansion Model for First Stage Ranking. The other words aren't in the title.",
+        "source_ids": [
+          "S220#P1"
+        ]
+      },
+      {
+        "item_id": "T19-L2-01",
+        "prompt": "What does Qdrant's own page say about BM42?",
+        "options": [
+          "A. It is the new standard that replaced BM25 everywhere",
+          "B. It always beats every vendor's BM25 implementation",
+          "C. It's experimental and doesn't beat others' BM25",
+          "D. It is a Google ranking signal for site search"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Qdrant says BM42 does not outperform BM25 implementation of other vendors and asks readers to consider it an experimental approach. Wrong: it isn't described as a standard, a consistent winner, or a Google signal.",
+        "source_ids": [
+          "S221#P2",
+          "S221#P3"
+        ]
+      }
+    ]
+  }
+}

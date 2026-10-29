@@ -1,0 +1,708 @@
+{
+  "topic_id": "T55",
+  "items_file": "bank/items/T55-content-quality-eeat.json",
+  "course_title": "Content quality, E-E-A-T and information gain",
+  "subtitle": "What Google means by helpful, people-first content, what E-E-A-T is and isn't, how to use Who, How and Why, and how to read claims about raters and information gain.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Judge content with Google's people-first questions",
+    "Explain E-E-A-T and why trust matters most",
+    "Audit pages with Who, How and Why",
+    "Correct myths about raters and information gain"
+  ],
+  "intro": [
+    "Google says its systems aim to reward content made to help people. It publishes questions you can ask about your own pages, and a framework called E-E-A-T. Both are widely misread.",
+    "This course uses Google's guide to creating helpful, reliable, people-first content, its Search Quality Rater Guidelines and one Google patent on information gain.",
+    "A patent describes an idea, not what Search actually does, and the rater guidelines guide human reviewers, not the ranking systems. Advice beyond the sources is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T55-1",
+      "title": "People-first content",
+      "est_minutes": 5,
+      "objectives": [
+        "Define people-first content",
+        "Use Google's self-assessment questions",
+        "Spot search engine-first content"
+      ],
+      "scene": {
+        "id": "first",
+        "title": "Made for people first",
+        "beats": [
+          {
+            "caption": "People-first content means content that's created primarily for people.",
+            "source_ids": [
+              "S407#P7"
+            ]
+          },
+          {
+            "caption": "Google asks: does the content provide original information, reporting, research, or analysis?",
+            "source_ids": [
+              "S407#P15"
+            ]
+          },
+          {
+            "caption": "Does it provide substantial value when compared to other pages in search results?",
+            "source_ids": [
+              "S407#P16"
+            ]
+          },
+          {
+            "caption": "Warning sign: is the content primarily made to attract visits from search engines?",
+            "source_ids": [
+              "S407#P23"
+            ]
+          },
+          {
+            "caption": "If that's the 'why', it's not aligned with what Google's systems seek to reward.",
+            "source_ids": [
+              "S407#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "People first",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says people-first content means content that's created primarily for people. Its guide offers questions to test your pages. Some of them are these.",
+              "source_ids": [
+                "S407#P7"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Original work.",
+                  "text": "Does the content provide original information, reporting, research, or analysis?",
+                  "source_ids": [
+                    "S407#P15"
+                  ]
+                },
+                {
+                  "lead": "Added value.",
+                  "text": "Does the content provide substantial value when compared to other pages in search results?",
+                  "source_ids": [
+                    "S407#P16"
+                  ]
+                },
+                {
+                  "lead": "Experience.",
+                  "text": "Some content might be helpful based on the experience it demonstrates.",
+                  "source_ids": [
+                    "S407#P8"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Search engine-first",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google also asks: is the content primarily made to attract visits from search engines? If the 'why' is that you're primarily making content to attract search engine visits, Google says that's not aligned with what its systems seek to reward.",
+              "source_ids": [
+                "S407#P23",
+                "S407#P11"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a page titled 'Best time to visit Lisbon' that repeats what the top ten results say, written by someone who has never been. Compare a page by a local guide with month-by-month notes from their own trips.",
+              "source_ids": [
+                "S407#P16",
+                "S407#P8"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "People-first content is made primarily for people.",
+          "source_ids": [
+            "S407#P7"
+          ]
+        },
+        {
+          "text": "Original information and analysis count.",
+          "source_ids": [
+            "S407#P15"
+          ]
+        },
+        {
+          "text": "Ask what you add beyond other results.",
+          "source_ids": [
+            "S407#P16"
+          ]
+        },
+        {
+          "text": "Content made mainly for search visits isn't what Google rewards.",
+          "source_ids": [
+            "S407#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Score five pages",
+        "minutes": "20",
+        "steps": [
+          "Pick five pages that matter to the business.",
+          "For each, answer Google's questions on original information and substantial value.",
+          "Compare each with the top three results for its main query.",
+          "Write one thing each page could add that the others don't."
+        ],
+        "prompt_template": "Here is my page and the top three results for its main query: [paste]. Google asks whether content provides original information, reporting, research or analysis, and substantial value compared to other pages in search results. Tell me what my page adds, what it lacks, and one original addition I could make."
+      },
+      "reflection": [
+        "Which page would you still publish if search engines didn't exist?",
+        "What do you know first-hand that competitors don't?"
+      ],
+      "whats_next": "Next, what E-E-A-T is and what it isn't."
+    },
+    {
+      "lesson_id": "T55-2",
+      "title": "E-E-A-T and trust",
+      "est_minutes": 5,
+      "objectives": [
+        "Name the four parts of E-E-A-T",
+        "Explain why trust matters most",
+        "Explain why E-E-A-T isn't a ranking factor"
+      ],
+      "scene": {
+        "id": "eeat",
+        "title": "Trust at the centre",
+        "beats": [
+          {
+            "caption": "E-E-A-T: experience, expertise, authoritativeness and trustworthiness.",
+            "source_ids": [
+              "S407#P1"
+            ]
+          },
+          {
+            "caption": "Of these aspects, trust is most important.",
+            "source_ids": [
+              "S407#P2"
+            ]
+          },
+          {
+            "caption": "Raters judge trust as the extent to which the page is accurate, honest, safe, and reliable.",
+            "source_ids": [
+              "S014#P5"
+            ]
+          },
+          {
+            "caption": "E-E-A-T itself isn't a specific ranking factor. Google's systems use many different factors.",
+            "source_ids": [
+              "S407#P3",
+              "S407#P4"
+            ]
+          },
+          {
+            "caption": "For topics that could significantly impact health, finances or safety, systems give even more weight to strong E-E-A-T.",
+            "source_ids": [
+              "S407#P19"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Four aspects",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's helpful content guide describes aspects of experience, expertise, authoritativeness, and trustworthiness, or what it calls E-E-A-T. Of these aspects, trust is most important.",
+              "source_ids": [
+                "S407#P1",
+                "S407#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The rater guidelines describe trust as the extent to which the page is accurate, honest, safe, and reliable.",
+              "source_ids": [
+                "S014#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Not a single factor",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says E-E-A-T itself isn't a specific ranking factor. Its automated systems are designed to use many different factors to rank great content.",
+              "source_ids": [
+                "S407#P3",
+                "S407#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "Google doesn't describe an E-E-A-T score you can raise. Treat it as a way to think about quality, not a single setting.",
+              "source_ids": [
+                "S407#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Higher stakes, more weight",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says its systems give even more weight to content that aligns with strong E-E-A-T for topics that could significantly impact the health, financial stability, or safety of people, or the welfare or well-being of society. The rater guidelines call such topics 'Your Money or Your Life', or YMYL.",
+              "source_ids": [
+                "S407#P19",
+                "S014#P6"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a page on dosing children's paracetamol is YMYL. A page on folding paper planes isn't. The first needs far more care about accuracy and who wrote it.",
+              "source_ids": [
+                "S407#P19",
+                "S014#P5"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "E-E-A-T: experience, expertise, authoritativeness, trust.",
+          "source_ids": [
+            "S407#P1"
+          ]
+        },
+        {
+          "text": "Trust is the most important part.",
+          "source_ids": [
+            "S407#P2"
+          ]
+        },
+        {
+          "text": "E-E-A-T isn't a specific ranking factor.",
+          "source_ids": [
+            "S407#P3"
+          ]
+        },
+        {
+          "text": "YMYL topics get more weight on strong E-E-A-T.",
+          "source_ids": [
+            "S407#P19"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check trust on a YMYL page",
+        "minutes": "15",
+        "steps": [
+          "Pick your highest-stakes page: health, money or safety.",
+          "Check every factual claim has a reliable source.",
+          "Check the author and their qualifications are shown.",
+          "Fix anything inaccurate, unsafe or unclear."
+        ],
+        "prompt_template": "Here is a page on a topic that could affect people's health, money or safety: [paste]. Google says trust is the most important part of E-E-A-T, and raters judge trust as how accurate, honest, safe and reliable a page is. List claims that need sources and anything that could reduce trust."
+      },
+      "reflection": [
+        "Which of your pages would count as Your Money or Your Life?",
+        "Has anyone sold you an 'E-E-A-T score'?"
+      ],
+      "whats_next": "Next, Google's Who, How and Why framework."
+    },
+    {
+      "lesson_id": "T55-3",
+      "title": "Who, How and Why",
+      "est_minutes": 5,
+      "objectives": [
+        "Apply the Who question",
+        "Apply the How question, including automation",
+        "Explain why 'Why' matters most"
+      ],
+      "scene": {
+        "id": "whw",
+        "title": "Three questions",
+        "beats": [
+          {
+            "caption": "Google suggests evaluating your content in terms of 'Who, How, and Why'.",
+            "source_ids": [
+              "S407#P9"
+            ]
+          },
+          {
+            "caption": "Who: is it self-evident to your visitors who authored your content?",
+            "source_ids": [
+              "S407#P17"
+            ]
+          },
+          {
+            "caption": "How: is the use of automation, including AI-generation, self-evident through disclosures or other ways?",
+            "source_ids": [
+              "S407#P18"
+            ]
+          },
+          {
+            "caption": "Google also asks: are you using extensive automation to produce content on many topics?",
+            "source_ids": [
+              "S407#P6"
+            ]
+          },
+          {
+            "caption": "Why: perhaps the most important question to answer about your content.",
+            "source_ids": [
+              "S407#P10"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Who",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google suggests evaluating your content in terms of 'Who, How, and Why'. For Who, it asks: is it self-evident to your visitors who authored your content?",
+              "source_ids": [
+                "S407#P9",
+                "S407#P17"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: a byline that links to an author page with real background is the simplest way to answer this.",
+              "source_ids": [
+                "S407#P17"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "How",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "For How, Google asks whether the use of automation, including AI-generation, is self-evident to visitors through disclosures or in other ways. It also asks: are you using extensive automation to produce content on many topics?",
+              "source_ids": [
+                "S407#P18",
+                "S407#P6"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "How also covers experience. Google says some content might be helpful based on the experience it demonstrates.",
+              "source_ids": [
+                "S407#P8"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a review says 'We ran this vacuum for three weeks in a house with two dogs' and shows photos. That shows how the review was made and the experience behind it.",
+              "source_ids": [
+                "S407#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google calls Why perhaps the most important question to answer about your content. If the 'why' is that you're primarily making content to attract search engine visits, that's not aligned with what its systems seek to reward.",
+              "source_ids": [
+                "S407#P10",
+                "S407#P11"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Evaluate content by Who, How and Why.",
+          "source_ids": [
+            "S407#P9"
+          ]
+        },
+        {
+          "text": "Make authorship self-evident.",
+          "source_ids": [
+            "S407#P17"
+          ]
+        },
+        {
+          "text": "Make automation use self-evident.",
+          "source_ids": [
+            "S407#P18"
+          ]
+        },
+        {
+          "text": "Why is perhaps the most important question.",
+          "source_ids": [
+            "S407#P10"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Run Who, How, Why",
+        "minutes": "20",
+        "steps": [
+          "Pick three pages from different sections of your site.",
+          "Who: note whether the author is clear and has an author page.",
+          "How: note how each was made and whether automation is disclosed.",
+          "Why: write one honest sentence on why each page exists."
+        ],
+        "prompt_template": "Here are three pages with notes on author, how they were made, and why they exist: [paste]. Google suggests evaluating content by Who (is authorship self-evident), How (is automation self-evident, and is extensive automation used across many topics) and Why (perhaps the most important). Rate each page on all three and suggest fixes."
+      },
+      "reflection": [
+        "Could a visitor tell who wrote your most-visited page?",
+        "Is there a page whose honest 'why' is just to get search traffic?"
+      ],
+      "whats_next": "Next, quality raters and the information gain patent."
+    },
+    {
+      "lesson_id": "T55-4",
+      "title": "Raters and information gain",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain what quality raters do and don't do",
+        "Describe the information gain patent",
+        "Correct claims that treat a patent as proof"
+      ],
+      "scene": {
+        "id": "myth",
+        "title": "Feedback cards and patents",
+        "beats": [
+          {
+            "caption": "Rater data is not used directly in Google's ranking algorithms.",
+            "source_ids": [
+              "S407#P20"
+            ]
+          },
+          {
+            "caption": "Google uses it as a restaurant might get feedback cards from diners: to know if its systems seem to be working.",
+            "source_ids": [
+              "S407#P21",
+              "S407#P22"
+            ]
+          },
+          {
+            "caption": "No single rating, or single rater, directly impacts how a given page or site ranks.",
+            "source_ids": [
+              "S014#P4"
+            ]
+          },
+          {
+            "caption": "A Google patent describes determining an information gain score for documents.",
+            "source_ids": [
+              "S413#P1",
+              "S413#P2"
+            ]
+          },
+          {
+            "caption": "The score indicates additional information in a document. A patent describes an idea, not confirmed Search use.",
+            "source_ids": [
+              "S413#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Quality raters",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says rater data is not used directly in its ranking algorithms. Rather, it uses ratings as a restaurant might get feedback cards from diners. The feedback helps it know if its systems seem to be working.",
+              "source_ids": [
+                "S407#P20",
+                "S407#P21",
+                "S407#P22"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The rater guidelines say the same: no single rating, or single rater, directly impacts how a given page or site ranks in Search.",
+              "source_ids": [
+                "S014#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "If someone says a rater marked your site down and caused a drop, that's not how Google describes raters. Look for other causes.",
+              "source_ids": [
+                "S014#P4",
+                "S407#P20"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Information gain",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "A Google patent titled 'Contextual estimation of link information gain' describes techniques for determining an information gain score for one or more documents of interest to the user. It says the score is indicative of additional information that is included in the document.",
+              "source_ids": [
+                "S413#P1",
+                "S413#P2",
+                "S413#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Scope",
+              "text": "A patent shows an idea Google filed. It isn't evidence that Search uses it. Don't call information gain a confirmed ranking factor.",
+              "source_ids": [
+                "S413#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: the idea lines up with Google's own question about whether content provides substantial value compared to other pages, so adding new information is worth doing for that reason alone.",
+              "source_ids": [
+                "S407#P16",
+                "S413#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Rater data isn't used directly in ranking.",
+          "source_ids": [
+            "S407#P20"
+          ]
+        },
+        {
+          "text": "No single rating directly changes a page's rank.",
+          "source_ids": [
+            "S014#P4"
+          ]
+        },
+        {
+          "text": "The information gain idea comes from a patent.",
+          "source_ids": [
+            "S413#P2"
+          ]
+        },
+        {
+          "text": "A patent isn't proof of use in Search.",
+          "source_ids": [
+            "S413#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Fact-check a claim",
+        "minutes": "10",
+        "steps": [
+          "Find an article or pitch that mentions raters or information gain.",
+          "Underline each claim it makes about how Google ranks.",
+          "Check each against Google's helpful content guide and the rater guidelines.",
+          "Rewrite the claims so they match the sources."
+        ],
+        "prompt_template": "Here is a claim about Google raters or information gain: [paste]. Google says rater data is not used directly in ranking and no single rating directly impacts rank. Information gain is described in a patent, which isn't proof Search uses it. Rewrite the claim so it's accurate."
+      },
+      "reflection": [
+        "Have you heard information gain called a ranking factor? From whom?",
+        "What new information could you add to your most important page?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google wants people-first content: original, valuable beyond other results, and not made mainly to attract search visits. E-E-A-T describes experience, expertise, authoritativeness and trust, with trust most important; it isn't a specific ranking factor, but it weighs more on YMYL topics. Use Who, How and Why to audit pages, with Why the most important. Raters give feedback, not rankings, and information gain is a patent idea, not a confirmed factor.",
+    "related_topics": [
+      {
+        "topic_id": "T54",
+        "title": "Web spam detection and algorithmic quality filters"
+      },
+      {
+        "topic_id": "T49",
+        "title": "Topical authority and semantic content clustering"
+      },
+      {
+        "topic_id": "T51",
+        "title": "Freshness and Query Deserves Freshness"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Content quality, E-E-A-T and information gain. The questions revisit E-E-A-T, raters and the information gain patent.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T55-L1-01",
+      "T55-L1-02",
+      "T55-L1-03",
+      "T55-L2-01",
+      "T55-L2-02",
+      "T55-L2-03",
+      "T55-L3-01",
+      "T55-L3-02",
+      "T55-L4-01",
+      "T55-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T55-L1-01",
+        "options": [
+          "A. experience",
+          "B. effectiveness",
+          "C. engagement",
+          "D. evidence"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google's helpful content guide lists experience, expertise, authoritativeness and trustworthiness as E-E-A-T.",
+        "source_ids": [
+          "S407#P1"
+        ]
+      },
+      {
+        "item_id": "T55-L1-03",
+        "options": [
+          "A. True",
+          "B. True, for YMYL pages",
+          "C. False",
+          "D. True, after an appeal"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the rater guidelines say no single rating, or single rater, directly impacts how a given page or site ranks in Search.",
+        "source_ids": [
+          "S014#P4"
+        ]
+      },
+      {
+        "item_id": "T55-L2-02",
+        "options": [
+          "A. True",
+          "B. False",
+          "C. True, for health topics",
+          "D. True, since 2022"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google's helpful content guide says E-E-A-T itself isn't a specific ranking factor.",
+        "source_ids": [
+          "S407#P3"
+        ]
+      }
+    ]
+  }
+}

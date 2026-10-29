@@ -1,0 +1,803 @@
+{
+  "topic_id": "T29",
+  "items_file": "bank/items/T29-rag-evaluation.json",
+  "course_title": "RAG evaluation",
+  "subtitle": "How to judge a retrieval-augmented answer system part by part: context relevance, faithfulness and answer relevance, and how automated judges like Ragas and ARES score them.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why a RAG system needs more than one quality score",
+    "Define context relevance, faithfulness and answer relevance",
+    "Diagnose which stage of a RAG system failed",
+    "Plan an automated evaluation with human spot-checks"
+  ],
+  "intro": [
+    "A retrieval-augmented generation (RAG) system fetches passages, then writes an answer from them. An answer can go wrong because the wrong passages came back, because the model ignored them, or because it didn't answer the question.",
+    "This course uses two research papers: Ragas, a framework for reference-free RAG evaluation, and ARES, which trains lightweight judges to score RAG systems.",
+    "These papers show how to evaluate a RAG pipeline you build or audit. They aren't evidence of how any public answer engine scores itself."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T29-1",
+      "title": "More than one score",
+      "est_minutes": 5,
+      "objectives": [
+        "Name the two parts of a RAG system",
+        "Explain why evaluating RAG is hard",
+        "List the abilities an evaluation should check"
+      ],
+      "scene": {
+        "id": "parts",
+        "title": "Two modules, several questions",
+        "beats": [
+          {
+            "caption": "RAG systems are composed of a retrieval and an LLM based generation module.",
+            "source_ids": [
+              "S017#P7"
+            ]
+          },
+          {
+            "caption": "Evaluating them is challenging because there are several dimensions to consider.",
+            "source_ids": [
+              "S017#P8"
+            ]
+          },
+          {
+            "caption": "First, the ability of the retrieval system to identify relevant and focused context passages.",
+            "source_ids": [
+              "S017#P9"
+            ]
+          },
+          {
+            "caption": "Second, the ability of the LLM to exploit such passages in a faithful way.",
+            "source_ids": [
+              "S017#P10"
+            ]
+          },
+          {
+            "caption": "Third, the quality of the generation itself.",
+            "source_ids": [
+              "S017#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two modules",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The Ragas paper describes RAG systems as composed of a retrieval and an LLM based generation module. The retriever finds passages; the language model writes the answer from them.",
+              "source_ids": [
+                "S017#P7"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "Evaluating RAG architectures is, however, challenging because there are several dimensions to consider",
+              "cite": "Ragas paper",
+              "source_ids": [
+                "S017#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What to check",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper lists three abilities to check.",
+              "source_ids": [
+                "S017#P8"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Retrieval.",
+                  "text": "The ability of the retrieval system to identify relevant and focused context passages.",
+                  "source_ids": [
+                    "S017#P9"
+                  ]
+                },
+                {
+                  "lead": "Use of passages.",
+                  "text": "The ability of the LLM to exploit such passages in a faithful way.",
+                  "source_ids": [
+                    "S017#P10"
+                  ]
+                },
+                {
+                  "lead": "The answer.",
+                  "text": "The quality of the generation itself.",
+                  "source_ids": [
+                    "S017#P11"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "One overall score hides which part failed. A low score could mean bad retrieval or a model that ignored good passages, and those need different fixes."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A RAG system has a retrieval module and a generation module.",
+          "source_ids": [
+            "S017#P7"
+          ]
+        },
+        {
+          "text": "Evaluating it means checking several dimensions.",
+          "source_ids": [
+            "S017#P8"
+          ]
+        },
+        {
+          "text": "Check whether retrieval finds relevant, focused passages.",
+          "source_ids": [
+            "S017#P9"
+          ]
+        },
+        {
+          "text": "Check whether the model uses them faithfully, and the answer's quality.",
+          "source_ids": [
+            "S017#P10",
+            "S017#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Trace one answer",
+        "minutes": "10",
+        "steps": [
+          "Pick a RAG tool you use, such as a help-centre chatbot.",
+          "Ask it one question and save the answer.",
+          "Find the passages or sources it used.",
+          "Note whether the problem, if any, is in the passages or the answer."
+        ],
+        "prompt_template": "Here's a question I asked a RAG assistant: [question]. Here are the passages it retrieved: [paste] and its answer: [paste]. The Ragas paper says RAG has a retrieval module and a generation module, and evaluation should check relevant passages, faithful use of them, and answer quality. Assess each of the three separately and say which stage looks weakest."
+      },
+      "reflection": [
+        "Have you blamed a chatbot's model when the real problem was what it retrieved?",
+        "Which of the three checks would be easiest to do by hand?"
+      ],
+      "whats_next": "Next, the three named dimensions Ragas and ARES score."
+    },
+    {
+      "lesson_id": "T29-2",
+      "title": "The three dimensions",
+      "est_minutes": 5,
+      "objectives": [
+        "Define faithfulness",
+        "Define answer relevance",
+        "Define context relevance"
+      ],
+      "scene": {
+        "id": "three",
+        "title": "Question, context, answer",
+        "beats": [
+          {
+            "caption": "Faithfulness: the answer should be grounded in the given context.",
+            "source_ids": [
+              "S017#P3"
+            ]
+          },
+          {
+            "caption": "Answer relevance: the answer directly addresses the question in an appropriate way.",
+            "source_ids": [
+              "S017#P4"
+            ]
+          },
+          {
+            "caption": "Context relevance: the context exclusively contains information that is needed to answer the question.",
+            "source_ids": [
+              "S017#P5",
+              "S017#P6"
+            ]
+          },
+          {
+            "caption": "ARES evaluates along the same three: context relevance, answer faithfulness and answer relevance.",
+            "source_ids": [
+              "S018#P1"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: score each one separately, so you can see which link broke.",
+            "source_ids": [
+              "S017#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Three links between three things",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Faithfulness",
+                  "text": "Refers to the idea that the answer should be grounded in the given context. It links the answer to the passages.",
+                  "source_ids": [
+                    "S017#P3"
+                  ]
+                },
+                {
+                  "name": "Answer relevance",
+                  "text": "The answer is relevant if it directly addresses the question in an appropriate way. It links the answer to the question.",
+                  "source_ids": [
+                    "S017#P4"
+                  ]
+                },
+                {
+                  "name": "Context relevance",
+                  "text": "The context is relevant to the extent that it exclusively contains information that is needed to answer the question. It links the passages to the question.",
+                  "source_ids": [
+                    "S017#P5",
+                    "S017#P6"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: \"How do I reset my router?\" An answer that gives reset steps addresses the question (answer relevance). If those steps appear in the retrieved manual page, it's also grounded (faithfulness).",
+              "source_ids": [
+                "S017#P4",
+                "S017#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Same dimensions, two papers",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "ARES describes evaluating RAG systems along the dimensions of context relevance, answer faithfulness, and answer relevance, the same three ideas under slightly different names.",
+              "source_ids": [
+                "S018#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Don't merge them",
+              "text": "An answer can address the question and still not be grounded in the passages. Answer relevance and faithfulness are separate definitions.",
+              "source_ids": [
+                "S017#P3",
+                "S017#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Faithfulness: the answer is grounded in the given context.",
+          "source_ids": [
+            "S017#P3"
+          ]
+        },
+        {
+          "text": "Answer relevance: the answer directly addresses the question.",
+          "source_ids": [
+            "S017#P4"
+          ]
+        },
+        {
+          "text": "Context relevance: the context holds only what's needed to answer.",
+          "source_ids": [
+            "S017#P5",
+            "S017#P6"
+          ]
+        },
+        {
+          "text": "ARES uses the same three dimensions.",
+          "source_ids": [
+            "S018#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Score three answers",
+        "minutes": "15",
+        "steps": [
+          "Collect three question, passage and answer sets from a RAG tool.",
+          "Score each set on context relevance, faithfulness and answer relevance, from 1 to 3.",
+          "Write one line explaining each score.",
+          "Look for a dimension that scores low more than once."
+        ],
+        "prompt_template": "Here are three question, retrieved-context and answer sets: [paste]. Using the Ragas definitions (faithfulness: answer grounded in the given context; answer relevance: directly addresses the question; context relevance: context contains only information needed to answer), score each set from 1 to 3 on each dimension, with a one-line reason."
+      },
+      "reflection": [
+        "Which dimension do you think your own content most affects?",
+        "Why might extra, unneeded passages lower context relevance?"
+      ],
+      "whats_next": "Next, using the three scores to find what failed."
+    },
+    {
+      "lesson_id": "T29-3",
+      "title": "Finding what failed",
+      "est_minutes": 5,
+      "objectives": [
+        "Diagnose a retrieval failure",
+        "Diagnose a grounding failure",
+        "Match each failure to a fix"
+      ],
+      "scene": {
+        "id": "diagnose",
+        "title": "Which link broke?",
+        "beats": [
+          {
+            "caption": "Hypothetical: \"What is the refund window?\" Retrieval returns a shipping passage with no refund information. Context relevance fails.",
+            "source_ids": [
+              "S017#P5",
+              "S017#P6"
+            ]
+          },
+          {
+            "caption": "The model answers \"30 days\" anyway. It isn't grounded in the given context, so faithfulness fails.",
+            "source_ids": [
+              "S017#P3"
+            ]
+          },
+          {
+            "caption": "Yet it directly addresses the question, so answer relevance looks fine. That's why one score can mislead.",
+            "source_ids": [
+              "S017#P4"
+            ]
+          },
+          {
+            "caption": "A second case: relevant passages, but the answer adds a claim not in them. Only faithfulness fails.",
+            "source_ids": [
+              "S017#P3",
+              "S017#P5"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: weak context points to the retriever; unfaithful answers point to how the model uses passages.",
+            "source_ids": [
+              "S017#P9",
+              "S017#P10"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Case 1: wrong passages",
+          "blocks": [
+            {
+              "type": "example",
+              "text": "A support assistant is asked \"What is the refund window?\" Retrieval returns a shipping-policy passage with no refund information. The model confidently answers \"30 days\".",
+              "source_ids": [
+                "S017#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The context doesn't contain the information needed to answer, so context relevance fails. The figure isn't grounded in the given context, so faithfulness fails too. But the answer does address the question, so answer relevance can look fine.",
+              "source_ids": [
+                "S017#P5",
+                "S017#P6",
+                "S017#P3",
+                "S017#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Case 2: good passages, invented claim",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "If the passages are relevant but the answer adds a claim that isn't in them, only faithfulness fails. That points away from the retriever and towards the ability of the LLM to exploit the passages faithfully.",
+              "source_ids": [
+                "S017#P3",
+                "S017#P10"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Low context relevance: improve retrieval or the documents it searches. Low faithfulness with good context: tighten instructions so the model answers only from passages, and accept more \"I don't know\" replies."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Missing information in the passages is a context relevance failure.",
+          "source_ids": [
+            "S017#P5",
+            "S017#P6"
+          ]
+        },
+        {
+          "text": "A claim not grounded in the passages is a faithfulness failure.",
+          "source_ids": [
+            "S017#P3"
+          ]
+        },
+        {
+          "text": "An unfaithful answer can still look relevant to the question.",
+          "source_ids": [
+            "S017#P4"
+          ]
+        },
+        {
+          "text": "Different failures point to different stages.",
+          "source_ids": [
+            "S017#P9",
+            "S017#P10"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Diagnose a bad answer",
+        "minutes": "10",
+        "steps": [
+          "Find a RAG answer that was wrong.",
+          "Check whether the passages held the right information.",
+          "Check whether the answer stuck to the passages.",
+          "Decide whether to fix retrieval or grounding first."
+        ],
+        "prompt_template": "Here's a wrong answer from a RAG assistant, with the question and retrieved passages: [paste]. Using Ragas's three dimensions, decide whether context relevance, faithfulness or answer relevance failed, explain why, and suggest whether to fix retrieval or grounding first. Label the fix as practitioner judgement."
+      },
+      "reflection": [
+        "Is \"I don't know\" a better answer than a confident guess? For whom?",
+        "How would you spot answers that sound right but aren't grounded?"
+      ],
+      "whats_next": "Next, scoring these dimensions automatically with Ragas and ARES."
+    },
+    {
+      "lesson_id": "T29-4",
+      "title": "Automated judges",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain what reference-free evaluation means",
+        "Describe how ARES trains its judges",
+        "Plan an evaluation with human checks"
+      ],
+      "scene": {
+        "id": "judges",
+        "title": "Who does the grading?",
+        "beats": [
+          {
+            "caption": "Evaluating RAG systems traditionally relies on hand annotations.",
+            "source_ids": [
+              "S018#P3"
+            ]
+          },
+          {
+            "caption": "Ragas offers reference-free evaluation, without having to rely on ground truth human annotations.",
+            "source_ids": [
+              "S017#P1",
+              "S017#P2"
+            ]
+          },
+          {
+            "caption": "ARES creates its own synthetic training data and finetunes lightweight LM judges.",
+            "source_ids": [
+              "S018#P4",
+              "S018#P2"
+            ]
+          },
+          {
+            "caption": "It also uses a small set of human-annotated datapoints, for prediction-powered inference.",
+            "source_ids": [
+              "S018#P5",
+              "S018#P6"
+            ]
+          },
+          {
+            "caption": "These evaluate pipelines you build or audit. They don't show how any answer engine scores itself.",
+            "source_ids": [
+              "S017#P1",
+              "S018#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "From hand labels to automated judges",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The ARES paper notes that evaluating RAG systems traditionally relies on hand annotations. Ragas presents a framework for reference-free evaluation of RAG pipelines, without having to rely on ground truth human annotations, and its authors say this allows faster evaluation cycles.",
+              "source_ids": [
+                "S018#P3",
+                "S017#P1",
+                "S017#P2",
+                "S017#P12"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "ARES creates its own synthetic training data and finetunes lightweight LM judges to assess the quality of individual RAG components. It uses a small set of human-annotated datapoints for prediction-powered inference (PPI), and the authors report that ARES judges remain effective across domain shifts.",
+              "source_ids": [
+                "S018#P4",
+                "S018#P2",
+                "S018#P5",
+                "S018#P6",
+                "S018#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Planning your evaluation",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist to evaluate a RAG tool you run or audit.",
+              "source_ids": [
+                "S017#P8"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Score three dimensions.",
+                  "text": "Context relevance, faithfulness and answer relevance, kept separate.",
+                  "source_ids": [
+                    "S018#P1"
+                  ]
+                },
+                {
+                  "lead": "Automate the bulk.",
+                  "text": "Reference-free methods like Ragas don't need human reference answers.",
+                  "source_ids": [
+                    "S017#P2"
+                  ]
+                },
+                {
+                  "lead": "Keep a human sample.",
+                  "text": "Even ARES uses a small set of human-annotated datapoints.",
+                  "source_ids": [
+                    "S018#P5"
+                  ]
+                },
+                {
+                  "lead": "Spot-check by hand.",
+                  "text": "Judge scores are automated estimates, so read a sample yourself (practitioner judgement)."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Scope",
+              "text": "These are evaluation frameworks from research papers. No saved source says Google, ChatGPT or Perplexity score their answers this way.",
+              "source_ids": [
+                "S017#P1",
+                "S018#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "RAG evaluation traditionally relied on hand annotations.",
+          "source_ids": [
+            "S018#P3"
+          ]
+        },
+        {
+          "text": "Ragas is reference-free: no ground truth human annotations needed.",
+          "source_ids": [
+            "S017#P1",
+            "S017#P2"
+          ]
+        },
+        {
+          "text": "ARES finetunes lightweight judges on synthetic data.",
+          "source_ids": [
+            "S018#P4",
+            "S018#P2"
+          ]
+        },
+        {
+          "text": "ARES still uses a small set of human-annotated datapoints.",
+          "source_ids": [
+            "S018#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Plan a launch test",
+        "minutes": "15",
+        "steps": [
+          "Write 20 realistic questions for a RAG tool you run or audit.",
+          "Decide how you'll score the three dimensions automatically.",
+          "Pick five answers to check by hand.",
+          "Compare your hand scores with the automated ones."
+        ],
+        "prompt_template": "I'm evaluating a RAG help-centre search before launch, with no human-written reference answers. Here are 20 test questions: [list]. Ragas is a reference-free framework, and ARES uses finetuned judges plus a small set of human-annotated datapoints. Draft an evaluation plan that scores context relevance, faithfulness and answer relevance separately, and includes a human spot-check."
+      },
+      "reflection": [
+        "Why might a small human-checked sample still matter when judges are automated?",
+        "Where might an automated judge be fooled by a confident answer?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "A RAG system has a retrieval module and a generation module, so one score isn't enough. Ragas and ARES score three dimensions: context relevance (the passages hold what's needed), faithfulness (the answer is grounded in them) and answer relevance (the answer addresses the question). Scoring them separately shows which stage failed. Ragas works without human reference answers; ARES trains lightweight judges and uses a small human-labelled set. Use these to evaluate pipelines you build or audit, not as evidence of how answer engines score themselves.",
+    "related_topics": [
+      {
+        "topic_id": "T7",
+        "title": "Measuring search quality"
+      },
+      {
+        "topic_id": "T28",
+        "title": "Agentic and self-reflective RAG"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for RAG evaluation. The questions revisit the three dimensions, diagnosing failures and automated judges.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T29-L1-01",
+      "T29-L1-02",
+      "T29-L1-03",
+      "T29-L2-01",
+      "T29-L2-02",
+      "T29-L2-03",
+      "T29-L3-01",
+      "T29-L3-02",
+      "T29-L4-01",
+      "T29-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T29-L1-01",
+        "prompt": "In the Ragas paper, faithfulness refers to the idea that the answer should be grounded in the given what?",
+        "options": [
+          "A. headline",
+          "B. context",
+          "C. question",
+          "D. training data"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the paper says faithfulness refers to the idea that the answer should be grounded in the given context, meaning the retrieved passages. Wrong: grounding in the question is answer relevance; headlines and training data aren't named.",
+        "source_ids": [
+          "S017#P3"
+        ]
+      },
+      {
+        "item_id": "T29-L1-02",
+        "options": [
+          "A. Precision, recall and mean reciprocal rank",
+          "B. Context relevance, answer faithfulness, answer relevance",
+          "C. Crawlability, indexability, rankability and freshness scores",
+          "D. Fluency, length and tone of the generated answer"
+        ],
+        "answer": "B",
+        "explanation": "Correct: that's the list in the ARES abstract. Wrong: precision, recall and MRR are retrieval metrics, a different layer; crawlability and indexability are a crawl checklist; fluency, length and tone aren't named by ARES.",
+        "source_ids": [
+          "S018#P1"
+        ]
+      },
+      {
+        "item_id": "T29-L1-03",
+        "prompt": "How does the Ragas paper describe its evaluation framework?",
+        "options": [
+          "A. It needs human-written reference answers",
+          "B. It scores only the retrieval step",
+          "C. Reference-free, no human annotations",
+          "D. It ranks answer engines by traffic"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the abstract describes a framework for reference-free evaluation of RAG pipelines, without having to rely on ground truth human annotations. Wrong: it doesn't need reference answers, it covers more than retrieval, and it doesn't rank engines.",
+        "source_ids": [
+          "S017#P1",
+          "S017#P2"
+        ]
+      },
+      {
+        "item_id": "T29-L2-01",
+        "prompt": "Which dimension asks whether the retrieved context contains the information needed to answer the question?",
+        "options": [
+          "A. Faithfulness",
+          "B. Answer relevance",
+          "C. Context relevance",
+          "D. Answer readability score"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Ragas defines context relevance as the extent to which the context exclusively contains information that is needed to answer the question. Wrong: faithfulness is grounding in the context; answer relevance is addressing the question; readability isn't one of the dimensions.",
+        "source_ids": [
+          "S017#P5",
+          "S017#P6",
+          "S017#P3",
+          "S017#P4"
+        ]
+      },
+      {
+        "item_id": "T29-L3-01",
+        "prompt": "A RAG assistant is asked 'What is the refund window?'. Retrieval returns a shipping-policy passage with no refund information. The model answers '30 days' with confidence. Which Ragas dimension does the invented '30 days' fail most clearly?",
+        "options": [
+          "A. Answer relevance",
+          "B. Answer length",
+          "C. Citation count",
+          "D. Faithfulness"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the answer states a figure that isn't grounded in the given context, so faithfulness fails. Retrieval also failed context relevance, since the passage lacks the needed information, but the invented figure is the faithfulness failure. The answer still addresses the question, so answer relevance can look fine.",
+        "source_ids": [
+          "S017#P5",
+          "S017#P3",
+          "S017#P4"
+        ]
+      },
+      {
+        "item_id": "T29-L3-02",
+        "options": [
+          "A. Faithfulness isn't a metric in the paper",
+          "B. Ragas needs ground-truth human annotations",
+          "C. It treats a method as engine behaviour",
+          "D. Faithfulness applies only to image-generation models"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the paper describes an evaluation framework and defines faithfulness; nothing says an engine uses it. Wrong: the paper does define faithfulness; the abstract says Ragas doesn't need ground truth human annotations; nothing limits faithfulness to images.",
+        "source_ids": [
+          "S017#P1",
+          "S017#P2",
+          "S017#P3"
+        ]
+      },
+      {
+        "item_id": "T29-L4-01",
+        "options": [
+          "A. Faithfulness: ground claims in passages and measure it",
+          "B. Context relevance: replace the retriever with a new one",
+          "C. Answer relevance: shorten and simplify the answers",
+          "D. No problem, since the answers address the question asked"
+        ],
+        "answer": "A",
+        "explanation": "Correct: relevant context plus unsupported claims points to grounding; the trade-off is more 'I don't know' replies. Wrong: evidence 3 says the passages look relevant, so the retriever isn't the issue; evidence 1 says answers address the question; claims not in any passage are a real problem.",
+        "source_ids": [
+          "S017#P3",
+          "S017#P4",
+          "S017#P5"
+        ]
+      },
+      {
+        "item_id": "T29-L4-02",
+        "options": [
+          "A. Wait until humans write 5,000 reference answers",
+          "B. Automated evaluation, then spot-check by hand",
+          "C. Use crawl-budget and index coverage reports instead",
+          "D. Judge only whether the answers sound confident"
+        ],
+        "answer": "B",
+        "explanation": "Correct: it uses the methods the papers describe; the human spot-check is practitioner judgement, because judge scores are automated estimates. Wrong: reference-free methods exist, so waiting isn't needed; crawl reports don't measure answer quality; sounding confident isn't one of the dimensions.",
+        "source_ids": [
+          "S017#P1",
+          "S017#P2",
+          "S018#P1",
+          "S018#P2"
+        ]
+      }
+    ]
+  }
+}

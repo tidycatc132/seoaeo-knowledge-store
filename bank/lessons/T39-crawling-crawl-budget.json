@@ -1,0 +1,817 @@
+{
+  "topic_id": "T39",
+  "items_file": "bank/items/T39-crawling-crawl-budget.json",
+  "course_title": "Crawling and crawl budget",
+  "subtitle": "How crawlers find and fetch pages, what Google means by crawl budget, how to protect it on large sites, and which controls don't do what people expect.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Describe how a crawler discovers and schedules URLs",
+    "Explain crawl capacity and crawl demand",
+    "Apply Google's ways to protect crawl budget",
+    "Pick the right control for crawling versus indexing"
+  ],
+  "intro": [
+    "Before Google can index or rank a page, it has to fetch it. Crawling is that fetching stage, and on very large sites Google can't fetch everything as often as owners might like.",
+    "This course uses Google's crawl budget guide, its overview of how Search works, its robots.txt and sitemaps pages, the robots.txt standard (RFC 9309) and the crawling chapter of Manning, Raghavan and Schütze's Introduction to Information Retrieval.",
+    "The textbook describes a classic crawler design, not Google's own scheduler. Advice beyond Google's words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T39-1",
+      "title": "How crawling works",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe how Google discovers pages",
+        "Explain what a URL frontier is",
+        "Explain priority and politeness"
+      ],
+      "scene": {
+        "id": "frontier",
+        "title": "Fetch, extract, queue",
+        "beats": [
+          {
+            "caption": "The first stage of Search is finding out what pages exist. The program that does the fetching is called Googlebot.",
+            "source_ids": [
+              "S120#P1",
+              "S120#P2"
+            ]
+          },
+          {
+            "caption": "Pages are discovered when Google extracts a link from a known page to a new page.",
+            "source_ids": [
+              "S120#P6"
+            ]
+          },
+          {
+            "caption": "A textbook crawler keeps a frontier: the URLs yet to be fetched in the current crawl.",
+            "source_ids": [
+              "S117#P1"
+            ]
+          },
+          {
+            "caption": "In the textbook design, front queues implement prioritization and back queues implement politeness.",
+            "source_ids": [
+              "S118#P4"
+            ]
+          },
+          {
+            "caption": "Politeness means avoiding repeated fetch requests to a host within a short time span. This is a textbook design, not Google's scheduler.",
+            "source_ids": [
+              "S118#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Discovery",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says the first stage is finding out what pages exist on the web, and that the program that does the fetching is called Googlebot. Some pages are discovered when Google extracts a link from a known page to a new page.",
+              "source_ids": [
+                "S120#P1",
+                "S120#P2",
+                "S120#P6"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: you publish a new guide and link to it from your blog home page. When Googlebot next fetches the home page, it can find the link to the new guide.",
+              "source_ids": [
+                "S120#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The textbook URL frontier",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Introduction to Information Retrieval describes a frontier containing URLs yet to be fetched in the current crawl. The frontier maintains the URLs and regurgitates them in some order whenever a crawler thread seeks a URL.",
+              "source_ids": [
+                "S117#P1",
+                "S118#P1"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Front queues",
+                  "text": "Implement prioritization. The textbook says high-quality pages that change frequently should be prioritized for frequent crawling.",
+                  "source_ids": [
+                    "S118#P4",
+                    "S118#P3"
+                  ]
+                },
+                {
+                  "name": "Back queues",
+                  "text": "Implement politeness. Each one only contains URLs from a single host, so the crawler can avoid repeated fetch requests to a host within a short time span.",
+                  "source_ids": [
+                    "S118#P4",
+                    "S118#P5",
+                    "S118#P2"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Scope",
+              "text": "This is a classic design from a textbook. It shows the ideas, not how Googlebot schedules your URLs."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Googlebot is the program that fetches pages.",
+          "source_ids": [
+            "S120#P2"
+          ]
+        },
+        {
+          "text": "Google discovers pages by following links from known pages.",
+          "source_ids": [
+            "S120#P6"
+          ]
+        },
+        {
+          "text": "A frontier holds URLs yet to be fetched.",
+          "source_ids": [
+            "S117#P1"
+          ]
+        },
+        {
+          "text": "Textbook front queues set priority; back queues keep crawling polite.",
+          "source_ids": [
+            "S118#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Trace a new page's path",
+        "minutes": "10",
+        "steps": [
+          "Pick a page you published recently.",
+          "List every page on your site that links to it.",
+          "Check how often those linking pages change.",
+          "Note whether a frequently crawled page links to it."
+        ],
+        "prompt_template": "I published [URL] on [date]. These pages link to it: [list], and they change about [frequency]. Google says it discovers pages when it extracts a link from a known page to a new page. Suggest where else I could link to the new page so it's found sooner, labelled as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your pages are linked from somewhere Googlebot visits often?",
+        "Why would a crawler need to be polite to a single host?"
+      ],
+      "whats_next": "Next, what Google means by crawl budget."
+    },
+    {
+      "lesson_id": "T39-2",
+      "title": "Capacity and demand",
+      "est_minutes": 5,
+      "objectives": [
+        "Define crawl budget in Google's terms",
+        "Explain what raises and lowers crawl capacity",
+        "Explain what drives crawl demand"
+      ],
+      "scene": {
+        "id": "budget",
+        "title": "Can crawl, wants to crawl",
+        "beats": [
+          {
+            "caption": "Google defines a site's crawl budget as the set of URLs that Google can and wants to crawl.",
+            "source_ids": [
+              "S100#P4"
+            ]
+          },
+          {
+            "caption": "Capacity: if the site responds quickly for a while, the limit goes up, meaning more connections can be used to crawl.",
+            "source_ids": [
+              "S100#P11",
+              "S100#P2"
+            ]
+          },
+          {
+            "caption": "If the site slows down or responds with server errors, the limit goes down and Google crawls less.",
+            "source_ids": [
+              "S100#P12"
+            ]
+          },
+          {
+            "caption": "Demand: URLs that are more popular on the Internet tend to be crawled more often. Site moves may increase crawl demand.",
+            "source_ids": [
+              "S100#P13",
+              "S100#P14"
+            ]
+          },
+          {
+            "caption": "The guide is for large sites (1 million+ unique pages) with content that changes moderately often.",
+            "source_ids": [
+              "S100#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two halves of crawl budget",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "Google defines a site's crawl budget as the set of URLs that Google can and wants to crawl.",
+              "cite": "Google, Managing crawl budget for large sites",
+              "source_ids": [
+                "S100#P4"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Crawl capacity (can)",
+                  "text": "Limits the total time your server spends holding connections open for Google. If the site responds quickly, the limit goes up; if it slows down or returns server errors, the limit goes down and Google crawls less.",
+                  "source_ids": [
+                    "S100#P2",
+                    "S100#P11",
+                    "S100#P12"
+                  ]
+                },
+                {
+                  "name": "Crawl demand (wants)",
+                  "text": "Varies based on a site's size, update frequency, page quality, and relevance. URLs that are more popular on the Internet tend to be crawled more often, and site moves may trigger an increase.",
+                  "source_ids": [
+                    "S100#P3",
+                    "S100#P13",
+                    "S100#P14"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Who needs to worry",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google writes its guide for large sites (1 million+ unique pages) with content that changes moderately often (once a week), and similar very large or fast-changing sites. It says that if your site doesn't have a large number of pages that change rapidly, you don't need the guide.",
+              "source_ids": [
+                "S100#P1",
+                "S100#P17"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "On a small, well-linked site, slow indexing is rarely a crawl budget problem. Look at quality and indexing issues first."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Crawl budget is the URLs Google can and wants to crawl.",
+          "source_ids": [
+            "S100#P4"
+          ]
+        },
+        {
+          "text": "Fast, healthy responses raise the capacity limit.",
+          "source_ids": [
+            "S100#P11"
+          ]
+        },
+        {
+          "text": "Slowdowns and server errors lower it.",
+          "source_ids": [
+            "S100#P12"
+          ]
+        },
+        {
+          "text": "The guide is for very large or fast-changing sites.",
+          "source_ids": [
+            "S100#P1",
+            "S100#P17"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Do you need to care?",
+        "minutes": "10",
+        "steps": [
+          "Estimate how many unique URLs your site has.",
+          "Estimate how often your content changes.",
+          "Check whether your server returns errors or slows down at busy times.",
+          "Decide whether crawl budget is a real concern for you."
+        ],
+        "prompt_template": "My site has about [number] unique URLs, content changes about [frequency], and my server [describe speed and errors]. Google's crawl budget guide is for large sites (1 million+ unique pages) changing moderately often, and says fast responses raise the crawl capacity limit while slowdowns and server errors lower it. Tell me whether crawl budget is likely a real concern for my site and what to check first."
+      },
+      "reflection": [
+        "Has your site had slow periods or server errors that could lower crawling?",
+        "Which of your URLs would you expect to be crawled most often, and why?"
+      ],
+      "whats_next": "Next, Google's ways to protect crawl budget."
+    },
+    {
+      "lesson_id": "T39-3",
+      "title": "Protecting crawl budget",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why a bloated URL inventory hurts",
+        "Use the right status codes for removed pages",
+        "Use lastmod and faster pages well"
+      ],
+      "scene": {
+        "id": "protect",
+        "title": "Spend it on pages that matter",
+        "beats": [
+          {
+            "caption": "Without guidance from you, Google tries to crawl all or most of the URLs that it knows about on your site.",
+            "source_ids": [
+              "S100#P10"
+            ]
+          },
+          {
+            "caption": "Return a 404 or 410 status code for permanently removed pages.",
+            "source_ids": [
+              "S100#P7"
+            ]
+          },
+          {
+            "caption": "Soft 404 pages will continue to be crawled, and waste your budget.",
+            "source_ids": [
+              "S100#P8"
+            ]
+          },
+          {
+            "caption": "If your site includes updated content, Google recommends including the <lastmod> tag in your sitemap.",
+            "source_ids": [
+              "S100#P9"
+            ]
+          },
+          {
+            "caption": "If Google can load and render your pages faster, it might be able to read more content from your site.",
+            "source_ids": [
+              "S100#P16"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Trim the inventory",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that without guidance from you, it tries to crawl all or most of the URLs that it knows about on your site. So URLs you don't need still compete for attention (practitioner inference).",
+              "source_ids": [
+                "S100#P10"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Use this checklist to keep the inventory lean.",
+              "source_ids": [
+                "S100#P10"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Remove for good.",
+                  "text": "Return a 404 or 410 status code for permanently removed pages.",
+                  "source_ids": [
+                    "S100#P7"
+                  ]
+                },
+                {
+                  "lead": "Fix soft 404s.",
+                  "text": "Soft 404 pages will continue to be crawled, and waste your budget.",
+                  "source_ids": [
+                    "S100#P8"
+                  ]
+                },
+                {
+                  "lead": "Signal updates.",
+                  "text": "If your site includes updated content, include the <lastmod> tag.",
+                  "source_ids": [
+                    "S100#P9"
+                  ]
+                },
+                {
+                  "lead": "Speed up.",
+                  "text": "If Google can load and render your pages faster, it might be able to read more content from your site.",
+                  "source_ids": [
+                    "S100#P16"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a store has 40,000 discontinued product URLs that show an 'out of stock' template with status 200. Returning 404 or 410 for the ones that are gone for good stops them looking like live pages.",
+              "source_ids": [
+                "S100#P7",
+                "S100#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Crawled isn't indexed",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "Not every page that is crawled will necessarily be indexed.",
+              "source_ids": [
+                "S100#P15"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Without guidance, Google tries to crawl most URLs it knows.",
+          "source_ids": [
+            "S100#P10"
+          ]
+        },
+        {
+          "text": "Use 404 or 410 for permanently removed pages.",
+          "source_ids": [
+            "S100#P7"
+          ]
+        },
+        {
+          "text": "Soft 404s keep being crawled and waste budget.",
+          "source_ids": [
+            "S100#P8"
+          ]
+        },
+        {
+          "text": "Use lastmod for updated content, and make pages fast.",
+          "source_ids": [
+            "S100#P9",
+            "S100#P16"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find wasted crawling",
+        "minutes": "15",
+        "steps": [
+          "Export a sample of Googlebot requests from your server logs.",
+          "Group them by URL type, such as products, filters and old pages.",
+          "Find URLs that return 200 but have no real content.",
+          "Plan a 404, 410 or fix for each group."
+        ],
+        "prompt_template": "Here's a summary of Googlebot requests from my logs, grouped by URL type: [paste]. Google says it tries to crawl most URLs it knows without guidance, that removed pages should return 404 or 410, and that soft 404s waste crawl budget. Point out which groups look like wasted crawling and what to change for each."
+      },
+      "reflection": [
+        "How many URLs does your site expose that nobody needs?",
+        "Is your sitemap's lastmod accurate, or does it change on every build?"
+      ],
+      "whats_next": "Next, controls that don't do what people expect."
+    },
+    {
+      "lesson_id": "T39-4",
+      "title": "Crawling versus indexing controls",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain why noindex doesn't save crawling",
+        "Explain what robots.txt and sitemaps can't do",
+        "Handle a robots.txt outage"
+      ],
+      "scene": {
+        "id": "controls",
+        "title": "Right tool, right job",
+        "beats": [
+          {
+            "caption": "noindex doesn't save crawl budget: Google will still request, but then drop the page.",
+            "source_ids": [
+              "S100#P5"
+            ]
+          },
+          {
+            "caption": "robots.txt isn't a mechanism for keeping a page out of Google. A disallowed page can still be indexed if linked from other sites.",
+            "source_ids": [
+              "S101#P3",
+              "S101#P4"
+            ]
+          },
+          {
+            "caption": "A sitemap doesn't guarantee that all its items will be crawled and indexed.",
+            "source_ids": [
+              "S102#P2"
+            ]
+          },
+          {
+            "caption": "Google doesn't accept payment to crawl a site more frequently.",
+            "source_ids": [
+              "S120#P4"
+            ]
+          },
+          {
+            "caption": "RFC 9309: if robots.txt is unreachable because of a server error, the crawler must assume complete disallow.",
+            "source_ids": [
+              "S114#P6",
+              "S114#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Crawling and indexing are different jobs",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "noindex",
+                  "text": "Keeps a page out of the index, but don't use it to save crawling: Google will still request, but then drop the page.",
+                  "source_ids": [
+                    "S100#P5"
+                  ]
+                },
+                {
+                  "name": "robots.txt",
+                  "text": "Tells crawlers which URLs they can access and is used mainly to manage crawler traffic. It's not a mechanism for keeping a page out of Google; a disallowed page can still be indexed if linked to from other sites.",
+                  "source_ids": [
+                    "S101#P1",
+                    "S101#P2",
+                    "S101#P3",
+                    "S101#P4"
+                  ]
+                },
+                {
+                  "name": "Sitemap",
+                  "text": "Helps Google crawl your site more efficiently, but doesn't guarantee that all the items will be crawled and indexed.",
+                  "source_ids": [
+                    "S102#P1",
+                    "S102#P2"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "To keep a page out of Google, Google says to block indexing with noindex or password-protect the page. And don't use robots.txt to temporarily reallocate crawl budget for other pages.",
+              "source_ids": [
+                "S101#P5",
+                "S100#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Myths and outages",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "No paid crawling",
+              "text": "Google doesn't accept payment to crawl a site more frequently, or rank it higher.",
+              "source_ids": [
+                "S120#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The robots.txt standard, RFC 9309, says that if the robots.txt file is unreachable because of server or network errors, the file is undefined and the crawler must assume complete disallow. If robots.txt returns a 4xx error instead, the crawler may access any resources on the server.",
+              "source_ids": [
+                "S114#P6",
+                "S114#P3",
+                "S114#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "If Googlebot activity drops sharply after a deployment, check that robots.txt itself returns normally. Whether Googlebot follows the standard exactly isn't confirmed by these sources."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "noindex pages are still requested, so noindex doesn't save crawling.",
+          "source_ids": [
+            "S100#P5"
+          ]
+        },
+        {
+          "text": "robots.txt manages crawling, not indexing.",
+          "source_ids": [
+            "S101#P2",
+            "S101#P3"
+          ]
+        },
+        {
+          "text": "A sitemap doesn't guarantee crawling or indexing.",
+          "source_ids": [
+            "S102#P2"
+          ]
+        },
+        {
+          "text": "Google doesn't sell faster crawling.",
+          "source_ids": [
+            "S120#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Match the control to the goal",
+        "minutes": "10",
+        "steps": [
+          "List three URL groups you want handled differently.",
+          "For each, say whether you want it uncrawled, unindexed or both.",
+          "Pick the control Google describes for that goal.",
+          "Check that robots.txt returns status 200 right now."
+        ],
+        "prompt_template": "Here are URL groups on my site and what I want for each: [list, e.g. 'filter pages: not crawled', 'thank-you pages: not indexed']. Google says noindex pages are still requested, robots.txt manages crawling but doesn't keep pages out of Google, and sitemaps don't guarantee crawling. Recommend the right control for each group and flag any conflicts, such as noindex on a URL blocked in robots.txt."
+      },
+      "reflection": [
+        "Have you used noindex where you really wanted less crawling?",
+        "Who would notice first if your robots.txt started returning errors?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Googlebot discovers pages by following links, and a textbook crawler queues URLs with priority and politeness. Google defines crawl budget as the URLs it can and wants to crawl: fast, healthy responses raise capacity, and popularity and site changes drive demand. The guide is for very large or fast-changing sites. Protect budget with 404 or 410 for removed pages, fixed soft 404s, accurate lastmod and fast pages. Use the right control: noindex doesn't save crawling, robots.txt doesn't keep pages out of the index, sitemaps guarantee nothing, and Google doesn't sell faster crawling.",
+    "related_topics": [
+      {
+        "topic_id": "T32",
+        "title": "Faceted navigation and crawl traps"
+      },
+      {
+        "topic_id": "T40",
+        "title": "Document rendering and JavaScript indexing"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Crawling and crawl budget. The questions revisit how crawlers work, crawl budget, protecting it and choosing controls.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T39-L1-01",
+      "T39-L1-02",
+      "T39-L1-03",
+      "T39-L2-01",
+      "T39-L2-02",
+      "T39-L2-03",
+      "T39-L3-01",
+      "T39-L3-02",
+      "T39-L4-01",
+      "T39-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T39-L1-01",
+        "prompt": "Google defines a site's crawl budget as the set of URLs that Google can and ___ to crawl. Which word fills the blank?",
+        "options": [
+          "A. should",
+          "B. must",
+          "C. wants",
+          "D. is paid"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google defines crawl budget as the set of URLs that Google can and wants to crawl. 'Can' is the capacity limit; 'wants' is crawl demand. Wrong: the other words aren't in the definition.",
+        "source_ids": [
+          "S100#P4",
+          "S100#P2",
+          "S100#P3"
+        ]
+      },
+      {
+        "item_id": "T39-L1-02",
+        "options": [
+          "A. Priority scoring of pages",
+          "B. Duplicate URL elimination",
+          "C. Resolving host names to servers",
+          "D. Politeness to each host"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the textbook says the front queues implement prioritization while the back queues implement politeness, and each back queue holds URLs from a single host. Wrong: priority is the front queues' job; duplicate elimination and DNS resolution are separate steps.",
+        "source_ids": [
+          "S118#P4",
+          "S118#P5",
+          "S117#P3"
+        ]
+      },
+      {
+        "item_id": "T39-L1-03",
+        "prompt": "What does Google say about the URLs listed in a sitemap?",
+        "options": [
+          "A. No guarantee they're crawled and indexed",
+          "B. Every listed URL is crawled within one day",
+          "C. Listed URLs are indexed but not ranked",
+          "D. Only listed URLs are ever crawled at all"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says a sitemap doesn't guarantee that all the items in it will be crawled and indexed. Wrong: none of the other claims is in Google's sitemaps page.",
+        "source_ids": [
+          "S102#P2"
+        ]
+      },
+      {
+        "item_id": "T39-L2-01",
+        "prompt": "What does Google's crawl budget guide say about using robots.txt to temporarily reallocate crawl budget to other pages?",
+        "options": [
+          "A. Use it during big sales events",
+          "B. Don't do it",
+          "C. Use it only for image files",
+          "D. It's the recommended first step"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the guide says not to use robots.txt to temporarily reallocate crawl budget for other pages. Wrong: the other options contradict that advice.",
+        "source_ids": [
+          "S100#P6"
+        ]
+      },
+      {
+        "item_id": "T39-L2-02",
+        "prompt": "Does a robots.txt Disallow reliably keep a URL out of Google's index?",
+        "options": [
+          "A. Yes, blocked URLs are never indexed",
+          "B. Yes, if the sitemap omits it too",
+          "C. No; it can be indexed if linked",
+          "D. Only for URLs with query strings"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says robots.txt isn't a mechanism for keeping a page out of Google, and a disallowed page can still be indexed if other sites link to it. Use noindex or password protection instead.",
+        "source_ids": [
+          "S101#P3",
+          "S101#P4",
+          "S101#P5"
+        ]
+      },
+      {
+        "item_id": "T39-L2-03",
+        "options": [
+          "A. Google sells faster crawling to paying sites",
+          "B. RFC 9309 says robots.txt rules aren't access authorization",
+          "C. Front queues set priority; back queues set politeness",
+          "D. Sitemaps don't guarantee crawling and indexing"
+        ],
+        "answer": "A",
+        "explanation": "Unsupported: Google says it doesn't accept payment to crawl a site more frequently. Supported: RFC 9309 says its rules aren't access authorization (B); the textbook describes front queues for priority and back queues for politeness (C); Google says sitemaps give no crawl-and-index guarantee (D).",
+        "source_ids": [
+          "S120#P4",
+          "S114#P1",
+          "S118#P4",
+          "S102#P2"
+        ]
+      },
+      {
+        "item_id": "T39-L3-01",
+        "prompt": "Hypothetical store: 40,000 discontinued product URLs are gone for good. Google recommends returning a 404 or which other status code for permanently removed pages?",
+        "options": [
+          "A. 301 (redirect)",
+          "B. 302 (temporary)",
+          "C. 200 (OK)",
+          "D. 410"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google's guide says to return a 404 or 410 status code for permanently removed pages, and that soft 404 pages continue to be crawled and waste budget. Wrong: a 200 'out of stock' page for a gone product behaves like a soft 404 (practitioner inference), and redirects aren't what the guide names.",
+        "source_ids": [
+          "S100#P7",
+          "S100#P8"
+        ]
+      },
+      {
+        "item_id": "T39-L4-01",
+        "options": [
+          "A. Disallow the variants in robots.txt",
+          "B. Add noindex tags to every sorted and filtered page",
+          "C. Pay Google to raise the crawl rate for the site",
+          "D. List all variant URLs in the XML sitemap too"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google's faceted navigation guide says to use robots.txt to disallow crawling of faceted URLs; applying that to sort variants is practitioner inference. Wrong: noindex pages are still requested then dropped; Google doesn't accept payment to crawl more; a sitemap doesn't guarantee crawling.",
+        "source_ids": [
+          "S104#P4",
+          "S100#P10",
+          "S100#P5",
+          "S120#P4",
+          "S102#P2"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,738 @@
+{
+  "topic_id": "T25",
+  "items_file": "bank/items/T25-query-fan-out.json",
+  "course_title": "Query fan-out",
+  "subtitle": "How Google's AI features split a question into many related searches, the published methods behind the idea, and what it takes for a page to be cited.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain what Google means by query fan-out",
+    "Describe query decomposition and HyDE as methods, not Google's behaviour",
+    "Check that a page can be shown as a supporting link",
+    "Plan content for fan-out without myths about special markup"
+  ],
+  "intro": [
+    "Ask AI Mode a broad question and it doesn't run just one search. Google says it breaks the question into subtopics and runs many searches at once. Google calls this query fan-out.",
+    "This course uses Google's AI features documentation, Google's AI Mode announcement, Microsoft's Azure AI Search docs and the HyDE research paper.",
+    "Google doesn't publish the sub-queries it runs. The Azure docs and the HyDE paper explain how such systems can work, not what Google does. Advice for your site is labelled practitioner inference."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T25-1",
+      "title": "What query fan-out is",
+      "est_minutes": 5,
+      "objectives": [
+        "Define query fan-out in Google's words",
+        "Describe how AI Mode splits a question",
+        "Explain how Deep Search differs"
+      ],
+      "scene": {
+        "id": "fanout",
+        "title": "One question, many searches",
+        "beats": [
+          {
+            "caption": "Google says both AI Overviews and AI Mode may use a \"query fan-out\" technique.",
+            "source_ids": [
+              "S007#P5"
+            ]
+          },
+          {
+            "caption": "AI Mode breaks down your question into subtopics.",
+            "source_ids": [
+              "S234#P1"
+            ]
+          },
+          {
+            "caption": "It issues a multitude of queries simultaneously, across subtopics and data sources.",
+            "source_ids": [
+              "S234#P2",
+              "S007#P1"
+            ]
+          },
+          {
+            "caption": "You get an AI-powered response with links to supporting websites.",
+            "source_ids": [
+              "S007#P18"
+            ]
+          },
+          {
+            "caption": "Deep Search takes the same technique to the next level. It can issue hundreds of searches.",
+            "source_ids": [
+              "S234#P3",
+              "S234#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Many searches behind one answer",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's AI features page says both AI Overviews and AI Mode may use a \"query fan-out\" technique, issuing multiple related searches across subtopics and data sources.",
+              "source_ids": [
+                "S007#P5",
+                "S007#P1"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "AI Mode uses our query fan-out technique, breaking down your question into subtopics and issuing a multitude of queries simultaneously on your behalf.",
+              "cite": "Google, AI Mode announcement (May 2025)",
+              "source_ids": [
+                "S234#P1",
+                "S234#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Illustrative only: a question like \"Is solar worth it for my home?\" could be split into searches about cost, installation and incentives. Google doesn't publish the actual sub-queries.",
+              "source_ids": [
+                "S234#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Deep Search and varying answers",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says Deep Search uses the same query fan-out technique but taken to the next level, and can issue hundreds of searches.",
+              "source_ids": [
+                "S234#P3",
+                "S234#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google also says AI Mode and AI Overviews may use different models and techniques, so the responses and links they show will vary.",
+              "source_ids": [
+                "S007#P17"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google says AI Overviews and AI Mode may use query fan-out.",
+          "source_ids": [
+            "S007#P5"
+          ]
+        },
+        {
+          "text": "Fan-out breaks a question into subtopics and runs many searches at once.",
+          "source_ids": [
+            "S234#P1",
+            "S234#P2"
+          ]
+        },
+        {
+          "text": "Deep Search can issue hundreds of searches.",
+          "source_ids": [
+            "S234#P4"
+          ]
+        },
+        {
+          "text": "AI Mode and AI Overviews may show different responses and links.",
+          "source_ids": [
+            "S007#P17"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map the subtopics",
+        "minutes": "10",
+        "steps": [
+          "Pick one broad question your customers ask.",
+          "Write down the subtopics a full answer would need.",
+          "Ask the question in AI Mode and note the sites it links to.",
+          "Compare the linked sites with your list of subtopics."
+        ],
+        "prompt_template": "My customers often ask: [question]. Google says AI Mode uses query fan-out, breaking a question into subtopics and issuing many searches at once. List the subtopics a complete answer would likely need, and suggest one search query for each. Label the list as practitioner inference, since Google doesn't publish its sub-queries."
+      },
+      "reflection": [
+        "Which of your customers' questions are really several questions in one?",
+        "Which of those subtopics does your site already answer well?"
+      ],
+      "whats_next": "Next, two published methods that show how a system can split or expand a query."
+    },
+    {
+      "lesson_id": "T25-2",
+      "title": "Methods behind the idea",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe how Azure AI Search plans subqueries",
+        "Describe what HyDE does",
+        "Explain why these don't show Google's behaviour"
+      ],
+      "scene": {
+        "id": "methods",
+        "title": "Two published methods",
+        "beats": [
+          {
+            "caption": "Azure AI Search describes agentic retrieval as a multi-query pipeline for complex questions.",
+            "source_ids": [
+              "S509#P1"
+            ]
+          },
+          {
+            "caption": "LLM-based query planning breaks a complex query into smaller, focused subqueries.",
+            "source_ids": [
+              "S509#P2"
+            ]
+          },
+          {
+            "caption": "Subqueries run in parallel, each is reranked, and the best results are combined.",
+            "source_ids": [
+              "S509#P3",
+              "S509#P5"
+            ]
+          },
+          {
+            "caption": "The HyDE paper instructs an instruction-following language model to generate a hypothetical document.",
+            "source_ids": [
+              "S006#P1"
+            ]
+          },
+          {
+            "caption": "That document is unreal and may contain false details. Both are methods, not proof of what Google does.",
+            "source_ids": [
+              "S006#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Query planning in Azure AI Search",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Microsoft describes agentic retrieval in Azure AI Search as a multi-query pipeline designed for complex questions. It can use LLM-based query planning to break down a complex query into smaller, focused subqueries.",
+              "source_ids": [
+                "S509#P1",
+                "S509#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "It runs subqueries in parallel, semantically reranks each one, and combines the best results into a unified response that an LLM can use to generate grounded answers. Query planning can also use chat history for context.",
+              "source_ids": [
+                "S509#P3",
+                "S509#P5",
+                "S509#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "HyDE: a hypothetical document",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The HyDE paper takes a different route. It instructs an instruction-following language model to generate a hypothetical document, then uses it to find real documents.",
+              "source_ids": [
+                "S006#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "The paper's own caveat",
+              "text": "The document captures relevance patterns but is unreal and may contain false details.",
+              "source_ids": [
+                "S006#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "These sources explain the idea of splitting or expanding a query. Neither says how Google decomposes a given question, and no saved Google source says it uses HyDE."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Azure AI Search can break a complex query into focused subqueries.",
+          "source_ids": [
+            "S509#P2"
+          ]
+        },
+        {
+          "text": "Its subqueries run in parallel and the best results are combined.",
+          "source_ids": [
+            "S509#P3",
+            "S509#P5"
+          ]
+        },
+        {
+          "text": "HyDE has a language model write a hypothetical document.",
+          "source_ids": [
+            "S006#P1"
+          ]
+        },
+        {
+          "text": "That document may contain false details.",
+          "source_ids": [
+            "S006#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Split a query by hand",
+        "minutes": "10",
+        "steps": [
+          "Pick one complex question in your niche.",
+          "Break it into three to five focused subqueries.",
+          "Search each subquery and note the top result.",
+          "Check whether one page on your site could answer each subquery."
+        ],
+        "prompt_template": "Here's a complex question from my niche: [question]. Azure AI Search docs describe breaking a complex query into smaller, focused subqueries that run in parallel. Split my question the same way into three to five subqueries, and for each say which page on my site [list pages] best answers it, or that none does. Note this is a hand exercise, not how Google splits queries."
+      },
+      "reflection": [
+        "Why might a written-out hypothetical answer help find real documents?",
+        "Why is it risky to publish that kind of hypothetical text as fact?"
+      ],
+      "whats_next": "Next, what a page needs before it can be shown as a supporting link."
+    },
+    {
+      "lesson_id": "T25-3",
+      "title": "Being eligible as a supporting link",
+      "est_minutes": 5,
+      "objectives": [
+        "List Google's eligibility requirements for supporting links",
+        "Explain how snippet controls affect AI features",
+        "Tell crawl blocking apart from keeping a page out of Google"
+      ],
+      "scene": {
+        "id": "eligible",
+        "title": "Gates before a citation",
+        "beats": [
+          {
+            "caption": "Robots.txt directives for Googlebot are how site owners manage access.",
+            "source_ids": [
+              "S007#P9"
+            ]
+          },
+          {
+            "caption": "To be shown as a supporting link, a page must be indexed.",
+            "source_ids": [
+              "S007#P6"
+            ]
+          },
+          {
+            "caption": "It must also be eligible to be shown in Google Search with a snippet.",
+            "source_ids": [
+              "S007#P7"
+            ]
+          },
+          {
+            "caption": "nosnippet also prevents content being used as a direct input for AI Overviews and AI Mode.",
+            "source_ids": [
+              "S501#P2"
+            ]
+          },
+          {
+            "caption": "And max-snippet set to 0 means no snippet: it's equivalent to nosnippet.",
+            "source_ids": [
+              "S501#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Google's requirements",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that to be eligible to be shown as a supporting link in AI Overviews or AI Mode, a page must be indexed and eligible to be shown in Google Search with a snippet.",
+              "source_ids": [
+                "S007#P6",
+                "S007#P7"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google calls robots.txt directives for Googlebot the control for site owners to manage access, and lists ensuring crawling is allowed in robots.txt, and by any CDN or hosting infrastructure, as a best practice.",
+              "source_ids": [
+                "S007#P9",
+                "S007#P14"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Snippet controls reach AI features",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "nosnippet",
+                  "text": "Also prevents the content from being used as a direct input for AI Overviews and AI Mode.",
+                  "source_ids": [
+                    "S501#P2"
+                  ]
+                },
+                {
+                  "name": "max-snippet",
+                  "text": "Also limits how much of the content may be used as a direct input for AI Overviews and AI Mode. A value of 0 is equivalent to nosnippet.",
+                  "source_ids": [
+                    "S501#P4",
+                    "S501#P5"
+                  ]
+                },
+                {
+                  "name": "data-nosnippet",
+                  "text": "Marks textual parts of an HTML page not to be used as a snippet.",
+                  "source_ids": [
+                    "S501#P6"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Don't mix these up",
+              "text": "A robots.txt file is used mainly to manage crawler traffic. It is not a mechanism for keeping a web page out of Google: a disallowed page can still be indexed if linked to from other sites.",
+              "source_ids": [
+                "S101#P2",
+                "S101#P3",
+                "S101#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A supporting link must be indexed.",
+          "source_ids": [
+            "S007#P6"
+          ]
+        },
+        {
+          "text": "It must also be eligible to show with a snippet.",
+          "source_ids": [
+            "S007#P7"
+          ]
+        },
+        {
+          "text": "nosnippet blocks use as a direct input for AI Overviews and AI Mode.",
+          "source_ids": [
+            "S501#P2"
+          ]
+        },
+        {
+          "text": "max-snippet 0 is the same as nosnippet.",
+          "source_ids": [
+            "S501#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit one page's gates",
+        "minutes": "10",
+        "steps": [
+          "Pick a page you'd like cited in AI features.",
+          "Check that robots.txt doesn't disallow it.",
+          "Confirm in Search Console that it's indexed.",
+          "Look for nosnippet, max-snippet or noindex in its robots meta tag."
+        ],
+        "prompt_template": "Here are a page's robots.txt rules, robots meta tag and indexing status: [paste]. Google says a supporting link in AI Overviews or AI Mode must be indexed and eligible to show with a snippet, and that nosnippet and max-snippet also limit use as direct input for AI features. Tell me which of these requirements the page fails, and what to change if I want it eligible."
+      },
+      "reflection": [
+        "Are any of your templates adding snippet controls you didn't choose?",
+        "Where might you want data-nosnippet rather than nosnippet?"
+      ],
+      "whats_next": "Next, what to do, and not do, to plan content for fan-out."
+    },
+    {
+      "lesson_id": "T25-4",
+      "title": "Planning content for fan-out",
+      "est_minutes": 5,
+      "objectives": [
+        "Reject claims about special fan-out markup",
+        "Apply Google's stated best practices",
+        "Plan subtopic coverage as practitioner inference"
+      ],
+      "scene": {
+        "id": "plan",
+        "title": "No secret markup",
+        "beats": [
+          {
+            "caption": "Google says there are no additional requirements, nor other special optimizations, for AI Overviews or AI Mode.",
+            "source_ids": [
+              "S007#P2"
+            ]
+          },
+          {
+            "caption": "There's also no special schema.org structured data that you need to add.",
+            "source_ids": [
+              "S007#P3"
+            ]
+          },
+          {
+            "caption": "SEO best practices remain relevant: allow crawling, keep important content in text, and match structured data to visible text.",
+            "source_ids": [
+              "S007#P13",
+              "S007#P14",
+              "S007#P15",
+              "S007#P4"
+            ]
+          },
+          {
+            "caption": "Practitioner inference: since AI Mode breaks questions into subtopics, cover the subtopics your topic naturally contains.",
+            "source_ids": [
+              "S234#P1"
+            ]
+          },
+          {
+            "caption": "AI feature traffic is included in your overall search traffic in Search Console's Performance report.",
+            "source_ids": [
+              "S007#P10",
+              "S007#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "No special markup",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "There are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary.",
+              "cite": "Google, AI features and your website",
+              "source_ids": [
+                "S007#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google adds that there's no special schema.org structured data you need to add, and that the best practices for SEO remain relevant for AI features.",
+              "source_ids": [
+                "S007#P3",
+                "S007#P13"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What to do instead",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist to prepare pages you want cited.",
+              "source_ids": [
+                "S007#P13"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Allow crawling.",
+                  "text": "Ensure crawling is allowed in robots.txt, and by any CDN or hosting infrastructure.",
+                  "source_ids": [
+                    "S007#P14"
+                  ]
+                },
+                {
+                  "lead": "Keep it in text.",
+                  "text": "Make sure important content is available in textual form.",
+                  "source_ids": [
+                    "S007#P15"
+                  ]
+                },
+                {
+                  "lead": "Match your markup.",
+                  "text": "Make sure your structured data matches the visible text on the page.",
+                  "source_ids": [
+                    "S007#P4"
+                  ]
+                },
+                {
+                  "lead": "Cover the subtopics.",
+                  "text": "Answer the parts a broad question naturally contains. This is practitioner inference, since Google doesn't publish its sub-queries.",
+                  "source_ids": [
+                    "S234#P1"
+                  ]
+                },
+                {
+                  "lead": "Measure it.",
+                  "text": "AI feature traffic is included in your overall search traffic in Search Console's Performance report.",
+                  "source_ids": [
+                    "S007#P10",
+                    "S007#P11"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google says no special optimizations are needed for AI features.",
+          "source_ids": [
+            "S007#P2"
+          ]
+        },
+        {
+          "text": "There's no special schema.org markup to add.",
+          "source_ids": [
+            "S007#P3"
+          ]
+        },
+        {
+          "text": "Structured data should match the visible text.",
+          "source_ids": [
+            "S007#P4"
+          ]
+        },
+        {
+          "text": "AI feature traffic shows in Search Console's Performance report.",
+          "source_ids": [
+            "S007#P10",
+            "S007#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Plan one topic",
+        "minutes": "15",
+        "steps": [
+          "Take the broad question you mapped in lesson 1.",
+          "Mark which subtopics your site answers, and where.",
+          "Note any answers hidden in images or scripts instead of text.",
+          "List the gaps to fill, starting with the most useful."
+        ],
+        "prompt_template": "Here's a broad question and the subtopics I mapped: [paste], with the pages on my site that cover each: [paste]. Google says there's no special markup for AI features and that SEO best practices still apply, including keeping important content in text. Suggest which gaps to fill first and how, labelled as practitioner inference."
+      },
+      "reflection": [
+        "Has anyone offered you 'fan-out optimisation' as a special service? What would you ask them?",
+        "Which subtopic gap on your site would help readers most?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google says AI Overviews and AI Mode may use query fan-out: breaking a question into subtopics and issuing many searches at once, with Deep Search running hundreds. Azure AI Search and the HyDE paper show how a system can split or expand a query, but they aren't evidence of how Google does it. To be cited, a page must be indexed and eligible to show with a snippet, and nosnippet or max-snippet 0 block it as an input. Google says there's no special markup to add. Use SEO best practices, keep content in text, and cover the subtopics readers need.",
+    "related_topics": [
+      {
+        "topic_id": "T12",
+        "title": "Query rewriting and expansion"
+      },
+      {
+        "topic_id": "T18",
+        "title": "Dense retrieval and bi-encoders"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Query fan-out. The questions revisit how fan-out works, the published methods, eligibility for supporting links and myths about markup.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T25-L1-01",
+      "T25-L1-02",
+      "T25-L1-03",
+      "T25-L2-01",
+      "T25-L2-02",
+      "T25-L2-03",
+      "T25-L3-01",
+      "T25-L3-02",
+      "T25-L4-01",
+      "T25-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T25-L1-01",
+        "options": [
+          "A. Query stuffing",
+          "B. Search clustering",
+          "C. Query fan-out",
+          "D. Passage indexing"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google's AI features page says both features may use a 'query fan-out' technique, issuing multiple related searches across subtopics and data sources. Wrong: the other names aren't what Google calls this technique.",
+        "source_ids": [
+          "S007#P5",
+          "S007#P1"
+        ]
+      },
+      {
+        "item_id": "T25-L1-03",
+        "prompt": "In the HyDE paper, what is an instruction-following language model instructed to generate?",
+        "options": [
+          "A. A list of exact-match keywords",
+          "B. A ranking score for each page",
+          "C. A sitemap of related pages",
+          "D. A hypothetical document"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the paper instructs an instruction-following language model to generate a hypothetical document. Wrong: keyword lists, ranking scores and sitemaps aren't what HyDE generates.",
+        "source_ids": [
+          "S006#P1"
+        ]
+      },
+      {
+        "item_id": "T25-L2-01",
+        "prompt": "The HyDE paper warns that the hypothetical document is unreal and may contain what?",
+        "options": [
+          "A. Hidden structured data",
+          "B. Copied competitor text",
+          "C. Too many links to rank",
+          "D. False details"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the paper says the hypothetical document captures relevance patterns but is unreal and may contain false details. That's why it's a retrieval aid, not an answer to publish. Wrong: none of the other options is the paper's caveat.",
+        "source_ids": [
+          "S006#P2"
+        ]
+      },
+      {
+        "item_id": "T25-L2-02",
+        "options": [
+          "A. Match markup to visible text; no special schema",
+          "B. Valid JSON-LD is enough, whether or not the answers are visible",
+          "C. Fan-out sub-questions each need their own schema type to qualify",
+          "D. FAQ markup is required before a page can be used by AI Mode"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google's AI features page lists making sure structured data matches the visible text on the page, and says there's no special schema.org structured data to add. Wrong: valid JSON-LD doesn't excuse hidden answers; Google says no special schema is needed, so neither per-question types nor FAQ markup are required.",
+        "source_ids": [
+          "S007#P4",
+          "S007#P3",
+          "S007#P2"
+        ]
+      },
+      {
+        "item_id": "T25-L3-01",
+        "prompt": "Hypothetical page: a guide to home solar panels covering cost, installation and incentives. A developer left a noindex tag on it. Per Google's AI features page, can it be shown as a supporting link in AI Overviews or AI Mode?",
+        "options": [
+          "A. Yes, if it has FAQ markup",
+          "B. Yes, if its content is thorough",
+          "C. No, it must be indexed",
+          "D. Yes, AI Mode ignores noindex tags"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says a page must be indexed to be eligible as a supporting link, and lists noindex among the controls that limit what Search shows (practitioner inference on the noindex consequence; the indexed rule is Google's). Wrong: markup and thoroughness don't override the indexed requirement, and no source says AI Mode ignores noindex.",
+        "source_ids": [
+          "S007#P6",
+          "S007#P8"
+        ]
+      }
+    ]
+  }
+}

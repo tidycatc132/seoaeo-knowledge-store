@@ -4,9 +4,14 @@
   "stage": 4,
   "merged_from": [],
   "volatility": "evolving",
-  "last_verified": "2026-10-25",
-  "summary": "SPLADE is a Sparse Lexical and Expansion model for first-stage ranking built on explicit sparsity regularization, and its paper says it can operate on inverted indexes. 'BM42' is a Qdrant vendor term for an experimental approach, and Qdrant's own page notes it does not outperform other vendors' BM25 implementations.",
-  "actions": [],
+  "last_verified": "2026-10-29",
+  "summary": "Learned sparse retrieval keeps the shape of keyword search, a set of weighted terms in an inverted index, but learns the weights and adds related terms. SPLADE (Sparse Lexical and Expansion model) targets the vocabulary mismatch problem of bag-of-words models with document expansion, uses explicit sparsity regularization, and can operate on inverted indexes. Elastic's ELSER expands passages into weighted terms that are learned associations, not synonyms, and encodes only the first 512 tokens of a field. 'BM42' is a Qdrant vendor term that Qdrant itself calls experimental.",
+  "actions": [
+    "Consider learned sparse retrieval when vocabulary mismatch is the problem and you want to keep an inverted index (practitioner inference).",
+    "Don't treat learned expansion terms as a synonym list.",
+    "Put key facts early in long fields if your model only encodes the first part.",
+    "Treat vendor-coined method names as unconfirmed until tested against BM25."
+  ],
   "myths": [],
   "items": [
     {
@@ -20,6 +25,47 @@
       "related_topics": [],
       "source_ids": [
         "S220#P1"
+      ]
+    },
+    {
+      "item_id": "T19-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "According to the SPLADE paper, what long-standing problem do bag-of-words models suffer from?",
+      "options": [
+        "A. They cannot be stored in any inverted index",
+        "B. They are too slow to run on short queries",
+        "C. They can't match terms exactly",
+        "D. Vocabulary mismatch"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the paper says bag-of-words models remain strong baselines but suffer from the long standing vocabulary mismatch problem. Wrong: it credits them with the exact matching of terms and the efficiency of inverted indexes, and doesn't call them slow on short queries.",
+      "related_topics": [
+        "T8"
+      ],
+      "source_ids": [
+        "S220#P6",
+        "S220#P7"
+      ]
+    },
+    {
+      "item_id": "T19-L1-03",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "Elastic says ELSER expands passages into collections of terms. What does it say about those terms?",
+      "options": [
+        "A. They're weighted; some matter more",
+        "B. They are exact synonyms from a thesaurus file",
+        "C. They are always the same for every passage",
+        "D. They are only stored for the query, not documents"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Elastic says the expanded terms are weighted as some of them are more significant than others. Wrong: it says the terms are not synonyms for the search terms, and it expands both the indexed and the searched passages.",
+      "related_topics": [],
+      "source_ids": [
+        "S232#P2",
+        "S232#P3",
+        "S232#P4"
       ]
     },
     {
@@ -37,6 +83,128 @@
       "source_ids": [
         "S221#P3",
         "S221#P2"
+      ]
+    },
+    {
+      "item_id": "T19-L2-02",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "The SPLADE paper says SPLADE can operate on inverted indexes. Which feature of its design makes that plausible?",
+      "options": [
+        "A. It stores one long dense vector for every page",
+        "B. Its output is sparse, with few active terms",
+        "C. It discards all expansion terms before indexing",
+        "D. It only works on queries shorter than 512 tokens"
+      ],
+      "answer": "B",
+      "explanation": "Correct (inference from the quotes): SPLADE is built on explicit sparsity regularization, so each text is represented by a limited set of weighted terms, the shape an inverted index stores. Wrong: a dense vector per page is dense retrieval; SPLADE adds expansion terms rather than discarding them; 512 tokens is an ELSER input limit, not a SPLADE design feature.",
+      "related_topics": [
+        "T5"
+      ],
+      "source_ids": [
+        "S220#P2",
+        "S220#P4",
+        "S220#P9"
+      ]
+    },
+    {
+      "item_id": "T19-L2-03",
+      "level": 2,
+      "type": "which_unsupported",
+      "prompt": "Which statement is NOT supported by the saved sources?",
+      "options": [
+        "A. SPLADE's document expansion adds new terms to documents",
+        "B. ELSER doesn't require fine-tuning on your own data",
+        "C. Qdrant says BM42 doesn't outperform other vendors' BM25",
+        "D. Google uses SPLADE to rank web pages"
+      ],
+      "answer": "D",
+      "explanation": "Unsupported: no saved source says Google uses SPLADE. Supported: the SPLADE paper says document expansion adds new terms to documents; Elastic says ELSER is an out-of-domain model that doesn't require fine-tuning; Qdrant says BM42 does not outperform BM25 implementation of other vendors.",
+      "related_topics": [],
+      "source_ids": [
+        "S220#P10",
+        "S232#P5",
+        "S221#P2"
+      ]
+    },
+    {
+      "item_id": "T19-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical: a product page is about 2,000 tokens long and indexed with ELSER. Its key specs appear only near the end. Based on Elastic's docs, what is the likely issue?",
+      "options": [
+        "A. The specs fall past the first 512 tokens",
+        "B. ELSER refuses to index pages longer than 1,000 words",
+        "C. Long pages get every term weighted exactly the same",
+        "D. The model needs fine-tuning on the shop's data first"
+      ],
+      "answer": "A",
+      "explanation": "Step 1: Elastic says ELSER encodes the first 512 tokens of a field. Step 2: specs near the end of a 2,000-token page fall outside that window, so ELSER may not provide as relevant results for this large field. Wrong: no page-length refusal is described; terms are weighted by significance; ELSER is out-of-domain and doesn't require fine-tuning.",
+      "related_topics": [],
+      "source_ids": [
+        "S232#P6",
+        "S232#P3",
+        "S232#P5"
+      ]
+    },
+    {
+      "item_id": "T19-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical team note says: 'ELSER expands each page with synonyms, so we can drop our synonym list and expect thesaurus-style matches.' What is the error?",
+      "options": [
+        "A. ELSER can only expand numeric fields, not text fields",
+        "B. ELSER expansion runs only on queries, never on passages",
+        "C. Its terms are learned associations, not synonyms",
+        "D. ELSER needs a synonym file before it can expand anything"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Elastic says the terms the text is expanded into are not synonyms for the search terms; they are learned associations capturing relevance. Wrong: ELSER expands the indexed and searched passages, which are text, and no synonym file is required.",
+      "related_topics": [],
+      "source_ids": [
+        "S232#P4",
+        "S232#P9",
+        "S232#P2"
+      ]
+    },
+    {
+      "item_id": "T19-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site: a hardware store's site search). Symptom: shoppers searching 'cordless drill' miss pages that say 'battery-powered driver'. Evidence: (1) the SPLADE paper says bag-of-words models suffer from the long standing vocabulary mismatch problem; (2) it says SPLADE's document expansion adds new terms to documents, fighting the vocabulary mismatch, and that SPLADE can operate on inverted indexes; (3) the team wants to keep its inverted-index setup. Which option fits best?",
+      "options": [
+        "A. Add a hidden block of fifty synonyms to every page",
+        "B. Test a learned sparse model such as SPLADE",
+        "C. Replace the index with a spreadsheet of keywords",
+        "D. Remove product names so pages match more queries"
+      ],
+      "answer": "B",
+      "explanation": "Correct: the symptom is vocabulary mismatch, SPLADE's expansion targets it, and it can operate on inverted indexes, so it fits the constraint. Test it on real queries first (practitioner judgement). Wrong: hidden synonym blocks are a page-side hack no source supports; a spreadsheet doesn't address mismatch; removing product names loses exact matches.",
+      "related_topics": [],
+      "source_ids": [
+        "S220#P6",
+        "S220#P10",
+        "S220#P4"
+      ]
+    },
+    {
+      "item_id": "T19-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site: a SaaS knowledge base). A vendor pitches 'BM42' as the new standard that beats BM25. Evidence: (1) Qdrant's own page says BM42 does not outperform BM25 implementation of other vendors; (2) it asks readers to consider BM42 an experimental approach; (3) the BEIR benchmark found BM25 a robust baseline. What should the team do?",
+      "options": [
+        "A. Adopt BM42 now because it is the new industry standard",
+        "B. Drop BM25 entirely, since the vendor says it's outdated",
+        "C. Cite BM42 in reports as proof of better ranking",
+        "D. Treat BM42 as experimental; test against BM25"
+      ],
+      "answer": "D",
+      "explanation": "Correct: Qdrant itself calls BM42 experimental and says it does not outperform other vendors' BM25, and BEIR calls BM25 a robust baseline, so any test should keep BM25. Wrong: nothing supports calling BM42 a standard, dropping BM25, or citing BM42 as proof.",
+      "related_topics": [],
+      "source_ids": [
+        "S221#P2",
+        "S221#P3",
+        "S015#P5"
       ]
     }
   ]

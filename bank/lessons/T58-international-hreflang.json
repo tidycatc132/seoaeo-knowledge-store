@@ -1,0 +1,801 @@
+{
+  "topic_id": "T58",
+  "items_file": "bank/items/T58-international-hreflang.json",
+  "course_title": "International SEO and hreflang",
+  "subtitle": "How Google handles sites in several languages or countries, how to write hreflang that works, and the redirects and signals that help or hurt.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Choose a URL structure for language and country versions",
+    "Write valid hreflang annotations",
+    "Set up return links and x-default",
+    "Avoid redirects that hide versions"
+  ],
+  "intro": [
+    "When a site serves more than one language or country, Google needs to know which page to show to whom. Get it wrong and French visitors land on English pages.",
+    "This course uses two Google Search Central guides: one on managing multi-regional and multilingual sites, and one on telling Google about localized versions with hreflang.",
+    "Advice beyond Google's words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T58-1",
+      "title": "Languages and regions",
+      "est_minutes": 5,
+      "objectives": [
+        "Tell multilingual from multi-regional sites",
+        "Compare URL structures for versions",
+        "Explain how Google detects a page's language"
+      ],
+      "scene": {
+        "id": "site",
+        "title": "Separate URLs for each version",
+        "beats": [
+          {
+            "caption": "A multilingual website offers content in more than one language. A multi-regional one explicitly targets users in different countries.",
+            "source_ids": [
+              "S123#P6",
+              "S123#P7"
+            ]
+          },
+          {
+            "caption": "Google recommends using different URLs for each language version of a page.",
+            "source_ids": [
+              "S123#P5"
+            ]
+          },
+          {
+            "caption": "URL options: example.de, de.example.com, example.com/de/. URL parameters like site.com?loc=de: not recommended.",
+            "source_ids": [
+              "S123#P10",
+              "S123#P11"
+            ]
+          },
+          {
+            "caption": "Google uses the visible content of your page to determine its language.",
+            "source_ids": [
+              "S123#P4"
+            ]
+          },
+          {
+            "caption": "It doesn't use code-level language information such as lang attributes, or the URL.",
+            "source_ids": [
+              "S123#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two kinds of international site",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says a multilingual website is any website that offers content in more than one language, and a multi-regional website is one that explicitly targets users in different countries. A site can be both.",
+              "source_ids": [
+                "S123#P6",
+                "S123#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Separate URLs",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google recommends using different URLs for each language version of a page. Its guide compares these URL structures.",
+              "source_ids": [
+                "S123#P5",
+                "S123#P10"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Country-specific domain.",
+                  "text": "For example, example.de.",
+                  "source_ids": [
+                    "S123#P10"
+                  ]
+                },
+                {
+                  "lead": "Subdomain on a generic domain.",
+                  "text": "For example, de.example.com.",
+                  "source_ids": [
+                    "S123#P10"
+                  ]
+                },
+                {
+                  "lead": "Subdirectory on a generic domain.",
+                  "text": "For example, example.com/de/.",
+                  "source_ids": [
+                    "S123#P10"
+                  ]
+                },
+                {
+                  "lead": "URL parameters.",
+                  "text": "For example, site.com?loc=de. Google marks this option as not recommended.",
+                  "source_ids": [
+                    "S123#P10",
+                    "S123#P11"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "How Google reads the language",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google uses the visible content of your page to determine its language. It says it doesn't use any code-level language information such as lang attributes, or the URL.",
+              "source_ids": [
+                "S123#P4",
+                "S123#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "Translating only the menus and footer while the main content stays in one language doesn't make a page multilingual. Google lists translating only the boilerplate as something to avoid.",
+              "source_ids": [
+                "S123#P3",
+                "S123#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Multilingual means languages; multi-regional means countries.",
+          "source_ids": [
+            "S123#P6",
+            "S123#P7"
+          ]
+        },
+        {
+          "text": "Use a different URL for each language version.",
+          "source_ids": [
+            "S123#P5"
+          ]
+        },
+        {
+          "text": "URL parameters aren't recommended.",
+          "source_ids": [
+            "S123#P11"
+          ]
+        },
+        {
+          "text": "Google reads language from visible content.",
+          "source_ids": [
+            "S123#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map your versions",
+        "minutes": "15",
+        "steps": [
+          "List every language and country your site serves.",
+          "Note the URL pattern each version uses.",
+          "Flag any version that shares a URL with another, or uses a URL parameter.",
+          "Check the main content, not just menus, is translated on each version."
+        ],
+        "prompt_template": "Here are my site's language and country versions and their URL patterns: [paste]. Google recommends different URLs for each language version, marks URL parameters as not recommended, and reads language from visible content. Flag problems and suggest a structure."
+      },
+      "reflection": [
+        "Is your site multilingual, multi-regional, or both?",
+        "Do any pages switch language on the same URL?"
+      ],
+      "whats_next": "Next, how to tell Google about versions with hreflang."
+    },
+    {
+      "lesson_id": "T58-2",
+      "title": "hreflang basics",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain what hreflang does",
+        "Write an hreflang link element",
+        "Use valid language and region codes"
+      ],
+      "scene": {
+        "id": "hl",
+        "title": "Pointing to the right version",
+        "beats": [
+          {
+            "caption": "hreflang helps Google Search point users to the most appropriate version of your page by language or region.",
+            "source_ids": [
+              "S107#P1"
+            ]
+          },
+          {
+            "caption": "Three ways to tell Google: HTML tags, HTTP headers or a sitemap. They're equivalent from Google's perspective.",
+            "source_ids": [
+              "S107#P4",
+              "S107#P7",
+              "S107#P5"
+            ]
+          },
+          {
+            "caption": "Syntax: <link rel=\"alternate\" hreflang=\"lang_code\" href=\"url_of_page\" />",
+            "source_ids": [
+              "S107#P10"
+            ]
+          },
+          {
+            "caption": "Alternate URLs must be fully-qualified, including http or https.",
+            "source_ids": [
+              "S107#P8"
+            ]
+          },
+          {
+            "caption": "Only ISO 639-1 language and ISO 3166-1 Alpha 2 region codes are supported. Region alone is not valid.",
+            "source_ids": [
+              "S107#P6",
+              "S107#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What hreflang does",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says telling it about localized versions will help Google Search point users to the most appropriate version of your page by language or region.",
+              "source_ids": [
+                "S107#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Three equivalent methods",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "There are three ways to indicate multiple language or locale versions of a page to Google: HTML tags, HTTP headers and a sitemap. Google says the three methods are equivalent from its perspective.",
+              "source_ids": [
+                "S107#P4",
+                "S107#P7",
+                "S107#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The HTML tag form is <link rel=\"alternate\" hreflang=\"lang_code\" href=\"url_of_page\" />, and alternate URLs must be fully-qualified, including the transport method (http or https).",
+              "source_ids": [
+                "S107#P10",
+                "S107#P8"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: <link rel=\"alternate\" hreflang=\"de-AT\" href=\"https://example.com/de-at/\" /> marks the German page for Austria. 'example.com/de-at/' without https:// would not be fully-qualified.",
+              "source_ids": [
+                "S107#P10",
+                "S107#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Valid codes",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says only language codes listed in ISO 639-1 and region codes listed in ISO 3166-1 Alpha 2 are supported, and specifying the region alone is not valid.",
+              "source_ids": [
+                "S107#P6",
+                "S107#P11"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: put the language first and the region second, as in en-GB, and check each code against the ISO lists before launch.",
+              "source_ids": [
+                "S107#P6",
+                "S107#P11"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "hreflang points users to the most appropriate version.",
+          "source_ids": [
+            "S107#P1"
+          ]
+        },
+        {
+          "text": "HTML, HTTP headers and sitemaps are equivalent.",
+          "source_ids": [
+            "S107#P5"
+          ]
+        },
+        {
+          "text": "Use fully-qualified URLs.",
+          "source_ids": [
+            "S107#P8"
+          ]
+        },
+        {
+          "text": "Use ISO codes; region alone isn't valid.",
+          "source_ids": [
+            "S107#P6",
+            "S107#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your codes",
+        "minutes": "10",
+        "steps": [
+          "Export every hreflang value on your site.",
+          "Check each language code is in ISO 639-1.",
+          "Check each region code is in ISO 3166-1 Alpha 2 and comes with a language.",
+          "Check every href is a full URL with https://."
+        ],
+        "prompt_template": "Here are my hreflang values and URLs: [paste]. Google supports only ISO 639-1 language codes and ISO 3166-1 Alpha 2 region codes, says region alone isn't valid, and requires fully-qualified URLs. Flag every invalid entry and give the corrected version."
+      },
+      "reflection": [
+        "Which method does your site use: HTML, headers or sitemap?",
+        "Have you ever seen 'en-UK' in a site's code?"
+      ],
+      "whats_next": "Next, return links and the x-default fallback."
+    },
+    {
+      "lesson_id": "T58-3",
+      "title": "Return links and x-default",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why every version lists every other",
+        "Count the entries a page needs",
+        "Use x-default as a fallback"
+      ],
+      "scene": {
+        "id": "ret",
+        "title": "Everyone points to everyone",
+        "beats": [
+          {
+            "caption": "Each language version must list itself as well as all other language versions.",
+            "source_ids": [
+              "S107#P2"
+            ]
+          },
+          {
+            "caption": "If two pages don't both point to each other, the tags will be ignored.",
+            "source_ids": [
+              "S107#P9"
+            ]
+          },
+          {
+            "caption": "The reserved x-default value is used when no other language or region matches the user's browser setting.",
+            "source_ids": [
+              "S107#P3"
+            ]
+          },
+          {
+            "caption": "Example: four versions plus x-default gives five entries on every page.",
+            "source_ids": [
+              "S107#P2",
+              "S107#P3"
+            ]
+          },
+          {
+            "caption": "A one-way link from English to French, with no link back, would be ignored.",
+            "source_ids": [
+              "S107#P9"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Return links",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says each language version must list itself as well as all other language versions. If two pages don't both point to each other, the tags will be ignored.",
+              "source_ids": [
+                "S107#P2",
+                "S107#P9"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a page has en-GB, fr-FR, de-DE and es-ES versions plus an x-default. Each of the four pages carries the same five entries, including one pointing to itself.",
+              "source_ids": [
+                "S107#P2",
+                "S107#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The x-default fallback",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says the reserved x-default value is used when no other language or region matches the user's browser setting.",
+              "source_ids": [
+                "S107#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: point x-default at a language chooser or your most widely understood version.",
+              "source_ids": [
+                "S107#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Common mistakes",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "These are the errors that most often break the set, based on Google's rules.",
+              "source_ids": [
+                "S107#P2",
+                "S107#P9"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "One-way links.",
+                  "text": "English lists French, but French doesn't list English. Google ignores tags that aren't reciprocal.",
+                  "source_ids": [
+                    "S107#P9"
+                  ]
+                },
+                {
+                  "lead": "Missing self-reference.",
+                  "text": "Each version must list itself too.",
+                  "source_ids": [
+                    "S107#P2"
+                  ]
+                },
+                {
+                  "lead": "Partial URLs.",
+                  "text": "Alternate URLs must be fully-qualified.",
+                  "source_ids": [
+                    "S107#P8"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Every version lists itself and all others.",
+          "source_ids": [
+            "S107#P2"
+          ]
+        },
+        {
+          "text": "Non-reciprocal tags are ignored.",
+          "source_ids": [
+            "S107#P9"
+          ]
+        },
+        {
+          "text": "x-default catches unmatched browser settings.",
+          "source_ids": [
+            "S107#P3"
+          ]
+        },
+        {
+          "text": "Four versions plus x-default means five entries.",
+          "source_ids": [
+            "S107#P2",
+            "S107#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit one page set",
+        "minutes": "15",
+        "steps": [
+          "Pick one page that exists in several languages.",
+          "List the hreflang entries on each version.",
+          "Check every version lists itself and every other version.",
+          "Check there's one x-default entry, and that it's the same everywhere."
+        ],
+        "prompt_template": "Here are the hreflang entries on each language version of one page: [paste]. Google says each version must list itself and all others, tags that don't point both ways are ignored, and x-default is used when nothing else matches the browser setting. Find every missing or one-way entry."
+      },
+      "reflection": [
+        "Who adds hreflang when a new language launches on your site?",
+        "Where should someone with no matching language land?"
+      ],
+      "whats_next": "Next, redirects, switching and the other signals Google uses."
+    },
+    {
+      "lesson_id": "T58-4",
+      "title": "Redirects, switching and signals",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why automatic language redirects hurt",
+        "Let users switch versions",
+        "Name the signals Google uses for target country"
+      ],
+      "scene": {
+        "id": "sig",
+        "title": "Let people choose",
+        "beats": [
+          {
+            "caption": "Avoid automatically redirecting users from one language version of a site to a different language version.",
+            "source_ids": [
+              "S123#P2"
+            ]
+          },
+          {
+            "caption": "Consider adding hyperlinks to other language versions of a page.",
+            "source_ids": [
+              "S123#P8"
+            ]
+          },
+          {
+            "caption": "Use separate URLs rather than cookies or browser settings to adjust the content language.",
+            "source_ids": [
+              "S123#P5",
+              "S123#P9"
+            ]
+          },
+          {
+            "caption": "Google relies on signals such as ccTLDs, hreflang statements and server location to find the target audience.",
+            "source_ids": [
+              "S123#P12",
+              "S123#P13",
+              "S123#P14",
+              "S123#P15"
+            ]
+          },
+          {
+            "caption": "Server location is not a definitive signal.",
+            "source_ids": [
+              "S123#P16"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Don't redirect by language",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says to avoid automatically redirecting users from one language version of a site to a different language version of a site. Instead, consider adding hyperlinks to other language versions of a page.",
+              "source_ids": [
+                "S123#P2",
+                "S123#P8"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "It also recommends different URLs for each language version rather than using cookies or browser settings to adjust the content language on the page.",
+              "source_ids": [
+                "S123#P5",
+                "S123#P9"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a site sends every visitor with a German browser to /de/. Practitioner inference: an English speaker in Berlin can't reach the English page, and a crawler may only ever see one version.",
+              "source_ids": [
+                "S123#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Signals for the target country",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says it relies on a number of signals to determine the best target audience for a page. These include the following.",
+              "source_ids": [
+                "S123#P12"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "ccTLDs.",
+                  "text": "Country-code top-level domain names, such as .de.",
+                  "source_ids": [
+                    "S123#P13",
+                    "S123#P10"
+                  ]
+                },
+                {
+                  "lead": "hreflang.",
+                  "text": "hreflang statements, whether in tags, headers, or sitemaps.",
+                  "source_ids": [
+                    "S123#P14"
+                  ]
+                },
+                {
+                  "lead": "Server location.",
+                  "text": "Through the IP address of the server, though Google says it's not a definitive signal.",
+                  "source_ids": [
+                    "S123#P15",
+                    "S123#P16"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Don't auto-redirect between language versions.",
+          "source_ids": [
+            "S123#P2"
+          ]
+        },
+        {
+          "text": "Link to the other language versions.",
+          "source_ids": [
+            "S123#P8"
+          ]
+        },
+        {
+          "text": "Don't switch language with cookies on one URL.",
+          "source_ids": [
+            "S123#P9"
+          ]
+        },
+        {
+          "text": "ccTLDs and hreflang are target signals; server location isn't definitive.",
+          "source_ids": [
+            "S123#P13",
+            "S123#P14",
+            "S123#P16"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Test as a visitor",
+        "minutes": "15",
+        "steps": [
+          "Open your site with your browser set to another language.",
+          "Note whether you're redirected, and whether you can switch back.",
+          "Check every page has links to its other language versions.",
+          "List any version a visitor or crawler can't reach directly."
+        ],
+        "prompt_template": "Here is what happened when I visited my site with different browser languages: [notes]. Google says to avoid automatic redirects between language versions, add links to other versions, and use separate URLs rather than cookies or browser settings. Tell me what to change."
+      },
+      "reflection": [
+        "Does your site guess a visitor's language? Can they undo the guess?",
+        "Which signal tells Google your .com site is for Australia?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Give each language version its own URL; Google reads language from visible content, not lang attributes or the URL, and doesn't recommend URL parameters. hreflang helps Google point users to the most appropriate version, through equivalent HTML, header or sitemap methods, using fully-qualified URLs and ISO codes. Every version must list itself and all others, or the tags are ignored, and x-default catches the rest. Don't auto-redirect by language; link between versions instead.",
+    "related_topics": [
+      {
+        "topic_id": "T41",
+        "title": "Canonicalization and near-duplicate content detection"
+      },
+      {
+        "topic_id": "T8",
+        "title": "Tokenization and text normalization"
+      },
+      {
+        "topic_id": "T39",
+        "title": "Web crawling and crawl budget management"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for International SEO and hreflang. The questions revisit hreflang, x-default, language codes and redirects.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T58-L1-01",
+      "T58-L1-02",
+      "T58-L1-03",
+      "T58-L2-01",
+      "T58-L2-02",
+      "T58-L2-03",
+      "T58-L3-01",
+      "T58-L3-02",
+      "T58-L4-01",
+      "T58-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T58-L1-01",
+        "options": [
+          "A. popular",
+          "B. recent",
+          "C. appropriate",
+          "D. widely translated"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says hreflang will help Google Search point users to the most appropriate version of your page by language or region.",
+        "source_ids": [
+          "S107#P1"
+        ]
+      },
+      {
+        "item_id": "T58-L1-03",
+        "options": [
+          "A. True",
+          "B. False",
+          "C. True, but only for lang",
+          "D. True, but only for the URL"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says it doesn't use any code-level language information such as lang attributes, or the URL. It uses the visible content.",
+        "source_ids": [
+          "S123#P1",
+          "S123#P4"
+        ]
+      },
+      {
+        "item_id": "T58-L2-01",
+        "options": [
+          "A. equivalent",
+          "B. ranked by speed",
+          "C. ordered by priority",
+          "D. used only as backups"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google lists HTML tags, HTTP headers and sitemaps, and says the three methods are equivalent from its perspective.",
+        "source_ids": [
+          "S107#P4",
+          "S107#P7",
+          "S107#P5"
+        ]
+      },
+      {
+        "item_id": "T58-L2-02",
+        "options": [
+          "A. True",
+          "B. True, if consistent",
+          "C. True, for regions only",
+          "D. False"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says only language codes listed in ISO 639-1 and region codes listed in ISO 3166-1 Alpha 2 are supported.",
+        "source_ids": [
+          "S107#P6"
+        ]
+      },
+      {
+        "item_id": "T58-L3-01",
+        "options": [
+          "A. 4 entries",
+          "B. 3 entries",
+          "C. 5 entries",
+          "D. 10 entries"
+        ],
+        "answer": "C",
+        "explanation": "Correct: each version must list itself and all others, so four versions give four entries, and the x-default entry makes five.",
+        "source_ids": [
+          "S107#P2",
+          "S107#P3"
+        ]
+      }
+    ]
+  }
+}

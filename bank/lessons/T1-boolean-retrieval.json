@@ -1,0 +1,753 @@
+{
+  "topic_id": "T1",
+  "items_file": "bank/items/T1-boolean-retrieval.json",
+  "course_title": "Boolean retrieval",
+  "subtitle": "How AND, OR and NOT find documents, why all-or-nothing matching runs out of road, and how the same ideas show up in Google's search operators.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain how Boolean retrieval combines terms with AND, OR and NOT",
+    "Describe the trade-off between precision and recall that AND and OR create",
+    "Explain why large collections led to ranked retrieval",
+    "Use Google's search operators for exact matches, exclusions and site checks"
+  ],
+  "intro": [
+    "Boolean retrieval is the oldest idea in search: a document either matches your query or it doesn't. It's still everywhere, from library catalogues and legal databases to the operators you type into Google.",
+    "This course explains how it works, what it does well, and why it struggles on large collections. That struggle is the reason search engines rank results, which is where the rest of this academy picks up.",
+    "The theory comes from the Stanford textbook Introduction to Information Retrieval. The practical part uses Google Search Help's own list of operators."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T1-1",
+      "title": "AND, OR and NOT",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe how the Boolean model sees a document",
+        "Read a term-document incidence matrix",
+        "Work through a query that uses AND and NOT"
+      ],
+      "scene": {
+        "id": "matrix",
+        "title": "Answering a Boolean query",
+        "beats": [
+          {
+            "caption": "The Boolean model views each document as just a set of words.",
+            "source_ids": [
+              "S203#P2"
+            ]
+          },
+          {
+            "caption": "Mark which words appear in which documents, and the result is a binary term-document incidence matrix. These rows are an illustration.",
+            "source_ids": [
+              "S203#P3"
+            ]
+          },
+          {
+            "caption": "The textbook's example query is Brutus AND Caesar AND NOT Calpurnia. Start with the rows for Brutus and Caesar.",
+            "source_ids": [
+              "S203#P4"
+            ]
+          },
+          {
+            "caption": "NOT flips the Calpurnia row: every 1 becomes 0, and every 0 becomes 1.",
+            "source_ids": [
+              "S203#P1"
+            ]
+          },
+          {
+            "caption": "Combine the rows with AND, and only the documents with a 1 in every row match.",
+            "source_ids": [
+              "S203#P1",
+              "S208#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Documents as sets of words",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Boolean retrieval is a model in which terms are combined with the operators and, or, and not. It views each document as just a set of words: a word is either in the document or it isn't.",
+              "source_ids": [
+                "S203#P1",
+                "S203#P2"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "AND",
+                  "text": "Both terms must be in the document.",
+                  "source_ids": [
+                    "S203#P1"
+                  ]
+                },
+                {
+                  "name": "OR",
+                  "text": "Either term can be in the document.",
+                  "source_ids": [
+                    "S203#P1"
+                  ]
+                },
+                {
+                  "name": "NOT",
+                  "text": "The term must not be in the document.",
+                  "source_ids": [
+                    "S203#P1"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The incidence matrix",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "If you list every word down the side and every document across the top, and mark a 1 where a word appears, the result is a binary term-document incidence matrix.",
+              "source_ids": [
+                "S203#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "To answer Brutus AND Caesar AND NOT Calpurnia, take the Brutus row and the Caesar row, flip the Calpurnia row, and keep only the columns with a 1 in all three.",
+              "source_ids": [
+                "S203#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The textbook notes that on a real collection the matrix is extremely sparse, that is, it has few non-zero entries. That's why real systems store an index of where each word appears instead.",
+              "source_ids": [
+                "S203#P9"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Boolean retrieval combines terms with AND, OR and NOT.",
+          "source_ids": [
+            "S203#P1"
+          ]
+        },
+        {
+          "text": "Each document is treated as just a set of words.",
+          "source_ids": [
+            "S203#P2"
+          ]
+        },
+        {
+          "text": "A term-document incidence matrix marks which words appear in which documents.",
+          "source_ids": [
+            "S203#P3"
+          ]
+        },
+        {
+          "text": "A document either matches the query or it doesn't.",
+          "source_ids": [
+            "S208#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Build a tiny incidence matrix",
+        "minutes": "10",
+        "steps": [
+          "Pick four short pages on your site, such as service pages.",
+          "Choose three words that matter to your business.",
+          "Mark a 1 or 0 for each word on each page.",
+          "Answer one AND query and one AND NOT query by hand."
+        ],
+        "prompt_template": "Here are four short pages: [paste text]. Boolean retrieval treats each document as just a set of words and combines terms with AND, OR and NOT. Build a term-document incidence matrix for the words [word 1], [word 2] and [word 3], then show which pages match [word 1] AND [word 2], and [word 1] AND NOT [word 3]."
+      },
+      "reflection": [
+        "Where do you still use AND, OR or NOT style searches in your work?",
+        "What does treating a page as just a set of words leave out?"
+      ],
+      "whats_next": "Next, the trade-off AND and OR force on you: precision against recall."
+    },
+    {
+      "lesson_id": "T1-2",
+      "title": "Precise, but all or nothing",
+      "est_minutes": 6,
+      "objectives": [
+        "Define precision and recall",
+        "Explain how AND and OR shift the balance between them",
+        "Say why a middle ground is hard to reach"
+      ],
+      "scene": {
+        "id": "balance",
+        "title": "AND against OR",
+        "beats": [
+          {
+            "caption": "Boolean queries are precise: a document either matches the query or it does not.",
+            "source_ids": [
+              "S224#P1"
+            ]
+          },
+          {
+            "caption": "Precision asks: what fraction of the returned results are relevant? Recall asks: what fraction of the relevant documents were returned?",
+            "source_ids": [
+              "S203#P7",
+              "S203#P8"
+            ]
+          },
+          {
+            "caption": "Using AND operators tends to produce high precision but low recall searches.",
+            "source_ids": [
+              "S224#P3"
+            ]
+          },
+          {
+            "caption": "Using OR operators gives low precision but high recall searches.",
+            "source_ids": [
+              "S224#P4"
+            ]
+          },
+          {
+            "caption": "And the textbook warns it is difficult or impossible to find a satisfactory middle ground.",
+            "source_ids": [
+              "S224#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two questions about any search",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Search is judged against an information need: the topic about which the user desires to know more. Two questions measure how well a search serves it.",
+              "source_ids": [
+                "S203#P6"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Precision",
+                  "text": "What fraction of the returned results are relevant to the information need?",
+                  "source_ids": [
+                    "S203#P7"
+                  ]
+                },
+                {
+                  "name": "Recall",
+                  "text": "What fraction of the relevant documents in the collection were returned by the system?",
+                  "source_ids": [
+                    "S203#P8"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The AND and OR trade-off",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "AND narrows.",
+                  "text": "Using AND operators tends to produce high precision but low recall searches.",
+                  "source_ids": [
+                    "S224#P3"
+                  ]
+                },
+                {
+                  "lead": "OR widens.",
+                  "text": "Using OR operators gives low precision but high recall searches.",
+                  "source_ids": [
+                    "S224#P4"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "it is difficult or impossible to find a satisfactory middle ground.",
+              "cite": "Introduction to Information Retrieval, 1.4",
+              "source_ids": [
+                "S224#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why people still like it",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Boolean's strength is control. The textbook says it offers the user greater control and transparency over what is retrieved, and that many users, particularly professionals, prefer Boolean query models.",
+              "source_ids": [
+                "S224#P2",
+                "S224#P7"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical researcher searches a legal database for contract AND breach AND damages. Every result contains all three words, but cases that say \"compensation\" instead of \"damages\" are missed. That's high precision and low recall.",
+              "source_ids": [
+                "S224#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Precision is the share of returned results that are relevant.",
+          "source_ids": [
+            "S203#P7"
+          ]
+        },
+        {
+          "text": "Recall is the share of relevant documents that were returned.",
+          "source_ids": [
+            "S203#P8"
+          ]
+        },
+        {
+          "text": "AND tends to raise precision and lower recall. OR does the reverse.",
+          "source_ids": [
+            "S224#P3",
+            "S224#P4"
+          ]
+        },
+        {
+          "text": "A satisfactory middle ground is difficult or impossible to find with Boolean alone.",
+          "source_ids": [
+            "S224#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Feel the trade-off",
+        "minutes": "10",
+        "steps": [
+          "Pick a topic you know well and write a query of three terms joined by AND.",
+          "Run it in a database or site search that supports Boolean operators.",
+          "Change the ANDs to ORs and run it again.",
+          "Compare how many results came back, and how many were useful."
+        ],
+        "prompt_template": "I ran two Boolean searches. With AND: [results summary]. With OR: [results summary]. The textbook says AND tends to give high precision but low recall, OR gives low precision but high recall, and a satisfactory middle ground is difficult or impossible to find. Explain what my results show about precision and recall, in plain language."
+      },
+      "reflection": [
+        "When would you accept low recall to get high precision?",
+        "Why might professionals prefer the control Boolean gives them?"
+      ],
+      "whats_next": "Next, why large collections pushed search engines from matching to ranking."
+    },
+    {
+      "lesson_id": "T1-3",
+      "title": "From matching to ranking",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why linear scanning doesn't scale",
+        "Explain why too many matches is a problem",
+        "Describe what happened when Westlaw tested free text queries"
+      ],
+      "scene": {
+        "id": "ranked",
+        "title": "A pile versus a list",
+        "beats": [
+          {
+            "caption": "The simplest form of document retrieval is a linear scan: read every document, every time.",
+            "source_ids": [
+              "S203#P5"
+            ]
+          },
+          {
+            "caption": "A Boolean query returns a set: a document either matches or does not match.",
+            "source_ids": [
+              "S208#P1"
+            ]
+          },
+          {
+            "caption": "On a large collection, the number of matching documents can far exceed the number a human user could possibly sift through.",
+            "source_ids": [
+              "S208#P2"
+            ]
+          },
+          {
+            "caption": "The textbook's answer is ranked retrieval: score the matches and put the most useful first.",
+            "source_ids": [
+              "S208#P2"
+            ]
+          },
+          {
+            "caption": "At Westlaw, free text queries produced better results than Boolean queries prepared by its own reference librarians.",
+            "source_ids": [
+              "S224#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two scaling problems",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The simplest way to search is a linear scan through every document. That works for a handful of plays, not for the web.",
+              "source_ids": [
+                "S203#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Even with an index, Boolean matching hits a second wall. A document either matches or does not match a query, and on a large collection the matches can far exceed the number a human user could possibly sift through.",
+              "source_ids": [
+                "S208#P1",
+                "S208#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The case for ranking",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Textbook finding",
+              "text": "In tests at Westlaw, the largest commercial legal search service, free text queries produced better results than Boolean queries prepared by Westlaw's own reference librarians.",
+              "source_ids": [
+                "S224#P8"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Boolean hasn't vanished. Many users, particularly professionals, prefer Boolean query models, and some systems add proximity operators: a way of specifying that two terms must occur close to each other in a document.",
+              "source_ids": [
+                "S224#P7",
+                "S224#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What this means for SEO",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Modern search engines rank results rather than returning an unordered set, so matching a query's words is only the start. Later courses on the vector space model and ranking cover how engines decide the order."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A linear scan of every document doesn't scale.",
+          "source_ids": [
+            "S203#P5"
+          ]
+        },
+        {
+          "text": "Boolean matches can far exceed what a person could sift through.",
+          "source_ids": [
+            "S208#P2"
+          ]
+        },
+        {
+          "text": "At Westlaw, free text queries beat Boolean queries written by its own librarians.",
+          "source_ids": [
+            "S224#P8"
+          ]
+        },
+        {
+          "text": "Professionals still often prefer Boolean, and proximity operators extend it.",
+          "source_ids": [
+            "S224#P7",
+            "S224#P6"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Compare a Boolean set with a ranked list",
+        "minutes": "10",
+        "steps": [
+          "Run a Boolean-style search in a database or site search that returns unordered or date-ordered results.",
+          "Run the same idea as a plain-language search in Google.",
+          "Note how far you had to read in each to find something useful.",
+          "Write down what made the ranked list easier or harder to use."
+        ],
+        "prompt_template": "I compared a Boolean search in [tool] with a free text search in Google for [topic]. Here's what I saw: [notes]. The textbook says Boolean matching can return far more documents than a person could sift through, and that at Westlaw free text queries beat Boolean queries written by reference librarians. Help me explain to a client why search engines rank results instead of just matching them."
+      },
+      "reflection": [
+        "Have you ever given up on a search because there were too many results to read?",
+        "When would you still choose Boolean over free text?"
+      ],
+      "whats_next": "Next, Boolean ideas you can use in Google today: its search operators."
+    },
+    {
+      "lesson_id": "T1-4",
+      "title": "Operators in Google Search",
+      "est_minutes": 5,
+      "objectives": [
+        "Use quotes for an exact match and a minus sign to exclude a word",
+        "Use site:, before:, after: and filetype: for SEO checks",
+        "Avoid the spacing mistake that breaks operators"
+      ],
+      "scene": {
+        "id": "operators",
+        "title": "Typing operators into Google",
+        "beats": [
+          {
+            "caption": "Enter a word or a phrase inside quotes for an exact match.",
+            "source_ids": [
+              "S222#P1"
+            ]
+          },
+          {
+            "caption": "Enter - in front of a word that you want to leave out, as in jaguar speed -car.",
+            "source_ids": [
+              "S222#P2",
+              "S222#P7"
+            ]
+          },
+          {
+            "caption": "Enter site: in front of a site or domain.",
+            "source_ids": [
+              "S222#P3"
+            ]
+          },
+          {
+            "caption": "Enter before: in front of a year or specific date, or filetype: in front of the file type.",
+            "source_ids": [
+              "S222#P4",
+              "S222#P5"
+            ]
+          },
+          {
+            "caption": "Do not put spaces between the operator and your search term.",
+            "source_ids": [
+              "S222#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Google's operators",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google Search Help lists a set of operators that work like Boolean controls inside a ranked search. These are the ones it documents.",
+              "source_ids": [
+                "S222#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Exact match.",
+                  "text": "Enter a word or a phrase inside quotes.",
+                  "source_ids": [
+                    "S222#P1"
+                  ]
+                },
+                {
+                  "lead": "Exclude.",
+                  "text": "Enter - in front of a word that you want to leave out, for example jaguar speed -car.",
+                  "source_ids": [
+                    "S222#P2",
+                    "S222#P7"
+                  ]
+                },
+                {
+                  "lead": "One site.",
+                  "text": "Enter site: in front of a site or domain.",
+                  "source_ids": [
+                    "S222#P3"
+                  ]
+                },
+                {
+                  "lead": "Dates.",
+                  "text": "Enter before: in front of a year or specific date. after: works the same way.",
+                  "source_ids": [
+                    "S222#P4"
+                  ]
+                },
+                {
+                  "lead": "File types.",
+                  "text": "Enter filetype: in front of the file type.",
+                  "source_ids": [
+                    "S222#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Google says",
+              "text": "Do not put spaces between the operator and your search term.",
+              "source_ids": [
+                "S222#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Using them in SEO work",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use these when you need a quick check rather than a full report."
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Spot pages on a domain.",
+                  "text": "site:example.com shows results from that domain. Practitioner judgement: it's a sample, not a full index count.",
+                  "source_ids": [
+                    "S222#P3"
+                  ]
+                },
+                {
+                  "lead": "Find copied text.",
+                  "text": "Search a distinctive sentence from your page in quotes to see where else it appears. This is practitioner judgement.",
+                  "source_ids": [
+                    "S222#P1"
+                  ]
+                },
+                {
+                  "lead": "Find documents.",
+                  "text": "filetype:pdf plus a topic finds PDFs, such as old brochures still in results.",
+                  "source_ids": [
+                    "S222#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Note",
+              "text": "Google's help page doesn't list AND, OR or NOT as operators, so don't rely on them in Google the way you would in a library database (absence in the saved page, not a statement)."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Quotes ask for an exact match. A minus sign leaves a word out.",
+          "source_ids": [
+            "S222#P1",
+            "S222#P2"
+          ]
+        },
+        {
+          "text": "site:, before: and filetype: narrow results by domain, date and file type.",
+          "source_ids": [
+            "S222#P3",
+            "S222#P4",
+            "S222#P5"
+          ]
+        },
+        {
+          "text": "Don't put a space between an operator and the search term.",
+          "source_ids": [
+            "S222#P6"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Run three operator checks",
+        "minutes": "10",
+        "steps": [
+          "Search site: followed by your domain, with no space, and skim the results.",
+          "Copy a distinctive sentence from one of your pages and search it in quotes.",
+          "Search your brand name with filetype:pdf.",
+          "Note anything surprising, such as old pages or copies of your text."
+        ],
+        "prompt_template": "I ran these Google searches for [domain]: site:[domain], a quoted sentence from [page], and [brand] filetype:pdf. Here's what came back: [notes]. Google Search Help describes quotes for exact matches, site: for a domain and filetype: for file types. Help me turn what I found into a short list of SEO follow-ups, and label any interpretation of the results as practitioner judgement."
+      },
+      "reflection": [
+        "Which operator would save you the most time this week?",
+        "Why might a site: search not show every page on a domain?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Boolean retrieval treats each document as a set of words and combines terms with AND, OR and NOT. It's precise and gives the searcher control, but it's all or nothing: AND tends to give high precision and low recall, OR the reverse, and a good middle ground is hard to find. On large collections the matches can far exceed what anyone could read, which is why search engines rank results. Boolean ideas live on in Google's operators: quotes for exact matches, a minus sign to exclude, and site:, before: and filetype: with no space after the colon.",
+    "related_topics": [
+      {
+        "topic_id": "T2",
+        "title": "Vector Space Model"
+      },
+      {
+        "topic_id": "T5",
+        "title": "Inverted indexing and posting lists"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Boolean retrieval. The questions revisit AND, OR and NOT, precision and recall, and Google's operators.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T1-L1-01",
+      "T1-L1-02",
+      "T1-L1-03",
+      "T1-L2-01",
+      "T1-L2-02",
+      "T1-L2-03",
+      "T1-L3-01",
+      "T1-L3-02",
+      "T1-L4-01",
+      "T1-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T1-L1-01",
+        "prompt": "Boolean retrieval combines terms with AND, OR and which third operator?",
+        "options": [
+          "A. NEAR",
+          "B. XOR",
+          "C. NOT",
+          "D. ONLY"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the textbook says terms are combined with the operators and, or, and not. Wrong: 'NEAR' - that's the idea behind proximity operators, an extension, not one of the three. 'XOR' and 'ONLY' - the textbook doesn't list them.",
+        "source_ids": [
+          "S203#P1",
+          "S224#P6"
+        ]
+      },
+      {
+        "item_id": "T1-L1-03",
+        "prompt": "What does Google Search Help say about spaces after an operator such as site:?",
+        "options": [
+          "A. Add one space after the colon",
+          "B. Spaces are ignored either way",
+          "C. Use a space only before a domain name",
+          "D. Don't put spaces between them"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says do not put spaces between the operator and your search term, so site:nytimes.com works but site: nytimes.com won't. Wrong: the page doesn't say spaces are needed or ignored.",
+        "source_ids": [
+          "S222#P6"
+        ]
+      }
+    ]
+  }
+}

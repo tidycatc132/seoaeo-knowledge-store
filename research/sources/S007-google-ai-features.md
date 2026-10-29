@@ -5,7 +5,7 @@ title: AI features and your website
 publisher: Google Search Central
 grade: A
 page_date: unknown
-opened: 2026-10-24
+opened: 2026-10-24 (extra passages 2026-10-29)
 status: used
 ---
 Summary: Google documentation on AI Overviews and AI Mode. Describes query fan-out. States no special optimization or schema.org markup is needed; structured data should match visible text.
@@ -32,3 +32,17 @@ Summary: Google documentation on AI Overviews and AI Mode. Describes query fan-o
 > In particular, they're reported on in the Performance report,
 ### P11 included in search traffic
 > are included in the overall search traffic in Search Console.
+### P12 Business Profile up to date
+> Checking that your Merchant Center and Business Profile information is up-to-date
+### P13 SEO still relevant
+> The best practices for SEO remain relevant for AI features in Google Search (such as AI Overviews and AI Mode).
+### P14 crawling allowed
+> Ensuring that crawling is allowed in robots.txt, and by any CDN or hosting infrastructure
+### P15 textual form
+> Making sure that important content is available in textual form
+### P16 images and videos
+> Supporting your textual content with high-quality images and videos, when applicable
+### P17 responses vary
+> AI Mode and AI Overviews may use different models and techniques, so the set of responses and links they show will vary.
+### P18 links to supporting websites
+> get a comprehensive AI-powered response with links to supporting websites

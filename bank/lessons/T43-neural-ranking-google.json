@@ -1,0 +1,746 @@
+{
+  "topic_id": "T43",
+  "items_file": "bank/items/T43-neural-ranking-google.json",
+  "course_title": "Google's AI ranking systems: RankBrain, BERT and MUM",
+  "subtitle": "What Google itself says about RankBrain, neural matching, BERT and MUM, what each one does, and which claims about them you can safely ignore.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain how RankBrain links words to concepts",
+    "Describe what BERT adds to understanding a query",
+    "Place these systems among many that work together",
+    "Check claims about MUM and ranking against Google's guide"
+  ],
+  "intro": [
+    "Google has named several AI systems that help Search understand language: RankBrain, neural matching, BERT and MUM. A lot is written about them. Most of it is guesswork.",
+    "This course uses only what Google has published: its guide to Search ranking systems, its 2022 post on how AI powers search results, and its BERT and MUM announcements.",
+    "Research papers and third-party explanations aren't used. Advice beyond Google's words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T43-1",
+      "title": "RankBrain: words to concepts",
+      "est_minutes": 5,
+      "objectives": [
+        "Say what RankBrain helps Google understand",
+        "Explain why exact words aren't always needed",
+        "Give Google's apex predator example"
+      ],
+      "scene": {
+        "id": "rankbrain",
+        "title": "From words to a concept",
+        "beats": [
+          {
+            "caption": "When Google launched RankBrain in 2015, it was the first deep learning system deployed in Search.",
+            "source_ids": [
+              "S301#P1"
+            ]
+          },
+          {
+            "caption": "RankBrain is an AI system that helps Google understand how words are related to concepts.",
+            "source_ids": [
+              "S300#P2"
+            ]
+          },
+          {
+            "caption": "Google's example: 'what's the title of the consumer at the highest level of a food chain'.",
+            "source_ids": [
+              "S301#P6"
+            ]
+          },
+          {
+            "caption": "RankBrain understands you're looking for what's commonly called an 'apex predator'.",
+            "source_ids": [
+              "S301#P7"
+            ]
+          },
+          {
+            "caption": "So relevant content can be returned even if it doesn't contain all the exact words used in a search.",
+            "source_ids": [
+              "S300#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The first deep learning system",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google uses automated ranking systems that look at many factors and signals about hundreds of billions of web pages. Google says that when it launched RankBrain in 2015, it was the first deep learning system deployed in Search.",
+              "source_ids": [
+                "S300#P1",
+                "S301#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's guide says RankBrain is an AI system that helps it understand how words are related to concepts. Google also says it is used to help rank, or decide the best order for, top search results.",
+              "source_ids": [
+                "S300#P2",
+                "S301#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Google's example",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google gives the query 'what's the title of the consumer at the highest level of a food chain'. It says RankBrain understands that you're looking for what's commonly referred to as an 'apex predator'.",
+              "source_ids": [
+                "S301#P6",
+                "S301#P7"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "That's why, in the guide's words, Google can better return relevant content even if it doesn't contain all the exact words used in a search.",
+              "source_ids": [
+                "S300#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What this means for writing",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "You don't need a separate page for every way people phrase a question. Write one clear page that covers the concept. This is an inference from Google's description, not a promise of how any page ranks.",
+              "source_ids": [
+                "S300#P2",
+                "S300#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "RankBrain was Search's first deep learning system, in 2015.",
+          "source_ids": [
+            "S301#P1"
+          ]
+        },
+        {
+          "text": "It helps Google relate words to concepts.",
+          "source_ids": [
+            "S300#P2"
+          ]
+        },
+        {
+          "text": "Pages can match without every exact query word.",
+          "source_ids": [
+            "S300#P3"
+          ]
+        },
+        {
+          "text": "Google says it helps order top results.",
+          "source_ids": [
+            "S301#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map phrasings to one concept",
+        "minutes": "10",
+        "steps": [
+          "Pick one service or product page.",
+          "Write down five different ways a customer might ask for it.",
+          "Mark the ones that share no words with your page title.",
+          "Check that the page still explains the concept those phrasings point to."
+        ],
+        "prompt_template": "My page is about [concept]. Customers might search: [five phrasings]. Google says RankBrain helps it understand how words relate to concepts, so content can be returned without every exact word. Tell me whether my page explains the concept clearly enough for all five, and what's missing. Label your advice as practitioner judgement."
+      },
+      "reflection": [
+        "Which phrasings of your main service share no words with its title?",
+        "Do you have several thin pages for one concept?"
+      ],
+      "whats_next": "Next, BERT: how small words and context change meaning."
+    },
+    {
+      "lesson_id": "T43-2",
+      "title": "BERT: context and small words",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain how BERT reads a word in context",
+        "Say why prepositions matter",
+        "Update the one in 10 searches figure"
+      ],
+      "scene": {
+        "id": "bert",
+        "title": "Every word counts",
+        "beats": [
+          {
+            "caption": "Launched in 2019, BERT was a huge step change in natural language understanding.",
+            "source_ids": [
+              "S301#P10"
+            ]
+          },
+          {
+            "caption": "BERT models can consider the full context of a word by looking at the words before and after it.",
+            "source_ids": [
+              "S005#P1"
+            ]
+          },
+          {
+            "caption": "That matters for searches where prepositions like 'for' and 'to' matter a lot to the meaning.",
+            "source_ids": [
+              "S005#P2"
+            ]
+          },
+          {
+            "caption": "At launch, Google said BERT would help with one in 10 searches in the U.S. in English.",
+            "source_ids": [
+              "S005#P3"
+            ]
+          },
+          {
+            "caption": "By 2022, Google said BERT plays a critical role in almost every English query.",
+            "source_ids": [
+              "S301#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Reading in both directions",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says BERT, launched in 2019, was a huge step change in natural language understanding. Its announcement says BERT models can consider the full context of a word by looking at the words that come before and after it.",
+              "source_ids": [
+                "S301#P10",
+                "S005#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's guide says it allows Google to understand how combinations of words express different meanings and intent.",
+              "source_ids": [
+                "S300#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Small words, big meaning",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The announcement singles out searches where prepositions like 'for' and 'to' matter a lot to the meaning.",
+              "source_ids": [
+                "S005#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: 'flights to Lisbon from Boston' and 'flights from Lisbon to Boston' use the same words. Only the prepositions show which way you're flying.",
+              "source_ids": [
+                "S005#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "An old figure, updated",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "At launch in 2019, Google said BERT would help Search better understand one in 10 searches in the U.S. in English. In 2022 Google said that today, BERT plays a critical role in almost every English query.",
+              "source_ids": [
+                "S005#P3",
+                "S301#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "If you see 'BERT affects 10% of searches', that's the 2019 launch figure, not Google's later description.",
+              "source_ids": [
+                "S005#P3",
+                "S301#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "BERT reads a word using the words before and after it.",
+          "source_ids": [
+            "S005#P1"
+          ]
+        },
+        {
+          "text": "Prepositions like 'for' and 'to' can change meaning.",
+          "source_ids": [
+            "S005#P2"
+          ]
+        },
+        {
+          "text": "The one in 10 figure dates from the 2019 launch.",
+          "source_ids": [
+            "S005#P3"
+          ]
+        },
+        {
+          "text": "By 2022 BERT played a role in almost every English query.",
+          "source_ids": [
+            "S301#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Keep the small words",
+        "minutes": "10",
+        "steps": [
+          "List the headings on one of your key pages.",
+          "Find any where small words were cut to save space.",
+          "Read each one aloud and ask what it now means.",
+          "Put back words like 'for', 'to' and 'from' where meaning changed."
+        ],
+        "prompt_template": "Here are my page headings: [headings]. Google's BERT announcement says prepositions like 'for' and 'to' can matter a lot to the meaning of a search. Flag any heading where a missing or vague small word could change what it means, and suggest a clearer version."
+      },
+      "reflection": [
+        "Which of your headings read like keyword lists?",
+        "Where could 'to' or 'from' flip the meaning of your copy?"
+      ],
+      "whats_next": "Next, neural matching, passage ranking and how the systems work together."
+    },
+    {
+      "lesson_id": "T43-3",
+      "title": "Many systems, working together",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe what neural matching does",
+        "Say what passage ranking looks at",
+        "Explain why no single system decides rankings"
+      ],
+      "scene": {
+        "id": "systems",
+        "title": "An ensemble, not a single brain",
+        "beats": [
+          {
+            "caption": "In 2018 Google introduced neural matching to Search.",
+            "source_ids": [
+              "S301#P9"
+            ]
+          },
+          {
+            "caption": "Neural matching helps Google understand fuzzier representations of concepts in queries and pages.",
+            "source_ids": [
+              "S301#P2",
+              "S300#P11"
+            ]
+          },
+          {
+            "caption": "Passage ranking identifies individual sections, or 'passages', of a page to better understand how relevant it is.",
+            "source_ids": [
+              "S300#P8",
+              "S300#P12"
+            ]
+          },
+          {
+            "caption": "Search runs on hundreds of algorithms and machine learning models, each with a specialized role.",
+            "source_ids": [
+              "S301#P14",
+              "S301#P15"
+            ]
+          },
+          {
+            "caption": "BERT is never working alone: like all Google's systems, it's part of an ensemble that works together.",
+            "source_ids": [
+              "S301#P4",
+              "S301#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Neural matching",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says it introduced neural matching to Search in 2018. Its guide calls it an AI system that Google uses to understand representations of concepts in queries and pages, and the 2022 post says it helps with fuzzier representations of concepts.",
+              "source_ids": [
+                "S301#P9",
+                "S300#P11",
+                "S301#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Passage ranking",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Passage ranking, Google's guide says, is an AI system used to identify individual sections or 'passages' of a web page to better understand how relevant a page is to a search.",
+              "source_ids": [
+                "S300#P8",
+                "S300#P12"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Clear sections with descriptive headings make each passage easier to understand on its own. That's an inference; Google doesn't say how it finds passages.",
+              "source_ids": [
+                "S300#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "No single system",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says Search runs on hundreds of algorithms and machine learning models. Each has a specialized role, and they trigger at different times and in distinct combinations.",
+              "source_ids": [
+                "S301#P14",
+                "S301#P15"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Even BERT is never working alone. Google says that, like all of its systems, BERT is part of an ensemble of systems that work together.",
+              "source_ids": [
+                "S301#P4",
+                "S301#P11"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's ranking guide also says multiple systems work in various ways to show the most reliable information possible.",
+              "source_ids": [
+                "S300#P10"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Neural matching arrived in Search in 2018.",
+          "source_ids": [
+            "S301#P9"
+          ]
+        },
+        {
+          "text": "It handles fuzzier representations of concepts.",
+          "source_ids": [
+            "S301#P2"
+          ]
+        },
+        {
+          "text": "Passage ranking looks at sections of a page.",
+          "source_ids": [
+            "S300#P8"
+          ]
+        },
+        {
+          "text": "Hundreds of models work together; BERT never works alone.",
+          "source_ids": [
+            "S301#P14",
+            "S301#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your sections",
+        "minutes": "10",
+        "steps": [
+          "Open a long page on your site.",
+          "Read each section on its own, skipping the rest.",
+          "Note any section that only makes sense with the one before it.",
+          "Add a heading or a sentence so each section stands alone."
+        ],
+        "prompt_template": "Here is a long page split into sections: [sections]. Google says passage ranking identifies individual sections of a page to understand how relevant the page is. For each section, tell me whether it makes sense on its own and suggest a clearer heading where it doesn't. Label this as practitioner judgement."
+      },
+      "reflection": [
+        "Which long pages bury their best answer mid-section?",
+        "Have you heard one system blamed for a ranking change?"
+      ],
+      "whats_next": "Next, MUM, and how to check claims about these systems."
+    },
+    {
+      "lesson_id": "T43-4",
+      "title": "MUM and checking claims",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe what Google says MUM is",
+        "State MUM's current role in ranking",
+        "Check a system claim against Google's guide"
+      ],
+      "scene": {
+        "id": "mum",
+        "title": "Powerful, but not ranking",
+        "beats": [
+          {
+            "caption": "MUM stands for Multitask Unified Model.",
+            "source_ids": [
+              "S302#P1"
+            ]
+          },
+          {
+            "caption": "Google says it's a thousand times more powerful than BERT, and can both understand and generate language.",
+            "source_ids": [
+              "S301#P12"
+            ]
+          },
+          {
+            "caption": "It's trained across 75 languages and many tasks at once, and it's multimodal: text, images and more.",
+            "source_ids": [
+              "S302#P2",
+              "S301#P13"
+            ]
+          },
+          {
+            "caption": "But Google's guide says MUM is not currently used for general ranking in Search, only some specific applications.",
+            "source_ids": [
+              "S300#P5",
+              "S301#P5"
+            ]
+          },
+          {
+            "caption": "The guide covers some of Google's more notable ranking systems. Check it before repeating a claim.",
+            "source_ids": [
+              "S300#P9"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What MUM is",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's announcement introduced a new technology called Multitask Unified Model, or MUM. It is trained across 75 different languages and many different tasks at once.",
+              "source_ids": [
+                "S302#P1",
+                "S302#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's 2022 post says MUM is a thousand times more powerful than BERT and is capable of both understanding and generating language. It is also multimodal, meaning it can understand information across multiple modalities such as text and images.",
+              "source_ids": [
+                "S301#P12",
+                "S301#P13"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What MUM doesn't do",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's ranking systems guide says MUM is not currently used for general ranking in Search but rather for some specific applications. The 2022 post also said MUM was not then used to help rank and improve the quality of search results.",
+              "source_ids": [
+                "S300#P5",
+                "S301#P5"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "A pitch to 'restructure everything for MUM' rests on a role Google says MUM doesn't have in general ranking.",
+              "source_ids": [
+                "S300#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Checking a claim",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google describes its guide as a guide to understanding some of its more notable ranking systems. When someone names a system, these checks help.",
+              "source_ids": [
+                "S300#P9"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Find it in the guide.",
+                  "text": "Look up what Google's ranking systems guide says the system does today.",
+                  "source_ids": [
+                    "S300#P9"
+                  ]
+                },
+                {
+                  "lead": "Check the date.",
+                  "text": "Figures like BERT's one in 10 searches came from a 2019 launch post and were later updated.",
+                  "source_ids": [
+                    "S005#P3",
+                    "S301#P3"
+                  ]
+                },
+                {
+                  "lead": "Ask for Google's words.",
+                  "text": "Treat any 'optimise for this system' advice as unconfirmed unless Google says so.",
+                  "source_ids": [
+                    "S301#P4",
+                    "S301#P11"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "MUM is Google's Multitask Unified Model.",
+          "source_ids": [
+            "S302#P1"
+          ]
+        },
+        {
+          "text": "It's multimodal and trained across 75 languages.",
+          "source_ids": [
+            "S302#P2",
+            "S301#P13"
+          ]
+        },
+        {
+          "text": "Google says it isn't currently used for general ranking.",
+          "source_ids": [
+            "S300#P5"
+          ]
+        },
+        {
+          "text": "Check Google's ranking guide before repeating a claim.",
+          "source_ids": [
+            "S300#P9"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Fact-check a pitch",
+        "minutes": "10",
+        "steps": [
+          "Find one article or deck that names a Google AI system.",
+          "Write down each claim it makes about that system.",
+          "Look up each claim in Google's ranking systems guide.",
+          "Mark each claim as confirmed, outdated or unsupported."
+        ],
+        "prompt_template": "This article claims: [claims about RankBrain, BERT or MUM]. Google's ranking systems guide says RankBrain helps relate words to concepts, BERT helps understand how combinations of words express meaning and intent, and MUM is not currently used for general ranking. Mark each claim as confirmed, outdated or unsupported by Google's own words."
+      },
+      "reflection": [
+        "Which system claims have you repeated without checking?",
+        "Where would you look first if a client asked about MUM?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "RankBrain, Search's first deep learning system, helps Google relate words to concepts, so pages can match without every exact word. BERT reads words in context, so small words like 'for' and 'to' count, and by 2022 it played a role in almost every English query. Neural matching and passage ranking add to that, and Google says hundreds of models work together; BERT never works alone. MUM is powerful and multimodal, but Google says it isn't currently used for general ranking. Write clearly for meaning, and check any system claim against Google's own guide.",
+    "related_topics": [
+      {
+        "topic_id": "T42",
+        "title": "Lexical relevance and keyword weighting (TF-IDF, BM25)"
+      },
+      {
+        "topic_id": "T47",
+        "title": "Passage ranking and document chunking"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Google's AI ranking systems. The questions revisit RankBrain, BERT, MUM and how to check claims about them.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T43-L1-01",
+      "T43-L1-02",
+      "T43-L1-03",
+      "T43-L2-01",
+      "T43-L2-02",
+      "T43-L2-03",
+      "T43-L3-01",
+      "T43-L3-02",
+      "T43-L4-01",
+      "T43-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T43-L1-01",
+        "options": [
+          "A. hyperlinks",
+          "B. page titles",
+          "C. user locations",
+          "D. concepts"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google's guide says RankBrain is an AI system that helps it understand how words are related to concepts. Wrong: the guide's sentence doesn't name hyperlinks, page titles or locations.",
+        "source_ids": [
+          "S300#P2"
+        ]
+      },
+      {
+        "item_id": "T43-L1-03",
+        "options": [
+          "A. False, it reads left to right only",
+          "B. True",
+          "C. False, it reads single words",
+          "D. False, it ignores small words"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google's BERT announcement says BERT models can consider the full context of a word by looking at the words that come before and after it. That rules out the other three.",
+        "source_ids": [
+          "S005#P1",
+          "S005#P2"
+        ]
+      },
+      {
+        "item_id": "T43-L2-02",
+        "options": [
+          "A. True, since its 2021 launch",
+          "B. True, for English only",
+          "C. True, for image results",
+          "D. False"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google's ranking systems guide says MUM is not currently used for general ranking in Search but rather for some specific applications. Google's 2022 post also said MUM was not then used to help rank results.",
+        "source_ids": [
+          "S300#P5",
+          "S301#P5"
+        ]
+      },
+      {
+        "item_id": "T43-L3-01",
+        "options": [
+          "A. descriptive adjectives",
+          "B. exact-match keywords",
+          "C. prepositions",
+          "D. brand names"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the announcement mentions searches where prepositions like 'for' and 'to' matter a lot to the meaning, so deleting them risks changing what the heading says. Wrong: the other word types aren't the ones it names.",
+        "source_ids": [
+          "S005#P2"
+        ]
+      }
+    ]
+  }
+}

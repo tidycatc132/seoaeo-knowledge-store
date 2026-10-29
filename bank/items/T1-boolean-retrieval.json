@@ -4,8 +4,8 @@
   "stage": 4,
   "merged_from": [],
   "volatility": "stable",
-  "last_verified": "2026-10-25",
-  "summary": "Boolean retrieval combines terms with AND, OR and NOT, and the textbook says a document either matches or does not match a query. On large collections the number of matches can far exceed what a person could read, which is why ranked retrieval exists; Google Search Help describes quotes for an exact match and a minus sign to exclude a word.",
+  "last_verified": "2026-10-29",
+  "summary": "Boolean retrieval combines terms with AND, OR and NOT, and the textbook says a document either matches or does not match a query. AND tends to give high precision but low recall, OR the reverse, and a satisfactory middle ground is hard to find; on large collections the matches can far exceed what a person could read, which is why ranked retrieval exists. Google Search Help describes quotes for an exact match, a minus sign to exclude a word, and operators such as site:, before: and filetype: with no space after the colon.",
   "actions": [],
   "myths": [],
   "items": [
@@ -20,6 +20,39 @@
       "related_topics": [],
       "source_ids": [
         "S203#P1"
+      ]
+    },
+    {
+      "item_id": "T1-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "In the textbook's Boolean retrieval model, how is each document viewed?",
+      "options": [
+        "A. As just a set of words",
+        "B. As a ranked list of passages",
+        "C. As a vector of weighted term scores",
+        "D. As a graph of links to other pages"
+      ],
+      "answer": "A",
+      "explanation": "Correct: the textbook says the model views each document as just a set of words. Wrong: ranked passages, weighted vectors and link graphs belong to other models, not the Boolean model as described.",
+      "related_topics": [
+        "T2"
+      ],
+      "source_ids": [
+        "S203#P2"
+      ]
+    },
+    {
+      "item_id": "T1-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: Google Search Help says to put a space after an operator, as in 'site: nytimes.com'.",
+      "options": [],
+      "answer": "False",
+      "explanation": "Google Search Help says not to put spaces between the operator and your search term: site:nytimes.com works, site: nytimes.com won't.",
+      "related_topics": [],
+      "source_ids": [
+        "S222#P6"
       ]
     },
     {
@@ -41,6 +74,131 @@
         "S208#P2",
         "S203#P1",
         "S222#P1"
+      ]
+    },
+    {
+      "item_id": "T1-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'Joining terms with OR makes a Boolean search more precise.' Which correction fits the textbook?",
+      "options": [
+        "A. OR has no effect on precision or recall",
+        "B. OR always gives the best middle ground",
+        "C. OR only works alongside proximity operators",
+        "D. OR gives low precision but high recall"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the textbook says using OR operators gives low precision but high recall searches. Wrong: OR does change precision and recall; the textbook says a satisfactory middle ground is difficult or impossible to find; proximity operators are a separate feature.",
+      "related_topics": [],
+      "source_ids": [
+        "S224#P4",
+        "S224#P5",
+        "S224#P6"
+      ]
+    },
+    {
+      "item_id": "T1-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which statement is NOT supported by the textbook's section on Boolean versus ranked retrieval?",
+      "options": [
+        "A. Boolean queries are precise",
+        "B. AND tends to give high precision, low recall",
+        "C. A satisfactory middle ground is easy to find",
+        "D. Many professionals prefer Boolean query models"
+      ],
+      "answer": "C",
+      "explanation": "Unsupported: the textbook says it is difficult or impossible to find a satisfactory middle ground. Supported: Boolean queries are precise; AND tends to produce high precision but low recall; many users, particularly professionals, prefer Boolean query models.",
+      "related_topics": [],
+      "source_ids": [
+        "S224#P5",
+        "S224#P1",
+        "S224#P3",
+        "S224#P7"
+      ]
+    },
+    {
+      "item_id": "T1-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical: an SEO wants Google results containing the exact phrase emergency boiler repair, leaving out pages with the word jobs. Which query matches Google Search Help?",
+      "options": [
+        "A. \"emergency boiler repair\" -jobs",
+        "B. emergency boiler repair NOT jobs",
+        "C. emergency boiler repair -jobs only",
+        "D. emergency AND boiler AND repair -jobs"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google Search Help says to enter a phrase inside quotes for an exact match and to enter - in front of a word you want to leave out. Wrong: the saved help page doesn't list NOT, AND or 'only' as Google operators (absence in the saved page), and without quotes the phrase isn't matched exactly.",
+      "related_topics": [],
+      "source_ids": [
+        "S222#P1",
+        "S222#P2",
+        "S222#P7"
+      ]
+    },
+    {
+      "item_id": "T1-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "Hypothetical site audit plan: (1) search site:example.com to see pages from the domain; (2) search site: example.com, with a space after the colon; (3) search \"returns policy\" in quotes for the exact phrase; (4) search filetype:pdf to find PDFs. Which step breaks Google Search Help's guidance?",
+      "options": [
+        "A. Step 1, site: followed by the domain",
+        "B. Step 2, the space after site:",
+        "C. Step 3, the phrase in quotes",
+        "D. Step 4, the filetype: search"
+      ],
+      "answer": "B",
+      "explanation": "Correct: Google says not to put spaces between the operator and your search term, so site: example.com won't work. Wrong: site: in front of a domain, a phrase inside quotes and filetype: in front of a file type are all described on the page.",
+      "related_topics": [],
+      "source_ids": [
+        "S222#P6",
+        "S222#P3",
+        "S222#P1",
+        "S222#P5"
+      ]
+    },
+    {
+      "item_id": "T1-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical research team, Site L. Symptom: a query of many terms joined by AND returns only 3 documents, though the team knows dozens of relevant ones exist. Evidence: (1) the textbook says using AND operators tends to produce high precision but low recall searches; (2) it defines recall as the fraction of the relevant documents in the collection that were returned; (3) it says OR gives low precision but high recall. Which diagnosis fits?",
+      "options": [
+        "A. Precision is low: most of the 3 are irrelevant",
+        "B. Recall is high: the search returned most relevant documents",
+        "C. The collection holds no relevant documents",
+        "D. Recall is low: AND left relevant documents out"
+      ],
+      "answer": "D",
+      "explanation": "Correct: AND tends to produce low recall, and returning 3 of dozens of relevant documents is a small fraction of the relevant documents returned. Wrong: AND tends towards high, not low, precision; recall here is low, not high; the team knows relevant documents exist.",
+      "related_topics": [],
+      "source_ids": [
+        "S224#P3",
+        "S203#P8",
+        "S224#P4"
+      ]
+    },
+    {
+      "item_id": "T1-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical legal researcher, Site M. Symptom: after changing every AND to OR, the query returns 40,000 matches. Evidence: (1) the textbook says a document either matches or does not match a Boolean query; (2) it says the number of matching documents can far exceed the number a human user could possibly sift through; (3) it says OR gives low precision but high recall; (4) it says a satisfactory middle ground is difficult or impossible to find. What best explains the result?",
+      "options": [
+        "A. OR widened recall; ranking would help sift",
+        "B. OR raised precision, so all 40,000 are relevant",
+        "C. OR cut recall, so key documents went missing",
+        "D. Boolean always finds the middle ground on its own"
+      ],
+      "answer": "A",
+      "explanation": "Correct: OR gives high recall and low precision, and Boolean matching gives an unranked set that can far exceed what a person can sift through, which is the textbook's case for ranked retrieval. Wrong: OR lowers precision; OR raises recall; the textbook says a satisfactory middle ground is difficult or impossible to find.",
+      "related_topics": [
+        "T2"
+      ],
+      "source_ids": [
+        "S224#P4",
+        "S208#P1",
+        "S208#P2",
+        "S224#P5"
       ]
     }
   ]

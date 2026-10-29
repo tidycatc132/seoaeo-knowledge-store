@@ -1,0 +1,817 @@
+{
+  "topic_id": "T63",
+  "items_file": "bank/items/T63-local-citations.json",
+  "course_title": "Citations and local links",
+  "subtitle": "What Google actually says about links and local prominence, where citation advice goes beyond it, and which link tactics its spam policy rules out.",
+  "last_verified": "2026-10-28",
+  "outcomes": [
+    "Explain how links and reviews feed local prominence, in Google's words",
+    "Separate what Google says about business info from citation-building theory",
+    "Recognise the link tactics Google's spam policy lists as link spam",
+    "Handle sponsor and paid local links so they stay within Google's policy"
+  ],
+  "intro": [
+    "Local SEO advice is full of citations: listings of a business's name, address and phone number on directories around the web. Agencies sell them by the hundred. But what does Google itself say?",
+    "Less than you might expect. Google's local ranking page ties prominence to links and reviews, and its Business Profile guidelines ask for accurate details. It never names directory citations. Its spam policy, on the other hand, is specific about which kinds of links count as spam.",
+    "This course keeps to those pages. Where advice goes further, such as keeping listings consistent across directories, it's labelled practitioner judgement or industry theory."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T63-1",
+      "title": "Links and prominence",
+      "est_minutes": 5,
+      "objectives": [
+        "Name the three things Google says local results are based on",
+        "Explain what Google says prominence is based on",
+        "Say why paying for a local ranking isn't an option"
+      ],
+      "scene": {
+        "id": "prom",
+        "title": "What makes a business well-known",
+        "beats": [
+          {
+            "caption": "Google describes three local factors: relevance, distance and prominence.",
+            "source_ids": [
+              "S600#P1",
+              "S600#P2",
+              "S600#P3"
+            ]
+          },
+          {
+            "caption": "Prominence means how well-known a business is.",
+            "source_ids": [
+              "S600#P3"
+            ]
+          },
+          {
+            "caption": "Google says this factor's also based on info like how many websites link to your business and how many reviews you have.",
+            "source_ids": [
+              "S600#P4"
+            ]
+          },
+          {
+            "caption": "Links are also how Google finds pages: other pages are discovered when Google extracts a link from a known page to a new page.",
+            "source_ids": [
+              "S120#P6"
+            ]
+          },
+          {
+            "caption": "And there's no shortcut. Google says there's no way to request or pay for a better local ranking.",
+            "source_ids": [
+              "S600#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Three factors",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's local ranking help names three factors that decide which businesses appear for a local search.",
+              "source_ids": [
+                "S600#P1",
+                "S600#P2",
+                "S600#P3"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Relevance",
+                  "text": "How well a Business Profile matches what someone is searching for.",
+                  "source_ids": [
+                    "S600#P1"
+                  ]
+                },
+                {
+                  "name": "Distance",
+                  "text": "How far each business is from the customer who's searching.",
+                  "source_ids": [
+                    "S600#P2"
+                  ]
+                },
+                {
+                  "name": "Prominence",
+                  "text": "How well-known a business is.",
+                  "source_ids": [
+                    "S600#P3"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where links come in",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "This factor’s also based on info like how many websites link to your business and how many reviews you have.",
+              "cite": "Google Business Profile Help, Tips to improve your local ranking",
+              "source_ids": [
+                "S600#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "That sentence is the only place on the page where links come up. It mentions websites that link to your business. It doesn't mention directories, listings or citations.",
+              "source_ids": [
+                "S600#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Links matter to Google for discovery too. Its guide to how Search works says other pages are discovered when Google extracts a link from a known page to a new page.",
+              "source_ids": [
+                "S120#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "No paid shortcut",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "There's no way to request or pay for a better local ranking on Google.",
+              "source_ids": [
+                "S600#P6"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical café has a handful of reviews and no other sites linking to it. On Google's account, the inputs it names for prominence are links and reviews, so those are what the café would need more of.",
+              "source_ids": [
+                "S600#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google names relevance, distance and prominence as its local factors.",
+          "source_ids": [
+            "S600#P1",
+            "S600#P2",
+            "S600#P3"
+          ]
+        },
+        {
+          "text": "Prominence is also based on how many websites link to the business and how many reviews it has.",
+          "source_ids": [
+            "S600#P4"
+          ]
+        },
+        {
+          "text": "Google finds new pages by following links from pages it already knows.",
+          "source_ids": [
+            "S120#P6"
+          ]
+        },
+        {
+          "text": "There's no way to request or pay for a better local ranking.",
+          "source_ids": [
+            "S600#P6"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map a business's prominence inputs",
+        "minutes": "10",
+        "steps": [
+          "Pick a local business you know and search for it by name.",
+          "Note how many reviews its Business Profile shows.",
+          "Search for its name in quotes and note which other websites link to or mention it.",
+          "List two genuine ways it could earn more of either."
+        ],
+        "prompt_template": "I'm reviewing the local prominence of [business name] in [town]. Google says prominence means how well-known a business is, and that it's also based on info like how many websites link to the business and how many reviews it has. Here is what I found: [number of reviews, sites that link to it]. Suggest genuine ways this business could earn more local links and reviews, and flag any idea that would involve paying for links."
+      },
+      "reflection": [
+        "Which local businesses near you seem well-known online, and why?",
+        "Where would a new business in your area most naturally earn its first links?"
+      ],
+      "whats_next": "Next, citations: what Google says about business details, and what it doesn't."
+    },
+    {
+      "lesson_id": "T63-2",
+      "title": "What Google says about citations",
+      "est_minutes": 6,
+      "objectives": [
+        "Define a citation as the industry uses the word",
+        "Say what Google's saved pages do and don't say about citations",
+        "Apply Google's guidance on accurate business details"
+      ],
+      "scene": {
+        "id": "cites",
+        "title": "The citation gap",
+        "beats": [
+          {
+            "caption": "In industry usage, a citation is a listing of a business's name, address and phone number on another site, such as a directory. That's an industry term, not Google's.",
+            "source_ids": []
+          },
+          {
+            "caption": "Google's local ranking page names links and reviews as prominence inputs. It doesn't name directory citations.",
+            "source_ids": [
+              "S600#P4"
+            ]
+          },
+          {
+            "caption": "What Google does say: businesses with complete and accurate info are more likely to show up in local search results.",
+            "source_ids": [
+              "S600#P8"
+            ]
+          },
+          {
+            "caption": "And if your business info isn't accurate, your Business Profile might not show up for relevant searches in your area.",
+            "source_ids": [
+              "S600#P11"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: keep directory listings matching your Business Profile, but treat claims that citations drive rankings as industry theory.",
+            "source_ids": []
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "A term Google doesn't use",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Local SEO guides use \"citation\" for any mention of a business's name, address and phone number on another site: directories, review sites, chamber of commerce pages. Google's saved local ranking page doesn't use the word.",
+              "source_ids": [
+                "S600#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Industry theory",
+              "text": "Claims that the number or consistency of citations is a local ranking factor come from industry studies, not from Google. Google's saved page names websites that link to the business and reviews. It's silent on citations (absence in the saved page, not a statement)."
+            }
+          ]
+        },
+        {
+          "heading": "What Google asks for instead",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's guidance is about the accuracy of your own details, starting with the Business Profile.",
+              "source_ids": [
+                "S600#P8",
+                "S600#P11"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Complete and accurate.",
+                  "text": "Businesses with complete and accurate info are more likely to show up in local search results.",
+                  "source_ids": [
+                    "S600#P8"
+                  ]
+                },
+                {
+                  "lead": "Real-world name.",
+                  "text": "Your name should reflect your business's real-world name.",
+                  "source_ids": [
+                    "S601#P6"
+                  ]
+                },
+                {
+                  "lead": "Precise address.",
+                  "text": "Use a precise, accurate address and/or service area to describe your business location.",
+                  "source_ids": [
+                    "S601#P11"
+                  ]
+                },
+                {
+                  "lead": "Inaccurate info costs you.",
+                  "text": "If your business info isn't accurate, your Business Profile might not show up for relevant searches in your area.",
+                  "source_ids": [
+                    "S600#P11"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "A sensible approach",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this approach when you inherit a business with listings scattered across the web."
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Start with the profile.",
+                  "text": "Make sure the name and address match Google's guidelines.",
+                  "source_ids": [
+                    "S601#P6",
+                    "S601#P11"
+                  ]
+                },
+                {
+                  "lead": "Fix what's wrong.",
+                  "text": "Correct listings that show an old address or phone number, because they mislead customers. This is practitioner judgement."
+                },
+                {
+                  "lead": "Don't buy in bulk.",
+                  "text": "Skip bulk directory packages. Lesson 3 shows why.",
+                  "source_ids": [
+                    "S209#P27"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Citation is an industry term. Google's saved local ranking page doesn't use it.",
+          "source_ids": [
+            "S600#P4"
+          ]
+        },
+        {
+          "text": "Google says complete and accurate info makes a business more likely to show up.",
+          "source_ids": [
+            "S600#P8"
+          ]
+        },
+        {
+          "text": "Inaccurate info can stop a Business Profile showing for relevant searches.",
+          "source_ids": [
+            "S600#P11"
+          ]
+        },
+        {
+          "text": "Citation-as-ranking-factor claims are industry theory.",
+          "source_ids": [
+            "S600#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check a business's details across the web",
+        "minutes": "10",
+        "steps": [
+          "Note the name, address and phone number on a business's Business Profile.",
+          "Find three other sites that list the same business.",
+          "Record any differences in name, address or phone.",
+          "Decide which differences would mislead a customer."
+        ],
+        "prompt_template": "Here are the details for [business] from its Google Business Profile: [name, address, phone]. Here's how three other sites list it: [paste]. Google says businesses with complete and accurate info are more likely to show up in local search results, and that the business name should reflect its real-world name. Point out the differences, say which could mislead customers, and keep any claim about citations as a ranking factor labelled as industry theory."
+      },
+      "reflection": [
+        "Have you ever turned up at a business using an old address or phone number from a listing?",
+        "Why might Google talk about accuracy rather than about the number of listings?"
+      ],
+      "whats_next": "Next, the link tactics Google's spam policy lists as link spam, including some directory links."
+    },
+    {
+      "lesson_id": "T63-3",
+      "title": "Links Google calls spam",
+      "est_minutes": 6,
+      "objectives": [
+        "Define link spam in Google's words",
+        "Recognise the paid, swapped and directory link examples Google lists",
+        "Check a local link plan against the list"
+      ],
+      "scene": {
+        "id": "spam",
+        "title": "Stamping the link spam list",
+        "beats": [
+          {
+            "caption": "Google defines link spam as creating links to or from a site primarily for the purpose of manipulating search rankings.",
+            "source_ids": [
+              "S209#P5"
+            ]
+          },
+          {
+            "caption": "Buying or selling links for ranking purposes is on the list, including exchanging goods or services for links.",
+            "source_ids": [
+              "S209#P23",
+              "S209#P24"
+            ]
+          },
+          {
+            "caption": "So are excessive link exchanges: link to me and I'll link to you.",
+            "source_ids": [
+              "S209#P26"
+            ]
+          },
+          {
+            "caption": "Low-quality directory or bookmark site links are listed, and so is using automated programs or services to create links.",
+            "source_ids": [
+              "S209#P27",
+              "S209#P6"
+            ]
+          },
+          {
+            "caption": "Widely distributed links in the footers or templates of various sites are on the list too.",
+            "source_ids": [
+              "S209#P28"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The definition",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "Link spam is the practice of creating links to or from a site primarily for the purpose of manipulating search rankings.",
+              "cite": "Google Search Central, Spam policies",
+              "source_ids": [
+                "S209#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The test is purpose. A link that exists to move rankings, rather than to help a reader, is what the policy describes.",
+              "source_ids": [
+                "S209#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Examples that come up in local SEO",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's list is longer, but these are the examples local businesses meet most often.",
+              "source_ids": [
+                "S209#P5"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Bought links.",
+                  "text": "Buying or selling links for ranking purposes.",
+                  "source_ids": [
+                    "S209#P23"
+                  ]
+                },
+                {
+                  "lead": "Swaps.",
+                  "text": "Exchanging goods or services for links, or sending someone a product in exchange for them writing about it and including a link.",
+                  "source_ids": [
+                    "S209#P24",
+                    "S209#P25"
+                  ]
+                },
+                {
+                  "lead": "Link exchanges.",
+                  "text": "Excessive link exchanges, or partner pages exclusively for the sake of cross-linking.",
+                  "source_ids": [
+                    "S209#P26"
+                  ]
+                },
+                {
+                  "lead": "Directories.",
+                  "text": "Low-quality directory or bookmark site links.",
+                  "source_ids": [
+                    "S209#P27"
+                  ]
+                },
+                {
+                  "lead": "Automation.",
+                  "text": "Using automated programs or services to create links to your site.",
+                  "source_ids": [
+                    "S209#P6"
+                  ]
+                },
+                {
+                  "lead": "Footers.",
+                  "text": "Widely distributed links in the footers or templates of various sites.",
+                  "source_ids": [
+                    "S209#P28"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Reading the directory line carefully",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's wording is \"low-quality directory or bookmark site links\". It doesn't say every directory listing is spam.",
+              "source_ids": [
+                "S209#P27"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "A listing on a directory people actually use, such as your local chamber of commerce, is a different thing from hundreds of links on directories nobody visits. Bulk packages sold by the hundred look much more like the second kind."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Link spam is creating links primarily to manipulate search rankings.",
+          "source_ids": [
+            "S209#P5"
+          ]
+        },
+        {
+          "text": "Bought links, swapped goods or products for links, and excessive link exchanges are all listed.",
+          "source_ids": [
+            "S209#P23",
+            "S209#P24",
+            "S209#P25",
+            "S209#P26"
+          ]
+        },
+        {
+          "text": "Google lists low-quality directory links and automated link building.",
+          "source_ids": [
+            "S209#P27",
+            "S209#P6"
+          ]
+        },
+        {
+          "text": "Widely distributed footer or template links are listed too.",
+          "source_ids": [
+            "S209#P28"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check a local link plan",
+        "minutes": "10",
+        "steps": [
+          "Write down, or find, a link building plan for a local business.",
+          "Mark each tactic that involves paying, swapping or automating.",
+          "Compare each one with Google's link spam examples.",
+          "Rewrite the plan without the matching tactics."
+        ],
+        "prompt_template": "Here's a link building plan for a local business: [paste plan]. Google's spam policy lists as link spam: buying or selling links for ranking purposes; exchanging goods or services for links; sending someone a product in exchange for them writing about it and including a link; excessive link exchanges; low-quality directory or bookmark site links; using automated programs or services to create links; and widely distributed links in the footers or templates of various sites. Flag each tactic in the plan that matches, and suggest a cleaner alternative for each."
+      },
+      "reflection": [
+        "Have you seen a directory package sold by the hundred? What would you tell a client who asked about one?",
+        "Which local links in your area could a business earn without paying or swapping?"
+      ],
+      "whats_next": "Next, sponsor and paid links: how to keep them within Google's policy."
+    },
+    {
+      "lesson_id": "T63-4",
+      "title": "Sponsor and paid local links",
+      "est_minutes": 5,
+      "objectives": [
+        "Say when Google accepts paid links",
+        "Choose between rel=sponsored, ugc and nofollow",
+        "Explain what qualifying a link does and doesn't do"
+      ],
+      "scene": {
+        "id": "qualify",
+        "title": "A sponsor link, qualified",
+        "beats": [
+          {
+            "caption": "Google understands that buying and selling links is a normal part of the economy of the web for advertising and sponsorship purposes.",
+            "source_ids": [
+              "S209#P29"
+            ]
+          },
+          {
+            "caption": "It's not a violation of its policies to have such links as long as they are qualified with rel=nofollow or rel=sponsored.",
+            "source_ids": [
+              "S209#P30"
+            ]
+          },
+          {
+            "caption": "Google asks for links that are advertisements or paid placements to be marked with the sponsored value.",
+            "source_ids": [
+              "S406#P1"
+            ]
+          },
+          {
+            "caption": "It recommends marking user-generated links, such as comments and forum posts, with the ugc value.",
+            "source_ids": [
+              "S406#P2"
+            ]
+          },
+          {
+            "caption": "Qualified links will generally not be followed, though the linked pages may be found through other means, such as sitemaps or links from other sites.",
+            "source_ids": [
+              "S406#P3",
+              "S406#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Paid links aren't banned",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Local businesses sponsor teams, events and charities, and the sponsor often gets a link. Google's spam policy accepts this as long as the link is labelled.",
+              "source_ids": [
+                "S209#P29",
+                "S209#P30"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "It's not a violation of our policies to have such links as long as they are qualified with a rel=\"nofollow\" or rel=\"sponsored\" attribute value to the <a> tag.",
+              "cite": "Google Search Central, Spam policies",
+              "source_ids": [
+                "S209#P30"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Which value to use",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "sponsored",
+                  "text": "For links that are advertisements or paid placements, commonly called paid links.",
+                  "source_ids": [
+                    "S406#P1"
+                  ]
+                },
+                {
+                  "name": "ugc",
+                  "text": "For user-generated content links, such as comments and forum posts.",
+                  "source_ids": [
+                    "S406#P2"
+                  ]
+                },
+                {
+                  "name": "nofollow",
+                  "text": "Also accepted by the spam policy for paid links.",
+                  "source_ids": [
+                    "S209#P30"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical plumber sponsors a youth football club, and the club's sponsors page links to the plumber. The link is a paid placement, so the club marks it rel=\"sponsored\".",
+              "source_ids": [
+                "S406#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What qualifying does",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says links marked with these values will generally not be followed. The linked page can still be found through other means, such as sitemaps or links from other sites.",
+              "source_ids": [
+                "S406#P3",
+                "S406#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Sponsorships are still worth doing for the visibility and goodwill they bring locally. Just don't buy them for the link, and ask the site to qualify it."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google accepts paid links for advertising and sponsorship when they are qualified.",
+          "source_ids": [
+            "S209#P29",
+            "S209#P30"
+          ]
+        },
+        {
+          "text": "Use rel=sponsored for ads and paid placements.",
+          "source_ids": [
+            "S406#P1"
+          ]
+        },
+        {
+          "text": "Use rel=ugc for comments and forum posts.",
+          "source_ids": [
+            "S406#P2"
+          ]
+        },
+        {
+          "text": "Qualified links generally aren't followed, but pages can still be found other ways.",
+          "source_ids": [
+            "S406#P3",
+            "S406#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit a business's sponsor links",
+        "minutes": "10",
+        "steps": [
+          "List the clubs, events or charities a local business sponsors.",
+          "Find each sponsor link on those sites.",
+          "Check each link's rel attribute in the page source.",
+          "Note which ones need a rel=sponsored value."
+        ],
+        "prompt_template": "Here are the sponsor links to [business] that I found, with their HTML: [paste links]. Google's spam policy says paid links aren't a violation as long as they're qualified with rel=\"nofollow\" or rel=\"sponsored\", and Google asks for advertisements or paid placements to be marked with the sponsored value. Tell me which links are qualified, which aren't, and draft a short, friendly note asking each site to add rel=\"sponsored\"."
+      },
+      "reflection": [
+        "Which local sponsorships would a business do even if there were no link?",
+        "How would you explain rel=sponsored to a club's volunteer web editor?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google ties local prominence to how many websites link to a business and how many reviews it has, and says there's no way to pay for a better local ranking. It never names directory citations, so citation-as-ranking-factor claims are industry theory. What it asks for is accurate business details. Its spam policy is clear about the link tactics to avoid: bought links, swaps, excessive exchanges, low-quality directories, automated links and footer links. Sponsorship links are fine when they're qualified with rel=sponsored or nofollow.",
+    "related_topics": [
+      {
+        "topic_id": "T59",
+        "title": "How local results are ranked"
+      },
+      {
+        "topic_id": "T54",
+        "title": "Web spam detection and algorithmic quality filters"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Citations and local links. The questions revisit local prominence, citation claims, link spam and sponsor links.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T63-L1-01",
+      "T63-L1-02",
+      "T63-L1-03",
+      "T63-L2-01",
+      "T63-L2-02",
+      "T63-L2-03",
+      "T63-L3-01",
+      "T63-L3-02",
+      "T63-L4-01",
+      "T63-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T63-L1-01",
+        "prompt": "Google says prominence is also based on info like how many of what link to your business?",
+        "options": [
+          "A. directories",
+          "B. customers",
+          "C. citations",
+          "D. websites"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says prominence is also based on info like how many websites link to your business and how many reviews you have. Wrong: 'directories' and 'citations' - the saved page doesn't name either. 'customers' - customers leave reviews, but the sentence about linking names websites.",
+        "source_ids": [
+          "S600#P4"
+        ]
+      },
+      {
+        "item_id": "T63-L1-03",
+        "prompt": "Does Google's saved local ranking page name directory citations as a ranking factor?",
+        "options": [
+          "A. Yes, as part of the relevance factor",
+          "B. Yes, as part of distance",
+          "C. No, it doesn't name them",
+          "D. Yes, as its top local factor"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the page says prominence is also based on how many websites link to your business and how many reviews you have, and doesn't name directory citations. Wrong: relevance is about how well a profile matches the search; distance is how far the business is from the searcher; the page doesn't rank its factors.",
+        "source_ids": [
+          "S600#P4",
+          "S600#P1",
+          "S600#P2"
+        ]
+      }
+    ]
+  }
+}

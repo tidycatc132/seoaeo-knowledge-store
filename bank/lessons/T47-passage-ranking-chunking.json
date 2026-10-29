@@ -1,0 +1,809 @@
+{
+  "topic_id": "T47",
+  "items_file": "bank/items/T47-passage-ranking-chunking.json",
+  "course_title": "Passages and chunks",
+  "subtitle": "How Google uses passages to judge a page's relevance, what that means for long pages, and how RAG systems split documents into chunks.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain what Google says passage ranking does",
+    "Structure long pages without splitting them up",
+    "Explain why RAG systems chunk documents",
+    "Choose a chunking method for your own retrieval system"
+  ],
+  "intro": [
+    "The answer to a search can be one sentence deep inside a long page. Google says it can now understand passages like that. Separately, AI retrieval systems cut documents into chunks so models can handle them.",
+    "This course uses Google's ranking systems guide and its 2020 Search On post about passages, plus Microsoft's Azure AI Search guide to chunking documents.",
+    "The two ideas sound alike but come from different systems. Microsoft's chunk sizes describe its own tooling, not Google. Advice beyond the sources' words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T47-1",
+      "title": "Passages in Google ranking",
+      "est_minutes": 5,
+      "objectives": [
+        "Say what Google's passage ranking identifies",
+        "Explain the needle-in-a-haystack problem",
+        "Place the 7 percent figure in time"
+      ],
+      "scene": {
+        "id": "needle",
+        "title": "The buried answer",
+        "beats": [
+          {
+            "caption": "The single sentence that answers your question might be buried deep in a web page.",
+            "source_ids": [
+              "S237#P2"
+            ]
+          },
+          {
+            "caption": "In 2020 Google said it could better understand the relevancy of specific passages.",
+            "source_ids": [
+              "S237#P1"
+            ]
+          },
+          {
+            "caption": "Passage ranking identifies individual sections, or 'passages', of a page to better understand how relevant the page is.",
+            "source_ids": [
+              "S300#P8",
+              "S300#P12"
+            ]
+          },
+          {
+            "caption": "Understanding passages as well as the overall page helps find needle-in-a-haystack information.",
+            "source_ids": [
+              "S237#P3"
+            ]
+          },
+          {
+            "caption": "In 2020 Google said it would improve 7 percent of search queries across all languages.",
+            "source_ids": [
+              "S237#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The problem",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's 2020 Search On post put it simply: the single sentence that answers your question might be buried deep in a web page.",
+              "source_ids": [
+                "S237#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google said it had recently made a breakthrough in ranking and was now able to better understand the relevancy of specific passages. By understanding passages in addition to the relevancy of the overall page, it said, it can find that needle-in-a-haystack information.",
+              "source_ids": [
+                "S237#P1",
+                "S237#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What Google's guide says today",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's ranking systems guide describes passage ranking as an AI system it uses to identify individual sections or 'passages' of a web page to better understand how relevant a page is to a search.",
+              "source_ids": [
+                "S300#P8",
+                "S300#P12"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Note the wording",
+              "text": "The passage helps Google judge the page. Neither source says passages are ranked as separate results.",
+              "source_ids": [
+                "S300#P12",
+                "S237#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "An old figure",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "At launch, Google said the technology would improve 7 percent of search queries across all languages as it rolled out globally. That's a 2020 estimate, not a current measure.",
+              "source_ids": [
+                "S237#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A page's best answer can be buried deep inside it.",
+          "source_ids": [
+            "S237#P2"
+          ]
+        },
+        {
+          "text": "Passage ranking identifies sections of a page.",
+          "source_ids": [
+            "S300#P8"
+          ]
+        },
+        {
+          "text": "It helps Google judge how relevant the page is.",
+          "source_ids": [
+            "S300#P12"
+          ]
+        },
+        {
+          "text": "The 7 percent figure is from 2020.",
+          "source_ids": [
+            "S237#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find your buried answers",
+        "minutes": "10",
+        "steps": [
+          "Pick a long page that ranks for several questions.",
+          "List three specific questions it answers.",
+          "Find the sentence that answers each one.",
+          "Note how far down the page each answer sits."
+        ],
+        "prompt_template": "Here is a long page: [text]. List the specific questions it answers and quote the sentence that answers each. Google says the answer can be buried deep in a page and that passage ranking identifies sections to judge how relevant the page is. Flag answers that are hard to find, and label any advice as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your long pages hide their best answers?",
+        "Have you heard someone call passage ranking 'indexing passages'?"
+      ],
+      "whats_next": "Next, what passage ranking means for how you structure pages."
+    },
+    {
+      "lesson_id": "T47-2",
+      "title": "What it means for your pages",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why a focused section can win",
+        "Avoid splitting one page into thin URLs",
+        "Structure long pages with clear sections"
+      ],
+      "scene": {
+        "id": "sections",
+        "title": "One page, clear sections",
+        "beats": [
+          {
+            "caption": "Google's example: a page with the right passage can be a lot more relevant to a specific query than a broader page on that topic.",
+            "source_ids": [
+              "S237#P5",
+              "S237#P6"
+            ]
+          },
+          {
+            "caption": "The improvement applies to how Google ranks web pages overall.",
+            "source_ids": [
+              "S237#P7"
+            ]
+          },
+          {
+            "caption": "Passages help Google understand how relevant the page is to a search.",
+            "source_ids": [
+              "S300#P12"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: give long pages clear headings and self-contained sections.",
+            "source_ids": [
+              "S300#P8"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: don't split one page into many thin URLs just because of passage ranking.",
+            "source_ids": [
+              "S300#P12",
+              "S237#P7"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Specific beats broad",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's 2020 post showed two results side by side. With passage understanding, it said, Google can understand that one result is a lot more relevant to a specific query than a broader page on that topic. It added that the improvement applies to how it ranks web pages overall.",
+              "source_ids": [
+                "S237#P5",
+                "S237#P6",
+                "S237#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Structure, not splitting",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "These practices follow from Google's description. They are practitioner judgement, not Google rules.",
+              "source_ids": [
+                "S300#P8",
+                "S300#P12"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Use clear headings.",
+                  "text": "Give each section a heading that says what it answers.",
+                  "source_ids": [
+                    "S300#P8"
+                  ]
+                },
+                {
+                  "lead": "Make sections stand alone.",
+                  "text": "Write each section so it makes sense without the one before it.",
+                  "source_ids": [
+                    "S300#P8"
+                  ]
+                },
+                {
+                  "lead": "Keep the page whole.",
+                  "text": "Google uses passages to judge the page, so splitting it into many thin URLs isn't needed for passages to count.",
+                  "source_ids": [
+                    "S300#P12",
+                    "S237#P7"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a buying guide for hiking boots has H2 sections on fit, waterproofing and break-in. A manager wants twelve thin URLs 'so each part ranks'. Keep one page with clear sections, and test before splitting anything.",
+              "source_ids": [
+                "S300#P8",
+                "S300#P12"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A focused passage can beat a broader page.",
+          "source_ids": [
+            "S237#P5",
+            "S237#P6"
+          ]
+        },
+        {
+          "text": "Passage understanding applies to ranking pages overall.",
+          "source_ids": [
+            "S237#P7"
+          ]
+        },
+        {
+          "text": "Clear, self-contained sections help (practitioner view).",
+          "source_ids": [
+            "S300#P8"
+          ]
+        },
+        {
+          "text": "Splitting into thin URLs isn't needed for passages.",
+          "source_ids": [
+            "S300#P12"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Tidy one long page",
+        "minutes": "15",
+        "steps": [
+          "Pick your longest guide.",
+          "Read only the headings and ask if they show what each section answers.",
+          "Rewrite vague headings like 'More info' or 'Details'.",
+          "Add a first sentence to each section that answers its heading directly."
+        ],
+        "prompt_template": "Here are the headings and first sentences of my long guide: [list]. Google says passage ranking identifies sections of a page to understand how relevant it is. Suggest clearer headings and direct first sentences so each section stands alone. Don't suggest splitting the page into separate URLs. Label this as practitioner judgement."
+      },
+      "reflection": [
+        "Which headings on your site say nothing about their section?",
+        "Has anyone proposed splitting a strong page into many small ones?"
+      ],
+      "whats_next": "Next, chunking: how retrieval systems split documents."
+    },
+    {
+      "lesson_id": "T47-3",
+      "title": "Why RAG systems chunk",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why documents are split into chunks",
+        "Say when chunking is required",
+        "Use Microsoft's starting size and overlap"
+      ],
+      "scene": {
+        "id": "chunks",
+        "title": "Fitting the model",
+        "beats": [
+          {
+            "caption": "Microsoft: splitting large documents into chunks helps you stay under model token input limits.",
+            "source_ids": [
+              "S506#P1"
+            ]
+          },
+          {
+            "caption": "It also prevents data loss due to truncation.",
+            "source_ids": [
+              "S506#P2"
+            ]
+          },
+          {
+            "caption": "Example limit: text-embedding-3-small takes at most 8,191 tokens of input.",
+            "source_ids": [
+              "S506#P4"
+            ]
+          },
+          {
+            "caption": "Chunking is only required if documents are too large, but it helps if content is poorly represented as a single vector.",
+            "source_ids": [
+              "S506#P3"
+            ]
+          },
+          {
+            "caption": "Microsoft suggests starting at 512 tokens per chunk, with a 25% overlap of 128 tokens.",
+            "source_ids": [
+              "S506#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Why chunk at all",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Microsoft's Azure AI Search guide says partitioning large documents into smaller chunks can help you stay under the maximum token input limits of chat completion and embedding models, and prevents data loss due to truncation.",
+              "source_ids": [
+                "S506#P1",
+                "S506#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "For example, it says the maximum length of input text for the Azure OpenAI text-embedding-3-small model is 8,191 tokens.",
+              "source_ids": [
+                "S506#P4"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a team embeds 20,000-token manuals as single inputs to an 8,191-token model. Answers about the end of each manual go missing, because that text was cut off. Chunking the manuals fixes the cause.",
+              "source_ids": [
+                "S506#P4",
+                "S506#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "When it's needed",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Microsoft says chunking is only required if the source documents are too large for the maximum input size imposed by models, but it's also beneficial if content is poorly represented as a single vector.",
+              "source_ids": [
+                "S506#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "A starting point",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Microsoft recommends starting with a chunk size of 512 tokens (approximately 2,000 characters) and an initial overlap of 25%, which equals 128 tokens.",
+              "source_ids": [
+                "S506#P5"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "That's Azure's advice for building retrieval indexes. It isn't a size Google uses for passages, and it isn't a target length for web page sections.",
+              "source_ids": [
+                "S506#P5",
+                "S300#P8"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Chunks keep text under model input limits.",
+          "source_ids": [
+            "S506#P1"
+          ]
+        },
+        {
+          "text": "Chunking prevents data loss from truncation.",
+          "source_ids": [
+            "S506#P2"
+          ]
+        },
+        {
+          "text": "It's only required for documents that are too large.",
+          "source_ids": [
+            "S506#P3"
+          ]
+        },
+        {
+          "text": "Azure's starting point: 512 tokens, 25% overlap.",
+          "source_ids": [
+            "S506#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Size your documents",
+        "minutes": "10",
+        "steps": [
+          "List the documents your assistant or site search indexes.",
+          "Estimate each one's length in tokens (about 4 characters each, as a rough guide).",
+          "Look up your embedding model's input limit.",
+          "Mark documents that would be cut off if embedded whole."
+        ],
+        "prompt_template": "My retrieval system indexes these documents with rough lengths: [list], using an embedding model with a [limit]-token input limit. Using Microsoft's guidance (chunk to stay under limits and avoid truncation; start at 512 tokens with 25% overlap), tell me which documents need chunking and a starting configuration to test."
+      },
+      "reflection": [
+        "Do your assistant's answers miss the ends of long documents?",
+        "Who decided your current chunk size, and why?"
+      ],
+      "whats_next": "Next, the different ways to cut documents into chunks."
+    },
+    {
+      "lesson_id": "T47-4",
+      "title": "Chunking methods",
+      "est_minutes": 5,
+      "objectives": [
+        "Compare heading, sentence and semantic chunking",
+        "Explain why chunks overlap",
+        "Keep vendor advice in its place"
+      ],
+      "scene": {
+        "id": "methods",
+        "title": "Ways to cut a document",
+        "beats": [
+          {
+            "caption": "HTML or Markdown heading syntax can be used to chunk data by sections.",
+            "source_ids": [
+              "S506#P6"
+            ]
+          },
+          {
+            "caption": "Sentence mode: chunks are made up of single sentences.",
+            "source_ids": [
+              "S506#P9"
+            ]
+          },
+          {
+            "caption": "Semantic chunking breaks content into meaningful units that preserve context across sentences and paragraphs.",
+            "source_ids": [
+              "S506#P10",
+              "S506#P11"
+            ]
+          },
+          {
+            "caption": "Overlapping a small amount of text between chunks can help maintain continuity and context.",
+            "source_ids": [
+              "S506#P7",
+              "S506#P8"
+            ]
+          },
+          {
+            "caption": "Find a chunk size that works best for all of the models you're using.",
+            "source_ids": [
+              "S506#P12"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Three ways to cut",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Microsoft's guide describes several approaches.",
+              "source_ids": [
+                "S506#P6",
+                "S506#P9",
+                "S506#P10"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "By heading.",
+                  "text": "Embedded markup, like HTML or Markdown, has heading syntax that can be used to chunk data by sections.",
+                  "source_ids": [
+                    "S506#P6"
+                  ]
+                },
+                {
+                  "lead": "By sentence.",
+                  "text": "In sentence mode, chunks are made up of single sentences.",
+                  "source_ids": [
+                    "S506#P9"
+                  ]
+                },
+                {
+                  "lead": "By meaning.",
+                  "text": "Semantic chunking breaks content into meaningful units that preserve context and semantic relationships across sentences and paragraphs. Microsoft says it produces chunks that better maintain semantic coherence and can span page boundaries.",
+                  "source_ids": [
+                    "S506#P10",
+                    "S506#P11"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why chunks overlap",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Microsoft says overlapping a small amount of text between chunks can help maintain continuity and context. It adds that the overlap ensures smoother transitions between chunks without excessive duplication.",
+              "source_ids": [
+                "S506#P7",
+                "S506#P8"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: keeping Azure's 25% overlap with 1,024-token chunks gives an overlap of 256 tokens.",
+              "source_ids": [
+                "S506#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Pick for your models",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Microsoft's advice is to find a chunk size that works best for all of the models you're using.",
+              "source_ids": [
+                "S506#P12"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Well-structured web pages with clear headings are easier for any heading-based chunker to split cleanly. That's a side benefit, not a Google ranking rule.",
+              "source_ids": [
+                "S506#P6",
+                "S300#P8"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Headings can be used to chunk by section.",
+          "source_ids": [
+            "S506#P6"
+          ]
+        },
+        {
+          "text": "Semantic chunking keeps meaning together.",
+          "source_ids": [
+            "S506#P10"
+          ]
+        },
+        {
+          "text": "Overlap helps maintain continuity and context.",
+          "source_ids": [
+            "S506#P7"
+          ]
+        },
+        {
+          "text": "Pick a chunk size that suits your models.",
+          "source_ids": [
+            "S506#P12"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Compare two chunkers",
+        "minutes": "20",
+        "steps": [
+          "Pick one long document from your knowledge base.",
+          "Chunk it by headings, then by fixed 512-token pieces with 25% overlap.",
+          "Ask five real questions against each version.",
+          "Note which version returns the right section more often."
+        ],
+        "prompt_template": "I'm comparing two chunking setups for my RAG system: by headings, and fixed 512-token chunks with 25% overlap (Microsoft's suggested start). Here are five test questions and the chunks each setup retrieved: [data]. Score which setup found the right section for each question and suggest what to try next."
+      },
+      "reflection": [
+        "Do your documents have headings a chunker could use?",
+        "How would you test a chunk size change before shipping it?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google says passage ranking identifies sections of a page to better understand how relevant the page is, which helps it find an answer buried deep in a long page. That argues for clear, self-contained sections, not for splitting pages into thin URLs. Retrieval systems chunk documents for a different reason: to fit model input limits and avoid truncation. Microsoft suggests starting at 512 tokens with 25% overlap, and describes heading, sentence and semantic chunking. Those sizes describe Azure's tooling, not Google.",
+    "related_topics": [
+      {
+        "topic_id": "T43",
+        "title": "Neural ranking and semantic matching in Google (RankBrain, BERT, MUM)"
+      },
+      {
+        "topic_id": "T26",
+        "title": "Hybrid search and Reciprocal Rank Fusion"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Passages and chunks. The questions revisit Google's passage ranking and how retrieval systems chunk documents.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T47-L1-01",
+      "T47-L1-02",
+      "T47-L1-03",
+      "T47-L2-01",
+      "T47-L2-02",
+      "T47-L2-03",
+      "T47-L3-01",
+      "T47-L3-02",
+      "T47-L4-01",
+      "T47-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T47-L1-01",
+        "options": [
+          "A. passages",
+          "B. snippets",
+          "C. fragments",
+          "D. paragraphs"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says passage ranking is an AI system used to identify individual sections or 'passages' of a web page. Wrong: the other words aren't the one Google puts in quotation marks.",
+        "source_ids": [
+          "S300#P8",
+          "S300#P12"
+        ]
+      },
+      {
+        "item_id": "T47-L1-03",
+        "options": [
+          "A. True, every document must be split",
+          "B. True, for every PDF",
+          "C. False",
+          "D. True, unless it has headings"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Microsoft says chunking is only required if source documents are too large for the model's maximum input size, though it can also help if content is poorly represented as a single vector.",
+        "source_ids": [
+          "S506#P3"
+        ]
+      },
+      {
+        "item_id": "T47-L2-01",
+        "options": [
+          "A. duplication",
+          "B. compression",
+          "C. tokenization",
+          "D. truncation"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Microsoft says partitioning content into chunks helps meet input token requirements and prevents data loss due to truncation. Wrong: the other words aren't the cause it names.",
+        "source_ids": [
+          "S506#P2",
+          "S506#P1"
+        ]
+      },
+      {
+        "item_id": "T47-L2-02",
+        "prompt": "A colleague says 'Passage ranking means Google ranks parts of my page as separate results.' Which correction is best?",
+        "options": [
+          "A. Google ranks only the first paragraph of each page it indexes",
+          "B. Google uses passages to judge how relevant a page is",
+          "C. Passages remove the need for the page to be indexed first",
+          "D. Azure chunking replaced Google's passage ranking system"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google describes identifying passages to better understand how relevant the page is to a search. Wrong: no saved source says only the first paragraph counts, that indexing is skipped, or that Azure's chunking has anything to do with Google's system.",
+        "source_ids": [
+          "S300#P8",
+          "S300#P12"
+        ]
+      },
+      {
+        "item_id": "T47-L2-03",
+        "prompt": "Which statement is NOT supported by the saved sources?",
+        "options": [
+          "A. Google ranks passages of exactly 512 tokens",
+          "B. Azure says HTML or Markdown headings can be used to chunk by section",
+          "C. Google says passage ranking identifies sections of a page",
+          "D. Azure cites 8,191 tokens as the input limit of text-embedding-3-small"
+        ],
+        "answer": "A",
+        "explanation": "Unsupported: Azure's 512-token start size is vendor guidance for RAG indexes; no saved source gives Google a passage size. Supported: Azure on headings and on the 8,191-token limit, and Google on passage ranking identifying sections.",
+        "source_ids": [
+          "S300#P8",
+          "S506#P6",
+          "S506#P4",
+          "S506#P5"
+        ]
+      },
+      {
+        "item_id": "T47-L3-01",
+        "options": [
+          "A. 128",
+          "B. 512",
+          "C. 256",
+          "D. 1,024"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Azure's starting recommendation is 512-token chunks with a 25% overlap (128 tokens). Applying 25% to 1,024-token chunks gives 256 tokens. Wrong: 128 is the overlap for 512-token chunks, and 512 and 1,024 are chunk sizes.",
+        "source_ids": [
+          "S506#P5"
+        ]
+      },
+      {
+        "item_id": "T47-L3-02",
+        "prompt": "A strategist writes: 'Azure recommends 512-token chunks, so Google ranks 512-token passages; make every section 512 tokens.' What is the error?",
+        "options": [
+          "A. Azure never mentions a chunk size anywhere in its documentation",
+          "B. Google's passage ranking system does not exist at all",
+          "C. Every section must be exactly 8,191 tokens long to be indexed",
+          "D. It treats vendor RAG advice as a Google rule"
+        ],
+        "answer": "D",
+        "explanation": "Correct: a vendor's RAG guidance is applied to a different system; no saved source gives Google a passage size. Wrong: Azure does give a chunk size; Google's guide describes passage ranking; and 8,191 tokens is one embedding model's input limit, not an indexing rule.",
+        "source_ids": [
+          "S506#P5",
+          "S300#P8",
+          "S506#P4"
+        ]
+      },
+      {
+        "item_id": "T47-L4-01",
+        "prompt": "Hypothetical site: a long buying guide on one URL with clear H2 sections. A manager wants it split into twelve thin URLs 'so each part ranks'. Evidence: (1) Google says passage ranking identifies sections of a page to understand relevance; (2) no saved source says splitting is needed; (3) Azure's heading-based chunking is for RAG indexes. What is the best course?",
+        "options": [
+          "A. Keep one page with clear sections, and test",
+          "B. Split into twelve thin URLs because Azure chunks documents",
+          "C. Remove all headings so Google sees one single block of text",
+          "D. Double the length of the guide so every section is longer"
+        ],
+        "answer": "A",
+        "explanation": "Best: keep one page with clear sections, since Google says it looks at sections of a page to understand its relevance; splitting isn't shown to be needed (practitioner inference). Wrong: Azure's chunking is for RAG indexes; removing headings makes sections harder to tell apart; doubling length isn't supported by any source.",
+        "source_ids": [
+          "S300#P8",
+          "S300#P12",
+          "S506#P6"
+        ]
+      }
+    ]
+  }
+}

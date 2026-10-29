@@ -1,0 +1,738 @@
+{
+  "topic_id": "T22",
+  "items_file": "bank/items/T22-learning-to-rank.json",
+  "course_title": "Learning to rank",
+  "subtitle": "How ranking models learn to combine many signals from labelled examples: RankNet, LambdaRank, LambdaMART and LambdaLoss, and why there's no fixed ranking formula.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why ranking combines many signals with weights that vary by query",
+    "Describe how RankNet learns from pairs",
+    "Explain what LambdaRank and LambdaMART add",
+    "Push back on fixed-formula ranking claims"
+  ],
+  "intro": [
+    "A search engine has many signals about every page. Someone, or something, has to decide how much each one counts. Learning to rank is the family of methods that learns that from examples.",
+    "This course uses Chris Burges's overview From RankNet to LambdaRank to LambdaMART, the LambdaLoss paper from Google researchers, and Google's own pages on how ranking works.",
+    "The papers describe methods. They don't show what Google Search uses. Lessons for your site are labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T22-1",
+      "title": "Ranking from many signals",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe ranking as combining many signals",
+        "Explain why weights vary by query",
+        "Explain what learning to rank learns"
+      ],
+      "scene": {
+        "id": "signals",
+        "title": "Many dials, different settings",
+        "beats": [
+          {
+            "caption": "Google uses automated ranking systems that look at many factors and signals about hundreds of billions of web pages.",
+            "source_ids": [
+              "S300#P1"
+            ]
+          },
+          {
+            "caption": "Its systems look for quantifiable signals to assess relevance.",
+            "source_ids": [
+              "S309#P3"
+            ]
+          },
+          {
+            "caption": "The weight applied to each factor varies depending on the nature of your query.",
+            "source_ids": [
+              "S309#P2"
+            ]
+          },
+          {
+            "caption": "For current news topics, content freshness plays a bigger role than for dictionary definitions.",
+            "source_ids": [
+              "S309#P1"
+            ]
+          },
+          {
+            "caption": "Learning to rank learns the mix from labelled examples. Burges describes training on each pair of URLs with differing labels.",
+            "source_ids": [
+              "S304#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Many signals, changing weights",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says it uses automated ranking systems that look at many factors and signals about hundreds of billions of web pages, and that its systems look for quantifiable signals to assess relevance.",
+              "source_ids": [
+                "S300#P1",
+                "S309#P3"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "The weight applied to each factor varies depending on the nature of your query.",
+              "cite": "Google, How Search works",
+              "source_ids": [
+                "S309#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Google's own example: when searching for current news topics, content freshness plays a bigger role than dictionary definitions.",
+              "source_ids": [
+                "S309#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Learning the weights",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "In general terms, learning to rank trains a model to order results from many signals using labelled examples, rather than hand-setting each weight. Burges's overview describes training in which each pair of URLs with differing labels is chosen.",
+              "source_ids": [
+                "S304#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "A model that learns from examples can weigh the same signal differently in different contexts. That fits Google's statement that weights vary by query, but the papers don't show Google's actual models."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google's ranking systems look at many factors and signals.",
+          "source_ids": [
+            "S300#P1"
+          ]
+        },
+        {
+          "text": "The weight of each factor varies with the query.",
+          "source_ids": [
+            "S309#P2"
+          ]
+        },
+        {
+          "text": "Freshness matters more for news than for definitions.",
+          "source_ids": [
+            "S309#P1"
+          ]
+        },
+        {
+          "text": "Learning to rank learns from labelled examples, such as pairs of URLs.",
+          "source_ids": [
+            "S304#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Compare two queries",
+        "minutes": "10",
+        "steps": [
+          "Pick two queries in your niche: one newsy, one evergreen.",
+          "Look at the top five results for each.",
+          "Note how fresh, long and detailed the results are.",
+          "Write down which signals seem to matter more for each."
+        ],
+        "prompt_template": "Here are the top five results for two queries in my niche: [query 1 results] and [query 2 results]. Google says the weight applied to each ranking factor varies with the nature of the query, and that freshness plays a bigger role for current news than for definitions. Compare the two result sets and suggest which signals seem to weigh more for each. Label your reading as practitioner judgement, not confirmed weights."
+      },
+      "reflection": [
+        "Which of your target queries need fresh content, and which don't?",
+        "Why would one fixed set of weights serve some queries badly?"
+      ],
+      "whats_next": "Next, how RankNet learns from pairs of results."
+    },
+    {
+      "lesson_id": "T22-2",
+      "title": "RankNet: learning from pairs",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain pairwise training",
+        "Describe the learned probability RankNet outputs",
+        "Explain where labels come from"
+      ],
+      "scene": {
+        "id": "pairs",
+        "title": "Which of these two first?",
+        "beats": [
+          {
+            "caption": "Training picks each pair of URLs with differing labels.",
+            "source_ids": [
+              "S304#P3"
+            ]
+          },
+          {
+            "caption": "The model's two scores are mapped to a learned probability that Ui should be ranked higher than Uj via a sigmoid function.",
+            "source_ids": [
+              "S304#P6"
+            ]
+          },
+          {
+            "caption": "Then the cross entropy cost function is applied, comparing that probability with the labels.",
+            "source_ids": [
+              "S304#P4"
+            ]
+          },
+          {
+            "caption": "You can think of the training signals as little arrows (or forces) on each URL.",
+            "source_ids": [
+              "S304#P7"
+            ]
+          },
+          {
+            "caption": "Labels come from human judgements. Google says no single rating, or single rater, directly impacts how a page ranks.",
+            "source_ids": [
+              "S014#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Learning from pairs",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Burges describes RankNet's training in which each pair of URLs with differing labels is chosen. For each pair, the model's scores are mapped to a learned probability that Ui should be ranked higher than Uj via a sigmoid function.",
+              "source_ids": [
+                "S304#P3",
+                "S304#P6"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Then the cross entropy cost function is applied. Training nudges the scores so the better-labelled URL is more likely to come first. Burges suggests you can think of these nudges as little arrows, or forces.",
+              "source_ids": [
+                "S304#P4",
+                "S304#P7"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "For the query \"boiler repair Leeds\", a local repair page is labelled better than a national blog post. That pair teaches the model to score the local page higher, for features like the ones it has.",
+              "source_ids": [
+                "S304#P3",
+                "S304#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where the labels come from",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "No single rating, or single rater, directly impacts how a given page or site ranks in Search.",
+              "source_ids": [
+                "S014#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Pairwise training needs judged examples. How any search engine gathers or uses labels for training isn't confirmed by these sources."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "RankNet trains on pairs of URLs with differing labels.",
+          "source_ids": [
+            "S304#P3"
+          ]
+        },
+        {
+          "text": "It learns a probability that one URL should rank above the other.",
+          "source_ids": [
+            "S304#P6"
+          ]
+        },
+        {
+          "text": "A cross entropy cost compares that probability with the labels.",
+          "source_ids": [
+            "S304#P4"
+          ]
+        },
+        {
+          "text": "Google says no single rating directly changes a page's ranking.",
+          "source_ids": [
+            "S014#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Judge some pairs",
+        "minutes": "10",
+        "steps": [
+          "Pick one query and five results for it.",
+          "Compare them two at a time and pick the better result.",
+          "Write a one-line reason for each choice.",
+          "Look for signals that keep showing up in your reasons."
+        ],
+        "prompt_template": "For the query [query], I compared results in pairs and picked the better one each time, with reasons: [list]. Burges describes RankNet training on pairs of URLs with differing labels and learning the probability that one should rank above the other. Summarise which signals my reasons rely on most, as a hypothetical feature list, not a claim about Google's model."
+      },
+      "reflection": [
+        "Is it easier to say which of two results is better, or to score one on its own?",
+        "What could go wrong if the labels were inconsistent?"
+      ],
+      "whats_next": "Next, how LambdaRank and LambdaMART focus training on what users see."
+    },
+    {
+      "lesson_id": "T22-3",
+      "title": "LambdaRank and LambdaMART",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain why ranking measures are hard to optimise",
+        "Describe LambdaRank's NDCG trick",
+        "Describe what LambdaMART adds"
+      ],
+      "scene": {
+        "id": "lambda",
+        "title": "Push hardest where it matters",
+        "beats": [
+          {
+            "caption": "Ranking measures are everywhere either discontinuous or flat, so gradient descent appears to be problematic.",
+            "source_ids": [
+              "S304#P5"
+            ]
+          },
+          {
+            "caption": "LambdaRank's fix: multiply by the size of the change in NDCG from swapping two URLs' rank positions.",
+            "source_ids": [
+              "S304#P8",
+              "S304#P9"
+            ]
+          },
+          {
+            "caption": "Burges reports that this simple change gives very good results.",
+            "source_ids": [
+              "S304#P12"
+            ]
+          },
+          {
+            "caption": "MART's output is a linear combination of the outputs of a set of regression trees.",
+            "source_ids": [
+              "S304#P10"
+            ]
+          },
+          {
+            "caption": "LambdaMART combines MART and LambdaRank. An ensemble of LambdaMART rankers won Track 1 of the 2010 Yahoo! Learning To Rank Challenge.",
+            "source_ids": [
+              "S304#P11",
+              "S304#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The problem with ranking measures",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Measures like NDCG only change when two results swap places. Burges says they are everywhere either discontinuous or flat, so gradient descent appears to be problematic.",
+              "source_ids": [
+                "S304#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "LambdaRank",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "LambdaRank keeps RankNet's pairwise arrows but scales each one. Burges reports that simply multiplying by the size of the change in NDCG, from swapping the rank positions of the two URLs while leaving all others unchanged, gives very good results.",
+              "source_ids": [
+                "S304#P8",
+                "S304#P9",
+                "S304#P12"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Swapping results 1 and 2 changes NDCG a lot, so that pair gets a big push. Swapping results 41 and 42 barely changes NDCG, so that pair gets a small push.",
+              "source_ids": [
+                "S304#P8",
+                "S304#P9"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "LambdaMART",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "MART",
+                  "text": "A boosted tree model: the output of the model is a linear combination of the outputs of a set of regression trees.",
+                  "source_ids": [
+                    "S304#P10"
+                  ]
+                },
+                {
+                  "name": "LambdaMART",
+                  "text": "Combines MART and LambdaRank. It is the boosted tree version of LambdaRank, which is based on RankNet.",
+                  "source_ids": [
+                    "S304#P11",
+                    "S304#P1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Research finding",
+              "text": "An ensemble of LambdaMART rankers won Track 1 of the 2010 Yahoo! Learning To Rank Challenge.",
+              "source_ids": [
+                "S304#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Ranking measures are flat or discontinuous, so they're hard to optimise directly.",
+          "source_ids": [
+            "S304#P5"
+          ]
+        },
+        {
+          "text": "LambdaRank scales each pair by the NDCG change from swapping them.",
+          "source_ids": [
+            "S304#P8",
+            "S304#P9"
+          ]
+        },
+        {
+          "text": "MART adds up many regression trees.",
+          "source_ids": [
+            "S304#P10"
+          ]
+        },
+        {
+          "text": "LambdaMART combines MART and LambdaRank.",
+          "source_ids": [
+            "S304#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Feel the NDCG weighting",
+        "minutes": "10",
+        "steps": [
+          "Take a list of 10 results for one query.",
+          "Mark which ones are truly good.",
+          "Imagine swapping a good result at 2 with a poor one at 1, then the same at 9 and 10.",
+          "Decide which swap a user would notice more, and why."
+        ],
+        "prompt_template": "Here are 10 results for [query], with my relevance grades: [list]. Burges says LambdaRank multiplies each pair's update by the size of the change in NDCG from swapping the two results. Work out roughly how much NDCG changes if I swap positions 1 and 2, and if I swap 9 and 10, and explain why the model pushes harder on the first."
+      },
+      "reflection": [
+        "Why should a ranker care more about the top of the list?",
+        "What does a model made of many trees make easy, and what does it make hard to explain?"
+      ],
+      "whats_next": "Next, LambdaLoss, and what all this means for SEO."
+    },
+    {
+      "lesson_id": "T22-4",
+      "title": "No fixed formula",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe LambdaLoss in one sentence",
+        "Separate method papers from Google's systems",
+        "Respond to fixed-percentage ranking claims"
+      ],
+      "scene": {
+        "id": "formula",
+        "title": "No single recipe",
+        "beats": [
+          {
+            "caption": "Google researchers also note that ranking metrics are either flat or discontinuous everywhere, which makes them hard to optimise directly.",
+            "source_ids": [
+              "S305#P1"
+            ]
+          },
+          {
+            "caption": "LambdaLoss is a probabilistic framework for ranking metric optimization. LambdaRank is a special configuration within it.",
+            "source_ids": [
+              "S305#P2",
+              "S305#P3"
+            ]
+          },
+          {
+            "caption": "These are method papers. Google's ranking guide covers only some of its more notable ranking systems.",
+            "source_ids": [
+              "S300#P9"
+            ]
+          },
+          {
+            "caption": "And the weight of each factor varies depending on the nature of the query.",
+            "source_ids": [
+              "S309#P2"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: treat \"40% links, 30% content\" formulas as unconfirmed, and study each query's results.",
+            "source_ids": [
+              "S309#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "LambdaLoss",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The LambdaLoss paper, from Google researchers, starts from the same problem: ranking metrics are either flat or discontinuous everywhere, which makes them hard to be optimized directly. It presents LambdaLoss, a probabilistic framework for ranking metric optimization, and shows LambdaRank as a special configuration with a well-defined loss in that framework.",
+              "source_ids": [
+                "S305#P1",
+                "S305#P2",
+                "S305#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "A paper by Google researchers isn't a statement that Google Search uses the method. No saved source confirms that Search uses LambdaMART or LambdaLoss."
+            }
+          ]
+        },
+        {
+          "heading": "What this means for SEO",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist when someone offers a universal ranking formula.",
+              "source_ids": [
+                "S309#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Check the scope.",
+                  "text": "Google's guide covers some of its more notable ranking systems, not all of them.",
+                  "source_ids": [
+                    "S300#P9"
+                  ]
+                },
+                {
+                  "lead": "Check the query.",
+                  "text": "The weight applied to each factor varies depending on the nature of the query.",
+                  "source_ids": [
+                    "S309#P2"
+                  ]
+                },
+                {
+                  "lead": "Check the method.",
+                  "text": "Correlations across many keywords can't recover a fixed formula if weights vary by query. This is practitioner inference.",
+                  "source_ids": [
+                    "S309#P2"
+                  ]
+                },
+                {
+                  "lead": "Study real results.",
+                  "text": "Look at what ranks for each target query and why it serves the searcher (practitioner judgement)."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "LambdaLoss is a probabilistic framework for optimising ranking metrics.",
+          "source_ids": [
+            "S305#P2"
+          ]
+        },
+        {
+          "text": "LambdaRank fits inside it as a special configuration.",
+          "source_ids": [
+            "S305#P3"
+          ]
+        },
+        {
+          "text": "Method papers don't confirm what Google uses.",
+          "source_ids": [
+            "S300#P9"
+          ]
+        },
+        {
+          "text": "There's no single weighting: it varies by query.",
+          "source_ids": [
+            "S309#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Rewrite a formula claim",
+        "minutes": "10",
+        "steps": [
+          "Find a report or post that gives ranking factor percentages.",
+          "Note how the numbers were produced.",
+          "Check whether they claim to apply to all queries.",
+          "Rewrite the claim so it matches what Google has said."
+        ],
+        "prompt_template": "Here's a claim about ranking factor weights: [paste]. Google says the weight applied to each factor varies depending on the nature of the query, and its ranking guide covers only some notable systems. Rewrite the claim so it's accurate, list what's unconfirmed, and suggest how I'd study the results for one of my target queries instead."
+      },
+      "reflection": [
+        "Where have you seen a universal ranking formula quoted?",
+        "How would you explain to a client why there isn't one?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google says its ranking systems look at many factors and signals, and that the weight of each varies with the query. Learning to rank learns how to combine signals from labelled examples. RankNet learns from pairs of URLs with differing labels. LambdaRank scales each pair by how much swapping them would change NDCG, LambdaMART adds boosted trees, and LambdaLoss frames these as metric optimisation. These are methods, not confirmation of what Google runs. Treat fixed-percentage formulas as unconfirmed and study each query's results.",
+    "related_topics": [
+      {
+        "topic_id": "T7",
+        "title": "Measuring search quality"
+      },
+      {
+        "topic_id": "T21",
+        "title": "Cross-encoder re-ranking"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Learning to rank. The questions revisit pairwise training, LambdaRank and LambdaMART, and ranking-formula claims.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T22-L1-01",
+      "T22-L1-02",
+      "T22-L1-03",
+      "T22-L2-01",
+      "T22-L2-02",
+      "T22-L2-03",
+      "T22-L3-01",
+      "T22-L3-02",
+      "T22-L4-01",
+      "T22-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T22-L1-01",
+        "prompt": "Burges describes choosing 'each pair of urls Ui and U j' with differing what?",
+        "options": [
+          "A. labels",
+          "B. domains",
+          "C. page lengths",
+          "D. anchor texts"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Burges says each pair of URLs with differing labels is chosen. Wrong: domains, page lengths and anchor texts aren't what the pairs differ on.",
+        "source_ids": [
+          "S304#P3"
+        ]
+      },
+      {
+        "item_id": "T22-L1-03",
+        "prompt": "Which result does Burges's overview report for LambdaMART?",
+        "options": [
+          "A. It replaced BM25 in every web search engine",
+          "B. An ensemble won a 2010 Yahoo! challenge track",
+          "C. Google confirmed it as its main ranking system",
+          "D. It was banned from public ranking competitions"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Burges reports that an ensemble of LambdaMART rankers won Track 1 of the 2010 Yahoo! Learning To Rank Challenge. Wrong: none of the other claims appear in the overview.",
+        "source_ids": [
+          "S304#P2"
+        ]
+      },
+      {
+        "item_id": "T22-L2-02",
+        "prompt": "Does Burges's paper show that Google Search ranks results with LambdaMART?",
+        "options": [
+          "A. Yes, it names Google's ranking pipeline",
+          "B. No; it describes the methods",
+          "C. Yes, the Yahoo! challenge was run by Google",
+          "D. It says Google stopped using it in 2010"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the overview describes RankNet, LambdaRank and LambdaMART and reports a Yahoo! challenge win. It doesn't say what Google uses, and Google's ranking guide covers only some notable systems.",
+        "source_ids": [
+          "S304#P1",
+          "S304#P2",
+          "S300#P9"
+        ]
+      },
+      {
+        "item_id": "T22-L2-03",
+        "options": [
+          "A. Google confirmed LambdaMART drives Search ranking",
+          "B. Burges describes choosing pairs of URLs with differing labels",
+          "C. LambdaRank is a special configuration of LambdaLoss",
+          "D. Google says its systems look at many factors and signals"
+        ],
+        "answer": "A",
+        "explanation": "Unsupported: no saved source says Google confirmed using LambdaMART or LambdaLoss. Supported: Burges describes pairs of URLs with differing labels; LambdaRank is a special configuration in the LambdaLoss framework; Google says its systems look at many factors and signals.",
+        "source_ids": [
+          "S304#P3",
+          "S305#P3",
+          "S300#P1"
+        ]
+      },
+      {
+        "item_id": "T22-L3-01",
+        "prompt": "Google says factor weights vary with the query. Comparing 'latest earthquake news' with a dictionary-definition query, which factor should matter more for the news query?",
+        "options": [
+          "A. Freshness",
+          "B. Word count",
+          "C. Keyword density",
+          "D. Domain age"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says that for current news topics, content freshness plays a bigger role than for dictionary definitions, and that factor weights vary with the query. Wrong: none of the other options is named in that example.",
+        "source_ids": [
+          "S309#P2",
+          "S309#P1"
+        ]
+      },
+      {
+        "item_id": "T22-L4-02",
+        "options": [
+          "A. Adopt the percentages as the content budget split",
+          "B. Treat them as unconfirmed; work query by query",
+          "C. Email Google to ask it to confirm the weights",
+          "D. Ignore links, content and UX entirely"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says weights vary by query; practitioner inference: a correlation across many keywords is unlikely to recover one fixed formula, and the report doesn't show how weights were measured. Wrong: adopting the split treats an unconfirmed formula as fact; emailing Google isn't a practical decision; ignoring links, content and UX is an overreaction.",
+        "source_ids": [
+          "S309#P2",
+          "S300#P9"
+        ]
+      }
+    ]
+  }
+}

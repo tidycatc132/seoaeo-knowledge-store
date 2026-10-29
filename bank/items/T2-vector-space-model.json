@@ -4,8 +4,8 @@
   "stage": 4,
   "merged_from": [],
   "volatility": "stable",
-  "last_verified": "2026-10-25",
-  "summary": "The vector space model represents documents, and queries, as vectors in a common space. Cosine similarity compares them with a dot product divided by vector lengths, which compensates for document length; embeddings in dense retrieval use the same vector idea but with learned dimensions (practitioner inference).",
+  "last_verified": "2026-10-29",
+  "summary": "The vector space model represents documents, and queries, as vectors in a common space, with one component per dictionary term. Tf-idf weights a term highest when it occurs many times in few documents. Cosine similarity compares vectors with a dot product divided by vector lengths, which compensates for document length, and a document can score well without containing every query term. Embeddings use dense vectors that capture semantic relationships (Google's crash course); treating them as the successor to term vectors is practitioner inference.",
   "actions": [],
   "myths": [],
   "items": [
@@ -24,6 +24,37 @@
       ]
     },
     {
+      "item_id": "T2-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "In the vector space model, what does each component of a document's vector correspond to?",
+      "options": [
+        "A. One sentence in the document",
+        "B. One link pointing to the page",
+        "C. One dictionary term",
+        "D. One query the page ranks for"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the textbook describes the vector derived from a document with one component in the vector for each dictionary term. Wrong: sentences, links and ranking queries are not the components it describes.",
+      "related_topics": [],
+      "source_ids": [
+        "S205#P4"
+      ]
+    },
+    {
+      "item_id": "T2-L1-03",
+      "level": 1,
+      "type": "true_false",
+      "prompt": "True or false: in the bag of words view, the exact order of terms in a document is kept.",
+      "options": [],
+      "answer": "False",
+      "explanation": "The textbook says the exact ordering of the terms in a document is ignored but the number of occurrences of each term is material.",
+      "related_topics": [],
+      "source_ids": [
+        "S206#P1"
+      ]
+    },
+    {
       "item_id": "T2-L2-01",
       "level": 2,
       "type": "why_it_works",
@@ -35,6 +66,129 @@
       "source_ids": [
         "S205#P3",
         "S205#P2"
+      ]
+    },
+    {
+      "item_id": "T2-L2-02",
+      "level": 2,
+      "type": "misconception_check",
+      "prompt": "A colleague says 'A word that appears on almost every page is the strongest signal of what a page is about.' Which correction fits tf-idf?",
+      "options": [
+        "A. Its idf is likely low, so weight is low",
+        "B. Its idf is high, so its weight is high",
+        "C. idf ignores how many documents use it",
+        "D. Frequent terms always get the top weight"
+      ],
+      "answer": "A",
+      "explanation": "Correct: the textbook says the idf of a frequent term is likely to be low, and tf-idf is lowest when the term occurs in virtually all documents. Wrong: idf is high for rare terms, not frequent ones; idf depends on how many documents contain the term; frequent terms get the lowest weight, not the top.",
+      "related_topics": [],
+      "source_ids": [
+        "S201#P1",
+        "S200#P3"
+      ]
+    },
+    {
+      "item_id": "T2-L2-03",
+      "level": 2,
+      "type": "odd_one_out",
+      "prompt": "Which statement about tf-idf is NOT supported by the textbook?",
+      "options": [
+        "A. Weight is highest for terms used often in few documents",
+        "B. Weight peaks for terms in virtually all documents",
+        "C. A term in many documents gets a lower weight",
+        "D. The idf of a rare term is high"
+      ],
+      "answer": "B",
+      "explanation": "Unsupported: the textbook says tf-idf is lowest when the term occurs in virtually all documents. Supported: weight is highest when a term occurs many times within a small number of documents; it is lower when the term occurs in many documents; the idf of a rare term is high.",
+      "related_topics": [],
+      "source_ids": [
+        "S200#P3",
+        "S200#P2",
+        "S200#P4",
+        "S201#P1"
+      ]
+    },
+    {
+      "item_id": "T2-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical: page A is 300 words about boiler repair; page B covers the same points in 3,000 words, repeating each one. Raw vectors make them look very different. What does the textbook use to compare them fairly?",
+      "options": [
+        "A. They differ in topic, so add more keywords",
+        "B. Page B is newer, so compare publish dates",
+        "C. Length differs, so compare by cosine similarity",
+        "D. Page A is shorter, so it should be removed from the index"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the textbook says two documents with very similar content can have a significant vector difference, and the standard way to compensate for document length is cosine similarity. Wrong: the topic is the same; dates and removing the shorter page don't address vector length.",
+      "related_topics": [],
+      "source_ids": [
+        "S205#P5",
+        "S205#P3",
+        "S205#P6"
+      ]
+    },
+    {
+      "item_id": "T2-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical explainer makes four claims about cosine similarity: (1) the numerator is the dot product of the two vectors; (2) the denominator length-normalizes them; (3) the measure is the cosine of the angle between the vectors; (4) two documents that share no terms always score 1. Which claim is wrong?",
+      "options": [
+        "A. Claim 1, the dot product numerator",
+        "B. Claim 2, the length normalization",
+        "C. Claim 3, the angle between vectors",
+        "D. Claim 4, the score of 1"
+      ],
+      "answer": "D",
+      "explanation": "Correct: claim 4 is wrong. The numerator is the dot product, and with no shared terms every product in it is zero, so the score is 0, not 1. Wrong: the textbook supports claims 1 to 3: the numerator is the dot product, the denominator length-normalizes the vectors, and the measure is the cosine of the angle between them.",
+      "related_topics": [],
+      "source_ids": [
+        "S205#P1",
+        "S205#P2",
+        "S205#P8"
+      ]
+    },
+    {
+      "item_id": "T2-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical SEO team, Site N. Symptom: in a vector-based site search, a page scores well for a query even though one of the query words never appears on it. Evidence: (1) the textbook says we can also view a query as a vector; (2) the resulting cosine scores are used to select the top-scoring documents; (3) a document may have a high cosine score for a query even if it does not contain all query terms. Which explanation fits?",
+      "options": [
+        "A. The site search must be broken",
+        "B. Cosine scores don't need every term",
+        "C. The page is hiding the missing word",
+        "D. Vector models require exact phrase matches"
+      ],
+      "answer": "B",
+      "explanation": "Correct: the textbook says a document may have a high cosine score even if it does not contain all query terms. Wrong: that is expected behaviour, not a fault; nothing suggests hidden text; vector models score overlap, not exact phrases.",
+      "related_topics": [],
+      "source_ids": [
+        "S225#P1",
+        "S225#P2",
+        "S225#P3"
+      ]
+    },
+    {
+      "item_id": "T2-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Hypothetical developer, Site O. Symptom: they want site search to match queries and pages by meaning, not just shared words. Evidence: (1) the textbook's vector space model gives one component per dictionary term; (2) Google's crash course describes embeddings as lower-dimensional representations of sparse data; (3) it says embeddings provide dense vector representations that capture semantic relationships; (4) Elasticsearch's dense vector field can compute cosine similarity. What is the best-supported approach?",
+      "options": [
+        "A. Use dense embeddings, compared by cosine",
+        "B. Add more dictionary terms to each vector",
+        "C. Drop vectors and use Boolean AND only",
+        "D. Use raw term counts without normalization"
+      ],
+      "answer": "A",
+      "explanation": "Correct: Google describes embeddings as dense vectors that capture semantic relationships, and Elasticsearch can compare dense vectors by cosine similarity. Wrong: more dictionary terms keeps the word-matching design; Boolean AND matches words only; raw counts skip the length normalization cosine provides.",
+      "related_topics": [
+        "T18"
+      ],
+      "source_ids": [
+        "S205#P4",
+        "S226#P1",
+        "S226#P2",
+        "S216#P4"
       ]
     }
   ]

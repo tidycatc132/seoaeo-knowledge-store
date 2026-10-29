@@ -1,0 +1,738 @@
+{
+  "topic_id": "T2",
+  "items_file": "bank/items/T2-vector-space-model.json",
+  "course_title": "The vector space model",
+  "subtitle": "How search engines turn pages and queries into vectors, weight the words that matter, and measure similarity with cosine, the idea behind today's embeddings.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain how a document becomes a vector of term weights",
+    "Describe how tf-idf decides which words matter most",
+    "Explain cosine similarity and why it compensates for page length",
+    "Connect query vectors to the dense embeddings used in modern search"
+  ],
+  "intro": [
+    "Boolean search asks whether a page matches. The vector space model asks how closely it matches. It turns every page and every query into a list of numbers, and compares them.",
+    "That idea runs through modern search. Ranking by similarity, finding \"more like this\" pages, and comparing meaning with embeddings all start here.",
+    "The course follows the Stanford textbook Introduction to Information Retrieval, with Google's machine learning crash course for embeddings. Where we link the old model to new systems, it's labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T2-1",
+      "title": "Documents as vectors",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe a document vector",
+        "Explain the bag of words view",
+        "Say what a common vector space means"
+      ],
+      "scene": {
+        "id": "bag",
+        "title": "From page to vector",
+        "beats": [
+          {
+            "caption": "Start with a page. The bag of words view ignores the exact ordering of the terms, but the number of occurrences of each term matters.",
+            "source_ids": [
+              "S206#P1"
+            ]
+          },
+          {
+            "caption": "Count each term, and the page becomes a vector with one component for each dictionary term.",
+            "source_ids": [
+              "S205#P4"
+            ]
+          },
+          {
+            "caption": "Do the same for every page, in a common vector space. That's the vector space model.",
+            "source_ids": [
+              "S204#P1"
+            ]
+          },
+          {
+            "caption": "Each page is now a point in that space, and pages can be compared by how close their vectors are.",
+            "source_ids": [
+              "S205#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "A bag of words",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The vector space model starts by throwing away word order. The textbook calls this the bag of words view: the exact ordering of the terms in a document is ignored, but the number of occurrences of each term is material.",
+              "source_ids": [
+                "S206#P1"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "\"Boiler repair in Leeds\" and \"Leeds repair boiler in\" are the same bag of words. Both contain boiler, repair, in and Leeds once each.",
+              "source_ids": [
+                "S206#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "From bag to vector",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Each document becomes a vector, with one component in the vector for each dictionary term. Most components are zero, because any one page uses only a tiny share of all words.",
+              "source_ids": [
+                "S205#P4",
+                "S203#P9"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "in a common vector space is known as the vector space model.",
+              "cite": "Introduction to Information Retrieval, 6.3",
+              "source_ids": [
+                "S204#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Putting every document in the same space is what makes them comparable. Two pages about the same thing end up with similar vectors.",
+              "source_ids": [
+                "S205#P6"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "The bag of words view ignores word order but keeps word counts.",
+          "source_ids": [
+            "S206#P1"
+          ]
+        },
+        {
+          "text": "A document vector has one component for each dictionary term.",
+          "source_ids": [
+            "S205#P4"
+          ]
+        },
+        {
+          "text": "Representing documents in a common vector space is the vector space model.",
+          "source_ids": [
+            "S204#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Turn two pages into vectors",
+        "minutes": "10",
+        "steps": [
+          "Pick two short paragraphs from your site on related topics.",
+          "List the main words that appear in either one.",
+          "Count how often each word appears in each paragraph.",
+          "Compare the two lists of counts side by side."
+        ],
+        "prompt_template": "Here are two paragraphs: [paste]. The vector space model ignores word order but keeps word counts, giving each document a vector with one component per term. Build simple count vectors for both paragraphs over their shared vocabulary (skip words like 'the' and 'and'), show them as a table, and tell me which words they share."
+      },
+      "reflection": [
+        "What meaning is lost when word order is ignored?",
+        "Why might counts alone still say a lot about a page's topic?"
+      ],
+      "whats_next": "Next, weighting: why some words count for more than others."
+    },
+    {
+      "lesson_id": "T2-2",
+      "title": "Weighting terms with tf-idf",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain inverse document frequency",
+        "Say when tf-idf weight is highest and lowest",
+        "Apply tf-idf thinking to a page's vocabulary"
+      ],
+      "scene": {
+        "id": "tfidf",
+        "title": "Which words matter",
+        "beats": [
+          {
+            "caption": "Tf-idf gives a composite weight for each term in each document.",
+            "source_ids": [
+              "S200#P1"
+            ]
+          },
+          {
+            "caption": "The idf of a rare term is high, whereas the idf of a frequent term is likely to be low.",
+            "source_ids": [
+              "S201#P1"
+            ]
+          },
+          {
+            "caption": "Weight is highest when a term occurs many times within a small number of documents.",
+            "source_ids": [
+              "S200#P2"
+            ]
+          },
+          {
+            "caption": "It's lower when the term occurs fewer times in a document, or occurs in many documents.",
+            "source_ids": [
+              "S200#P4"
+            ]
+          },
+          {
+            "caption": "And it's lowest when the term occurs in virtually all documents.",
+            "source_ids": [
+              "S200#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two ingredients",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Term frequency",
+                  "text": "How often the term occurs in this document. The number of occurrences of each term is material.",
+                  "source_ids": [
+                    "S206#P1"
+                  ]
+                },
+                {
+                  "name": "Inverse document frequency",
+                  "text": "How rare the term is across the collection. The idf of a rare term is high; the idf of a frequent term is likely to be low.",
+                  "source_ids": [
+                    "S201#P1"
+                  ]
+                },
+                {
+                  "name": "Tf-idf",
+                  "text": "A composite weight for each term in each document, combining the two.",
+                  "source_ids": [
+                    "S200#P1"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "When weight is high and low",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Highest.",
+                  "text": "When a term occurs many times within a small number of documents.",
+                  "source_ids": [
+                    "S200#P2"
+                  ]
+                },
+                {
+                  "lead": "Lower.",
+                  "text": "When the term occurs fewer times in a document, or occurs in many documents.",
+                  "source_ids": [
+                    "S200#P4"
+                  ]
+                },
+                {
+                  "lead": "Lowest.",
+                  "text": "When the term occurs in virtually all documents.",
+                  "source_ids": [
+                    "S200#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "On a plumbing site, \"plumber\" appears on every page, so its idf is low. \"Combi boiler\" appears often on just two pages, so on those pages it carries a high weight.",
+              "source_ids": [
+                "S200#P2",
+                "S200#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Reading this as an SEO",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Modern search engines use far more than tf-idf, so don't treat it as a ranking formula. It's useful as a way of thinking: the words that set a page apart from the rest of your site are the ones that tell a system what that page is about."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Tf-idf gives each term in each document a composite weight.",
+          "source_ids": [
+            "S200#P1"
+          ]
+        },
+        {
+          "text": "Rare terms have high idf. Frequent terms have low idf.",
+          "source_ids": [
+            "S201#P1"
+          ]
+        },
+        {
+          "text": "Weight is highest for terms used often in few documents.",
+          "source_ids": [
+            "S200#P2"
+          ]
+        },
+        {
+          "text": "Weight is lowest for terms found in virtually all documents.",
+          "source_ids": [
+            "S200#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find your distinctive terms",
+        "minutes": "10",
+        "steps": [
+          "Pick five pages from one section of your site.",
+          "List words that appear on all five.",
+          "For one page, list words it uses often that the others rarely use.",
+          "Check whether those words describe the page's real topic."
+        ],
+        "prompt_template": "Here is text from five pages on my site: [paste]. Tf-idf gives a term its highest weight when it occurs many times within a small number of documents, and its lowest when it occurs in virtually all documents. For each page, list the terms that would carry the highest tf-idf weight, and the terms that appear everywhere and carry little. Label any SEO advice you draw from this as practitioner judgement."
+      },
+      "reflection": [
+        "Which words appear on every page of your site, and do they help any one page?",
+        "How might boilerplate text affect what a system thinks a page is about?"
+      ],
+      "whats_next": "Next, cosine similarity: how two vectors are compared."
+    },
+    {
+      "lesson_id": "T2-3",
+      "title": "Cosine similarity",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain why raw vector difference misleads",
+        "Describe what cosine similarity measures",
+        "Name a search feature built on document similarity"
+      ],
+      "scene": {
+        "id": "cosine",
+        "title": "Measuring the angle",
+        "beats": [
+          {
+            "caption": "Two documents with very similar content can have a significant vector difference, simply because one is longer.",
+            "source_ids": [
+              "S205#P5"
+            ]
+          },
+          {
+            "caption": "To compensate for the effect of document length, the standard way is to compute the cosine similarity of their vector representations.",
+            "source_ids": [
+              "S205#P3",
+              "S205#P6"
+            ]
+          },
+          {
+            "caption": "The numerator is the dot product, also known as the inner product, of the vectors.",
+            "source_ids": [
+              "S205#P1"
+            ]
+          },
+          {
+            "caption": "The denominator length-normalizes the vectors.",
+            "source_ids": [
+              "S205#P2"
+            ]
+          },
+          {
+            "caption": "The result is the cosine of the angle between the two vectors. A smaller angle means more similar documents.",
+            "source_ids": [
+              "S205#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The length problem",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Picture a short page and a long page on the same topic. The long one has bigger counts for every word, so its vector is much longer, even though it points the same way.",
+              "source_ids": [
+                "S205#P5"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "two documents with very similar content can have a significant vector difference",
+              "cite": "Introduction to Information Retrieval, 6.3.1",
+              "source_ids": [
+                "S205#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Measuring direction, not size",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Cosine similarity compares direction instead of size. The textbook calls it the standard way of quantifying the similarity between two documents, because it compensates for the effect of document length.",
+              "source_ids": [
+                "S205#P3"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Top of the fraction.",
+                  "text": "The dot product, also known as the inner product, of the vectors.",
+                  "source_ids": [
+                    "S205#P1"
+                  ]
+                },
+                {
+                  "lead": "Bottom of the fraction.",
+                  "text": "The vector lengths, which length-normalize the vectors.",
+                  "source_ids": [
+                    "S205#P2"
+                  ]
+                },
+                {
+                  "lead": "The result.",
+                  "text": "The cosine of the angle between the two vectors.",
+                  "source_ids": [
+                    "S205#P8"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where you see it",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Document similarity powers a feature the textbook describes as available in the results lists of search engines: a more like this feature.",
+              "source_ids": [
+                "S205#P7"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Because cosine ignores length, padding a page with repeated words doesn't make it more similar to a topic. A short, focused page can point in exactly the right direction."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Long and short pages on the same topic can have very different raw vectors.",
+          "source_ids": [
+            "S205#P5"
+          ]
+        },
+        {
+          "text": "Cosine similarity is the standard way to compensate for document length.",
+          "source_ids": [
+            "S205#P3"
+          ]
+        },
+        {
+          "text": "It divides the dot product by the vector lengths.",
+          "source_ids": [
+            "S205#P1",
+            "S205#P2"
+          ]
+        },
+        {
+          "text": "The result is the cosine of the angle between the vectors.",
+          "source_ids": [
+            "S205#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Compare a short and a long page",
+        "minutes": "10",
+        "steps": [
+          "Pick a short page and a long page on the same topic.",
+          "Ask for word-count vectors over the words they share.",
+          "Ask for the cosine similarity between them.",
+          "Compare that with how similar the raw counts look."
+        ],
+        "prompt_template": "Here are two pages on the same topic, one short and one long: [paste]. The textbook says two documents with very similar content can have a significant vector difference because of length, and that cosine similarity compensates for document length by dividing the dot product by the vector lengths. Build simple count vectors over their shared vocabulary, calculate the cosine similarity step by step, and explain the result in plain language."
+      },
+      "reflection": [
+        "Why might a long page not be more relevant than a short one?",
+        "Where have you used a 'more like this' or 'related' feature?"
+      ],
+      "whats_next": "Next, queries as vectors, and the bridge to embeddings."
+    },
+    {
+      "lesson_id": "T2-4",
+      "title": "Queries, vectors and embeddings",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain how a query is scored against documents",
+        "Explain why a page can score well without every query word",
+        "Describe how embeddings extend the vector idea"
+      ],
+      "scene": {
+        "id": "embed",
+        "title": "From word vectors to meaning",
+        "beats": [
+          {
+            "caption": "We can also view a query as a vector, in the same vector space as the document collection.",
+            "source_ids": [
+              "S225#P1",
+              "S204#P2"
+            ]
+          },
+          {
+            "caption": "The resulting cosine scores can then be used to select the top-scoring documents for a query.",
+            "source_ids": [
+              "S225#P2"
+            ]
+          },
+          {
+            "caption": "A document may have a high cosine score for a query even if it does not contain all query terms.",
+            "source_ids": [
+              "S225#P3"
+            ]
+          },
+          {
+            "caption": "Google's crash course describes embeddings as lower-dimensional representations of sparse data.",
+            "source_ids": [
+              "S226#P1"
+            ]
+          },
+          {
+            "caption": "Embeddings provide dense vector representations that capture semantic relationships, and they can be compared with cosine too.",
+            "source_ids": [
+              "S226#P2",
+              "S216#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Scoring a query",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The vector space model treats a query like a very short document. The textbook says we can view a query as a vector, in the same vector space as the documents, and use the resulting scores to select the top-scoring documents.",
+              "source_ids": [
+                "S225#P1",
+                "S204#P2",
+                "S225#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Textbook",
+              "text": "A document may have a high cosine score for a query even if it does not contain all query terms.",
+              "source_ids": [
+                "S225#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "It isn't cheap. A single similarity computation can entail a dot product in tens of thousands of dimensions.",
+              "source_ids": [
+                "S225#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Sparse vectors and dense embeddings",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Term vectors",
+                  "text": "One component for each dictionary term, so they're huge and mostly zeros.",
+                  "source_ids": [
+                    "S205#P4"
+                  ]
+                },
+                {
+                  "name": "Embeddings",
+                  "text": "Lower-dimensional representations of sparse data.",
+                  "source_ids": [
+                    "S226#P1"
+                  ]
+                },
+                {
+                  "name": "What they add",
+                  "text": "Dense vector representations that capture semantic relationships.",
+                  "source_ids": [
+                    "S226#P2"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Search tools compare embeddings with the same kind of maths. Elasticsearch's dense vector field, for example, can compute the cosine similarity.",
+              "source_ids": [
+                "S216#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why this matters for SEO",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Embeddings are the vector space model's idea with learned dimensions instead of one per word. That's why pages can match queries that share meaning but not wording, and why covering a topic clearly matters more than repeating exact phrases. The dense retrieval course goes further."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A query is treated as a vector in the same space as documents.",
+          "source_ids": [
+            "S225#P1",
+            "S204#P2"
+          ]
+        },
+        {
+          "text": "Cosine scores select the top-scoring documents.",
+          "source_ids": [
+            "S225#P2"
+          ]
+        },
+        {
+          "text": "A page can score well without containing every query term.",
+          "source_ids": [
+            "S225#P3"
+          ]
+        },
+        {
+          "text": "Embeddings are dense vectors that capture semantic relationships.",
+          "source_ids": [
+            "S226#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Spot meaning matches",
+        "minutes": "10",
+        "steps": [
+          "Pick a query your customers use.",
+          "Find a page on your site that answers it without using the exact words.",
+          "List the words the query and page share, and the ones they don't.",
+          "Note why a meaning-based system might still connect them."
+        ],
+        "prompt_template": "Here's a customer query: [query]. Here's a page that answers it: [paste]. In the vector space model a document can score well without containing every query term, and embeddings are dense vectors that capture semantic relationships. Compare the query and page: which words they share, which ideas match without shared words, and how a word-vector system and an embedding system might each see the match. Label anything about specific search engines as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your pages answer questions without using the searcher's words?",
+        "What could go wrong if a system matches meaning too loosely?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "The vector space model turns pages into vectors of term weights in a shared space, ignoring word order but keeping counts. Tf-idf weights a term highest when it's used often in few documents and lowest when it's everywhere. Cosine similarity compares the direction of two vectors, so long and short pages on the same topic can still match. Queries become vectors too, and a page can score well without every query word. Embeddings carry the same idea forward with dense vectors that capture meaning.",
+    "related_topics": [
+      {
+        "topic_id": "T1",
+        "title": "Boolean retrieval"
+      },
+      {
+        "topic_id": "T18",
+        "title": "Dense retrieval and bi-encoders"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for The vector space model. The questions revisit document vectors, tf-idf, cosine similarity and embeddings.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T2-L1-01",
+      "T2-L1-02",
+      "T2-L1-03",
+      "T2-L2-01",
+      "T2-L2-02",
+      "T2-L2-03",
+      "T2-L3-01",
+      "T2-L3-02",
+      "T2-L4-01",
+      "T2-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T2-L1-01",
+        "prompt": "Representing documents as vectors in a common vector space is known as the vector space what?",
+        "options": [
+          "A. index",
+          "B. model",
+          "C. graph",
+          "D. cluster"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the textbook calls it the vector space model, with queries represented in the same space. Wrong: 'index', 'graph' and 'cluster' are other search ideas, not the name of this representation.",
+        "source_ids": [
+          "S204#P1",
+          "S204#P2"
+        ]
+      },
+      {
+        "item_id": "T2-L1-03",
+        "prompt": "In the bag of words view the textbook describes, what happens to the order of terms?",
+        "options": [
+          "A. It's ignored; counts still matter",
+          "B. It's kept; counts are ignored",
+          "C. Only the first term's position is kept",
+          "D. It's kept for every term and phrase"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the exact ordering of the terms is ignored but the number of occurrences of each term is material. Wrong: counts are kept, not ignored; no positions are kept.",
+        "source_ids": [
+          "S206#P1"
+        ]
+      },
+      {
+        "item_id": "T2-L2-01",
+        "prompt": "Cosine similarity's length normalization compensates for the effect of the length of what?",
+        "options": [
+          "A. the query log",
+          "B. the URL",
+          "C. the index",
+          "D. the document"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the textbook says cosine similarity is the standard way to compensate for the effect of document length, because the denominator length-normalizes the vectors. Wrong: query logs, URLs and the index aren't what the denominator normalizes.",
+        "source_ids": [
+          "S205#P3",
+          "S205#P2"
+        ]
+      }
+    ]
+  }
+}

@@ -4,9 +4,13 @@
   "stage": 4,
   "merged_from": [],
   "volatility": "evolving",
-  "last_verified": "2026-10-25",
-  "summary": "Exact nearest neighbour search scores every matching document, which Elastic says is accurate but does not scale well for large datasets. Approximate search, such as the HNSW graph method from the original paper, gives up some recall for speed; internals are not taught here.",
-  "actions": [],
+  "last_verified": "2026-10-29",
+  "summary": "Exact nearest neighbour search scores every matching document, which Elastic says is accurate but does not scale well for large datasets; pgvector runs exact search by default, with perfect recall. Approximate indexes such as HNSW (a multilayer graph) and IVFFlat (lists) trade some recall for speed, and results can change once one is added. HNSW has the better speed-recall trade-off in pgvector but builds more slowly and uses more memory. Search settings such as hnsw.ef_search raise recall at the cost of speed, and filters applied after the index scan can return fewer results.",
+  "actions": [
+    "Start with exact search on small datasets; add an approximate index when latency matters more than perfect recall (practitioner inference from Elastic's guidance).",
+    "After adding an approximate index, re-test known queries, because results can change.",
+    "If filtered queries return too few results, remember filtering runs after the index scan; test a higher ef_search."
+  ],
   "myths": [],
   "items": [
     {
@@ -27,6 +31,47 @@
       ]
     },
     {
+      "item_id": "T17-L1-02",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "By default, what kind of nearest neighbour search does pgvector run?",
+      "options": [
+        "A. Approximate search through an HNSW graph",
+        "B. Approximate search through IVFFlat lists",
+        "C. Exact search, with perfect recall",
+        "D. Keyword search that ignores the vectors"
+      ],
+      "answer": "C",
+      "explanation": "Correct: the README says by default pgvector performs exact nearest neighbor search, which provides perfect recall. Wrong: HNSW and IVFFlat are approximate indexes you add; pgvector does search on vectors.",
+      "related_topics": [],
+      "source_ids": [
+        "S217#P7",
+        "S217#P9",
+        "S217#P12"
+      ]
+    },
+    {
+      "item_id": "T17-L1-03",
+      "level": 1,
+      "type": "multiple_choice",
+      "prompt": "According to the pgvector README, what does an HNSW index create?",
+      "options": [
+        "A. A sorted list of every vector by length",
+        "B. A hash table keyed on each vector's norm",
+        "C. A set of lists that are all searched every time",
+        "D. A multilayer graph"
+      ],
+      "answer": "D",
+      "explanation": "Correct: the README says an HNSW index creates a multilayer graph. Wrong: dividing vectors into lists is IVFFlat, which then searches only a subset of the lists; sorted lists and hash tables aren't described.",
+      "related_topics": [
+        "T16"
+      ],
+      "source_ids": [
+        "S217#P9",
+        "S217#P12"
+      ]
+    },
+    {
       "item_id": "T17-L2-01",
       "level": 2,
       "type": "why_it_works",
@@ -42,6 +87,124 @@
       "related_topics": [],
       "source_ids": [
         "S217#P6"
+      ]
+    },
+    {
+      "item_id": "T17-L2-02",
+      "level": 2,
+      "type": "multiple_choice",
+      "prompt": "pgvector says HNSW has better query performance than IVFFlat in terms of the speed-recall trade-off. What does it cost in return?",
+      "options": [
+        "A. Slower builds and more memory",
+        "B. Lower recall than IVFFlat on all queries",
+        "C. It works only with the L1 distance operator",
+        "D. Results must be sorted in descending order"
+      ],
+      "answer": "A",
+      "explanation": "Correct: the README says HNSW has slower build times and uses more memory. Wrong: it says HNSW has the better speed-recall trade-off, and no operator or sort-order limit is stated.",
+      "related_topics": [],
+      "source_ids": [
+        "S217#P10",
+        "S217#P11"
+      ]
+    },
+    {
+      "item_id": "T17-L2-03",
+      "level": 2,
+      "type": "why_it_works",
+      "prompt": "Elastic says approximate kNN reduces latency on large datasets. How does it do that?",
+      "options": [
+        "A. It caches every query's full result set in memory",
+        "B. It compresses documents before scoring them",
+        "C. It narrows the search to likely matches",
+        "D. It drops documents that lack a title field"
+      ],
+      "answer": "C",
+      "explanation": "Correct: Elastic says approximate kNN narrows the search to likely matches instead of scoring every document, reducing latency on large datasets. Wrong: caching, compression and dropping untitled documents aren't how Elastic describes it.",
+      "related_topics": [],
+      "source_ids": [
+        "S218#P3"
+      ]
+    },
+    {
+      "item_id": "T17-L3-01",
+      "level": 3,
+      "type": "worked_example",
+      "prompt": "Hypothetical: a team raises pgvector's hnsw.ef_search from its default of 40 to 200. Based on the README, what should they expect?",
+      "options": [
+        "A. Lower recall and faster queries",
+        "B. No change, as it only affects index builds",
+        "C. A smaller index that uses less memory",
+        "D. Better recall, at the cost of speed"
+      ],
+      "answer": "D",
+      "explanation": "Step 1: ef_search sets the size of the dynamic candidate list for search, 40 by default. Step 2: the README says a higher value provides better recall at the cost of speed. So 200 should raise recall and slow queries. Wrong: that's the reverse of A; ef_search is a search setting, not a build setting; nothing says it shrinks the index.",
+      "related_topics": [],
+      "source_ids": [
+        "S217#P13",
+        "S217#P14"
+      ]
+    },
+    {
+      "item_id": "T17-L3-02",
+      "level": 3,
+      "type": "spot_the_error",
+      "prompt": "A hypothetical audit note says: 'Adding an approximate index in pgvector never changes query results; it only makes them faster.' What is the error?",
+      "options": [
+        "A. Approximate indexes only work with IVFFlat",
+        "B. Results can differ once one is added",
+        "C. pgvector doesn't support approximate indexes",
+        "D. Approximate indexes always make queries slower"
+      ],
+      "answer": "B",
+      "explanation": "Correct: the README says unlike typical indexes, you will see different results for queries after adding an approximate index, because it trades some recall for speed. Wrong: HNSW is also approximate, pgvector does support approximate indexes, and the trade is recall for speed, not slower queries.",
+      "related_topics": [],
+      "source_ids": [
+        "S217#P8",
+        "S217#P6",
+        "S217#P9"
+      ]
+    },
+    {
+      "item_id": "T17-L4-01",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site: an online shop's product search on pgvector with an HNSW index). Symptom: a query filtered to in-stock items returns only 3 results when 10 were requested. Evidence: (1) the README says queries with filtering can return less results since filtering is applied after the index is scanned; (2) about 80% of products are out of stock (hypothetical); (3) hnsw.ef_search is at its default of 40. Which explanation fits best?",
+      "options": [
+        "A. The filter runs after the index scan",
+        "B. Cosine distance can't return more than 3 rows",
+        "C. The shop's vectors are not unit length",
+        "D. HNSW indexes always cap results at three"
+      ],
+      "answer": "A",
+      "explanation": "Correct: filtering is applied after the index is scanned, so most of the candidates found are out-of-stock items that the filter then removes. Raising ef_search, which the README says improves recall at the cost of speed, is a reasonable next test (practitioner inference). Wrong: no source sets a row cap for cosine or HNSW, and vector length isn't the issue here.",
+      "related_topics": [],
+      "source_ids": [
+        "S217#P16",
+        "S217#P13",
+        "S217#P14"
+      ]
+    },
+    {
+      "item_id": "T17-L4-02",
+      "level": 4,
+      "type": "case_file",
+      "prompt": "Case file (hypothetical site: a 50-million-passage RAG index on Elasticsearch). Symptom: exact kNN queries are too slow for the chat app. Evidence: (1) Elastic says exact kNN scores every matching document and does not scale well for large datasets; (2) it says approximate kNN is best for most production workloads where low latency and scale matter more than perfect recall; (3) the team can accept a small loss of recall. Which change fits?",
+      "options": [
+        "A. Keep exact kNN and add more passages",
+        "B. Switch the metric from cosine to l2_norm",
+        "C. Move to approximate kNN",
+        "D. Score every document twice for accuracy"
+      ],
+      "answer": "C",
+      "explanation": "Correct: approximate kNN narrows the search to likely matches and suits workloads where latency and scale matter more than perfect recall, which matches the team's trade-off. Wrong: more passages makes exact search slower; changing the metric doesn't stop exact search scoring every document; scoring twice doubles the work.",
+      "related_topics": [
+        "T16"
+      ],
+      "source_ids": [
+        "S218#P2",
+        "S218#P1",
+        "S218#P3"
       ]
     }
   ]

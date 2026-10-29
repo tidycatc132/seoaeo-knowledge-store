@@ -5,7 +5,7 @@ title: Managing crawling of faceted navigation URLs
 publisher: Google Search Central
 grade: A
 page_date: 2025-12-18
-opened: 2026-10-25
+opened: 2026-10-25 (extra passages 2026-10-29 P12-P17)
 status: used
 ---
 Summary: Faceted URLs cause heavy overcrawling. Preferred fixes: robots.txt disallow or URL fragments; canonical and nofollow are less effective long term.
@@ -33,3 +33,15 @@ Note: quotes were returned by WebFetch extraction; fragments kept short.
 > Use the industry standard URL parameter separator '`&`'.
 ### P11 order
 > ensure that the logical order of the filters always stays the same and that no duplicate filters can exist.
+### P12 definition
+> Faceted navigation is a common feature of websites that allows its visitors to change how items
+### P13 combinations
+> This often means a very large number of possible combinations of filters
+### P14 infinite
+> can generate infinite URL spaces
+### P15 when to block
+> If you don't need the faceted navigation URLs potentially indexed, prevent crawling of these URLs.
+### P16 nofollow
+> every anchor pointing to a specific URL must have the rel="nofollow" attribute
+### P17 canonical option
+> Using rel="canonical" to specify which URL is the canonical version of a faceted navigation URL

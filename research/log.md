@@ -51,3 +51,46 @@
 2026-10-25 | R7 | T64 | sources added 2 (S607,S608) (+S007,S101 reused) | items 10 | cut 2
 2026-10-25 | R7 fixes | T59,T60,T61,T62,T63,T64,T56-L2-03 | quotes added S601#P5 (full), S603#P5, S605#P4-P5, S606#P5-P6 | 32 flagged items + T56-L2-03 fixed, filler removed from 24 options, 2 inference keys rewritten (T62-L4-01, T64-L2-02), letters shuffled A9/B9/C9/D9 | no sources added
 2026-10-25 | R7 final | T59,T60,T61,T62,T64 | passages added S605#P6, S606#P7-P9 (S606 P5-P6 relabelled) | 8 fix rows fixed (required-property quotes, T59-L2-01 link dropped, T64-L4-02 grounded in S501#P2/P5, T61 joins), 5 L2 recalls made why/distinction MCQs, 3 L3 and 5 L4 items hardened | letters non-cyclic A11/B10/C10/D10 | no sources added
+2026-10-26 | lesson pilot | T48 | passages added S003#P2, S013#P6-P8; sources added 3 (S609,S610,S611) | lesson layer bank/lessons/T48-search-intent.json: 4 lessons, 4 quiz MC overrides (L1-01, L1-03, L2-01, L3-01) | quotes via WebFetch
+2026-10-27 | course-build | T59 | sources added 0 (S600 +P10-P16) | course lesson layer + 4 scenes | cut 0
+2026-10-27 | course-build | T60 | sources added 0 (S601 +P7-P19, S602 +P4-P9) | course lesson layer + 4 scenes | cut 0
+2026-10-28 | course-build | T61 | sources added 0 (S603 +P6-P9, S604 +P4-P10, S605 +P7-P15) | course lesson layer + 4 scenes | cut 0
+2026-10-28 | course-build | T62 | sources added 0 (S209 +P17-P22, S606 +P10-P15) | course lesson layer + 4 scenes | cut 0
+2026-10-28 | course-build | T63 | sources added 0 (S209 +P23-P30, S120 +P6-P8) | bank T63 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T64 | sources added 0 (S007 +P12-P18, S607 +P4-P10, S608 +P2-P4) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T1 | sources added 1 (S224; S203 +P3-P9, S222 +P3-P7) | bank T1 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T2 | sources added 2 (S225, S226; S205 +P4-P8) | bank T2 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T5 | sources added 0 (S120 +P9-P14) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T7 | sources added 0 | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T8 | sources added 2 (S227, S228) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T12 | sources added 0 | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T16 | sources added 3 (S229, S230, S231) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T17 | sources added 0 (S217 +P7-P16, S218 +P3-P5, S219 +P2-P4) | bank T17 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T18 | sources added 0 (S212 +P10-P21) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T19 | sources added 1 (S232; S220 +P6-P13) | bank T19 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T21 | sources added 1 (S233; S303 +P6-P10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T22 | sources added 0 (S304 +P6-P12) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T25 | sources added 1 (S234) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T26 | sources added 0 (S215 +P5-P10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T28 | sources added 0 (S502 +P4-P7, S503 +P5-P9) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T29 | sources added 0 (S017 +P7-P12, S018 +P3-P7) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T32 | sources added 0 (S104 +P12-P17) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T39 | sources added 0 (S100 +P11-P17) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T40 | sources added 0 (S105 +P8-P15) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T41 | sources added 0 (S106 +P8-P13) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T42 | sources added 0 | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T43 | sources added 0 (S301 +P6-P15) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T44 | sources added 1 (S235; S011 +P5-P10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T45 | sources added 0 (S400 +P6-P8) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T46 | sources added 1 (S236; S405 +P6-P15) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T47 | sources added 1 (S237; S506 +P7-P12) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T49 | sources added 2 (S238, S239) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T50 | sources added 2 (S240, S241) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T51 | sources added 0 (S407 +P12-P14) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T52 | sources added 0 (S505 +P5-P11) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T53 | sources added 2 (S242 featured snippets help, S243 meta descriptions; S500 +P12-P13) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T54 | sources added 1 (S244 manual actions report; S209 +P31-P35, S300 +P13-P15) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T55 | sources added 0 (S407 +P15-P23) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T56 | sources added 1 (S245 visual elements gallery; S508 +P5-P9) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T57 | sources added 0 (S408 +P4-P10, S410 +P4-P8) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T58 | sources added 0 (S107 +P8-P11, S123 +P4-P16) | course lesson layer + 4 scenes | cut 0

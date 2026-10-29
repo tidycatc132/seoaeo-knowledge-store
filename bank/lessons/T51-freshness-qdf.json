@@ -1,0 +1,743 @@
+{
+  "topic_id": "T51",
+  "items_file": "bank/items/T51-freshness-qdf.json",
+  "course_title": "Freshness and Query Deserves Freshness",
+  "subtitle": "When Google favours fresher content, which kinds of query need it, how Google works out a page's date, and why faking freshness doesn't help.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain Google's query deserves freshness systems",
+    "Tell which queries need fresh content",
+    "Show accurate dates Google can read",
+    "Avoid fake freshness"
+  ],
+  "intro": [
+    "Some searches need the latest information. Others are answered just as well by a page written years ago. Google's systems try to tell the difference.",
+    "This course uses Google's ranking systems guide, its How Search works page, its 2011 post on fresher results, its guide to byline dates, and its helpful content page.",
+    "The 2011 post is old, so the systems it describes may have changed. Advice beyond Google's words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T51-1",
+      "title": "When freshness matters",
+      "est_minutes": 5,
+      "objectives": [
+        "Say what Google's QDF systems do",
+        "Give Google's earthquake example",
+        "Explain why factor weights vary by query"
+      ],
+      "scene": {
+        "id": "qdf",
+        "title": "Fresh for some queries",
+        "beats": [
+          {
+            "caption": "Google has various 'query deserves freshness' systems that show fresher content where it would be expected.",
+            "source_ids": [
+              "S300#P6"
+            ]
+          },
+          {
+            "caption": "Example: if an earthquake happened recently, news articles and fresher content might appear.",
+            "source_ids": [
+              "S300#P7"
+            ]
+          },
+          {
+            "caption": "For current news topics, content freshness plays a bigger role than for dictionary definitions.",
+            "source_ids": [
+              "S309#P1"
+            ]
+          },
+          {
+            "caption": "The weight applied to each factor varies depending on the nature of your query.",
+            "source_ids": [
+              "S309#P2"
+            ]
+          },
+          {
+            "caption": "2011: Google said it better determines when to give more up-to-date results for varying degrees of freshness.",
+            "source_ids": [
+              "S310#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Query deserves freshness",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's ranking systems guide says it has various 'query deserves freshness' systems designed to show fresher content for queries where it would be expected. Its example: if an earthquake happened recently, then news articles and fresher content might appear.",
+              "source_ids": [
+                "S300#P6",
+                "S300#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Not every query",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's How Search works page says that when searching for current news topics, content freshness plays a bigger role than dictionary definitions. The weight applied to each factor varies depending on the nature of your query.",
+              "source_ids": [
+                "S309#P1",
+                "S309#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: 'earthquake today' wants the latest reports. 'What is an earthquake' is answered just as well by a clear explainer written years ago.",
+              "source_ids": [
+                "S300#P7",
+                "S309#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Degrees of freshness",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "In 2011 Google said a change better determines when to give you more up-to-date relevant results for these varying degrees of freshness. That post is old, but the idea of degrees still matches today's guide.",
+              "source_ids": [
+                "S310#P1",
+                "S300#P6"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "QDF systems show fresher content where expected.",
+          "source_ids": [
+            "S300#P6"
+          ]
+        },
+        {
+          "text": "A recent earthquake brings fresher results.",
+          "source_ids": [
+            "S300#P7"
+          ]
+        },
+        {
+          "text": "Freshness matters more for news than definitions.",
+          "source_ids": [
+            "S309#P1"
+          ]
+        },
+        {
+          "text": "Factor weights vary with the query.",
+          "source_ids": [
+            "S309#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Sort your queries",
+        "minutes": "10",
+        "steps": [
+          "Export your top 30 queries from Search Console.",
+          "Mark each one: news, changes often, recurring, or evergreen.",
+          "Search a few of each and note how recent the top results are.",
+          "List the queries where freshness clearly matters."
+        ],
+        "prompt_template": "Here are my top queries: [list]. Google says query deserves freshness systems show fresher content where it would be expected, and that freshness matters more for current news than definitions. Sort my queries by how much freshness each likely needs, and label this as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your queries would a year-old page answer just fine?",
+        "Which would be wrong if your page were a month old?"
+      ],
+      "whats_next": "Next, the kinds of query that need fresh results."
+    },
+    {
+      "lesson_id": "T51-2",
+      "title": "Kinds of fresh query",
+      "est_minutes": 5,
+      "objectives": [
+        "Name the freshness cases from Google's 2011 post",
+        "Match a query to the right case",
+        "Keep old figures in context"
+      ],
+      "scene": {
+        "id": "cases",
+        "title": "Three kinds of fresh",
+        "beats": [
+          {
+            "caption": "Recent events: when something just happened, news articles and fresher content might appear.",
+            "source_ids": [
+              "S300#P7"
+            ]
+          },
+          {
+            "caption": "Recurring events: some events take place on a regularly recurring basis.",
+            "source_ids": [
+              "S310#P4"
+            ]
+          },
+          {
+            "caption": "Frequently updated: information that changes often, but isn't really a hot topic or a recurring event.",
+            "source_ids": [
+              "S310#P5"
+            ]
+          },
+          {
+            "caption": "In 2011 Google said the change noticeably impacts 6 - 10% of searches.",
+            "source_ids": [
+              "S310#P3"
+            ]
+          },
+          {
+            "caption": "That post is from 2011. Today's guide still describes freshness systems, without those figures.",
+            "source_ids": [
+              "S310#P3",
+              "S300#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Three cases",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's sources describe three kinds of query where newer results help.",
+              "source_ids": [
+                "S300#P7",
+                "S310#P4",
+                "S310#P5"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Recent events.",
+                  "text": "If an earthquake happened recently, news articles and fresher content might appear.",
+                  "source_ids": [
+                    "S300#P7"
+                  ]
+                },
+                {
+                  "lead": "Recurring events.",
+                  "text": "Some events take place on a regularly recurring basis, so the latest edition matters.",
+                  "source_ids": [
+                    "S310#P4"
+                  ]
+                },
+                {
+                  "lead": "Frequently updated information.",
+                  "text": "Information that changes often, but isn't really a hot topic or a recurring event.",
+                  "source_ids": [
+                    "S310#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: 'Riverside food festival schedule' is a recurring event. 'best budget phone' is information that changes often. 'flood warning Riverside' is a recent event.",
+              "source_ids": [
+                "S310#P4",
+                "S310#P5",
+                "S300#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Old numbers",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The 2011 post said the change noticeably impacts 6 - 10% of searches.",
+              "source_ids": [
+                "S310#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "These are 2011 figures about one change. Don't quote them as how much freshness matters today.",
+              "source_ids": [
+                "S310#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Recent events bring fresher results.",
+          "source_ids": [
+            "S300#P7"
+          ]
+        },
+        {
+          "text": "Recurring events need the latest edition.",
+          "source_ids": [
+            "S310#P4"
+          ]
+        },
+        {
+          "text": "Some information simply changes often.",
+          "source_ids": [
+            "S310#P5"
+          ]
+        },
+        {
+          "text": "The 6 to 10% figure is from 2011.",
+          "source_ids": [
+            "S310#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Plan updates by case",
+        "minutes": "15",
+        "steps": [
+          "Take the freshness queries from the last exercise.",
+          "Label each as recent event, recurring event or frequently updated.",
+          "Set a review rhythm for each: as it happens, before each event, or on a schedule.",
+          "Assign an owner for each page."
+        ],
+        "prompt_template": "Here are queries where freshness matters for my site: [list]. Google's 2011 post describes regularly recurring events and information that changes often, and today's guide gives recent events like an earthquake. Label each query by case and suggest a review rhythm. Label the rhythm as practitioner judgement."
+      },
+      "reflection": [
+        "Which recurring events does your audience search for every year?",
+        "What on your site goes out of date without anyone noticing?"
+      ],
+      "whats_next": "Next, how Google works out a page's date."
+    },
+    {
+      "lesson_id": "T51-3",
+      "title": "Dates Google can read",
+      "est_minutes": 5,
+      "objectives": [
+        "Define a byline date",
+        "Show dates the way Google asks",
+        "Avoid date mistakes"
+      ],
+      "scene": {
+        "id": "dates",
+        "title": "How Google dates a page",
+        "beats": [
+          {
+            "caption": "A byline date is the date Google estimates that the web page was updated or published.",
+            "source_ids": [
+              "S311#P1"
+            ]
+          },
+          {
+            "caption": "Google doesn't depend on a single date factor, because all factors can be prone to issues.",
+            "source_ids": [
+              "S311#P2",
+              "S311#P3"
+            ]
+          },
+          {
+            "caption": "Add a user-visible date to the page and feature it prominently.",
+            "source_ids": [
+              "S311#P6"
+            ]
+          },
+          {
+            "caption": "Specify the datePublished and/or dateModified fields.",
+            "source_ids": [
+              "S311#P7"
+            ]
+          },
+          {
+            "caption": "Don't specify future dates, or the date of the action described on the page.",
+            "source_ids": [
+              "S311#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "An estimate from many clues",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says a byline date is the date that Google estimates the web page was updated or published. It looks at several factors to determine its best estimate of when a page was published or significantly updated, and doesn't depend on a single date factor because all factors can be prone to issues.",
+              "source_ids": [
+                "S311#P1",
+                "S311#P3",
+                "S311#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Help Google get it right",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's byline date guide asks for two things.",
+              "source_ids": [
+                "S311#P6",
+                "S311#P7"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "A visible date.",
+                  "text": "Add a user-visible date to the page and feature it prominently.",
+                  "source_ids": [
+                    "S311#P6"
+                  ]
+                },
+                {
+                  "lead": "Structured data.",
+                  "text": "Specify the datePublished and/or dateModified fields.",
+                  "source_ids": [
+                    "S311#P7"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a review updated last week still shows an old date in results. The page has no visible date and no dateModified. Add both, with the real update date.",
+              "source_ids": [
+                "S311#P6",
+                "S311#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Date mistakes",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The dates must describe the publication or update date of the page, not the stories or events described therein. Don't specify future dates, or the date of the action described on the page.",
+              "source_ids": [
+                "S311#P4",
+                "S311#P5"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: an article published in March about a concert in June should carry its March date, not the concert date.",
+              "source_ids": [
+                "S311#P4",
+                "S311#P5"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A byline date is Google's estimate.",
+          "source_ids": [
+            "S311#P1"
+          ]
+        },
+        {
+          "text": "Google uses several date factors, not one.",
+          "source_ids": [
+            "S311#P2"
+          ]
+        },
+        {
+          "text": "Show a visible date and set dateModified.",
+          "source_ids": [
+            "S311#P6",
+            "S311#P7"
+          ]
+        },
+        {
+          "text": "Dates describe the page, not the event.",
+          "source_ids": [
+            "S311#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your dates",
+        "minutes": "10",
+        "steps": [
+          "Open five articles from different templates.",
+          "Note whether each shows a visible date near the top.",
+          "Check the structured data for datePublished and dateModified.",
+          "Fix any template where dates are missing or don't match."
+        ],
+        "prompt_template": "Here are the visible dates and structured data dates for five of my pages: [list]. Google asks for a user-visible date featured prominently and datePublished and/or dateModified, and says dates must describe the page, not events in it. Flag missing or mismatched dates and suggest fixes."
+      },
+      "reflection": [
+        "Does your CMS change dateModified when only a typo is fixed?",
+        "Which templates hide the date at the bottom of the page?"
+      ],
+      "whats_next": "Next, why faking freshness doesn't help."
+    },
+    {
+      "lesson_id": "T51-4",
+      "title": "Real updates, not fake freshness",
+      "est_minutes": 5,
+      "objectives": [
+        "Recognise fake freshness",
+        "Put update effort where freshness is expected",
+        "Keep evergreen pages accurate"
+      ],
+      "scene": {
+        "id": "fake",
+        "title": "A new date isn't new content",
+        "beats": [
+          {
+            "caption": "Google asks: are you changing the date of pages to make them seem fresh when the content hasn't substantially changed?",
+            "source_ids": [
+              "S407#P12"
+            ]
+          },
+          {
+            "caption": "Adding or removing lots of content to make your site seem 'fresh'? Google's answer: (No, it won't).",
+            "source_ids": [
+              "S407#P13",
+              "S407#P14"
+            ]
+          },
+          {
+            "caption": "Dates must describe the publication or update date of the page.",
+            "source_ids": [
+              "S311#P4"
+            ]
+          },
+          {
+            "caption": "Freshness plays a bigger role for current news than for dictionary definitions.",
+            "source_ids": [
+              "S309#P1"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: update pages when the facts change, and leave evergreen dates alone.",
+            "source_ids": [
+              "S309#P1",
+              "S311#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Faking it",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's helpful content page asks two pointed questions.",
+              "source_ids": [
+                "S407#P12",
+                "S407#P13"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Changing dates?",
+                  "text": "Are you changing the date of pages to make them seem fresh when the content has not substantially changed?",
+                  "source_ids": [
+                    "S407#P12"
+                  ]
+                },
+                {
+                  "lead": "Churning content?",
+                  "text": "Are you adding a lot of new content or removing a lot of older content primarily because you believe it will help your search rankings by making your site seem 'fresh'? Google adds: (No, it won't).",
+                  "source_ids": [
+                    "S407#P13",
+                    "S407#P14"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Its byline date guide adds that dates must describe the publication or update date of the page.",
+              "source_ids": [
+                "S311#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Effort where it counts",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Because freshness plays a bigger role for current news topics than for dictionary definitions, update effort pays off most on queries where newer information is expected.",
+              "source_ids": [
+                "S309#P1",
+                "S300#P6"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical tax site: the team re-dates its evergreen 'What is a W-2?' page every week, while its page on this week's filing-rule change hasn't been touched in months. Update the rule-change page, and stop re-dating the definition.",
+              "source_ids": [
+                "S309#P1",
+                "S407#P12"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Review evergreen pages for accuracy on a slower schedule, and change their date only when you substantially change the content.",
+              "source_ids": [
+                "S407#P12",
+                "S311#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "New dates on unchanged pages don't make them fresh.",
+          "source_ids": [
+            "S407#P12"
+          ]
+        },
+        {
+          "text": "Churning content to seem fresh won't help.",
+          "source_ids": [
+            "S407#P13",
+            "S407#P14"
+          ]
+        },
+        {
+          "text": "Dates must describe real publication or updates.",
+          "source_ids": [
+            "S311#P4"
+          ]
+        },
+        {
+          "text": "Spend update effort where freshness is expected.",
+          "source_ids": [
+            "S309#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit your updates",
+        "minutes": "15",
+        "steps": [
+          "List pages whose dates changed in the last three months.",
+          "For each, note what actually changed in the content.",
+          "Flag pages re-dated with no substantial change.",
+          "Flag time-sensitive pages that haven't been updated."
+        ],
+        "prompt_template": "Here are my pages with their last date change and what changed: [list]. Google asks whether you change dates to make pages seem fresh when content hasn't substantially changed, and says freshness matters more for current news than definitions. Flag fake-fresh pages and stale time-sensitive pages, with a fix for each."
+      },
+      "reflection": [
+        "Does a plugin on your site bump dates automatically?",
+        "Which time-sensitive page has no one assigned to update it?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google's query deserves freshness systems show fresher content where it's expected, like news of a recent earthquake, and freshness weighs more for current news than definitions. Google's 2011 post also described recurring events and information that changes often. Google estimates a page's date from several factors, so show a visible date and set datePublished and dateModified accurately. Re-dating unchanged pages or churning content to seem fresh won't help; update pages when the facts change.",
+    "related_topics": [
+      {
+        "topic_id": "T48",
+        "title": "Search intent classification and spelling correction"
+      },
+      {
+        "topic_id": "T44",
+        "title": "Entities, Knowledge Graph, Schema.org and JSON-LD"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Freshness and Query Deserves Freshness. The questions revisit QDF, the kinds of fresh query and byline dates.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T51-L1-01",
+      "T51-L1-02",
+      "T51-L1-03",
+      "T51-L2-01",
+      "T51-L2-02",
+      "T51-L2-03",
+      "T51-L3-01",
+      "T51-L3-02",
+      "T51-L4-01",
+      "T51-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T51-L1-01",
+        "options": [
+          "A. feature boosts",
+          "B. filtering rules",
+          "C. full coverage",
+          "D. freshness"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the guide says Google has various 'query deserves freshness' systems designed to show fresher content for queries where it would be expected.",
+        "source_ids": [
+          "S300#P6"
+        ]
+      },
+      {
+        "item_id": "T51-L1-03",
+        "options": [
+          "A. True",
+          "B. False, it said 35 percent",
+          "C. False, it said 1 percent",
+          "D. False, it gave no figure"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the post says this change noticeably impacts 6 - 10% of searches. That is the figure it gives for a noticeable effect.",
+        "source_ids": [
+          "S310#P3"
+        ]
+      },
+      {
+        "item_id": "T51-L2-02",
+        "options": [
+          "A. True, a new date resets freshness",
+          "B. True, if dateModified changes too",
+          "C. True, for evergreen pages",
+          "D. False"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google looks at several factors to estimate when a page was published or significantly updated, and says dates must describe the publication or update date of the page. Its helpful content page also asks whether you change dates to make pages seem fresh when the content hasn't substantially changed.",
+        "source_ids": [
+          "S311#P3",
+          "S311#P4",
+          "S407#P12"
+        ]
+      },
+      {
+        "item_id": "T51-L3-01",
+        "options": [
+          "A. recurring",
+          "B. recent event",
+          "C. frequently updated",
+          "D. evergreen topic"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the 2011 post says some events take place on a regularly recurring basis, which fits a yearly festival. Wrong: 'recent' is for things that just happened, 'updated' for information that changes often, and 'evergreen' isn't one of the post's cases.",
+        "source_ids": [
+          "S310#P4",
+          "S310#P5"
+        ]
+      }
+    ]
+  }
+}
