@@ -5,7 +5,7 @@ title: The Anatomy of a Large-Scale Hypertextual Web Search Engine
 publisher: Brin and Page (Stanford)
 grade: A
 page_date: unknown
-opened: 2026-10-25
+opened: 2026-10-25 (extra passages 2026-10-29 P6-P8; P7-P8 match after removing line breaks)
 status: used
 ---
 Summary: Original 1998-era paper describing PageRank, the random surfer and anchor text use.
@@ -21,3 +21,12 @@ Note: quotes returned by WebFetch extraction; fragments kept short.
 > Note that the PageRanks form a probability distribution over web pages, so the sum of all web pages' PageRanks will be one.
 ### P5 anchors
 > First, anchors often provide more accurate descriptions of web pages than the pages themselves.
+
+### P6 C(A)
+> C(A) is defined as the number of links going out of page A
+
+### P7 damping range
+> The parameter d is a damping factor which can be set between 0 and 1
+
+### P8 citations
+> We assume page A has pages T1...Tn which point to it (i.e., are citations)

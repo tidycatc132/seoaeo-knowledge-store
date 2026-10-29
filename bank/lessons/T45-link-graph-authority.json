@@ -1,0 +1,812 @@
+{
+  "topic_id": "T45",
+  "items_file": "bank/items/T45-link-graph-authority.json",
+  "course_title": "Links and authority: PageRank and HITS",
+  "subtitle": "Why links count as endorsements, how the PageRank and HITS models score pages, and what Google actually asks of your links today.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why links are treated as endorsements",
+    "Work through the PageRank formula",
+    "Tell hubs from authorities in HITS",
+    "Apply Google's link guidance to your site"
+  ],
+  "intro": [
+    "Links between pages were one of the first big ideas in web search. A link can be read as one page vouching for another, and two famous models turned that idea into scores: PageRank and HITS.",
+    "This course uses Brin and Page's paper describing PageRank, Kleinberg's HITS paper, the link analysis chapter of Introduction to Information Retrieval, and Google's guides to links, outbound link attributes, spam policies and the Page indexing report.",
+    "The papers and textbook describe methods. None of them says what Google runs today. Advice beyond the sources' words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T45-1",
+      "title": "Links as endorsements",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain the idea of a link as conferred authority",
+        "Describe the random surfer model",
+        "Say what happens at a page with no links out"
+      ],
+      "scene": {
+        "id": "surfer",
+        "title": "The random surfer",
+        "beats": [
+          {
+            "caption": "The analysis of hyperlinks and the graph structure of the Web has been instrumental in the development of web search.",
+            "source_ids": [
+              "S402#P2"
+            ]
+          },
+          {
+            "caption": "Link analysis treats a hyperlink from one page to another as a conferral of authority.",
+            "source_ids": [
+              "S402#P1"
+            ]
+          },
+          {
+            "caption": "PageRank imagines a random surfer, given a page at random, who keeps clicking links and never hits back.",
+            "source_ids": [
+              "S400#P2"
+            ]
+          },
+          {
+            "caption": "At a page with no out-links, the surfer invokes the teleport operation.",
+            "source_ids": [
+              "S403#P2"
+            ]
+          },
+          {
+            "caption": "PageRanks form a probability distribution, so all pages' PageRanks sum to one.",
+            "source_ids": [
+              "S400#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "A link as a vote",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The textbook says the analysis of hyperlinks and the graph structure of the Web has been instrumental in the development of web search. Link analysis treats hyperlinks from a web page to another as a conferral of authority.",
+              "source_ids": [
+                "S402#P2",
+                "S402#P1"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a city council's page on emergency repairs links to a local plumber. In link analysis terms, the council page confers some authority on the plumber's page.",
+              "source_ids": [
+                "S402#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The random surfer",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Brin and Page describe PageRank with a thought experiment. They assume a 'random surfer' who is given a web page at random and keeps clicking on links, never hitting 'back'.",
+              "source_ids": [
+                "S400#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The textbook adds a rule for dead ends: when at a node with no out-links, the surfer invokes the teleport operation and jumps elsewhere.",
+              "source_ids": [
+                "S403#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Brin and Page note that PageRanks form a probability distribution over web pages, so the sum of all web pages' PageRanks will be one.",
+              "source_ids": [
+                "S400#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Method, not Google today",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "These sources explain why links matter in published models. None of them says what Google's systems use now.",
+              "source_ids": [
+                "S400#P2",
+                "S402#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Link analysis reads a link as a conferral of authority.",
+          "source_ids": [
+            "S402#P1"
+          ]
+        },
+        {
+          "text": "The random surfer keeps clicking and never hits back.",
+          "source_ids": [
+            "S400#P2"
+          ]
+        },
+        {
+          "text": "At a dead end, the surfer teleports.",
+          "source_ids": [
+            "S403#P2"
+          ]
+        },
+        {
+          "text": "All PageRanks together sum to one.",
+          "source_ids": [
+            "S400#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Walk your own site",
+        "minutes": "10",
+        "steps": [
+          "Start on your home page.",
+          "Click a link at random, then another, ten times without going back.",
+          "Note any page with no links out, where you'd be stuck.",
+          "Note any important page you never reached."
+        ],
+        "prompt_template": "Here are the main pages on my site and the internal links on each: [list]. Using the textbook's random surfer idea (keep clicking links, never go back, teleport at dead ends), tell me which pages a surfer would rarely reach and which pages are dead ends. Label it as an illustration, not how Google ranks."
+      },
+      "reflection": [
+        "Which of your pages have no links out at all?",
+        "Which outside sites would plausibly vouch for you?"
+      ],
+      "whats_next": "Next, the PageRank formula, step by step."
+    },
+    {
+      "lesson_id": "T45-2",
+      "title": "The PageRank formula",
+      "est_minutes": 6,
+      "objectives": [
+        "Read the PageRank formula",
+        "Explain the damping factor d",
+        "Calculate a simple PageRank by hand"
+      ],
+      "scene": {
+        "id": "formula",
+        "title": "Shares of a vote",
+        "beats": [
+          {
+            "caption": "The paper's formula: PR(A) = (1-d) + d (PR(T1)/C(T1) + ... + PR(Tn)/C(Tn)).",
+            "source_ids": [
+              "S400#P1"
+            ]
+          },
+          {
+            "caption": "Brin and Page usually set the damping factor d to 0.85.",
+            "source_ids": [
+              "S400#P3"
+            ]
+          },
+          {
+            "caption": "Each linking page's PageRank is divided by its number of outgoing links, C(T).",
+            "source_ids": [
+              "S400#P1",
+              "S400#P6"
+            ]
+          },
+          {
+            "caption": "Hypothetical: T1 (PR 2, 4 links) gives 0.5; T2 (PR 1, 1 link) gives 1. PR(A) = 0.15 + 0.85 × 1.5 = 1.425.",
+            "source_ids": [
+              "S400#P1",
+              "S400#P3"
+            ]
+          },
+          {
+            "caption": "This is the paper's formula. It doesn't show what Google computes today.",
+            "source_ids": [
+              "S400#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The formula",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Brin and Page give PageRank as PR(A) = (1-d) + d (PR(T1)/C(T1) + ... + PR(Tn)/C(Tn)). T1 to Tn are the pages that point to A, and C(A) is defined as the number of links going out of page A. The damping factor d can be set between 0 and 1; they usually set it to 0.85.",
+              "source_ids": [
+                "S400#P1",
+                "S400#P8",
+                "S400#P6",
+                "S400#P7",
+                "S400#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "So a page shares its PageRank among all the pages it links to. A link from a page with few outgoing links passes a bigger share.",
+              "source_ids": [
+                "S400#P1",
+                "S400#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "A worked example",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Here is the formula with hypothetical numbers and d = 0.85.",
+              "source_ids": [
+                "S400#P1",
+                "S400#P3"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "T1's share.",
+                  "text": "T1 has PR 2 and 4 outgoing links: 2 ÷ 4 = 0.5.",
+                  "source_ids": [
+                    "S400#P1"
+                  ]
+                },
+                {
+                  "lead": "T2's share.",
+                  "text": "T2 has PR 1 and 1 outgoing link: 1 ÷ 1 = 1.",
+                  "source_ids": [
+                    "S400#P1"
+                  ]
+                },
+                {
+                  "lead": "Add and damp.",
+                  "text": "PR(A) = 0.15 + 0.85 × (0.5 + 1) = 0.15 + 1.275 = 1.425.",
+                  "source_ids": [
+                    "S400#P1",
+                    "S400#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Common slip",
+              "text": "Forgetting to divide by C(T) makes T1 look like it passes all of its PR 2. The formula divides each linker's PageRank by its outgoing links.",
+              "source_ids": [
+                "S400#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What the formula doesn't tell you",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Third-party 'authority' scores are heuristics built by tool vendors, not Google metrics. The paper's formula explains the idea; it isn't a readout of Google's systems.",
+              "source_ids": [
+                "S400#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "PR(A) = (1-d) + d × the sum of each linker's PR ÷ its links.",
+          "source_ids": [
+            "S400#P1"
+          ]
+        },
+        {
+          "text": "Brin and Page usually set d to 0.85.",
+          "source_ids": [
+            "S400#P3"
+          ]
+        },
+        {
+          "text": "A linker with fewer outgoing links passes a bigger share.",
+          "source_ids": [
+            "S400#P1"
+          ]
+        },
+        {
+          "text": "The formula is a published method, not Google today.",
+          "source_ids": [
+            "S400#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Calculate a share",
+        "minutes": "10",
+        "steps": [
+          "Pick a page on your site and two pages that link to it.",
+          "Count the outgoing links on each linking page.",
+          "Give each linking page a made-up PageRank of 1.",
+          "Work out PR(A) with d = 0.85, and see which linker passes more."
+        ],
+        "prompt_template": "Using Brin and Page's formula PR(A) = (1-d) + d (PR(T1)/C(T1) + ... ) with d = 0.85, calculate PR(A) when the linking pages have these made-up values: [PR and outgoing link counts]. Show each step, and remind me this is the paper's formula, not Google's current system."
+      },
+      "reflection": [
+        "Which of your hub pages link out to hundreds of pages?",
+        "Where have you seen a tool's authority score treated as Google's?"
+      ],
+      "whats_next": "Next, HITS: hubs and authorities."
+    },
+    {
+      "lesson_id": "T45-3",
+      "title": "HITS: hubs and authorities",
+      "est_minutes": 5,
+      "objectives": [
+        "Define a hub and an authority",
+        "Explain their mutually reinforcing relationship",
+        "Say what HITS outputs for a query"
+      ],
+      "scene": {
+        "id": "hits",
+        "title": "Hubs point, authorities are pointed to",
+        "beats": [
+          {
+            "caption": "Hub pages have links to multiple relevant authoritative pages.",
+            "source_ids": [
+              "S401#P1"
+            ]
+          },
+          {
+            "caption": "A good authority is a page that is pointed to by many good hubs.",
+            "source_ids": [
+              "S401#P2"
+            ]
+          },
+          {
+            "caption": "Hubs and authorities exhibit a mutually reinforcing relationship.",
+            "source_ids": [
+              "S401#P3"
+            ]
+          },
+          {
+            "caption": "A page's hub score is the sum of the authority scores of the pages it links to.",
+            "source_ids": [
+              "S404#P1"
+            ]
+          },
+          {
+            "caption": "For any query, HITS computes two ranked lists of results rather than one.",
+            "source_ids": [
+              "S404#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two kinds of good page",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Kleinberg's HITS paper describes two roles.",
+              "source_ids": [
+                "S401#P1",
+                "S401#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Hubs.",
+                  "text": "Pages that have links to multiple relevant authoritative pages.",
+                  "source_ids": [
+                    "S401#P1"
+                  ]
+                },
+                {
+                  "lead": "Authorities.",
+                  "text": "A good authority is a page that is pointed to by many good hubs.",
+                  "source_ids": [
+                    "S401#P2"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a 'best plumbing guides' list page is a hub. The guides it links to, which many such lists point at, are authorities.",
+              "source_ids": [
+                "S401#P1",
+                "S401#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Scores that feed each other",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Kleinberg says hubs and authorities exhibit what could be called a mutually reinforcing relationship. The textbook spells it out: HITS sets the hub score of a page to the sum of the authority scores of the pages it links to, and a good authority page is one pointed to by many good hub pages.",
+              "source_ids": [
+                "S401#P3",
+                "S404#P1",
+                "S404#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Unlike PageRank's single score, for any query HITS computes two ranked lists of results rather than one: hubs and authorities.",
+              "source_ids": [
+                "S404#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Method, not Google today",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "HITS is a published research method. No saved source says Google uses it.",
+              "source_ids": [
+                "S401#P1",
+                "S404#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Hubs link to many relevant authorities.",
+          "source_ids": [
+            "S401#P1"
+          ]
+        },
+        {
+          "text": "Authorities are pointed to by many good hubs.",
+          "source_ids": [
+            "S401#P2"
+          ]
+        },
+        {
+          "text": "The two scores reinforce each other.",
+          "source_ids": [
+            "S401#P3"
+          ]
+        },
+        {
+          "text": "HITS gives two ranked lists per query.",
+          "source_ids": [
+            "S404#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find hubs in your niche",
+        "minutes": "10",
+        "steps": [
+          "Search for a list or roundup page in your topic.",
+          "Note which sites it links to.",
+          "Find two more roundups and note their links too.",
+          "Mark the sites that appear on all three: the authorities in HITS terms."
+        ],
+        "prompt_template": "Here are three roundup pages in my niche and the sites each links to: [lists]. Using Kleinberg's HITS idea (hubs link to many good authorities; authorities are pointed to by many good hubs), tell me which pages act as hubs and which sites look like authorities. Label it as an illustration of the method, not how Google ranks."
+      },
+      "reflection": [
+        "Which pages on your site work as hubs?",
+        "Which roundups in your niche leave you out?"
+      ],
+      "whats_next": "Next, what Google actually asks of your links."
+    },
+    {
+      "lesson_id": "T45-4",
+      "title": "Google's link guidance",
+      "est_minutes": 5,
+      "objectives": [
+        "Make links Google can crawl",
+        "Label paid and user-generated links",
+        "Recognise link spam"
+      ],
+      "scene": {
+        "id": "guide",
+        "title": "Links Google can use",
+        "beats": [
+          {
+            "caption": "Google can only crawl your link if it's an <a> HTML element with an href attribute.",
+            "source_ids": [
+              "S405#P1",
+              "S405#P5"
+            ]
+          },
+          {
+            "caption": "Every page you care about should have a link from at least one other page on your site.",
+            "source_ids": [
+              "S405#P4"
+            ]
+          },
+          {
+            "caption": "Mark paid links with rel=sponsored, and user-generated links with rel=ugc.",
+            "source_ids": [
+              "S406#P1",
+              "S406#P2"
+            ]
+          },
+          {
+            "caption": "Links with these attributes will generally not be followed, though pages may be found other ways.",
+            "source_ids": [
+              "S406#P3",
+              "S406#P4"
+            ]
+          },
+          {
+            "caption": "Link spam: creating links primarily to manipulate rankings, such as with automated services.",
+            "source_ids": [
+              "S209#P5",
+              "S209#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Links Google can crawl",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google can only crawl your link if it's an <a> HTML element with an href attribute. Google can't reliably extract URLs from <a> elements that don't have an href attribute.",
+              "source_ids": [
+                "S405#P1",
+                "S405#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google also says every page you care about should have a link from at least one other page on your site.",
+              "source_ids": [
+                "S405#P4"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a new buying guide sits only in the sitemap, and the Page indexing report says the page was found by Google but not crawled yet. Linking to it from a relevant page is the first fix; indexing still isn't guaranteed.",
+              "source_ids": [
+                "S405#P4",
+                "S119#P2",
+                "S120#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Labelling outbound links",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google asks you to qualify some links.",
+              "source_ids": [
+                "S406#P1",
+                "S406#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Paid links.",
+                  "text": "Mark links that are advertisements or paid placements with the sponsored value.",
+                  "source_ids": [
+                    "S406#P1"
+                  ]
+                },
+                {
+                  "lead": "User-generated links.",
+                  "text": "Mark links in comments and forum posts with the ugc value.",
+                  "source_ids": [
+                    "S406#P2"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Links marked with these rel attributes will generally not be followed, though the linked pages may be found through other means, such as sitemaps or links from other sites.",
+              "source_ids": [
+                "S406#P3",
+                "S406#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Link spam",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's spam policies define link spam as the practice of creating links to or from a site primarily for the purpose of manipulating search rankings. One example is using automated programs or services to create links to your site.",
+              "source_ids": [
+                "S209#P5",
+                "S209#P6"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "The models explain why links matter. They're not permission to manufacture links. Earn links with content worth citing, and label any you pay for.",
+              "source_ids": [
+                "S402#P1",
+                "S406#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Use real <a href> links so Google can crawl them.",
+          "source_ids": [
+            "S405#P1",
+            "S405#P5"
+          ]
+        },
+        {
+          "text": "Link every page you care about from another page.",
+          "source_ids": [
+            "S405#P4"
+          ]
+        },
+        {
+          "text": "Label paid links sponsored and user links ugc.",
+          "source_ids": [
+            "S406#P1",
+            "S406#P2"
+          ]
+        },
+        {
+          "text": "Links made mainly to manipulate rankings are spam.",
+          "source_ids": [
+            "S209#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit your links",
+        "minutes": "15",
+        "steps": [
+          "Crawl your site with an SEO crawler.",
+          "List pages with no internal links pointing to them.",
+          "List links built from script or <a> tags without href.",
+          "Check that paid placements carry rel=sponsored."
+        ],
+        "prompt_template": "Here is a crawl export of my site's internal links and outbound links: [data]. Google says it can only crawl <a> elements with an href, every page you care about should be linked from another page, and paid links should be marked sponsored. List orphan pages, uncrawlable links and unlabelled paid links, with a fix for each."
+      },
+      "reflection": [
+        "Which important pages are reachable only from the sitemap?",
+        "Do any old sponsored posts lack rel=sponsored?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Link analysis treats a link as a conferral of authority. PageRank models a random surfer and shares each page's score among its outgoing links, with d usually 0.85; HITS scores hubs and authorities that reinforce each other. These are published methods, not a readout of Google today. Google's own asks are simpler: use crawlable <a href> links, link every page you care about from another page, label paid links sponsored and user links ugc, and don't build links mainly to manipulate rankings.",
+    "related_topics": [
+      {
+        "topic_id": "T46",
+        "title": "Anchor text analysis and contextual hyperlink indexing"
+      },
+      {
+        "topic_id": "T39",
+        "title": "Web crawling and crawl budget management"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Links and authority: PageRank and HITS. The questions revisit the random surfer, the PageRank formula, hubs and authorities, and Google's link guidance.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T45-L1-01",
+      "T45-L1-02",
+      "T45-L1-03",
+      "T45-L2-01",
+      "T45-L2-02",
+      "T45-L2-03",
+      "T45-L3-01",
+      "T45-L3-02",
+      "T45-L4-01",
+      "T45-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T45-L1-01",
+        "options": [
+          "A. hub page",
+          "B. seed set",
+          "C. authority",
+          "D. link directory"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the paper says a good authority is a page that is pointed to by many good hubs. Hubs are the pages that link to multiple relevant authoritative pages, so 'hub' is the other role.",
+        "source_ids": [
+          "S401#P1",
+          "S401#P2"
+        ]
+      },
+      {
+        "item_id": "T45-L1-02",
+        "options": [
+          "A. Starts each time at the highest-ranked page",
+          "B. Keeps clicking links and never hits back",
+          "C. Reads only the anchor text of each link",
+          "D. Follows only links that carry rel=nofollow"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the paper assumes a random surfer who is given a web page at random and keeps clicking on links, never hitting 'back'. Wrong: the surfer starts on a random page, not the top-ranked one, and the paper doesn't limit it to anchor text or nofollow links.",
+        "source_ids": [
+          "S400#P2"
+        ]
+      },
+      {
+        "item_id": "T45-L1-03",
+        "options": [
+          "A. False, they sum to 0.85",
+          "B. False, each page scores 1",
+          "C. False, they can't be summed",
+          "D. True"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the paper says PageRanks form a probability distribution over web pages, so the sum of all web pages' PageRanks will be one. The 0.85 figure is the damping factor d, not the total.",
+        "source_ids": [
+          "S400#P4",
+          "S400#P3"
+        ]
+      },
+      {
+        "item_id": "T45-L2-02",
+        "options": [
+          "A. True, a single list",
+          "B. True, but only for news",
+          "C. False",
+          "D. True, one list per site"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the textbook says that for any query, HITS computes two ranked lists of results (hubs and authorities) rather than one.",
+        "source_ids": [
+          "S404#P3"
+        ]
+      },
+      {
+        "item_id": "T45-L3-01",
+        "options": [
+          "A. About 1.275",
+          "B. About 1.850",
+          "C. About 0.575",
+          "D. 1.425"
+        ],
+        "answer": "D",
+        "explanation": "Correct: PR(A) = (1-d) + d(PR(T1)/C(T1) + PR(T2)/C(T2)) = 0.15 + 0.85 × (0.5 + 1) = 1.425. Wrong: 1.275 leaves out the (1-d) term; 1.85 forgets to divide T1's PR by its links; 0.575 drops T2. This is the paper's formula, not a claim about Google's current systems.",
+        "source_ids": [
+          "S400#P1",
+          "S400#P3"
+        ]
+      }
+    ]
+  }
+}
