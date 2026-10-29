@@ -1,0 +1,868 @@
+{
+  "topic_id": "T7",
+  "items_file": "bank/items/T7-retrieval-metrics.json",
+  "course_title": "Measuring search quality",
+  "subtitle": "Precision, recall, MRR, MAP and NDCG: what each retrieval metric measures, when to use it, and how to judge a site search or RAG retriever.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Calculate precision and recall at a cutoff k",
+    "Explain what MRR and MAP reward",
+    "Explain why NDCG suits graded relevance",
+    "Set up a fair evaluation for a site search or RAG retriever"
+  ],
+  "intro": [
+    "How do you know if a search is good? You measure it. Search engineers have a small set of metrics, and each one answers a different question: did we find the right things, did we put the best one first, did we order them well?",
+    "This course explains the common ones in plain language, with worked numbers. It uses the Stanford textbook, Elastic's ranking evaluation documentation and the BEIR benchmark paper.",
+    "The payoff for SEO and AEO work is practical. When you audit a site search, compare two RAG retrievers or judge an AI answer, you'll know which number to trust."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T7-1",
+      "title": "Precision and recall at k",
+      "est_minutes": 6,
+      "objectives": [
+        "Define precision and recall",
+        "Calculate both at a cutoff k",
+        "Explain why they ignore rank"
+      ],
+      "scene": {
+        "id": "topk",
+        "title": "Scoring the top 10",
+        "beats": [
+          {
+            "caption": "A search returns ten results. Four of them are relevant, and there are eight relevant pages in the whole collection.",
+            "source_ids": [
+              "S016#P2"
+            ]
+          },
+          {
+            "caption": "Precision at k is the proportion of relevant results in the top k: 4 out of 10, or 0.4.",
+            "source_ids": [
+              "S016#P2"
+            ]
+          },
+          {
+            "caption": "Recall at k is the fraction of relevant documents in the first k results relative to all possible relevant results: 4 out of 8, or 0.5.",
+            "source_ids": [
+              "S016#P3"
+            ]
+          },
+          {
+            "caption": "The textbook calls precision at k the least stable of the commonly used evaluation measures.",
+            "source_ids": [
+              "S004#P2"
+            ]
+          },
+          {
+            "caption": "And BEIR notes precision and recall are both rank unaware: shuffle the top 10 and the scores don't change.",
+            "source_ids": [
+              "S015#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two questions",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Precision",
+                  "text": "What fraction of the returned results are relevant to the information need?",
+                  "source_ids": [
+                    "S203#P7"
+                  ]
+                },
+                {
+                  "name": "Recall",
+                  "text": "What fraction of the relevant documents in the collection were returned by the system?",
+                  "source_ids": [
+                    "S203#P8"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "On the web, nobody reads every result, so the textbook says evaluation moves to measuring precision at fixed low levels of retrieved results, such as 10 or 30 documents.",
+              "source_ids": [
+                "S004#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Worked example",
+          "blocks": [
+            {
+              "type": "example",
+              "text": "The top 10 results contain 4 relevant pages, and the collection has 8 relevant pages in total. Precision at 10 = 4 ÷ 10 = 0.4. Recall at 10 = 4 ÷ 8 = 0.5.",
+              "source_ids": [
+                "S016#P2",
+                "S016#P3"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Precision at k.",
+                  "text": "The proportion of relevant results in the top k search results.",
+                  "source_ids": [
+                    "S016#P2"
+                  ]
+                },
+                {
+                  "lead": "Recall at k.",
+                  "text": "The fraction of relevant documents in those first k results relative to all possible relevant results.",
+                  "source_ids": [
+                    "S016#P3"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Their limits",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Precision at k is the least stable of the commonly used evaluation measures, so small test sets can swing it a lot.",
+              "source_ids": [
+                "S004#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "BEIR",
+              "text": "Decision support metrics such as Precision and Recall which are both rank unaware are not suitable for its ranked retrieval benchmark. A result at position 10 counts the same as one at position 1.",
+              "source_ids": [
+                "S015#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Precision at k: the share of the top k results that are relevant.",
+          "source_ids": [
+            "S016#P2"
+          ]
+        },
+        {
+          "text": "Recall at k: the share of all relevant documents found in the top k.",
+          "source_ids": [
+            "S016#P3"
+          ]
+        },
+        {
+          "text": "Precision at k is the least stable common measure.",
+          "source_ids": [
+            "S004#P2"
+          ]
+        },
+        {
+          "text": "Both ignore the order of results.",
+          "source_ids": [
+            "S015#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Score a site search",
+        "minutes": "10",
+        "steps": [
+          "Pick a query people use on your site search.",
+          "List the pages that should come back for it.",
+          "Run the search and mark each of the top 10 results relevant or not.",
+          "Calculate precision at 10 and recall at 10."
+        ],
+        "prompt_template": "For the query [query], these pages are relevant: [list]. My site search returned this top 10: [list]. Precision at k is the proportion of relevant results in the top k, and recall at k is the fraction of all relevant documents found in the top k. Calculate both at 10, show the working, and say what the numbers suggest about the search."
+      },
+      "reflection": [
+        "When would you care more about recall than precision?",
+        "Why might a metric that ignores order mislead you about a search engine?"
+      ],
+      "whats_next": "Next, metrics that care about position: MRR and MAP."
+    },
+    {
+      "lesson_id": "T7-2",
+      "title": "Rewarding rank: MRR and MAP",
+      "est_minutes": 6,
+      "objectives": [
+        "Calculate mean reciprocal rank",
+        "Describe what MAP summarises",
+        "Know when MRR and MAP fall short"
+      ],
+      "scene": {
+        "id": "mrr",
+        "title": "Where is the first good result?",
+        "beats": [
+          {
+            "caption": "For every query, MRR calculates the reciprocal of the rank of the first relevant document.",
+            "source_ids": [
+              "S016#P1"
+            ]
+          },
+          {
+            "caption": "Query 1: first relevant result at rank 1, so 1. Query 2: rank 2, so 0.5. Query 3: rank 4, so 0.25.",
+            "source_ids": [
+              "S016#P1"
+            ]
+          },
+          {
+            "caption": "Take the mean: 1.75 divided by 3 is about 0.583.",
+            "source_ids": [
+              "S016#P1"
+            ]
+          },
+          {
+            "caption": "MAP provides a single-figure measure of quality across recall levels, and has especially good discrimination and stability.",
+            "source_ids": [
+              "S004#P3",
+              "S004#P4"
+            ]
+          },
+          {
+            "caption": "But BEIR notes MRR and MAP fail to evaluate tasks with graded relevance judgements.",
+            "source_ids": [
+              "S015#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Mean reciprocal rank",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "MRR asks one question: how high is the first relevant result? For every query in the test suite, it calculates the reciprocal of the rank of the first relevant document, then averages.",
+              "source_ids": [
+                "S016#P1"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Three queries have their first relevant result at ranks 1, 2 and 4. Reciprocals: 1, 0.5 and 0.25. Mean: 1.75 ÷ 3 ≈ 0.583.",
+              "source_ids": [
+                "S016#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Use it when",
+              "text": "One good answer is enough, such as a navigational query or a RAG system that only reads the top passage. This is practitioner judgement."
+            }
+          ]
+        },
+        {
+          "heading": "Mean average precision",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "MAP looks at every relevant result, not just the first. The textbook describes it as a single-figure measure of quality across recall levels.",
+              "source_ids": [
+                "S004#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "It also says that among evaluation measures, MAP has been shown to have especially good discrimination and stability.",
+              "source_ids": [
+                "S004#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The catch: yes-or-no relevance",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Both treat each result as relevant or not. BEIR says MRR and MAP fail to evaluate tasks with graded relevance judgements, where some results are better than others.",
+              "source_ids": [
+                "S015#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "MRR averages the reciprocal of the first relevant result's rank.",
+          "source_ids": [
+            "S016#P1"
+          ]
+        },
+        {
+          "text": "MAP summarises quality across recall levels and is stable.",
+          "source_ids": [
+            "S004#P3",
+            "S004#P4"
+          ]
+        },
+        {
+          "text": "Both assume yes-or-no relevance, so they fail on graded judgements.",
+          "source_ids": [
+            "S015#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Calculate MRR for your site search",
+        "minutes": "10",
+        "steps": [
+          "Pick five common queries for your site search.",
+          "Run each and note the rank of the first relevant result.",
+          "Turn each rank into its reciprocal (1 ÷ rank).",
+          "Average the five numbers."
+        ],
+        "prompt_template": "For five site search queries, the first relevant result appeared at these ranks: [ranks]. MRR calculates the reciprocal of the rank of the first relevant document for each query and takes the mean. Calculate the MRR, show the working, and tell me which query is dragging the score down most."
+      },
+      "reflection": [
+        "Which of your searches only need one good result?",
+        "Why might a single average hide a few very bad queries?"
+      ],
+      "whats_next": "Next, graded relevance: when some results are better than others."
+    },
+    {
+      "lesson_id": "T7-3",
+      "title": "Graded relevance: DCG and NDCG",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain what DCG takes into account",
+        "Explain what normalizing adds",
+        "Say why benchmarks like BEIR use nDCG@10"
+      ],
+      "scene": {
+        "id": "ndcg",
+        "title": "Rating and ranking together",
+        "beats": [
+          {
+            "caption": "In this illustration, judges rate each result: 3 for perfect, 2 for good, 1 for fair, 0 for not relevant. That is graded, non-binary relevance.",
+            "source_ids": [
+              "S004#P5"
+            ]
+          },
+          {
+            "caption": "Discounted cumulative gain takes both the rank and the rating of the search results into account.",
+            "source_ids": [
+              "S016#P4"
+            ]
+          },
+          {
+            "caption": "Because rank counts, a great result lower down adds less than the same result at the top.",
+            "source_ids": [
+              "S016#P4"
+            ]
+          },
+          {
+            "caption": "Normalizing DCG gives NDCG. Practitioner note: it scales each score against the best possible order.",
+            "source_ids": [
+              "S016#P5"
+            ]
+          },
+          {
+            "caption": "NDCG is designed for non-binary relevance, and BEIR found nDCG@k provides a good balance.",
+            "source_ids": [
+              "S004#P5",
+              "S015#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "When yes-or-no isn't enough",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Some results are perfect, some are acceptable, and some are useless. The textbook says NDCG is designed for situations of non-binary notions of relevance.",
+              "source_ids": [
+                "S004#P5"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "DCG",
+                  "text": "Takes both the rank and the rating of the search results into account.",
+                  "source_ids": [
+                    "S016#P4"
+                  ]
+                },
+                {
+                  "name": "NDCG",
+                  "text": "The normalized version of DCG. Practitioner note: this makes scores comparable across queries.",
+                  "source_ids": [
+                    "S016#P5"
+                  ]
+                },
+                {
+                  "name": "nDCG@10",
+                  "text": "NDCG measured on the top 10 results. BEIR found it provides a good balance.",
+                  "source_ids": [
+                    "S015#P1"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why BEIR chose it",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "BEIR says nDCG@k is suitable for both tasks involving binary and graded relevance judgements, which is why it reports nDCG@10 across its datasets.",
+              "source_ids": [
+                "S015#P2",
+                "S015#P1"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Two searches each return one perfect and one fair result in their top 2. The search that puts the perfect result first scores a higher NDCG.",
+              "source_ids": [
+                "S016#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "DCG uses both rank and rating.",
+          "source_ids": [
+            "S016#P4"
+          ]
+        },
+        {
+          "text": "NDCG normalizes DCG so queries can be compared.",
+          "source_ids": [
+            "S016#P5"
+          ]
+        },
+        {
+          "text": "NDCG is designed for graded, non-binary relevance.",
+          "source_ids": [
+            "S004#P5"
+          ]
+        },
+        {
+          "text": "BEIR found nDCG@k provides a good balance for both binary and graded judgements.",
+          "source_ids": [
+            "S015#P1",
+            "S015#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Grade and compare two rankings",
+        "minutes": "10",
+        "steps": [
+          "Pick a query and five results for it.",
+          "Rate each result 0 to 3.",
+          "Write two different orders for the same five results.",
+          "Ask which order would score higher on NDCG, and why."
+        ],
+        "prompt_template": "For the query [query], I rated five results 0 to 3: [list with ratings]. Here are two possible orders: [order A] and [order B]. DCG takes both the rank and the rating of results into account, and NDCG normalizes it. Calculate DCG and NDCG at 5 for both orders using the standard log2 discount, show the working, and say which order is better."
+      },
+      "reflection": [
+        "Which of your searches have results that are 'partly' relevant?",
+        "How would you train judges to rate results consistently?"
+      ],
+      "whats_next": "Next, running a fair evaluation, including for RAG."
+    },
+    {
+      "lesson_id": "T7-4",
+      "title": "Running a fair evaluation",
+      "est_minutes": 6,
+      "objectives": [
+        "Choose a metric that matches the question",
+        "Decide how unlabeled results are treated",
+        "Separate retrieval quality from answer faithfulness in RAG"
+      ],
+      "scene": {
+        "id": "evalrun",
+        "title": "An evaluation checklist",
+        "beats": [
+          {
+            "caption": "First, match the metric to the question: sets, the first good hit, or graded order.",
+            "source_ids": [
+              "S016#P2",
+              "S016#P1",
+              "S016#P4"
+            ]
+          },
+          {
+            "caption": "Fix k, such as 10, and keep it the same across systems.",
+            "source_ids": [
+              "S004#P1"
+            ]
+          },
+          {
+            "caption": "Decide on unlabeled results. In Elastic, if they're not ignored, they are treated as irrelevant.",
+            "source_ids": [
+              "S016#P6",
+              "S016#P7"
+            ]
+          },
+          {
+            "caption": "For RAG, good retrieval isn't the whole story. Faithfulness means the answer should be grounded in the given context.",
+            "source_ids": [
+              "S017#P3"
+            ]
+          },
+          {
+            "caption": "Ragas offers reference-free evaluation of RAG pipelines, and CRAG adds a retrieval evaluator that checks the quality of retrieved documents.",
+            "source_ids": [
+              "S017#P1",
+              "S503#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Pick the metric for the question",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this guide when you set up a comparison of two search systems or retrievers.",
+              "source_ids": [
+                "S016#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Did we find the relevant items?",
+                  "text": "Precision and recall at k.",
+                  "source_ids": [
+                    "S016#P2",
+                    "S016#P3"
+                  ]
+                },
+                {
+                  "lead": "Is the first good result high?",
+                  "text": "MRR.",
+                  "source_ids": [
+                    "S016#P1"
+                  ]
+                },
+                {
+                  "lead": "Are graded results in a good order?",
+                  "text": "NDCG, which takes rank and rating into account.",
+                  "source_ids": [
+                    "S016#P4",
+                    "S004#P5"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The unlabeled result problem",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "In any test, some returned results won't have been judged. How you treat them changes the score.",
+              "source_ids": [
+                "S016#P6"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Ignored",
+                  "text": "Unlabeled documents are ignored and neither count as relevant or irrelevant.",
+                  "source_ids": [
+                    "S016#P6"
+                  ]
+                },
+                {
+                  "name": "Not ignored",
+                  "text": "They are treated as irrelevant.",
+                  "source_ids": [
+                    "S016#P7"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "When comparing a new system against an old one, unlabeled results are often the new system's finds. Treating them as irrelevant can make the new system look worse than it is. Judge them before you decide."
+            }
+          ]
+        },
+        {
+          "heading": "Evaluating RAG",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "A retriever can find the right passage and the answer can still be wrong. Ragas defines faithfulness as the idea that the answer should be grounded in the given context, and offers reference-free evaluation of RAG pipelines.",
+              "source_ids": [
+                "S017#P3",
+                "S017#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The CRAG paper adds a lightweight retrieval evaluator designed to assess the overall quality of retrieved documents for a query.",
+              "source_ids": [
+                "S503#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Keep them apart",
+              "text": "High MRR tells you the right passage was found near the top. It doesn't tell you the answer stayed faithful to it. Measure both. This is practitioner judgement."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Choose precision/recall, MRR or NDCG based on the question you're asking.",
+          "source_ids": [
+            "S016#P2",
+            "S016#P1",
+            "S016#P4"
+          ]
+        },
+        {
+          "text": "Decide up front how unlabeled results count.",
+          "source_ids": [
+            "S016#P6",
+            "S016#P7"
+          ]
+        },
+        {
+          "text": "In RAG, faithfulness means the answer is grounded in the retrieved context.",
+          "source_ids": [
+            "S017#P3"
+          ]
+        },
+        {
+          "text": "Good retrieval scores don't prove faithful answers.",
+          "source_ids": [
+            "S017#P3",
+            "S016#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Plan an evaluation",
+        "minutes": "15",
+        "steps": [
+          "Choose a search or RAG system you want to improve.",
+          "Write 10 test queries that reflect real use.",
+          "Decide which metric answers your main question, and the value of k.",
+          "Decide how unlabeled results will count, and how you'll check answer faithfulness if it's RAG."
+        ],
+        "prompt_template": "I want to evaluate [system] for [purpose]. Here are my test queries: [list]. Help me write a one-page evaluation plan: which metric to headline (precision/recall at k, MRR or NDCG) and why, the value of k, how judges should rate results, how to treat unlabeled results, and, if it's a RAG system, how to check that answers are grounded in the retrieved context. Label recommendations that go beyond the cited sources as practitioner judgement."
+      },
+      "reflection": [
+        "Which metric would best describe how you judge search results yourself?",
+        "How would you explain to a client that a retriever scored well but the answers were still wrong?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Each retrieval metric answers a different question. Precision and recall at k tell you whether the top results are relevant and how much of the relevant set you found, but they ignore order. MRR rewards putting the first good result high, and MAP summarises quality across recall levels, but both assume yes-or-no relevance. NDCG uses both rank and graded ratings, which is why BEIR chose nDCG@10. A fair evaluation fixes k, decides how unlabeled results count, and, for RAG, checks answer faithfulness separately from retrieval.",
+    "related_topics": [
+      {
+        "topic_id": "T29",
+        "title": "RAG evaluation"
+      },
+      {
+        "topic_id": "T22",
+        "title": "Learning to rank"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Measuring search quality. The questions revisit precision and recall, MRR, NDCG and fair evaluation.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T7-L1-01",
+      "T7-L1-02",
+      "T7-L1-03",
+      "T7-L2-01",
+      "T7-L2-02",
+      "T7-L2-03",
+      "T7-L3-01",
+      "T7-L3-02",
+      "T7-L4-01",
+      "T7-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T7-L1-01",
+        "prompt": "Elastic's docs describe one metric as 'the proportion of relevant results in the top k search results'. Which metric is it?",
+        "options": [
+          "A. Recall at k",
+          "B. Precision at k",
+          "C. Mean reciprocal rank",
+          "D. Normalized DCG"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Elastic defines precision at k as the proportion of relevant results in the top k search results. Wrong: recall at k is the fraction of all relevant documents found in the first k; MRR uses the rank of the first relevant document; NDCG uses rank and rating.",
+        "source_ids": [
+          "S016#P2",
+          "S016#P3",
+          "S016#P1",
+          "S016#P4"
+        ]
+      },
+      {
+        "item_id": "T7-L1-02",
+        "options": [
+          "A. Reciprocal of the first relevant document's rank",
+          "B. The share of relevant documents found in top k",
+          "C. The sum of discounted, rated gains per result",
+          "D. The proportion of relevant results in the top k results"
+        ],
+        "answer": "A",
+        "explanation": "Correct: that is the definition in Elastic's docs. Wrong: 'The share of relevant documents found in top k' - that is recall at k. 'The sum of discounted, rated gains per result' - that is the idea behind DCG, which uses rank and rating. 'The proportion of relevant results in the top k results' - that is precision at k.",
+        "source_ids": [
+          "S016#P1",
+          "S016#P2",
+          "S016#P3",
+          "S016#P4"
+        ]
+      },
+      {
+        "item_id": "T7-L1-03",
+        "prompt": "What kind of relevance does the textbook say NDCG is designed for?",
+        "options": [
+          "A. Only yes-or-no relevance",
+          "B. Relevance with no judges at all",
+          "C. Relevance based on click counts only",
+          "D. Non-binary, graded relevance"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the textbook says NDCG is designed for situations of non-binary notions of relevance, and BEIR says it suits both binary and graded judgements. Wrong: it isn't limited to yes-or-no; neither source describes it as judge-free or click-based.",
+        "source_ids": [
+          "S004#P5",
+          "S015#P2"
+        ]
+      },
+      {
+        "item_id": "T7-L2-01",
+        "prompt": "Discounted cumulative gain takes the rank and what other quantity of each result into account?",
+        "options": [
+          "A. its word count",
+          "B. its URL length",
+          "C. its rating",
+          "D. its publish date"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Elastic's documentation says DCG takes both the rank and the rating of the search results into account; normalizing gives NDCG. Wrong: word count, URL length and publish date aren't part of DCG.",
+        "source_ids": [
+          "S016#P4",
+          "S016#P5"
+        ]
+      },
+      {
+        "item_id": "T7-L2-02",
+        "options": [
+          "A. Correct; simplicity makes them the best choice",
+          "B. They are valid only for graded relevance data",
+          "C. BEIR calls both rank unaware",
+          "D. They always give the same ranking as NDCG"
+        ],
+        "answer": "C",
+        "explanation": "Correct: BEIR states that precision and recall are both rank unaware and not suitable for its ranked-retrieval benchmark. Wrong: 'Correct; simplicity makes them the best choice' - ignores that rank is not considered. 'They are valid only for graded relevance data' - unsupported. 'They always give the same ranking as NDCG' - NDCG uses rank and grades.",
+        "source_ids": [
+          "S015#P3",
+          "S015#P2"
+        ]
+      },
+      {
+        "item_id": "T7-L3-01",
+        "prompt": "Three queries have their first relevant result at rank 1, rank 2 and rank 4. What is the MRR, to 3 decimals?",
+        "options": [
+          "A. 0.333",
+          "B. 0.583",
+          "C. 0.750",
+          "D. 2.333 (7 ÷ 3)"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the reciprocal ranks are 1, 0.5 and 0.25, and their mean is 1.75 ÷ 3 = 0.583. Wrong: 0.333 is 1 ÷ 3; 0.750 averages only the second and third values with the first; 2.333 (7 ÷ 3) is the mean rank, not the mean reciprocal rank.",
+        "source_ids": [
+          "S016#P1"
+        ]
+      },
+      {
+        "item_id": "T7-L3-02",
+        "options": [
+          "A. Recall is 4/8 = 0.5; 0.4 is precision",
+          "B. Recall at 10 should be 8/10 = 0.8",
+          "C. Recall can't be computed at a cutoff k",
+          "D. Nothing; the report is correct"
+        ],
+        "answer": "A",
+        "explanation": "Precision at k is the proportion of relevant results in the top k (4/10 = 0.4). Recall at k is relevant documents in the top k relative to all relevant (4/8 = 0.5). B reverses the terms. C is false since recall at k is defined. D confuses the two.",
+        "source_ids": [
+          "S016#P2",
+          "S016#P3"
+        ]
+      },
+      {
+        "item_id": "T7-L4-01",
+        "options": [
+          "A. Keep precision@10 as the headline metric",
+          "B. Headline nDCG@10; decide how unlabeled count",
+          "C. Report only MRR, since it handles every single case",
+          "D. Report only recall at rank 1"
+        ],
+        "answer": "B",
+        "explanation": "Correct: graded ratings suit NDCG, the textbook calls precision at k the least stable common measure, and unlabeled handling changes scores. Wrong: keeping precision@10 ignores instability and grades; BEIR says MRR fails with graded judgments; recall at rank 1 is not a stable summary.",
+        "source_ids": [
+          "S015#P1",
+          "S015#P4",
+          "S004#P2",
+          "S016#P6",
+          "S016#P7"
+        ]
+      },
+      {
+        "item_id": "T7-L4-02",
+        "options": [
+          "A. Test faithfulness separately; generation is likelier",
+          "B. High MRR proves every answer is faithful to its passages",
+          "C. Replace the retriever, even though MRR is high",
+          "D. Add structured data to all of the pages"
+        ],
+        "answer": "A",
+        "explanation": "Correct: MRR describes where the first relevant document appears, not whether the answer stays grounded, so test faithfulness separately; a CRAG-style retrieval check addresses retrieval quality, which the high MRR says is not the main problem. Wrong: retrieval success does not show grounding; replacing the retriever ignores the evidence; structured data does not address grounding.",
+        "source_ids": [
+          "S016#P1",
+          "S017#P3",
+          "S503#P1"
+        ]
+      }
+    ]
+  }
+}
