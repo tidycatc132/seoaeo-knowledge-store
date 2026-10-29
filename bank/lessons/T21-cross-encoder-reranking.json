@@ -1,0 +1,733 @@
+{
+  "topic_id": "T21",
+  "items_file": "bank/items/T21-cross-encoder-reranking.json",
+  "course_title": "Cross-encoder re-ranking",
+  "subtitle": "Retrieve fast, then re-rank carefully: how two-stage search works, why cross-encoders are accurate but costly, and what it does and doesn't tell you about Google.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Describe a retrieve-then-re-rank pipeline",
+    "Tell a bi-encoder and a cross-encoder apart",
+    "Explain why cross-encoders only re-rank a short list",
+    "Draw SEO lessons without over-claiming"
+  ],
+  "intro": [
+    "Scoring every document with the most accurate model would be far too slow. So many search systems work in two stages: a fast first pass finds candidates, then a heavier model re-scores just those.",
+    "This course uses Nogueira and Cho's paper Passage Re-ranking with BERT, the Sentence Transformers documentation, and Google's own descriptions of its ranking systems.",
+    "A research paper shows what a method is. It isn't evidence of what Google runs, and lessons for your site are labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T21-1",
+      "title": "Two stages",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe the first and second stages",
+        "Explain why the second stage is applied to fewer documents",
+        "Explain why missing candidates can't be rescued"
+      ],
+      "scene": {
+        "id": "stages",
+        "title": "Wide net, then fine sieve",
+        "beats": [
+          {
+            "caption": "In the first stage, a large number (for example, a thousand) of possibly relevant documents are retrieved.",
+            "source_ids": [
+              "S303#P6"
+            ]
+          },
+          {
+            "caption": "They're retrieved from a corpus by a standard mechanism, such as BM25.",
+            "source_ids": [
+              "S303#P2"
+            ]
+          },
+          {
+            "caption": "Then each of these documents is scored and re-ranked by a more computationally-intensive method.",
+            "source_ids": [
+              "S303#P3"
+            ]
+          },
+          {
+            "caption": "Nogueira and Cho used BERT for that second stage: query-based passage re-ranking.",
+            "source_ids": [
+              "S303#P1"
+            ]
+          },
+          {
+            "caption": "Practitioner inference: a document stage one never retrieves can't be promoted by stage two.",
+            "source_ids": [
+              "S303#P2",
+              "S303#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The pipeline",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Nogueira and Cho describe a common pattern. First, a large number, for example a thousand, of possibly relevant documents are retrieved from a corpus by a standard mechanism, such as BM25.",
+              "source_ids": [
+                "S303#P6",
+                "S303#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Then each of these documents is scored and re-ranked by a more computationally-intensive method. Their paper describes a simple re-implementation of BERT for query-based passage re-ranking.",
+              "source_ids": [
+                "S303#P3",
+                "S303#P1"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Stage 1: retrieve",
+                  "text": "A standard mechanism such as BM25 pulls possibly relevant documents from the whole corpus.",
+                  "source_ids": [
+                    "S303#P2",
+                    "S303#P6"
+                  ]
+                },
+                {
+                  "name": "Stage 2: re-rank",
+                  "text": "A more computationally-intensive method scores and re-ranks only those documents.",
+                  "source_ids": [
+                    "S303#P3"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The catch",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner inference",
+              "text": "The re-ranker only sees what stage one retrieved. If the right page isn't in the candidate list, no amount of re-ranking will bring it back.",
+              "source_ids": [
+                "S303#P2",
+                "S303#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Stage one retrieves many possibly relevant documents with a method like BM25.",
+          "source_ids": [
+            "S303#P6",
+            "S303#P2"
+          ]
+        },
+        {
+          "text": "Stage two re-scores only those with a heavier method.",
+          "source_ids": [
+            "S303#P3"
+          ]
+        },
+        {
+          "text": "Nogueira and Cho used BERT as the re-ranker.",
+          "source_ids": [
+            "S303#P1"
+          ]
+        },
+        {
+          "text": "A page that isn't retrieved can't be re-ranked (practitioner inference).",
+          "source_ids": [
+            "S303#P2",
+            "S303#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find the bottleneck",
+        "minutes": "10",
+        "steps": [
+          "If you run site search or RAG, pick five queries that return poor results.",
+          "Check whether the right page appears anywhere in the candidate list.",
+          "Mark each as a retrieval miss or a ranking miss.",
+          "Note which stage you'd fix first."
+        ],
+        "prompt_template": "My search uses [stage 1 method] to fetch [number] candidates and [stage 2 method] to re-rank them. For these failing queries, the right page was [in or not in] the candidates: [list]. Nogueira and Cho describe retrieving candidates with a standard mechanism such as BM25, then re-scoring them with a more computationally-intensive method. Tell me which stage each failure points to and what to try first. Label advice as practitioner judgement."
+      },
+      "reflection": [
+        "How many candidates does your own search pass to its second stage?",
+        "Why might a better re-ranker not fix a retrieval miss?"
+      ],
+      "whats_next": "Next, what makes a cross-encoder different from a bi-encoder."
+    },
+    {
+      "lesson_id": "T21-2",
+      "title": "Bi-encoders and cross-encoders",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe how a bi-encoder handles two texts",
+        "Describe how a cross-encoder handles two texts",
+        "Explain how BERT outputs a relevance score"
+      ],
+      "scene": {
+        "id": "cross",
+        "title": "Apart or together",
+        "beats": [
+          {
+            "caption": "A bi-encoder passes sentences A and B to BERT independently, which results in two embeddings, u and v.",
+            "source_ids": [
+              "S233#P1"
+            ]
+          },
+          {
+            "caption": "A cross-encoder passes both sentences simultaneously to the Transformer network.",
+            "source_ids": [
+              "S233#P2"
+            ]
+          },
+          {
+            "caption": "Nogueira and Cho feed the query as sentence A and the passage text as sentence B.",
+            "source_ids": [
+              "S303#P4"
+            ]
+          },
+          {
+            "caption": "They use the [CLS] vector as input to a single layer neural network, giving the probability of the passage being relevant.",
+            "source_ids": [
+              "S303#P7",
+              "S303#P8"
+            ]
+          },
+          {
+            "caption": "Cross-encoders achieve better performance than bi-encoders, but don't produce a sentence embedding.",
+            "source_ids": [
+              "S233#P3",
+              "S233#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Apart: the bi-encoder",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The Sentence Transformers documentation describes a bi-encoder this way: we pass to a BERT independently the sentences A and B, which result in the sentence embeddings u and v. The two vectors are then compared.",
+              "source_ids": [
+                "S233#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Together: the cross-encoder",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "A cross-encoder passes both sentences simultaneously to the Transformer network. Nogueira and Cho do this for search: they feed the query as sentence A and the passage text as sentence B, and truncate the query to at most 64 tokens.",
+              "source_ids": [
+                "S233#P2",
+                "S303#P4",
+                "S303#P9"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "They use the [CLS] vector as input to a single layer neural network, which gives the probability of the passage being relevant.",
+              "source_ids": [
+                "S303#P7",
+                "S303#P8"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "The trade",
+              "text": "Cross-Encoder achieve better performances than Bi-Encoders. But a Cross-Encoder does not produce a sentence embedding.",
+              "source_ids": [
+                "S233#P3",
+                "S233#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A bi-encoder embeds each text separately.",
+          "source_ids": [
+            "S233#P1"
+          ]
+        },
+        {
+          "text": "A cross-encoder reads the query and passage together.",
+          "source_ids": [
+            "S233#P2",
+            "S303#P4"
+          ]
+        },
+        {
+          "text": "BERT's [CLS] output gives a probability that the passage is relevant.",
+          "source_ids": [
+            "S303#P7",
+            "S303#P8"
+          ]
+        },
+        {
+          "text": "Cross-encoders score better but produce no reusable embedding.",
+          "source_ids": [
+            "S233#P3",
+            "S233#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Spot the architecture",
+        "minutes": "10",
+        "steps": [
+          "List the models in your search or RAG stack.",
+          "For each, note whether it outputs an embedding or a score for a pair.",
+          "Mark embedding models as bi-encoders and pair scorers as cross-encoders.",
+          "Note which stage each one runs in."
+        ],
+        "prompt_template": "My search stack uses these models: [list with what each outputs]. The Sentence Transformers docs say a bi-encoder passes sentences to BERT independently and produces embeddings, while a cross-encoder passes both sentences simultaneously and doesn't produce an embedding. Classify each of my models and tell me which stage it fits. Label anything you infer as practitioner judgement."
+      },
+      "reflection": [
+        "Why might reading the query and passage together give a better score?",
+        "What can you do with an embedding that you can't do with a pair score?"
+      ],
+      "whats_next": "Next, why cross-encoders only re-rank a short list."
+    },
+    {
+      "lesson_id": "T21-3",
+      "title": "Why only a short list",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why cross-encoders can't be precomputed",
+        "Describe the combined bi-encoder and cross-encoder pattern",
+        "State the BERT re-ranker's reported result"
+      ],
+      "scene": {
+        "id": "cost",
+        "title": "Pay for accuracy where it counts",
+        "beats": [
+          {
+            "caption": "Because they don't produce embeddings, cross-encoders are not practical for many applications.",
+            "source_ids": [
+              "S233#P5"
+            ]
+          },
+          {
+            "caption": "The docs' example: clustering 10,000 sentences would need about 50 million combinations, about 65 hours.",
+            "source_ids": [
+              "S233#P6"
+            ]
+          },
+          {
+            "caption": "The fix: first use an efficient bi-encoder to retrieve e.g. the top-100 most similar sentences.",
+            "source_ids": [
+              "S233#P7"
+            ]
+          },
+          {
+            "caption": "Then use a cross-encoder to re-rank these 100 hits.",
+            "source_ids": [
+              "S233#P8"
+            ]
+          },
+          {
+            "caption": "Nogueira and Cho's BERT re-ranker topped MS MARCO, beating the previous best by 27% (relative) in MRR@10.",
+            "source_ids": [
+              "S303#P10",
+              "S303#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The cost",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "A cross-encoder needs the query to score each document, so there's nothing to compute ahead of time. The Sentence Transformers docs say that for many applications cross-encoders are not practical, as they do not produce embeddings.",
+              "source_ids": [
+                "S233#P5",
+                "S233#P4"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "The docs' example: clustering 10,000 sentences with a cross-encoder would require computing similarity scores for about 50 million sentence combinations, which takes about 65 hours.",
+              "source_ids": [
+                "S233#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The combined pattern",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Retrieve.",
+                  "text": "First, you use an efficient bi-encoder to retrieve e.g. the top-100 most similar sentences for a query.",
+                  "source_ids": [
+                    "S233#P7"
+                  ]
+                },
+                {
+                  "lead": "Re-rank.",
+                  "text": "Then you use a cross-encoder to re-rank these 100 hits.",
+                  "source_ids": [
+                    "S233#P8"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Research finding",
+              "text": "Nogueira and Cho's system was the top entry in the leaderboard of the MS MARCO passage retrieval task, outperforming the previous state of the art by 27% (relative) in MRR@10.",
+              "source_ids": [
+                "S303#P10",
+                "S303#P5"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Cross-encoders can't be precomputed, so they're costly at scale.",
+          "source_ids": [
+            "S233#P5",
+            "S233#P4"
+          ]
+        },
+        {
+          "text": "A bi-encoder retrieves a short list; a cross-encoder re-ranks it.",
+          "source_ids": [
+            "S233#P7",
+            "S233#P8"
+          ]
+        },
+        {
+          "text": "The BERT re-ranker beat the previous best by 27% relative in MRR@10.",
+          "source_ids": [
+            "S303#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Size your re-ranking",
+        "minutes": "10",
+        "steps": [
+          "Note how many candidates your search could pass to a re-ranker.",
+          "Time how long one pair takes to score, or use a vendor estimate.",
+          "Multiply to get the time per query.",
+          "Decide the largest list you could afford to re-rank."
+        ],
+        "prompt_template": "Scoring one query-passage pair takes about [time] on my setup, and I need results in under [time]. The Sentence Transformers docs recommend retrieving e.g. the top 100 with an efficient bi-encoder, then re-ranking those 100 hits with a cross-encoder. Help me work out how many candidates I can afford to re-rank per query, and what I'd lose by re-ranking fewer."
+      },
+      "reflection": [
+        "Where in your own work do you spend effort only on a shortlist?",
+        "How would you check whether re-ranking more candidates is worth the time?"
+      ],
+      "whats_next": "Next, what this does and doesn't mean for SEO."
+    },
+    {
+      "lesson_id": "T21-4",
+      "title": "What it means for SEO",
+      "est_minutes": 5,
+      "objectives": [
+        "Separate what Google says from what papers show",
+        "Explain why being retrieved comes first",
+        "Respond to over-claimed re-ranking advice"
+      ],
+      "scene": {
+        "id": "seo",
+        "title": "Evidence, not assumption",
+        "beats": [
+          {
+            "caption": "Google's ranking systems guide covers only some of its more notable ranking systems.",
+            "source_ids": [
+              "S300#P9"
+            ]
+          },
+          {
+            "caption": "It says BERT allows Google to understand how combinations of words express different meanings and intent.",
+            "source_ids": [
+              "S300#P4"
+            ]
+          },
+          {
+            "caption": "Google has also said BERT is never working alone.",
+            "source_ids": [
+              "S301#P4"
+            ]
+          },
+          {
+            "caption": "A paper describes a method. It doesn't show which pipeline Google runs.",
+            "source_ids": [
+              "S303#P1"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: make sure you can be retrieved first, then answer clearly.",
+            "source_ids": [
+              "S303#P2",
+              "S303#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What Google says",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's guide to its ranking systems says it is a guide to understanding some of its more notable ranking systems, not a full list. It describes BERT as allowing Google to understand how combinations of words express different meanings and intent.",
+              "source_ids": [
+                "S300#P9",
+                "S300#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "In a separate post, Google said BERT plays a critical role in almost every English query, and that it is never working alone.",
+              "source_ids": [
+                "S301#P3",
+                "S301#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "None of this confirms a BM25-then-BERT re-ranking pipeline in Google Search. Treat claims that it does as unconfirmed."
+            }
+          ]
+        },
+        {
+          "heading": "Useful lessons anyway",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist when advice leans on re-ranking research.",
+              "source_ids": [
+                "S303#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Get retrieved.",
+                  "text": "In two-stage systems, the re-ranker only scores documents the first stage retrieved. This is practitioner inference for any engine.",
+                  "source_ids": [
+                    "S303#P2",
+                    "S303#P3"
+                  ]
+                },
+                {
+                  "lead": "Use your readers' words.",
+                  "text": "First-stage methods such as BM25 match terms, so the words people search still matter.",
+                  "source_ids": [
+                    "S303#P2"
+                  ]
+                },
+                {
+                  "lead": "Answer the question clearly.",
+                  "text": "Re-rankers read the query and passage together, so a passage that plainly answers the query is easier to score as relevant (practitioner inference).",
+                  "source_ids": [
+                    "S303#P4"
+                  ]
+                },
+                {
+                  "lead": "Check the claim.",
+                  "text": "Ask for the source. A paper shows a method, not Google's systems.",
+                  "source_ids": [
+                    "S303#P1"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google's guide covers only some notable ranking systems.",
+          "source_ids": [
+            "S300#P9"
+          ]
+        },
+        {
+          "text": "Google says BERT helps it understand how word combinations express meaning and intent.",
+          "source_ids": [
+            "S300#P4"
+          ]
+        },
+        {
+          "text": "Re-ranking papers don't confirm Google's pipeline.",
+          "source_ids": [
+            "S303#P1"
+          ]
+        },
+        {
+          "text": "Being retrieved comes before being re-ranked (practitioner inference).",
+          "source_ids": [
+            "S303#P2",
+            "S303#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit a claim",
+        "minutes": "10",
+        "steps": [
+          "Find an SEO article or deck that says Google re-ranks with a specific model.",
+          "List the sources it cites.",
+          "Mark each source as Google documentation, a research paper, or opinion.",
+          "Rewrite the claim so it only says what the sources support."
+        ],
+        "prompt_template": "Here's a claim about how Google re-ranks results, with its sources: [paste]. Google's ranking systems guide says it covers some of its more notable systems and that BERT helps it understand how combinations of words express meaning and intent; Nogueira and Cho's paper describes a BERT re-ranking method, not Google's pipeline. Rewrite the claim so it says only what the sources support, and list what stays unconfirmed."
+      },
+      "reflection": [
+        "Which SEO advice you've heard rests on a research paper rather than Google's documentation?",
+        "How would you explain the two-stage idea to a client without over-claiming?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Two-stage search retrieves many candidates with a fast method like BM25, then re-scores only those with a heavier model. A bi-encoder embeds texts separately; a cross-encoder reads the query and passage together and scores better, but produces no reusable embedding, so it's too costly to run on everything. The usual pattern is to retrieve a short list, then cross-encode it. Nogueira and Cho's BERT re-ranker led MS MARCO, but that's a research result, not Google's pipeline. For SEO, be retrievable first, then answer clearly.",
+    "related_topics": [
+      {
+        "topic_id": "T18",
+        "title": "Dense retrieval and bi-encoders"
+      },
+      {
+        "topic_id": "T7",
+        "title": "Measuring search quality"
+      },
+      {
+        "topic_id": "T22",
+        "title": "Learning to rank"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Cross-encoder re-ranking. The questions revisit the two stages, cross-encoders and what they mean for SEO.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T21-L1-01",
+      "T21-L1-02",
+      "T21-L1-03",
+      "T21-L2-01",
+      "T21-L2-02",
+      "T21-L2-03",
+      "T21-L3-01",
+      "T21-L3-02",
+      "T21-L4-01",
+      "T21-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T21-L1-01",
+        "prompt": "Nogueira and Cho describe documents first retrieved 'by a standard mechanism, such as' which method?",
+        "options": [
+          "A. BM25",
+          "B. PageRank",
+          "C. A knowledge graph",
+          "D. Manual review"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the paper says documents are retrieved from a corpus by a standard mechanism, such as BM25. Wrong: PageRank, knowledge graphs and manual review aren't named as the first stage.",
+        "source_ids": [
+          "S303#P2",
+          "S303#P3"
+        ]
+      },
+      {
+        "item_id": "T21-L1-03",
+        "prompt": "In Nogueira and Cho's BERT re-ranker, how do the query and passage go into the model?",
+        "options": [
+          "A. Separately, each turned into its own embedding",
+          "B. Together: query as A, passage as B",
+          "C. Only the passage; the query is ignored",
+          "D. Only the query; passages come from a cache"
+        ],
+        "answer": "B",
+        "explanation": "Correct: they feed the query as sentence A and the passage text as sentence B, so BERT reads them together. Wrong: separate embeddings describe a bi-encoder, and the model needs both texts.",
+        "source_ids": [
+          "S303#P4",
+          "S233#P1"
+        ]
+      },
+      {
+        "item_id": "T21-L2-02",
+        "prompt": "A paper shows BERT re-ranking beating the previous state of the art. What does that show about Google Search?",
+        "options": [
+          "A. Nothing about what Google runs",
+          "B. That Google uses a BERT cross-encoder on all results",
+          "C. That Google abandoned BM25 in 2019",
+          "D. That every web page is re-ranked twice"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the paper describes a method and a benchmark result. Google's ranking systems guide covers only some notable systems, and none of the saved sources confirm a BERT cross-encoder re-ranker in Search. The other options all read the paper as proof of Google's pipeline.",
+        "source_ids": [
+          "S303#P1",
+          "S303#P5",
+          "S300#P9"
+        ]
+      },
+      {
+        "item_id": "T21-L3-01",
+        "prompt": "Hypothetical site search: stage 1 returns 50 candidates and a cross-encoder re-ranks only those 50. The best page isn't among the 50. Can the re-ranker move it to the top?",
+        "options": [
+          "A. No: it only re-scores what stage 1 retrieved",
+          "B. Yes, if the cross-encoder model is large enough",
+          "C. Yes, because re-rankers search the whole index",
+          "D. Only if the page has many inbound links"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the second stage scores and re-ranks the documents the first stage retrieved, so a page outside the 50 is never scored. Wrong: model size doesn't change what it sees, re-rankers don't search the whole index, and links aren't part of this setup.",
+        "source_ids": [
+          "S303#P2",
+          "S303#P3"
+        ]
+      },
+      {
+        "item_id": "T21-L4-01",
+        "options": [
+          "A. Swap in a much larger and slower re-ranker model",
+          "B. Improve first-stage recall",
+          "C. Re-rank only the top 5 candidates instead",
+          "D. Drop queries that use different wording"
+        ],
+        "answer": "B",
+        "explanation": "Correct: evidence 1 shows the re-ranker works, and evidence 2 plus the two-stage description point to the candidate set as the bottleneck, so improve first-stage recall. Wrong: a larger re-ranker can't score what was never retrieved; re-ranking only 5 shrinks the candidate set further; dropping queries removes real users.",
+        "source_ids": [
+          "S303#P2",
+          "S303#P3"
+        ]
+      }
+    ]
+  }
+}
