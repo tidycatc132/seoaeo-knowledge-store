@@ -1,0 +1,818 @@
+{
+  "topic_id": "T16",
+  "items_file": "bank/items/T16-vector-distance-metrics.json",
+  "course_title": "Vector distance metrics",
+  "subtitle": "Cosine, dot product, Euclidean and Manhattan: how vector search turns two embeddings into one closeness number, and the settings that trip teams up.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Describe cosine, dot product, Euclidean and Manhattan in plain words",
+    "Explain how vector length and normalization change the results",
+    "Read Elasticsearch's similarity options and score formulas",
+    "Use pgvector's distance operators without flipping the ranking"
+  ],
+  "intro": [
+    "Vector search compares a query's embedding with each document's embedding and ranks by how close they are. The metric decides what \"close\" means.",
+    "This course uses the Stanford textbook Introduction to Information Retrieval, Google's machine learning course, scikit-learn's reference, and the documentation for Elasticsearch and pgvector.",
+    "These are database and library behaviours, not evidence of what a web search engine uses. Advice on choosing a metric is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T16-1",
+      "title": "Four ways to measure closeness",
+      "est_minutes": 6,
+      "objectives": [
+        "Describe cosine similarity as an angle",
+        "Describe the dot product as cosine's numerator",
+        "Tell Euclidean and Manhattan distance apart"
+      ],
+      "scene": {
+        "id": "angle",
+        "title": "Two arrows, four numbers",
+        "beats": [
+          {
+            "caption": "The textbook's standard way to quantify the similarity between two documents is the cosine similarity of their vectors.",
+            "source_ids": [
+              "S205#P3",
+              "S205#P6"
+            ]
+          },
+          {
+            "caption": "That measure is the cosine of the angle between the two vectors.",
+            "source_ids": [
+              "S205#P8"
+            ]
+          },
+          {
+            "caption": "Cosine's numerator is the dot product, also known as the inner product.",
+            "source_ids": [
+              "S205#P1"
+            ]
+          },
+          {
+            "caption": "Euclidean distance is the distance between the ends of the vectors.",
+            "source_ids": [
+              "S229#P5",
+              "S230#P1"
+            ]
+          },
+          {
+            "caption": "Manhattan distance adds up the gaps along each axis. It's also called L1 distance.",
+            "source_ids": [
+              "S230#P2",
+              "S231#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Similarities",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The textbook says the standard way of quantifying the similarity between two documents is to compute the cosine similarity of their vector representations. That measure is the cosine of the angle between the two vectors.",
+              "source_ids": [
+                "S205#P3",
+                "S205#P6",
+                "S205#P8"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The top half of the cosine formula is the dot product, also known as the inner product, of the two vectors.",
+              "source_ids": [
+                "S205#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Distances",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Euclidean (L2)",
+                  "text": "The distance between the ends of the vectors. scikit-learn writes it as sqrt(sum((x - y)^2)).",
+                  "source_ids": [
+                    "S229#P5",
+                    "S230#P1"
+                  ]
+                },
+                {
+                  "name": "Manhattan (L1)",
+                  "text": "scikit-learn writes it as sum(|x - y|), and describes Manhattan distances as L1 distances.",
+                  "source_ids": [
+                    "S230#P2",
+                    "S231#P1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Take two points, (1, 1) and (4, 5). The gaps are 3 and 4. Euclidean distance is sqrt(9 + 16) = 5. Manhattan distance is 3 + 4 = 7.",
+              "source_ids": [
+                "S230#P1",
+                "S230#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Remember",
+              "text": "For a similarity, a bigger number means closer. For a distance, a smaller number means closer. Mixing them up flips your ranking."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Cosine similarity is the cosine of the angle between two vectors.",
+          "source_ids": [
+            "S205#P8"
+          ]
+        },
+        {
+          "text": "The dot product, or inner product, is cosine's numerator.",
+          "source_ids": [
+            "S205#P1"
+          ]
+        },
+        {
+          "text": "Euclidean distance is the distance between the vectors' ends.",
+          "source_ids": [
+            "S229#P5"
+          ]
+        },
+        {
+          "text": "Manhattan distance is L1 distance: the sum of absolute gaps.",
+          "source_ids": [
+            "S230#P2",
+            "S231#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Work out two distances",
+        "minutes": "5",
+        "steps": [
+          "Pick two points on a grid, such as (2, 3) and (5, 7).",
+          "Write down the gap on each axis.",
+          "Add the gaps for Manhattan distance.",
+          "Square, add and take the square root for Euclidean distance."
+        ],
+        "prompt_template": "Check my working. Points: [point A] and [point B]. My Manhattan distance is [answer] and my Euclidean distance is [answer]. scikit-learn defines Euclidean as sqrt(sum((x - y)^2)) and Manhattan as sum(|x - y|). Show the steps and explain in plain words why Manhattan is never smaller than Euclidean for the same two points."
+      },
+      "reflection": [
+        "Why might an angle be a better measure of topic than a raw distance?",
+        "Which of the four gives a bigger number for closer items?"
+      ],
+      "whats_next": "Next, why vector length matters, and what normalization does."
+    },
+    {
+      "lesson_id": "T16-2",
+      "title": "Length and normalization",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why vector length can mislead",
+        "Explain how the dot product differs from cosine",
+        "State what normalizing does to the three measures"
+      ],
+      "scene": {
+        "id": "length",
+        "title": "Long arrows, short arrows",
+        "beats": [
+          {
+            "caption": "Two documents with very similar content can have a significant vector difference, for example when one is much longer.",
+            "source_ids": [
+              "S205#P5"
+            ]
+          },
+          {
+            "caption": "Cosine's denominator fixes that: its effect is to length-normalize the vectors.",
+            "source_ids": [
+              "S205#P2"
+            ]
+          },
+          {
+            "caption": "In contrast to the cosine, the dot product is proportional to the vector length.",
+            "source_ids": [
+              "S229#P1"
+            ]
+          },
+          {
+            "caption": "Google's ML course: if you want to capture popularity, choose dot product. The risk is that popular examples may skew the metric.",
+            "source_ids": [
+              "S229#P2",
+              "S229#P3"
+            ]
+          },
+          {
+            "caption": "Normalizing vector lengths makes Euclidean distance, cosine and dot product proportional.",
+            "source_ids": [
+              "S229#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Why length matters",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The textbook notes that two documents with very similar content can have a significant vector difference. Cosine similarity compensates for the effect of document length: the effect of its denominator is to length-normalize the vectors.",
+              "source_ids": [
+                "S205#P5",
+                "S205#P3",
+                "S205#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's machine learning course puts the difference this way: in contrast to the cosine, the dot product is proportional to the vector length, while cosine similarity focuses solely on the angle between vectors, ignoring popularity.",
+              "source_ids": [
+                "S229#P1",
+                "S229#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Normalize, and they agree",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "Normalizing vector lengths makes Euclidean distance, cosine, and dot product proportional",
+              "cite": "Google for Developers, Measuring similarity from embeddings",
+              "source_ids": [
+                "S229#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Google says",
+              "text": "If you want to capture popularity, then choose dot product. However, the risk is that popular examples may skew the similarity metric.",
+              "source_ids": [
+                "S229#P2",
+                "S229#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Use the metric your embedding model's documentation specifies. No saved source says which metric suits which model."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Cosine length-normalizes; it looks only at the angle.",
+          "source_ids": [
+            "S205#P2",
+            "S229#P6"
+          ]
+        },
+        {
+          "text": "The dot product grows with vector length.",
+          "source_ids": [
+            "S229#P1"
+          ]
+        },
+        {
+          "text": "Dot product can capture popularity, but popular items may skew it.",
+          "source_ids": [
+            "S229#P2",
+            "S229#P3"
+          ]
+        },
+        {
+          "text": "After normalizing, Euclidean, cosine and dot product are proportional.",
+          "source_ids": [
+            "S229#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your model's metric",
+        "minutes": "10",
+        "steps": [
+          "Find the embedding model your search or RAG system uses.",
+          "Open its documentation and look for the recommended similarity.",
+          "Check whether it says the vectors are normalized.",
+          "Compare that with the metric set in your database."
+        ],
+        "prompt_template": "My system uses the embedding model [model] and my vector database is set to [metric]. The model's documentation says: [paste]. Google's ML course says the dot product is proportional to vector length, and normalizing vector lengths makes Euclidean distance, cosine and dot product proportional. Do my settings match the documentation? Label any recommendation that goes beyond the documentation as practitioner judgement."
+      },
+      "reflection": [
+        "When would favouring popular items help your users, and when would it hurt?",
+        "Why does normalizing make the choice between the three measures matter less?"
+      ],
+      "whats_next": "Next, how Elasticsearch names and scores these metrics."
+    },
+    {
+      "lesson_id": "T16-3",
+      "title": "Metrics in Elasticsearch",
+      "est_minutes": 6,
+      "objectives": [
+        "Name Elasticsearch's four vector similarity options",
+        "Apply the unit-length rule for dot_product",
+        "Compute a document score from the documented formulas"
+      ],
+      "scene": {
+        "id": "elastic",
+        "title": "Four settings, two formulas",
+        "beats": [
+          {
+            "caption": "Elasticsearch offers l2_norm, which computes similarity based on the L2 (Euclidean) distance between the vectors.",
+            "source_ids": [
+              "S216#P1"
+            ]
+          },
+          {
+            "caption": "dot_product computes the dot product of two unit vectors. With float vectors, all vectors must be unit length, both document and query.",
+            "source_ids": [
+              "S216#P2",
+              "S216#P3"
+            ]
+          },
+          {
+            "caption": "cosine computes the cosine similarity. During indexing, Elasticsearch automatically normalizes those vectors to unit length.",
+            "source_ids": [
+              "S216#P4",
+              "S216#P6"
+            ]
+          },
+          {
+            "caption": "max_inner_product is similar to dot_product, but doesn't require vectors to be normalized.",
+            "source_ids": [
+              "S216#P5"
+            ]
+          },
+          {
+            "caption": "Scores: dot_product gives (1 + dot_product) / 2. l2_norm gives 1 / (1 + l2_norm^2).",
+            "source_ids": [
+              "S216#P7",
+              "S216#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The four options",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "l2_norm.",
+                  "text": "Computes similarity based on the L2 distance, also known as Euclidean distance, between the vectors.",
+                  "source_ids": [
+                    "S216#P1"
+                  ]
+                },
+                {
+                  "lead": "dot_product.",
+                  "text": "Computes the dot product of two unit vectors. When element_type is float, all vectors must be unit length, including both document and query vectors.",
+                  "source_ids": [
+                    "S216#P2",
+                    "S216#P3"
+                  ]
+                },
+                {
+                  "lead": "cosine.",
+                  "text": "Computes the cosine similarity. During indexing Elasticsearch automatically normalizes vectors with cosine similarity to unit length.",
+                  "source_ids": [
+                    "S216#P4",
+                    "S216#P6"
+                  ]
+                },
+                {
+                  "lead": "max_inner_product.",
+                  "text": "Similar to dot_product, but doesn't require vectors to be normalized.",
+                  "source_ids": [
+                    "S216#P5"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "From similarity to _score",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Elasticsearch turns each similarity into a document _score with a documented formula.",
+              "source_ids": [
+                "S216#P7",
+                "S216#P8"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "dot_product",
+                  "text": "The document _score is computed as (1 + dot_product(query, vector)) / 2.",
+                  "source_ids": [
+                    "S216#P7"
+                  ]
+                },
+                {
+                  "name": "l2_norm",
+                  "text": "The document _score is computed as 1 / (1 + l2_norm(query, vector)^2).",
+                  "source_ids": [
+                    "S216#P8"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Unit-length float vectors with a dot product of 0.6 score (1 + 0.6) / 2 = 0.8. An l2_norm distance of 1 scores 1 / (1 + 1) = 0.5.",
+              "source_ids": [
+                "S216#P7",
+                "S216#P8"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Scores from different formulas aren't on the same scale. When you compare scores across tools or settings, check each tool's score formula first."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "dot_product needs unit-length float vectors on both sides.",
+          "source_ids": [
+            "S216#P3"
+          ]
+        },
+        {
+          "text": "cosine normalizes vectors for you at indexing time.",
+          "source_ids": [
+            "S216#P6"
+          ]
+        },
+        {
+          "text": "max_inner_product doesn't require normalized vectors.",
+          "source_ids": [
+            "S216#P5"
+          ]
+        },
+        {
+          "text": "dot_product scores (1 + dot) / 2; l2_norm scores 1 / (1 + distance squared).",
+          "source_ids": [
+            "S216#P7",
+            "S216#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Read your mapping",
+        "minutes": "10",
+        "steps": [
+          "Open the dense_vector mapping for your index.",
+          "Note the similarity and element_type settings.",
+          "If it's dot_product with float, check that both document and query vectors are normalized.",
+          "Work out the _score for one sample result by hand."
+        ],
+        "prompt_template": "Here's my Elasticsearch dense_vector mapping: [paste]. Elastic's docs say dot_product with float vectors needs all vectors at unit length, including query vectors; cosine normalizes at indexing; max_inner_product doesn't need normalized vectors; dot_product scores (1 + dot) / 2 and l2_norm scores 1 / (1 + l2_norm^2). Check my mapping against these rules and list anything I must change in my indexing or query code."
+      },
+      "reflection": [
+        "Where in your pipeline would a query vector skip normalization?",
+        "Why might two settings give the same order but different scores?"
+      ],
+      "whats_next": "Next, pgvector's operators and a sorting trap."
+    },
+    {
+      "lesson_id": "T16-4",
+      "title": "Metrics in pgvector, and choosing one",
+      "est_minutes": 5,
+      "objectives": [
+        "Match pgvector's operators to their metrics",
+        "Sort negative inner product results the right way",
+        "Choose a metric from documentation, not habit"
+      ],
+      "scene": {
+        "id": "pgvec",
+        "title": "Four operators, one trap",
+        "beats": [
+          {
+            "caption": "pgvector gives each metric an operator: <-> is L2 distance, <#> is (negative) inner product, <=> is cosine distance, <+> is L1 distance.",
+            "source_ids": [
+              "S217#P1",
+              "S217#P2",
+              "S217#P3",
+              "S217#P4"
+            ]
+          },
+          {
+            "caption": "<#> returns the negative inner product, since Postgres only supports ascending order index scans on operators.",
+            "source_ids": [
+              "S217#P5"
+            ]
+          },
+          {
+            "caption": "A bigger inner product means more similar, so it becomes a more negative value. Sort ascending to put the best match first.",
+            "source_ids": [
+              "S217#P5",
+              "S217#P2"
+            ]
+          },
+          {
+            "caption": "Sort descending by mistake and the least similar passages come first.",
+            "source_ids": [
+              "S217#P5"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: use the metric your embedding model's documentation specifies, and check score formulas before comparing tools.",
+            "source_ids": [
+              "S216#P7",
+              "S217#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The operators",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "<->",
+                  "text": "L2 distance.",
+                  "source_ids": [
+                    "S217#P1"
+                  ]
+                },
+                {
+                  "lead": "<#>",
+                  "text": "(negative) inner product.",
+                  "source_ids": [
+                    "S217#P2"
+                  ]
+                },
+                {
+                  "lead": "<=>",
+                  "text": "cosine distance.",
+                  "source_ids": [
+                    "S217#P3"
+                  ]
+                },
+                {
+                  "lead": "<+>",
+                  "text": "L1 distance.",
+                  "source_ids": [
+                    "S217#P4"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "pgvector README",
+              "text": "<#> returns the negative inner product since Postgres only supports ASC order index scans on operators.",
+              "source_ids": [
+                "S217#P5"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Inner products of 0.9 and 0.2 become -0.9 and -0.2. Ascending order puts -0.9, the closer match, first.",
+              "source_ids": [
+                "S217#P2",
+                "S217#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Choosing a metric",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist when you set up or audit a vector search.",
+              "source_ids": [
+                "S229#P4"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Follow the model.",
+                  "text": "Use the metric your embedding model's documentation specifies. This is practitioner judgement: no saved source maps metrics to models."
+                },
+                {
+                  "lead": "Check normalization.",
+                  "text": "Normalizing vector lengths makes Euclidean distance, cosine and dot product proportional.",
+                  "source_ids": [
+                    "S229#P4"
+                  ]
+                },
+                {
+                  "lead": "Check the sort direction.",
+                  "text": "Distances and pgvector's negative inner product sort ascending.",
+                  "source_ids": [
+                    "S217#P5"
+                  ]
+                },
+                {
+                  "lead": "Check the score formula.",
+                  "text": "Elasticsearch documents a different _score formula for each similarity.",
+                  "source_ids": [
+                    "S216#P7",
+                    "S216#P8"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "These are database behaviours. They show how vector tools work, not which metric any web search engine uses."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "pgvector: <-> L2, <#> negative inner product, <=> cosine distance, <+> L1.",
+          "source_ids": [
+            "S217#P1",
+            "S217#P2",
+            "S217#P3",
+            "S217#P4"
+          ]
+        },
+        {
+          "text": "Sort <#> ascending, because it's negative.",
+          "source_ids": [
+            "S217#P5"
+          ]
+        },
+        {
+          "text": "Normalized vectors make the three main measures proportional.",
+          "source_ids": [
+            "S229#P4"
+          ]
+        },
+        {
+          "text": "Pick the metric from your model's documentation (practitioner judgement).",
+          "source_ids": []
+        }
+      ],
+      "exercise": {
+        "title": "Audit one query",
+        "minutes": "10",
+        "steps": [
+          "Find the SQL your app uses for vector search.",
+          "Note the operator and the ORDER BY direction.",
+          "Check them against the pgvector operator list.",
+          "Run the query for one known question and check the top result."
+        ],
+        "prompt_template": "Here's my pgvector query: [paste SQL]. The pgvector README lists <-> as L2 distance, <#> as negative inner product, <=> as cosine distance and <+> as L1 distance, and says <#> returns the negative inner product because Postgres only supports ascending index scans on operators. Check my operator and sort order, and tell me whether the best match will come first."
+      },
+      "reflection": [
+        "How would you notice if your vector search ranking were upside down?",
+        "Who on your team decides which metric to use, and from what evidence?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "A vector metric turns two embeddings into one closeness number. Cosine is the cosine of the angle and ignores length; the dot product is its numerator and grows with length; Euclidean is the distance between the vectors' ends; Manhattan is L1, the sum of absolute gaps. Normalizing lengths makes Euclidean, cosine and dot product proportional. Elasticsearch needs unit-length float vectors for dot_product and documents a score formula for each option; pgvector's <#> is negative, so sort ascending. Follow your model's documentation when choosing.",
+    "related_topics": [
+      {
+        "topic_id": "T2",
+        "title": "Vector space model"
+      },
+      {
+        "topic_id": "T17",
+        "title": "Approximate nearest neighbour search"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Vector distance metrics. The questions revisit the four metrics, normalization, Elasticsearch and pgvector.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T16-L1-01",
+      "T16-L1-02",
+      "T16-L1-03",
+      "T16-L2-01",
+      "T16-L2-02",
+      "T16-L2-03",
+      "T16-L3-01",
+      "T16-L3-02",
+      "T16-L4-01",
+      "T16-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T16-L1-01",
+        "prompt": "In pgvector, which operator returns L1 distance?",
+        "options": [
+          "A. <->",
+          "B. <+>",
+          "C. <#> (negative)",
+          "D. <=>"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the README lists <+> as L1 distance. Wrong: <-> is L2 distance, <#> is (negative) inner product and <=> is cosine distance.",
+        "source_ids": [
+          "S217#P4",
+          "S217#P1",
+          "S217#P2",
+          "S217#P3"
+        ]
+      },
+      {
+        "item_id": "T16-L1-03",
+        "prompt": "How do Elastic's docs describe max_inner_product?",
+        "options": [
+          "A. Identical to cosine, with automatic normalization",
+          "B. Like dot_product, but no normalizing needed",
+          "C. A distance based on the L2 norm of each vector",
+          "D. Only usable with integer vectors of unit length"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the docs say it is similar to dot_product, but doesn't require vectors to be normalized. Wrong: automatic normalization is described for cosine, L2 distance is l2_norm, and no integer-only rule is stated.",
+        "source_ids": [
+          "S216#P5",
+          "S216#P6",
+          "S216#P1"
+        ]
+      },
+      {
+        "item_id": "T16-L2-01",
+        "options": [
+          "A. Half of the dot product, as a scaling term",
+          "B. A sort of the vectors by Euclidean length",
+          "C. Nothing; it orders like the dot product",
+          "D. A conversion of the score into a distance"
+        ],
+        "answer": "C",
+        "explanation": "Correct (practitioner inference): the textbook says the denominator length-normalizes the vectors, so for vectors already at unit length there's nothing left to normalize and the dot product orders results as cosine would. Google's ML course agrees that normalizing makes the measures proportional. Wrong: the (1 + dot) / 2 in Elastic's formula is a score shift, not the denominator; no sort by length is described; cosine is a similarity, not a distance.",
+        "source_ids": [
+          "S205#P1",
+          "S205#P2",
+          "S229#P4",
+          "S216#P7"
+        ]
+      },
+      {
+        "item_id": "T16-L2-02",
+        "prompt": "With Elasticsearch's cosine similarity, who normalizes the vectors to unit length?",
+        "options": [
+          "A. You must, before indexing",
+          "B. Elasticsearch, during indexing",
+          "C. Nobody; cosine needs raw vectors",
+          "D. The query parser, at search time only"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the docs say that during indexing Elasticsearch automatically normalizes vectors with cosine similarity to unit length. Wrong: the do-it-yourself unit-length rule applies to dot_product with float vectors; the other two aren't described.",
+        "source_ids": [
+          "S216#P6",
+          "S216#P3"
+        ]
+      },
+      {
+        "item_id": "T16-L3-01",
+        "prompt": "Unit-length float vectors under Elasticsearch dot_product have a dot product of 0.6 with the query. Using (1 + dot_product) / 2, what is the _score?",
+        "options": [
+          "A. 0.3",
+          "B. 0.6, unchanged",
+          "C. 0.8",
+          "D. 1.6"
+        ],
+        "answer": "C",
+        "explanation": "Correct: (1 + 0.6) / 2 = 0.8. Wrong: 0.3 halves the dot product without adding 1; 0.6 is the raw dot product; 1.6 forgets to divide by 2.",
+        "source_ids": [
+          "S216#P7",
+          "S216#P3"
+        ]
+      }
+    ]
+  }
+}
