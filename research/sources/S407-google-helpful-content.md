@@ -5,7 +5,7 @@ title: Creating helpful, reliable, people-first content
 publisher: Google Search Central
 grade: A
 page_date: 2026-10-05
-opened: 2026-10-25
+opened: 2026-10-25 (extra passages 2026-10-29 P12-P14)
 status: used
 ---
 Summary: Google's helpful content guidance, E-E-A-T and Who/How/Why.
@@ -33,3 +33,12 @@ Note: quotes returned by WebFetch extraction; fragments kept short.
 > "Why" is perhaps the most important question to answer about your content.
 ### P11 attract visits
 > If the "why" is that you're primarily making content to attract search engine visits, that's not aligned with what our systems seek to reward.
+
+### P12 changing dates
+> Are you changing the date of pages to make them seem fresh when the content has not substantially changed?
+
+### P13 adding or removing for freshness
+> Are you adding a lot of new content or removing a lot of older content primarily because you believe it will help your search rankings overall by somehow making your site seem "fresh?"
+
+### P14 no it won't
+> (No, it won't)
