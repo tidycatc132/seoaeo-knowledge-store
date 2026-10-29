@@ -1,0 +1,879 @@
+{
+  "topic_id": "T52",
+  "items_file": "bank/items/T52-geo-ai-overviews.json",
+  "course_title": "GEO and AI Overviews",
+  "subtitle": "What Google says it takes to appear in AI Overviews and AI Mode, how other AI search crawlers work, and what the GEO research paper did and didn't show.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain what Google requires for AI features",
+    "Check eligibility, controls and reporting",
+    "Set AI crawler rules on purpose",
+    "Read GEO research for what it is"
+  ],
+  "intro": [
+    "AI answers now sit above or beside classic search results. Many people sell special tactics for them. This course checks those claims against what the platforms themselves say.",
+    "It uses Google's page on AI features, Google's robots.txt guide, OpenAI's and Perplexity's crawler docs, and the GEO research paper by Aggarwal and colleagues.",
+    "This area changes fast. OpenAI's and Perplexity's docs describe only their own bots, and the GEO paper describes only its own experiments. Neither is evidence of how Google works. Advice beyond the sources is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T52-1",
+      "title": "What Google says about AI features",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe AI Overviews and AI Mode",
+        "State Google's position on special optimization",
+        "List the SEO basics Google says still apply"
+      ],
+      "scene": {
+        "id": "aio",
+        "title": "No secret recipe",
+        "beats": [
+          {
+            "caption": "AI Overviews and AI Mode give an AI-powered response with links to supporting websites.",
+            "source_ids": [
+              "S007#P18"
+            ]
+          },
+          {
+            "caption": "Both may use a 'query fan-out' technique: multiple related searches across subtopics and data sources.",
+            "source_ids": [
+              "S007#P5",
+              "S007#P1"
+            ]
+          },
+          {
+            "caption": "Google: there are no additional requirements to appear, nor other special optimizations necessary.",
+            "source_ids": [
+              "S007#P2"
+            ]
+          },
+          {
+            "caption": "There's also no special schema.org structured data that you need to add.",
+            "source_ids": [
+              "S007#P3"
+            ]
+          },
+          {
+            "caption": "The best practices for SEO remain relevant for AI features in Google Search.",
+            "source_ids": [
+              "S007#P13"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Answers with links",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google describes AI Overviews and AI Mode as a way to get a comprehensive AI-powered response with links to supporting websites. Both may use a 'query fan-out' technique, issuing multiple related searches across subtopics and data sources.",
+              "source_ids": [
+                "S007#P18",
+                "S007#P5",
+                "S007#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google also says the two may use different models and techniques, so the set of responses and links they show will vary.",
+              "source_ids": [
+                "S007#P17"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "No special recipe",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says there are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary. There's also no special schema.org structured data that you need to add.",
+              "source_ids": [
+                "S007#P2",
+                "S007#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Structured data still has a job. Google's list of good practice includes making sure your structured data matches the visible text on the page.",
+              "source_ids": [
+                "S007#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "If someone sells 'AI Overview optimization' as a separate package, compare it with Google's own words: no additional requirements and no special optimizations.",
+              "source_ids": [
+                "S007#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "SEO basics still apply",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says the best practices for SEO remain relevant for AI features. The practices it lists include these.",
+              "source_ids": [
+                "S007#P13"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Crawling allowed.",
+                  "text": "Ensure crawling is allowed in robots.txt, and by any CDN or hosting infrastructure.",
+                  "source_ids": [
+                    "S007#P14"
+                  ]
+                },
+                {
+                  "lead": "Text first.",
+                  "text": "Make sure important content is available in textual form.",
+                  "source_ids": [
+                    "S007#P15"
+                  ]
+                },
+                {
+                  "lead": "Media that helps.",
+                  "text": "Support your text with high-quality images and videos, when applicable.",
+                  "source_ids": [
+                    "S007#P16"
+                  ]
+                },
+                {
+                  "lead": "Up-to-date listings.",
+                  "text": "Check that your Merchant Center and Business Profile information is up to date.",
+                  "source_ids": [
+                    "S007#P12"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "AI features answer with links to supporting sites.",
+          "source_ids": [
+            "S007#P18"
+          ]
+        },
+        {
+          "text": "They may fan a query out into related searches.",
+          "source_ids": [
+            "S007#P5",
+            "S007#P1"
+          ]
+        },
+        {
+          "text": "No extra requirements or special schema.",
+          "source_ids": [
+            "S007#P2",
+            "S007#P3"
+          ]
+        },
+        {
+          "text": "Normal SEO best practices still apply.",
+          "source_ids": [
+            "S007#P13"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check the basics",
+        "minutes": "15",
+        "steps": [
+          "Pick five pages you want to see cited in AI answers.",
+          "Confirm robots.txt and your CDN let Googlebot crawl them.",
+          "Check that the key facts are in the page text, not only in images.",
+          "Check that any structured data matches what's visible on the page."
+        ],
+        "prompt_template": "Here are five of my pages: [URLs and notes]. Google says AI features have no additional requirements or special schema, and lists crawling allowed, important content in text form, and structured data that matches visible text as good practice. Check each page against these points and list fixes."
+      },
+      "reflection": [
+        "Has anyone pitched you a special AI Overview tactic?",
+        "Which key facts on your site live only in images or PDFs?"
+      ],
+      "whats_next": "Next, what makes a page eligible, and how you can control and measure it."
+    },
+    {
+      "lesson_id": "T52-2",
+      "title": "Eligibility, controls and reporting",
+      "est_minutes": 5,
+      "objectives": [
+        "State the eligibility rule for supporting links",
+        "Pick the right control to limit use",
+        "Find AI feature traffic in Search Console"
+      ],
+      "scene": {
+        "id": "elig",
+        "title": "Indexed, snippet-eligible, measured",
+        "beats": [
+          {
+            "caption": "To be a supporting link, a page must be indexed and eligible to be shown in Google Search with a snippet.",
+            "source_ids": [
+              "S007#P6",
+              "S007#P7"
+            ]
+          },
+          {
+            "caption": "robots.txt directives for Googlebot are the control for managing access.",
+            "source_ids": [
+              "S007#P9"
+            ]
+          },
+          {
+            "caption": "To limit what's shown from your pages, use nosnippet, data-nosnippet, max-snippet or noindex.",
+            "source_ids": [
+              "S007#P8"
+            ]
+          },
+          {
+            "caption": "Sites appearing in AI features are reported on in the Performance report.",
+            "source_ids": [
+              "S007#P10"
+            ]
+          },
+          {
+            "caption": "They're included in the overall search traffic in Search Console.",
+            "source_ids": [
+              "S007#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two conditions",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that to be eligible to be shown as a supporting link in AI Overviews or AI Mode, a page must be indexed and eligible to be shown in Google Search with a snippet.",
+              "source_ids": [
+                "S007#P6",
+                "S007#P7"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a pricing page carries a nosnippet rule added years ago. It's indexed, but it can't show a snippet, so it fails the second condition.",
+              "source_ids": [
+                "S007#P7",
+                "S007#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Your controls",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google names robots.txt directives for Googlebot as the control for site owners to manage access. To limit the information shown from your pages in Search, it points to nosnippet, data-nosnippet, max-snippet or noindex.",
+              "source_ids": [
+                "S007#P9",
+                "S007#P8"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's robots.txt guide adds a caution: robots.txt is not a mechanism for keeping a web page out of Google. To keep a page out, block indexing with noindex or password-protect the page.",
+              "source_ids": [
+                "S101#P3",
+                "S101#P5"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "Each of these controls also limits normal Search. Use them on purpose, page by page.",
+              "source_ids": [
+                "S007#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Measuring it",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says sites appearing in AI features are reported on in the Performance report, and are included in the overall search traffic in Search Console.",
+              "source_ids": [
+                "S007#P10",
+                "S007#P11"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: because the traffic is folded into the overall numbers, compare trends for the pages and queries you expect AI answers to cover.",
+              "source_ids": [
+                "S007#P11"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Supporting links must be indexed and snippet-eligible.",
+          "source_ids": [
+            "S007#P6",
+            "S007#P7"
+          ]
+        },
+        {
+          "text": "robots.txt for Googlebot manages access.",
+          "source_ids": [
+            "S007#P9"
+          ]
+        },
+        {
+          "text": "Snippet controls and noindex limit what's shown.",
+          "source_ids": [
+            "S007#P8"
+          ]
+        },
+        {
+          "text": "AI feature traffic is in overall Search Console data.",
+          "source_ids": [
+            "S007#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find blocked pages",
+        "minutes": "15",
+        "steps": [
+          "Crawl your site and export each page's robots meta tags.",
+          "List pages with nosnippet, max-snippet or noindex.",
+          "Mark which rules are deliberate and which are leftovers.",
+          "Remove leftovers on pages you want cited, then re-check them in Search Console."
+        ],
+        "prompt_template": "Here is a crawl export of robots meta rules: [paste]. Google says supporting links in AI Overviews must be indexed and eligible to show with a snippet, and nosnippet, data-nosnippet, max-snippet and noindex limit what's shown. Flag pages where a rule may be blocking eligibility by mistake."
+      },
+      "reflection": [
+        "Do you know why each nosnippet rule on your site was added?",
+        "Which query group would you watch first for AI answer effects?"
+      ],
+      "whats_next": "Next, crawlers from other AI search products."
+    },
+    {
+      "lesson_id": "T52-3",
+      "title": "Other AI search crawlers",
+      "est_minutes": 5,
+      "objectives": [
+        "Tell OpenAI's search crawler from its training crawler",
+        "Describe PerplexityBot and Perplexity-User",
+        "Write robots.txt rules that match your goal"
+      ],
+      "scene": {
+        "id": "bots",
+        "title": "Search bots and training bots",
+        "beats": [
+          {
+            "caption": "OpenAI: OAI-SearchBot is used to surface websites in search results in ChatGPT's search features.",
+            "source_ids": [
+              "S510#P1"
+            ]
+          },
+          {
+            "caption": "Disallowing GPTBot indicates content should not be used in training generative AI foundation models.",
+            "source_ids": [
+              "S510#P2"
+            ]
+          },
+          {
+            "caption": "Each setting is independent of the others.",
+            "source_ids": [
+              "S510#P3"
+            ]
+          },
+          {
+            "caption": "Sites opted out of OAI-SearchBot will not be shown in ChatGPT search answers. Changes take ~24 hours.",
+            "source_ids": [
+              "S510#P5",
+              "S510#P6"
+            ]
+          },
+          {
+            "caption": "Perplexity: PerplexityBot surfaces and links sites in its results, and is not used to crawl for foundation models.",
+            "source_ids": [
+              "S511#P1",
+              "S511#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "OpenAI's two bots",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "OpenAI says OAI-SearchBot is used to surface websites in search results in ChatGPT's search features. Disallowing GPTBot indicates a site's content should not be used in training generative AI foundation models. Each setting is independent of the others.",
+              "source_ids": [
+                "S510#P1",
+                "S510#P2",
+                "S510#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "OpenAI recommends allowing OAI-SearchBot to help your site appear in search results. Sites that are opted out of OAI-SearchBot will not be shown in ChatGPT search answers, and it can take about 24 hours from a robots.txt update for its systems to adjust.",
+              "source_ids": [
+                "S510#P4",
+                "S510#P5",
+                "S510#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Perplexity's bots",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Perplexity says PerplexityBot is designed to surface and link websites in search results on Perplexity, and is not used to crawl content for AI foundation models. Each setting works independently, and changes may take up to 24 hours.",
+              "source_ids": [
+                "S511#P1",
+                "S511#P2",
+                "S511#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Its Perplexity-User fetcher is different. Since a user requested the fetch, Perplexity says this fetcher generally ignores robots.txt rules.",
+              "source_ids": [
+                "S511#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Rules that match your goal",
+          "blocks": [
+            {
+              "type": "example",
+              "text": "Hypothetical goal: appear in ChatGPT search, but keep content out of model training. robots.txt: 'User-agent: OAI-SearchBot / Allow: /' and 'User-agent: GPTBot / Disallow: /'. The settings are independent, so this does what's intended.",
+              "source_ids": [
+                "S510#P1",
+                "S510#P2",
+                "S510#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Scope",
+              "text": "These are each company's docs about its own bots. They tell you nothing about how Google picks AI Overview sources.",
+              "source_ids": [
+                "S510#P1",
+                "S511#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "OAI-SearchBot is for ChatGPT search surfacing.",
+          "source_ids": [
+            "S510#P1"
+          ]
+        },
+        {
+          "text": "GPTBot rules are about model training.",
+          "source_ids": [
+            "S510#P2"
+          ]
+        },
+        {
+          "text": "Each OpenAI setting is independent.",
+          "source_ids": [
+            "S510#P3"
+          ]
+        },
+        {
+          "text": "PerplexityBot is not used for model training.",
+          "source_ids": [
+            "S511#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit your AI bot rules",
+        "minutes": "10",
+        "steps": [
+          "Open your live robots.txt.",
+          "Find every rule for OAI-SearchBot, GPTBot and PerplexityBot.",
+          "Write down what you want each bot to do.",
+          "Fix any rule that doesn't match, then wait about 24 hours before re-checking."
+        ],
+        "prompt_template": "Here is my robots.txt: [paste]. My goal: [e.g. appear in ChatGPT and Perplexity search, no model training]. OpenAI says OAI-SearchBot surfaces sites in ChatGPT search, GPTBot controls training use, and each setting is independent. Perplexity says PerplexityBot surfaces sites and isn't used for training. Check whether my rules match my goal."
+      },
+      "reflection": [
+        "Did a security plugin or CDN add bot rules you didn't choose?",
+        "Who on your team decides whether AI training is allowed?"
+      ],
+      "whats_next": "Next, the GEO research paper and how to read its results."
+    },
+    {
+      "lesson_id": "T52-4",
+      "title": "Reading the GEO paper",
+      "est_minutes": 5,
+      "objectives": [
+        "Say what the GEO paper proposed",
+        "Name methods it tested and how they did",
+        "Explain why its results aren't engine rules"
+      ],
+      "scene": {
+        "id": "geo",
+        "title": "A study, not a rulebook",
+        "beats": [
+          {
+            "caption": "The GEO paper calls GEO a new paradigm to help content creators improve their content visibility.",
+            "source_ids": [
+              "S505#P1"
+            ]
+          },
+          {
+            "caption": "It introduces GEO-bench, a large-scale benchmark of diverse user queries across multiple domains.",
+            "source_ids": [
+              "S505#P2"
+            ]
+          },
+          {
+            "caption": "Methods tested include Statistics Addition, Cite Sources, Quotation Addition and Keyword Stuffing.",
+            "source_ids": [
+              "S505#P8",
+              "S505#P9",
+              "S505#P11"
+            ]
+          },
+          {
+            "caption": "Keyword Stuffing didn't perform well. Statistics Addition and Quotation Addition showed strong improvements.",
+            "source_ids": [
+              "S505#P8",
+              "S505#P9"
+            ]
+          },
+          {
+            "caption": "Up to 40% visibility boost in its experiments, varying across domains. A study result, not an engine's rule.",
+            "source_ids": [
+              "S505#P3",
+              "S505#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What the paper proposed",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper by Aggarwal and colleagues presents Generative Engine Optimization (GEO) as the first novel paradigm to aid content creators in improving their content visibility. It describes a flexible black-box optimization framework for optimizing and defining visibility metrics.",
+              "source_ids": [
+                "S505#P1",
+                "S505#P6"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Its motivation is that content creators have little to no control over how generative engines use their content. The authors also claim these engines are rapidly replacing traditional search engines like Google and Bing. That is their claim, not a measured result in the saved passages.",
+              "source_ids": [
+                "S505#P7",
+                "S505#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "To test ideas, it introduces GEO-bench, a large-scale benchmark of diverse user queries across multiple domains.",
+              "source_ids": [
+                "S505#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What it tested",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper rewrote content in different ways and measured visibility in generated answers. Some of the methods it describes are these.",
+              "source_ids": [
+                "S505#P10",
+                "S505#P11",
+                "S505#P6"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Statistics Addition.",
+                  "text": "Modifies content to include quantitative statistics instead of qualitative discussion, wherever possible.",
+                  "source_ids": [
+                    "S505#P10"
+                  ]
+                },
+                {
+                  "lead": "Cite Sources and Quotation Addition.",
+                  "text": "Adds relevant citations and quotations from credible sources respectively.",
+                  "source_ids": [
+                    "S505#P11"
+                  ]
+                },
+                {
+                  "lead": "Keyword Stuffing.",
+                  "text": "A simple method traditionally used in SEO, which didn't perform well compared to baselines.",
+                  "source_ids": [
+                    "S505#P8"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The authors report that Statistics Addition and Quotation Addition show strong performance improvements across all metrics.",
+              "source_ids": [
+                "S505#P9"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Reading the 40%",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper says GEO can boost visibility by up to 40% in generative engine responses, and that the efficacy of these strategies varies across domains.",
+              "source_ids": [
+                "S505#P3",
+                "S505#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "'Up to 40%' is the best result in one study's experiments. It isn't a guarantee, and it isn't evidence of how Google picks AI Overview sources. Google itself says no special optimizations are needed.",
+              "source_ids": [
+                "S505#P3",
+                "S505#P4",
+                "S007#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: adding real statistics, citations and quotations often makes a page more useful anyway. Treat them as tests on your own pages and measure the result.",
+              "source_ids": [
+                "S505#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "GEO-bench is the paper's query benchmark.",
+          "source_ids": [
+            "S505#P2"
+          ]
+        },
+        {
+          "text": "Keyword Stuffing did poorly in the study.",
+          "source_ids": [
+            "S505#P8"
+          ]
+        },
+        {
+          "text": "Statistics and quotations did well in the study.",
+          "source_ids": [
+            "S505#P9"
+          ]
+        },
+        {
+          "text": "'Up to 40%' varied by domain.",
+          "source_ids": [
+            "S505#P3",
+            "S505#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Run a small test",
+        "minutes": "20",
+        "steps": [
+          "Pick two similar pages on your site.",
+          "On one, add sourced statistics and a quotation from a credible source.",
+          "Leave the other unchanged as a comparison.",
+          "Track both in Search Console and in AI answers for a few weeks."
+        ],
+        "prompt_template": "Here is a page draft: [paste]. The GEO paper describes Statistics Addition (quantitative statistics instead of qualitative discussion) and Cite Sources and Quotation Addition (citations and quotations from credible sources). Suggest where each could fit, using only facts I can source. Remind me results varied by domain in the study."
+      },
+      "reflection": [
+        "Which vendor claim have you heard that leans on 'up to' numbers?",
+        "Where would real statistics make one of your pages clearer?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google says AI Overviews and AI Mode have no additional requirements or special schema, and that SEO best practices still apply. A supporting link must be indexed and snippet-eligible, snippet controls limit what's shown, and the traffic is part of your overall Search Console data. OpenAI and Perplexity keep search crawlers separate from training, so set each bot's rule on purpose. The GEO paper found gains of up to 40% in its own tests, varying by domain: treat its methods as experiments, not rules.",
+    "related_topics": [
+      {
+        "topic_id": "T25",
+        "title": "Query transformation and fan-out"
+      },
+      {
+        "topic_id": "T53",
+        "title": "Featured snippets and direct answers"
+      },
+      {
+        "topic_id": "T39",
+        "title": "Web crawling and crawl budget management"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for GEO and AI Overviews. The questions revisit Google's AI features, AI crawlers and the GEO paper.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T52-L1-01",
+      "T52-L1-02",
+      "T52-L1-03",
+      "T52-L2-01",
+      "T52-L2-02",
+      "T52-L2-03",
+      "T52-L3-01",
+      "T52-L3-02",
+      "T52-L4-01",
+      "T52-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T52-L1-01",
+        "options": [
+          "A. GEO-testsuite",
+          "B. GEO-bench",
+          "C. GEO-eval set",
+          "D. SERP-bench"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the paper introduces GEO-bench, a large-scale benchmark of diverse user queries across multiple domains.",
+        "source_ids": [
+          "S505#P2"
+        ]
+      },
+      {
+        "item_id": "T52-L1-02",
+        "options": [
+          "A. A special AI sitemap must be submitted for every page",
+          "B. Structured data of type FAQ must be present on the page",
+          "C. No additional requirements or special optimizations",
+          "D. A verified Business Profile must exist for the website"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says there are no additional requirements, nor other special optimizations necessary. Wrong: no AI sitemap is mentioned, Google says there's no special schema to add, and a Business Profile isn't stated as a requirement.",
+        "source_ids": [
+          "S007#P2",
+          "S007#P3"
+        ]
+      },
+      {
+        "item_id": "T52-L1-03",
+        "options": [
+          "A. False",
+          "B. True, on any engine",
+          "C. True, but only for Google",
+          "D. True, after one week"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the paper says GEO can boost visibility by up to 40% in its generative engine responses, and that efficacy varies across domains. That's a study result, not a guarantee.",
+        "source_ids": [
+          "S505#P3",
+          "S505#P4"
+        ]
+      },
+      {
+        "item_id": "T52-L2-01",
+        "options": [
+          "A. indexed",
+          "B. marked up with FAQ schema",
+          "C. listed in an AI sitemap",
+          "D. linked from a news site"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says a page must be indexed and eligible to be shown in Google Search with a snippet. Wrong: Google says no special schema is needed, and the other two aren't mentioned.",
+        "source_ids": [
+          "S007#P6",
+          "S007#P7",
+          "S007#P3"
+        ]
+      },
+      {
+        "item_id": "T52-L2-02",
+        "options": [
+          "A. GPTBot and OAI-SearchBot are the same crawler, just running under two names",
+          "B. Robots.txt has no effect on any OpenAI bot at all, so nothing is ever hidden",
+          "C. Each setting is independent, so OAI-SearchBot is unaffected",
+          "D. Robots.txt changes take effect for every OpenAI system immediately after saving"
+        ],
+        "answer": "C",
+        "explanation": "Correct: OpenAI says each setting is independent, and OAI-SearchBot is the one used to surface sites in ChatGPT search. Wrong: they're separate settings, robots.txt does control them, and OpenAI says changes take about 24 hours.",
+        "source_ids": [
+          "S510#P1",
+          "S510#P3",
+          "S510#P6"
+        ]
+      },
+      {
+        "item_id": "T52-L2-03",
+        "options": [
+          "A. OpenAI recommends allowing OAI-SearchBot to help a site appear in search results",
+          "B. Perplexity says PerplexityBot is not used to crawl content for AI foundation models",
+          "C. Google says sites appearing in AI features are in overall Search Console traffic",
+          "D. Google ranks AI Overview sources with the GEO paper's methods"
+        ],
+        "answer": "D",
+        "explanation": "Correct: no source says Google uses the GEO paper's methods. Supported: OpenAI recommends allowing OAI-SearchBot (A), Perplexity says PerplexityBot isn't used for foundation models (B), and Google says AI feature traffic is in overall Search Console traffic (C).",
+        "source_ids": [
+          "S510#P4",
+          "S511#P2",
+          "S007#P11"
+        ]
+      },
+      {
+        "item_id": "T52-L3-01",
+        "options": [
+          "A. Allow OAI-SearchBot, disallow GPTBot",
+          "B. Allow both OAI-SearchBot and GPTBot",
+          "C. Disallow both OAI-SearchBot and GPTBot",
+          "D. Disallow OAI-SearchBot, but allow GPTBot"
+        ],
+        "answer": "A",
+        "explanation": "Correct: allow OAI-SearchBot, which surfaces sites in ChatGPT search, and disallow GPTBot, which signals content shouldn't be used for training. Wrong: allowing both permits training, disallowing both removes the site from ChatGPT search, and D is the reverse of the goal.",
+        "source_ids": [
+          "S510#P1",
+          "S510#P2",
+          "S510#P5"
+        ]
+      }
+    ]
+  }
+}

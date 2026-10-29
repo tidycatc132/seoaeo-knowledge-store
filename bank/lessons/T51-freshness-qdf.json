@@ -254,10 +254,9 @@
           "blocks": [
             {
               "type": "p",
-              "text": "The 2011 post said the change noticeably impacts 6 - 10% of searches. It also mentioned roughly 35 percent of searches, but the saved passage doesn't include its context.",
+              "text": "The 2011 post said the change noticeably impacts 6 - 10% of searches.",
               "source_ids": [
-                "S310#P3",
-                "S310#P2"
+                "S310#P3"
               ]
             },
             {

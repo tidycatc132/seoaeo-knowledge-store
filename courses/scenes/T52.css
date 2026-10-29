@@ -1,0 +1,88 @@
+/* Scenes for T52 GEO and AI Overviews. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); transition: opacity 0.4s; }
+.tagx.ok { background: #12301f; color: var(--accent); border-color: var(--accent); }
+.tagx.warn { background: #2a2416; color: #f5c451; border-color: #f5c451; }
+
+/* aio */
+.s-aio small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-aio .qp { position: absolute; left: 4%; top: 8%; width: 40%; box-sizing: border-box; font-family: var(--mono); font-size: 1.8cqw; color: #e7efe9; padding: 0.9cqw 1.6cqw; border-radius: 99cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; }
+.s-aio .fo { position: absolute; left: 4%; top: 22%; width: 40%; display: grid; gap: 0.6cqw; opacity: 0; transition: opacity 0.4s; }
+.s-aio .fo span { font-size: 1.5cqw; color: var(--nav); padding: 0.6cqw 1.4cqw; border-radius: 0.8cqw; background: var(--nav-soft); border-left: 0.5cqw solid var(--nav); }
+.s-aio.b1 .fo { opacity: 1; }
+.s-aio .ar { position: absolute; left: 50%; top: 8%; width: 46%; box-sizing: border-box; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid var(--accent); display: grid; gap: 0.8cqw; }
+.s-aio .ar i { display: block; height: 1cqw; border-radius: 99cqw; background: #9aa6a3; opacity: 0.5; }
+.s-aio .ar i:nth-of-type(even) { width: 75%; }
+.s-aio .lk { display: flex; gap: 0.8cqw; flex-wrap: wrap; }
+.s-aio .lk span { font-size: 1.3cqw; color: var(--accent); padding: 0.4cqw 1cqw; border-radius: 99cqw; background: #12301f; border: 0.2cqw solid var(--accent); }
+.s-aio .t2 { left: 4%; top: 62%; }
+.s-aio .t3 { left: 4%; top: 74%; }
+.s-aio .t4 { left: 4%; top: 86%; }
+.s-aio.b2 .t2, .s-aio.b3 .t3, .s-aio.b4 .t4 { opacity: 1; }
+
+/* elig */
+.s-elig small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-elig .gt { position: absolute; left: 4%; top: 8%; width: 40%; box-sizing: border-box; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #12301f; border: 0.25cqw solid var(--accent); display: grid; gap: 0.6cqw; transition: opacity 0.4s; }
+.s-elig .gt p { margin: 0; font-size: 1.8cqw; color: #e7efe9; }
+.s-elig .gt p b { color: var(--accent); margin-right: 0.6cqw; }
+.s-elig .gt em { font-style: normal; font-size: 1.6cqw; color: var(--accent); font-weight: 600; }
+.s-elig .rb { position: absolute; left: 50%; top: 8%; width: 46%; display: grid; gap: 0.5cqw; opacity: 0; transition: opacity 0.4s; }
+.s-elig .rb code { font-family: var(--mono); font-size: 1.6cqw; color: var(--accent); padding: 0.9cqw 1.4cqw; border-radius: 0.8cqw; background: #0c1516; border: 0.2cqw solid #33494a; line-height: 1.5; }
+.s-elig.b1 .rb { opacity: 1; }
+.s-elig .ct { position: absolute; left: 50%; top: 34%; width: 46%; display: grid; gap: 0.6cqw; opacity: 0; transition: opacity 0.4s; }
+.s-elig .ct div { display: flex; flex-wrap: wrap; gap: 0.7cqw; }
+.s-elig .ct span { font-family: var(--mono); font-size: 1.5cqw; color: #f5c451; padding: 0.5cqw 1.2cqw; border-radius: 99cqw; background: #2a2416; border: 0.2cqw solid #f5c451; }
+.s-elig.b2 .ct { opacity: 1; }
+.s-elig .pf { position: absolute; left: 4%; top: 52%; width: 40%; height: 38%; box-sizing: border-box; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; display: grid; grid-template-rows: auto 1fr; gap: 0.8cqw; opacity: 0; transition: opacity 0.4s; }
+.s-elig .bs { display: flex; align-items: flex-end; gap: 0.8cqw; }
+.s-elig .bs i { flex: 1; background: var(--nav); border-radius: 0.4cqw 0.4cqw 0 0; }
+.s-elig.b3 .pf { opacity: 1; }
+.s-elig.b3 .gt, .s-elig.b3 .rb, .s-elig.b3 .ct { opacity: 0.35; }
+.s-elig .t4 { left: 50%; top: 70%; }
+.s-elig.b4 .t4 { opacity: 1; }
+.s-elig.b4 .bs i { background: var(--accent); }
+
+/* bots */
+.s-bots .vb { position: absolute; top: 8%; width: 44%; min-height: 70%; box-sizing: border-box; padding: 1.6cqw 1.8cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; display: grid; align-content: start; gap: 1cqw; transition: opacity 0.4s; }
+.s-bots .vb small { font-size: 1.6cqw; color: #9aa6a3; font-weight: 600; }
+.s-bots .vb p { margin: 0; display: grid; gap: 0.3cqw; padding: 0.8cqw 1.2cqw; border-radius: 0.8cqw; background: #0c1516; border-left: 0.5cqw solid var(--accent); transition: opacity 0.4s; }
+.s-bots .vb code { font-family: var(--mono); font-size: 1.7cqw; color: #e7efe9; }
+.s-bots .vb span { font-size: 1.5cqw; color: var(--accent); }
+.s-bots .vb em { font-style: normal; font-size: 1.6cqw; font-weight: 600; color: var(--nav); justify-self: start; padding: 0.4cqw 1.2cqw; border-radius: 99cqw; background: var(--nav-soft); border: 0.2cqw solid var(--nav); transition: opacity 0.4s; }
+.s-bots .oa { left: 4%; }
+.s-bots .px { left: 52%; opacity: 0; }
+.s-bots .r1, .s-bots .r2, .s-bots .r3 { opacity: 0; }
+.s-bots .r1 { border-left-color: var(--nav); }
+.s-bots .r1 span { color: var(--nav); }
+.s-bots .r3 { border-left-color: var(--bad); }
+.s-bots .r3 span { color: var(--bad); }
+.s-bots.b1 .r1, .s-bots.b2 .r2, .s-bots.b3 .r3 { opacity: 1; }
+.s-bots .px .dim { border-left-color: var(--nav); }
+.s-bots .px .dim span { color: var(--nav); }
+.s-bots.b4 .px { opacity: 1; }
+.s-bots.b4 .oa { opacity: 0.5; }
+
+/* geo */
+.s-geo small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-geo .gd { position: absolute; left: 4%; top: 8%; width: 40%; box-sizing: border-box; padding: 1.4cqw 1.8cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid var(--nav); display: grid; gap: 0.5cqw; }
+.s-geo .gd b { font-size: 2.1cqw; color: var(--nav); }
+.s-geo .gd span { font-size: 1.5cqw; color: #e7efe9; }
+.s-geo .gb { position: absolute; left: 50%; top: 8%; width: 46%; display: grid; gap: 0.6cqw; opacity: 0; transition: opacity 0.4s; }
+.s-geo .gb div { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5cqw; }
+.s-geo .gb i { height: 2.6cqw; border-radius: 0.5cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; }
+.s-geo .gb i:nth-child(3n) { border-color: var(--nav); }
+.s-geo .gb i:nth-child(4n) { border-color: var(--accent); }
+.s-geo.b1 .gb { opacity: 1; }
+.s-geo .mt { position: absolute; left: 4%; top: 42%; width: 56%; display: grid; gap: 0.7cqw; opacity: 0; transition: opacity 0.4s; }
+.s-geo .mt p { margin: 0; display: grid; grid-template-columns: 36% 1fr; align-items: center; gap: 1.2cqw; }
+.s-geo .mt span { font-size: 1.6cqw; color: #e7efe9; }
+.s-geo .mt b { height: 2cqw; border-radius: 99cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; overflow: hidden; }
+.s-geo .mt b i { display: block; height: 100%; width: 0; border-radius: 99cqw; transition: width 0.6s; }
+.s-geo.b2 .mt { opacity: 1; }
+.s-geo.b3 .mt .up { width: 80%; background: var(--accent); }
+.s-geo.b3 .mt .dn { width: 10%; background: var(--bad); }
+.s-geo .ft { position: absolute; left: 64%; top: 42%; width: 32%; display: grid; gap: 0.4cqw; opacity: 0; transition: opacity 0.4s; }
+.s-geo .ft b { font-size: 4.4cqw; color: #f5c451; }
+.s-geo .ft span { font-size: 1.6cqw; color: #e7efe9; }
+.s-geo.b4 .ft { opacity: 1; }
+.s-geo .t4 { left: 4%; top: 86%; }
+.s-geo.b4 .t4 { opacity: 1; }
