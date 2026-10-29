@@ -1,0 +1,791 @@
+{
+  "topic_id": "T56",
+  "items_file": "bank/items/T56-blended-multimodal-results.json",
+  "course_title": "Blended and multimodal results",
+  "subtitle": "How one results page mixes text, image, video and local results, what Google asks of each, and how to read research on matching images to text.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Name the main result types on a results page",
+    "Make images findable with Google's guidance",
+    "Make videos eligible for video features",
+    "Handle local listings and multimodal research claims"
+  ],
+  "intro": [
+    "A results page is more than ten blue links. Images, videos and business details can all appear, and each has its own rules for getting in.",
+    "This course uses Google's visual elements gallery, its image and video SEO guides, its business details page, its local ranking help page and the CLIP research paper.",
+    "CLIP is an OpenAI research paper, not evidence of how Google Images works. Advice beyond the sources is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T56-1",
+      "title": "One page, many result types",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe what visual elements are",
+        "Tell text, image and video results apart",
+        "Explain why results look different across devices"
+      ],
+      "scene": {
+        "id": "serp",
+        "title": "Building blocks",
+        "beats": [
+          {
+            "caption": "Visual elements are the building blocks of the Google Search results page that a user can perceive or interact with.",
+            "source_ids": [
+              "S245#P2"
+            ]
+          },
+          {
+            "caption": "A text result is based on the textual content of the page.",
+            "source_ids": [
+              "S245#P6"
+            ]
+          },
+          {
+            "caption": "An image result is based on an image that's embedded on a web page.",
+            "source_ids": [
+              "S245#P4"
+            ]
+          },
+          {
+            "caption": "A video result is based on a video that's embedded on a web page.",
+            "source_ids": [
+              "S245#P5"
+            ]
+          },
+          {
+            "caption": "How the visual elements look can change over time, and on desktop or phone.",
+            "source_ids": [
+              "S245#P7",
+              "S245#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Building blocks",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's visual elements gallery is an illustrated guide to the most common UI elements of Google web search. It says visual elements are the building blocks of the results page that a user can perceive or interact with, and the page contains a set of different types of them.",
+              "source_ids": [
+                "S245#P1",
+                "S245#P2",
+                "S245#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Three result types",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The gallery defines the basic result types by what they're built from.",
+              "source_ids": [
+                "S245#P3"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Text result.",
+                  "text": "A result based on the textual content of the page.",
+                  "source_ids": [
+                    "S245#P6"
+                  ]
+                },
+                {
+                  "lead": "Image result.",
+                  "text": "A result based on an image that's embedded on a web page.",
+                  "source_ids": [
+                    "S245#P4"
+                  ]
+                },
+                {
+                  "lead": "Video result.",
+                  "text": "A result based on a video that's embedded on a web page.",
+                  "source_ids": [
+                    "S245#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Business details are another surface. Google says claiming your Business Profile enables your local business information to show up in Google Maps and the Google knowledge panel.",
+              "source_ids": [
+                "S512#P1",
+                "S512#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "It keeps changing",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says how the visual elements look can change over time, and a given result can be displayed differently depending on whether you're using a desktop computer or a phone.",
+              "source_ids": [
+                "S245#P7",
+                "S245#P8"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Tip",
+              "text": "Practitioner judgement: check your key queries on both a phone and a desktop before you decide which result types matter.",
+              "source_ids": [
+                "S245#P8"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Visual elements are the building blocks of results.",
+          "source_ids": [
+            "S245#P2"
+          ]
+        },
+        {
+          "text": "Text, image and video results come from page content.",
+          "source_ids": [
+            "S245#P6",
+            "S245#P4",
+            "S245#P5"
+          ]
+        },
+        {
+          "text": "A Business Profile feeds Maps and the knowledge panel.",
+          "source_ids": [
+            "S512#P2"
+          ]
+        },
+        {
+          "text": "Layouts change over time and by device.",
+          "source_ids": [
+            "S245#P7",
+            "S245#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map a results page",
+        "minutes": "15",
+        "steps": [
+          "Pick five of your most important queries.",
+          "Search each on a phone and on a desktop.",
+          "Note which result types appear: text, image, video, business details.",
+          "Mark the types where you have nothing that could appear."
+        ],
+        "prompt_template": "Here are notes on which result types appeared for my queries on phone and desktop: [paste]. Google says results pages combine text, image and video results, and business details can show in Maps and the knowledge panel. Summarise where I'm missing a result type and which gap to fill first."
+      },
+      "reflection": [
+        "Which of your queries shows images or videos above text results?",
+        "Have you only ever checked your rankings on a desktop?"
+      ],
+      "whats_next": "Next, what Google asks of images."
+    },
+    {
+      "lesson_id": "T56-2",
+      "title": "Images",
+      "est_minutes": 5,
+      "objectives": [
+        "Write alt text that gives Google metadata",
+        "Use HTML image elements Google can find",
+        "Avoid CSS-only images for important pictures"
+      ],
+      "scene": {
+        "id": "img",
+        "title": "Help Google read the picture",
+        "beats": [
+          {
+            "caption": "The most important attribute for providing more metadata for an image is the alt text.",
+            "source_ids": [
+              "S507#P1"
+            ]
+          },
+          {
+            "caption": "Wherever possible, place images near relevant text.",
+            "source_ids": [
+              "S507#P2"
+            ]
+          },
+          {
+            "caption": "Standard HTML image elements help crawlers find and process images. Google can find images in the src of <img>.",
+            "source_ids": [
+              "S507#P6",
+              "S507#P7"
+            ]
+          },
+          {
+            "caption": "Google doesn't index CSS images.",
+            "source_ids": [
+              "S507#P4"
+            ]
+          },
+          {
+            "caption": "Use filenames that are short, but descriptive.",
+            "source_ids": [
+              "S507#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Words around the picture",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says the most important attribute when it comes to providing more metadata for an image is the alt text. It also says that wherever possible, images should be placed near relevant text, and that filenames should be short, but descriptive.",
+              "source_ids": [
+                "S507#P1",
+                "S507#P2",
+                "S507#P5"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: 'IMG_0042.jpg' with alt 'image' says nothing. 'sourdough-crumb.jpg' with alt 'Open crumb of a sourdough loaf, cut in half' sits under a heading about crumb structure.",
+              "source_ids": [
+                "S507#P1",
+                "S507#P2",
+                "S507#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Use real image elements",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says using standard HTML image elements helps crawlers find and process images, and it can find images in the src attribute of the <img> element. Google doesn't index CSS images.",
+              "source_ids": [
+                "S507#P6",
+                "S507#P7",
+                "S507#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "A product photo set as a CSS background won't be indexed as an image. Use an <img> element for any picture you want found.",
+              "source_ids": [
+                "S507#P4",
+                "S507#P7"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google lists supported formats as BMP, GIF, JPEG, PNG, WebP, SVG, and AVIF.",
+              "source_ids": [
+                "S507#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Alt text is the most important image metadata.",
+          "source_ids": [
+            "S507#P1"
+          ]
+        },
+        {
+          "text": "Place images near relevant text.",
+          "source_ids": [
+            "S507#P2"
+          ]
+        },
+        {
+          "text": "Use <img> elements; CSS images aren't indexed.",
+          "source_ids": [
+            "S507#P7",
+            "S507#P4"
+          ]
+        },
+        {
+          "text": "Use short, descriptive filenames.",
+          "source_ids": [
+            "S507#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit ten images",
+        "minutes": "15",
+        "steps": [
+          "Pick ten important images, such as product or how-to photos.",
+          "Check each is an <img> element, not a CSS background.",
+          "Check each has descriptive alt text and a descriptive filename.",
+          "Check each sits near text about the same thing."
+        ],
+        "prompt_template": "Here are ten images with their HTML, filenames and nearby text: [paste]. Google says alt text is the most important image metadata, images should sit near relevant text, filenames should be short but descriptive, and CSS images aren't indexed. List fixes for each image."
+      },
+      "reflection": [
+        "Does your site's theme load key images as CSS backgrounds?",
+        "Who writes alt text on your team, and do they know what it's for?"
+      ],
+      "whats_next": "Next, what Google asks of videos."
+    },
+    {
+      "lesson_id": "T56-3",
+      "title": "Video",
+      "est_minutes": 5,
+      "objectives": [
+        "List Google's video eligibility requirements",
+        "Explain what a watch page is",
+        "Name where video results can appear"
+      ],
+      "scene": {
+        "id": "vid",
+        "title": "A watch page and a thumbnail",
+        "beats": [
+          {
+            "caption": "To be eligible for video features, a video must meet indexing requirements.",
+            "source_ids": [
+              "S508#P1"
+            ]
+          },
+          {
+            "caption": "The watch page must be indexed, and the video must be embedded on it.",
+            "source_ids": [
+              "S508#P5",
+              "S508#P6"
+            ]
+          },
+          {
+            "caption": "A watch page's main purpose is to show users a single video.",
+            "source_ids": [
+              "S508#P7"
+            ]
+          },
+          {
+            "caption": "A video must have a valid thumbnail image.",
+            "source_ids": [
+              "S508#P2"
+            ]
+          },
+          {
+            "caption": "Videos can appear in the main results, Video mode, Google Images and Discover.",
+            "source_ids": [
+              "S508#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The requirements",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that to be eligible for video features, a video must meet indexing requirements. Here are the ones covered in this course.",
+              "source_ids": [
+                "S508#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "An indexed watch page.",
+                  "text": "The watch page must be indexed.",
+                  "source_ids": [
+                    "S508#P5"
+                  ]
+                },
+                {
+                  "lead": "Embedded video.",
+                  "text": "The video must be embedded on a watch page.",
+                  "source_ids": [
+                    "S508#P6"
+                  ]
+                },
+                {
+                  "lead": "A valid thumbnail.",
+                  "text": "To be eligible to appear in video features, a video must have a valid thumbnail image.",
+                  "source_ids": [
+                    "S508#P2"
+                  ]
+                },
+                {
+                  "lead": "Reachable video bytes.",
+                  "text": "Don't block the URL of the actual video bytes with the noindex rule.",
+                  "source_ids": [
+                    "S508#P9"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Watch pages",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says a watch page's main purpose is to show users a single video.",
+              "source_ids": [
+                "S508#P7"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a blog post with six embedded videos isn't a watch page for any of them. A page built around one tutorial video, with its description and transcript, is.",
+              "source_ids": [
+                "S508#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where videos show and how to help",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says videos can appear in places including the main search results page, Video mode, Google Images, and Discover. To make it easier for Google to find your videos, it recommends providing metadata about the video.",
+              "source_ids": [
+                "S508#P8",
+                "S508#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google Search also tries to automatically detect the segments in your video.",
+              "source_ids": [
+                "S508#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "The watch page must be indexed.",
+          "source_ids": [
+            "S508#P5"
+          ]
+        },
+        {
+          "text": "A watch page shows a single video.",
+          "source_ids": [
+            "S508#P7"
+          ]
+        },
+        {
+          "text": "A valid thumbnail is required.",
+          "source_ids": [
+            "S508#P2"
+          ]
+        },
+        {
+          "text": "Provide metadata to help Google find videos.",
+          "source_ids": [
+            "S508#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check one video",
+        "minutes": "15",
+        "steps": [
+          "Pick a video you want to appear in search.",
+          "Find its watch page and check it's indexed in Search Console.",
+          "Check the page is built around that one video.",
+          "Check the thumbnail URL loads and the video file isn't blocked."
+        ],
+        "prompt_template": "Here are details of my video and its page: [URL, indexing status, thumbnail URL, other videos on the page]. Google says the watch page must be indexed, the video must be embedded on it, a watch page's main purpose is to show a single video, and a valid thumbnail is required. Check my video against each point."
+      },
+      "reflection": [
+        "Do any of your videos live only on pages full of other videos?",
+        "Does your video host let Google reach the thumbnail and file?"
+      ],
+      "whats_next": "Next, local listings and research on matching images to text."
+    },
+    {
+      "lesson_id": "T56-4",
+      "title": "Local listings and multimodal research",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain how business details reach Maps and the knowledge panel",
+        "Describe what the CLIP paper did",
+        "Explain why CLIP isn't evidence about Google Images"
+      ],
+      "scene": {
+        "id": "mix",
+        "title": "Profiles and pictures",
+        "beats": [
+          {
+            "caption": "Claiming your Business Profile enables your business information to show up in Google Maps and the knowledge panel.",
+            "source_ids": [
+              "S512#P1",
+              "S512#P2"
+            ]
+          },
+          {
+            "caption": "There's no way to request or pay for a better local ranking on Google.",
+            "source_ids": [
+              "S600#P6"
+            ]
+          },
+          {
+            "caption": "The CLIP paper trained on a dataset of 400 million (image, text) pairs collected from the internet.",
+            "source_ids": [
+              "S504#P2"
+            ]
+          },
+          {
+            "caption": "Its pre-training task: predicting which caption goes with which image, enabling zero-shot transfer.",
+            "source_ids": [
+              "S504#P1",
+              "S504#P3"
+            ]
+          },
+          {
+            "caption": "CLIP is a research paper. None of the Google pages in this course say Google Images uses it.",
+            "source_ids": [
+              "S504#P1",
+              "S507#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Business details",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says you can manage how your business appears on Google Maps and Google Search by claiming your Business Profile. This enables your local business information to show up in Google Maps and the Google knowledge panel.",
+              "source_ids": [
+                "S512#P1",
+                "S512#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's local help page says local results are mainly based on relevance, distance, and popularity, and there's no way to request or pay for a better local ranking.",
+              "source_ids": [
+                "S600#P9",
+                "S600#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What CLIP did",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The CLIP paper by Radford and colleagues at OpenAI used the simple pre-training task of predicting which caption goes with which image, on a dataset of 400 million (image, text) pairs collected from the internet. This enabled zero-shot transfer of the model to downstream tasks.",
+              "source_ids": [
+                "S504#P1",
+                "S504#P2",
+                "S504#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: shown a photo and the captions 'a dog on a beach' and 'a cat on a sofa', a model trained this way learns to pick the matching caption.",
+              "source_ids": [
+                "S504#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What it doesn't show",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "CLIP is an OpenAI research paper. Google's image guide talks about alt text, nearby text and <img> elements. None of the Google pages in this course say Google uses CLIP.",
+              "source_ids": [
+                "S504#P1",
+                "S507#P1",
+                "S507#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Practitioner judgement: research like CLIP shows why words near an image are useful to machines. Google's own advice points the same way: write alt text and place images near relevant text.",
+              "source_ids": [
+                "S504#P1",
+                "S507#P1",
+                "S507#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A claimed Business Profile feeds Maps and the knowledge panel.",
+          "source_ids": [
+            "S512#P2"
+          ]
+        },
+        {
+          "text": "You can't pay for a better local ranking.",
+          "source_ids": [
+            "S600#P6"
+          ]
+        },
+        {
+          "text": "CLIP trained on 400 million image-text pairs.",
+          "source_ids": [
+            "S504#P2"
+          ]
+        },
+        {
+          "text": "CLIP isn't evidence of how Google Images works.",
+          "source_ids": [
+            "S504#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Close one gap",
+        "minutes": "15",
+        "steps": [
+          "If you serve local customers, check your Business Profile is claimed.",
+          "Check the business details shown in Maps are correct.",
+          "Pick one page whose images lack alt text or nearby text.",
+          "Fix that page using Google's image guidance."
+        ],
+        "prompt_template": "Here is my business and a page whose images need work: [details]. Google says claiming a Business Profile lets business info show in Maps and the knowledge panel, and for images, alt text is the most important metadata and images should sit near relevant text. Give me a short checklist for both."
+      },
+      "reflection": [
+        "Has anyone told you Google 'sees' your images like CLIP? What was their source?",
+        "Is your business information the same on your site and in Maps?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "A results page mixes text, image and video results, plus business details in Maps and the knowledge panel, and its look changes over time and by device. For images, write alt text, place them near relevant text and use <img> elements, since CSS images aren't indexed. For video, use an indexed watch page with one embedded video and a valid thumbnail. Claim your Business Profile for local details. CLIP shows how research matches images to captions, not how Google works.",
+    "related_topics": [
+      {
+        "topic_id": "T59",
+        "title": "How local results are ranked"
+      },
+      {
+        "topic_id": "T40",
+        "title": "Document rendering and JavaScript indexing"
+      },
+      {
+        "topic_id": "T18",
+        "title": "Dense retrieval and bi-encoders (DPR)"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Blended and multimodal results. The questions revisit images, video, business details and the CLIP paper.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T56-L1-01",
+      "T56-L1-02",
+      "T56-L1-03",
+      "T56-L2-01",
+      "T56-L2-02",
+      "T56-L2-03",
+      "T56-L3-01",
+      "T56-L3-02",
+      "T56-L4-01",
+      "T56-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T56-L1-01",
+        "options": [
+          "A. 40",
+          "B. 400",
+          "C. 4,000",
+          "D. 40,000"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the CLIP abstract describes a dataset of 400 million (image, text) pairs collected from the internet.",
+        "source_ids": [
+          "S504#P2"
+        ]
+      },
+      {
+        "item_id": "T56-L1-03",
+        "options": [
+          "A. False",
+          "B. True",
+          "C. True, if they're small",
+          "D. True, on mobile only"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says it doesn't index CSS images.",
+        "source_ids": [
+          "S507#P4"
+        ]
+      },
+      {
+        "item_id": "T56-L2-01",
+        "options": [
+          "A. caption file",
+          "B. transcript",
+          "C. chapter list",
+          "D. thumbnail"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says a video must have a valid thumbnail image to be eligible to appear in video features.",
+        "source_ids": [
+          "S508#P2"
+        ]
+      },
+      {
+        "item_id": "T56-L2-02",
+        "options": [
+          "A. CLIP is a Google product that's used inside Google Images every day",
+          "B. It's a research paper; no saved source says Google uses it",
+          "C. CLIP uses no text data at all, and it learns only from the images alone",
+          "D. Google Images reads only alt text and ignores all other page content"
+        ],
+        "answer": "B",
+        "explanation": "Correct: CLIP is a research paper about training on image and text pairs, and no saved source says Google uses it. Wrong: nothing saved says it's a Google product, it trains on (image, text) pairs, and Google also names nearby text.",
+        "source_ids": [
+          "S504#P1",
+          "S504#P2",
+          "S507#P2"
+        ]
+      },
+      {
+        "item_id": "T56-L4-01",
+        "options": [
+          "A. Add an AI schema type to the gallery page only, nothing else",
+          "B. Block Googlebot from the whole gallery to reset how it is seen",
+          "C. Use img elements with descriptive alt text and filenames",
+          "D. Rename only the CSS class that holds the photos on the page"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says CSS images aren't indexed, standard HTML image elements help crawlers, alt text is the most important image metadata, and filenames should be descriptive. Wrong: schema isn't the fix here, blocking Googlebot prevents access, and renaming a CSS class leaves them CSS images.",
+        "source_ids": [
+          "S507#P4",
+          "S507#P6",
+          "S507#P1",
+          "S507#P5"
+        ]
+      }
+    ]
+  }
+}
