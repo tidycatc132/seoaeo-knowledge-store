@@ -1,0 +1,776 @@
+{
+  "topic_id": "T28",
+  "items_file": "bank/items/T28-agentic-rag.json",
+  "course_title": "Agentic and self-reflective RAG",
+  "subtitle": "How research systems decide when to retrieve, grade what they found and search again before answering, and why that isn't proof of how any AI search product works.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why a single fixed retrieval step can fall short",
+    "Describe how Self-RAG retrieves on demand and reflects",
+    "Describe how CRAG grades documents and corrects retrieval",
+    "Push back on 'reflection-token optimisation' and similar pitches"
+  ],
+  "intro": [
+    "Basic retrieval-augmented generation (RAG) fetches some passages once, then writes an answer from them. Agentic or self-reflective RAG adds checks: retrieve only when needed, grade what came back, and search again if it's weak.",
+    "This course uses two research papers, Self-RAG and Corrective RAG (CRAG), plus Microsoft's Azure AI Search docs and Perplexity's crawler docs.",
+    "The papers describe methods. They don't show that Google, ChatGPT or Perplexity grade or re-search sources this way. Lessons for your site are labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T28-1",
+      "title": "Why one retrieval isn't enough",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why language models use retrieval",
+        "Describe two ways a single retrieval step can fail",
+        "Describe what agentic RAG adds"
+      ],
+      "scene": {
+        "id": "once",
+        "title": "Retrieve once, hope for the best",
+        "beats": [
+          {
+            "caption": "The CRAG paper starts here: large language models inevitably exhibit hallucinations.",
+            "source_ids": [
+              "S503#P5"
+            ]
+          },
+          {
+            "caption": "Retrieval helps, but it relies heavily on the relevance of retrieved documents.",
+            "source_ids": [
+              "S503#P6"
+            ]
+          },
+          {
+            "caption": "Retrieval from static and limited corpora can only return sub-optimal documents.",
+            "source_ids": [
+              "S503#P7"
+            ]
+          },
+          {
+            "caption": "Self-RAG's authors add that always retrieving a fixed number of passages can lead to unhelpful responses.",
+            "source_ids": [
+              "S502#P4",
+              "S502#P5"
+            ]
+          },
+          {
+            "caption": "Their fix: retrieve on demand, then check what came back before answering.",
+            "source_ids": [
+              "S502#P2",
+              "S503#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The problem with retrieving once",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The CRAG paper says large language models inevitably exhibit hallucinations. Retrieval-augmented generation helps, but it relies heavily on the relevance of retrieved documents, and retrieval from static and limited corpora can only return sub-optimal documents.",
+              "source_ids": [
+                "S503#P5",
+                "S503#P6",
+                "S503#P7"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The Self-RAG paper names a second problem: indiscriminately retrieving and incorporating a fixed number of retrieved passages, whether or not retrieval is needed. It says this diminishes LM versatility or can lead to unhelpful response generation.",
+              "source_ids": [
+                "S502#P4",
+                "S502#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What agentic RAG adds",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Both papers add a decision step. Self-RAG adaptively retrieves passages on demand. CRAG uses a lightweight retrieval evaluator to assess the overall quality of retrieved documents for a query.",
+              "source_ids": [
+                "S502#P2",
+                "S503#P1"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a support chatbot is asked about a product launched last week. Its document store is a month old, so retrieval brings back older pages. A checking step could spot the weak match and look elsewhere before answering.",
+              "source_ids": [
+                "S503#P7",
+                "S503#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Language models inevitably hallucinate, which is why retrieval is added.",
+          "source_ids": [
+            "S503#P5"
+          ]
+        },
+        {
+          "text": "RAG relies heavily on the relevance of what it retrieves.",
+          "source_ids": [
+            "S503#P6"
+          ]
+        },
+        {
+          "text": "Retrieving a fixed number of passages every time can hurt answers.",
+          "source_ids": [
+            "S502#P4",
+            "S502#P5"
+          ]
+        },
+        {
+          "text": "Agentic methods retrieve on demand and grade what they find.",
+          "source_ids": [
+            "S502#P2",
+            "S503#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Spot a weak retrieval",
+        "minutes": "10",
+        "steps": [
+          "Ask an AI assistant a question about something that changed recently in your industry.",
+          "Open the sources it cites.",
+          "Check whether each source is current and actually answers the question.",
+          "Note any answer built on an off-topic or outdated source."
+        ],
+        "prompt_template": "I asked an AI assistant [question] and it cited these sources: [list with dates and a one-line summary each]. The CRAG paper says RAG relies heavily on the relevance of retrieved documents. For each source, say whether it's relevant and current, and flag where the answer may rest on weak retrieval."
+      },
+      "reflection": [
+        "Which questions in your field go stale fastest?",
+        "When would retrieving nothing be better than retrieving something weak?"
+      ],
+      "whats_next": "Next, how Self-RAG decides when to retrieve and critiques its own output."
+    },
+    {
+      "lesson_id": "T28-2",
+      "title": "Self-RAG: retrieve and reflect",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe on-demand retrieval",
+        "Explain what reflection tokens are",
+        "Summarise the paper's reported results"
+      ],
+      "scene": {
+        "id": "selfrag",
+        "title": "Should I look this up?",
+        "beats": [
+          {
+            "caption": "Self-RAG adaptively retrieves passages on demand.",
+            "source_ids": [
+              "S502#P2"
+            ]
+          },
+          {
+            "caption": "It uses special tokens, called reflection tokens.",
+            "source_ids": [
+              "S502#P1"
+            ]
+          },
+          {
+            "caption": "With them, it reflects on retrieved passages and its own generations.",
+            "source_ids": [
+              "S502#P3"
+            ]
+          },
+          {
+            "caption": "Generating reflection tokens makes the model controllable during the inference phase.",
+            "source_ids": [
+              "S502#P6"
+            ]
+          },
+          {
+            "caption": "The paper reports significant gains in factuality and citation accuracy for long-form generations.",
+            "source_ids": [
+              "S502#P7"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Retrieving only when needed",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Self-RAG adaptively retrieves passages on demand, instead of always fetching a fixed number. It uses special tokens, called reflection tokens, to reflect on retrieved passages and its own generations.",
+              "source_ids": [
+                "S502#P2",
+                "S502#P1",
+                "S502#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Illustrative: asked \"What is 12 × 12?\", a model like this might not retrieve at all. Asked \"What did the new regulation change last month?\", it would retrieve, then check whether each passage supports what it writes.",
+              "source_ids": [
+                "S502#P2",
+                "S502#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Control and results",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper says generating reflection tokens makes the LM controllable during the inference phase.",
+              "source_ids": [
+                "S502#P6"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Research finding",
+              "text": "The authors report significant gains in improving factuality and citation accuracy for long-form generations.",
+              "source_ids": [
+                "S502#P7"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Not page markup",
+              "text": "Reflection tokens are part of a trained model's output. They aren't something you add to a web page (practitioner judgement, based on the paper's description).",
+              "source_ids": [
+                "S502#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Self-RAG retrieves passages on demand.",
+          "source_ids": [
+            "S502#P2"
+          ]
+        },
+        {
+          "text": "It uses special tokens called reflection tokens.",
+          "source_ids": [
+            "S502#P1"
+          ]
+        },
+        {
+          "text": "It reflects on retrieved passages and its own output.",
+          "source_ids": [
+            "S502#P3"
+          ]
+        },
+        {
+          "text": "The paper reports better factuality and citation accuracy.",
+          "source_ids": [
+            "S502#P7"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Retrieve or not?",
+        "minutes": "10",
+        "steps": [
+          "List ten questions customers ask you.",
+          "Mark the ones a model could answer from general knowledge.",
+          "Mark the ones that need current or specific facts.",
+          "For the second group, note which page on your site holds the answer."
+        ],
+        "prompt_template": "Here are ten questions my customers ask: [list]. Self-RAG retrieves passages on demand rather than every time. Sort my questions into those a model could likely answer without retrieval and those that need current or site-specific facts. For the second group, suggest what a good source page would need to contain. Label this as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your customers' questions would always need fresh retrieval?",
+        "Why might checking each claim against a passage improve citations?"
+      ],
+      "whats_next": "Next, how CRAG grades retrieved documents and corrects course."
+    },
+    {
+      "lesson_id": "T28-3",
+      "title": "CRAG: grade and correct",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe CRAG's retrieval evaluator",
+        "Explain how confidence triggers actions",
+        "Describe decompose-then-recompose"
+      ],
+      "scene": {
+        "id": "crag",
+        "title": "Grade, then decide",
+        "beats": [
+          {
+            "caption": "CRAG's lightweight retrieval evaluator assesses the overall quality of retrieved documents for a query.",
+            "source_ids": [
+              "S503#P1"
+            ]
+          },
+          {
+            "caption": "It returns a confidence degree, based on which different knowledge retrieval actions can be triggered.",
+            "source_ids": [
+              "S503#P2"
+            ]
+          },
+          {
+            "caption": "Large-scale web searches are used as an extension for augmenting the retrieval results.",
+            "source_ids": [
+              "S503#P3"
+            ]
+          },
+          {
+            "caption": "A decompose-then-recompose step focuses on key information and filters out irrelevant information.",
+            "source_ids": [
+              "S503#P4",
+              "S503#P8"
+            ]
+          },
+          {
+            "caption": "CRAG is plug-and-play: it can be coupled with various RAG-based approaches.",
+            "source_ids": [
+              "S503#P9"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Grading what came back",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "In CRAG, a lightweight retrieval evaluator is designed to assess the overall quality of retrieved documents for a query, returning a confidence degree based on which different knowledge retrieval actions can be triggered.",
+              "source_ids": [
+                "S503#P1",
+                "S503#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Because retrieval from static and limited corpora can only return sub-optimal documents, large-scale web searches are utilized as an extension for augmenting the retrieval results.",
+              "source_ids": [
+                "S503#P7",
+                "S503#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Keeping only what matters",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "CRAG also uses a decompose-then-recompose algorithm for retrieved documents, to selectively focus on key information and filter out irrelevant information. The authors describe it as plug-and-play, able to be coupled with various RAG-based approaches.",
+              "source_ids": [
+                "S503#P4",
+                "S503#P8",
+                "S503#P9"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "A filter that keeps key information and drops the rest favours passages that answer a question directly. That's a sensible writing habit anyway, but no source shows an AI search product applying CRAG to your pages."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "CRAG's evaluator grades the overall quality of retrieved documents.",
+          "source_ids": [
+            "S503#P1"
+          ]
+        },
+        {
+          "text": "Its confidence triggers different retrieval actions.",
+          "source_ids": [
+            "S503#P2"
+          ]
+        },
+        {
+          "text": "Web search extends retrieval when the corpus falls short.",
+          "source_ids": [
+            "S503#P3"
+          ]
+        },
+        {
+          "text": "It keeps key information and filters out the rest.",
+          "source_ids": [
+            "S503#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Grade your own passages",
+        "minutes": "15",
+        "steps": [
+          "Pick a question your page is meant to answer.",
+          "Split the page into paragraphs.",
+          "Grade each paragraph: answers it, partly, or not at all.",
+          "Rewrite the strongest paragraph so it answers the question on its own."
+        ],
+        "prompt_template": "Here's a question: [question]. Here's my page, split into paragraphs: [paste]. CRAG grades retrieved documents and keeps key information while filtering out the rest. Grade each paragraph as answers, partly answers or doesn't answer the question, then suggest how to make the best one answer it on its own. Label this as practitioner judgement, not how any search product grades pages."
+      },
+      "reflection": [
+        "How much of your page would survive a filter that keeps only key information?",
+        "When should a system go beyond its own documents to search the web?"
+      ],
+      "whats_next": "Next, separating these methods from claims about real products."
+    },
+    {
+      "lesson_id": "T28-4",
+      "title": "Methods, not products",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe one vendor's documented multi-query pipeline",
+        "Separate research methods from product claims",
+        "Respond to 'reflection-token optimisation' pitches"
+      ],
+      "scene": {
+        "id": "claims",
+        "title": "What's documented, and what isn't",
+        "beats": [
+          {
+            "caption": "One vendor documents something similar: Azure AI Search's agentic retrieval is a multi-query pipeline that runs subqueries in parallel.",
+            "source_ids": [
+              "S509#P1",
+              "S509#P3"
+            ]
+          },
+          {
+            "caption": "It combines the best results into a unified response that an LLM can use to generate grounded answers.",
+            "source_ids": [
+              "S509#P5"
+            ]
+          },
+          {
+            "caption": "Perplexity's docs say PerplexityBot is designed to surface and link websites in search results. They say nothing about grading like Self-RAG.",
+            "source_ids": [
+              "S511#P1"
+            ]
+          },
+          {
+            "caption": "No saved source says Google, ChatGPT or Perplexity uses Self-RAG or CRAG.",
+            "source_ids": [
+              "S502#P1",
+              "S503#P1"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: skip 'reflection-token' services. Write passages that answer questions directly.",
+            "source_ids": [
+              "S503#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What vendors document",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Microsoft describes agentic retrieval in Azure AI Search as a multi-query pipeline designed for complex questions. It runs subqueries in parallel, semantically reranks each, and combines the best results into a unified response that an LLM can use to generate grounded answers.",
+              "source_ids": [
+                "S509#P1",
+                "S509#P3",
+                "S509#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Perplexity's crawler docs say PerplexityBot is designed to surface and link websites in search results on Perplexity. They don't describe how Perplexity grades sources.",
+              "source_ids": [
+                "S511#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Handling the pitches",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist when someone sells optimisation for a research method.",
+              "source_ids": [
+                "S502#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Ask for the product source.",
+                  "text": "A paper describes a method. Ask where the engine itself documents using it.",
+                  "source_ids": [
+                    "S503#P1"
+                  ]
+                },
+                {
+                  "lead": "Check what the thing is.",
+                  "text": "Reflection tokens are special tokens a model generates, not markup on your page.",
+                  "source_ids": [
+                    "S502#P1"
+                  ]
+                },
+                {
+                  "lead": "Don't block crawlers out of fear.",
+                  "text": "PerplexityBot is designed to surface and link websites in search results.",
+                  "source_ids": [
+                    "S511#P1"
+                  ]
+                },
+                {
+                  "lead": "Write for extraction.",
+                  "text": "Make key information easy to find in a passage, since filters like CRAG's keep key information and drop the rest (practitioner inference).",
+                  "source_ids": [
+                    "S503#P8"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Azure AI Search documents a multi-query pipeline with parallel subqueries.",
+          "source_ids": [
+            "S509#P1",
+            "S509#P3"
+          ]
+        },
+        {
+          "text": "PerplexityBot is designed to surface and link websites in search results.",
+          "source_ids": [
+            "S511#P1"
+          ]
+        },
+        {
+          "text": "Self-RAG and CRAG are research methods.",
+          "source_ids": [
+            "S502#P1",
+            "S503#P1"
+          ]
+        },
+        {
+          "text": "No saved source ties them to Google, ChatGPT or Perplexity.",
+          "source_ids": [
+            "S502#P1",
+            "S503#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check a pitch",
+        "minutes": "10",
+        "steps": [
+          "Find a post or pitch about 'optimising for' an AI search method.",
+          "List each claim it makes about how an engine works.",
+          "For each claim, look for the engine's own documentation.",
+          "Mark claims with no product source as unconfirmed."
+        ],
+        "prompt_template": "Here's a pitch about optimising for AI search: [paste]. Self-RAG and CRAG are research methods, and no saved source says Google, ChatGPT or Perplexity uses them. List each claim the pitch makes, say whether it cites the engine's own documentation, and mark the rest as unconfirmed. Then suggest what I could do instead that doesn't depend on those claims."
+      },
+      "reflection": [
+        "Have you been offered a service built on a research paper? What evidence came with it?",
+        "Which of your pages would be easiest for any retrieval system to pull a clear answer from?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Retrieval helps language models, but it relies heavily on what comes back, and retrieving a fixed number of passages every time can hurt answers. Self-RAG retrieves on demand and uses reflection tokens to critique passages and its own output. CRAG grades retrieved documents, triggers different actions by confidence, adds web search and filters out irrelevant information. Azure AI Search documents a related multi-query pipeline. None of the sources shows Google, ChatGPT or Perplexity using these methods, so treat optimisation pitches built on them as unconfirmed and write passages that answer questions directly.",
+    "related_topics": [
+      {
+        "topic_id": "T25",
+        "title": "Query fan-out"
+      },
+      {
+        "topic_id": "T21",
+        "title": "Cross-encoder re-ranking"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Agentic and self-reflective RAG. The questions revisit Self-RAG, CRAG and how to judge claims about AI search products.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T28-L1-01",
+      "T28-L1-02",
+      "T28-L1-03",
+      "T28-L2-01",
+      "T28-L2-02",
+      "T28-L2-03",
+      "T28-L3-01",
+      "T28-L3-02",
+      "T28-L4-01",
+      "T28-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T28-L1-01",
+        "options": [
+          "A. citation markers",
+          "B. reflection tokens",
+          "C. attention heads",
+          "D. retrieval instructions"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the abstract describes special tokens, called reflection tokens, used to reflect on retrieved passages and the model's own generations. Wrong: the other names aren't what the paper calls them.",
+        "source_ids": [
+          "S502#P1",
+          "S502#P3"
+        ]
+      },
+      {
+        "item_id": "T28-L1-02",
+        "options": [
+          "A. The loading speed of each source site",
+          "B. Whether each source uses structured data markup",
+          "C. The overall quality of retrieved documents",
+          "D. How many backlinks each source page has"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the evaluator assesses the overall quality of retrieved documents for a query. Wrong: page speed, structured data and backlinks aren't what the paper describes.",
+        "source_ids": [
+          "S503#P1"
+        ]
+      },
+      {
+        "item_id": "T28-L1-03",
+        "prompt": "Does the CRAG paper show that ChatGPT search grades retrieved pages with a retrieval evaluator?",
+        "options": [
+          "A. Yes, it tests ChatGPT search directly",
+          "B. Yes, OpenAI co-wrote the paper",
+          "C. Only for pages with structured data",
+          "D. No; it describes a method only"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the paper describes a method with a lightweight evaluator; it doesn't document ChatGPT search or any product. Wrong: none of the other claims is in the paper.",
+        "source_ids": [
+          "S503#P1"
+        ]
+      },
+      {
+        "item_id": "T28-L2-01",
+        "prompt": "In CRAG, the evaluator returns a confidence degree. Per the abstract, this triggers different knowledge ____ actions. Which word fills the blank?",
+        "options": [
+          "A. retrieval",
+          "B. summarisation",
+          "C. indexing",
+          "D. crawling"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the abstract says the confidence degree lets different knowledge retrieval actions be triggered. Wrong: the other words aren't in that phrase.",
+        "source_ids": [
+          "S503#P2"
+        ]
+      },
+      {
+        "item_id": "T28-L2-02",
+        "options": [
+          "A. It never retrieves and relies on memory alone",
+          "B. It retrieves only from Google search results",
+          "C. It retrieves only after an editor approves",
+          "D. It retrieves on demand, not every time"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the abstract says Self-RAG adaptively retrieves passages on demand. Wrong: it does retrieve; the paper doesn't say it uses Google or needs an editor's approval.",
+        "source_ids": [
+          "S502#P2"
+        ]
+      },
+      {
+        "item_id": "T28-L2-03",
+        "options": [
+          "A. Self-RAG reflects on passages and its own output",
+          "B. Google confirmed AI Mode uses Self-RAG",
+          "C. CRAG uses web searches to augment retrieval",
+          "D. CRAG decomposes then recomposes retrieved documents"
+        ],
+        "answer": "B",
+        "explanation": "Unsupported: no saved source says Google AI Mode uses Self-RAG or reflection tokens. Supported: Self-RAG reflects on retrieved passages and its generations (A); CRAG uses web searches to augment retrieval (C); CRAG has a decompose-then-recompose step (D).",
+        "source_ids": [
+          "S502#P3",
+          "S503#P3",
+          "S503#P4"
+        ]
+      },
+      {
+        "item_id": "T28-L3-01",
+        "prompt": "Hypothetical: a team builds its own support chatbot following CRAG. The evaluator reports low confidence in the retrieved documents. Which action does the paper describe as an extension for augmenting the retrieval results?",
+        "options": [
+          "A. Delete the retrieved documents",
+          "B. Ask a human editor to answer",
+          "C. Web search",
+          "D. Answer from the model's memory only"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the abstract says large-scale web searches are utilized as an extension for augmenting retrieval results, and that confidence can trigger different retrieval actions. This describes the paper's method for the team's own system. Wrong: the other actions aren't described.",
+        "source_ids": [
+          "S503#P3",
+          "S503#P2"
+        ]
+      },
+      {
+        "item_id": "T28-L3-02",
+        "options": [
+          "A. A method paper is sold as an engine feature",
+          "B. CRAG only grades images, never text",
+          "C. Evaluators read only a page's URL",
+          "D. The paper requires schema markup on every source page"
+        ],
+        "answer": "A",
+        "explanation": "Correct: CRAG is a research method; no saved source says any engine uses it, so there's no engine score to target. Wrong: the paper concerns retrieved documents, not images; it doesn't say evaluators read only URLs or require schema.",
+        "source_ids": [
+          "S503#P1"
+        ]
+      },
+      {
+        "item_id": "T28-L4-01",
+        "options": [
+          "A. Buy it; the paper proves the engine does this",
+          "B. Treat it as unconfirmed; decline it",
+          "C. Block PerplexityBot in robots.txt to avoid grading",
+          "D. Add reflection tokens to every page's HTML"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the evidence shows only that Self-RAG is a method and that PerplexityBot surfaces and links sites in search; the Self-RAG link is unconfirmed. Wrong: papers don't prove product behaviour; blocking PerplexityBot removes a way to be surfaced; reflection tokens are model tokens, not page markup.",
+        "source_ids": [
+          "S502#P1",
+          "S511#P1"
+        ]
+      },
+      {
+        "item_id": "T28-L4-02",
+        "options": [
+          "A. Add special schema to every documentation page",
+          "B. Disallow weak pages in robots.txt only",
+          "C. Stop retrieving and answer from the model alone",
+          "D. Grade passages; retrieve again when weak"
+        ],
+        "answer": "D",
+        "explanation": "Correct: add a step that assesses retrieved-document quality and can trigger another retrieval action, as CRAG describes; applying it to this assistant is practitioner inference. Wrong: schema doesn't check retrieval quality; robots.txt adds no quality check; dropping retrieval removes grounding.",
+        "source_ids": [
+          "S503#P1",
+          "S503#P2"
+        ]
+      }
+    ]
+  }
+}
