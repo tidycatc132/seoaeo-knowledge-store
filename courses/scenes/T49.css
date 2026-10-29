@@ -1,0 +1,60 @@
+/* Scenes for T49 Topical authority and content clusters. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); transition: opacity 0.4s; }
+.tagx.ok { background: #12301f; color: var(--accent); border-color: var(--accent); }
+.tagx.warn { background: #2a2416; color: #f5c451; border-color: #f5c451; }
+
+/* term */
+.s-term .cl { position: absolute; top: 6%; width: 44%; height: 86%; box-sizing: border-box; padding: 1.6cqw 2cqw; border-radius: 1.2cqw; display: grid; align-content: start; gap: 1.4cqw; }
+.s-term .in { left: 4%; background: #2a2416; border: 0.25cqw solid #f5c451; } .s-term .gg { left: 52%; background: #12301f; border: 0.25cqw solid var(--accent); }
+.s-term .cl small { font-size: 1.5cqw; font-weight: 700; } .s-term .in small { color: #f5c451; } .s-term .gg small { color: var(--accent); }
+.s-term .cl p { margin: 0; font-size: 1.9cqw; line-height: 1.4; color: #e7efe9; opacity: 0; transition: opacity 0.4s; }
+.s-term.b0 .l0, .s-term.b1 .l1, .s-term.b2 .l2, .s-term.b3 .l3, .s-term.b4 .l4 { opacity: 1; }
+.s-term .gg { opacity: 0.35; transition: opacity 0.4s; } .s-term.b2 .gg { opacity: 1; }
+.s-term.b2 .in { opacity: 0.6; }
+
+/* news */
+.s-news small { font-size: 1.3cqw; color: #9aa6a3; }
+.s-news .qy { position: absolute; left: 4%; top: 6%; padding: 1cqw 1.6cqw; border-radius: 99cqw; background: #1c2b2c; border: 0.25cqw solid var(--nav); display: flex; gap: 1.2cqw; align-items: center; }
+.s-news .qy b { font-size: 1.9cqw; color: #e7efe9; }
+.s-news .ar { position: absolute; left: 56%; top: 7%; display: flex; gap: 0.8cqw; align-items: center; opacity: 0; transition: opacity 0.4s; }
+.s-news .ar i { font-style: normal; font-size: 1.6cqw; color: #e7efe9; padding: 0.4cqw 1.2cqw; border-radius: 99cqw; border: 0.2cqw solid var(--accent); }
+.s-news.b1 .ar { opacity: 1; }
+.s-news .src { position: absolute; left: 4%; width: 60%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; display: grid; gap: 0.4cqw; transition: all 0.4s; }
+.s-news .s0 { top: 24%; } .s-news .s1 { top: 46%; }
+.s-news .src b { font-size: 1.9cqw; color: #e7efe9; } .s-news .src span { font-size: 1.5cqw; color: #9aa6a3; } .s-news .src i { font-style: normal; font-size: 1.5cqw; color: var(--accent); font-weight: 700; opacity: 0; transition: opacity 0.4s; }
+.s-news.b2 .s0 { border-color: var(--accent); background: #12301f; } .s-news.b2 .s0 i { opacity: 1; } .s-news.b2 .s1 { opacity: 0.5; }
+.s-news .adv { position: absolute; left: 4%; top: 66%; padding: 1cqw 1.6cqw; border-radius: 1.2cqw; background: #0c1516; border: 0.25cqw solid var(--nav); display: grid; gap: 0.4cqw; opacity: 0; transition: opacity 0.4s; }
+.s-news .adv b { font-size: 1.8cqw; color: var(--nav); }
+.s-news.b3 .adv { opacity: 1; }
+.s-news .t4 { left: 4%; top: 86%; } .s-news.b4 .t4 { opacity: 1; }
+
+/* cluster */
+.s-cluster .dir { position: absolute; left: 4%; top: 4%; width: 92%; height: 70%; border-radius: 1.2cqw; border: 0.25cqw dashed var(--nav); }
+.s-cluster .dir small { position: absolute; left: 1.4cqw; top: 1cqw; font-family: var(--mono); font-size: 1.6cqw; color: var(--nav); }
+.s-cluster .hub, .s-cluster .gd { position: absolute; transform: translate(-50%, -50%); padding: 1cqw 1.6cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; font-size: 1.7cqw; color: #e7efe9; white-space: nowrap; z-index: 2; transition: all 0.4s; }
+.s-cluster .hub { left: 50%; top: 22%; background: #12301f; border-color: var(--accent); font-weight: 700; }
+.s-cluster .g0 { left: 22%; top: 60%; } .s-cluster .g1 { left: 50%; top: 60%; } .s-cluster .g2 { left: 78%; top: 60%; }
+.s-cluster .ln { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.4s; }
+.s-cluster .ln path { fill: none; stroke: var(--accent); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+.s-cluster .ln path.nw { opacity: 0; transition: opacity 0.4s; }
+.s-cluster.b1 .ln { opacity: 1; }
+.s-cluster .orph { position: absolute; left: 78%; top: 70%; transform: translateX(-50%); font-size: 1.5cqw; font-weight: 700; color: #f5c451; opacity: 0; transition: opacity 0.4s; white-space: nowrap; }
+.s-cluster.b2 .orph { opacity: 1; } .s-cluster.b2 .g2 { border-color: #f5c451; } .s-cluster.b2 .ln path.nw { opacity: 1; }
+.s-cluster.b3 .orph { opacity: 0; } .s-cluster.b3 .g2 { border-color: var(--accent); }
+.s-cluster .anc { position: absolute; left: 6%; top: 40%; font-size: 1.4cqw; color: var(--accent); font-style: italic; opacity: 0; transition: opacity 0.4s; }
+.s-cluster.b3 .anc { opacity: 1; }
+.s-cluster .t4 { left: 4%; top: 82%; } .s-cluster.b4 .t4 { opacity: 1; }
+
+/* scaled */
+.s-scaled .grid { position: absolute; left: 4%; top: 6%; width: 44%; display: grid; grid-template-columns: repeat(10, 1fr); gap: 0.5cqw; transition: opacity 0.4s; }
+.s-scaled .grid i { aspect-ratio: 3 / 4; border-radius: 0.3cqw; background: #1c2b2c; border: 0.2cqw solid var(--bad); }
+.s-scaled .lbl { position: absolute; left: 4%; top: 52%; font-size: 1.6cqw; color: var(--bad); font-weight: 700; }
+.s-scaled .ai { position: absolute; left: 4%; top: 60%; font-size: 1.6cqw; color: #f5c451; font-weight: 700; opacity: 0; transition: opacity 0.4s; }
+.s-scaled.b1 .ai { opacity: 1; }
+.s-scaled .qq { position: absolute; left: 54%; width: 42%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #0c1516; border: 0.25cqw solid var(--nav); display: grid; gap: 0.4cqw; opacity: 0; transition: opacity 0.4s; }
+.s-scaled .q0 { top: 6%; } .s-scaled .q1 { top: 30%; }
+.s-scaled .qq small { font-size: 1.3cqw; color: #9aa6a3; } .s-scaled .qq b { font-size: 1.8cqw; color: #e7efe9; }
+.s-scaled.b2 .q0, .s-scaled.b3 .q1 { opacity: 1; }
+.s-scaled .ix { position: absolute; left: 4%; top: 74%; width: 92%; padding: 1cqw 1.6cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid #f5c451; display: flex; gap: 2cqw; align-items: center; opacity: 0; transition: opacity 0.4s; }
+.s-scaled .ix code { font-family: var(--mono); font-size: 1.6cqw; color: #f5c451; } .s-scaled .ix span { font-size: 1.5cqw; color: #e7efe9; }
+.s-scaled.b4 .ix { opacity: 1; } .s-scaled.b4 .grid, .s-scaled.b4 .qq { opacity: 0.45; }

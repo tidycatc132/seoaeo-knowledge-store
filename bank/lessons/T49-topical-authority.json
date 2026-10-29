@@ -1,0 +1,769 @@
+{
+  "topic_id": "T49",
+  "items_file": "bank/items/T49-topical-authority.json",
+  "course_title": "Topical authority and content clusters",
+  "subtitle": "What 'topical authority' means in the industry, the one place Google uses the phrase, how to build topic clusters Google's guidance supports, and how to cover a topic without scaled content abuse.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Separate the industry term from what Google says",
+    "Explain Google's news topic authority system",
+    "Build a topic cluster on Google's own guidance",
+    "Cover a topic without tipping into scaled content abuse"
+  ],
+  "intro": [
+    "'Topical authority' is one of the most used phrases in SEO. Tools score it, agencies sell it, and plenty of strategies are built on it. Google's own statements are much narrower.",
+    "This course uses Google's ranking systems guide, its helpful content and spam policy pages, its SEO starter guide and link best practices, a Search Engine Land report of Google's news topic authority post, a Search Engine Journal report of comments by John Mueller, and one SEO vendor blog for the industry definition.",
+    "The vendor blog is industry theory, not evidence of what Google does. Advice beyond the sources' words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T49-1",
+      "title": "The term and what Google says",
+      "est_minutes": 5,
+      "objectives": [
+        "Give the industry definition of topical authority",
+        "Say what Google has and hasn't said about it",
+        "Treat third-party scores as heuristics"
+      ],
+      "scene": {
+        "id": "term",
+        "title": "Industry term vs. Google statement",
+        "beats": [
+          {
+            "caption": "Industry definition (Surfer blog): a website's recognized expertise on a subject in the eyes of search engines.",
+            "source_ids": [
+              "S415#P1"
+            ]
+          },
+          {
+            "caption": "The same blog says Google doesn't explicitly use it as a ranking factor.",
+            "source_ids": [
+              "S415#P2"
+            ]
+          },
+          {
+            "caption": "Asked about topical authority, John Mueller replied: 'Don't worry about it' (as reported by SEJ).",
+            "source_ids": [
+              "S414#P1",
+              "S414#P2"
+            ]
+          },
+          {
+            "caption": "Google's ranking systems look at many factors and signals about hundreds of billions of pages.",
+            "source_ids": [
+              "S300#P1"
+            ]
+          },
+          {
+            "caption": "Google also says E-E-A-T itself isn't a specific ranking factor.",
+            "source_ids": [
+              "S407#P3",
+              "S407#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The industry idea",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The SEO tool vendor Surfer defines topical authority as a website's recognized expertise on a specific subject in the eyes of search engines. The same post says Google didn't coin the term and doesn't explicitly use it as a ranking factor.",
+              "source_ids": [
+                "S415#P1",
+                "S415#P3",
+                "S415#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Industry theory",
+              "text": "This is a vendor's framing, kept here so you know what people mean. It isn't evidence of how Google ranks.",
+              "source_ids": [
+                "S415#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What Google has said",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Search Engine Journal reported John Mueller's reply to a question about topical authority under the headline 'Google On Topical Authority: Don't Worry About It'. His reply: 'Don't worry about it.'",
+              "source_ids": [
+                "S414#P2",
+                "S414#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's ranking systems guide says Google uses automated ranking systems that look at many factors and signals about hundreds of billions of web pages. Its helpful content page says E-E-A-T itself isn't a specific ranking factor, and that its automated systems use many different factors to rank great content.",
+              "source_ids": [
+                "S300#P1",
+                "S407#P3",
+                "S407#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Scores from tools",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "A tool's 'topical authority 82/100' is a third-party heuristic. No saved Google source defines such a metric, so don't report it as Google's view of your site.",
+              "source_ids": [
+                "S300#P1",
+                "S414#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "'Topical authority' is an industry term.",
+          "source_ids": [
+            "S415#P3"
+          ]
+        },
+        {
+          "text": "Mueller, as reported: 'Don't worry about it.'",
+          "source_ids": [
+            "S414#P1"
+          ]
+        },
+        {
+          "text": "Google ranks with many factors and signals.",
+          "source_ids": [
+            "S300#P1"
+          ]
+        },
+        {
+          "text": "E-E-A-T itself isn't a specific ranking factor.",
+          "source_ids": [
+            "S407#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Sort claims from statements",
+        "minutes": "10",
+        "steps": [
+          "Find a recent report or pitch that mentions topical authority.",
+          "Underline each claim about what Google does.",
+          "Look for a Google source behind each one.",
+          "Relabel any unsupported claim as industry theory."
+        ],
+        "prompt_template": "Here is a report section about topical authority: [text]. For each claim about what Google does, tell me whether Google has said it (Google's ranking guide says it uses many factors and signals; its helpful content page says E-E-A-T isn't a specific ranking factor) or whether it's industry theory. Rewrite the section with clear labels."
+      },
+      "reflection": [
+        "Have you reported a tool's authority score as if Google computed it?",
+        "Which of your strategies rest on a term Google never defined?"
+      ],
+      "whats_next": "Next, the one place Google does use the phrase: news."
+    },
+    {
+      "lesson_id": "T49-2",
+      "title": "News topic authority",
+      "est_minutes": 5,
+      "objectives": [
+        "Say what Google's news topic authority system does",
+        "Name the topic areas it covers",
+        "Explain what publishers should do"
+      ],
+      "scene": {
+        "id": "news",
+        "title": "Expert sources for newsy queries",
+        "beats": [
+          {
+            "caption": "Google, as reported: the system helps determine which expert sources are helpful to someone's newsy query.",
+            "source_ids": [
+              "S238#P1"
+            ]
+          },
+          {
+            "caption": "It applies in certain specialized topic areas, such as health, politics, or finance.",
+            "source_ids": [
+              "S238#P2"
+            ]
+          },
+          {
+            "caption": "A publication can be especially relevant to topics or locations.",
+            "source_ids": [
+              "S238#P3"
+            ]
+          },
+          {
+            "caption": "Publishers: just do what you are doing today, and provide great coverage of the topics you know well.",
+            "source_ids": [
+              "S238#P4",
+              "S238#P5"
+            ]
+          },
+          {
+            "caption": "Danny Sullivan: this isn't a new system; Google has used it for several years.",
+            "source_ids": [
+              "S238#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "A named system, for news",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "In May 2023 Google described a topic authority system for news. As reported by Search Engine Land, Google said it helps determine which expert sources are helpful to someone's newsy query, in certain specialized topic areas, such as health, politics, or finance.",
+              "source_ids": [
+                "S238#P1",
+                "S238#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google said a publication can be especially relevant to topics or locations.",
+              "source_ids": [
+                "S238#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a city newspaper that has covered its local water supply for years may be an especially relevant source when people search news about a water outage in that city.",
+              "source_ids": [
+                "S238#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What publishers should do",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's advice was to just do what you are doing today, as you normally would, and to provide great coverage about the areas and topics you know well. Danny Sullivan added that this isn't a new system that's just launched; Google has used it for several years.",
+              "source_ids": [
+                "S238#P4",
+                "S238#P5",
+                "S238#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What it doesn't show",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "This system is about expert sources for news queries. It isn't a general 'topical authority score' for every website, and Google asks for no special work to qualify.",
+              "source_ids": [
+                "S238#P1",
+                "S238#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google's topic authority system is for newsy queries.",
+          "source_ids": [
+            "S238#P1"
+          ]
+        },
+        {
+          "text": "It covers areas such as health, politics and finance.",
+          "source_ids": [
+            "S238#P2"
+          ]
+        },
+        {
+          "text": "Publishers need do nothing special.",
+          "source_ids": [
+            "S238#P4"
+          ]
+        },
+        {
+          "text": "It has been used for several years.",
+          "source_ids": [
+            "S238#P6"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Map what you cover well",
+        "minutes": "10",
+        "steps": [
+          "List the topics or places your site has covered most consistently.",
+          "Count how many pieces you've published on each in the last two years.",
+          "Mark the ones where you have original reporting or first-hand detail.",
+          "Pick the two you know best to keep covering in depth."
+        ],
+        "prompt_template": "Here are the topics and places my site covers, with article counts and examples of original work: [list]. Google says its news topic authority system looks for sources especially relevant to topics or locations, and asks publishers to provide great coverage of the areas they know well. Which topics are our strongest, and where are we spread thin? Label this as practitioner judgement."
+      },
+      "reflection": [
+        "Which topics or places do you know better than anyone?",
+        "Where are you publishing just to fill a gap?"
+      ],
+      "whats_next": "Next, building a topic cluster on Google's own guidance."
+    },
+    {
+      "lesson_id": "T49-3",
+      "title": "Clusters Google's guidance supports",
+      "est_minutes": 5,
+      "objectives": [
+        "Organise topic pages logically",
+        "Link every cluster page from another page",
+        "Ignore word count targets"
+      ],
+      "scene": {
+        "id": "cluster",
+        "title": "A hub and its guides",
+        "beats": [
+          {
+            "caption": "Google's starter guide: group topically similar pages in directories.",
+            "source_ids": [
+              "S239#P1"
+            ]
+          },
+          {
+            "caption": "A logical structure helps search engines and users understand how your pages relate to the rest of your site.",
+            "source_ids": [
+              "S239#P3",
+              "S239#P4"
+            ]
+          },
+          {
+            "caption": "Every page you care about should have a link from at least one other page on your site.",
+            "source_ids": [
+              "S405#P4"
+            ]
+          },
+          {
+            "caption": "Use descriptive, reasonably concise anchor text.",
+            "source_ids": [
+              "S405#P2"
+            ]
+          },
+          {
+            "caption": "The length of the content alone doesn't matter for ranking; there's no magical word count target.",
+            "source_ids": [
+              "S239#P5",
+              "S239#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Organise by topic",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's SEO starter guide suggests you group topically similar pages in directories. It says it can be good to organize a site in a logical way, because it can help search engines and users understand how your pages relate to the rest of your site. Directories can also help Google learn how often the URLs in individual directories change.",
+              "source_ids": [
+                "S239#P1",
+                "S239#P3",
+                "S239#P4",
+                "S239#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical cooking site: /baking/ holds a bread hub page plus guides on sourdough starters, proofing, and baking temperatures, each linking back to the hub and to each other where it helps the reader.",
+              "source_ids": [
+                "S239#P1",
+                "S405#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Link it together",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's link guidance gives the rules that a cluster needs.",
+              "source_ids": [
+                "S405#P4",
+                "S405#P2",
+                "S405#P14"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "No orphans.",
+                  "text": "Every page you care about should have a link from at least one other page on your site.",
+                  "source_ids": [
+                    "S405#P4"
+                  ]
+                },
+                {
+                  "lead": "Descriptive anchors.",
+                  "text": "Good anchor text is descriptive, reasonably concise, and relevant.",
+                  "source_ids": [
+                    "S405#P2"
+                  ]
+                },
+                {
+                  "lead": "Helpful links.",
+                  "text": "Think about what other resources on your site could help your readers understand a given page.",
+                  "source_ids": [
+                    "S405#P14"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Forget word counts",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says the length of the content alone doesn't matter for ranking purposes, and there's no magical word count target, minimum or maximum.",
+              "source_ids": [
+                "S239#P5",
+                "S239#P6"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Clusters are a sensible way to organise and link related content. That clusters raise rankings by themselves is industry theory.",
+              "source_ids": [
+                "S239#P4",
+                "S405#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Group topically similar pages in directories.",
+          "source_ids": [
+            "S239#P1"
+          ]
+        },
+        {
+          "text": "Logical structure shows how pages relate.",
+          "source_ids": [
+            "S239#P4"
+          ]
+        },
+        {
+          "text": "Link every cluster page from another page.",
+          "source_ids": [
+            "S405#P4"
+          ]
+        },
+        {
+          "text": "There's no magic word count.",
+          "source_ids": [
+            "S239#P6"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Draw one cluster",
+        "minutes": "15",
+        "steps": [
+          "Pick a topic you've written several pages about.",
+          "List the pages and the directory each sits in.",
+          "Draw the links between them, and mark any page with no link in.",
+          "Add descriptive links from the hub and between related pages."
+        ],
+        "prompt_template": "Here are my pages on [topic], with URLs and the internal links on each: [list]. Using Google's guidance (group topically similar pages in directories; every page you care about should be linked from another page; use descriptive anchors), suggest a hub page, a directory structure and the missing links. Label any ranking claims as industry theory."
+      },
+      "reflection": [
+        "Which topic on your site is scattered across unrelated folders?",
+        "Do your briefs still set word count targets?"
+      ],
+      "whats_next": "Next, covering a topic without tipping into scaled content abuse."
+    },
+    {
+      "lesson_id": "T49-4",
+      "title": "Coverage without spam",
+      "est_minutes": 5,
+      "objectives": [
+        "Recognise scaled content abuse",
+        "Use Google's 'why' question on content plans",
+        "Read crawled-but-not-indexed pages correctly"
+      ],
+      "scene": {
+        "id": "scaled",
+        "title": "More pages isn't more authority",
+        "beats": [
+          {
+            "caption": "Scaled content abuse: many pages generated for the primary purpose of manipulating search rankings.",
+            "source_ids": [
+              "S209#P7"
+            ]
+          },
+          {
+            "caption": "One example: using generative AI tools to generate many pages without adding value.",
+            "source_ids": [
+              "S209#P8"
+            ]
+          },
+          {
+            "caption": "Google asks: are you using extensive automation to produce content on many topics?",
+            "source_ids": [
+              "S407#P6"
+            ]
+          },
+          {
+            "caption": "If the 'why' is mainly to attract search engine visits, that's not what Google's systems seek to reward.",
+            "source_ids": [
+              "S407#P11"
+            ]
+          },
+          {
+            "caption": "Crawled but not indexed: Google saw the page and didn't index it. Indexing isn't guaranteed.",
+            "source_ids": [
+              "S119#P1",
+              "S120#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The scaled content trap",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's spam policies describe scaled content abuse as when many pages are generated for the primary purpose of manipulating search rankings. One example is using generative AI tools or other similar tools to generate many pages without adding value.",
+              "source_ids": [
+                "S209#P7",
+                "S209#P8"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "A plan to 'build topical authority' by generating hundreds of thin sub-topic pages fits Google's own example of scaled content abuse.",
+              "source_ids": [
+                "S209#P7",
+                "S209#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Ask why",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's helpful content page asks questions you can put to any content plan.",
+              "source_ids": [
+                "S407#P6",
+                "S407#P10",
+                "S407#P11"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Automation.",
+                  "text": "Are you using extensive automation to produce content on many topics?",
+                  "source_ids": [
+                    "S407#P6"
+                  ]
+                },
+                {
+                  "lead": "Purpose.",
+                  "text": "'Why' is perhaps the most important question. If the why is primarily to attract search engine visits, that's not aligned with what Google's systems seek to reward.",
+                  "source_ids": [
+                    "S407#P10",
+                    "S407#P11"
+                  ]
+                },
+                {
+                  "lead": "Trust.",
+                  "text": "Of the E-E-A-T aspects, trust is most important.",
+                  "source_ids": [
+                    "S407#P2"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Reading the indexing report",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "If new cluster pages show as 'Crawled - currently not indexed', the page was crawled by Google but not indexed. Google also says indexing isn't guaranteed; not every page that Google processes will be indexed.",
+              "source_ids": [
+                "S119#P1",
+                "S120#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a bike shop adds 80 AI-written support pages to 'build topical authority', and most show as crawled but not indexed. Review them against Google's helpful content questions before publishing more.",
+              "source_ids": [
+                "S119#P1",
+                "S407#P6"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Mass-generated pages can be scaled content abuse.",
+          "source_ids": [
+            "S209#P7"
+          ]
+        },
+        {
+          "text": "Generating many pages without added value is an example.",
+          "source_ids": [
+            "S209#P8"
+          ]
+        },
+        {
+          "text": "Content made mainly for search visits isn't rewarded.",
+          "source_ids": [
+            "S407#P11"
+          ]
+        },
+        {
+          "text": "Crawled but not indexed: seen, not indexed.",
+          "source_ids": [
+            "S119#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit a content plan",
+        "minutes": "15",
+        "steps": [
+          "Take your next quarter's content plan.",
+          "For each piece, write one sentence on who it's for and why.",
+          "Flag pieces that exist only to 'cover' a keyword.",
+          "Cut or merge the flagged pieces before writing starts."
+        ],
+        "prompt_template": "Here is my content plan: [list of titles and target keywords]. Google's spam policy describes scaled content abuse as generating many pages to manipulate rankings, and its helpful content page asks whether you use extensive automation to produce content on many topics and why you're making it. Flag pieces that look like coverage for its own sake and suggest merges."
+      },
+      "reflection": [
+        "How many pages on your site exist only to 'cover' a keyword?",
+        "Would you publish each page if search didn't exist?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "'Topical authority' is an industry term; Google's ranking guide talks about many factors and signals, and Mueller, as reported, said not to worry about it. The one place Google uses the phrase is a news system that helps find expert sources for newsy queries, and it asks publishers to do nothing special. Clusters are still good practice on Google's own guidance: group related pages, link every page you care about, use descriptive anchors and ignore word counts. But mass-producing pages for coverage fits Google's definition of scaled content abuse.",
+    "related_topics": [
+      {
+        "topic_id": "T55",
+        "title": "Content quality heuristics, Information Gain and E-E-A-T"
+      },
+      {
+        "topic_id": "T45",
+        "title": "Link graph analysis and authority modeling"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Topical authority and content clusters. The questions revisit what Google has said, how to link clusters and how to avoid scaled content.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T49-L1-01",
+      "T49-L1-02",
+      "T49-L1-03",
+      "T49-L2-01",
+      "T49-L2-02",
+      "T49-L2-03",
+      "T49-L3-01",
+      "T49-L3-02",
+      "T49-L4-01",
+      "T49-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T49-L1-01",
+        "options": [
+          "A. trust",
+          "B. expertise",
+          "C. experience",
+          "D. authority"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google's helpful content page lists experience, expertise, authoritativeness and trustworthiness as E-E-A-T and says 'Of these aspects, trust is most important.'",
+        "source_ids": [
+          "S407#P1",
+          "S407#P2"
+        ]
+      },
+      {
+        "item_id": "T49-L1-03",
+        "options": [
+          "A. False, it's the main ranking factor",
+          "B. True",
+          "C. False, it's a sitewide score",
+          "D. False, it applies to news only"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the page says E-E-A-T itself isn't a specific ranking factor, and that Google's automated systems use many different factors to rank great content.",
+        "source_ids": [
+          "S407#P3",
+          "S407#P4"
+        ]
+      },
+      {
+        "item_id": "T49-L2-02",
+        "options": [
+          "A. True",
+          "B. False, only the home page needs links",
+          "C. False, sitemaps replace links",
+          "D. False, it says links don't matter"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google's link best practices page says every page you care about should have a link from at least one other page on your site, which is why cluster pages shouldn't be orphans. Whether clusters themselves raise rankings is industry theory.",
+        "source_ids": [
+          "S405#P4"
+        ]
+      },
+      {
+        "item_id": "T49-L2-03",
+        "prompt": "Which statement is NOT supported by the saved Google sources?",
+        "options": [
+          "A. Trust is the most important of the E-E-A-T aspects listed",
+          "B. Every page you care about should be linked from another page on the site",
+          "C. No single rater rating directly impacts a page's rank",
+          "D. Google scores each site's topical authority"
+        ],
+        "answer": "D",
+        "explanation": "Unsupported: no saved Google source says Google computes such a score. Supported: trust being most important (helpful content page), linking every page you care about (link guidance), and no single rating directly impacting rank (rater guidelines).",
+        "source_ids": [
+          "S407#P2",
+          "S405#P4",
+          "S014#P4"
+        ]
+      }
+    ]
+  }
+}
