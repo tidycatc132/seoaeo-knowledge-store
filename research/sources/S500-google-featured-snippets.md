@@ -5,7 +5,7 @@ title: Featured Snippets and Your Website
 publisher: Google Search Central
 grade: A
 page_date: 2025-12-10
-opened: 2026-10-25
+opened: 2026-10-25 (extra passages 2026-10-29 P12-P13)
 status: used
 ---
 Summary: Google documentation on featured snippets: chosen by Google systems, no markup to opt in, opt out via nosnippet / data-nosnippet / max-snippet, no exact minimum length.
@@ -32,3 +32,7 @@ Summary: Google documentation on featured snippets: chosen by Google systems, no
 > In general, the shorter your max-snippet rule setting, the less likely the page will appear as a featured snippet.
 ### P11 two ways
 > There are two ways that you can opt out of featured snippets:
+### P12 descriptive first
+> showing the descriptive snippet first
+### P13 for a request
+> Google systems determine whether a page would make a good featured snippet for a user's search request
