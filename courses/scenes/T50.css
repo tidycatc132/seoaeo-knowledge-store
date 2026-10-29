@@ -1,0 +1,62 @@
+/* Scenes for T50 Clicks and engagement signals. Positions are percentages of the 16:9 stage; sizes use cqw. */
+.tagx { position: absolute; padding: 0.6cqw 1.6cqw; border-radius: 99cqw; font-size: 1.8cqw; font-weight: 600; white-space: nowrap; opacity: 0; background: var(--nav-soft); color: var(--nav); border: 0.2cqw solid var(--nav); transition: opacity 0.4s; }
+.tagx.ok { background: #12301f; color: var(--accent); border-color: var(--accent); }
+.tagx.warn { background: #2a2416; color: #f5c451; border-color: #f5c451; }
+
+/* public */
+.s-public small { font-size: 1.4cqw; color: #9aa6a3; }
+.s-public .ss { position: absolute; left: 4%; top: 6%; width: 30%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6cqw; transition: opacity 0.4s; }
+.s-public .ss i { font-style: normal; font-size: 1.3cqw; color: #9aa6a3; text-align: center; padding: 0.6cqw; border-radius: 0.6cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; }
+.s-public .ag { position: absolute; left: 38%; top: 8%; width: 24%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #1c2b2c; border: 0.25cqw solid var(--nav); display: grid; gap: 0.4cqw; transition: opacity 0.4s; }
+.s-public .ag b { font-size: 1.7cqw; color: var(--nav); }
+.s-public .ml { position: absolute; left: 66%; top: 8%; width: 30%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #12301f; border: 0.25cqw solid var(--accent); display: grid; gap: 0.4cqw; opacity: 0; transition: opacity 0.4s; }
+.s-public .ml b { font-size: 1.8cqw; color: var(--accent); }
+.s-public.b1 .ml { opacity: 1; }
+.s-public .ex { position: absolute; left: 4%; top: 44%; width: 92%; display: grid; gap: 0.8cqw; opacity: 0; transition: opacity 0.4s; }
+.s-public .ab { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6cqw; }
+.s-public .ab span { padding: 1.2cqw; border-radius: 1cqw; background: #1c2b2c; border: 0.25cqw solid #33494a; font-size: 1.7cqw; color: #e7efe9; text-align: center; }
+.s-public .ab .nw { border-color: #f5c451; color: #f5c451; }
+.s-public.b2 .ex { opacity: 1; } .s-public.b2 .ss, .s-public.b2 .ag, .s-public.b2 .ml { opacity: 0.4; }
+.s-public .mx { position: absolute; left: 4%; top: 74%; display: flex; gap: 1.4cqw; }
+.s-public .mx i { font-style: normal; font-size: 1.7cqw; color: var(--accent); padding: 0.6cqw 1.4cqw; border-radius: 99cqw; border: 0.2cqw solid var(--accent); background: #12301f; opacity: 0; transition: opacity 0.4s; }
+.s-public.b3 .k0, .s-public.b4 .k1 { opacity: 1; }
+
+/* trial */
+.s-trial small { font-size: 1.3cqw; color: #9aa6a3; }
+.s-trial p { margin: 0; font-size: 1.6cqw; line-height: 1.4; color: #e7efe9; }
+.s-trial .xc, .s-trial .wt { position: absolute; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; display: grid; gap: 0.5cqw; opacity: 0; transition: opacity 0.4s; }
+.s-trial .xc { left: 4%; width: 44%; background: #1c2b2c; border: 0.25cqw solid #f5c451; }
+.s-trial .x0 { top: 5%; } .s-trial .x1 { top: 33%; }
+.s-trial .wt { left: 52%; width: 44%; background: #0c1516; border: 0.25cqw solid var(--nav); }
+.s-trial .w0 { top: 5%; } .s-trial .w1 { top: 33%; }
+.s-trial .tb { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.3cqw; } .s-trial .tb i { height: 1.2cqw; background: #33494a; border-radius: 0.2cqw; }
+.s-trial.b0 .x0, .s-trial.b1 .x1, .s-trial.b2 .w0, .s-trial.b3 .w1 { opacity: 1; }
+.s-trial .fc { position: absolute; left: 4%; top: 64%; width: 92%; display: flex; gap: 0.8cqw; align-items: center; flex-wrap: wrap; opacity: 0; transition: opacity 0.4s; }
+.s-trial .fc i { font-style: normal; font-size: 1.6cqw; color: #9aa6a3; padding: 0.6cqw 1.2cqw; border-radius: 0.6cqw; background: #1c2b2c; border: 0.2cqw solid #33494a; }
+.s-trial .fc i.nb { color: var(--accent); border-color: var(--accent); } .s-trial .fc em { font-style: normal; font-size: 1.6cqw; color: var(--accent); margin-left: 1cqw; }
+.s-trial.b4 .fc { opacity: 1; } .s-trial.b4 .xc, .s-trial.b4 .wt { opacity: 0.4; }
+
+/* bias */
+.s-bias .sp { position: absolute; left: 4%; top: 6%; width: 52%; display: grid; gap: 1cqw; }
+.s-bias .rr { display: grid; grid-template-columns: 4cqw 1fr; gap: 1cqw; align-items: center; transition: opacity 0.4s; }
+.s-bias .rr span { font-family: var(--mono); font-size: 1.6cqw; color: #e7efe9; }
+.s-bias .cb { height: 3cqw; border-radius: 0.6cqw; background: #1c2b2c; overflow: hidden; } .s-bias .cb i { display: block; height: 100%; background: var(--nav); }
+.s-bias.b1 .r0 .cb i { background: #f5c451; }
+.s-bias .tb1, .s-bias .tb2 { position: absolute; left: 60%; width: 36%; font-size: 1.7cqw; font-weight: 600; opacity: 0; transition: opacity 0.4s; }
+.s-bias .tb1 { top: 8%; color: #f5c451; } .s-bias .tb2 { top: 22%; color: #e7efe9; }
+.s-bias.b1 .tb1, .s-bias.b2 .tb2 { opacity: 1; }
+.s-bias .pr { position: absolute; left: 4%; top: 62%; width: 92%; padding: 1.2cqw 1.6cqw; border-radius: 1.2cqw; background: #12301f; border: 0.25cqw solid var(--accent); display: flex; gap: 2cqw; align-items: center; opacity: 0; transition: opacity 0.4s; }
+.s-bias .pr small { font-size: 1.4cqw; color: var(--accent); } .s-bias .pr span { font-size: 1.7cqw; color: #e7efe9; } .s-bias .pr b { font-size: 1.8cqw; color: var(--accent); }
+.s-bias.b3 .pr { opacity: 1; } .s-bias.b3 .r1, .s-bias.b3 .r2 { outline: 0.2cqw solid var(--accent); outline-offset: 0.3cqw; border-radius: 0.6cqw; }
+.s-bias .t4 { left: 4%; top: 84%; } .s-bias.b4 .t4 { opacity: 1; }
+
+/* ledger */
+.s-ledger .col { position: absolute; top: 6%; width: 44%; min-height: 46%; box-sizing: border-box; padding: 1.6cqw 2cqw; border-radius: 1.2cqw; display: grid; align-content: start; gap: 1.4cqw; }
+.s-ledger .cf { left: 4%; background: #12301f; border: 0.25cqw solid var(--accent); } .s-ledger .nc { left: 52%; background: #1c2b2c; border: 0.25cqw dashed #f5c451; opacity: 0; transition: opacity 0.4s; }
+.s-ledger .col small { font-size: 1.5cqw; font-weight: 700; } .s-ledger .cf small { color: var(--accent); } .s-ledger .nc small { color: #f5c451; }
+.s-ledger .col p { margin: 0; font-size: 1.8cqw; line-height: 1.4; color: #e7efe9; }
+.s-ledger .cf p { opacity: 0; transition: opacity 0.4s; } .s-ledger .cf .l2 { color: #9aa6a3; font-size: 1.6cqw; }
+.s-ledger.b0 .l0, .s-ledger.b1 .l1, .s-ledger.b2 .l2 { opacity: 1; }
+.s-ledger .nc p::before { content: '? '; color: #f5c451; font-weight: 700; }
+.s-ledger.b3 .nc { opacity: 1; }
+.s-ledger .t4 { left: 4%; top: 84%; } .s-ledger.b4 .t4 { opacity: 1; }

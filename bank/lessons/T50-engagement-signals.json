@@ -1,0 +1,760 @@
+{
+  "topic_id": "T50",
+  "items_file": "bank/items/T50-engagement-signals.json",
+  "course_title": "Clicks and engagement signals",
+  "subtitle": "What Google says about interaction data, what the US v. Google trial revealed about clicks and Navboost, why clicks are biased, and which engagement claims remain unconfirmed.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "State what Google says publicly about interaction data",
+    "Summarise what trial testimony showed about clicks",
+    "Explain why raw clicks are a biased signal",
+    "Separate confirmed facts from engagement myths"
+  ],
+  "intro": [
+    "Do clicks affect rankings? For years Google said little. Its public explainers and the 2023 US v. Google antitrust trial now give a clearer, but still partial, picture.",
+    "This course uses Google's How Search works pages, trial transcripts and exhibits from US v. Google, and a 2005 research paper on interpreting clickthrough data.",
+    "The research paper describes a study, not what Google runs. Many popular claims, like dwell time as a ranking signal, appear in none of these sources. Advice beyond the sources' words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T50-1",
+      "title": "What Google says publicly",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe Google's use of interaction data",
+        "Explain how live experiments use click metrics",
+        "Tell evaluating changes from ranking a page"
+      ],
+      "scene": {
+        "id": "public",
+        "title": "Interaction data, in Google's words",
+        "beats": [
+          {
+            "caption": "Google uses aggregated and anonymized interaction data to assess whether search results are relevant to queries.",
+            "source_ids": [
+              "S240#P1"
+            ]
+          },
+          {
+            "caption": "It transforms that data into signals that help its machine-learned systems better estimate relevance.",
+            "source_ids": [
+              "S240#P2"
+            ]
+          },
+          {
+            "caption": "Google runs live experiments to see how real people interact with a feature before launching it to everyone.",
+            "source_ids": [
+              "S308#P1"
+            ]
+          },
+          {
+            "caption": "It reviews a very long list of metrics, such as what people click on.",
+            "source_ids": [
+              "S308#P2"
+            ]
+          },
+          {
+            "caption": "And how long it took for people to click on a result.",
+            "source_ids": [
+              "S308#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Interaction data",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's How Search works page says it uses aggregated and anonymized interaction data to assess whether search results are relevant to queries, and transforms that data into signals that help its machine-learned systems better estimate relevance.",
+              "source_ids": [
+                "S240#P1",
+                "S240#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The same page says Google uses information such as your location, past Search history, and Search settings, and that its systems can recognize if you have visited the same page multiple times before.",
+              "source_ids": [
+                "S240#P3",
+                "S240#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Live experiments",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's Rigorous testing page describes live experiments that show how real people interact with a feature before launching it to everyone. Google reviews a very long list of metrics, such as what people click on and how long it took for people to click on a result.",
+              "source_ids": [
+                "S308#P1",
+                "S308#P2",
+                "S308#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Note the scope",
+              "text": "These metrics judge whether a change to Search works for everyone. The page doesn't say one page's click-through rate lifts that page's ranking.",
+              "source_ids": [
+                "S308#P1",
+                "S308#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google uses aggregated, anonymized interaction data.",
+          "source_ids": [
+            "S240#P1"
+          ]
+        },
+        {
+          "text": "It turns that data into relevance signals.",
+          "source_ids": [
+            "S240#P2"
+          ]
+        },
+        {
+          "text": "Live experiments measure what people click on.",
+          "source_ids": [
+            "S308#P2"
+          ]
+        },
+        {
+          "text": "That evaluates changes, not single pages.",
+          "source_ids": [
+            "S308#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Read your own click data",
+        "minutes": "10",
+        "steps": [
+          "Open the Search Console Performance report.",
+          "Pick one page and switch to the Queries tab.",
+          "Note the queries with many impressions but few clicks.",
+          "Check whether the title and snippet match what those searchers wanted."
+        ],
+        "prompt_template": "Here are the queries for one of my pages, with impressions, clicks and average position: [data]. Google says it uses aggregated, anonymized interaction data to assess relevance. Which queries show a mismatch between what people searched and what my title and snippet promise? Label suggestions as practitioner judgement, not proven ranking effects."
+      },
+      "reflection": [
+        "Which of your pages get seen often but rarely clicked?",
+        "Where have you heard 'CTR is a ranking factor' stated as fact?"
+      ],
+      "whats_next": "Next, what the US v. Google trial revealed."
+    },
+    {
+      "lesson_id": "T50-2",
+      "title": "What the trial revealed",
+      "est_minutes": 6,
+      "objectives": [
+        "Describe Navboost from the testimony",
+        "Say what 'user feedback' meant in a Google document",
+        "Keep Navboost's role in proportion"
+      ],
+      "scene": {
+        "id": "trial",
+        "title": "Navboost on the record",
+        "beats": [
+          {
+            "caption": "Google exhibit: exploiting user feedback, principally clicks, has been the major theme of ranking work for the past decade.",
+            "source_ids": [
+              "S307#P3"
+            ]
+          },
+          {
+            "caption": "Exhibit: Navboost is the original click exploitation system and still the most potent.",
+            "source_ids": [
+              "S307#P4"
+            ]
+          },
+          {
+            "caption": "Eric Lehman: Navboost is not a machine learning system. It's just a big table.",
+            "source_ids": [
+              "S307#P1"
+            ]
+          },
+          {
+            "caption": "Pandu Nayak: Glue is just another name for Navboost that includes all of the other features on the page.",
+            "source_ids": [
+              "S306#P1"
+            ]
+          },
+          {
+            "caption": "Nayak: it's certainly a factor, but it's not the only factor by any means.",
+            "source_ids": [
+              "S306#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Google's own documents",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Internal Google documents shown at trial were blunt. One exhibit said exploiting user feedback, principally clicks, has been the major theme of ranking work for the past decade, and called Navboost the original click exploitation system and still the most potent. Another said learning from logs is the main mechanism behind ranking.",
+              "source_ids": [
+                "S307#P3",
+                "S307#P4",
+                "S307#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The witnesses",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Here is what two Google witnesses said under oath.",
+              "source_ids": [
+                "S307#P1",
+                "S306#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Eric Lehman.",
+                  "text": "Navboost is not a machine learning system. It's just a big table. He also said user data is widely used within Search.",
+                  "source_ids": [
+                    "S307#P1",
+                    "S307#P2"
+                  ]
+                },
+                {
+                  "lead": "Pandu Nayak on Glue.",
+                  "text": "Glue is just another name for Navboost that includes all of the other features on the page.",
+                  "source_ids": [
+                    "S306#P1"
+                  ]
+                },
+                {
+                  "lead": "Nayak on user feedback.",
+                  "text": "Asked 'When it says user feedback, that's click data, right?', he answered 'That is correct.'",
+                  "source_ids": [
+                    "S306#P3",
+                    "S306#P4"
+                  ]
+                },
+                {
+                  "lead": "Nayak on DeepRank.",
+                  "text": "Asked whether DeepRank is trained on user data, he answered 'Yes, it is.'",
+                  "source_ids": [
+                    "S306#P5",
+                    "S306#P6"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "In proportion",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Nayak also said Navboost is certainly a factor, but it's not the only factor by any means.",
+              "source_ids": [
+                "S306#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "The testimony confirms that clicks and user data are used. It doesn't describe how a single page's clicks change that page's rank.",
+              "source_ids": [
+                "S306#P3",
+                "S306#P4",
+                "S307#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A Google exhibit called clicks the major theme of ranking work.",
+          "source_ids": [
+            "S307#P3"
+          ]
+        },
+        {
+          "text": "Lehman: Navboost is a big table, not machine learning.",
+          "source_ids": [
+            "S307#P1"
+          ]
+        },
+        {
+          "text": "Nayak agreed 'user feedback' meant click data.",
+          "source_ids": [
+            "S306#P3",
+            "S306#P4"
+          ]
+        },
+        {
+          "text": "Navboost is a factor, not the only one.",
+          "source_ids": [
+            "S306#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Summarise the record",
+        "minutes": "10",
+        "steps": [
+          "Write down three things the trial record confirms about clicks.",
+          "Write down two things it doesn't say.",
+          "Check each against the quotes in this lesson.",
+          "Turn it into a short note you could give a client."
+        ],
+        "prompt_template": "Here is my draft note to a client about clicks and Google rankings: [note]. Check each claim against this record: a Google exhibit said exploiting user feedback, principally clicks, has been the major theme of ranking work; Lehman said Navboost is a big table and user data is widely used; Nayak agreed user feedback meant click data and said Navboost is not the only factor. Flag anything the record doesn't support."
+      },
+      "reflection": [
+        "What did you believe about clicks before the trial record?",
+        "Which claim from the trial gets stretched furthest in SEO posts?"
+      ],
+      "whats_next": "Next, why raw clicks are a biased signal."
+    },
+    {
+      "lesson_id": "T50-3",
+      "title": "Why clicks are biased",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain trust bias in clicks",
+        "Say why relative preferences are more reliable",
+        "Read your own click data with care"
+      ],
+      "scene": {
+        "id": "bias",
+        "title": "People click what's on top",
+        "beats": [
+          {
+            "caption": "Research (Joachims et al., 2005): clicks are informative but biased.",
+            "source_ids": [
+              "S241#P1"
+            ]
+          },
+          {
+            "caption": "There is a trust bias which leads to more clicks on links ranked highly by Google.",
+            "source_ids": [
+              "S241#P2"
+            ]
+          },
+          {
+            "caption": "Users are biased by the trust they have in the retrieval function.",
+            "source_ids": [
+              "S241#P3"
+            ]
+          },
+          {
+            "caption": "Relative preferences derived from clicks are reasonably accurate on average.",
+            "source_ids": [
+              "S241#P4"
+            ]
+          },
+          {
+            "caption": "They correspond well with explicit judgments. This is a study, not Google's system.",
+            "source_ids": [
+              "S241#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Informative but biased",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "A 2005 study by Joachims and colleagues found that clicks are informative but biased. There is a trust bias which leads to more clicks on links ranked highly by Google: users are biased by the trust they have in the retrieval function.",
+              "source_ids": [
+                "S241#P1",
+                "S241#P2",
+                "S241#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: two equally good pages swap places. The one moved to position 1 gets more clicks partly because it's on top, not only because it's better.",
+              "source_ids": [
+                "S241#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Comparisons work better",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The study showed that relative preferences derived from clicks are reasonably accurate on average, and correspond well with explicit judgments.",
+              "source_ids": [
+                "S241#P4",
+                "S241#P5"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Research, not Google",
+              "text": "The paper studies how to read clicks. It doesn't say how Google uses them.",
+              "source_ids": [
+                "S241#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Reading your own data",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Compare a page's click-through rate with others at a similar position, not across positions. A page at position 8 will rarely match the clicks of position 1.",
+              "source_ids": [
+                "S241#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Clicks are informative but biased.",
+          "source_ids": [
+            "S241#P1"
+          ]
+        },
+        {
+          "text": "Trust bias gives top results more clicks.",
+          "source_ids": [
+            "S241#P2"
+          ]
+        },
+        {
+          "text": "Relative preferences from clicks are fairly accurate.",
+          "source_ids": [
+            "S241#P4"
+          ]
+        },
+        {
+          "text": "The study doesn't describe Google's systems.",
+          "source_ids": [
+            "S241#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Compare like with like",
+        "minutes": "10",
+        "steps": [
+          "Export page-level data from Search Console for one month.",
+          "Group pages by average position band: 1 to 3, 4 to 6, 7 to 10.",
+          "Within each band, find pages with unusually low click-through rates.",
+          "Review their titles and snippets first."
+        ],
+        "prompt_template": "Here is my Search Console page data with clicks, impressions, CTR and average position: [data]. Research shows clicks are biased by trust in the ranking, so top positions get more clicks. Group pages by position band and flag pages with low CTR for their band. Label suggestions as practitioner judgement."
+      },
+      "reflection": [
+        "Have you compared a page's CTR with pages at other positions?",
+        "When did you last check whether a snippet matched the query?"
+      ],
+      "whats_next": "Next, which engagement claims are still unconfirmed."
+    },
+    {
+      "lesson_id": "T50-4",
+      "title": "Confirmed vs. unconfirmed",
+      "est_minutes": 5,
+      "objectives": [
+        "List what the record confirms",
+        "Name popular claims the record doesn't support",
+        "Diagnose a traffic drop without guessing"
+      ],
+      "scene": {
+        "id": "ledger",
+        "title": "What's on the record",
+        "beats": [
+          {
+            "caption": "Confirmed: click data and user data are used in Search.",
+            "source_ids": [
+              "S306#P3",
+              "S306#P4",
+              "S307#P2"
+            ]
+          },
+          {
+            "caption": "Confirmed: Navboost is one factor, not the only one.",
+            "source_ids": [
+              "S306#P2"
+            ]
+          },
+          {
+            "caption": "Google's 'time to click' metric is from live experiments that test changes for everyone.",
+            "source_ids": [
+              "S308#P1",
+              "S308#P3"
+            ]
+          },
+          {
+            "caption": "Not in any saved source: dwell time or pogo-sticking as ranking signals, or one page's CTR lifting its rank.",
+            "source_ids": [
+              "S306#P2",
+              "S308#P1"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: find which queries lost clicks before blaming engagement.",
+            "source_ids": [
+              "S240#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What the record confirms",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says it uses aggregated and anonymized interaction data to assess relevance. At trial, Nayak agreed that 'user feedback' in a Google document meant click data, Lehman said user data is widely used within Search, and Nayak said Navboost is a factor but not the only one.",
+              "source_ids": [
+                "S240#P1",
+                "S306#P3",
+                "S306#P4",
+                "S307#P2",
+                "S306#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What it doesn't",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Several popular claims don't appear in any of the saved Google statements or trial passages.",
+              "source_ids": [
+                "S306#P2",
+                "S308#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Dwell time.",
+                  "text": "No saved source names it as a ranking signal. Google's 'how long it took to click' metric is about live experiments.",
+                  "source_ids": [
+                    "S308#P1",
+                    "S308#P3"
+                  ]
+                },
+                {
+                  "lead": "Pogo-sticking.",
+                  "text": "No saved source mentions it.",
+                  "source_ids": [
+                    "S306#P2"
+                  ]
+                },
+                {
+                  "lead": "Per-page CTR.",
+                  "text": "No saved source says one page's click-through rate lifts that page's own ranking.",
+                  "source_ids": [
+                    "S308#P1",
+                    "S240#P1"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "That's an absence in the saved sources, not proof these never matter. Treat them as hypotheses, and be wary of tools or widgets sold on them.",
+              "source_ids": [
+                "S306#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Diagnosing a drop",
+          "blocks": [
+            {
+              "type": "example",
+              "text": "Hypothetical: a garden shop's traffic falls after a redesign, and a consultant blames pogo-sticking and sells a time-on-page widget. First find which queries lost clicks, then compare what now ranks for them.",
+              "source_ids": [
+                "S306#P3",
+                "S307#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Query-level click data from Search Console shows where the loss happened. Start there instead of with an unconfirmed theory.",
+              "source_ids": [
+                "S240#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Click and user data are used: confirmed.",
+          "source_ids": [
+            "S306#P4",
+            "S307#P2"
+          ]
+        },
+        {
+          "text": "Navboost isn't the only factor.",
+          "source_ids": [
+            "S306#P2"
+          ]
+        },
+        {
+          "text": "Dwell time and pogo-sticking aren't in the saved record.",
+          "source_ids": [
+            "S308#P1"
+          ]
+        },
+        {
+          "text": "Diagnose drops with query-level clicks first.",
+          "source_ids": [
+            "S240#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Diagnose a drop",
+        "minutes": "15",
+        "steps": [
+          "Pick a page that lost traffic.",
+          "In Search Console, compare clicks by query before and after the drop.",
+          "For the top three losing queries, check what ranks now.",
+          "Write one sentence on the most likely cause, labelled as a hypothesis."
+        ],
+        "prompt_template": "My page lost traffic. Here are clicks by query for the four weeks before and after: [data], and the pages now ranking for the top losing queries: [list]. Help me find the most likely cause. Don't cite dwell time or pogo-sticking as confirmed signals; the saved trial record confirms that click data is used but not those."
+      },
+      "reflection": [
+        "Has anyone sold you an engagement fix based on dwell time?",
+        "Which drop on your site did you explain without checking queries?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google says it uses aggregated, anonymized interaction data to assess relevance, and live experiments measure what people click on. The US v. Google trial went further: a Google exhibit called click exploitation the major theme of ranking work, Navboost is a big table of click data, and Nayak agreed 'user feedback' meant clicks, while saying Navboost isn't the only factor. Research shows clicks are biased toward top results. Dwell time, pogo-sticking and per-page CTR effects appear in none of these sources, so diagnose drops with query-level data first.",
+    "related_topics": [
+      {
+        "topic_id": "T22",
+        "title": "Learning to Rank (RankNet, LambdaMART, LambdaLoss)"
+      },
+      {
+        "topic_id": "T43",
+        "title": "Neural ranking and semantic matching in Google (RankBrain, BERT, MUM)"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Clicks and engagement signals. The questions revisit Google's statements, the trial record and unconfirmed claims.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T50-L1-01",
+      "T50-L1-02",
+      "T50-L1-03",
+      "T50-L2-01",
+      "T50-L2-02",
+      "T50-L2-03",
+      "T50-L3-01",
+      "T50-L3-02",
+      "T50-L4-01",
+      "T50-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T50-L1-01",
+        "options": [
+          "A. Navboost",
+          "B. RankBrain",
+          "C. DeepRank",
+          "D. PageRank"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Nayak said Glue is just another name for Navboost that includes all of the other features on the page. Wrong: RankBrain, DeepRank and PageRank are other systems; DeepRank came up separately, as trained on user data.",
+        "source_ids": [
+          "S306#P1",
+          "S306#P5",
+          "S306#P6"
+        ]
+      },
+      {
+        "item_id": "T50-L1-03",
+        "options": [
+          "A. False, he called it a neural network",
+          "B. False, he said it doesn't exist",
+          "C. True",
+          "D. False, he called it a language model"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the Day 7 transcript has Lehman saying 'Navboost is not a machine learning system. It's just a big table.'",
+        "source_ids": [
+          "S307#P1"
+        ]
+      },
+      {
+        "item_id": "T50-L2-01",
+        "prompt": "Google's 'Rigorous testing' page says it reviews metrics such as what people click on in live experiments. What does that page support?",
+        "options": [
+          "A. Your page's CTR is a confirmed ranking factor",
+          "B. Click metrics help judge Search changes",
+          "C. Dwell time is a confirmed ranking signal here",
+          "D. Google does not run live experiments at all"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the page describes live experiments and a long list of metrics, such as what people click on, used to evaluate changes before launching them to everyone. Wrong: it describes evaluating changes, not per-page ranking; it mentions time to click, not dwell time; and it says experiments do run.",
+        "source_ids": [
+          "S308#P1",
+          "S308#P2",
+          "S308#P3"
+        ]
+      },
+      {
+        "item_id": "T50-L2-02",
+        "options": [
+          "A. False",
+          "B. True, both are named in testimony",
+          "C. True, Google's testing page lists them",
+          "D. True, but only dwell time"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the saved witness answers and exhibit passages mention clicks and user data, and none of the saved passages mention dwell time or pogo-sticking. That's an absence in what was saved, not proof they're never used.",
+        "source_ids": [
+          "S306#P3",
+          "S306#P4",
+          "S307#P2"
+        ]
+      }
+    ]
+  }
+}
