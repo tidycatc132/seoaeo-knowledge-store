@@ -1,0 +1,676 @@
+{
+  "topic_id": "T17",
+  "items_file": "bank/items/T17-ann-vector-search.json",
+  "course_title": "Vector databases and nearest-neighbour search",
+  "subtitle": "How vector search finds the closest matches fast enough to use, and what it gives up to do it.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain exact nearest-neighbour search and why it doesn't scale",
+    "Explain what approximate search trades for speed",
+    "Describe HNSW and IVFFlat in plain words",
+    "Tune and test an approximate index safely"
+  ],
+  "intro": [
+    "Vector search compares a query's embedding with stored embeddings and returns the closest ones. With a few thousand items you can compare against all of them. With millions, you need a shortcut.",
+    "This course uses the documentation for Elasticsearch and pgvector, and the original HNSW research paper.",
+    "These are database behaviours. They show how vector tools work, not what any web search engine runs. Advice beyond the documentation is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T17-1",
+      "title": "Exact search",
+      "est_minutes": 4,
+      "objectives": [
+        "Define k-nearest-neighbour search",
+        "Explain why exact search is accurate but slow at scale",
+        "Name pgvector's default search"
+      ],
+      "scene": {
+        "id": "exact",
+        "title": "Check every point",
+        "beats": [
+          {
+            "caption": "kNN search finds the k nearest vectors to a query vector.",
+            "source_ids": [
+              "S218#P4"
+            ]
+          },
+          {
+            "caption": "Exact, brute-force kNN scores every matching document.",
+            "source_ids": [
+              "S218#P2"
+            ]
+          },
+          {
+            "caption": "That guarantees accurate results, but does not scale well for large datasets.",
+            "source_ids": [
+              "S218#P2"
+            ]
+          },
+          {
+            "caption": "pgvector performs exact nearest neighbour search by default, which provides perfect recall.",
+            "source_ids": [
+              "S217#P7"
+            ]
+          },
+          {
+            "caption": "Filtering your data to a small subset of documents can improve exact kNN latency.",
+            "source_ids": [
+              "S218#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What kNN means",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Elastic describes kNN search as finding the k nearest vectors to a query vector. Ask for k = 10 and you get the ten closest.",
+              "source_ids": [
+                "S218#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The simplest way is exact, or brute-force, search. Elastic says it scores every matching document, which guarantees accurate results but does not scale well for large datasets.",
+              "source_ids": [
+                "S218#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where exact search fits",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "pgvector's default.",
+                  "text": "By default, pgvector performs exact nearest neighbor search, which provides perfect recall.",
+                  "source_ids": [
+                    "S217#P7"
+                  ]
+                },
+                {
+                  "lead": "Small subsets.",
+                  "text": "Elastic says you can improve latency by filtering your data to a small subset of documents.",
+                  "source_ids": [
+                    "S218#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Exact search is a good starting point for a small site search or RAG prototype. It also gives you the right answers to compare an approximate index against later."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "kNN search finds the k nearest vectors to a query.",
+          "source_ids": [
+            "S218#P4"
+          ]
+        },
+        {
+          "text": "Exact search scores every matching document: accurate, but slow at scale.",
+          "source_ids": [
+            "S218#P2"
+          ]
+        },
+        {
+          "text": "pgvector runs exact search by default, with perfect recall.",
+          "source_ids": [
+            "S217#P7"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Size your search",
+        "minutes": "5",
+        "steps": [
+          "Count how many items your vector search holds, or will hold.",
+          "Note how fast results need to come back.",
+          "Check whether queries usually filter to a small subset.",
+          "Decide whether exact search is enough for now."
+        ],
+        "prompt_template": "My vector search holds about [number] items, needs results in under [time], and usually filters by [filter]. Elastic says exact kNN scores every matching document, which guarantees accurate results but does not scale well for large datasets, and that filtering to a small subset can improve latency. Help me judge whether exact search is enough for now, labelling your reasoning as practitioner judgement."
+      },
+      "reflection": [
+        "At what size would checking every item become a problem for you?",
+        "Why is perfect recall useful even if you later switch to approximate search?"
+      ],
+      "whats_next": "Next, approximate search and what it trades."
+    },
+    {
+      "lesson_id": "T17-2",
+      "title": "Approximate search",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain how approximate search saves time",
+        "Name the trade-off it makes",
+        "Expect results to change after adding an index"
+      ],
+      "scene": {
+        "id": "approx",
+        "title": "Check the likely points",
+        "beats": [
+          {
+            "caption": "Approximate kNN narrows the search to likely matches instead of scoring every document.",
+            "source_ids": [
+              "S218#P3"
+            ]
+          },
+          {
+            "caption": "That reduces latency on large datasets.",
+            "source_ids": [
+              "S218#P3"
+            ]
+          },
+          {
+            "caption": "The price: an approximate index trades some recall for speed.",
+            "source_ids": [
+              "S217#P6"
+            ]
+          },
+          {
+            "caption": "Elastic says it's best for most production workloads where low latency and scale matter more than perfect recall.",
+            "source_ids": [
+              "S218#P1"
+            ]
+          },
+          {
+            "caption": "Unlike typical indexes, you will see different results for queries after adding an approximate index.",
+            "source_ids": [
+              "S217#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The shortcut",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Elastic says approximate kNN narrows the search to likely matches instead of scoring every document, reducing latency on large datasets.",
+              "source_ids": [
+                "S218#P3"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "You can add an index to use approximate nearest neighbor search, which trades some recall for speed.",
+              "cite": "pgvector README",
+              "source_ids": [
+                "S217#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Living with the trade",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Elastic recommends approximate kNN for most production workloads where low latency and scale matter more than perfect recall.",
+              "source_ids": [
+                "S218#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "pgvector README",
+              "text": "Unlike typical indexes, you will see different results for queries after adding an approximate index.",
+              "source_ids": [
+                "S217#P8"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Recall here means how many of the true nearest neighbours come back. Measure it on your own queries before and after adding the index."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Approximate search checks likely matches, not every document.",
+          "source_ids": [
+            "S218#P3"
+          ]
+        },
+        {
+          "text": "It trades some recall for speed.",
+          "source_ids": [
+            "S217#P6"
+          ]
+        },
+        {
+          "text": "It suits workloads where speed and scale matter more than perfect recall.",
+          "source_ids": [
+            "S218#P1"
+          ]
+        },
+        {
+          "text": "Results can change once you add an approximate index.",
+          "source_ids": [
+            "S217#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Build a recall check",
+        "minutes": "15",
+        "steps": [
+          "Write ten real questions your users ask.",
+          "Run them with exact search and save the top 10 results for each.",
+          "After adding an approximate index, run them again.",
+          "Count how many of the saved results still appear."
+        ],
+        "prompt_template": "I ran [number] test queries with exact search and then with an approximate index. Here are both result lists: [paste]. The pgvector README says an approximate index trades some recall for speed and that results can change after adding one. Work out the share of exact results each approximate list kept, and flag queries where the loss matters for users."
+      },
+      "reflection": [
+        "Which of your queries could tolerate missing one good result, and which couldn't?",
+        "Who would notice first if recall dropped?"
+      ],
+      "whats_next": "Next, how HNSW and IVFFlat decide which points are likely."
+    },
+    {
+      "lesson_id": "T17-3",
+      "title": "HNSW and IVFFlat",
+      "est_minutes": 6,
+      "objectives": [
+        "Describe HNSW's layered graph",
+        "Describe IVFFlat's lists",
+        "Compare their costs in pgvector"
+      ],
+      "scene": {
+        "id": "hnsw",
+        "title": "Layers and lists",
+        "beats": [
+          {
+            "caption": "HNSW builds a multi-layer structure from a hierarchical set of proximity graphs (layers).",
+            "source_ids": [
+              "S219#P2"
+            ]
+          },
+          {
+            "caption": "Each element's top layer is selected randomly with an exponentially decaying probability, so upper layers are sparse.",
+            "source_ids": [
+              "S219#P3"
+            ]
+          },
+          {
+            "caption": "The paper says this design allows a logarithmic complexity scaling.",
+            "source_ids": [
+              "S219#P4"
+            ]
+          },
+          {
+            "caption": "IVFFlat divides vectors into lists, then searches a subset of those lists that are closest to the query vector.",
+            "source_ids": [
+              "S217#P12"
+            ]
+          },
+          {
+            "caption": "In pgvector, HNSW has the better speed-recall trade-off, but slower build times and more memory.",
+            "source_ids": [
+              "S217#P10",
+              "S217#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "HNSW: a graph with layers",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The HNSW paper describes a method that incrementally builds a multi-layer structure consisting of a hierarchical set of proximity graphs, or layers. Each element's top layer is selected randomly with an exponentially decaying probability distribution.",
+              "source_ids": [
+                "S219#P2",
+                "S219#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The authors say this design allows a logarithmic complexity scaling. pgvector puts it simply: an HNSW index creates a multilayer graph.",
+              "source_ids": [
+                "S219#P4",
+                "S217#P9"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Plain words",
+              "text": "Few points sit in the top layer, so a search can take big jumps there, then drop to busier layers to home in. This picture is our summary, not the paper's wording."
+            }
+          ]
+        },
+        {
+          "heading": "IVFFlat: lists",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "pgvector says an IVFFlat index divides vectors into lists, and then searches a subset of those lists that are closest to the query vector.",
+              "source_ids": [
+                "S217#P12"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "HNSW",
+                  "text": "Better query performance than IVFFlat in terms of speed-recall trade-off, but slower build times and more memory.",
+                  "source_ids": [
+                    "S217#P10",
+                    "S217#P11"
+                  ]
+                },
+                {
+                  "name": "IVFFlat",
+                  "text": "Searches only the lists closest to the query. The number of lists probed is a search setting.",
+                  "source_ids": [
+                    "S217#P12"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "HNSW stacks proximity graphs in layers.",
+          "source_ids": [
+            "S219#P2"
+          ]
+        },
+        {
+          "text": "Its paper claims logarithmic complexity scaling.",
+          "source_ids": [
+            "S219#P4"
+          ]
+        },
+        {
+          "text": "IVFFlat splits vectors into lists and searches the closest few.",
+          "source_ids": [
+            "S217#P12"
+          ]
+        },
+        {
+          "text": "In pgvector, HNSW trades build time and memory for a better speed-recall balance.",
+          "source_ids": [
+            "S217#P10",
+            "S217#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Pick an index",
+        "minutes": "10",
+        "steps": [
+          "Note how often your vectors change and how much memory you have.",
+          "Note how fast queries must be.",
+          "Compare those needs with HNSW's and IVFFlat's costs.",
+          "Write down which you'd test first and why."
+        ],
+        "prompt_template": "My vector search has [number] vectors, updates [how often], runs on [memory], and needs results in [time]. The pgvector README says HNSW has better query performance than IVFFlat in terms of speed-recall trade-off, but slower build times and more memory, and that IVFFlat divides vectors into lists and searches the closest ones. Which should I test first? Label your recommendation as practitioner judgement."
+      },
+      "reflection": [
+        "Why would a layered graph help a search find its way quickly?",
+        "When would slower index builds be a real problem for your team?"
+      ],
+      "whats_next": "Next, tuning settings and testing them safely."
+    },
+    {
+      "lesson_id": "T17-4",
+      "title": "Tuning and testing",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain what ef_search and m control",
+        "Spot the filtering trap",
+        "Set up a simple test routine"
+      ],
+      "scene": {
+        "id": "tune",
+        "title": "Turning the dial",
+        "beats": [
+          {
+            "caption": "hnsw.ef_search sets the size of the dynamic candidate list for search. It's 40 by default.",
+            "source_ids": [
+              "S217#P13"
+            ]
+          },
+          {
+            "caption": "A higher value provides better recall at the cost of speed.",
+            "source_ids": [
+              "S217#P14"
+            ]
+          },
+          {
+            "caption": "Filtering is applied after the index is scanned, so filtered queries can return fewer results.",
+            "source_ids": [
+              "S217#P16"
+            ]
+          },
+          {
+            "caption": "At build time, m sets the max number of connections per layer: 16 by default.",
+            "source_ids": [
+              "S217#P15"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: keep a fixed set of test queries, and re-run them after every index or setting change.",
+            "source_ids": [
+              "S217#P8"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The settings",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "hnsw.ef_search.",
+                  "text": "The size of the dynamic candidate list for search, 40 by default. A higher value provides better recall at the cost of speed.",
+                  "source_ids": [
+                    "S217#P13",
+                    "S217#P14"
+                  ]
+                },
+                {
+                  "lead": "m.",
+                  "text": "The max number of connections per layer, 16 by default.",
+                  "source_ids": [
+                    "S217#P15"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The filtering trap",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The README warns that with approximate indexes, queries with filtering can return less results, since filtering is applied after the index is scanned.",
+              "source_ids": [
+                "S217#P16"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A shop asks for 10 in-stock products. The index finds 40 candidates, but most are out of stock, and only 3 survive the filter. Raising ef_search gives the filter more candidates to work with, at some cost in speed (practitioner inference).",
+              "source_ids": [
+                "S217#P16",
+                "S217#P13",
+                "S217#P14"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "A test routine",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this routine whenever you add an index or change a setting, because results can change.",
+              "source_ids": [
+                "S217#P8"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Fix your questions.",
+                  "text": "Keep a list of real queries with known good answers. This is practitioner judgement."
+                },
+                {
+                  "lead": "Compare with exact.",
+                  "text": "Exact search provides perfect recall, so use it as the answer key.",
+                  "source_ids": [
+                    "S217#P7"
+                  ]
+                },
+                {
+                  "lead": "Change one setting.",
+                  "text": "For example, raise ef_search; a higher value gives better recall at the cost of speed.",
+                  "source_ids": [
+                    "S217#P14"
+                  ]
+                },
+                {
+                  "lead": "Check filtered queries.",
+                  "text": "Filtering after the index scan can return fewer results.",
+                  "source_ids": [
+                    "S217#P16"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "ef_search (default 40) trades speed for recall at query time.",
+          "source_ids": [
+            "S217#P13",
+            "S217#P14"
+          ]
+        },
+        {
+          "text": "m (default 16) sets connections per layer when building.",
+          "source_ids": [
+            "S217#P15"
+          ]
+        },
+        {
+          "text": "Filters run after the index scan and can shrink results.",
+          "source_ids": [
+            "S217#P16"
+          ]
+        },
+        {
+          "text": "Test with fixed queries against exact search after each change.",
+          "source_ids": [
+            "S217#P7",
+            "S217#P8"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Tune one setting",
+        "minutes": "15",
+        "steps": [
+          "Pick five test queries, including one with a filter.",
+          "Record results and timing at the default ef_search.",
+          "Raise ef_search and run them again.",
+          "Note what changed in recall and speed."
+        ],
+        "prompt_template": "Here are my results and timings for [number] queries at hnsw.ef_search = 40 and at [new value]: [paste]. The pgvector README says ef_search sets the size of the dynamic candidate list for search, that a higher value provides better recall at the cost of speed, and that filtering is applied after the index is scanned. Summarise the trade-off I'm seeing and suggest a value to test next."
+      },
+      "reflection": [
+        "Which of your queries use filters that remove most items?",
+        "How much extra waiting would your users accept for better results?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "kNN search finds the k nearest vectors to a query. Exact search scores every matching document, so it's accurate but doesn't scale well; pgvector uses it by default. Approximate search narrows to likely matches and trades some recall for speed, and results can change once you add an index. HNSW stacks proximity graphs in layers; IVFFlat searches the closest lists. Settings like ef_search raise recall at the cost of speed, and filters applied after the scan can shrink results, so test against exact search after every change.",
+    "related_topics": [
+      {
+        "topic_id": "T16",
+        "title": "Vector distance metrics"
+      },
+      {
+        "topic_id": "T18",
+        "title": "Dense retrieval and bi-encoders"
+      },
+      {
+        "topic_id": "T2",
+        "title": "Vector space model"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Vector databases and nearest-neighbour search. The questions revisit exact and approximate search, HNSW and tuning.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T17-L1-01",
+      "T17-L1-02",
+      "T17-L1-03",
+      "T17-L2-01",
+      "T17-L2-02",
+      "T17-L2-03",
+      "T17-L3-01",
+      "T17-L3-02",
+      "T17-L4-01",
+      "T17-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T17-L1-01",
+        "prompt": "Elastic's exact kNN scores every matching document. What downside does Elastic name?",
+        "options": [
+          "A. It doesn't scale well for large datasets",
+          "B. It can't guarantee accurate results at all",
+          "C. It only works with the dot_product setting",
+          "D. It returns fewer than k results every time"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Elastic says exact kNN guarantees accurate results but does not scale well for large datasets. Wrong: accuracy is its strength, and no metric or result-count limit is stated.",
+        "source_ids": [
+          "S218#P2",
+          "S218#P1"
+        ]
+      }
+    ]
+  }
+}
