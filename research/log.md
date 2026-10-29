@@ -76,3 +76,4 @@
 2026-10-29 | course-build | T29 | sources added 0 (S017 +P7-P12, S018 +P3-P7) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T32 | sources added 0 (S104 +P12-P17) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T39 | sources added 0 (S100 +P11-P17) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T40 | sources added 0 (S105 +P8-P15) | course lesson layer + 4 scenes | cut 0

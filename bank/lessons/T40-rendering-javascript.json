@@ -1,0 +1,749 @@
+{
+  "topic_id": "T40",
+  "items_file": "bank/items/T40-rendering-javascript.json",
+  "course_title": "Rendering and JavaScript indexing",
+  "subtitle": "How Google crawls, renders and indexes JavaScript pages, and the link, URL, status code and noindex habits that keep JavaScript sites findable.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Describe Google's crawl, render and index phases",
+    "Build links and URLs Google can follow",
+    "Send clear status and noindex signals from JavaScript apps",
+    "Check what Google actually sees on a page"
+  ],
+  "intro": [
+    "Many modern sites build their pages with JavaScript in the browser. Google can run that JavaScript, but it does so in a separate step, and some common patterns hide links or content from it.",
+    "This course uses Google's JavaScript SEO basics guide and its page on fixing Search-related JavaScript problems.",
+    "Advice beyond what Google says is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T40-1",
+      "title": "Crawl, render, index",
+      "est_minutes": 5,
+      "objectives": [
+        "Name Google's three phases for JavaScript pages",
+        "Explain the render queue",
+        "Explain why links are found again after rendering"
+      ],
+      "scene": {
+        "id": "phases",
+        "title": "Two passes over one page",
+        "beats": [
+          {
+            "caption": "Google processes JavaScript web apps in three main phases: crawling, rendering and indexing.",
+            "source_ids": [
+              "S105#P1",
+              "S105#P7"
+            ]
+          },
+          {
+            "caption": "When Googlebot fetches a URL, it first checks if you allow crawling.",
+            "source_ids": [
+              "S105#P8"
+            ]
+          },
+          {
+            "caption": "Googlebot queues all pages with a 200 HTTP status code for rendering.",
+            "source_ids": [
+              "S105#P9",
+              "S105#P2"
+            ]
+          },
+          {
+            "caption": "A page may stay on this queue for a few seconds, or longer. Once Google's resources allow, a headless Chromium renders it.",
+            "source_ids": [
+              "S105#P10",
+              "S105#P3"
+            ]
+          },
+          {
+            "caption": "Googlebot parses the rendered HTML for links again and queues the URLs it finds for crawling.",
+            "source_ids": [
+              "S105#P15"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Three phases",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says it processes JavaScript web apps in three main phases: crawling, rendering and indexing. When Googlebot fetches a URL, it first checks if you allow crawling.",
+              "source_ids": [
+                "S105#P1",
+                "S105#P7",
+                "S105#P8"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Googlebot queues pages for both crawling and rendering. It queues all pages with a 200 HTTP status code for rendering, and a page may stay on this queue for a few seconds, but it can take longer than that.",
+              "source_ids": [
+                "S105#P2",
+                "S105#P9",
+                "S105#P10"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "Once Google's resources allow, a headless Chromium renders the page and executes the JavaScript.",
+              "cite": "Google, Understand JavaScript SEO basics",
+              "source_ids": [
+                "S105#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Links found after rendering",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "After rendering, Googlebot parses the rendered HTML for links again and queues the URLs it finds for crawling.",
+              "source_ids": [
+                "S105#P15"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a product list is built by JavaScript. The raw HTML has no product links. Google can only find them after the page is rendered, so it depends on the render step.",
+              "source_ids": [
+                "S105#P15",
+                "S105#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Content and links in the first HTML response don't wait for rendering. Put the most important ones there when you can."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google crawls, renders and indexes JavaScript pages.",
+          "source_ids": [
+            "S105#P1",
+            "S105#P7"
+          ]
+        },
+        {
+          "text": "Pages with a 200 status are queued for rendering.",
+          "source_ids": [
+            "S105#P9"
+          ]
+        },
+        {
+          "text": "A headless Chromium renders them once resources allow.",
+          "source_ids": [
+            "S105#P3"
+          ]
+        },
+        {
+          "text": "Links in the rendered HTML are queued for crawling.",
+          "source_ids": [
+            "S105#P15"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Compare raw and rendered",
+        "minutes": "10",
+        "steps": [
+          "Open one important page and view its source (the raw HTML).",
+          "Note whether the main text and links are there.",
+          "Inspect the same page in the browser's developer tools (the rendered DOM).",
+          "List what appears only after JavaScript runs."
+        ],
+        "prompt_template": "Here's the raw HTML of my page [paste or summarise] and what appears after JavaScript runs [paste or summarise]. Google says it renders pages in a separate step once resources allow, then parses the rendered HTML for links again. List the content and links that depend on rendering and suggest which to move into the raw HTML first, labelled as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your key pages depend on JavaScript for their main content?",
+        "What would happen to new pages if rendering were delayed?"
+      ],
+      "whats_next": "Next, links and URLs that Google can follow."
+    },
+    {
+      "lesson_id": "T40-2",
+      "title": "Links and URLs Google can follow",
+      "est_minutes": 5,
+      "objectives": [
+        "Write links Google can discover",
+        "Explain the problem with fragment-based content",
+        "Use the History API for app routes"
+      ],
+      "scene": {
+        "id": "links",
+        "title": "Real links, real URLs",
+        "beats": [
+          {
+            "caption": "Google can discover links that are <a> HTML elements with an href attribute.",
+            "source_ids": [
+              "S105#P5"
+            ]
+          },
+          {
+            "caption": "A <div> with a click handler and no href isn't in that list.",
+            "source_ids": [
+              "S105#P5"
+            ]
+          },
+          {
+            "caption": "Don't use fragments to load different page content.",
+            "source_ids": [
+              "S105#P6"
+            ]
+          },
+          {
+            "caption": "Use the History API instead of fragments.",
+            "source_ids": [
+              "S105#P13"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: give every view you want found its own path and a real <a href> link to it.",
+            "source_ids": [
+              "S105#P5",
+              "S105#P13"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Links",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's JavaScript guide says it can discover links that are <a> HTML elements with an href attribute.",
+              "source_ids": [
+                "S105#P5"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: <a href=\"/sofas/grey-3-seat\">Grey 3-seat</a> is a link Google can follow. <div onclick=\"go('grey-3-seat')\">Grey 3-seat</div> isn't the kind of link Google lists.",
+              "source_ids": [
+                "S105#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "URLs",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says don't use fragments to load different page content, and use the History API instead of fragments.",
+              "source_ids": [
+                "S105#P6",
+                "S105#P13"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Fragment route",
+                  "text": "example.com/#/sofas — different content behind a # fragment, which Google says not to use for loading different page content.",
+                  "source_ids": [
+                    "S105#P6"
+                  ]
+                },
+                {
+                  "name": "History API route",
+                  "text": "example.com/sofas — a real path, which is what Google recommends using instead of fragments.",
+                  "source_ids": [
+                    "S105#P13"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Not a contradiction",
+              "text": "Fragments are fine for filters you don't want crawled, as in the faceted navigation course. The problem is using them for content you do want found.",
+              "source_ids": [
+                "S104#P5",
+                "S105#P6"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google discovers <a> elements with an href attribute.",
+          "source_ids": [
+            "S105#P5"
+          ]
+        },
+        {
+          "text": "Don't use fragments to load different page content.",
+          "source_ids": [
+            "S105#P6"
+          ]
+        },
+        {
+          "text": "Use the History API instead of fragments.",
+          "source_ids": [
+            "S105#P13"
+          ]
+        },
+        {
+          "text": "Click handlers without href aren't the links Google lists.",
+          "source_ids": [
+            "S105#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit your navigation",
+        "minutes": "10",
+        "steps": [
+          "Open your main menu and a category page in developer tools.",
+          "Check each navigation item for an <a> element with an href.",
+          "Check whether any routes use # to show different content.",
+          "List the items that need fixing."
+        ],
+        "prompt_template": "Here's the HTML of my site's navigation and one category page: [paste]. Google says it discovers <a> elements with an href attribute, says not to use fragments to load different page content, and recommends the History API instead. List every link or route that doesn't meet that, and show the fixed HTML for one example."
+      },
+      "reflection": [
+        "Does your framework output real <a href> links by default?",
+        "Which of your views would someone want to land on from search?"
+      ],
+      "whats_next": "Next, status codes, noindex and soft 404s in JavaScript apps."
+    },
+    {
+      "lesson_id": "T40-3",
+      "title": "Status codes and noindex",
+      "est_minutes": 5,
+      "objectives": [
+        "Use meaningful status codes",
+        "Explain the noindex rendering trap",
+        "Fix soft 404s in single-page apps"
+      ],
+      "scene": {
+        "id": "signals",
+        "title": "Say it in the first response",
+        "beats": [
+          {
+            "caption": "To tell Googlebot a page can't be crawled or indexed, use a meaningful status code.",
+            "source_ids": [
+              "S105#P12"
+            ]
+          },
+          {
+            "caption": "When Google encounters the noindex tag, it may skip rendering.",
+            "source_ids": [
+              "S105#P4"
+            ]
+          },
+          {
+            "caption": "So a script meant to remove noindex after load may never run.",
+            "source_ids": [
+              "S105#P4"
+            ]
+          },
+          {
+            "caption": "For a JavaScript \"not found\" view served with 200, one fix is to redirect to a URL where the server responds with a 404.",
+            "source_ids": [
+              "S121#P1"
+            ]
+          },
+          {
+            "caption": "The other is to add or change the robots meta tag to noindex.",
+            "source_ids": [
+              "S121#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Signals in the first response",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that to tell Googlebot if a page can't be crawled or indexed, you should use a meaningful status code.",
+              "source_ids": [
+                "S105#P12"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "The noindex trap",
+              "text": "When Google encounters the noindex tag, it may skip rendering. A script that removes noindex after load depends on rendering, so it may never run.",
+              "source_ids": [
+                "S105#P4"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a template ships <meta name=\"robots\" content=\"noindex\"> and a script deletes it in production. New landing pages stay out of search because the tag is in the initial HTML.",
+              "source_ids": [
+                "S105#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Soft 404s in single-page apps",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's JavaScript troubleshooting page gives two fixes when a single-page app shows a 'not found' view but the server returns 200.",
+              "source_ids": [
+                "S121#P1",
+                "S121#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Redirect.",
+                  "text": "Redirect to a URL where the server responds with a 404 status code.",
+                  "source_ids": [
+                    "S121#P1"
+                  ]
+                },
+                {
+                  "lead": "Or noindex.",
+                  "text": "Add or change the robots meta tag to noindex.",
+                  "source_ids": [
+                    "S121#P2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Use meaningful status codes for pages that can't be crawled or indexed.",
+          "source_ids": [
+            "S105#P12"
+          ]
+        },
+        {
+          "text": "Google may skip rendering when it sees noindex.",
+          "source_ids": [
+            "S105#P4"
+          ]
+        },
+        {
+          "text": "Don't rely on JavaScript to remove noindex.",
+          "source_ids": [
+            "S105#P4"
+          ]
+        },
+        {
+          "text": "For SPA soft 404s, redirect to a real 404 or add noindex.",
+          "source_ids": [
+            "S121#P1",
+            "S121#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Test a missing URL",
+        "minutes": "10",
+        "steps": [
+          "Type a made-up URL on your site, such as /this-page-does-not-exist.",
+          "Check the HTTP status code it returns.",
+          "Check the page source for a robots meta tag.",
+          "Decide which of Google's two fixes fits your app."
+        ],
+        "prompt_template": "On my JavaScript site, a made-up URL returns status [code] and shows [describe page]. The initial HTML [does / doesn't] include a robots meta tag. Google says to use meaningful status codes, that it may skip rendering when it sees noindex, and that SPA soft 404s can redirect to a URL returning 404 or add noindex. Tell me which fix to use and how to implement it in [framework]."
+      },
+      "reflection": [
+        "Where in your build could a staging noindex leak into production?",
+        "Which is easier in your stack: a real 404 or a noindex tag?"
+      ],
+      "whats_next": "Next, checking what Google actually sees."
+    },
+    {
+      "lesson_id": "T40-4",
+      "title": "Checking what Google sees",
+      "est_minutes": 5,
+      "objectives": [
+        "Check rendered HTML for key content",
+        "Avoid content behind permission prompts",
+        "Decide when to render on the server"
+      ],
+      "scene": {
+        "id": "check",
+        "title": "Look at the rendered page",
+        "beats": [
+          {
+            "caption": "Use Google's tools to check if the rendered HTML has all content you expect.",
+            "source_ids": [
+              "S121#P3"
+            ]
+          },
+          {
+            "caption": "Expect Googlebot to decline user permission requests, such as location or notifications.",
+            "source_ids": [
+              "S121#P4"
+            ]
+          },
+          {
+            "caption": "You can use JavaScript to set or change the meta description and the <title> element.",
+            "source_ids": [
+              "S105#P14"
+            ]
+          },
+          {
+            "caption": "Server-side or pre-rendering is still a great idea because it makes your website faster.",
+            "source_ids": [
+              "S105#P11"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: compare raw and rendered HTML for your key content and links on every major template.",
+            "source_ids": [
+              "S121#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Check the rendered HTML",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's troubleshooting page says to use its testing tools to check if the rendered HTML has all content you expect, and to expect Googlebot to decline user permission requests.",
+              "source_ids": [
+                "S121#P3",
+                "S121#P4"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a store locator shows nearby branches only after the visitor allows location access. Googlebot declines the request, so the branch list may never appear in the rendered HTML.",
+              "source_ids": [
+                "S121#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Titles and server rendering",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says you can use JavaScript to set or change the meta description as well as the <title> element. It also says server-side or pre-rendering is still a great idea because it makes your website faster.",
+              "source_ids": [
+                "S105#P14",
+                "S105#P11"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Use this checklist on each major page template.",
+              "source_ids": [
+                "S121#P3"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Content.",
+                  "text": "Check the rendered HTML has all the content you expect.",
+                  "source_ids": [
+                    "S121#P3"
+                  ]
+                },
+                {
+                  "lead": "Links.",
+                  "text": "Check navigation uses <a> elements with an href attribute.",
+                  "source_ids": [
+                    "S105#P5"
+                  ]
+                },
+                {
+                  "lead": "Permissions.",
+                  "text": "Don't hide content behind location or notification prompts; Googlebot declines them.",
+                  "source_ids": [
+                    "S121#P4"
+                  ]
+                },
+                {
+                  "lead": "Speed.",
+                  "text": "Consider server-side or pre-rendering, which Google says makes your site faster.",
+                  "source_ids": [
+                    "S105#P11"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Check the rendered HTML has all the content you expect.",
+          "source_ids": [
+            "S121#P3"
+          ]
+        },
+        {
+          "text": "Googlebot declines user permission requests.",
+          "source_ids": [
+            "S121#P4"
+          ]
+        },
+        {
+          "text": "JavaScript can set the title and meta description.",
+          "source_ids": [
+            "S105#P14"
+          ]
+        },
+        {
+          "text": "Server-side or pre-rendering makes sites faster.",
+          "source_ids": [
+            "S105#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Inspect one template",
+        "minutes": "15",
+        "steps": [
+          "Pick a key template, such as a product or article page.",
+          "Run a live test in Search Console's URL Inspection tool.",
+          "Compare the rendered HTML with what a visitor sees.",
+          "List anything missing and its likely cause."
+        ],
+        "prompt_template": "Here's the rendered HTML from Google's URL Inspection tool for my [template] page: [paste], and here's what visitors see: [describe]. Google says to check the rendered HTML has all expected content and to expect Googlebot to decline permission requests. List what's missing, its likely cause, and a fix for each item."
+      },
+      "reflection": [
+        "Which template would you check first, and why?",
+        "Would server-side rendering be a big change for your stack?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google crawls, renders and indexes JavaScript pages: pages with a 200 status are queued, rendered by a headless Chromium once resources allow, and their rendered links are queued for crawling. Use <a href> links and real paths via the History API, not fragments, for content you want found. Send meaningful status codes, and don't rely on JavaScript to remove noindex, because Google may skip rendering. For soft 404s, redirect to a real 404 or add noindex. Check the rendered HTML, avoid content behind permission prompts, and consider server-side rendering.",
+    "related_topics": [
+      {
+        "topic_id": "T39",
+        "title": "Web crawling and crawl budget management"
+      },
+      {
+        "topic_id": "T32",
+        "title": "Faceted navigation and crawl traps"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Rendering and JavaScript indexing. The questions revisit the three phases, links and URLs, noindex and soft 404s, and checking rendered pages.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T40-L1-01",
+      "T40-L1-02",
+      "T40-L1-03",
+      "T40-L2-01",
+      "T40-L2-02",
+      "T40-L2-03",
+      "T40-L3-01",
+      "T40-L3-02",
+      "T40-L4-01",
+      "T40-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T40-L1-01",
+        "prompt": "Google processes JavaScript web apps in three main phases: crawling, ___ and indexing. Which word fills the blank?",
+        "options": [
+          "A. rendering",
+          "B. ranking",
+          "C. caching",
+          "D. canonicalising"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says it processes JavaScript web apps in three main phases: crawling, rendering and indexing. Wrong: ranking, caching and canonicalising aren't the middle phase it names.",
+        "source_ids": [
+          "S105#P1",
+          "S105#P7"
+        ]
+      },
+      {
+        "item_id": "T40-L1-03",
+        "prompt": "What does Google say happens to a queued JavaScript page once Google's resources allow?",
+        "options": [
+          "A. The page is ranked by its raw HTML only",
+          "B. A headless Chromium renders the page",
+          "C. The site's sitemap is regenerated",
+          "D. Googlebot requests user permissions"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says that once its resources allow, a headless Chromium renders the page and executes the JavaScript. Wrong: none of the other steps is described.",
+        "source_ids": [
+          "S105#P3"
+        ]
+      },
+      {
+        "item_id": "T40-L2-01",
+        "prompt": "Why might JavaScript that removes a noindex tag not work as intended? When Google encounters noindex, it may ___ rendering.",
+        "options": [
+          "A. skip",
+          "B. speed up",
+          "C. repeat",
+          "D. prioritise"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google says that when it encounters the noindex tag, it may skip rendering, so JavaScript that would remove the tag may never run. Wrong: the other words aren't what Google says.",
+        "source_ids": [
+          "S105#P4"
+        ]
+      },
+      {
+        "item_id": "T40-L2-02",
+        "prompt": "What does Google say to expect when a page asks Googlebot for a permission, such as location or notifications?",
+        "options": [
+          "A. Googlebot accepts every prompt",
+          "B. Googlebot declines it",
+          "C. Googlebot asks the site owner",
+          "D. Googlebot waits for a human"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says to expect Googlebot to decline user permission requests, so content behind such a prompt may not be seen. Wrong: the other behaviours aren't described.",
+        "source_ids": [
+          "S121#P4"
+        ]
+      },
+      {
+        "item_id": "T40-L3-01",
+        "prompt": "Hypothetical single-page app: a mistyped URL shows a 'not found' message built by JavaScript, but the server returns 200. One of Google's two fixes is to set the robots meta tag to which value?",
+        "options": [
+          "A. noindex",
+          "B. nosnippet-only",
+          "C. follow",
+          "D. max-image-preview"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google's troubleshooting page gives two strategies: redirect to a URL where the server responds with a 404, or add or change the robots meta tag to noindex. Wrong: the other values aren't the fix it names.",
+        "source_ids": [
+          "S121#P1",
+          "S121#P2"
+        ]
+      }
+    ]
+  }
+}
