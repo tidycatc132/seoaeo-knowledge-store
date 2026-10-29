@@ -1,0 +1,825 @@
+{
+  "topic_id": "T8",
+  "items_file": "bank/items/T8-tokenization-normalization.json",
+  "course_title": "Tokenization and normalization",
+  "subtitle": "How search systems chop text into tokens, fold variants together, and why that means you don't need to repeat every form of a keyword.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Tell tokens, types and terms apart",
+    "Explain normalization, including case-folding and hyphens",
+    "Describe stop words, stemming and lemmatization and their trade-offs",
+    "Write and test content and site search with normalization in mind"
+  ],
+  "intro": [
+    "Before a search system can index a page, it has to decide what the words are. Is \"T-shirt\" one word or two? Is \"Shoes\" the same as \"shoe\"? Those small choices decide whether a search finds your page.",
+    "This course walks through the steps the Stanford textbook Introduction to Information Retrieval describes: tokenizing, normalizing, stop words, stemming and lemmatization.",
+    "Google doesn't publish exactly how it processes words, so where the course draws lessons for SEO, they're labelled practitioner judgement. One thing Google is clear about: repeating words unnaturally is keyword stuffing."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T8-1",
+      "title": "Tokens, types and terms",
+      "est_minutes": 5,
+      "objectives": [
+        "Define tokenization",
+        "Tell a token, a type and a term apart",
+        "Spot text that's hard to tokenize"
+      ],
+      "scene": {
+        "id": "tokens",
+        "title": "Chopping up a sentence",
+        "beats": [
+          {
+            "caption": "Tokenization is the task of chopping text up into pieces, called tokens.",
+            "source_ids": [
+              "S109#P4"
+            ]
+          },
+          {
+            "caption": "A token is an instance of a sequence of characters in some particular document. The example sentence has five tokens.",
+            "source_ids": [
+              "S109#P1"
+            ]
+          },
+          {
+            "caption": "A type is the class of all tokens containing the same character sequence. \"to\" appears twice but is one type.",
+            "source_ids": [
+              "S109#P2"
+            ]
+          },
+          {
+            "caption": "A term is a (perhaps normalized) type that is included in the system's dictionary.",
+            "source_ids": [
+              "S109#P3"
+            ]
+          },
+          {
+            "caption": "Some text is tricky. Handling hyphens automatically can be complex.",
+            "source_ids": [
+              "S109#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Three words for three ideas",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Tokenization is the task of chopping text up into pieces, called tokens. The textbook then separates three ideas that everyday language lumps together as \"words\".",
+              "source_ids": [
+                "S109#P4"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Token",
+                  "text": "An instance of a sequence of characters in some particular document.",
+                  "source_ids": [
+                    "S109#P1"
+                  ]
+                },
+                {
+                  "name": "Type",
+                  "text": "The class of all tokens containing the same character sequence.",
+                  "source_ids": [
+                    "S109#P2"
+                  ]
+                },
+                {
+                  "name": "Term",
+                  "text": "A (perhaps normalized) type that is included in the IR system's dictionary.",
+                  "source_ids": [
+                    "S109#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "\"Fly to Leeds to ski\" has five tokens. \"to\" appears twice, so there are four types. If the system keeps all four in its dictionary, they're four terms.",
+              "source_ids": [
+                "S109#P1",
+                "S109#P2",
+                "S109#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where it gets hard",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Splitting on spaces isn't enough. The textbook says handling hyphens automatically can be complex, and the same goes for apostrophes, numbers and codes.",
+              "source_ids": [
+                "S109#P5"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Product names, model numbers and hyphenated words are where site search most often fails. Test them first."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Tokenization chops text into tokens.",
+          "source_ids": [
+            "S109#P4"
+          ]
+        },
+        {
+          "text": "A type groups tokens with the same character sequence.",
+          "source_ids": [
+            "S109#P2"
+          ]
+        },
+        {
+          "text": "A term is a normalized type in the system's dictionary.",
+          "source_ids": [
+            "S109#P3"
+          ]
+        },
+        {
+          "text": "Hyphens are hard to handle automatically.",
+          "source_ids": [
+            "S109#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Count tokens and types",
+        "minutes": "5",
+        "steps": [
+          "Copy one sentence from a product or service page.",
+          "Split it into tokens.",
+          "Group repeated tokens into types.",
+          "Note any token you weren't sure how to split."
+        ],
+        "prompt_template": "Here's a sentence from my site: [sentence]. The textbook defines a token as an instance of a sequence of characters, a type as the class of all tokens with the same character sequence, and a term as a (perhaps normalized) type in the system's dictionary. List the tokens and types in my sentence, and flag any tokens (hyphens, numbers, apostrophes) that a search system might split differently."
+      },
+      "reflection": [
+        "Which words on your site would be hardest for a machine to split correctly?",
+        "Why might two systems disagree about how many words a sentence has?"
+      ],
+      "whats_next": "Next, normalization: folding variants into the same term."
+    },
+    {
+      "lesson_id": "T8-2",
+      "title": "Normalization",
+      "est_minutes": 6,
+      "objectives": [
+        "Define token normalization",
+        "Explain case-folding and its trade-off",
+        "Explain why queries and documents must be normalized the same way"
+      ],
+      "scene": {
+        "id": "normalize",
+        "title": "Folding variants together",
+        "beats": [
+          {
+            "caption": "Token normalization is the process of canonicalizing tokens, so that matches occur despite small differences.",
+            "source_ids": [
+              "S110#P1"
+            ]
+          },
+          {
+            "caption": "If you search for USA, you might hope to also match documents containing U.S.A.",
+            "source_ids": [
+              "S110#P5"
+            ]
+          },
+          {
+            "caption": "A common strategy is case-folding: reducing all letters to lower case.",
+            "source_ids": [
+              "S228#P1"
+            ]
+          },
+          {
+            "caption": "But many proper nouns are distinguished only by case. Search C.A.T. and you might be upset to match every cat.",
+            "source_ids": [
+              "S228#P2",
+              "S110#P4"
+            ]
+          },
+          {
+            "caption": "Whatever the rules, apply them consistently to the query and to documents.",
+            "source_ids": [
+              "S110#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What normalization does",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Token normalization is the process of canonicalizing tokens. Rules that map different tokens to the same term implicitly create equivalence classes.",
+              "source_ids": [
+                "S110#P1",
+                "S110#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Periods.",
+                  "text": "If you search for USA, you might hope to also match documents containing U.S.A.",
+                  "source_ids": [
+                    "S110#P5"
+                  ]
+                },
+                {
+                  "lead": "Hyphens.",
+                  "text": "The tokens anti-discriminatory and antidiscriminatory can both be mapped onto the term antidiscriminatory.",
+                  "source_ids": [
+                    "S110#P6"
+                  ]
+                },
+                {
+                  "lead": "Case.",
+                  "text": "A common strategy is to do case-folding by reducing all letters to lower case.",
+                  "source_ids": [
+                    "S228#P1"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The cost of folding",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Many proper nouns are derived from common nouns and so are distinguished only by case. The textbook's example: a query for C.A.T. that matches every appearance of the word cat.",
+              "source_ids": [
+                "S228#P2",
+                "S110#P4"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "Thus, lowercasing everything often remains the most practical solution.",
+              "cite": "Introduction to Information Retrieval, 2.2.3",
+              "source_ids": [
+                "S228#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Same rules on both sides",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Textbook",
+              "text": "Normalization has to be applied consistently to the query and to documents. If the index keeps hyphens but the query drops them, \"t-shirt\" and \"tshirt\" never meet.",
+              "source_ids": [
+                "S110#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Normalization canonicalizes tokens into equivalence classes.",
+          "source_ids": [
+            "S110#P1",
+            "S110#P2"
+          ]
+        },
+        {
+          "text": "Lowercasing everything is usually the most practical choice.",
+          "source_ids": [
+            "S228#P3"
+          ]
+        },
+        {
+          "text": "Case-folding can merge proper nouns with common words.",
+          "source_ids": [
+            "S228#P2"
+          ]
+        },
+        {
+          "text": "Apply the same rules to queries and documents.",
+          "source_ids": [
+            "S110#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Test your site search",
+        "minutes": "10",
+        "steps": [
+          "List five product or service names with hyphens, capitals or periods.",
+          "Search your site for each one as written.",
+          "Search again without the hyphen, capital or period.",
+          "Note any pair that returns different results."
+        ],
+        "prompt_template": "I tested my site search with these pairs and got these results: [pairs and results]. The textbook says normalization canonicalizes tokens, that lowercasing everything is often the most practical solution, and that rules must be applied consistently to the query and to documents. Diagnose which normalization rules my site search seems to be missing, and suggest fixes for a developer."
+      },
+      "reflection": [
+        "Which brand or product names on your site differ from common words only by case?",
+        "What would go wrong if a search folded too many variants together?"
+      ],
+      "whats_next": "Next, stop words, stemming and lemmatization."
+    },
+    {
+      "lesson_id": "T8-3",
+      "title": "Stop words, stemming and lemmatization",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain why web search engines keep stop words",
+        "Tell stemming and lemmatization apart",
+        "Describe the recall and precision trade-off of stemming"
+      ],
+      "scene": {
+        "id": "stems",
+        "title": "Shrinking words to their roots",
+        "beats": [
+          {
+            "caption": "Very common words are called stop words. A stop list is built by sorting terms by collection frequency.",
+            "source_ids": [
+              "S227#P1",
+              "S227#P2"
+            ]
+          },
+          {
+            "caption": "But web search engines generally do not use stop lists. The meaning of flights to London is lost if to is stopped out.",
+            "source_ids": [
+              "S227#P3",
+              "S227#P4"
+            ]
+          },
+          {
+            "caption": "The goal of both stemming and lemmatization is to reduce inflectional forms to a common base.",
+            "source_ids": [
+              "S111#P1"
+            ]
+          },
+          {
+            "caption": "Stemming is a crude heuristic that chops off the ends of words. Lemmatization uses a vocabulary and morphological analysis.",
+            "source_ids": [
+              "S111#P2",
+              "S111#P3"
+            ]
+          },
+          {
+            "caption": "The trade-off: stemming increases recall while harming precision.",
+            "source_ids": [
+              "S111#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Stop words",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Stop words are very common words like the, a and to. The general strategy for determining a stop list is to sort the terms by collection frequency.",
+              "source_ids": [
+                "S227#P1",
+                "S227#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Textbook",
+              "text": "Web search engines generally do not use stop lists. The meaning of flights to London is likely to be lost if the word to is stopped out.",
+              "source_ids": [
+                "S227#P3",
+                "S227#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Stemming and lemmatization",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The goal of both is to reduce inflectional forms, such as plurals and tenses, to a common base form.",
+              "source_ids": [
+                "S111#P1"
+              ]
+            },
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Stemming",
+                  "text": "Usually a crude heuristic process that chops off the ends of words. The Porter stemmer is the most common algorithm for stemming English.",
+                  "source_ids": [
+                    "S111#P2",
+                    "S111#P4"
+                  ]
+                },
+                {
+                  "name": "Lemmatization",
+                  "text": "Doing things properly with the use of a vocabulary and morphological analysis of words.",
+                  "source_ids": [
+                    "S111#P3"
+                  ]
+                },
+                {
+                  "name": "Trade-off",
+                  "text": "Stemming increases recall while harming precision.",
+                  "source_ids": [
+                    "S111#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A stemmer might cut \"running\", \"runs\" and \"runner\" to \"run\". That helps a search for \"run\" find more pages (recall), but \"runner\" the person and \"run\" the verb now look the same (precision).",
+              "source_ids": [
+                "S111#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What about Google?",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Unconfirmed",
+              "text": "The textbook names Porter as the most common English stemmer, but Google doesn't say which, if any, it uses. Treat claims about Google's stemming as practitioner judgement."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Web search engines generally don't use stop lists.",
+          "source_ids": [
+            "S227#P3"
+          ]
+        },
+        {
+          "text": "Stemming and lemmatization reduce inflected forms to a base.",
+          "source_ids": [
+            "S111#P1"
+          ]
+        },
+        {
+          "text": "Stemming chops endings. Lemmatization uses a vocabulary and morphology.",
+          "source_ids": [
+            "S111#P2",
+            "S111#P3"
+          ]
+        },
+        {
+          "text": "Stemming increases recall but harms precision.",
+          "source_ids": [
+            "S111#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Stem a keyword list",
+        "minutes": "10",
+        "steps": [
+          "Take ten keywords from a keyword research list.",
+          "Group the ones that share a root, such as plural and singular forms.",
+          "Note any groups where the meanings actually differ.",
+          "Decide which groups one page could serve."
+        ],
+        "prompt_template": "Here are ten keywords: [list]. The textbook says stemming and lemmatization reduce inflectional forms to a base, that stemming chops off word endings while lemmatization uses a vocabulary and morphological analysis, and that stemming increases recall while harming precision. Group my keywords by shared root, flag any groups where meanings differ, and label any advice about how Google treats them as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your keywords change meaning between singular and plural?",
+        "When would you want a search to be more precise, even if it finds less?"
+      ],
+      "whats_next": "Next, what all this means for writing and for site search."
+    },
+    {
+      "lesson_id": "T8-4",
+      "title": "Writing for normalized search",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain why repeating every word form is unnecessary and risky",
+        "Recognise keyword stuffing as Google defines it",
+        "Fix a site search that normalizes queries and documents differently"
+      ],
+      "scene": {
+        "id": "stuffing",
+        "title": "One phrase, five forms",
+        "beats": [
+          {
+            "caption": "A writer is told to cover cheap flights, cheap flight and cheaper flights in every paragraph.",
+            "source_ids": [
+              "S111#P1"
+            ]
+          },
+          {
+            "caption": "Stemming and lemmatization exist to reduce inflectional forms to a base, so systems that use them group these forms. That's practitioner inference for Google.",
+            "source_ids": [
+              "S111#P1"
+            ]
+          },
+          {
+            "caption": "Google defines keyword stuffing as filling a web page with keywords or numbers.",
+            "source_ids": [
+              "S113#P1"
+            ]
+          },
+          {
+            "caption": "Its example: repeating the same words or phrases so often that it sounds unnatural.",
+            "source_ids": [
+              "S113#P2"
+            ]
+          },
+          {
+            "caption": "For site search, the fix is consistency: normalize the query and the documents the same way.",
+            "source_ids": [
+              "S110#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Don't chase every form",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The goal of stemming and lemmatization is to reduce inflectional forms to a common base. A system that uses them treats flight and flights as the same term.",
+              "source_ids": [
+                "S111#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Google says",
+              "text": "Keyword stuffing refers to the practice of filling a web page with keywords or numbers. One example is repeating the same words or phrases so often that it sounds unnatural.",
+              "source_ids": [
+                "S113#P1",
+                "S113#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Google doesn't confirm how it stems page words, so the safe approach is to write naturally, use the forms a reader would expect, and stop there."
+            }
+          ]
+        },
+        {
+          "heading": "Fixing site search",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this checklist when your own site search misses obvious matches.",
+              "source_ids": [
+                "S110#P3"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Match the rules.",
+                  "text": "Normalization has to be applied consistently to the query and to documents.",
+                  "source_ids": [
+                    "S110#P3"
+                  ]
+                },
+                {
+                  "lead": "Lowercase.",
+                  "text": "Lowercasing everything often remains the most practical solution.",
+                  "source_ids": [
+                    "S228#P3"
+                  ]
+                },
+                {
+                  "lead": "Handle hyphens on purpose.",
+                  "text": "Map forms like anti-discriminatory and antidiscriminatory to one term, and test them.",
+                  "source_ids": [
+                    "S110#P6",
+                    "S109#P5"
+                  ]
+                },
+                {
+                  "lead": "Keep stop words.",
+                  "text": "Web search engines generally do not use stop lists, because words like to can carry meaning.",
+                  "source_ids": [
+                    "S227#P3",
+                    "S227#P4"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Stemming and lemmatization aim to group word forms, so repeating each form isn't needed (practitioner inference for Google).",
+          "source_ids": [
+            "S111#P1"
+          ]
+        },
+        {
+          "text": "Google calls unnatural repetition keyword stuffing.",
+          "source_ids": [
+            "S113#P1",
+            "S113#P2"
+          ]
+        },
+        {
+          "text": "Site search must normalize queries and documents the same way.",
+          "source_ids": [
+            "S110#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Edit a stuffed paragraph",
+        "minutes": "10",
+        "steps": [
+          "Find a paragraph on your site that repeats a keyword in several forms.",
+          "Count how many times each form appears.",
+          "Rewrite it the way you'd explain it to a customer.",
+          "Read both versions aloud and compare."
+        ],
+        "prompt_template": "Here's a paragraph that repeats a keyword in several forms: [paste]. Google defines keyword stuffing as filling a page with keywords, including repeating the same words or phrases so often that it sounds unnatural. Rewrite the paragraph so it reads naturally for a customer, keep the key facts, and use the keyword only where a person would. Explain the changes, labelling any claim about how Google processes word forms as practitioner judgement."
+      },
+      "reflection": [
+        "Where have you seen copy written for a keyword tool rather than a reader?",
+        "What would you check first if your site search missed an obvious product?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Search systems chop text into tokens, group identical ones into types, and keep normalized types as terms in their dictionary. Normalization folds variants such as U.S.A. and USA, or capitals and lower case, into one term, and must be applied the same way to queries and documents. Web search engines generally keep stop words. Stemming and lemmatization reduce word forms to a base, trading precision for recall. Google doesn't confirm how it handles word forms, but it does call unnatural repetition keyword stuffing, so write naturally.",
+    "related_topics": [
+      {
+        "topic_id": "T5",
+        "title": "Inverted indexing and posting lists"
+      },
+      {
+        "topic_id": "T12",
+        "title": "Query rewriting"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Tokenization and normalization. The questions revisit tokens and terms, stemming, and keyword stuffing.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T8-L1-01",
+      "T8-L1-02",
+      "T8-L1-03",
+      "T8-L2-01",
+      "T8-L2-02",
+      "T8-L2-03",
+      "T8-L3-01",
+      "T8-L3-02",
+      "T8-L4-01",
+      "T8-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T8-L1-01",
+        "prompt": "The textbook says a token is an instance of a sequence of what, in some particular document?",
+        "options": [
+          "A. characters",
+          "B. whole sentences",
+          "C. pages",
+          "D. links"
+        ],
+        "answer": "A",
+        "explanation": "Correct: a token is an instance of a sequence of characters in some particular document. Wrong: whole sentences, pages and links aren't how the textbook defines a token. A type is the class of all tokens with the same character sequence.",
+        "source_ids": [
+          "S109#P1",
+          "S109#P2"
+        ]
+      },
+      {
+        "item_id": "T8-L1-03",
+        "prompt": "How does the textbook describe stemming?",
+        "options": [
+          "A. A dictionary lookup of every word's meaning and use",
+          "B. A way to remove stop words from queries",
+          "C. A crude chop of word endings",
+          "D. A full analysis of grammar and vocabulary"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the textbook says stemming usually refers to a crude heuristic process that chops off the ends of words. Wrong: dictionary lookups and full vocabulary and morphological analysis describe lemmatization; stop word removal is a separate step.",
+        "source_ids": [
+          "S111#P2",
+          "S111#P3"
+        ]
+      },
+      {
+        "item_id": "T8-L2-01",
+        "prompt": "The textbook states a trade-off for stemming. What does it increase?",
+        "options": [
+          "A. precision",
+          "B. recall",
+          "C. page speed",
+          "D. index size"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the textbook says stemming increases recall while harming precision, because variant forms are reduced to one base form and so match each other. Wrong: precision is what it harms; page speed and index size aren't the stated trade-off.",
+        "source_ids": [
+          "S111#P5",
+          "S111#P1"
+        ]
+      },
+      {
+        "item_id": "T8-L2-02",
+        "prompt": "How do Google's spam policies treat repeating the same words or phrases so often that it sounds unnatural?",
+        "options": [
+          "A. As keyword stuffing",
+          "B. As good keyword coverage",
+          "C. As fine if every word form is used",
+          "D. As a signal Google ignores"
+        ],
+        "answer": "A",
+        "explanation": "Correct: Google lists repeating the same words or phrases so often that it sounds unnatural as an example of keyword stuffing. Wrong: it isn't treated as good coverage, using every form doesn't make it acceptable, and Google doesn't say it ignores it.",
+        "source_ids": [
+          "S113#P1",
+          "S113#P2"
+        ]
+      },
+      {
+        "item_id": "T8-L2-03",
+        "options": [
+          "A. Stemming increases recall while harming precision",
+          "B. Handling hyphens automatically can be complex",
+          "C. Google confirms using the Porter stemmer",
+          "D. Keyword stuffing includes unnaturally repeated words"
+        ],
+        "answer": "C",
+        "explanation": "Correct (unsupported): the textbook only calls Porter the most common stemming algorithm for English; it does not say what Google uses. The other three are supported: the precision cost of stemming, the complexity of hyphens, and Google's keyword stuffing definition.",
+        "source_ids": [
+          "S111#P4",
+          "S111#P5",
+          "S109#P5",
+          "S113#P2"
+        ]
+      },
+      {
+        "item_id": "T8-L3-01",
+        "prompt": "A system reduces word forms using a vocabulary and morphological analysis of words, rather than chopping endings. Which technique is this?",
+        "options": [
+          "A. stemming",
+          "B. tokenizing text",
+          "C. lemmatization",
+          "D. case-folding of tokens"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the textbook says lemmatization usually refers to doing things properly with a vocabulary and morphological analysis. Wrong: stemming chops off word endings; tokenization chops text into tokens; case-folding lowercases letters.",
+        "source_ids": [
+          "S111#P3",
+          "S111#P2",
+          "S109#P4",
+          "S228#P1"
+        ]
+      },
+      {
+        "item_id": "T8-L4-01",
+        "options": [
+          "A. Repeat each phrase variant ten times per page",
+          "B. Use only the exact phrase in the headline",
+          "C. Add every variant to a hidden keyword block",
+          "D. Write naturally; skip repeating every form"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the sources support not chasing each word form and warn that unnatural repetition is keyword stuffing (practitioner inference on the first point). Repeating variants ten times, or stuffing them in a hidden block, is the stuffing Google describes. Using only the exact phrase in the headline does not follow from any source.",
+        "source_ids": [
+          "S111#P1",
+          "S113#P1",
+          "S113#P2"
+        ]
+      }
+    ]
+  }
+}
