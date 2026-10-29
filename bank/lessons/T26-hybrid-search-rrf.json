@@ -1,0 +1,731 @@
+{
+  "topic_id": "T26",
+  "items_file": "bank/items/T26-hybrid-search-rrf.json",
+  "course_title": "Hybrid search and rank fusion",
+  "subtitle": "How search systems run keyword and vector retrieval together and merge the results with Reciprocal Rank Fusion, and how to test a hybrid setup fairly.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain what keyword and vector search are each good at",
+    "Calculate a Reciprocal Rank Fusion score",
+    "Explain why rank fusion tends to help",
+    "Evaluate a hybrid setup without biasing the test"
+  ],
+  "intro": [
+    "Keyword search is good at exact words. Vector search is good at meaning. Hybrid search runs both and merges the two result lists into one.",
+    "This course uses Microsoft's Azure AI Search docs, Elastic's Elasticsearch docs and the original Reciprocal Rank Fusion paper by Cormack and colleagues.",
+    "These sources describe those products and the method. They don't say how Google or Bing combine results. Lessons for your site are labelled practitioner inference."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T26-1",
+      "title": "Two kinds of matching",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe what keyword search does well",
+        "Describe what vector search does well",
+        "Define hybrid search in Azure's terms"
+      ],
+      "scene": {
+        "id": "two",
+        "title": "Exact words and close meaning",
+        "beats": [
+          {
+            "caption": "The advantage of keyword or full-text search is precision: it can identify exact matches.",
+            "source_ids": [
+              "S215#P6",
+              "S215#P8"
+            ]
+          },
+          {
+            "caption": "That helps when querying over product codes, specialised jargon, dates and people's names.",
+            "source_ids": [
+              "S215#P7"
+            ]
+          },
+          {
+            "caption": "Vector search is good at finding information that's conceptually similar to your search query.",
+            "source_ids": [
+              "S215#P9"
+            ]
+          },
+          {
+            "caption": "Hybrid search combines the strengths of vector search and keyword search.",
+            "source_ids": [
+              "S215#P5"
+            ]
+          },
+          {
+            "caption": "In Azure AI Search it's a single request with full-text and vector queries, run in parallel.",
+            "source_ids": [
+              "S215#P1",
+              "S215#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What each kind of search is good at",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Keyword (full-text)",
+                  "text": "Microsoft says its advantage is precision, because it can identify exact matches. That suits product codes, highly specialised jargon, dates and people's names.",
+                  "source_ids": [
+                    "S215#P6",
+                    "S215#P8",
+                    "S215#P7"
+                  ]
+                },
+                {
+                  "name": "Vector",
+                  "text": "Good at finding information that's conceptually similar to your search query, even when the words differ.",
+                  "source_ids": [
+                    "S215#P9"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "On a hypothetical outdoor shop's search: \"BX-4471\" needs an exact match, so keyword search shines. \"boots that keep feet dry on long walks\" is about meaning, so vector search helps.",
+              "source_ids": [
+                "S215#P7",
+                "S215#P9"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Hybrid search",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "Hybrid search is a single query request configured for both full-text and vector queries.",
+              "cite": "Microsoft Learn, Azure AI Search",
+              "source_ids": [
+                "S215#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Microsoft says hybrid search combines the strengths of vector search and keyword search. Azure runs full-text search and vector search in parallel, then merges the results.",
+              "source_ids": [
+                "S215#P5",
+                "S215#P2",
+                "S215#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Keyword search's advantage is precision on exact matches.",
+          "source_ids": [
+            "S215#P6",
+            "S215#P8"
+          ]
+        },
+        {
+          "text": "Exact matching suits product codes, jargon, dates and names.",
+          "source_ids": [
+            "S215#P7"
+          ]
+        },
+        {
+          "text": "Vector search finds conceptually similar information.",
+          "source_ids": [
+            "S215#P9"
+          ]
+        },
+        {
+          "text": "Hybrid search runs both and combines their strengths.",
+          "source_ids": [
+            "S215#P5",
+            "S215#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Sort your queries",
+        "minutes": "10",
+        "steps": [
+          "Export 30 queries from your site search or Search Console.",
+          "Mark the ones with codes, names, dates or jargon.",
+          "Mark the ones written as plain-language questions.",
+          "Note which kind your site search handles worse."
+        ],
+        "prompt_template": "Here are 30 search queries from my site: [list]. Microsoft says keyword search is precise for product codes, jargon, dates and people's names, while vector search finds conceptually similar information. Sort my queries into those two groups, flag any that need both, and suggest a test query of each kind."
+      },
+      "reflection": [
+        "Which of your customers' searches depend on exact words?",
+        "Where do people describe what they want without knowing its name?"
+      ],
+      "whats_next": "Next, how Reciprocal Rank Fusion merges the two lists."
+    },
+    {
+      "lesson_id": "T26-2",
+      "title": "Reciprocal Rank Fusion",
+      "est_minutes": 6,
+      "objectives": [
+        "Describe what RRF combines",
+        "Apply the RRF formula",
+        "Explain the constant k and its default"
+      ],
+      "scene": {
+        "id": "rrf",
+        "title": "Add up 1 / (k + rank)",
+        "beats": [
+          {
+            "caption": "Reciprocal Rank Fusion is a simple method for combining the document rankings from multiple systems.",
+            "source_ids": [
+              "S213#P1"
+            ]
+          },
+          {
+            "caption": "For each list a document appears in, add 1 / (k + rank).",
+            "source_ids": [
+              "S214#P4",
+              "S214#P5"
+            ]
+          },
+          {
+            "caption": "In Elasticsearch, k defaults to 60. The RRF paper fixed k = 60 during a pilot investigation.",
+            "source_ids": [
+              "S214#P2",
+              "S213#P3"
+            ]
+          },
+          {
+            "caption": "Ranked 1st in one list and 3rd in the other: 1/61 + 1/63 ≈ 0.0323.",
+            "source_ids": [
+              "S214#P5"
+            ]
+          },
+          {
+            "caption": "RRF requires no tuning, and the relevance indicators don't have to be related.",
+            "source_ids": [
+              "S214#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Ranks, not scores",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The RRF paper describes Reciprocal Rank Fusion as a simple method for combining the document rankings from multiple IR systems. Elastic describes it as combining multiple result sets with different relevance indicators.",
+              "source_ids": [
+                "S213#P1",
+                "S214#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Elastic gives the formula for each document's score:",
+              "source_ids": [
+                "S214#P4"
+              ]
+            },
+            {
+              "type": "quote",
+              "text": "score += 1.0 / ( k + rank( result(q), d ) )",
+              "cite": "Elastic, Reciprocal rank fusion",
+              "source_ids": [
+                "S214#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "In Elasticsearch, the constant must be greater than or equal to 1 and defaults to 60. In the paper, k = 60 was fixed during a pilot investigation and not altered during subsequent validation.",
+              "source_ids": [
+                "S214#P2",
+                "S213#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "A worked example",
+          "blocks": [
+            {
+              "type": "example",
+              "text": "A document ranks 1st in the keyword list and 3rd in the vector list. With k = 60: 1/(60+1) = 0.0164 and 1/(60+3) = 0.0159. Its total is about 0.0323.",
+              "source_ids": [
+                "S214#P5",
+                "S214#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Why ranks help",
+              "text": "Elastic says RRF requires no tuning, and the different relevance indicators do not have to be related to each other.",
+              "source_ids": [
+                "S214#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "RRF combines the rankings from multiple systems.",
+          "source_ids": [
+            "S213#P1"
+          ]
+        },
+        {
+          "text": "Each list adds 1 / (k + rank) to a document's score.",
+          "source_ids": [
+            "S214#P5"
+          ]
+        },
+        {
+          "text": "k defaults to 60 in Elasticsearch, and the paper fixed it at 60.",
+          "source_ids": [
+            "S214#P2",
+            "S213#P3"
+          ]
+        },
+        {
+          "text": "RRF needs no tuning and the indicators needn't be related.",
+          "source_ids": [
+            "S214#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Fuse two lists by hand",
+        "minutes": "10",
+        "steps": [
+          "Write down a top-5 keyword list and a top-5 vector list for one query.",
+          "For each document, add 1/(60 + rank) for every list it's in.",
+          "Sort the documents by their totals.",
+          "Compare the fused order with each original list."
+        ],
+        "prompt_template": "Here are two ranked lists for the query [query]. Keyword: [list]. Vector: [list]. Using Elastic's RRF formula, score += 1.0 / (k + rank) for each list, with k = 60, calculate each document's total, show the working, and give the fused ranking."
+      },
+      "reflection": [
+        "Why might adding ranks be safer than adding raw scores from two different systems?",
+        "What happens to a document that appears in only one list?"
+      ],
+      "whats_next": "Next, why fusing rankings tends to help."
+    },
+    {
+      "lesson_id": "T26-3",
+      "title": "Why fusion helps",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain what k does to outliers",
+        "Show why agreement between lists matters",
+        "Summarise the evidence for RRF"
+      ],
+      "scene": {
+        "id": "fuse",
+        "title": "Agreement beats one high rank",
+        "beats": [
+          {
+            "caption": "The constant k mitigates the impact of high rankings by outlier systems.",
+            "source_ids": [
+              "S213#P4"
+            ]
+          },
+          {
+            "caption": "Worked example: 1st in just one list scores 1/61 ≈ 0.0164. 4th and 5th in both lists score 1/64 + 1/65 ≈ 0.0310.",
+            "source_ids": [
+              "S214#P5"
+            ]
+          },
+          {
+            "caption": "The paper reports RRF consistently yields better results than any individual system, and better than Condorcet Fuse.",
+            "source_ids": [
+              "S213#P2"
+            ]
+          },
+          {
+            "caption": "In Azure, the response provides just one result set, using RRF to rank the unified results.",
+            "source_ids": [
+              "S215#P4"
+            ]
+          },
+          {
+            "caption": "Microsoft says its benchmark tests show hybrid retrieval with semantic ranker offers significant benefits in search relevance.",
+            "source_ids": [
+              "S215#P10"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Damping the outliers",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The paper says the constant k mitigates the impact of high rankings by outlier systems. With k = 60, rank 1 scores 1/61 and rank 5 scores 1/65, so a single top spot isn't worth much more than a solid placing.",
+              "source_ids": [
+                "S213#P4",
+                "S214#P5"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Document A is 1st in the keyword list and missing from the vector list: 1/61 ≈ 0.0164. Document B is 4th and 5th: 1/64 + 1/65 ≈ 0.0310. B ranks above A because both systems agree it's good.",
+              "source_ids": [
+                "S214#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What the evidence says",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Research finding",
+              "text": "RRF consistently yields better results than any individual system, and better results than the standard method Condorcet Fuse.",
+              "source_ids": [
+                "S213#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Microsoft says benchmark testing on real-world and benchmark datasets indicates that hybrid retrieval with semantic ranker offers significant benefits in search relevance. That is the vendor's own test of its product.",
+              "source_ids": [
+                "S215#P10"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Results from a paper's experiments and a vendor's benchmarks show the method can work. Test it on your own queries before assuming it will help your search."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "k damps the effect of one system's high rankings.",
+          "source_ids": [
+            "S213#P4"
+          ]
+        },
+        {
+          "text": "A document both lists agree on can beat one that tops a single list.",
+          "source_ids": [
+            "S214#P5"
+          ]
+        },
+        {
+          "text": "The paper found RRF beat every individual system.",
+          "source_ids": [
+            "S213#P2"
+          ]
+        },
+        {
+          "text": "Azure returns one result set ranked with RRF.",
+          "source_ids": [
+            "S215#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find the agreement",
+        "minutes": "10",
+        "steps": [
+          "Use your two lists from lesson 2.",
+          "Find a document near the top of only one list.",
+          "Find one in the middle of both lists.",
+          "Compare their fused scores and decide which you'd rather show first."
+        ],
+        "prompt_template": "Here are my keyword and vector lists for [query]: [lists]. The RRF paper says the constant k mitigates the impact of high rankings by outlier systems. Using k = 60, compare a document that tops one list only with one that's mid-table in both, show both scores, and explain which a searcher would likely prefer, labelled as practitioner judgement."
+      },
+      "reflection": [
+        "When might one system's top result be right while the other misses it entirely?",
+        "How would you check whether fusion helps on your own queries?"
+      ],
+      "whats_next": "Next, how to test a hybrid setup fairly, and what it means for SEO."
+    },
+    {
+      "lesson_id": "T26-4",
+      "title": "Testing hybrid fairly",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain how unlabeled results bias an evaluation",
+        "Choose a fair way to compare setups",
+        "Separate vendor docs from claims about Google"
+      ],
+      "scene": {
+        "id": "test",
+        "title": "Don't mark the unknown as wrong",
+        "beats": [
+          {
+            "caption": "Hypothetical test: some of the new setup's results have no relevance judgement yet. Elastic calls these unlabeled documents.",
+            "source_ids": [
+              "S016#P6"
+            ]
+          },
+          {
+            "caption": "In Elastic's ranking evaluation, with ignore_unlabeled set to true, unlabeled documents are ignored.",
+            "source_ids": [
+              "S016#P6"
+            ]
+          },
+          {
+            "caption": "Set to false, they are treated as irrelevant, so the new setup looks worse than it is.",
+            "source_ids": [
+              "S016#P7"
+            ]
+          },
+          {
+            "caption": "Practitioner judgement: judge the new results, then compare the two setups.",
+            "source_ids": [
+              "S016#P6",
+              "S016#P7"
+            ]
+          },
+          {
+            "caption": "These are Azure, Elastic and research descriptions. No saved source says how Google or Bing merge results.",
+            "source_ids": [
+              "S215#P1",
+              "S214#P1",
+              "S213#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The unlabeled-results trap",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Elastic's ranking evaluation API has a setting for documents with no relevance judgement. If set to true, unlabeled documents are ignored and neither count as relevant or irrelevant. Set to false, they are treated as irrelevant.",
+              "source_ids": [
+                "S016#P6",
+                "S016#P7"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a shop tests hybrid against its old keyword setup. Hybrid brings up new products nobody has judged. With ignore_unlabeled set to false, every one counts as irrelevant, and hybrid scores lower.",
+              "source_ids": [
+                "S016#P7"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Use this checklist for a fair comparison.",
+              "source_ids": [
+                "S016#P6"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Judge the new results.",
+                  "text": "Label the results only the new setup returns before scoring it (practitioner judgement)."
+                },
+                {
+                  "lead": "Or ignore them deliberately.",
+                  "text": "With ignore_unlabeled set to true, unlabeled documents count as neither relevant nor irrelevant.",
+                  "source_ids": [
+                    "S016#P6"
+                  ]
+                },
+                {
+                  "lead": "Test both query types.",
+                  "text": "Include exact-match queries like codes and names, and plain-language questions.",
+                  "source_ids": [
+                    "S215#P7",
+                    "S215#P9"
+                  ]
+                },
+                {
+                  "lead": "Don't double-fuse.",
+                  "text": "Azure's response already provides one result set ranked with RRF.",
+                  "source_ids": [
+                    "S215#P4"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What it means for SEO",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Scope",
+              "text": "These sources describe Azure AI Search, Elasticsearch and the RRF method. None says how Google or Bing combine signals.",
+              "source_ids": [
+                "S215#P1",
+                "S214#P1",
+                "S213#P1"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner inference",
+              "text": "In a hybrid system, a page can be found through exact words or through close meaning. Using the terms people search for and explaining the topic clearly both help, wherever hybrid retrieval is used.",
+              "source_ids": [
+                "S215#P5"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Unlabeled results are treated as irrelevant when ignore_unlabeled is false.",
+          "source_ids": [
+            "S016#P7"
+          ]
+        },
+        {
+          "text": "Setting it to true ignores them instead.",
+          "source_ids": [
+            "S016#P6"
+          ]
+        },
+        {
+          "text": "Azure already returns one RRF-ranked result set.",
+          "source_ids": [
+            "S215#P4"
+          ]
+        },
+        {
+          "text": "Vendor docs describe their products, not Google or Bing.",
+          "source_ids": [
+            "S215#P1",
+            "S214#P1"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Plan a fair test",
+        "minutes": "15",
+        "steps": [
+          "Pick 20 queries: half exact-match, half plain-language.",
+          "Run them on your current setup and on a hybrid setup.",
+          "List results that only the hybrid setup returns.",
+          "Judge those results before you compare scores."
+        ],
+        "prompt_template": "I'm comparing my current site search with a hybrid (keyword plus vector, RRF) setup on these 20 queries: [list]. Elastic's ranking evaluation treats unlabeled documents as irrelevant when ignore_unlabeled is false. Draft a test plan that judges new results fairly, picks a metric, and separates exact-match queries from plain-language ones."
+      },
+      "reflection": [
+        "Have you ever judged a change as worse because its new results weren't labelled?",
+        "Which of your pages rely on exact terms, and which on explaining an idea?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Keyword search is precise on exact matches like codes and names; vector search finds conceptually similar information. Hybrid search runs both and merges them. Reciprocal Rank Fusion adds 1 / (k + rank) for each list a document appears in, with k usually 60, so documents both lists agree on rise, and no tuning is needed. The RRF paper found it beat every individual system. When you test hybrid, judge new results rather than counting them as irrelevant. These sources describe specific products and a method, not Google or Bing.",
+    "related_topics": [
+      {
+        "topic_id": "T18",
+        "title": "Dense retrieval and bi-encoders"
+      },
+      {
+        "topic_id": "T7",
+        "title": "Measuring search quality"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Hybrid search and rank fusion. The questions revisit hybrid search, the RRF formula, why fusion helps and fair testing.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T26-L1-01",
+      "T26-L1-02",
+      "T26-L1-03",
+      "T26-L2-01",
+      "T26-L2-02",
+      "T26-L2-03",
+      "T26-L3-01",
+      "T26-L3-02",
+      "T26-L4-01",
+      "T26-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T26-L1-01",
+        "prompt": "Per the Azure AI Search docs, hybrid search is a single query request configured for full-text queries and which other kind of query?",
+        "options": [
+          "A. Boolean",
+          "B. Wildcard",
+          "C. Vector",
+          "D. Geographic"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Microsoft Learn defines hybrid search as a single query request configured for both full-text and vector queries. This describes Azure AI Search, not every engine. Wrong: the other query types aren't part of that definition.",
+        "source_ids": [
+          "S215#P1"
+        ]
+      },
+      {
+        "item_id": "T26-L1-03",
+        "prompt": "How does the RRF paper describe Reciprocal Rank Fusion?",
+        "options": [
+          "A. A way to train one ranking model on clicks",
+          "B. A filter that removes duplicate pages",
+          "C. A score normalisation for BM25",
+          "D. Combining rankings from many systems"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the abstract describes RRF as a simple method for combining the document rankings from multiple IR systems. Wrong: training on clicks, removing duplicates and normalising BM25 scores aren't how the paper describes it.",
+        "source_ids": [
+          "S213#P1"
+        ]
+      },
+      {
+        "item_id": "T26-L2-02",
+        "prompt": "What do Elastic's docs say about tuning RRF?",
+        "options": [
+          "A. k must be retuned for every new index",
+          "B. Each indicator needs a hand-set weight",
+          "C. It needs no tuning",
+          "D. Indicators must use the same score scale"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Elastic says RRF requires no tuning, and the different relevance indicators do not have to be related to each other. Wrong: the other options contradict that statement.",
+        "source_ids": [
+          "S214#P3"
+        ]
+      },
+      {
+        "item_id": "T26-L3-01",
+        "prompt": "Hypothetical: a document ranks 1st in the keyword list and 3rd in the vector list. Using score += 1.0 / (k + rank) for each list with k = 60, what is its total, rounded to 4 decimals?",
+        "options": [
+          "A. About 0.0164",
+          "B. About 0.0159",
+          "C. Exactly 0.2500",
+          "D. 0.0323"
+        ],
+        "answer": "D",
+        "explanation": "Correct: 1/(60+1) = 0.016393 and 1/(60+3) = 0.015873; the sum is 0.032266, which rounds to 0.0323. Wrong: 0.0164 and 0.0159 are each list's share alone; 0.2500 ignores k.",
+        "source_ids": [
+          "S214#P5",
+          "S214#P2"
+        ]
+      }
+    ]
+  }
+}
