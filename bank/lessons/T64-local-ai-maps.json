@@ -1,0 +1,823 @@
+{
+  "topic_id": "T64",
+  "items_file": "bank/items/T64-local-ai-maps.json",
+  "course_title": "Local results in AI answers and maps",
+  "subtitle": "What Google says about appearing in AI Overviews, AI Mode and Ask Maps, what keeps a page eligible, and where the evidence runs out.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain what Google says it takes to appear in AI Overviews and AI Mode",
+    "Keep location pages eligible as supporting links",
+    "Describe what Ask Maps is and what it draws on",
+    "Separate the steps Google recommends from claims about local AI ranking"
+  ],
+  "intro": [
+    "Local searches are moving into AI answers. Google Search now has AI Overviews and AI Mode, and Google Maps has Ask Maps, a conversational way to find places. Businesses want to know how to show up in them.",
+    "Google's answer is shorter than most of the advice out there. It says there are no additional requirements and no special schema for its AI features, and it names the conditions a page needs to meet to be a supporting link. It also describes what Ask Maps draws on.",
+    "No saved Google page explains how local businesses are chosen for AI answers. This course keeps to what Google says, and labels anything beyond that as practitioner judgement or industry theory."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T64-1",
+      "title": "AI answers in Search",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe what AI Mode shows people",
+        "State what Google says about extra requirements and special schema",
+        "Explain why AI Overviews and AI Mode can show different links"
+      ],
+      "scene": {
+        "id": "aimode",
+        "title": "An AI answer with supporting links",
+        "beats": [
+          {
+            "caption": "In AI Mode, people get a comprehensive AI-powered response with links to supporting websites.",
+            "source_ids": [
+              "S007#P18"
+            ]
+          },
+          {
+            "caption": "Google says there are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary.",
+            "source_ids": [
+              "S007#P2"
+            ]
+          },
+          {
+            "caption": "There's also no special schema.org structured data that you need to add.",
+            "source_ids": [
+              "S007#P3"
+            ]
+          },
+          {
+            "caption": "Google says the best practices for SEO remain relevant for AI features in Google Search.",
+            "source_ids": [
+              "S007#P13"
+            ]
+          },
+          {
+            "caption": "AI Mode and AI Overviews may use different models and techniques, so the responses and links they show will vary.",
+            "source_ids": [
+              "S007#P17"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What people see",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google describes AI Mode as a way to get a comprehensive AI-powered response with links to supporting websites. Those links are where a business's own pages can appear.",
+              "source_ids": [
+                "S007#P18"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "There are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary.",
+              "source_ids": [
+                "S007#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "No special markup",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google adds that there's no special schema.org structured data you need to add. Structured data still matters in its usual role: Google lists making sure your structured data matches the visible text on the page as a best practice.",
+              "source_ids": [
+                "S007#P3",
+                "S007#P4"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "A hypothetical agency pitches a \"local AI schema\" package for a dental group. Google's AI features page says no special schema.org structured data is needed, so the package is selling something Google says isn't required.",
+              "source_ids": [
+                "S007#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Two features, different results",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says AI Mode and AI Overviews may use different models and techniques, so the set of responses and links they show will vary. Being linked in one doesn't mean being linked in the other.",
+              "source_ids": [
+                "S007#P17"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Both may also use a \"query fan-out\" technique, issuing multiple related searches across subtopics and data sources.",
+              "source_ids": [
+                "S007#P5",
+                "S007#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "AI Mode gives an AI-powered response with links to supporting websites.",
+          "source_ids": [
+            "S007#P18"
+          ]
+        },
+        {
+          "text": "Google lists no additional requirements or special optimizations for its AI features.",
+          "source_ids": [
+            "S007#P2"
+          ]
+        },
+        {
+          "text": "No special schema.org structured data is needed.",
+          "source_ids": [
+            "S007#P3"
+          ]
+        },
+        {
+          "text": "SEO best practices remain relevant, and the two features can show different links.",
+          "source_ids": [
+            "S007#P13",
+            "S007#P17"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Read an AI answer for a local search",
+        "minutes": "10",
+        "steps": [
+          "Search for a local service in your town, such as \"emergency plumber near me\".",
+          "If an AI Overview or AI Mode answer appears, note the supporting links.",
+          "Check whether those links are business sites, directories or articles.",
+          "Note which local businesses are named, and which are linked."
+        ],
+        "prompt_template": "I searched for [query] in [town] and got this AI answer with these supporting links: [paste]. Google says AI Mode gives an AI-powered response with links to supporting websites, that there are no additional requirements or special schema for its AI features, and that SEO best practices remain relevant. Summarise what kinds of sites were linked, and what a local business could reasonably learn from that. Label anything you infer about how sources were chosen as practitioner judgement."
+      },
+      "reflection": [
+        "Have you seen an AI answer name a local business without linking to its site?",
+        "Why might Google say no special optimizations are needed?"
+      ],
+      "whats_next": "Next, the conditions a page needs to meet to be a supporting link."
+    },
+    {
+      "lesson_id": "T64-2",
+      "title": "Staying eligible as a supporting link",
+      "est_minutes": 6,
+      "objectives": [
+        "Name Google's two conditions for being a supporting link",
+        "Explain how nosnippet, max-snippet and noindex affect eligibility",
+        "Tell robots.txt apart from noindex"
+      ],
+      "scene": {
+        "id": "eligible",
+        "title": "Two gates to a supporting link",
+        "beats": [
+          {
+            "caption": "To be eligible as a supporting link in AI Overviews or AI Mode, a page must be indexed and eligible to be shown in Google Search with a snippet.",
+            "source_ids": [
+              "S007#P6",
+              "S007#P7"
+            ]
+          },
+          {
+            "caption": "A noindex tag fails the first gate. Google says to keep a web page out of Google, block indexing with noindex.",
+            "source_ids": [
+              "S101#P5"
+            ]
+          },
+          {
+            "caption": "A nosnippet tag fails the second. Google says it will also prevent the content from being used as a direct input for AI Overviews and AI Mode.",
+            "source_ids": [
+              "S501#P2"
+            ]
+          },
+          {
+            "caption": "max-snippet set to 0 means no snippet is to be shown, which Google calls equivalent to nosnippet.",
+            "source_ids": [
+              "S501#P5"
+            ]
+          },
+          {
+            "caption": "Pass both gates and the page is eligible. Google says robots.txt directives for Googlebot are the control for managing access.",
+            "source_ids": [
+              "S007#P9"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The two conditions",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "To be eligible to be shown as a supporting link in AI Overviews or AI Mode, a page must be indexed and eligible to be shown in Google Search with a snippet.",
+              "cite": "Google Search Central, AI features and your website",
+              "source_ids": [
+                "S007#P6",
+                "S007#P7"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Eligible isn't the same as chosen. These conditions decide whether a page can be a supporting link, not whether it will be.",
+              "source_ids": [
+                "S007#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Controls that remove eligibility",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google lists the controls that limit what Search shows from your pages: nosnippet, data-nosnippet, max-snippet and noindex. Check these before anything else when a location page never appears.",
+              "source_ids": [
+                "S007#P8"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "noindex.",
+                  "text": "Keeps the page out of Google, so it can't be indexed.",
+                  "source_ids": [
+                    "S101#P5"
+                  ]
+                },
+                {
+                  "lead": "nosnippet.",
+                  "text": "Also prevents the content from being used as a direct input for AI Overviews and AI Mode.",
+                  "source_ids": [
+                    "S501#P2"
+                  ]
+                },
+                {
+                  "lead": "max-snippet.",
+                  "text": "Also limits how much of the content may be used as a direct input. A value of 0 is equivalent to nosnippet.",
+                  "source_ids": [
+                    "S501#P4",
+                    "S501#P5"
+                  ]
+                },
+                {
+                  "lead": "data-nosnippet.",
+                  "text": "Marks textual parts of a page not to be used as a snippet.",
+                  "source_ids": [
+                    "S501#P6"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "robots.txt is different",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says robots.txt directives for Googlebot are the control site owners have to manage access. But robots.txt is not a mechanism for keeping a web page out of Google. A disallowed page can still be indexed if other sites link to it.",
+              "source_ids": [
+                "S007#P9",
+                "S101#P3",
+                "S101#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Leftover noindex or nosnippet tags from a staging site are a common reason a live location page never shows. Check the page source and HTTP headers first."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A supporting link must be indexed and eligible to show with a snippet.",
+          "source_ids": [
+            "S007#P6",
+            "S007#P7"
+          ]
+        },
+        {
+          "text": "noindex keeps a page out of Google.",
+          "source_ids": [
+            "S101#P5"
+          ]
+        },
+        {
+          "text": "nosnippet also blocks use as a direct input for AI Overviews and AI Mode, and max-snippet 0 is equivalent.",
+          "source_ids": [
+            "S501#P2",
+            "S501#P5"
+          ]
+        },
+        {
+          "text": "robots.txt manages access, but it doesn't keep a page out of Google.",
+          "source_ids": [
+            "S007#P9",
+            "S101#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check a location page's eligibility",
+        "minutes": "10",
+        "steps": [
+          "Open a location page and view its source.",
+          "Look for a robots meta tag with noindex, nosnippet or max-snippet.",
+          "Check the HTTP response headers for an X-Robots-Tag.",
+          "Search Google for the page's URL to see if it's indexed."
+        ],
+        "prompt_template": "Here are the robots meta tags and HTTP headers for a location page: [paste]. Google says a page must be indexed and eligible to be shown with a snippet to be a supporting link in AI Overviews or AI Mode. It also says nosnippet prevents content being used as a direct input for those features, max-snippet 0 is equivalent to nosnippet, and noindex keeps a page out of Google. Tell me whether this page meets both conditions, and what to change if it doesn't."
+      },
+      "reflection": [
+        "Why might a business deliberately use nosnippet, and what would it give up?",
+        "How would you explain the difference between robots.txt and noindex to a client?"
+      ],
+      "whats_next": "Next, Ask Maps: Google's conversational way to find places in Maps."
+    },
+    {
+      "lesson_id": "T64-3",
+      "title": "Ask Maps",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe what Ask Maps is and the kind of questions it answers",
+        "Name what Google says it draws on",
+        "Say what people can do once they've found a place"
+      ],
+      "scene": {
+        "id": "askmaps",
+        "title": "Asking Maps a question",
+        "beats": [
+          {
+            "caption": "Google describes Ask Maps as a new conversational experience that answers complex, real-world questions.",
+            "source_ids": [
+              "S607#P4"
+            ]
+          },
+          {
+            "caption": "One example: Is there a public tennis court with lights on that I can play at tonight?",
+            "source_ids": [
+              "S607#P5"
+            ]
+          },
+          {
+            "caption": "Maps analyzes information from over 300 million places, including reviews from a community of more than 500 million contributors.",
+            "source_ids": [
+              "S607#P2",
+              "S607#P3"
+            ]
+          },
+          {
+            "caption": "Results are personalized based on things like places you've searched for or saved in Maps.",
+            "source_ids": [
+              "S607#P6"
+            ]
+          },
+          {
+            "caption": "From there, people can book restaurant reservations, save places to a list or share them with friends.",
+            "source_ids": [
+              "S607#P7"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "A new way to search Maps",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Ask Maps is a new conversational experience that answers complex, real-world questions. Instead of typing a category, people describe what they need.",
+              "source_ids": [
+                "S607#P4"
+              ]
+            },
+            {
+              "type": "query",
+              "query": "Is there a public tennis court with lights on that I can play at tonight?",
+              "label": "asks for",
+              "meanings": [
+                "A specific kind of place",
+                "A feature: lights",
+                "A time: tonight"
+              ],
+              "source_ids": [
+                "S607#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google says Ask Maps started rolling out in the U.S. and India on Android and iOS, with desktop coming soon. It's a fast-moving feature, so check availability where you work.",
+              "source_ids": [
+                "S607#P8"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What it draws on",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Places",
+                  "text": "Maps analyzes information from over 300 million places.",
+                  "source_ids": [
+                    "S607#P2"
+                  ]
+                },
+                {
+                  "name": "Reviews",
+                  "text": "Reviews from a community of more than 500 million contributors.",
+                  "source_ids": [
+                    "S607#P3"
+                  ]
+                },
+                {
+                  "name": "You",
+                  "text": "Results are personalized based on things like places you've searched for or saved in Maps.",
+                  "source_ids": [
+                    "S607#P6"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google also says people get clear directions, ETAs, and insider tips from real people.",
+              "source_ids": [
+                "S607#P9"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "From answer to action",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Once someone has a place in mind, Google says they can book restaurant reservations, save places to a list or share them with friends.",
+              "source_ids": [
+                "S607#P7"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Industry theory",
+              "text": "Google's announcement doesn't say how Ask Maps picks which places to recommend. Claims about \"ranking in Ask Maps\" go beyond what Google has published."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Ask Maps is a conversational experience for complex, real-world questions.",
+          "source_ids": [
+            "S607#P4"
+          ]
+        },
+        {
+          "text": "It draws on over 300 million places and reviews from more than 500 million contributors.",
+          "source_ids": [
+            "S607#P2",
+            "S607#P3"
+          ]
+        },
+        {
+          "text": "Results are personalized to the person asking.",
+          "source_ids": [
+            "S607#P6"
+          ]
+        },
+        {
+          "text": "Google hasn't published how Ask Maps chooses places.",
+          "source_ids": [
+            "S607#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Write questions your customers would ask",
+        "minutes": "10",
+        "steps": [
+          "Pick a local business you know.",
+          "Write five questions a customer might ask Maps in full sentences.",
+          "For each one, note the detail the business would need on its profile to answer it.",
+          "Check whether the profile has that detail today."
+        ],
+        "prompt_template": "I work with [business type] in [town]. Google describes Ask Maps as a conversational experience that answers complex, real-world questions, drawing on information from over 300 million places and reviews from more than 500 million contributors. Write ten realistic questions a customer might ask Maps about a business like this, and for each one list the business details that would help answer it. Don't claim to know how Ask Maps ranks places."
+      },
+      "reflection": [
+        "What would you ask Maps that a normal search box couldn't handle?",
+        "How might personalization change which businesses two different people see?"
+      ],
+      "whats_next": "Next, the steps Google recommends, and where the evidence runs out."
+    },
+    {
+      "lesson_id": "T64-4",
+      "title": "What you can influence",
+      "est_minutes": 5,
+      "objectives": [
+        "List the best practices Google gives for its AI features",
+        "Explain what AI place summaries are",
+        "Separate Google's guidance from local AI ranking claims"
+      ],
+      "scene": {
+        "id": "influence",
+        "title": "The checklist Google gives",
+        "beats": [
+          {
+            "caption": "Google's best practices for AI features include checking that your Merchant Center and Business Profile information is up-to-date.",
+            "source_ids": [
+              "S007#P12"
+            ]
+          },
+          {
+            "caption": "They also include ensuring that crawling is allowed in robots.txt, and making sure that important content is available in textual form.",
+            "source_ids": [
+              "S007#P14",
+              "S007#P15"
+            ]
+          },
+          {
+            "caption": "And supporting your textual content with high-quality images and videos, when applicable.",
+            "source_ids": [
+              "S007#P16"
+            ]
+          },
+          {
+            "caption": "In Maps apps, AI place summaries aggregate many different types of data into a high-level overview, labelled \"Summarized with Gemini\".",
+            "source_ids": [
+              "S608#P2",
+              "S608#P3"
+            ]
+          },
+          {
+            "caption": "Beyond this, no saved Google page explains how local businesses are chosen for AI answers. Treat local AI ranking claims as industry theory.",
+            "source_ids": []
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Google's checklist",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says the best practices for SEO remain relevant for AI features in Google Search. Its list includes these points, which apply directly to local businesses.",
+              "source_ids": [
+                "S007#P13"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Business Profile.",
+                  "text": "Checking that your Merchant Center and Business Profile information is up-to-date.",
+                  "source_ids": [
+                    "S007#P12"
+                  ]
+                },
+                {
+                  "lead": "Crawling.",
+                  "text": "Ensuring that crawling is allowed in robots.txt, and by any CDN or hosting infrastructure.",
+                  "source_ids": [
+                    "S007#P14"
+                  ]
+                },
+                {
+                  "lead": "Text.",
+                  "text": "Making sure that important content is available in textual form.",
+                  "source_ids": [
+                    "S007#P15"
+                  ]
+                },
+                {
+                  "lead": "Images and video.",
+                  "text": "Supporting your textual content with high-quality images and videos, when applicable.",
+                  "source_ids": [
+                    "S007#P16"
+                  ]
+                },
+                {
+                  "lead": "Structured data.",
+                  "text": "Making sure your structured data matches the visible text on the page.",
+                  "source_ids": [
+                    "S007#P4"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "AI place summaries",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's Places API offers AI-powered place summaries: brief, 100-character overviews specific to a given place. They aggregate many different types of data into a high-level overview.",
+              "source_ids": [
+                "S608#P1",
+                "S608#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Apps that show them must carry an attribution. Google's disclosure text is \"Summarized with Gemini\".",
+              "source_ids": [
+                "S608#P4",
+                "S608#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Note",
+              "text": "Google's page doesn't name the data sources behind these summaries, so don't assume which parts of a profile they use (absence in the saved page, not a statement)."
+            }
+          ]
+        },
+        {
+          "heading": "Where the evidence runs out",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Industry theory",
+              "text": "No saved Google page explains how local businesses are chosen for AI Overviews, AI Mode or Ask Maps. Advice that promises a ranking method for local AI answers goes beyond what Google has published."
+            },
+            {
+              "type": "p",
+              "text": "What Google does say still points the same way as the rest of this series: accurate profile details, pages Google can crawl and index, and no paid shortcut. There's no way to request or pay for a better local ranking on Google.",
+              "source_ids": [
+                "S007#P12",
+                "S007#P6",
+                "S600#P6"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google's AI feature checklist includes keeping Business Profile information up to date.",
+          "source_ids": [
+            "S007#P12"
+          ]
+        },
+        {
+          "text": "Allow crawling, keep important content in text, and support it with images and video.",
+          "source_ids": [
+            "S007#P14",
+            "S007#P15",
+            "S007#P16"
+          ]
+        },
+        {
+          "text": "AI place summaries aggregate many types of data and are labelled \"Summarized with Gemini\".",
+          "source_ids": [
+            "S608#P2",
+            "S608#P3"
+          ]
+        },
+        {
+          "text": "How local businesses are chosen for AI answers is unpublished, so ranking claims are industry theory.",
+          "source_ids": []
+        }
+      ],
+      "exercise": {
+        "title": "Run Google's AI checklist on a local business",
+        "minutes": "10",
+        "steps": [
+          "Open the business's Business Profile and note anything out of date.",
+          "Check its robots.txt allows crawling of its location pages.",
+          "Check that its services, hours and areas are written in text, not only in images.",
+          "List the images or videos that would support its main pages."
+        ],
+        "prompt_template": "I'm checking [business] against Google's best practices for AI features. Google lists: checking that Business Profile information is up-to-date; ensuring that crawling is allowed in robots.txt; making sure that important content is available in textual form; supporting textual content with high-quality images and videos, when applicable; and making sure structured data matches the visible text. Here's what I found: [paste notes]. Turn this into a prioritised fix list, and label anything about how AI answers choose local businesses as industry theory."
+      },
+      "reflection": [
+        "Which item on Google's checklist do local businesses you know most often miss?",
+        "How would you respond to a client who asks for a guaranteed place in AI answers?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google's position on AI answers is plain: no additional requirements, no special schema, and SEO best practices still apply. To be a supporting link, a page must be indexed and eligible to show with a snippet, so noindex, nosnippet and max-snippet 0 all take a page out of the running. Ask Maps answers conversational questions using over 300 million places and reviews from more than 500 million contributors, personalized to each person. Google's checklist asks for an up-to-date Business Profile, crawlable pages and content in text. How local businesses are chosen for AI answers isn't published, so ranking claims are industry theory.",
+    "related_topics": [
+      {
+        "topic_id": "T52",
+        "title": "GEO and AI Overviews retrieval"
+      },
+      {
+        "topic_id": "T59",
+        "title": "How local results are ranked"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Local results in AI answers and maps. The questions revisit AI Mode eligibility, snippet controls and Ask Maps.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T64-L1-01",
+      "T64-L1-02",
+      "T64-L1-03",
+      "T64-L2-01",
+      "T64-L2-02",
+      "T64-L2-03",
+      "T64-L3-01",
+      "T64-L3-02",
+      "T64-L4-01",
+      "T64-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T64-L1-01",
+        "prompt": "Google describes Ask Maps as a new what kind of experience?",
+        "options": [
+          "A. immersive",
+          "B. visual",
+          "C. augmented-reality",
+          "D. conversational"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google's announcement calls Ask Maps a new conversational experience. Wrong: 'immersive' - that word belongs to Immersive Navigation, a separate feature in the same announcement. 'visual' and 'augmented-reality' - the announcement doesn't describe Ask Maps that way.",
+        "source_ids": [
+          "S607#P1",
+          "S607#P4"
+        ]
+      },
+      {
+        "item_id": "T64-L1-03",
+        "prompt": "Does Google say special schema.org structured data is needed to appear in AI Overviews or AI Mode?",
+        "options": [
+          "A. Yes, LocalBusiness schema is required",
+          "B. Yes, a dedicated AI schema type",
+          "C. No, none is needed",
+          "D. Only for businesses with a Business Profile"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says there's no special schema.org structured data you need to add. Wrong: Google names no required schema type for its AI features, local or otherwise, and ties no schema requirement to having a Business Profile.",
+        "source_ids": [
+          "S007#P3",
+          "S007#P2"
+        ]
+      },
+      {
+        "item_id": "T64-L2-03",
+        "options": [
+          "A. Ask Maps is a new conversational experience",
+          "B. A supporting-link page must be indexed",
+          "C. Special schema is required to appear in AI Mode",
+          "D. Ask Maps reviews come from community contributors"
+        ],
+        "answer": "C",
+        "explanation": "Unsupported: Google says there is no special schema.org structured data you need to add. Supported: Ask Maps is a conversational experience; Ask Maps uses reviews from community contributors; a page must be indexed to be a supporting link.",
+        "source_ids": [
+          "S007#P3",
+          "S607#P1",
+          "S607#P3",
+          "S007#P6"
+        ]
+      },
+      {
+        "item_id": "T64-L3-01",
+        "options": [
+          "A. Add AI-specific local schema to the page",
+          "B. Make sure it is indexed and snippet-eligible",
+          "C. Pay for a guaranteed AI Mode placement",
+          "D. Add nosnippet and noindex to keep the page tidy"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says a page must be indexed and eligible to be shown with a snippet. Wrong: Google says no special schema is needed; payment is not described; Google lists nosnippet and noindex among controls that limit what Search shows.",
+        "source_ids": [
+          "S007#P7",
+          "S007#P3",
+          "S007#P8"
+        ]
+      }
+    ]
+  }
+}
