@@ -80,3 +80,4 @@
 2026-10-29 | course-build | T41 | sources added 0 (S106 +P8-P13) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T42 | sources added 0 | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T43 | sources added 0 (S301 +P6-P15) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T44 | sources added 1 (S235; S011 +P5-P10) | course lesson layer + 4 scenes | cut 0

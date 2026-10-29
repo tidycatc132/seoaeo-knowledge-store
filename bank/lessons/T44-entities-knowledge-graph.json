@@ -1,0 +1,810 @@
+{
+  "topic_id": "T44",
+  "items_file": "bank/items/T44-entities-knowledge-graph.json",
+  "course_title": "Entities, the Knowledge Graph and structured data",
+  "subtitle": "How Google thinks in things rather than strings, how schema.org and JSON-LD describe them, how Organization markup works, and the rules your markup must follow.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain what 'things, not strings' means",
+    "Describe structured data, schema.org and JSON-LD",
+    "Write useful Organization markup",
+    "Keep markup within Google's guidelines"
+  ],
+  "intro": [
+    "Search engines used to see a query as a string of letters. Google's Knowledge Graph describes real things, people and places instead, and structured data is how a page can describe its own.",
+    "This course uses Google's 2012 Knowledge Graph launch post, its Knowledge Graph Search API page, its structured data introduction, guidelines and Organization docs, its guide to AI features, and schema.org's getting started page. One research paper, GraphRAG, appears as an example of a method.",
+    "The research paper describes a method, not what Google does. Advice beyond the sources' words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T44-1",
+      "title": "Things, not strings",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain what an entity is in search",
+        "Use the Taj Mahal example to show disambiguation",
+        "Say how the Knowledge Graph API describes entities"
+      ],
+      "scene": {
+        "id": "kg",
+        "title": "From two words to one thing",
+        "beats": [
+          {
+            "caption": "Google, 2012: to a search engine, the words [taj mahal] had been just two words.",
+            "source_ids": [
+              "S235#P5"
+            ]
+          },
+          {
+            "caption": "The Knowledge Graph understands real-world entities and their relationships: things, not strings.",
+            "source_ids": [
+              "S235#P2"
+            ]
+          },
+          {
+            "caption": "Monument or musician? Google said it could now narrow results just to the one you mean.",
+            "source_ids": [
+              "S235#P6"
+            ]
+          },
+          {
+            "caption": "At launch it held more than 500 million objects and more than 3.5 billion facts and relationships.",
+            "source_ids": [
+              "S235#P3",
+              "S235#P4"
+            ]
+          },
+          {
+            "caption": "Google's Knowledge Graph Search API uses standard schema.org types and follows JSON-LD.",
+            "source_ids": [
+              "S019#P1",
+              "S019#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Strings and things",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "In its 2012 launch post, Google said that to a search engine the words [taj mahal] had been just that: two words. The Knowledge Graph, it said, understands real-world entities and their relationships to one another: things, not strings.",
+              "source_ids": [
+                "S235#P5",
+                "S235#P2"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "It lets you search for things, people or places that Google knows about. Asked whether you mean Taj Mahal the monument or the musician, Google said it now understands the difference and can narrow your search results just to the one you mean.",
+              "source_ids": [
+                "S235#P1",
+                "S235#P6"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "How big, and how it's described",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "At launch, Google said the graph contained more than 500 million objects and more than 3.5 billion facts about and relationships between them. Those are 2012 figures.",
+              "source_ids": [
+                "S235#P3",
+                "S235#P4"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's Knowledge Graph Search API lets developers find entities in the Knowledge Graph. It uses standard schema.org types and is compliant with the JSON-LD specification, the same vocabulary and format sites use for structured data.",
+              "source_ids": [
+                "S019#P1",
+                "S019#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Graphs in research",
+          "blocks": [
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Research, not Google",
+              "text": "The GraphRAG paper derives an entity knowledge graph from the source documents, then pregenerates summaries for groups of closely related entities. It's evidence of a method, not of how Google Search works.",
+              "source_ids": [
+                "S012#P1",
+                "S012#P2"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google's Knowledge Graph models things, not strings.",
+          "source_ids": [
+            "S235#P2"
+          ]
+        },
+        {
+          "text": "It helps tell apart things that share a name.",
+          "source_ids": [
+            "S235#P6"
+          ]
+        },
+        {
+          "text": "The 500 million objects figure is from 2012.",
+          "source_ids": [
+            "S235#P3"
+          ]
+        },
+        {
+          "text": "Its API uses schema.org types and JSON-LD.",
+          "source_ids": [
+            "S019#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find your name twins",
+        "minutes": "10",
+        "steps": [
+          "Search for your brand name on its own.",
+          "Note any other companies, people or places with the same name.",
+          "Write down what makes your organization different from each.",
+          "Check that your About page states those differences clearly."
+        ],
+        "prompt_template": "My organization is [name], a [type] in [place]. These others share the name: [list]. Google says its Knowledge Graph understands entities, things not strings, and can narrow results to the one you mean. List the facts on my About page that tell us apart, and the ones that are missing. Label your advice as practitioner judgement."
+      },
+      "reflection": [
+        "What else in the world shares your brand's name?",
+        "Which facts about you would a stranger need to tell you apart?"
+      ],
+      "whats_next": "Next, structured data: schema.org and JSON-LD."
+    },
+    {
+      "lesson_id": "T44-2",
+      "title": "Structured data: schema.org and JSON-LD",
+      "est_minutes": 5,
+      "objectives": [
+        "Define structured data in Google's words",
+        "Say what schema.org provides",
+        "Name the format Google generally recommends"
+      ],
+      "scene": {
+        "id": "markup",
+        "title": "Describing the page",
+        "beats": [
+          {
+            "caption": "Structured data is a standardized format for providing information about a page and classifying its content.",
+            "source_ids": [
+              "S008#P1"
+            ]
+          },
+          {
+            "caption": "Google uses structured data that it finds on the web to understand the content of the page.",
+            "source_ids": [
+              "S008#P2"
+            ]
+          },
+          {
+            "caption": "Schema.org provides a collection of shared vocabularies to mark up pages.",
+            "source_ids": [
+              "S010#P1"
+            ]
+          },
+          {
+            "caption": "You can write it in Microdata, RDFa or JSON-LD formats.",
+            "source_ids": [
+              "S010#P2"
+            ]
+          },
+          {
+            "caption": "In general, Google recommends JSON-LD if your site's setup allows it.",
+            "source_ids": [
+              "S008#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What structured data is",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google describes structured data as a standardized format for providing information about a page and classifying the page content. Google uses structured data that it finds on the web to understand the content of the page.",
+              "source_ids": [
+                "S008#P6",
+                "S008#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Vocabulary and format",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Two pieces work together.",
+              "source_ids": [
+                "S010#P1",
+                "S010#P2"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "The vocabulary.",
+                  "text": "Schema.org provides a collection of shared vocabularies webmasters can use to mark up their pages.",
+                  "source_ids": [
+                    "S010#P1"
+                  ]
+                },
+                {
+                  "lead": "The format.",
+                  "text": "The markup can be written as Microdata, RDFa or JSON-LD. In general, Google recommends JSON-LD if your site's setup allows it.",
+                  "source_ids": [
+                    "S010#P2",
+                    "S008#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical JSON-LD: <script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Organization\", \"name\": \"Northbank Plumbing\", \"url\": \"https://northbank.example\"}</script>",
+              "source_ids": [
+                "S008#P3",
+                "S010#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Valid isn't the same as eligible",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says to follow the general structured data guidelines, as well as any guidelines specific to your structured data type. Otherwise your structured data might be ineligible for rich result display in Google Search.",
+              "source_ids": [
+                "S008#P5",
+                "S008#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Structured data is a standardized format for describing a page.",
+          "source_ids": [
+            "S008#P1"
+          ]
+        },
+        {
+          "text": "Google uses it to understand page content.",
+          "source_ids": [
+            "S008#P2"
+          ]
+        },
+        {
+          "text": "Schema.org supplies the shared vocabulary.",
+          "source_ids": [
+            "S010#P1"
+          ]
+        },
+        {
+          "text": "Google generally recommends JSON-LD.",
+          "source_ids": [
+            "S008#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Read your markup",
+        "minutes": "10",
+        "steps": [
+          "Open the source of your home page.",
+          "Search for application/ld+json, itemscope or typeof.",
+          "Note which format and which schema.org types you use.",
+          "List any key page with no structured data at all."
+        ],
+        "prompt_template": "Here is the structured data from my page: [markup]. Tell me which format it uses (Microdata, RDFa or JSON-LD), which schema.org types it declares, and whether each value matches the visible page text: [page text]. Google generally recommends JSON-LD where the setup allows."
+      },
+      "reflection": [
+        "Which format does your CMS or plugin output?",
+        "Who on your team owns the markup when templates change?"
+      ],
+      "whats_next": "Next, Organization markup: telling Google who you are."
+    },
+    {
+      "lesson_id": "T44-3",
+      "title": "Organization markup",
+      "est_minutes": 5,
+      "objectives": [
+        "Say what Organization markup tells Google",
+        "Use url and sameAs correctly",
+        "Place the markup on the right page"
+      ],
+      "scene": {
+        "id": "org",
+        "title": "Who you are",
+        "beats": [
+          {
+            "caption": "Organization markup lets Google know administrative details about your organization.",
+            "source_ids": [
+              "S011#P1"
+            ]
+          },
+          {
+            "caption": "There are no required properties; add the ones that apply to your content.",
+            "source_ids": [
+              "S011#P4"
+            ]
+          },
+          {
+            "caption": "url: your organization's website. Google says this helps it uniquely identify your organization.",
+            "source_ids": [
+              "S011#P9"
+            ]
+          },
+          {
+            "caption": "sameAs: a page on another website with more about you. Some properties help disambiguate you from others.",
+            "source_ids": [
+              "S011#P3",
+              "S011#P2"
+            ]
+          },
+          {
+            "caption": "Put it on your home page or a single page about your organization, not every page.",
+            "source_ids": [
+              "S011#P6",
+              "S011#P7"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What it's for",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says you can use Organization markup to let it know administrative details about your organization. Some properties are used behind the scenes to disambiguate your organization from other organizations, while others can influence visual elements in Search results.",
+              "source_ids": [
+                "S011#P1",
+                "S011#P2",
+                "S011#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "There are no required properties. Instead, add the properties that apply to your content.",
+              "source_ids": [
+                "S011#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Useful properties",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's descriptions of three common properties:",
+              "source_ids": [
+                "S011#P9",
+                "S011#P3",
+                "S011#P8"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "url.",
+                  "text": "The URL of your organization's website. Google says this helps it uniquely identify your organization.",
+                  "source_ids": [
+                    "S011#P9"
+                  ]
+                },
+                {
+                  "lead": "sameAs.",
+                  "text": "The URL of a page on another website with additional information about your organization, if applicable.",
+                  "source_ids": [
+                    "S011#P3"
+                  ]
+                },
+                {
+                  "lead": "logo.",
+                  "text": "A logo that is representative of your organization, if applicable.",
+                  "source_ids": [
+                    "S011#P8"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Point sameAs only at profiles that really belong to you. Google doesn't say which properties do the disambiguating, so don't promise a result.",
+              "source_ids": [
+                "S011#P2",
+                "S011#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Where to put it",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google recommends placing this information on your home page, or a single page that describes your organization. You don't need to include it on every page of your site. Validate your code using the Rich Results Test and fix any critical errors.",
+              "source_ids": [
+                "S011#P6",
+                "S011#P7",
+                "S011#P10"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Organization markup has no required properties.",
+          "source_ids": [
+            "S011#P4"
+          ]
+        },
+        {
+          "text": "url helps Google uniquely identify you.",
+          "source_ids": [
+            "S011#P9"
+          ]
+        },
+        {
+          "text": "sameAs points to more about you on other sites.",
+          "source_ids": [
+            "S011#P3"
+          ]
+        },
+        {
+          "text": "Home page or one About page is enough.",
+          "source_ids": [
+            "S011#P6",
+            "S011#P7"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Draft your Organization block",
+        "minutes": "15",
+        "steps": [
+          "Collect your official website URL and logo file URL.",
+          "List the profiles on other sites that you control.",
+          "Write a JSON-LD Organization block with name, url, logo and sameAs.",
+          "Add it to your home page and run the Rich Results Test."
+        ],
+        "prompt_template": "Write a JSON-LD Organization block for [name]. Website: [url]. Logo: [logo URL]. Our own profiles: [list]. Use only properties Google's Organization docs describe, such as url, logo and sameAs, and leave out anything I haven't given you. Note that no property is required and results aren't guaranteed."
+      },
+      "reflection": [
+        "Which profiles on other sites do you actually control?",
+        "Is your logo URL stable, or does it change with redesigns?"
+      ],
+      "whats_next": "Next, the rules your markup must follow, and what AI features need."
+    },
+    {
+      "lesson_id": "T44-4",
+      "title": "Rules and AI features",
+      "est_minutes": 5,
+      "objectives": [
+        "State the true representation rule",
+        "Explain what a structured data manual action costs",
+        "Answer whether AI features need special schema"
+      ],
+      "scene": {
+        "id": "rules",
+        "title": "Markup must match the page",
+        "beats": [
+          {
+            "caption": "Your structured data must be a true representation of the page content.",
+            "source_ids": [
+              "S009#P1"
+            ]
+          },
+          {
+            "caption": "Don't mark up content that is not visible to readers of the page.",
+            "source_ids": [
+              "S009#P2"
+            ]
+          },
+          {
+            "caption": "A structured data issue can result in a manual action, and the page loses rich result eligibility.",
+            "source_ids": [
+              "S009#P4",
+              "S009#P5"
+            ]
+          },
+          {
+            "caption": "Don't use structured data to deceive or mislead users.",
+            "source_ids": [
+              "S009#P3"
+            ]
+          },
+          {
+            "caption": "AI Overviews and AI Mode: there's no special schema.org structured data you need to add.",
+            "source_ids": [
+              "S007#P3",
+              "S007#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Match the page",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's general guidelines set the rules.",
+              "source_ids": [
+                "S009#P1",
+                "S009#P2",
+                "S009#P3"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "True.",
+                  "text": "Your structured data must be a true representation of the page content.",
+                  "source_ids": [
+                    "S009#P1"
+                  ]
+                },
+                {
+                  "lead": "Visible.",
+                  "text": "Don't mark up content that is not visible to readers of the page.",
+                  "source_ids": [
+                    "S009#P2"
+                  ]
+                },
+                {
+                  "lead": "Honest.",
+                  "text": "Don't use structured data to deceive or mislead users.",
+                  "source_ids": [
+                    "S009#P3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a product page marks up a 4.8 star rating, but no ratings appear on the page. The JSON-LD validates, but it breaks the visible content rule.",
+              "source_ids": [
+                "S009#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What a manual action costs",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "If your page contains a structured data issue, it can result in a manual action. Google says a structured data manual action means that a page loses eligibility for appearance as a rich result.",
+              "source_ids": [
+                "S009#P4",
+                "S009#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "AI features",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's guide to AI features says there are no additional requirements to appear in AI Overviews or AI Mode, nor other special optimizations necessary, and there's no special schema.org structured data that you need to add. It does list making sure your structured data matches the visible text on the page as a good practice.",
+              "source_ids": [
+                "S007#P2",
+                "S007#P3",
+                "S007#P4"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "A pitch for 'AI schema' as a requirement for AI Overviews contradicts Google's own guide.",
+              "source_ids": [
+                "S007#P3"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Markup must be a true representation of the page.",
+          "source_ids": [
+            "S009#P1"
+          ]
+        },
+        {
+          "text": "Don't mark up content readers can't see.",
+          "source_ids": [
+            "S009#P2"
+          ]
+        },
+        {
+          "text": "A manual action removes rich result eligibility.",
+          "source_ids": [
+            "S009#P5"
+          ]
+        },
+        {
+          "text": "AI Overviews and AI Mode need no special schema.",
+          "source_ids": [
+            "S007#P3"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit markup against the page",
+        "minutes": "15",
+        "steps": [
+          "Pick a template that outputs structured data, such as product or FAQ.",
+          "List every value in its markup.",
+          "Find each value in the visible page text.",
+          "Remove or fix any value a reader can't see."
+        ],
+        "prompt_template": "Here is the structured data on my page: [markup], and the visible page text: [text]. Google says structured data must be a true representation of the page and not mark up content that is not visible to readers. List every marked-up value that doesn't appear in the visible text and say whether to remove it or show it."
+      },
+      "reflection": [
+        "Which templates might output markup for content you've removed?",
+        "Has anyone sold you schema as an AI requirement?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google's Knowledge Graph models things, not strings, which lets it tell apart entities that share a name. Structured data is a standardized way for a page to describe itself, using schema.org vocabulary, and Google generally recommends JSON-LD. Organization markup has no required properties; url helps Google identify you and sameAs points to more about you elsewhere. Markup must truthfully match the visible page, or a manual action can remove rich result eligibility. And Google says AI Overviews and AI Mode need no special schema.",
+    "related_topics": [
+      {
+        "topic_id": "T43",
+        "title": "Neural ranking and semantic matching in Google (RankBrain, BERT, MUM)"
+      },
+      {
+        "topic_id": "T52",
+        "title": "GEO and AI Overviews retrieval"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Entities, the Knowledge Graph and structured data. The questions revisit structured data, Organization markup and Google's guidelines.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T44-L1-01",
+      "T44-L1-02",
+      "T44-L1-03",
+      "T44-L2-01",
+      "T44-L2-02",
+      "T44-L2-03",
+      "T44-L3-01",
+      "T44-L3-02",
+      "T44-L4-01",
+      "T44-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T44-L1-01",
+        "options": [
+          "A. language",
+          "B. ranking",
+          "C. template",
+          "D. format"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google describes structured data as a standardized format for providing information about a page and classifying the page content. Wrong: the other words aren't in Google's definition.",
+        "source_ids": [
+          "S008#P1",
+          "S008#P6"
+        ]
+      },
+      {
+        "item_id": "T44-L1-03",
+        "options": [
+          "A. False, it ignores structured data",
+          "B. True",
+          "C. False, it's only for rich results",
+          "D. False, it's only for ads"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google's introduction says it uses structured data that it finds on the web to understand the content of the page.",
+        "source_ids": [
+          "S008#P2"
+        ]
+      },
+      {
+        "item_id": "T44-L2-01",
+        "options": [
+          "A. logo",
+          "B. url",
+          "C. description",
+          "D. sameAs"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google describes sameAs as the URL of a page on another website with additional information about your organization. Wrong: url is your own website, and logo is your logo. Google says some properties help disambiguate your organization but doesn't say which.",
+        "source_ids": [
+          "S011#P3",
+          "S011#P9",
+          "S011#P8",
+          "S011#P2"
+        ]
+      },
+      {
+        "item_id": "T44-L3-01",
+        "options": [
+          "A. name, url and logo",
+          "B. None",
+          "C. name and sameAs",
+          "D. url only"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says there are no required properties; instead, add the properties that apply to your content. The block is fine with name, url and sameAs, but none of them is required.",
+        "source_ids": [
+          "S011#P4",
+          "S011#P3"
+        ]
+      },
+      {
+        "item_id": "T44-L3-02",
+        "prompt": "A hypothetical audit finding reads: 'Product page marks up a 4.8 star rating, but no ratings appear on the page. Status: fine, JSON-LD validates.' What is the error?",
+        "options": [
+          "A. JSON-LD can't hold ratings of any kind",
+          "B. Ratings must be written in Microdata",
+          "C. Invisible content shouldn't be marked up",
+          "D. Nothing; markup doesn't need to match the page"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says not to mark up content not visible to readers and that the data must be a true representation of the page; an issue can lead to a manual action. Wrong: no saved source says JSON-LD can't hold ratings or that Microdata is required, and the last option contradicts the guidelines.",
+        "source_ids": [
+          "S009#P1",
+          "S009#P2",
+          "S009#P4"
+        ]
+      },
+      {
+        "item_id": "T44-L4-01",
+        "options": [
+          "A. Add more entity schema, as the vendor proposes",
+          "B. Switch all of the markup to Microdata",
+          "C. Ignore it, since a manual action has no consequence",
+          "D. Remove the hidden markup or restore the content"
+        ],
+        "answer": "D",
+        "explanation": "Correct: this fixes the cause named in the guidelines. Wrong: Google says no special schema is needed for AI features; switching to Microdata changes the format, not the mismatch; and Google says a structured data manual action means the page loses eligibility for appearance as a rich result.",
+        "source_ids": [
+          "S009#P1",
+          "S009#P2",
+          "S009#P4",
+          "S009#P5",
+          "S007#P3"
+        ]
+      }
+    ]
+  }
+}
