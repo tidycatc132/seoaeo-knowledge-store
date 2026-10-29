@@ -27,3 +27,15 @@ Note: quotes were returned by WebFetch extraction; fragments kept short.
 > Relevancy is determined by hundreds of factors, which could include information such as the user's location, language, and device (desktop or phone).
 ### P8 bicycle example
 > For example, searching for "bicycle repair shops" would show different results to a user in Paris than it would to a user in Hong Kong.
+### P9 indexing defined
+> After a page is crawled, Google tries to understand what the page is about.
+### P10 what is analyzed
+> it includes processing and analyzing the textual content and key content tags and attributes
+### P11 Google index
+> may be stored in the Google index, a large database hosted on thousands of computers.
+### P12 issue low quality
+> The quality of the content on page is low
+### P13 issue robots meta
+> Robots meta rules disallow indexing
+### P14 issue design
+> The design of the website might make indexing difficult

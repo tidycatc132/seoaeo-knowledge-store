@@ -1,0 +1,769 @@
+{
+  "topic_id": "T5",
+  "items_file": "bank/items/T5-inverted-index.json",
+  "course_title": "The inverted index",
+  "subtitle": "The structure that lets search engines answer in milliseconds: how it's built from dictionary and postings, and why being crawled isn't the same as being indexed.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why search engines index documents in advance",
+    "Describe an inverted index as a dictionary and postings lists",
+    "List the steps the textbook uses to build an index",
+    "Tell crawled, discovered and indexed apart in Search Console"
+  ],
+  "intro": [
+    "When you search, the engine doesn't read the web. It looks words up in an index it built earlier. That index is called an inverted index, and it's the central idea in information retrieval.",
+    "This course explains how one works, using the Stanford textbook Introduction to Information Retrieval. Then it turns to Google's own documentation on indexing, and the Search Console statuses that tell you whether your pages made it in.",
+    "One caution runs through the course: the textbook describes a method. It isn't a description of Google's internals, which Google doesn't publish."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T5-1",
+      "title": "Why index in advance",
+      "est_minutes": 4,
+      "objectives": [
+        "Explain the cost of a linear scan",
+        "Say what indexing in advance avoids",
+        "Name the textbook's central structure"
+      ],
+      "scene": {
+        "id": "scan",
+        "title": "Scanning versus looking up",
+        "beats": [
+          {
+            "caption": "The simplest form of document retrieval is a linear scan: read every document for every query.",
+            "source_ids": [
+              "S203#P5"
+            ]
+          },
+          {
+            "caption": "On a big collection, that means reading everything, every time someone searches.",
+            "source_ids": [
+              "S203#P5"
+            ]
+          },
+          {
+            "caption": "The way to avoid linearly scanning the texts for each query is to index the documents in advance.",
+            "source_ids": [
+              "S122#P1"
+            ]
+          },
+          {
+            "caption": "This idea is central to the first major concept in information retrieval, the inverted index.",
+            "source_ids": [
+              "S122#P2"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "The problem with scanning",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The simplest way to find documents containing a word is to read through every one of them. The textbook calls this a linear scan.",
+              "source_ids": [
+                "S203#P5"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Searching a folder of 20 files by reading each one is fine. Doing the same for billions of web pages, for every one of millions of searches, isn't.",
+              "source_ids": [
+                "S203#P5"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Do the work once",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "The way to avoid linearly scanning the texts for each query is to index the documents in advance.",
+              "cite": "Introduction to Information Retrieval, 1.1",
+              "source_ids": [
+                "S122#P1"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The textbook calls this idea central to the first major concept in information retrieval, the inverted index.",
+              "source_ids": [
+                "S122#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google's version",
+              "text": "Google says indexed information may be stored in the Google index, a large database hosted on thousands of computers. It doesn't publish how that index is structured.",
+              "source_ids": [
+                "S120#P11"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "A linear scan reads every document for every query.",
+          "source_ids": [
+            "S203#P5"
+          ]
+        },
+        {
+          "text": "Indexing in advance avoids that scan.",
+          "source_ids": [
+            "S122#P1"
+          ]
+        },
+        {
+          "text": "The inverted index is the central structure in information retrieval.",
+          "source_ids": [
+            "S122#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Feel the difference",
+        "minutes": "5",
+        "steps": [
+          "Open a long document and search it with your browser's find tool.",
+          "Now imagine doing that across every page on your site for each visitor's search.",
+          "Write down what you'd need to prepare in advance to answer instantly.",
+          "Compare your idea with the inverted index in the next lesson."
+        ],
+        "prompt_template": "The textbook says the way to avoid linearly scanning the texts for each query is to index the documents in advance, and calls the inverted index the central idea. Explain to a marketing colleague, in under 150 words and without jargon, why a search engine can't just read every page when someone searches."
+      },
+      "reflection": [
+        "What does a search engine have to do before your page can appear in results?",
+        "What's the trade-off of doing work in advance?"
+      ],
+      "whats_next": "Next, what an inverted index actually contains."
+    },
+    {
+      "lesson_id": "T5-2",
+      "title": "Dictionary and postings",
+      "est_minutes": 5,
+      "objectives": [
+        "Describe the two parts of an inverted index",
+        "Explain why the index stores only non-zero entries",
+        "Say how postings are ordered"
+      ],
+      "scene": {
+        "id": "postings",
+        "title": "Inverting the matrix",
+        "beats": [
+          {
+            "caption": "The term-document matrix is extremely sparse: it has few non-zero entries.",
+            "source_ids": [
+              "S122#P3"
+            ]
+          },
+          {
+            "caption": "So instead, keep a dictionary of terms. For each term, list the documents it occurs in.",
+            "source_ids": [
+              "S108#P3"
+            ]
+          },
+          {
+            "caption": "That list is called a postings list.",
+            "source_ids": [
+              "S122#P4"
+            ]
+          },
+          {
+            "caption": "The index consists of a dictionary and postings, and the postings are secondarily sorted by docID.",
+            "source_ids": [
+              "S108#P3",
+              "S108#P4"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Most of the matrix is empty",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "A table with every word down the side and every document across the top would be enormous, and almost entirely zeros. The textbook says the matrix is extremely sparse, that is, it has few non-zero entries.",
+              "source_ids": [
+                "S122#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "An inverted index stores only the useful part: for each word, which documents contain it.",
+              "source_ids": [
+                "S108#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The two parts",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Dictionary",
+                  "text": "The list of terms the index knows about.",
+                  "source_ids": [
+                    "S108#P3"
+                  ]
+                },
+                {
+                  "name": "Postings list",
+                  "text": "For each term, the list of documents it occurs in. The textbook calls this list a postings list.",
+                  "source_ids": [
+                    "S122#P4"
+                  ]
+                },
+                {
+                  "name": "Ordering",
+                  "text": "The postings are secondarily sorted by docID.",
+                  "source_ids": [
+                    "S108#P4"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "boiler → pages 2, 7, 15. repair → pages 2, 9, 15. To answer boiler AND repair, walk both lists and keep the pages in both: 2 and 15. Sorted lists make that walk quick.",
+              "source_ids": [
+                "S108#P4",
+                "S203#P1"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "The term-document matrix is extremely sparse.",
+          "source_ids": [
+            "S122#P3"
+          ]
+        },
+        {
+          "text": "An inverted index is a dictionary plus postings.",
+          "source_ids": [
+            "S108#P3"
+          ]
+        },
+        {
+          "text": "A term's list of documents is called a postings list.",
+          "source_ids": [
+            "S122#P4"
+          ]
+        },
+        {
+          "text": "Postings are secondarily sorted by docID.",
+          "source_ids": [
+            "S108#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Build a mini index",
+        "minutes": "10",
+        "steps": [
+          "Take five short pages and number them 1 to 5.",
+          "Pick six words that appear across them.",
+          "For each word, list the page numbers it appears on, in order.",
+          "Use your lists to answer one AND query."
+        ],
+        "prompt_template": "Here are five short pages, numbered 1 to 5: [paste]. Build a small inverted index for these words: [words]. Show the dictionary and each word's postings list, sorted by page number. Then show step by step how to answer [word 1] AND [word 2] by walking the two lists."
+      },
+      "reflection": [
+        "Why is it faster to look up two short lists than to read every page?",
+        "What would a postings list for a very common word look like?"
+      ],
+      "whats_next": "Next, the steps that turn raw pages into index terms."
+    },
+    {
+      "lesson_id": "T5-3",
+      "title": "Building the index",
+      "est_minutes": 5,
+      "objectives": [
+        "List the textbook's steps for building an index",
+        "Explain what tokenizing does",
+        "Explain what linguistic preprocessing produces"
+      ],
+      "scene": {
+        "id": "pipeline",
+        "title": "From pages to postings",
+        "beats": [
+          {
+            "caption": "Start by collecting the documents to be indexed.",
+            "source_ids": [
+              "S108#P1"
+            ]
+          },
+          {
+            "caption": "Tokenize the text, turning each document into a list of tokens.",
+            "source_ids": [
+              "S108#P1"
+            ]
+          },
+          {
+            "caption": "Do linguistic preprocessing, producing a list of normalized tokens, which are the indexing terms.",
+            "source_ids": [
+              "S108#P2"
+            ]
+          },
+          {
+            "caption": "Index the documents that each term occurs in by creating an inverted index, consisting of a dictionary and postings.",
+            "source_ids": [
+              "S108#P3"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Four steps",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The textbook builds an inverted index in a fixed order. Each step feeds the next.",
+              "source_ids": [
+                "S108#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Collect.",
+                  "text": "Gather the documents to be indexed.",
+                  "source_ids": [
+                    "S108#P1"
+                  ]
+                },
+                {
+                  "lead": "Tokenize.",
+                  "text": "Tokenize the text, turning each document into a list of tokens.",
+                  "source_ids": [
+                    "S108#P1"
+                  ]
+                },
+                {
+                  "lead": "Preprocess.",
+                  "text": "Do linguistic preprocessing, producing a list of normalized tokens, which are the indexing terms.",
+                  "source_ids": [
+                    "S108#P2"
+                  ]
+                },
+                {
+                  "lead": "Index.",
+                  "text": "Create an inverted index, consisting of a dictionary and postings.",
+                  "source_ids": [
+                    "S108#P3"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why the middle steps matter",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The index only knows the terms that come out of preprocessing. If two spellings of a word are normalized to the same term, a search for either finds both. If they aren't, they're different entries in the dictionary.",
+              "source_ids": [
+                "S108#P2"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Google doesn't publish its indexing pipeline, so treat these steps as a model, not a map of Google. The tokenization and normalization course goes deeper into the middle steps."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "The textbook's order is collect, tokenize, preprocess, index.",
+          "source_ids": [
+            "S108#P1",
+            "S108#P2",
+            "S108#P3"
+          ]
+        },
+        {
+          "text": "Tokenizing turns each document into a list of tokens.",
+          "source_ids": [
+            "S108#P1"
+          ]
+        },
+        {
+          "text": "Linguistic preprocessing produces normalized tokens, the indexing terms.",
+          "source_ids": [
+            "S108#P2"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Run the pipeline by hand",
+        "minutes": "10",
+        "steps": [
+          "Take one sentence from your site with a hyphen, a capital letter and a plural.",
+          "Split it into tokens.",
+          "Decide how each token should be normalized, such as lowercasing.",
+          "Write the final list of index terms."
+        ],
+        "prompt_template": "Here's a sentence from my site: [sentence]. The textbook builds an index by tokenizing the text into tokens, then doing linguistic preprocessing to produce normalized tokens, which are the indexing terms. Walk this sentence through both steps, show the tokens and the normalized terms, and point out any choices (such as hyphens or plurals) that would change what a search finds."
+      },
+      "reflection": [
+        "Which words on your site might be split or normalized in surprising ways?",
+        "Why does the order of these steps matter?"
+      ],
+      "whats_next": "Next, Google's side: crawled, discovered and indexed are not the same thing."
+    },
+    {
+      "lesson_id": "T5-4",
+      "title": "Crawled is not indexed",
+      "est_minutes": 6,
+      "objectives": [
+        "Describe what Google says happens during indexing",
+        "Read the main Search Console page indexing statuses",
+        "Choose noindex over robots.txt to keep a page out"
+      ],
+      "scene": {
+        "id": "statuses",
+        "title": "Three statuses, three meanings",
+        "beats": [
+          {
+            "caption": "After a page is crawled, Google tries to understand what the page is about. That's indexing.",
+            "source_ids": [
+              "S120#P9"
+            ]
+          },
+          {
+            "caption": "Indexing isn't guaranteed; not every page that Google processes will be indexed.",
+            "source_ids": [
+              "S120#P3"
+            ]
+          },
+          {
+            "caption": "Discovered – currently not indexed: the page was found by Google, but not crawled yet.",
+            "source_ids": [
+              "S119#P2"
+            ]
+          },
+          {
+            "caption": "Crawled – currently not indexed: the page was crawled by Google but not indexed.",
+            "source_ids": [
+              "S119#P1"
+            ]
+          },
+          {
+            "caption": "A page blocked in robots.txt can still be indexed if linked from other sites. To keep it out, use noindex or password protection.",
+            "source_ids": [
+              "S101#P4",
+              "S101#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What Google does at indexing",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says that after a page is crawled, it tries to understand what the page is about. This includes processing and analyzing the textual content and key content tags and attributes. The result may be stored in the Google index, a large database hosted on thousands of computers.",
+              "source_ids": [
+                "S120#P9",
+                "S120#P10",
+                "S120#P11"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "Indexing isn't guaranteed; not every page that Google processes will be indexed.",
+              "source_ids": [
+                "S120#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google names common reasons a page isn't indexed: the quality of the content on page is low, robots meta rules disallow indexing, or the design of the website might make indexing difficult.",
+              "source_ids": [
+                "S120#P12",
+                "S120#P13",
+                "S120#P14"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Reading the Page indexing report",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Search Console's Page indexing report shows where each URL stands. These statuses come up most in audits.",
+              "source_ids": [
+                "S119#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Discovered – currently not indexed.",
+                  "text": "The page was found by Google, but not crawled yet.",
+                  "source_ids": [
+                    "S119#P2"
+                  ]
+                },
+                {
+                  "lead": "Crawled – currently not indexed.",
+                  "text": "The page was crawled by Google but not indexed.",
+                  "source_ids": [
+                    "S119#P1"
+                  ]
+                },
+                {
+                  "lead": "Blocked by robots.txt.",
+                  "text": "This page was blocked by your site's robots.txt file.",
+                  "source_ids": [
+                    "S119#P5"
+                  ]
+                },
+                {
+                  "lead": "Indexed, though blocked by robots.txt.",
+                  "text": "The page was indexed despite being blocked by your website's robots.txt file.",
+                  "source_ids": [
+                    "S119#P6"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Keeping a page out",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Use this when a page should never appear in Google, such as print versions or internal search results.",
+              "source_ids": [
+                "S101#P5"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Don't rely on robots.txt.",
+                  "text": "A page that's disallowed in robots.txt can still be indexed if linked to from other sites.",
+                  "source_ids": [
+                    "S101#P4"
+                  ]
+                },
+                {
+                  "lead": "Use noindex or a password.",
+                  "text": "To keep a web page out of Google, block indexing with noindex or password-protect the page.",
+                  "source_ids": [
+                    "S101#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Practitioner judgement",
+              "text": "Google has to fetch a page to see its noindex tag, so don't block the same URL in robots.txt while you're relying on noindex."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Indexing is Google working out what a crawled page is about.",
+          "source_ids": [
+            "S120#P9"
+          ]
+        },
+        {
+          "text": "Indexing isn't guaranteed for every page Google processes.",
+          "source_ids": [
+            "S120#P3"
+          ]
+        },
+        {
+          "text": "Discovered means found but not crawled. Crawled means crawled but not indexed.",
+          "source_ids": [
+            "S119#P2",
+            "S119#P1"
+          ]
+        },
+        {
+          "text": "To keep a page out, use noindex or a password, not robots.txt alone.",
+          "source_ids": [
+            "S101#P4",
+            "S101#P5"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Triage your not-indexed pages",
+        "minutes": "15",
+        "steps": [
+          "Open Search Console's Page indexing report for a site you manage.",
+          "Note how many URLs sit under Discovered and Crawled – currently not indexed.",
+          "Open a sample of five from each and judge whether they should be indexed.",
+          "List the pages that need improving, and the ones that should be kept out with noindex."
+        ],
+        "prompt_template": "Here's a sample of URLs from my Search Console Page indexing report, with their status: [paste]. Google says 'Discovered – currently not indexed' means found but not crawled yet, 'Crawled – currently not indexed' means crawled but not indexed, and indexing isn't guaranteed. It names low-quality content, robots meta rules and site design as common indexing issues. Group these URLs, suggest a likely next step for each group, and label your reasoning as practitioner judgement."
+      },
+      "reflection": [
+        "Which of your pages would you rather Google didn't index at all?",
+        "Why might Google crawl a page and still choose not to index it?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Search engines index in advance so they never have to scan every page for every query. The textbook's inverted index is a dictionary of terms, each pointing to a postings list of the documents that contain it, built by collecting, tokenizing, normalizing and indexing. Google stores what it learns in the Google index, but doesn't publish its structure. For your site, the key lesson is that crawled isn't indexed: indexing isn't guaranteed, Search Console's statuses tell you where each URL stands, and noindex, not robots.txt, keeps a page out.",
+    "related_topics": [
+      {
+        "topic_id": "T8",
+        "title": "Tokenization and text normalization"
+      },
+      {
+        "topic_id": "T39",
+        "title": "Web crawling and crawl budget management"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for The inverted index. The questions revisit dictionaries and postings, how an index is built, and Google's indexing statuses.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T5-L1-01",
+      "T5-L1-02",
+      "T5-L1-03",
+      "T5-L2-01",
+      "T5-L2-02",
+      "T5-L2-03",
+      "T5-L3-01",
+      "T5-L3-02",
+      "T5-L4-01",
+      "T5-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T5-L1-01",
+        "prompt": "In the textbook's inverted index, the index consists of a dictionary and what?",
+        "options": [
+          "A. postings",
+          "B. a sitemap",
+          "C. a link graph",
+          "D. a crawl queue"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the textbook says the inverted index consists of a dictionary and postings; a term's list of documents is called a postings list. Wrong: sitemaps, link graphs and crawl queues are other parts of search, not the second half of the index.",
+        "source_ids": [
+          "S108#P3",
+          "S122#P4"
+        ]
+      },
+      {
+        "item_id": "T5-L1-03",
+        "prompt": "How does the textbook say postings are secondarily sorted?",
+        "options": [
+          "A. By how often the page is visited",
+          "B. By the date each page was crawled",
+          "C. Alphabetically by page title",
+          "D. By docID"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the textbook says the postings are secondarily sorted by docID. Wrong: visits, crawl dates and titles aren't the sort keys it describes.",
+        "source_ids": [
+          "S108#P4"
+        ]
+      },
+      {
+        "item_id": "T5-L2-01",
+        "prompt": "The textbook says the term-document matrix is extremely sparse. What does it mean by that?",
+        "options": [
+          "A. It has few non-zero entries",
+          "B. It has very few terms in total",
+          "C. It holds only the most popular pages",
+          "D. Most of its entries are duplicates"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the textbook says the matrix is extremely sparse, that is, it has few non-zero entries. Wrong: sparse doesn't mean few terms, popular pages only or duplicate entries. Practitioner inference: this is why storing only the documents that contain each term is efficient.",
+        "source_ids": [
+          "S122#P3",
+          "S122#P2"
+        ]
+      },
+      {
+        "item_id": "T5-L2-02",
+        "prompt": "What does Google say about whether every page it processes will be indexed?",
+        "options": [
+          "A. Every crawled page is indexed within a week",
+          "B. Indexing isn't guaranteed",
+          "C. Only pages in a sitemap are indexed",
+          "D. Pages are indexed once they are fetched"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says indexing isn't guaranteed; not every page that Google processes will be indexed. Wrong: Google gives no indexing deadline, doesn't limit indexing to sitemap pages, and being fetched doesn't mean being indexed.",
+        "source_ids": [
+          "S120#P3"
+        ]
+      },
+      {
+        "item_id": "T5-L3-01",
+        "prompt": "The textbook builds an inverted index in this order: collect documents, tokenize, ___, then index. What fills the gap?",
+        "options": [
+          "A. rank the documents",
+          "B. crawl the links",
+          "C. compress the postings lists by size",
+          "D. linguistic preprocessing"
+        ],
+        "answer": "D",
+        "explanation": "Correct: the textbook lists collecting documents, tokenizing, doing linguistic preprocessing to produce normalized tokens, then indexing. Wrong: ranking happens at query time; crawling comes before collection; compression isn't one of the four steps.",
+        "source_ids": [
+          "S108#P1",
+          "S108#P2",
+          "S108#P3"
+        ]
+      },
+      {
+        "item_id": "T5-L4-02",
+        "options": [
+          "A. Add more Disallow lines for the same URLs",
+          "B. Use noindex or password protection",
+          "C. Add all the print URLs to the XML sitemap",
+          "D. Return a 5xx status for the print URLs"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says a disallowed page can still be indexed if linked from other sites and that noindex or password protection is how to keep a page out. More Disallow lines repeat the failed approach. A sitemap invites inclusion. A 5xx is not a stated method. Practitioner inference: a noindex tag has to be fetched to be seen, so the URLs likely must be crawlable.",
+        "source_ids": [
+          "S101#P4",
+          "S101#P5",
+          "S119#P6"
+        ]
+      }
+    ]
+  }
+}
