@@ -59,3 +59,4 @@
 2026-10-28 | course-build | T63 | sources added 0 (S209 +P23-P30, S120 +P6-P8) | bank T63 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T64 | sources added 0 (S007 +P12-P18, S607 +P4-P10, S608 +P2-P4) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T1 | sources added 1 (S224; S203 +P3-P9, S222 +P3-P7) | bank T1 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T2 | sources added 2 (S225, S226; S205 +P4-P8) | bank T2 +8 items (2 -> 10) | course lesson layer + 4 scenes | cut 0
