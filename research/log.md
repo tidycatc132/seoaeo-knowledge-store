@@ -93,3 +93,4 @@
 2026-10-29 | course-build | T55 | sources added 0 (S407 +P15-P23) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T56 | sources added 1 (S245 visual elements gallery; S508 +P5-P9) | course lesson layer + 4 scenes | cut 0
 2026-10-29 | course-build | T57 | sources added 0 (S408 +P4-P10, S410 +P4-P8) | course lesson layer + 4 scenes | cut 0
+2026-10-29 | course-build | T58 | sources added 0 (S107 +P8-P11, S123 +P4-P16) | course lesson layer + 4 scenes | cut 0

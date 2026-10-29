@@ -5,7 +5,7 @@ title: Tell Google about localized versions of your page (hreflang)
 publisher: Google Search Central
 grade: A
 page_date: 2026-09-21
-opened: 2026-10-25
+opened: 2026-10-25 (extra passages 2026-10-29 P8-P11)
 status: used
 ---
 Summary: hreflang tells Google about language/region variants; every version must list itself and all others. x-default is the fallback; three equivalent methods.
@@ -27,3 +27,11 @@ Note: quotes were returned by WebFetch extraction; fragments kept short.
 > HTML tags
 > HTTP Headers
 > Sitemap
+### P8 fully-qualified
+> Alternate URLs must be fully-qualified, including the transport method (http/https)
+### P9 both point
+> If two pages don't both point to each other, the tags will be ignored.
+### P10 link syntax
+> <link rel="alternate" hreflang="lang_code" href="url_of_page" />
+### P11 region alone
+> Specifying the region alone is not valid.
