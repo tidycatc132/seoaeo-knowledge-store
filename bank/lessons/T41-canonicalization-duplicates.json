@@ -1,0 +1,770 @@
+{
+  "topic_id": "T41",
+  "items_file": "bank/items/T41-canonicalization-duplicates.json",
+  "course_title": "Canonicals and duplicate content",
+  "subtitle": "Why many URLs end up showing the same content, how Google picks a canonical, the signals you can send, common mistakes, and how near-duplicates are detected.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why Google groups duplicates and picks a canonical",
+    "Rank canonical signals from strong to weak",
+    "Avoid canonical mistakes and read Search Console statuses",
+    "Describe how near-duplicates are detected with shingles and fingerprints"
+  ],
+  "intro": [
+    "The same product can often be reached at several URLs: with tracking parameters, over HTTP and HTTPS, or sorted differently. Google groups these and picks one URL, the canonical, to represent them.",
+    "This course uses Google's guide to consolidating duplicate URLs, its pagination guide and Search Console's Page indexing report help, plus the near-duplicates section of Introduction to Information Retrieval and Charikar's paper on similarity estimation.",
+    "The textbook and paper describe techniques, not what Google runs. Advice beyond Google's words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T41-1",
+      "title": "Why canonicals matter",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain how Google decides what's a duplicate",
+        "Give Google's two reasons to pick a canonical",
+        "Name one canonical preference Google states"
+      ],
+      "scene": {
+        "id": "dupes",
+        "title": "Many URLs, one page",
+        "beats": [
+          {
+            "caption": "Near duplication is a crucial and widespread phenomenon on the Web.",
+            "source_ids": [
+              "S112#P1"
+            ]
+          },
+          {
+            "caption": "Google decides which pages (if any) are duplicates, based on similarity of content.",
+            "source_ids": [
+              "S106#P7"
+            ]
+          },
+          {
+            "caption": "One reason to pick a canonical: to consolidate signals for similar or duplicate pages.",
+            "source_ids": [
+              "S106#P1"
+            ]
+          },
+          {
+            "caption": "Another: to avoid spending crawling time on duplicates instead of new or updated pages.",
+            "source_ids": [
+              "S106#P2",
+              "S106#P8"
+            ]
+          },
+          {
+            "caption": "Google prefers HTTPS pages over equivalent HTTP pages as canonical.",
+            "source_ids": [
+              "S106#P12"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Duplicates are normal",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The textbook calls near duplication a crucial and widespread phenomenon on the Web. Google says it will decide which pages (if any) are duplicates, based on similarity of content.",
+              "source_ids": [
+                "S112#P1",
+                "S106#P7"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: https://shop.example/sofa, http://shop.example/sofa, https://shop.example/sofa?utm_source=mail and https://shop.example/sofa?sort=price all show the same sofa.",
+              "source_ids": [
+                "S106#P7"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Why one URL is picked",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google gives reasons to choose a canonical URL.",
+              "source_ids": [
+                "S106#P1"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Consolidate signals.",
+                  "text": "To consolidate signals for similar or duplicate pages.",
+                  "source_ids": [
+                    "S106#P1"
+                  ]
+                },
+                {
+                  "lead": "Save crawling.",
+                  "text": "To avoid spending crawling time on duplicate pages, so time goes to new or updated pages instead.",
+                  "source_ids": [
+                    "S106#P2",
+                    "S106#P8"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Google says",
+              "text": "Google prefers HTTPS pages over equivalent HTTP pages as canonical, except when there are issues or conflicting signals.",
+              "source_ids": [
+                "S106#P12"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Near duplication is widespread on the Web.",
+          "source_ids": [
+            "S112#P1"
+          ]
+        },
+        {
+          "text": "Google decides duplicates based on similarity of content.",
+          "source_ids": [
+            "S106#P7"
+          ]
+        },
+        {
+          "text": "A canonical consolidates signals and saves crawling.",
+          "source_ids": [
+            "S106#P1",
+            "S106#P2"
+          ]
+        },
+        {
+          "text": "Google prefers HTTPS over equivalent HTTP pages.",
+          "source_ids": [
+            "S106#P12"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Find your duplicates",
+        "minutes": "10",
+        "steps": [
+          "Pick one important page on your site.",
+          "Try it with and without https, www and a trailing slash.",
+          "Add a tracking parameter and a sort parameter.",
+          "Note which versions load the same content without redirecting."
+        ],
+        "prompt_template": "These URL versions of my page all load: [list], and these redirect: [list]. Google says it decides duplicates based on similarity of content, and picks a canonical to consolidate signals and avoid crawling duplicates. Group the versions, suggest which should be canonical, and say which ones should redirect, labelled as practitioner judgement."
+      },
+      "reflection": [
+        "How many versions of your home page load without redirecting?",
+        "Where do tracking parameters on your site come from?"
+      ],
+      "whats_next": "Next, the signals you can send about your preferred URL."
+    },
+    {
+      "lesson_id": "T41-2",
+      "title": "Signalling your preference",
+      "est_minutes": 5,
+      "objectives": [
+        "Rank redirects, rel=canonical and sitemaps as signals",
+        "Write a rel=canonical correctly",
+        "Explain that signals stack but aren't required"
+      ],
+      "scene": {
+        "id": "prefs",
+        "title": "Strong and weak signals",
+        "beats": [
+          {
+            "caption": "A redirect is a strong signal that its target should become canonical.",
+            "source_ids": [
+              "S106#P3"
+            ]
+          },
+          {
+            "caption": "rel=\"canonical\" is a strong signal that the specified URL should become canonical. Use absolute paths.",
+            "source_ids": [
+              "S106#P4",
+              "S106#P11"
+            ]
+          },
+          {
+            "caption": "Sitemap inclusion is a weak signal that helps the listed URLs become canonical.",
+            "source_ids": [
+              "S106#P5"
+            ]
+          },
+          {
+            "caption": "These methods can stack and become more effective when combined.",
+            "source_ids": [
+              "S106#P13"
+            ]
+          },
+          {
+            "caption": "But none of them are required; your site will likely do just fine without specifying a preference.",
+            "source_ids": [
+              "S106#P6"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Three signals",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Redirect (strong)",
+                  "text": "A strong signal that the target of the redirect should become canonical.",
+                  "source_ids": [
+                    "S106#P3"
+                  ]
+                },
+                {
+                  "name": "rel=\"canonical\" (strong)",
+                  "text": "A strong signal that the specified URL should become canonical. Use absolute paths rather than relative paths with the link element.",
+                  "source_ids": [
+                    "S106#P4",
+                    "S106#P11"
+                  ]
+                },
+                {
+                  "name": "Sitemap (weak)",
+                  "text": "A weak signal that helps the URLs that are included in a sitemap become canonical.",
+                  "source_ids": [
+                    "S106#P5"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Illustrative: <link rel=\"canonical\" href=\"https://shop.example/sofa\"> uses an absolute path. href=\"/sofa\" is a relative path, which Google says to avoid here.",
+              "source_ids": [
+                "S106#P11"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Stacking and choice",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says these methods can stack and thus become more effective when combined. It also says none of them are required, and your site will likely do just fine without specifying a canonical preference.",
+              "source_ids": [
+                "S106#P13",
+                "S106#P6"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "Make your signals agree. A page that redirects one way, declares a different canonical and lists a third URL in the sitemap sends mixed messages."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Redirects are a strong canonical signal.",
+          "source_ids": [
+            "S106#P3"
+          ]
+        },
+        {
+          "text": "rel=\"canonical\" is strong too; use absolute paths.",
+          "source_ids": [
+            "S106#P4",
+            "S106#P11"
+          ]
+        },
+        {
+          "text": "Sitemap inclusion is a weak signal.",
+          "source_ids": [
+            "S106#P5"
+          ]
+        },
+        {
+          "text": "Signals stack, but none is required.",
+          "source_ids": [
+            "S106#P13",
+            "S106#P6"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check your signals agree",
+        "minutes": "10",
+        "steps": [
+          "Pick five important URLs.",
+          "For each, note any redirect, its rel=canonical and whether the sitemap lists it.",
+          "Mark any URL where the three point to different places.",
+          "Fix the most important conflict first."
+        ],
+        "prompt_template": "For these URLs I've noted the redirect, rel=canonical and sitemap status: [table]. Google says redirects and rel=canonical are strong signals, sitemap inclusion is weak, methods stack, and rel=canonical should use absolute paths. Flag conflicts and relative paths, and suggest fixes in priority order."
+      },
+      "reflection": [
+        "Does your CMS write absolute or relative canonical URLs?",
+        "Where do your sitemap URLs differ from your canonical URLs?"
+      ],
+      "whats_next": "Next, mistakes to avoid and how to read Search Console's statuses."
+    },
+    {
+      "lesson_id": "T41-3",
+      "title": "Mistakes and report statuses",
+      "est_minutes": 6,
+      "objectives": [
+        "Avoid robots.txt and noindex for canonicalization",
+        "Canonicalize paginated pages correctly",
+        "Read two Page indexing statuses"
+      ],
+      "scene": {
+        "id": "mistakes",
+        "title": "Don't, do, and don't panic",
+        "beats": [
+          {
+            "caption": "Don't use the robots.txt file for canonicalization purposes.",
+            "source_ids": [
+              "S106#P9"
+            ]
+          },
+          {
+            "caption": "Google doesn't recommend using noindex to prevent selection of a canonical page within a single site.",
+            "source_ids": [
+              "S106#P10"
+            ]
+          },
+          {
+            "caption": "Pagination: don't use the first page as the canonical. Give each page its own canonical URL.",
+            "source_ids": [
+              "S103#P2",
+              "S103#P3"
+            ]
+          },
+          {
+            "caption": "Give each page a unique URL, and link to it with an <a> element's href.",
+            "source_ids": [
+              "S103#P1",
+              "S103#P4"
+            ]
+          },
+          {
+            "caption": "\"Alternate page with proper canonical tag\": the page points to an indexed canonical, so there's nothing you need to do.",
+            "source_ids": [
+              "S119#P7"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Two tools not to use",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "robots.txt.",
+                  "text": "Don't use the robots.txt file for canonicalization purposes.",
+                  "source_ids": [
+                    "S106#P9"
+                  ]
+                },
+                {
+                  "lead": "noindex.",
+                  "text": "Google doesn't recommend using noindex to prevent selection of a canonical page within a single site.",
+                  "source_ids": [
+                    "S106#P10"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Paginated pages",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's pagination guide says to give each page a unique URL, not to use the first page of a paginated sequence as the canonical page, and instead to give each page its own canonical URL. Google generally crawls URLs found in the href attribute of <a> elements.",
+              "source_ids": [
+                "S103#P1",
+                "S103#P2",
+                "S103#P3",
+                "S103#P4"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: /sofas?page=3 should carry a canonical to /sofas?page=3, not to /sofas.",
+              "source_ids": [
+                "S103#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Reading the Page indexing report",
+          "blocks": [
+            {
+              "type": "classes",
+              "items": [
+                {
+                  "name": "Alternate page with proper canonical tag",
+                  "text": "This page correctly points to the canonical page, which is indexed, so there is nothing you need to do.",
+                  "source_ids": [
+                    "S119#P7"
+                  ]
+                },
+                {
+                  "name": "Duplicate, Google chose different canonical than user",
+                  "text": "The page is marked as canonical for a set of pages, but Google thinks another URL makes a better canonical.",
+                  "source_ids": [
+                    "S119#P4"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Practitioner judgement",
+              "text": "When Google picks a different canonical, check whether the pages really are the same, then make your signals agree, for example by redirecting true duplicates."
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Don't use robots.txt for canonicalization.",
+          "source_ids": [
+            "S106#P9"
+          ]
+        },
+        {
+          "text": "Don't use noindex to steer canonical selection within a site.",
+          "source_ids": [
+            "S106#P10"
+          ]
+        },
+        {
+          "text": "Each paginated page gets its own canonical.",
+          "source_ids": [
+            "S103#P3"
+          ]
+        },
+        {
+          "text": "'Alternate page with proper canonical tag' needs no action.",
+          "source_ids": [
+            "S119#P7"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Triage your report",
+        "minutes": "15",
+        "steps": [
+          "Open Search Console's Page indexing report.",
+          "Note the counts for the duplicate and alternate statuses.",
+          "Sample five URLs from 'Google chose different canonical than user'.",
+          "For each, decide whether the pages are truly the same."
+        ],
+        "prompt_template": "My Page indexing report shows [count] 'Alternate page with proper canonical tag' and [count] 'Duplicate, Google chose different canonical than user'. Here are five sample URLs from the second group, with the canonical I declared and the one Google chose: [list]. Using Google's guidance, tell me which need action and what to change."
+      },
+      "reflection": [
+        "Have you ever used noindex or robots.txt to handle duplicates?",
+        "Do your paginated pages canonicalize to page one?"
+      ],
+      "whats_next": "Next, how near-duplicates can be detected at web scale."
+    },
+    {
+      "lesson_id": "T41-4",
+      "title": "Detecting near-duplicates",
+      "est_minutes": 6,
+      "objectives": [
+        "Explain shingles and the Jaccard coefficient",
+        "Explain why fingerprints are needed at scale",
+        "Separate published techniques from Google's systems"
+      ],
+      "scene": {
+        "id": "shingles",
+        "title": "Compare overlapping word runs",
+        "beats": [
+          {
+            "caption": "A shingle set is the set of all consecutive sequences of terms in a document.",
+            "source_ids": [
+              "S112#P6"
+            ]
+          },
+          {
+            "caption": "Two documents are near duplicates if their shingle sets are nearly the same, measured with the Jaccard coefficient.",
+            "source_ids": [
+              "S112#P2",
+              "S112#P3"
+            ]
+          },
+          {
+            "caption": "Exhaustively comparing all pairs of web pages is an infeasible task at the scale of billions of pages.",
+            "source_ids": [
+              "S112#P4"
+            ]
+          },
+          {
+            "caption": "So compute, for each page, a fingerprint: a succinct (say 64-bit) digest.",
+            "source_ids": [
+              "S112#P5"
+            ]
+          },
+          {
+            "caption": "Charikar: estimating similarity amounts to measuring Hamming distance. These are techniques, not proof of Google's system.",
+            "source_ids": [
+              "S115#P1"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Shingles and Jaccard",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Introduction to Information Retrieval builds a set of shingles for each document: the set of all consecutive sequences of terms in it. Intuitively, two documents are near duplicates if the sets of shingles generated from them are nearly the same, which can be measured with the Jaccard coefficient.",
+              "source_ids": [
+                "S112#P6",
+                "S112#P2",
+                "S112#P3"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Illustrative, with 3-word shingles: \"grey three seat sofa\" gives {grey three seat, three seat sofa}. \"grey three seat couch\" gives {grey three seat, three seat couch}. They share 1 of 3 distinct shingles, so the Jaccard coefficient is 1/3.",
+              "source_ids": [
+                "S112#P6",
+                "S112#P3"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Fingerprints at scale",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The textbook notes that exhaustively comparing all pairs of web pages is an infeasible task at the scale of billions of pages. Instead it computes, for each web page, a fingerprint that is a succinct (say 64-bit) digest of the characters on that page.",
+              "source_ids": [
+                "S112#P4",
+                "S112#P5"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Charikar's paper on similarity estimation says estimating similarity between vectors amounts to measuring the Hamming distance, and that the similarity function is very closely related to cosine similarity. It notes Broder et al's work was motivated by eliminating near-duplicate documents.",
+              "source_ids": [
+                "S115#P1",
+                "S115#P2",
+                "S115#P3"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Scope",
+              "text": "These are published techniques. No saved source says which one Google uses. Google only says it decides duplicates based on similarity of content.",
+              "source_ids": [
+                "S106#P7"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Shingles are consecutive sequences of terms.",
+          "source_ids": [
+            "S112#P6"
+          ]
+        },
+        {
+          "text": "Near duplicates have nearly the same shingle sets.",
+          "source_ids": [
+            "S112#P2"
+          ]
+        },
+        {
+          "text": "Comparing every pair is infeasible at web scale, so fingerprints are used.",
+          "source_ids": [
+            "S112#P4",
+            "S112#P5"
+          ]
+        },
+        {
+          "text": "These techniques don't show what Google runs.",
+          "source_ids": [
+            "S106#P7"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Measure two of your pages",
+        "minutes": "15",
+        "steps": [
+          "Pick two pages you think are too similar, such as two location pages.",
+          "Copy the main text of each.",
+          "Ask an assistant to compute 3-word shingle overlap.",
+          "Decide whether to merge, redirect or rewrite one of them."
+        ],
+        "prompt_template": "Here are the main texts of two pages on my site: [page A] and [page B]. Using the textbook method, split each into 3-word shingles and compute the Jaccard coefficient (shared shingles divided by all distinct shingles). Tell me how similar they are and suggest whether to merge, redirect or rewrite, noting this is an illustrative measure, not how Google decides."
+      },
+      "reflection": [
+        "Which templates on your site produce near-identical pages?",
+        "What unique content would make two similar pages genuinely different?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Many URLs can show the same content, and Google decides duplicates based on similarity of content, then picks a canonical to consolidate signals and save crawling. Redirects and rel=canonical are strong signals, sitemaps weak; they stack, but none is required. Don't use robots.txt or noindex for canonicalization, and give each paginated page its own canonical. 'Alternate page with proper canonical tag' needs no action. The textbook finds near-duplicates by comparing shingle sets, using fingerprints at scale; these are techniques, not Google's system.",
+    "related_topics": [
+      {
+        "topic_id": "T32",
+        "title": "Faceted navigation and crawl traps"
+      },
+      {
+        "topic_id": "T39",
+        "title": "Web crawling and crawl budget management"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Canonicals and duplicate content. The questions revisit canonical signals, mistakes, report statuses and near-duplicate detection.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T41-L1-01",
+      "T41-L1-02",
+      "T41-L1-03",
+      "T41-L2-01",
+      "T41-L2-02",
+      "T41-L2-03",
+      "T41-L3-01",
+      "T41-L3-02",
+      "T41-L4-01",
+      "T41-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T41-L1-01",
+        "prompt": "In the textbook, near duplicates are detected by comparing sets of what?",
+        "options": [
+          "A. keywords",
+          "B. shingles",
+          "C. headings",
+          "D. hyperlinks"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the textbook says two documents are near duplicates if the sets of shingles generated from them are nearly the same, compared with the Jaccard coefficient. Wrong: keywords, headings and links aren't the sets it compares.",
+        "source_ids": [
+          "S112#P2",
+          "S112#P3"
+        ]
+      },
+      {
+        "item_id": "T41-L1-03",
+        "prompt": "Does Google say you must specify a canonical preference?",
+        "options": [
+          "A. Yes, on every page of the site",
+          "B. Yes, but only for ecommerce sites",
+          "C. Only for sites with over 500 pages",
+          "D. No, none is required"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says none of the methods are required, and your site will likely do just fine without specifying a canonical preference. Wrong: none of the other conditions appears in Google's guide.",
+        "source_ids": [
+          "S106#P6"
+        ]
+      },
+      {
+        "item_id": "T41-L2-01",
+        "prompt": "Why does the textbook use fingerprints instead of comparing every pair of pages? Comparing all pairs is ___ at the scale of billions of pages.",
+        "options": [
+          "A. slightly slower",
+          "B. less accurate",
+          "C. infeasible",
+          "D. against the rules"
+        ],
+        "answer": "C",
+        "explanation": "Correct: the textbook calls exhaustively comparing all pairs of web pages an infeasible task at the scale of billions of pages, so it computes a succinct fingerprint for each page. Wrong: the other words aren't how it describes the problem.",
+        "source_ids": [
+          "S112#P4",
+          "S112#P5"
+        ]
+      },
+      {
+        "item_id": "T41-L2-02",
+        "prompt": "Does Charikar's similarity estimation paper show that Google uses SimHash to detect duplicate pages?",
+        "options": [
+          "A. No; it describes the technique",
+          "B. Yes, it names Google's duplicate filter",
+          "C. Yes, it was written by Google Search",
+          "D. Only for news sites, it says"
+        ],
+        "answer": "A",
+        "explanation": "Correct: the paper describes similarity estimation (Hamming distance, closely related to cosine) and mentions near-duplicate elimination as motivation for related work. It doesn't say Google uses it, and Google only says it decides duplicates based on similarity of content.",
+        "source_ids": [
+          "S115#P1",
+          "S115#P2",
+          "S115#P3",
+          "S106#P7"
+        ]
+      },
+      {
+        "item_id": "T41-L3-01",
+        "prompt": "Hypothetical: three URLs serve nearly the same page and you declare no canonical preference. Google says it will decide which pages (if any) are duplicates based on similarity of what?",
+        "options": [
+          "A. anchor text",
+          "B. backlinks",
+          "C. page titles",
+          "D. content"
+        ],
+        "answer": "D",
+        "explanation": "Correct: Google says it will decide which pages (if any) are duplicates, based on similarity of content. Wrong: the other options aren't what Google names.",
+        "source_ids": [
+          "S106#P7"
+        ]
+      },
+      {
+        "item_id": "T41-L4-01",
+        "options": [
+          "A. Wait, because Google will fix the choice soon",
+          "B. Add noindex to the URL Google chose as canonical",
+          "C. Redirect true duplicates to one URL",
+          "D. Disallow the preferred URL in robots.txt"
+        ],
+        "answer": "C",
+        "explanation": "Correct: redirecting true duplicates is a strong signal and removes variant URLs from the crawl inventory. Wrong: waiting leaves crawling wasted on duplicates; noindex on the chosen canonical removes the page you want; disallowing the preferred URL blocks the page you want crawled.",
+        "source_ids": [
+          "S119#P4",
+          "S106#P1",
+          "S106#P2",
+          "S106#P3",
+          "S106#P5"
+        ]
+      }
+    ]
+  }
+}
