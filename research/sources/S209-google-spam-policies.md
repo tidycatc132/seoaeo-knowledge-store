@@ -5,7 +5,7 @@ title: Spam policies for Google web search
 publisher: Google Search Central
 grade: A
 page_date: 2026-08-28
-opened: 2026-10-25 (extra passages 2026-10-28)
+opened: 2026-10-25 (extra passages 2026-10-28) (extra passages 2026-10-29 P31-P35)
 status: used
 ---
 Summary: Google's spam policy defines keyword stuffing as filling a page with keywords to manipulate rankings.
@@ -70,3 +70,13 @@ Summary: Google's spam policy defines keyword stuffing as filling a page with ke
 > Google does understand that buying and selling links is a normal part of the economy of the web for advertising and sponsorship purposes.
 ### P30 qualified links ok
 > It's not a violation of our policies to have such links as long as they are qualified with a rel="nofollow" or rel="sponsored" attribute value to the <a> tag.
+### P31 detection full
+> We detect policy-violating practices both through automated systems and, as needed, human review
+### P32 manual action
+> human review that can result in a manual action
+### P33 notify
+> If your site is affected in this way, we will notify you in the Manual actions report
+### P34 hidden text
+> Hidden text or link abuse is the practice of placing content on a page in a way solely to manipulate search engines
+### P35 scraping
+> Scraping refers to the practice of taking content from other sites, often through automated means

@@ -1,0 +1,783 @@
+{
+  "topic_id": "T54",
+  "items_file": "bank/items/T54-spam-detection.json",
+  "course_title": "Spam policies and quality filters",
+  "subtitle": "What Google's spam policies forbid, how violations are caught, and what happens after a manual action.",
+  "last_verified": "2026-10-29",
+  "outcomes": [
+    "Explain why Google fights spam and what it costs a site",
+    "Recognise tricks that deceive readers or crawlers",
+    "Spot scaled content and borrowed reputation",
+    "Handle link spam and manual actions"
+  ],
+  "intro": [
+    "Google publishes a list of spam policies. Break them and a site may rank lower or vanish from results. Most of the policies come down to one idea: doing something mainly to manipulate rankings rather than to help people.",
+    "This course uses Google's spam policies page, its ranking systems guide, its guide to qualifying outbound links and the Search Console help page on manual actions.",
+    "Google doesn't publish how its detection works inside, so this course teaches the definitions, not the detectors. Advice beyond Google's words is labelled practitioner judgement."
+  ],
+  "lessons": [
+    {
+      "lesson_id": "T54-1",
+      "title": "Why spam policies exist",
+      "est_minutes": 5,
+      "objectives": [
+        "Explain the cost of violating Google's spam policies",
+        "Describe how Google detects violations",
+        "Name Google's spam detection system"
+      ],
+      "scene": {
+        "id": "why",
+        "title": "A spam filter for the web",
+        "beats": [
+          {
+            "caption": "No one wants their email inbox filled with spam, which is why spam filters are so helpful.",
+            "source_ids": [
+              "S300#P13"
+            ]
+          },
+          {
+            "caption": "Google uses a range of spam detection systems, including SpamBrain, for content and behaviours that violate its policies.",
+            "source_ids": [
+              "S300#P14"
+            ]
+          },
+          {
+            "caption": "These systems are constantly updated to keep up with the latest ways that the spam threat evolves.",
+            "source_ids": [
+              "S300#P15"
+            ]
+          },
+          {
+            "caption": "Violations are detected through automated systems and, as needed, human review that can result in a manual action.",
+            "source_ids": [
+              "S209#P31",
+              "S209#P32"
+            ]
+          },
+          {
+            "caption": "Sites that violate the policies may rank lower in results or not appear in results at all.",
+            "source_ids": [
+              "S209#P11"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "A filter, like email",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google's ranking systems guide compares search to email: no one wants their inbox filled with spam, which is why spam filters are so helpful. It says Google employs a range of spam detection systems, including SpamBrain, to deal with content and behaviours that violate its spam policies.",
+              "source_ids": [
+                "S300#P13",
+                "S300#P14"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "These systems are constantly updated to keep up with the latest ways that the spam threat evolves.",
+              "source_ids": [
+                "S300#P15"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Machines first, people as needed",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "The spam policies page says Google detects policy-violating practices both through automated systems and, as needed, human review that can result in a manual action.",
+              "source_ids": [
+                "S209#P31",
+                "S209#P32"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "The Search Console help page adds that in most cases Google automatically discovers spam and removes it from search results.",
+              "source_ids": [
+                "S244#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "The cost",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says sites that violate its policies may rank lower in results or not appear in results at all.",
+              "source_ids": [
+                "S209#P11"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Scope",
+              "text": "Google names SpamBrain but doesn't publish how it works. Be wary of anyone who claims to know its exact triggers.",
+              "source_ids": [
+                "S300#P14"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Google runs spam detection systems, including SpamBrain.",
+          "source_ids": [
+            "S300#P14"
+          ]
+        },
+        {
+          "text": "They're constantly updated.",
+          "source_ids": [
+            "S300#P15"
+          ]
+        },
+        {
+          "text": "Automated systems first, human review as needed.",
+          "source_ids": [
+            "S209#P31"
+          ]
+        },
+        {
+          "text": "Violators may rank lower or disappear.",
+          "source_ids": [
+            "S209#P11"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Read the policy list",
+        "minutes": "15",
+        "steps": [
+          "Open Google's spam policies page.",
+          "List each named policy in a spreadsheet.",
+          "For each, write one sentence in Google's own words.",
+          "Mark any your site or clients might be near."
+        ],
+        "prompt_template": "Here is my site's situation: [describe]. Using only Google's spam policy definitions I paste here: [paste], list which policies I should check first and why. Don't guess at how SpamBrain works."
+      },
+      "reflection": [
+        "Which spam policy would surprise your clients most?",
+        "Has anyone told you how SpamBrain works? What was their source?"
+      ],
+      "whats_next": "Next, tricks that show readers and crawlers different things."
+    },
+    {
+      "lesson_id": "T54-2",
+      "title": "Tricks that deceive",
+      "est_minutes": 5,
+      "objectives": [
+        "Define cloaking and hidden text abuse",
+        "Recognise keyword stuffing",
+        "Spot doorway pages"
+      ],
+      "scene": {
+        "id": "tricks",
+        "title": "Two faces of a page",
+        "beats": [
+          {
+            "caption": "Cloaking: presenting different content to users and search engines.",
+            "source_ids": [
+              "S209#P3"
+            ]
+          },
+          {
+            "caption": "Google's example: a page about travel destinations for search engines, and about discount drugs for users.",
+            "source_ids": [
+              "S209#P4"
+            ]
+          },
+          {
+            "caption": "Hidden text or link abuse: placing content on a page solely to manipulate search engines.",
+            "source_ids": [
+              "S209#P34"
+            ]
+          },
+          {
+            "caption": "Keyword stuffing: repeating the same words or phrases so often that it sounds unnatural.",
+            "source_ids": [
+              "S209#P1",
+              "S209#P2"
+            ]
+          },
+          {
+            "caption": "Doorway abuse: pages created to rank for specific, similar queries that lead to less useful intermediate pages.",
+            "source_ids": [
+              "S209#P17",
+              "S209#P18"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Cloaking",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says cloaking refers to the practice of presenting different content to users and search engines. Its example: showing a page about travel destinations to search engines while showing a page about discount drugs to users.",
+              "source_ids": [
+                "S209#P3",
+                "S209#P4"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Hidden text and stuffed keywords",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Hidden text or link abuse is the practice of placing content on a page in a way solely to manipulate search engines. Keyword stuffing is filling a web page with keywords or numbers in an attempt to manipulate rankings, such as repeating the same words or phrases so often that it sounds unnatural.",
+              "source_ids": [
+                "S209#P34",
+                "S209#P1",
+                "S209#P2"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: a footer reads 'cheap plumber Leeds, plumber Leeds cheap, Leeds plumber cheap'. That's repetition that sounds unnatural.",
+              "source_ids": [
+                "S209#P2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Doorways",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says doorway abuse is when sites or pages are created to rank for specific, similar search queries. They lead users to intermediate pages that aren't as useful as the final destination. Google lists examples like these.",
+              "source_ids": [
+                "S209#P17",
+                "S209#P18"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "City funnels.",
+                  "text": "Multiple domain names or pages targeted at specific regions or cities that funnel users to one page.",
+                  "source_ids": [
+                    "S209#P19"
+                  ]
+                },
+                {
+                  "lead": "Near-copies.",
+                  "text": "Substantially similar pages that are closer to search results than a clearly defined, browseable hierarchy.",
+                  "source_ids": [
+                    "S209#P20"
+                  ]
+                },
+                {
+                  "lead": "Funnel pages.",
+                  "text": "Pages generated to funnel visitors into the actual usable or relevant portion of a site.",
+                  "source_ids": [
+                    "S209#P21"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Cloaking shows users and crawlers different content.",
+          "source_ids": [
+            "S209#P3"
+          ]
+        },
+        {
+          "text": "Hidden text exists only to manipulate search engines.",
+          "source_ids": [
+            "S209#P34"
+          ]
+        },
+        {
+          "text": "Stuffed keywords sound unnatural.",
+          "source_ids": [
+            "S209#P2"
+          ]
+        },
+        {
+          "text": "Doorways funnel users through less useful pages.",
+          "source_ids": [
+            "S209#P18"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check what crawlers see",
+        "minutes": "15",
+        "steps": [
+          "Pick five important pages.",
+          "Use the URL Inspection tool in Search Console to view the rendered page.",
+          "Compare it with what a visitor sees in a browser.",
+          "Note any text that's hidden, repeated unnaturally, or shown only to one side."
+        ],
+        "prompt_template": "Here is what Google's URL Inspection shows for a page, and what a visitor sees: [paste both]. Google defines cloaking as presenting different content to users and search engines, and hidden text abuse as content placed solely to manipulate search engines. List any differences that could look like either."
+      },
+      "reflection": [
+        "Do any of your location pages only exist to rank and pass people on?",
+        "Is any text on your site styled to be invisible to visitors?"
+      ],
+      "whats_next": "Next, content at scale and borrowed reputation."
+    },
+    {
+      "lesson_id": "T54-3",
+      "title": "Scale and borrowed reputation",
+      "est_minutes": 5,
+      "objectives": [
+        "Define scaled content abuse and its AI example",
+        "Tell thin affiliation from normal affiliate content",
+        "Recognise expired domain and site reputation abuse"
+      ],
+      "scene": {
+        "id": "scale",
+        "title": "Many pages, little value",
+        "beats": [
+          {
+            "caption": "Scaled content abuse: many pages generated for the primary purpose of manipulating search rankings and not helping users.",
+            "source_ids": [
+              "S209#P7",
+              "S209#P22"
+            ]
+          },
+          {
+            "caption": "Listed example: using generative AI tools or similar tools to generate many pages without adding value.",
+            "source_ids": [
+              "S209#P8"
+            ]
+          },
+          {
+            "caption": "Thin affiliation: affiliate pages with descriptions copied from the merchant, without original content or added value.",
+            "source_ids": [
+              "S209#P14"
+            ]
+          },
+          {
+            "caption": "Expired domain abuse: an expired domain bought and repurposed to manipulate rankings with low-value content.",
+            "source_ids": [
+              "S209#P16"
+            ]
+          },
+          {
+            "caption": "Site reputation abuse: third-party content published on a host mainly because of the host's ranking signals.",
+            "source_ids": [
+              "S209#P15"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "Scaled content abuse",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says scaled content abuse is when many pages are generated for the primary purpose of manipulating search rankings and not helping users. One listed example is using generative AI tools or other similar tools to generate many pages without adding value.",
+              "source_ids": [
+                "S209#P7",
+                "S209#P22",
+                "S209#P8"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "label": "Note",
+              "text": "The example is about many pages without added value. The saved policy text doesn't say all AI-written content is spam.",
+              "source_ids": [
+                "S209#P8"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Scraping is a related policy: taking content from other sites, often through automated means.",
+              "source_ids": [
+                "S209#P35"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Thin affiliation",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Thin affiliation is publishing content with product affiliate links where the product descriptions and reviews are copied directly from the original merchant without any original content or added value.",
+              "source_ids": [
+                "S209#P14"
+              ]
+            },
+            {
+              "type": "example",
+              "text": "Hypothetical: two pages link to the same blender. One pastes the maker's blurb. The other adds the writer's own test results. Only the first matches Google's thin affiliation wording.",
+              "source_ids": [
+                "S209#P14"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Borrowed reputation",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Two policies cover borrowing ranking power you didn't earn.",
+              "source_ids": [
+                "S209#P16",
+                "S209#P15"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Expired domain abuse.",
+                  "text": "An expired domain name is purchased and repurposed primarily to manipulate search rankings by hosting content that provides little to no value to users.",
+                  "source_ids": [
+                    "S209#P16"
+                  ]
+                },
+                {
+                  "lead": "Site reputation abuse.",
+                  "text": "Third-party content is published on a host site mainly because of that host's already-established ranking signals, earned primarily from its first-party content.",
+                  "source_ids": [
+                    "S209#P15"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Scaled abuse is many pages made to manipulate rankings.",
+          "source_ids": [
+            "S209#P7"
+          ]
+        },
+        {
+          "text": "The AI example is many pages without added value.",
+          "source_ids": [
+            "S209#P8"
+          ]
+        },
+        {
+          "text": "Thin affiliation copies merchant text with nothing added.",
+          "source_ids": [
+            "S209#P14"
+          ]
+        },
+        {
+          "text": "Site reputation abuse leans on a host's signals.",
+          "source_ids": [
+            "S209#P15"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Audit a page set",
+        "minutes": "20",
+        "steps": [
+          "Export all pages built from one template, like location or product pages.",
+          "Sample ten and note what's unique on each.",
+          "Flag pages whose only difference is a swapped name or place.",
+          "Plan to improve, merge or remove the flagged pages."
+        ],
+        "prompt_template": "Here are ten pages from one template with notes on what's unique: [paste]. Google defines scaled content abuse as many pages generated mainly to manipulate rankings and not helping users, and thin affiliation as copied merchant text without added value. Flag pages that look close to either, and suggest a fix for each."
+      },
+      "reflection": [
+        "Does any section of your site exist mainly because of your domain's strength?",
+        "Which template pages add nothing a reader couldn't get elsewhere?"
+      ],
+      "whats_next": "Next, link spam and what happens after a manual action."
+    },
+    {
+      "lesson_id": "T54-4",
+      "title": "Link spam and manual actions",
+      "est_minutes": 5,
+      "objectives": [
+        "Define link spam and list Google's examples",
+        "Qualify paid links correctly",
+        "Fix a manual action and request review"
+      ],
+      "scene": {
+        "id": "links",
+        "title": "Links, actions, review",
+        "beats": [
+          {
+            "caption": "Link spam: creating links to or from a site primarily to manipulate search rankings.",
+            "source_ids": [
+              "S209#P5"
+            ]
+          },
+          {
+            "caption": "Examples include buying or selling links for ranking purposes, and automated link services.",
+            "source_ids": [
+              "S209#P23",
+              "S209#P6"
+            ]
+          },
+          {
+            "caption": "Paid links are fine if qualified with rel=\"nofollow\" or rel=\"sponsored\".",
+            "source_ids": [
+              "S209#P29",
+              "S209#P30"
+            ]
+          },
+          {
+            "caption": "A manual action is issued when a human reviewer at Google has found a violation. You're notified in the Manual actions report.",
+            "source_ids": [
+              "S244#P1",
+              "S209#P33"
+            ]
+          },
+          {
+            "caption": "Fix all issues on all pages, then select Request Review. Most reviews take several days or weeks.",
+            "source_ids": [
+              "S244#P4",
+              "S244#P5"
+            ]
+          }
+        ]
+      },
+      "sections": [
+        {
+          "heading": "What counts as link spam",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google says link spam is the practice of creating links to or from a site primarily for the purpose of manipulating search rankings. Its examples include these.",
+              "source_ids": [
+                "S209#P5"
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "lead": "Paid links.",
+                  "text": "Buying or selling links for ranking purposes, or exchanging goods or services for links.",
+                  "source_ids": [
+                    "S209#P23",
+                    "S209#P24"
+                  ]
+                },
+                {
+                  "lead": "Products for links.",
+                  "text": "Sending someone a product in exchange for them writing about it and including a link.",
+                  "source_ids": [
+                    "S209#P25"
+                  ]
+                },
+                {
+                  "lead": "Link swaps.",
+                  "text": "Excessive link exchanges, or partner pages exclusively for the sake of cross-linking.",
+                  "source_ids": [
+                    "S209#P26"
+                  ]
+                },
+                {
+                  "lead": "Automated and low-quality links.",
+                  "text": "Automated link services, low-quality directory or bookmark links, and widely distributed footer or template links.",
+                  "source_ids": [
+                    "S209#P6",
+                    "S209#P27",
+                    "S209#P28"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Paid links done right",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google understands that buying and selling links is a normal part of the economy of the web for advertising and sponsorship. It's not a violation to have such links as long as they're qualified with a rel=\"nofollow\" or rel=\"sponsored\" attribute value.",
+              "source_ids": [
+                "S209#P29",
+                "S209#P30"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Google's outbound links guide says to mark links that are advertisements or paid placements with the sponsored value.",
+              "source_ids": [
+                "S406#P1"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "After a manual action",
+          "blocks": [
+            {
+              "type": "p",
+              "text": "Google issues a manual action when a human reviewer at Google has determined that pages on a site violate its policies, and it notifies you in the Manual actions report. Most issues there result in pages or sites being ranked lower or omitted from search results.",
+              "source_ids": [
+                "S244#P1",
+                "S209#P33",
+                "S244#P3"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "When all issues listed in the report are fixed in all pages, select Request Review in the report. Google says most reconsideration reviews can take several days or weeks.",
+              "source_ids": [
+                "S244#P4",
+                "S244#P5"
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "label": "Watch out",
+              "text": "Google says to request review when all listed issues are fixed in all pages. Finish every fix first.",
+              "source_ids": [
+                "S244#P4"
+              ]
+            }
+          ]
+        }
+      ],
+      "takeaways": [
+        {
+          "text": "Link spam is links made mainly to manipulate rankings.",
+          "source_ids": [
+            "S209#P5"
+          ]
+        },
+        {
+          "text": "Paid links need nofollow or sponsored.",
+          "source_ids": [
+            "S209#P30"
+          ]
+        },
+        {
+          "text": "Manual actions come from human reviewers.",
+          "source_ids": [
+            "S244#P1"
+          ]
+        },
+        {
+          "text": "Fix everything, then request review.",
+          "source_ids": [
+            "S244#P4"
+          ]
+        }
+      ],
+      "exercise": {
+        "title": "Check paid links",
+        "minutes": "15",
+        "steps": [
+          "List every sponsored post, advert and partner page on your site.",
+          "Check each outbound link for rel=\"sponsored\" or rel=\"nofollow\".",
+          "Open Search Console and check the Manual actions report.",
+          "Fix any unqualified paid links you find."
+        ],
+        "prompt_template": "Here is a list of my sponsored and partner pages with their outbound link tags: [paste]. Google says paid links are fine if qualified with rel=\"nofollow\" or rel=\"sponsored\", and link spam includes buying links for ranking and excessive link exchanges. Flag links that need fixing."
+      },
+      "reflection": [
+        "Has anyone sent your team a product in exchange for a link?",
+        "Who checks the Manual actions report for your sites, and how often?"
+      ],
+      "whats_next": "That's the last lesson. Next, the conclusion pulls the four lessons together."
+    }
+  ],
+  "conclusion": {
+    "title": "Conclusion",
+    "est_minutes": 3,
+    "text": "Google runs spam detection systems, including SpamBrain, and uses human review as needed; violators may rank lower or disappear. Cloaking, hidden text, keyword stuffing and doorways deceive readers or crawlers. Scaled content abuse, thin affiliation, expired domain abuse and site reputation abuse produce or borrow value without adding it. Link spam is links made mainly to manipulate rankings, so qualify paid links. After a manual action, fix every issue, then request review.",
+    "related_topics": [
+      {
+        "topic_id": "T55",
+        "title": "Content quality heuristics, Information Gain and E-E-A-T"
+      },
+      {
+        "topic_id": "T45",
+        "title": "Link graph analysis and authority modeling"
+      },
+      {
+        "topic_id": "T41",
+        "title": "Canonicalization and near-duplicate content detection"
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Course quiz",
+    "est_minutes": 8,
+    "intro": "You've reached the final quiz for Spam policies and quality filters. The questions revisit Google's named spam policies and what happens to sites that break them.",
+    "pass_mark": 0.8,
+    "item_ids": [
+      "T54-L1-01",
+      "T54-L1-02",
+      "T54-L1-03",
+      "T54-L2-01",
+      "T54-L2-02",
+      "T54-L2-03",
+      "T54-L3-01",
+      "T54-L3-02",
+      "T54-L4-01",
+      "T54-L4-02"
+    ],
+    "multiple_choice_overrides": [
+      {
+        "item_id": "T54-L1-01",
+        "options": [
+          "A. hidden",
+          "B. different",
+          "C. duplicate",
+          "D. translated"
+        ],
+        "answer": "B",
+        "explanation": "Correct: Google says cloaking refers to the practice of presenting different content to users and search engines.",
+        "source_ids": [
+          "S209#P3"
+        ]
+      },
+      {
+        "item_id": "T54-L1-03",
+        "options": [
+          "A. False, they are only warned",
+          "B. False, only ads are affected",
+          "C. True",
+          "D. False, only fines apply"
+        ],
+        "answer": "C",
+        "explanation": "Correct: Google says sites that violate its policies may rank lower in results or not appear in results at all.",
+        "source_ids": [
+          "S209#P11"
+        ]
+      },
+      {
+        "item_id": "T54-L2-02",
+        "options": [
+          "A. True",
+          "B. False",
+          "C. True, unless it's disclosed",
+          "D. True, if over 50 pages"
+        ],
+        "answer": "B",
+        "explanation": "Correct: the saved example is using generative AI or similar tools to generate many pages without adding value. The saved text doesn't say all AI use is spam.",
+        "source_ids": [
+          "S209#P8"
+        ]
+      }
+    ]
+  }
+}
