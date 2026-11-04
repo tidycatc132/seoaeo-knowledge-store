@@ -12,6 +12,7 @@ One topic in `bank/items/` becomes one course: four lessons, a conclusion, a 10-
 | `bank/lessons/<T##>-<slug>.json` | The lesson layer: all course text, with source ids on every factual block. |
 | `courses/assets/` | WISE logo and Digi the Owl, copied next to each built page. |
 | `courses/build.py` | Checks the lesson layer and writes `dist/<T##>/index.html`. |
+| `courses/hub.html`, `courses/hub.json`, `courses/build_hub.py` | The WISE Academy hub that lists every course: page template, tracks, learning paths and published links, and its build script. |
 
 Build a course:
 
@@ -78,6 +79,17 @@ The tokens sit at the top of `shell.html`, taken from the WISE design system art
 
 Don't hand-edit colours in a scene file except on the stage.
 
+## Hub
+
+The hub lists every course in `bank/lessons/`, grouped into tracks by the bank's `stage`, with learning paths, search and filters. Track names, path lists and each course's published Artifact link live in `courses/hub.json`.
+
+```
+python3 courses/build_hub.py                          # Artifact links, writes dist/hub/
+python3 courses/build_hub.py --links relative --out site   # links to T##/, writes site/index.html
+```
+
+Publish `dist/hub/index.html` as an Artifact with `wise-logo.png` and `owl.png` as files. The build fails if a course has no link, a stage has no track, or a path names a missing course. After publishing a new course, add its link to `artifact_links` (and to a path if it fits), then rebuild and republish the hub.
+
 ## Checklist for a new course
 
 1. Read the topic's bank file and `research/topics/T##-*.md`, and list the source passages available.
@@ -86,3 +98,4 @@ Don't hand-edit colours in a scene file except on the stage.
 4. Run `build.py` and fix every error and warning.
 5. Screenshot every view, and each scene's last beat, at desktop and phone widths, then fix any overlaps.
 6. Append a line to `research/log.md` and commit the lesson layer, scenes and any new sources.
+7. Add the published link to `courses/hub.json`, then rebuild and republish the hub.
